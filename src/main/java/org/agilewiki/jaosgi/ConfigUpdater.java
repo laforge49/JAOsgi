@@ -41,6 +41,7 @@ public final class ConfigUpdater implements ManagedService {
     private List<ServiceRegistration> registrations;
     private int threadCount = 0;
     private BundleContext context;
+    private MailboxFactory mailboxFactory;
 
     public ConfigUpdater(List<ServiceRegistration> registrations, BundleContext context) {
         this.registrations = registrations;
@@ -60,12 +61,16 @@ public final class ConfigUpdater implements ManagedService {
             throw new ConfigurationException("threadCount", "not an int: "+tc, ex);
         }
         logger.info("threadCount: " + threadCount);
-        MailboxFactory mailboxFactory = JAMailboxFactory.newMailboxFactory(threadCount);
+        mailboxFactory = JAMailboxFactory.newMailboxFactory(threadCount);
         registrations.add(context.registerService(
                 MailboxFactory.class.getName(),
                 mailboxFactory,
                 new Hashtable<String, Object>()));
 
         //todo
+    }
+
+    public void stop() {
+        mailboxFactory.close();
     }
 }

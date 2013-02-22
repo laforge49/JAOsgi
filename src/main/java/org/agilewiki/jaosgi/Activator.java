@@ -37,6 +37,7 @@ import java.util.List;
 public final class Activator  implements BundleActivator {
     private static final String CONFIG_PID = "JAOsgi";
     private List<ServiceRegistration> registrations = new ArrayList<ServiceRegistration>();
+    private ConfigUpdater configUpdater;
 
     public void start(BundleContext context) {
         ConfigUpdater configUpdater = new ConfigUpdater(registrations, context);
@@ -46,6 +47,7 @@ public final class Activator  implements BundleActivator {
     }
 
     public void stop(BundleContext context) {
+        configUpdater.stop();
         Iterator<ServiceRegistration> srit = registrations.iterator();
         while (srit.hasNext())
             srit.next().unregister();
