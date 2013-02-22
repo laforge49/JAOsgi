@@ -26,7 +26,7 @@ package org.agilewiki.jid;
 import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.factory.ActorFactory;
-import org.agilewiki.jactor.factory.JAFactory;
+import org.agilewiki.jactor.factory.JAFactoryLocator;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jid.collection.vlenc.BListJidFactory;
 import org.agilewiki.jid.collection.vlenc.ListJidFactory;
@@ -430,98 +430,98 @@ final public class JidFactories extends JLPCActor {
     public void initialize(Mailbox mailbox, Actor parent, ActorFactory actorFactory)
             throws Exception {
         if (parent == null) {
-            parent = new JAFactory();
-            ((JAFactory) parent).initialize(mailbox);
+            parent = new JAFactoryLocator();
+            ((JAFactoryLocator) parent).initialize(mailbox);
         }
         super.initialize(mailbox, parent, actorFactory);
 
         Actor f = parent;
-        while (!(f instanceof JAFactory)) f = f.getParent();
-        JAFactory factory = (JAFactory) f;
+        while (!(f instanceof JAFactoryLocator)) f = f.getParent();
+        JAFactoryLocator factoryLocator = (JAFactoryLocator) f;
 
-        factory.registerActorFactory(JidFactory.fac);
+        factoryLocator.registerActorFactory(JidFactory.fac);
 
-        factory.registerActorFactory(BooleanJidFactory.fac);
-        factory.registerActorFactory(IntegerJidFactory.fac);
-        factory.registerActorFactory(LongJidFactory.fac);
-        factory.registerActorFactory(FloatJidFactory.fac);
-        factory.registerActorFactory(DoubleJidFactory.fac);
+        factoryLocator.registerActorFactory(BooleanJidFactory.fac);
+        factoryLocator.registerActorFactory(IntegerJidFactory.fac);
+        factoryLocator.registerActorFactory(LongJidFactory.fac);
+        factoryLocator.registerActorFactory(FloatJidFactory.fac);
+        factoryLocator.registerActorFactory(DoubleJidFactory.fac);
 
-        factory.registerActorFactory(ActorJidFactory.fac);
-        factory.registerActorFactory(RootJidFactory.fac);
-        factory.registerActorFactory(StringJidFactory.fac);
-        factory.registerActorFactory(BytesJidFactory.fac);
+        factoryLocator.registerActorFactory(ActorJidFactory.fac);
+        factoryLocator.registerActorFactory(RootJidFactory.fac);
+        factoryLocator.registerActorFactory(StringJidFactory.fac);
+        factoryLocator.registerActorFactory(BytesJidFactory.fac);
 
-        factory.registerActorFactory(new BListJidFactory(STRING_BLIST_JID_TYPE, StringJidFactory.fac));
-        factory.registerActorFactory(new BListJidFactory(BYTES_BLIST_JID_TYPE, BytesJidFactory.fac));
-        factory.registerActorFactory(new BListJidFactory(ACTOR_BLIST_JID_TYPE, ActorJidFactory.fac));
-        factory.registerActorFactory(new BListJidFactory(LONG_BLIST_JID_TYPE, LongJidFactory.fac));
-        factory.registerActorFactory(new BListJidFactory(INTEGER_BLIST_JID_TYPE, IntegerJidFactory.fac));
-        factory.registerActorFactory(new BListJidFactory(FLOAT_BLIST_JID_TYPE, FloatJidFactory.fac));
-        factory.registerActorFactory(new BListJidFactory(DOUBLE_BLIST_JID_TYPE, DoubleJidFactory.fac));
-        factory.registerActorFactory(new BListJidFactory(BOOLEAN_BLIST_JID_TYPE, BooleanJidFactory.fac));
+        factoryLocator.registerActorFactory(new BListJidFactory(STRING_BLIST_JID_TYPE, StringJidFactory.fac));
+        factoryLocator.registerActorFactory(new BListJidFactory(BYTES_BLIST_JID_TYPE, BytesJidFactory.fac));
+        factoryLocator.registerActorFactory(new BListJidFactory(ACTOR_BLIST_JID_TYPE, ActorJidFactory.fac));
+        factoryLocator.registerActorFactory(new BListJidFactory(LONG_BLIST_JID_TYPE, LongJidFactory.fac));
+        factoryLocator.registerActorFactory(new BListJidFactory(INTEGER_BLIST_JID_TYPE, IntegerJidFactory.fac));
+        factoryLocator.registerActorFactory(new BListJidFactory(FLOAT_BLIST_JID_TYPE, FloatJidFactory.fac));
+        factoryLocator.registerActorFactory(new BListJidFactory(DOUBLE_BLIST_JID_TYPE, DoubleJidFactory.fac));
+        factoryLocator.registerActorFactory(new BListJidFactory(BOOLEAN_BLIST_JID_TYPE, BooleanJidFactory.fac));
 
-        factory.registerActorFactory(new ListJidFactory(STRING_LIST_JID_TYPE, StringJidFactory.fac));
-        factory.registerActorFactory(new ListJidFactory(BYTES_LIST_JID_TYPE, BytesJidFactory.fac));
-        factory.registerActorFactory(new ListJidFactory(ACTOR_LIST_JID_TYPE, ActorJidFactory.fac));
-        factory.registerActorFactory(new ListJidFactory(LONG_LIST_JID_TYPE, LongJidFactory.fac));
-        factory.registerActorFactory(new ListJidFactory(INTEGER_LIST_JID_TYPE, IntegerJidFactory.fac));
-        factory.registerActorFactory(new ListJidFactory(FLOAT_LIST_JID_TYPE, FloatJidFactory.fac));
-        factory.registerActorFactory(new ListJidFactory(DOUBLE_LIST_JID_TYPE, DoubleJidFactory.fac));
-        factory.registerActorFactory(new ListJidFactory(BOOLEAN_LIST_JID_TYPE, BooleanJidFactory.fac));
+        factoryLocator.registerActorFactory(new ListJidFactory(STRING_LIST_JID_TYPE, StringJidFactory.fac));
+        factoryLocator.registerActorFactory(new ListJidFactory(BYTES_LIST_JID_TYPE, BytesJidFactory.fac));
+        factoryLocator.registerActorFactory(new ListJidFactory(ACTOR_LIST_JID_TYPE, ActorJidFactory.fac));
+        factoryLocator.registerActorFactory(new ListJidFactory(LONG_LIST_JID_TYPE, LongJidFactory.fac));
+        factoryLocator.registerActorFactory(new ListJidFactory(INTEGER_LIST_JID_TYPE, IntegerJidFactory.fac));
+        factoryLocator.registerActorFactory(new ListJidFactory(FLOAT_LIST_JID_TYPE, FloatJidFactory.fac));
+        factoryLocator.registerActorFactory(new ListJidFactory(DOUBLE_LIST_JID_TYPE, DoubleJidFactory.fac));
+        factoryLocator.registerActorFactory(new ListJidFactory(BOOLEAN_LIST_JID_TYPE, BooleanJidFactory.fac));
 
-        factory.registerActorFactory(new StringMapJidFactory(STRING_STRING_MAP_JID_TYPE, StringJidFactory.fac));
-        factory.registerActorFactory(new StringMapJidFactory(STRING_BYTES_MAP_JID_TYPE, BytesJidFactory.fac));
-        factory.registerActorFactory(new StringMapJidFactory(STRING_ACTOR_MAP_JID_TYPE, ActorJidFactory.fac));
-        factory.registerActorFactory(new StringMapJidFactory(STRING_LONG_MAP_JID_TYPE, LongJidFactory.fac));
-        factory.registerActorFactory(new StringMapJidFactory(STRING_INTEGER_MAP_JID_TYPE, IntegerJidFactory.fac));
-        factory.registerActorFactory(new StringMapJidFactory(STRING_FLOAT_MAP_JID_TYPE, FloatJidFactory.fac));
-        factory.registerActorFactory(new StringMapJidFactory(STRING_DOUBLE_MAP_JID_TYPE, DoubleJidFactory.fac));
-        factory.registerActorFactory(new StringMapJidFactory(STRING_BOOLEAN_MAP_JID_TYPE, BooleanJidFactory.fac));
+        factoryLocator.registerActorFactory(new StringMapJidFactory(STRING_STRING_MAP_JID_TYPE, StringJidFactory.fac));
+        factoryLocator.registerActorFactory(new StringMapJidFactory(STRING_BYTES_MAP_JID_TYPE, BytesJidFactory.fac));
+        factoryLocator.registerActorFactory(new StringMapJidFactory(STRING_ACTOR_MAP_JID_TYPE, ActorJidFactory.fac));
+        factoryLocator.registerActorFactory(new StringMapJidFactory(STRING_LONG_MAP_JID_TYPE, LongJidFactory.fac));
+        factoryLocator.registerActorFactory(new StringMapJidFactory(STRING_INTEGER_MAP_JID_TYPE, IntegerJidFactory.fac));
+        factoryLocator.registerActorFactory(new StringMapJidFactory(STRING_FLOAT_MAP_JID_TYPE, FloatJidFactory.fac));
+        factoryLocator.registerActorFactory(new StringMapJidFactory(STRING_DOUBLE_MAP_JID_TYPE, DoubleJidFactory.fac));
+        factoryLocator.registerActorFactory(new StringMapJidFactory(STRING_BOOLEAN_MAP_JID_TYPE, BooleanJidFactory.fac));
 
-        factory.registerActorFactory(new IntegerMapJidFactory(INTEGER_STRING_MAP_JID_TYPE, StringJidFactory.fac));
-        factory.registerActorFactory(new IntegerMapJidFactory(INTEGER_BYTES_MAP_JID_TYPE, BytesJidFactory.fac));
-        factory.registerActorFactory(new IntegerMapJidFactory(INTEGER_ACTOR_MAP_JID_TYPE, ActorJidFactory.fac));
-        factory.registerActorFactory(new IntegerMapJidFactory(INTEGER_LONG_MAP_JID_TYPE, LongJidFactory.fac));
-        factory.registerActorFactory(new IntegerMapJidFactory(INTEGER_INTEGER_MAP_JID_TYPE, IntegerJidFactory.fac));
-        factory.registerActorFactory(new IntegerMapJidFactory(INTEGER_FLOAT_MAP_JID_TYPE, FloatJidFactory.fac));
-        factory.registerActorFactory(new IntegerMapJidFactory(INTEGER_DOUBLE_MAP_JID_TYPE, DoubleJidFactory.fac));
-        factory.registerActorFactory(new IntegerMapJidFactory(INTEGER_BOOLEAN_MAP_JID_TYPE, BooleanJidFactory.fac));
+        factoryLocator.registerActorFactory(new IntegerMapJidFactory(INTEGER_STRING_MAP_JID_TYPE, StringJidFactory.fac));
+        factoryLocator.registerActorFactory(new IntegerMapJidFactory(INTEGER_BYTES_MAP_JID_TYPE, BytesJidFactory.fac));
+        factoryLocator.registerActorFactory(new IntegerMapJidFactory(INTEGER_ACTOR_MAP_JID_TYPE, ActorJidFactory.fac));
+        factoryLocator.registerActorFactory(new IntegerMapJidFactory(INTEGER_LONG_MAP_JID_TYPE, LongJidFactory.fac));
+        factoryLocator.registerActorFactory(new IntegerMapJidFactory(INTEGER_INTEGER_MAP_JID_TYPE, IntegerJidFactory.fac));
+        factoryLocator.registerActorFactory(new IntegerMapJidFactory(INTEGER_FLOAT_MAP_JID_TYPE, FloatJidFactory.fac));
+        factoryLocator.registerActorFactory(new IntegerMapJidFactory(INTEGER_DOUBLE_MAP_JID_TYPE, DoubleJidFactory.fac));
+        factoryLocator.registerActorFactory(new IntegerMapJidFactory(INTEGER_BOOLEAN_MAP_JID_TYPE, BooleanJidFactory.fac));
 
-        factory.registerActorFactory(new LongMapJidFactory(LONG_STRING_MAP_JID_TYPE, StringJidFactory.fac));
-        factory.registerActorFactory(new LongMapJidFactory(LONG_BYTES_MAP_JID_TYPE, BytesJidFactory.fac));
-        factory.registerActorFactory(new LongMapJidFactory(LONG_ACTOR_MAP_JID_TYPE, ActorJidFactory.fac));
-        factory.registerActorFactory(new LongMapJidFactory(LONG_LONG_MAP_JID_TYPE, LongJidFactory.fac));
-        factory.registerActorFactory(new LongMapJidFactory(LONG_INTEGER_MAP_JID_TYPE, IntegerJidFactory.fac));
-        factory.registerActorFactory(new LongMapJidFactory(LONG_FLOAT_MAP_JID_TYPE, FloatJidFactory.fac));
-        factory.registerActorFactory(new LongMapJidFactory(LONG_DOUBLE_MAP_JID_TYPE, DoubleJidFactory.fac));
-        factory.registerActorFactory(new LongMapJidFactory(LONG_BOOLEAN_MAP_JID_TYPE, BooleanJidFactory.fac));
+        factoryLocator.registerActorFactory(new LongMapJidFactory(LONG_STRING_MAP_JID_TYPE, StringJidFactory.fac));
+        factoryLocator.registerActorFactory(new LongMapJidFactory(LONG_BYTES_MAP_JID_TYPE, BytesJidFactory.fac));
+        factoryLocator.registerActorFactory(new LongMapJidFactory(LONG_ACTOR_MAP_JID_TYPE, ActorJidFactory.fac));
+        factoryLocator.registerActorFactory(new LongMapJidFactory(LONG_LONG_MAP_JID_TYPE, LongJidFactory.fac));
+        factoryLocator.registerActorFactory(new LongMapJidFactory(LONG_INTEGER_MAP_JID_TYPE, IntegerJidFactory.fac));
+        factoryLocator.registerActorFactory(new LongMapJidFactory(LONG_FLOAT_MAP_JID_TYPE, FloatJidFactory.fac));
+        factoryLocator.registerActorFactory(new LongMapJidFactory(LONG_DOUBLE_MAP_JID_TYPE, DoubleJidFactory.fac));
+        factoryLocator.registerActorFactory(new LongMapJidFactory(LONG_BOOLEAN_MAP_JID_TYPE, BooleanJidFactory.fac));
 
-        factory.registerActorFactory(new StringBMapJidFactory(STRING_STRING_BMAP_JID_TYPE, StringJidFactory.fac));
-        factory.registerActorFactory(new StringBMapJidFactory(STRING_BYTES_BMAP_JID_TYPE, BytesJidFactory.fac));
-        factory.registerActorFactory(new StringBMapJidFactory(STRING_ACTOR_BMAP_JID_TYPE, ActorJidFactory.fac));
-        factory.registerActorFactory(new StringBMapJidFactory(STRING_LONG_BMAP_JID_TYPE, LongJidFactory.fac));
-        factory.registerActorFactory(new StringBMapJidFactory(STRING_INTEGER_BMAP_JID_TYPE, IntegerJidFactory.fac));
-        factory.registerActorFactory(new StringBMapJidFactory(STRING_FLOAT_BMAP_JID_TYPE, FloatJidFactory.fac));
-        factory.registerActorFactory(new StringBMapJidFactory(STRING_DOUBLE_BMAP_JID_TYPE, DoubleJidFactory.fac));
-        factory.registerActorFactory(new StringBMapJidFactory(STRING_BOOLEAN_BMAP_JID_TYPE, BooleanJidFactory.fac));
+        factoryLocator.registerActorFactory(new StringBMapJidFactory(STRING_STRING_BMAP_JID_TYPE, StringJidFactory.fac));
+        factoryLocator.registerActorFactory(new StringBMapJidFactory(STRING_BYTES_BMAP_JID_TYPE, BytesJidFactory.fac));
+        factoryLocator.registerActorFactory(new StringBMapJidFactory(STRING_ACTOR_BMAP_JID_TYPE, ActorJidFactory.fac));
+        factoryLocator.registerActorFactory(new StringBMapJidFactory(STRING_LONG_BMAP_JID_TYPE, LongJidFactory.fac));
+        factoryLocator.registerActorFactory(new StringBMapJidFactory(STRING_INTEGER_BMAP_JID_TYPE, IntegerJidFactory.fac));
+        factoryLocator.registerActorFactory(new StringBMapJidFactory(STRING_FLOAT_BMAP_JID_TYPE, FloatJidFactory.fac));
+        factoryLocator.registerActorFactory(new StringBMapJidFactory(STRING_DOUBLE_BMAP_JID_TYPE, DoubleJidFactory.fac));
+        factoryLocator.registerActorFactory(new StringBMapJidFactory(STRING_BOOLEAN_BMAP_JID_TYPE, BooleanJidFactory.fac));
 
-        factory.registerActorFactory(new IntegerBMapJidFactory(INTEGER_STRING_BMAP_JID_TYPE, StringJidFactory.fac));
-        factory.registerActorFactory(new IntegerBMapJidFactory(INTEGER_BYTES_BMAP_JID_TYPE, BytesJidFactory.fac));
-        factory.registerActorFactory(new IntegerBMapJidFactory(INTEGER_ACTOR_BMAP_JID_TYPE, ActorJidFactory.fac));
-        factory.registerActorFactory(new IntegerBMapJidFactory(INTEGER_LONG_BMAP_JID_TYPE, LongJidFactory.fac));
-        factory.registerActorFactory(new IntegerBMapJidFactory(INTEGER_INTEGER_BMAP_JID_TYPE, IntegerJidFactory.fac));
-        factory.registerActorFactory(new IntegerBMapJidFactory(INTEGER_FLOAT_BMAP_JID_TYPE, FloatJidFactory.fac));
-        factory.registerActorFactory(new IntegerBMapJidFactory(INTEGER_DOUBLE_BMAP_JID_TYPE, DoubleJidFactory.fac));
-        factory.registerActorFactory(new IntegerBMapJidFactory(INTEGER_BOOLEAN_BMAP_JID_TYPE, BooleanJidFactory.fac));
+        factoryLocator.registerActorFactory(new IntegerBMapJidFactory(INTEGER_STRING_BMAP_JID_TYPE, StringJidFactory.fac));
+        factoryLocator.registerActorFactory(new IntegerBMapJidFactory(INTEGER_BYTES_BMAP_JID_TYPE, BytesJidFactory.fac));
+        factoryLocator.registerActorFactory(new IntegerBMapJidFactory(INTEGER_ACTOR_BMAP_JID_TYPE, ActorJidFactory.fac));
+        factoryLocator.registerActorFactory(new IntegerBMapJidFactory(INTEGER_LONG_BMAP_JID_TYPE, LongJidFactory.fac));
+        factoryLocator.registerActorFactory(new IntegerBMapJidFactory(INTEGER_INTEGER_BMAP_JID_TYPE, IntegerJidFactory.fac));
+        factoryLocator.registerActorFactory(new IntegerBMapJidFactory(INTEGER_FLOAT_BMAP_JID_TYPE, FloatJidFactory.fac));
+        factoryLocator.registerActorFactory(new IntegerBMapJidFactory(INTEGER_DOUBLE_BMAP_JID_TYPE, DoubleJidFactory.fac));
+        factoryLocator.registerActorFactory(new IntegerBMapJidFactory(INTEGER_BOOLEAN_BMAP_JID_TYPE, BooleanJidFactory.fac));
 
-        factory.registerActorFactory(new LongBMapJidFactory(LONG_STRING_BMAP_JID_TYPE, StringJidFactory.fac));
-        factory.registerActorFactory(new LongBMapJidFactory(LONG_BYTES_BMAP_JID_TYPE, BytesJidFactory.fac));
-        factory.registerActorFactory(new LongBMapJidFactory(LONG_ACTOR_BMAP_JID_TYPE, ActorJidFactory.fac));
-        factory.registerActorFactory(new LongBMapJidFactory(LONG_LONG_BMAP_JID_TYPE, LongJidFactory.fac));
-        factory.registerActorFactory(new LongBMapJidFactory(LONG_INTEGER_BMAP_JID_TYPE, IntegerJidFactory.fac));
-        factory.registerActorFactory(new LongBMapJidFactory(LONG_FLOAT_BMAP_JID_TYPE, FloatJidFactory.fac));
-        factory.registerActorFactory(new LongBMapJidFactory(LONG_DOUBLE_BMAP_JID_TYPE, DoubleJidFactory.fac));
-        factory.registerActorFactory(new LongBMapJidFactory(LONG_BOOLEAN_BMAP_JID_TYPE, BooleanJidFactory.fac));
+        factoryLocator.registerActorFactory(new LongBMapJidFactory(LONG_STRING_BMAP_JID_TYPE, StringJidFactory.fac));
+        factoryLocator.registerActorFactory(new LongBMapJidFactory(LONG_BYTES_BMAP_JID_TYPE, BytesJidFactory.fac));
+        factoryLocator.registerActorFactory(new LongBMapJidFactory(LONG_ACTOR_BMAP_JID_TYPE, ActorJidFactory.fac));
+        factoryLocator.registerActorFactory(new LongBMapJidFactory(LONG_LONG_BMAP_JID_TYPE, LongJidFactory.fac));
+        factoryLocator.registerActorFactory(new LongBMapJidFactory(LONG_INTEGER_BMAP_JID_TYPE, IntegerJidFactory.fac));
+        factoryLocator.registerActorFactory(new LongBMapJidFactory(LONG_FLOAT_BMAP_JID_TYPE, FloatJidFactory.fac));
+        factoryLocator.registerActorFactory(new LongBMapJidFactory(LONG_DOUBLE_BMAP_JID_TYPE, DoubleJidFactory.fac));
+        factoryLocator.registerActorFactory(new LongBMapJidFactory(LONG_BOOLEAN_BMAP_JID_TYPE, BooleanJidFactory.fac));
     }
 }

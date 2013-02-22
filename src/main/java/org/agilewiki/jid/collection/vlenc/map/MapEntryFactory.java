@@ -26,7 +26,7 @@ package org.agilewiki.jid.collection.vlenc.map;
 import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.factory.ActorFactory;
-import org.agilewiki.jactor.factory.Factory;
+import org.agilewiki.jactor.factory.FactoryLocator;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 /**
@@ -81,9 +81,9 @@ public class MapEntryFactory extends ActorFactory {
             throws Exception {
         MapEntry me = (MapEntry) super.newActor(mailbox, parent);
         if (keyFactory == null) {
-            Factory f = (Factory) parent.getMatch(Factory.class);
-            keyFactory = f.getActorFactory(keyType);
-            valueFactory = f.getActorFactory(valueType);
+            FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
+            keyFactory = fl.getActorFactory(keyType);
+            valueFactory = fl.getActorFactory(valueType);
         }
         me.setFactories(keyFactory, valueFactory);
         return me;

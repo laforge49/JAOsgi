@@ -51,7 +51,7 @@ public class JAFactoryFactory extends ActorFactory {
     @Override
     protected JLPCActor instantiateActor()
             throws Exception {
-        return new JAFactory();
+        return new JAFactoryLocator();
     }
 }
 

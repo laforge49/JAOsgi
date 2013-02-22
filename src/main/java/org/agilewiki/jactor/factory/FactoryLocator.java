@@ -30,7 +30,7 @@ import org.agilewiki.jactor.lpc.TargetActor;
 /**
  * Defines actor types and instantiating
  */
-public interface Factory extends TargetActor {
+public interface FactoryLocator extends TargetActor {
     /**
      * Bind an actor type to a Class.
      *

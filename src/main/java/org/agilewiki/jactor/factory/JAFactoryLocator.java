@@ -33,7 +33,7 @@ import java.util.concurrent.ConcurrentSkipListMap;
 /**
  * An actor for defining actor types and creating instances.
  */
-public class JAFactory extends JLPCActor implements Factory {
+public class JAFactoryLocator extends JLPCActor implements FactoryLocator{
     /**
      * Returns the requested actor factory.
      *
@@ -43,12 +43,12 @@ public class JAFactory extends JLPCActor implements Factory {
      */
     public static ActorFactory getActorFactory(Actor actor, String actorType)
             throws Exception {
-        if (!(actor instanceof Factory))
-            actor = actor.getAncestor(Factory.class);
+        if (!(actor instanceof FactoryLocator))
+            actor = actor.getAncestor(FactoryLocator.class);
         if (actor == null)
             throw new IllegalArgumentException("Unknown actor type: " + actorType);
-        Factory factory = (Factory) actor;
-        return factory.getActorFactory(actorType);
+        FactoryLocator factoryLocator = (FactoryLocator) actor;
+        return factoryLocator.getActorFactory(actorType);
     }
 
     /**
@@ -87,12 +87,12 @@ public class JAFactory extends JLPCActor implements Factory {
      */
     public static Actor newActor(Actor actor, String actorType, Mailbox mailbox, Actor parent)
             throws Exception {
-        if (!(actor instanceof Factory))
-            actor = actor.getAncestor(Factory.class);
+        if (!(actor instanceof FactoryLocator))
+            actor = actor.getAncestor(FactoryLocator.class);
         if (actor == null)
             return null;
-        Factory factory = (Factory) actor;
-        return factory.newActor(actorType, mailbox, parent);
+        FactoryLocator factoryLocator = (FactoryLocator) actor;
+        return factoryLocator.newActor(actorType, mailbox, parent);
     }
 
     /**
@@ -139,7 +139,7 @@ public class JAFactory extends JLPCActor implements Factory {
         }
         ActorFactory af = types.get(actorType);
         if (af == null) {
-            Factory a = (Factory) getAncestor(Factory.class);
+            FactoryLocator a = (FactoryLocator) getAncestor(FactoryLocator.class);
             if (a != null)
                 return a.newActor(actorType, mailbox, parent);
             throw new IllegalArgumentException("Unknown actor type: " + actorType);
@@ -158,7 +158,7 @@ public class JAFactory extends JLPCActor implements Factory {
             throws Exception {
         ActorFactory af = types.get(actorType);
         if (af == null) {
-            Factory a = (Factory) getAncestor(Factory.class);
+            FactoryLocator a = (FactoryLocator) getAncestor(FactoryLocator.class);
             if (a != null)
                 return a.getActorFactory(actorType);
             throw new IllegalArgumentException("Unknown actor type: " + actorType);

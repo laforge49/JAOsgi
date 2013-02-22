@@ -26,7 +26,7 @@ package org.agilewiki.jid.collection.vlenc;
 import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.factory.ActorFactory;
-import org.agilewiki.jactor.factory.Factory;
+import org.agilewiki.jactor.factory.FactoryLocator;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 /**
@@ -132,7 +132,7 @@ public class BListJidFactory extends ActorFactory {
             throws Exception {
         BListJid lj = (BListJid) super.newActor(mailbox, parent);
         if (entryFactory == null) {
-            Factory f = (Factory) parent.getMatch(Factory.class);
+            FactoryLocator f = (FactoryLocator) parent.getMatch(FactoryLocator.class);
             entryFactory = f.getActorFactory(entryType);
         }
         lj.entryFactory = entryFactory;

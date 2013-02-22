@@ -42,6 +42,7 @@ public final class ConfigUpdater implements ManagedService {
                 MailboxFactory.class.getName(),
                 mailboxFactory,
                 new Hashtable<String, Object>()));
+
         //todo
     }
 }

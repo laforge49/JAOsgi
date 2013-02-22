@@ -3,7 +3,7 @@ package org.agilewiki.jid.collection.flenc;
 import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.factory.ActorFactory;
-import org.agilewiki.jactor.factory.Factory;
+import org.agilewiki.jactor.factory.FactoryLocator;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 /**
@@ -51,11 +51,11 @@ abstract public class AppJidFactory extends ActorFactory {
             throws Exception {
         AppJid tj = (AppJid) super.newActor(mailbox, parent);
         if (tupleFactories == null) {
-            Factory f = (Factory) parent.getMatch(Factory.class);
+            FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
             ActorFactory[] afs = new ActorFactory[actorTypes.length];
             int i = 0;
             while (i < actorTypes.length) {
-                afs[i] = f.getActorFactory(actorTypes[i]);
+                afs[i] = fl.getActorFactory(actorTypes[i]);
                 i += 1;
             }
             tupleFactories = afs;

@@ -26,7 +26,7 @@ package org.agilewiki.jid.collection.vlenc.map;
 import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.factory.ActorFactory;
-import org.agilewiki.jactor.factory.Factory;
+import org.agilewiki.jactor.factory.FactoryLocator;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 /**
@@ -118,8 +118,8 @@ public class StringBMapJidFactory extends ActorFactory {
             throws Exception {
         StringBMapJid imj = (StringBMapJid) super.newActor(mailbox, parent);
         if (valueFactory == null) {
-            Factory f = (Factory) parent.getMatch(Factory.class);
-            valueFactory = f.getActorFactory(valueType);
+            FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
+            valueFactory = fl.getActorFactory(valueType);
         }
         imj.valueFactory = valueFactory;
         imj.nodeCapacity = nodeCapacity;
