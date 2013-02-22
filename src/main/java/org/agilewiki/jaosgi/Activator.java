@@ -39,7 +39,7 @@ public final class Activator  implements BundleActivator {
     private List<ServiceRegistration> registrations = new ArrayList<ServiceRegistration>();
 
     public void start(BundleContext context) {
-        ConfigUpdater configUpdater = new ConfigUpdater(registrations);
+        ConfigUpdater configUpdater = new ConfigUpdater(registrations, context);
         Hashtable<String, Object> properties = new Hashtable<String, Object>();
         properties.put(Constants.SERVICE_PID, CONFIG_PID);
         registrations.add(context.registerService(ManagedService.class.getName(), configUpdater , properties));
