@@ -70,6 +70,7 @@
                     <instructions>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Bundle-Version>${project.version}</Bundle-Version>
+                        <Bundle-Activator>org.agilewiki.jaosgi.Activator</Bundle-Activator>
                         <Export-Package>
                             org.agilewiki*;version=${project.version}
                         </Export-Package>
