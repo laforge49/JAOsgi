@@ -1,7 +1,7 @@
 package org.agilewiki.jid.scalar.flens.flt;
 
 import org.agilewiki.jactor.factory.ActorFactory;
-import org.agilewiki.jid.JidFactories;
+import org.agilewiki.jaosgi.JidFactories;
 
 /**
  * Creates a FloatJidA.

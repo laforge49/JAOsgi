@@ -25,6 +25,7 @@ package org.agilewiki.jaosgi;
 
 import org.agilewiki.jactor.JAMailboxFactory;
 import org.agilewiki.jactor.MailboxFactory;
+import org.agilewiki.jactor.factory.JAFactoryLocator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.cm.ConfigurationException;
@@ -52,8 +53,8 @@ public final class ConfigUpdater implements ManagedService {
     public void updated(Dictionary config) throws ConfigurationException {
         if (config == null)
             return;
-        if (threadCount > 0) //no changes allowed
-            return;
+        if (threadCount > 0)
+            throw new ConfigurationException("threadCount", "no changes allowed while JAMailboxFactory is running");
         String tc = (String) config.get("threadCount");
         try {
             threadCount = Integer.valueOf(tc);
@@ -67,7 +68,23 @@ public final class ConfigUpdater implements ManagedService {
                 mailboxFactory,
                 new Hashtable<String, Object>()));
 
-        //todo
+        JAFactoryLocator factoryLocator = new JAFactoryLocator();
+        try {
+            factoryLocator.initialize(mailboxFactory.createMailbox());
+        } catch (Exception e) {
+            throw new ConfigurationException("threadCount", "unable to initialize JAFactoryLocator", e);
+        }
+        JidFactories jidFactories = new JidFactories();
+        try {
+            jidFactories.initialize();
+            jidFactories.configure(factoryLocator);
+        } catch (Exception e) {
+            throw new ConfigurationException("threadCount", "unable to initialize JidFactories", e);
+        }
+        registrations.add(context.registerService(
+                JidFactories.class.getName(),
+                jidFactories,
+                new Hashtable<String, Object>()));
     }
 
     public void stop() {

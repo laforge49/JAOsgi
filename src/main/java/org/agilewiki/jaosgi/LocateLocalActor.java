@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Bill La Forge
+ * Copyright 2013 Bill La Forge
  *
  * This file is part of AgileWiki and is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -21,36 +21,21 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid;
+package org.agilewiki.jaosgi;
 
 import org.agilewiki.jactor.factory.ActorFactory;
+import org.agilewiki.jactor.factory.FactoryLocator;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
-/**
- * Creates a JidFactorys.
- */
-public class JidFactoriesFactory extends ActorFactory {
-    /**
-     * Default actor type.
-     */
-    public final static String TYPE = "JidFactorys";
+public abstract class LocateLocalActor extends JLPCActor {
+    protected FactoryLocator factoryLocator;
 
-    /**
-     * Create an ActorFactory.
-     *
-     * @param actorType The actor type.
-     */
-    public JidFactoriesFactory(String actorType) {
-        super(actorType);
+    public void configure(FactoryLocator factoryLocator) throws Exception {
+        this.factoryLocator = factoryLocator;
     }
 
-    /**
-     * Create a JLPCActor.
-     *
-     * @return The new actor.
-     */
-    @Override
-    protected JLPCActor instantiateActor() throws Exception {
-        return new JidFactories();
+    public ActorFactory getActorFactory(String actorType)
+            throws Exception {
+        return getActorFactory(actorType);
     }
 }

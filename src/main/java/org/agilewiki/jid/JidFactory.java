@@ -24,6 +24,7 @@
 package org.agilewiki.jid;
 
 import org.agilewiki.jactor.factory.ActorFactory;
+import org.agilewiki.jaosgi.JidFactories;
 
 /**
  * Creates a Jid.

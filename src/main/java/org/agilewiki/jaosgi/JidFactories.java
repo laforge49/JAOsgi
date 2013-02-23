@@ -21,13 +21,10 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid;
+package org.agilewiki.jaosgi;
 
-import org.agilewiki.jactor.Actor;
-import org.agilewiki.jactor.Mailbox;
-import org.agilewiki.jactor.factory.ActorFactory;
-import org.agilewiki.jactor.factory.JAFactoryLocator;
-import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.jactor.factory.FactoryLocator;
+import org.agilewiki.jid.JidFactory;
 import org.agilewiki.jid.collection.vlenc.BListJidFactory;
 import org.agilewiki.jid.collection.vlenc.ListJidFactory;
 import org.agilewiki.jid.collection.vlenc.map.*;
@@ -46,7 +43,7 @@ import org.agilewiki.jid.scalar.vlens.string.StringJidFactory;
  * Defines Jid actor types and registers the JID factories.
  * </p>
  */
-final public class JidFactories extends JLPCActor {
+final public class JidFactories extends LocateLocalActor {
 
     /**
      * The name of the JID actor.
@@ -418,26 +415,9 @@ final public class JidFactories extends JLPCActor {
      */
     public final static String LONG_BOOLEAN_MAP_JID_TYPE = "LONG_BOOLEAN_MAP_JID";
 
-    /**
-     * Process the requirements and assign the parent actor.
-     * Once assigned, it can not be changed.
-     *
-     * @param mailbox      A mailbox which may be shared with other actors.
-     * @param parent       The parent actor.
-     * @param actorFactory The factory.
-     */
     @Override
-    public void initialize(Mailbox mailbox, Actor parent, ActorFactory actorFactory)
-            throws Exception {
-        if (parent == null) {
-            parent = new JAFactoryLocator();
-            ((JAFactoryLocator) parent).initialize(mailbox);
-        }
-        super.initialize(mailbox, parent, actorFactory);
-
-        Actor f = parent;
-        while (!(f instanceof JAFactoryLocator)) f = f.getParent();
-        JAFactoryLocator factoryLocator = (JAFactoryLocator) f;
+    public void configure(FactoryLocator factoryLocator) throws Exception {
+        super.configure(factoryLocator);
 
         factoryLocator.registerActorFactory(JidFactory.fac);
 
