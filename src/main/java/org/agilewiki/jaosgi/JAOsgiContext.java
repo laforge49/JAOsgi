@@ -23,11 +23,9 @@
  */
 package org.agilewiki.jaosgi;
 
+import org.agilewiki.jactor.factory.FactoryLocator;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.osgi.framework.BundleContext;
-import org.osgi.framework.InvalidSyntaxException;
-import org.osgi.framework.ServiceReference;
-import org.osgi.framework.ServiceRegistration;
+import org.osgi.framework.*;
 
 import java.util.Collection;
 import java.util.Dictionary;
@@ -56,6 +54,10 @@ public class JAOsgiContext extends JLPCActor {
         return activator.registerService(clazz, service, properties);
     }
 
+    public ConfigUpdater getConfigUpdater() {
+        return activator.getConfigUpdater();
+    }
+
     public ServiceReference getServiceReference(String clazz) {
         return jaServiceTracker.getServiceReference(clazz);
     }
@@ -76,5 +78,13 @@ public class JAOsgiContext extends JLPCActor {
 
     public boolean ungetService(ServiceReference serviceReference) {
         return jaServiceTracker.ungetService(serviceReference);
+    }
+
+    public FactoryLocator getFactoryLocator() {
+        return getConfigUpdater().getFactoryLocator();
+    }
+
+    public void stop(int options) throws BundleException {
+        getBundleContext().getBundle().stop(options);
     }
 }

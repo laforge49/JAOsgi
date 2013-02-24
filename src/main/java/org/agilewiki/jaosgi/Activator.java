@@ -42,6 +42,10 @@ public final class Activator implements BundleActivator {
         return bundleContext;
     }
 
+    public ConfigUpdater getConfigUpdater() {
+        return configUpdater;
+    }
+
     public void start(BundleContext bundleContext) {
         jaOsgiContext = new JAOsgiContext();
         jaOsgiContext.setActivator(this);

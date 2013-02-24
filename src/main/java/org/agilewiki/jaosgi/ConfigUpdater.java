@@ -27,6 +27,7 @@ import org.agilewiki.jactor.JAMailboxFactory;
 import org.agilewiki.jactor.MailboxFactory;
 import org.agilewiki.jactor.factory.FactoryLocator;
 import org.agilewiki.jactor.factory.JAFactoryLocator;
+import org.osgi.framework.Bundle;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.cm.ManagedService;
 import org.slf4j.Logger;
@@ -60,7 +61,12 @@ public final class ConfigUpdater implements ManagedService {
         if (config == null)
             return;
         if (threadCount > 0)
-            throw new ConfigurationException("threadCount", "no changes allowed while JAMailboxFactory is running");
+            try {
+                logger.warn("restart needed for new threadCount");
+                new Stop(Bundle.STOP_TRANSIENT).sendEvent(jaOsgiContext);
+            } catch (Exception ex) {
+                logger.error("unable to send stop event", ex);
+            }
         String tc = (String) config.get("threadCount");
         try {
             threadCount = Integer.valueOf(tc);
@@ -87,7 +93,11 @@ public final class ConfigUpdater implements ManagedService {
                     new Hashtable<String, Object>());
         } catch (Exception e) {
             logger.error("unable to perform initialization", e);
-            throw new RuntimeException("unable to perform initialization", e);
+            try {
+                new Stop(0).sendEvent(jaOsgiContext);
+            } catch (Exception ex) {
+                logger.error("unable to send stop event", ex);
+            }
         }
     }
 
