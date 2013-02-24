@@ -28,8 +28,12 @@ import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.factory.ActorFactory;
 import org.agilewiki.jactor.factory._ActorFactory;
 import org.agilewiki.jactor.lpc.JLPCActor;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.Version;
 
 import java.lang.reflect.Constructor;
+import java.util.Hashtable;
 import java.util.concurrent.ConcurrentSkipListMap;
 
 /**
@@ -208,6 +212,16 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator{
     }
 
     private void registerAsService(ActorFactory actorFactory) throws Exception {
-
+        JAOsgiContext jaOsgiContext = JAOsgiContext.getJAOsgiContext(this);
+        BundleContext bundleContext = jaOsgiContext.getBundleContext();
+        Bundle bundle = bundleContext.getBundle();
+        String bundleName = bundle.getSymbolicName();
+        Version version = bundle.getVersion();
+        String location = bundle.getLocation();
+        actorFactory.setDescriptor(bundleName, version, location);
+        String factoryKey = actorFactory.getFactoryKey();
+        Hashtable<String, String> dict = new Hashtable();
+        dict.put("FACTORY_KEY", factoryKey);
+        jaOsgiContext.registerService(ActorFactory.class.getName(), actorFactory, dict);
     }
 }
