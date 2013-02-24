@@ -30,6 +30,7 @@ import org.agilewiki.jactor.factory._ActorFactory;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jid.JidFactory;
 import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleException;
 import org.osgi.framework.ServiceReference;
 import org.osgi.framework.Version;
 
@@ -189,7 +190,18 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator{
                 af = (ActorFactory) jaBundleContext.getService(serviceReference);
             } else {
                 String location = bundle.getLocation();
-                throw new IllegalArgumentException("Unknown actor type: " + factoryKey);
+                try {
+                    jaBundleContext.installBundle(location);
+                } catch (BundleException be) {
+                    if (be.getType() != BundleException.DUPLICATE_BUNDLE_ERROR)
+                        throw new IllegalArgumentException("Unknown actor type: " + factoryKey, be);
+                }
+                Collection<ServiceReference> srs = jaBundleContext.
+                        getServiceReferences(ActorFactory.class, "FACTORY_KEY=" + factoryKey);
+                if (srs.isEmpty())
+                    throw new IllegalArgumentException("Unknown actor type: " + factoryKey);
+                ServiceReference serviceReference = srs.iterator().next();
+                af = (ActorFactory) jaBundleContext.getService(serviceReference);
             }
         }
         return af;
