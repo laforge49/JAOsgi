@@ -24,7 +24,6 @@
 package org.agilewiki.jaosgi;
 
 import org.agilewiki.jactor.Actor;
-import org.agilewiki.jactor.factory.FactoryLocator;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.osgi.framework.*;
 

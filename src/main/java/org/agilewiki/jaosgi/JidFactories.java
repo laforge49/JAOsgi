@@ -23,7 +23,6 @@
  */
 package org.agilewiki.jaosgi;
 
-import org.agilewiki.jactor.factory.FactoryLocator;
 import org.agilewiki.jid.JidFactory;
 import org.agilewiki.jid.collection.vlenc.BListJidFactory;
 import org.agilewiki.jid.collection.vlenc.ListJidFactory;

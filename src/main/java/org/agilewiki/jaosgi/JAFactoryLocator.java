@@ -21,10 +21,12 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jactor.factory;
+package org.agilewiki.jaosgi;
 
 import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.Mailbox;
+import org.agilewiki.jactor.factory.ActorFactory;
+import org.agilewiki.jactor.factory._ActorFactory;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 import java.lang.reflect.Constructor;
@@ -179,7 +181,9 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator{
             throw new IllegalArgumentException("Actor type is already defined: " + actorType);
         if (Actor.class.isAssignableFrom(clazz)) {
             Constructor componentConstructor = clazz.getConstructor();
-            types.put(actorType, new _ActorFactory(actorType, componentConstructor));
+            ActorFactory actorFactory = new _ActorFactory(actorType, componentConstructor);
+            types.put(actorType, actorFactory);
+            registerAsService(actorFactory);
             return;
         }
         throw new IllegalArgumentException(clazz.getName());
@@ -195,9 +199,15 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator{
             throws Exception {
         String actorType = actorFactory.actorType;
         ActorFactory old = types.get(actorType);
-        if (old == null)
+        if (old == null) {
             types.put(actorType, actorFactory);
+            registerAsService(actorFactory);
+        }
         else if (!old.equals(actorFactory))
             throw new IllegalArgumentException("Actor type is already defined: " + actorType);
+    }
+
+    private void registerAsService(ActorFactory actorFactory) throws Exception {
+
     }
 }

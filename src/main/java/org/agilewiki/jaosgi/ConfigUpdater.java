@@ -25,8 +25,6 @@ package org.agilewiki.jaosgi;
 
 import org.agilewiki.jactor.JAMailboxFactory;
 import org.agilewiki.jactor.MailboxFactory;
-import org.agilewiki.jactor.factory.FactoryLocator;
-import org.agilewiki.jactor.factory.JAFactoryLocator;
 import org.osgi.framework.Bundle;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.cm.ManagedService;

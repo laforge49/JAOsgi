@@ -24,6 +24,7 @@
 package org.agilewiki.jactor.factory;
 
 import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.jaosgi.JAFactoryLocator;
 
 /**
  * Creates a JAFactory.
