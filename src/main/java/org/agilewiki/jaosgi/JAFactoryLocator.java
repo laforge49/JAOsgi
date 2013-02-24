@@ -189,13 +189,15 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator{
                 ServiceReference serviceReference = serviceReferences.iterator().next();
                 af = (ActorFactory) jaBundleContext.getService(serviceReference);
             } else {
+                Bundle b = null;
                 String location = bundle.getLocation();
                 try {
-                    jaBundleContext.installBundle(location);
+                    b = jaBundleContext.installBundle(location);
                 } catch (BundleException be) {
                     if (be.getType() != BundleException.DUPLICATE_BUNDLE_ERROR)
                         throw new IllegalArgumentException("Unknown actor type: " + factoryKey, be);
                 }
+                b.start();
                 Collection<ServiceReference> srs = jaBundleContext.
                         getServiceReferences(ActorFactory.class, "FACTORY_KEY=" + factoryKey);
                 if (srs.isEmpty())
