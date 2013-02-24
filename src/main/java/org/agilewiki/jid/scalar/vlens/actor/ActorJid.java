@@ -94,7 +94,7 @@ public class ActorJid
     public void setValue(String jidType)
             throws Exception {
         value = createSubordinate(jidType);
-        int l = Util.stringLength(jidType) + value.getSerializedLength();
+        int l = Util.stringLength(value.getFactory().getDescriptor()) + value.getSerializedLength();
         change(l);
         serializedBytes = null;
         serializedOffset = -1;
@@ -110,7 +110,7 @@ public class ActorJid
     public void setValue(ActorFactory jidFactory)
             throws Exception {
         value = createSubordinate(jidFactory);
-        int l = Util.stringLength(jidFactory.actorType) + value.getSerializedLength();
+        int l = Util.stringLength(jidFactory.getDescriptor()) + value.getSerializedLength();
         change(l);
         serializedBytes = null;
         serializedOffset = -1;
@@ -158,7 +158,7 @@ public class ActorJid
     public void setBytes(String jidType, byte[] bytes)
             throws Exception {
         value = createSubordinate(jidType, bytes);
-        int l = Util.stringLength(jidType) + value.getSerializedLength();
+        int l = Util.stringLength(value.getFactory().getDescriptor()) + value.getSerializedLength();
         change(l);
         serializedBytes = null;
         serializedOffset = -1;
@@ -206,7 +206,7 @@ public class ActorJid
     public void setBytes(ActorFactory jidFactory, byte[] bytes)
             throws Exception {
         value = createSubordinate(jidFactory, bytes);
-        int l = Util.stringLength(jidFactory.actorType) + value.getSerializedLength();
+        int l = Util.stringLength(jidFactory.getDescriptor()) + value.getSerializedLength();
         change(l);
         serializedBytes = null;
         serializedOffset = -1;
@@ -230,8 +230,8 @@ public class ActorJid
         }
         ReadableBytes readableBytes = readable();
         skipLen(readableBytes);
-        String actorType = readableBytes.readString();
-        value = createSubordinate(actorType, readableBytes);
+        String descriptor = readableBytes.readString();
+        value = createSubordinate(descriptor, readableBytes);
         return (Jid) value;
     }
 
@@ -246,8 +246,8 @@ public class ActorJid
         saveLen(appendableBytes);
         if (len == -1)
             return;
-        String actorType = value.getActorType();
-        appendableBytes.writeString(actorType);
+        String descriptor = value.getFactory().getDescriptor();
+        appendableBytes.writeString(descriptor);
         value.save(appendableBytes);
     }
 
