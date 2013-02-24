@@ -86,6 +86,7 @@ public final class ConfigUpdater implements ManagedService {
                     jidFactories,
                     new Hashtable<String, Object>());
         } catch (Exception e) {
+            logger.error("unable to perform initialization", e);
             throw new RuntimeException("unable to perform initialization", e);
         }
     }

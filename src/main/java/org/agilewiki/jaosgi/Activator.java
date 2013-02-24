@@ -43,6 +43,7 @@ public final class Activator implements BundleActivator {
     }
 
     public void start(BundleContext bundleContext) {
+        new JAServiceTracker(bundleContext).open(true);
         jaOsgiContext = new JAOsgiContext();
         jaOsgiContext.setActivator(this);
         this.bundleContext = bundleContext;
