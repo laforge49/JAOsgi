@@ -35,38 +35,11 @@ public class JAServiceTracker extends ServiceTracker {
     final Logger logger = LoggerFactory.getLogger(ConfigUpdater.class);
     private final BundleContext bundleContext;
 
-    public ServiceReference getServiceReference(String clazz) {
-        ServiceReference serviceReference = bundleContext.getServiceReference(clazz);
-        if (serviceReference != null)
-            references.add(serviceReference);
-        return serviceReference;
-    }
-
-    public ServiceReference getServiceReference(Class clazz) {
-        ServiceReference serviceReference = bundleContext.getServiceReference(clazz);
-        if (serviceReference != null)
-            references.add(serviceReference);
-        return serviceReference;
-    }
-
-    public ServiceReference[] getServiceReferences(String clazz, String filter)
-            throws InvalidSyntaxException {
-        ServiceReference[] c = bundleContext.getServiceReferences(clazz, filter);
-        int i = 0;
-        while (i < c.length) {
-            references.add(c[i]);
-        }
-        return c;
-    }
-
-    public Collection<ServiceReference> getServiceReferences(Class clazz, String filter)
-            throws InvalidSyntaxException {
-        Collection<ServiceReference> c = bundleContext.getServiceReferences(clazz, filter);
-        Iterator<ServiceReference> it = c.iterator();
-        while (it.hasNext()) {
-            references.add(it.next());
-        }
-        return c;
+    @Override
+    public Object getService(ServiceReference serviceReference) {
+        Object service = super.getService(serviceReference);
+        references.add(serviceReference);
+        return service;
     }
 
     public boolean ungetService(ServiceReference serviceReference) {

@@ -81,12 +81,12 @@ public class JABundleContext extends JLPCActor implements BundleContext {
 
     @Override
     public ServiceReference getServiceReference(String clazz) {
-        return jaServiceTracker.getServiceReference(clazz);
+        return bundleContext.getServiceReference(clazz);
     }
 
     @Override
     public Object getService(ServiceReference reference) {
-        return bundleContext.getService(reference);
+        return jaServiceTracker.getService(reference);
     }
 
     @Override
@@ -106,7 +106,7 @@ public class JABundleContext extends JLPCActor implements BundleContext {
 
     @Override
     public ServiceReference getServiceReference(Class clazz) {
-        return jaServiceTracker.getServiceReference(clazz);
+        return bundleContext.getServiceReference(clazz);
     }
 
     @Override
@@ -186,7 +186,7 @@ public class JABundleContext extends JLPCActor implements BundleContext {
 
     public ServiceReference[] getServiceReferences(String clazz, String filter)
             throws InvalidSyntaxException {
-        return jaServiceTracker.getServiceReferences(clazz, filter);
+        return bundleContext.getServiceReferences(clazz, filter);
     }
 
     @Override
@@ -197,7 +197,7 @@ public class JABundleContext extends JLPCActor implements BundleContext {
     @Override
     public Collection<ServiceReference> getServiceReferences(Class clazz, String filter)
             throws InvalidSyntaxException {
-        return jaServiceTracker.getServiceReferences(clazz, filter);
+        return bundleContext.getServiceReferences(clazz, filter);
     }
 
     @Override

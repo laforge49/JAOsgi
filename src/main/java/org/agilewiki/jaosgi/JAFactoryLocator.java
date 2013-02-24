@@ -30,9 +30,11 @@ import org.agilewiki.jactor.factory._ActorFactory;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jid.JidFactory;
 import org.osgi.framework.Bundle;
+import org.osgi.framework.ServiceReference;
 import org.osgi.framework.Version;
 
 import java.lang.reflect.Constructor;
+import java.util.Collection;
 import java.util.Hashtable;
 import java.util.concurrent.ConcurrentSkipListMap;
 
@@ -143,13 +145,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator{
             if (mailbox == null) mailbox = getMailbox();
             if (parent == null) parent = this;
         }
-        ActorFactory af = types.get(actorType);
-        if (af == null) {
-            FactoryLocator a = (FactoryLocator) getAncestor(FactoryLocator.class);
-            if (a != null)
-                return a.newActor(actorType, mailbox, parent);
-            throw new IllegalArgumentException("Unknown actor type: " + actorType);
-        }
+        ActorFactory af = getActorFactory(actorType);
         return af.newActor(mailbox, parent);
     }
 
@@ -162,12 +158,39 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator{
     @Override
     public ActorFactory getActorFactory(String actorType)
             throws Exception {
-        ActorFactory af = types.get(actorType);
+        ActorFactory af = _getActorFactory(actorType);
         if (af == null) {
-            FactoryLocator a = (FactoryLocator) getAncestor(FactoryLocator.class);
-            if (a != null)
-                return a.getActorFactory(actorType);
             throw new IllegalArgumentException("Unknown actor type: " + actorType);
+        }
+        return af;
+    }
+
+    public ActorFactory _getActorFactory(String actorType)
+            throws Exception {
+        JABundleContext jaBundleContext = JABundleContext.getJAOsgiContext(this);
+        Bundle bundle = jaBundleContext.getBundle();
+        String factoryKey = null;
+        if (actorType.contains("|"))
+            factoryKey = actorType;
+        else {
+        String bundleName = bundle.getSymbolicName();
+        Version version = bundle.getVersion();
+        factoryKey = actorType + "|" + bundleName + "|" + version;
+        }
+        ActorFactory af = types.get(factoryKey);
+        if (af == null) {
+            JAFactoryLocator a = (JAFactoryLocator) getAncestor(FactoryLocator.class);
+            if (a != null)
+                return a._getActorFactory(factoryKey);
+            Collection<ServiceReference> serviceReferences = jaBundleContext.
+                    getServiceReferences(ActorFactory.class, "FACTORY_KEY=" + factoryKey);
+            if (!serviceReferences.isEmpty()) {
+                ServiceReference serviceReference = serviceReferences.iterator().next();
+                af = (ActorFactory) jaBundleContext.getService(serviceReference);
+            } else {
+                String location = bundle.getLocation();
+                throw new IllegalArgumentException("Unknown actor type: " + factoryKey);
+            }
         }
         return af;
     }
@@ -181,12 +204,17 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator{
     @Override
     public void defineActorType(String actorType, Class clazz)
             throws Exception {
-        if (types.containsKey(actorType))
+        JABundleContext jaBundleContext = JABundleContext.getJAOsgiContext(this);
+        Bundle bundle = jaBundleContext.getBundle();
+        String bundleName = bundle.getSymbolicName();
+        Version version = bundle.getVersion();
+        String factoryKey = actorType + "|" + bundleName + "|" + version;
+        if (types.containsKey(factoryKey))
             throw new IllegalArgumentException("Actor type is already defined: " + actorType);
         if (Actor.class.isAssignableFrom(clazz)) {
             Constructor componentConstructor = clazz.getConstructor();
             ActorFactory actorFactory = new _ActorFactory(actorType, componentConstructor);
-            types.put(actorType, actorFactory);
+            types.put(factoryKey, actorFactory);
             registerAsService(actorFactory);
             return;
         }
@@ -202,9 +230,14 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator{
     public void registerActorFactory(ActorFactory actorFactory)
             throws Exception {
         String actorType = actorFactory.actorType;
-        ActorFactory old = types.get(actorType);
+        JABundleContext jaBundleContext = JABundleContext.getJAOsgiContext(this);
+        Bundle bundle = jaBundleContext.getBundle();
+        String bundleName = bundle.getSymbolicName();
+        Version version = bundle.getVersion();
+        String factoryKey = actorType + "|" + bundleName + "|" + version;
+        ActorFactory old = types.get(factoryKey);
         if (old == null) {
-            types.put(actorType, actorFactory);
+            types.put(factoryKey, actorFactory);
             registerAsService(actorFactory);
         }
         else if (!old.equals(actorFactory))
