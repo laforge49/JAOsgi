@@ -43,7 +43,7 @@ import org.agilewiki.jid.scalar.vlens.string.StringJidFactory;
  * Defines Jid actor types and registers the JID factories.
  * </p>
  */
-final public class JidFactories extends LocateLocalActorFactory {
+final public class JidFactories extends LocateLocalActorFactories {
 
     /**
      * The name of the JID actor.

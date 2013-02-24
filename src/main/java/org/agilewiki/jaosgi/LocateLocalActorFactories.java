@@ -27,7 +27,7 @@ import org.agilewiki.jactor.factory.ActorFactory;
 import org.agilewiki.jactor.factory.FactoryLocator;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
-public abstract class LocateLocalActorFactory extends JLPCActor {
+public abstract class LocateLocalActorFactories extends JLPCActor {
     protected FactoryLocator factoryLocator;
 
     public void configure(FactoryLocator factoryLocator) throws Exception {
