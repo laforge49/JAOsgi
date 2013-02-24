@@ -23,6 +23,7 @@
  */
 package org.agilewiki.jaosgi;
 
+import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.factory.FactoryLocator;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.osgi.framework.*;
@@ -31,6 +32,16 @@ import java.util.Collection;
 import java.util.Dictionary;
 
 public class JAOsgiContext extends JLPCActor {
+    public static JAOsgiContext getJAOsgiContext(final Actor actor)
+            throws Exception {
+        Actor a = actor;
+        if (!(a instanceof JAOsgiContext))
+            a = a.getAncestor(JAOsgiContext.class);
+        if (a == null)
+            throw new IllegalStateException("JAOsgiContext is not an ancestor of " + actor);
+        return (JAOsgiContext) a;
+    }
+
     private Activator activator;
     private JAServiceTracker jaServiceTracker;
 
