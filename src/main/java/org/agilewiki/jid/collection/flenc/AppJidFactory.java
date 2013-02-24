@@ -3,8 +3,8 @@ package org.agilewiki.jid.collection.flenc;
 import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.factory.ActorFactory;
-import org.agilewiki.jaosgi.FactoryLocator;
 import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.jaosgi.FactoryLocator;
 
 /**
  * Creates AppJid objects.

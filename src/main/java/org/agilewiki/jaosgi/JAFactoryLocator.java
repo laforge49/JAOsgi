@@ -33,6 +33,8 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.ServiceReference;
 import org.osgi.framework.Version;
+import org.osgi.framework.startlevel.BundleStartLevel;
+import org.osgi.framework.startlevel.FrameworkStartLevel;
 
 import java.lang.reflect.Constructor;
 import java.util.Collection;
@@ -42,7 +44,7 @@ import java.util.concurrent.ConcurrentSkipListMap;
 /**
  * An actor for defining actor types and creating instances.
  */
-public class JAFactoryLocator extends JLPCActor implements FactoryLocator{
+public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
     /**
      * Returns the requested actor factory.
      *
@@ -169,35 +171,44 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator{
     public ActorFactory _getActorFactory(String actorType)
             throws Exception {
         JABundleContext jaBundleContext = JABundleContext.getJAOsgiContext(this);
-        Bundle bundle = jaBundleContext.getBundle();
         String factoryKey = null;
-        if (actorType.contains("|"))
-            factoryKey = actorType;
-        else {
-        String bundleName = bundle.getSymbolicName();
-        Version version = bundle.getVersion();
-        factoryKey = actorType + "|" + bundleName + "|" + version;
+        if (actorType.contains("|")) {
+            int i = actorType.lastIndexOf('|');
+            factoryKey = actorType.substring(0,i);
+        } else {
+            Bundle bundle = jaBundleContext.getBundle();
+            String bundleName = bundle.getSymbolicName();
+            Version version = bundle.getVersion();
+            factoryKey = actorType + "|" + bundleName + "|" + version;
         }
         ActorFactory af = types.get(factoryKey);
         if (af == null) {
             JAFactoryLocator a = (JAFactoryLocator) getAncestor(FactoryLocator.class);
             if (a != null)
                 return a._getActorFactory(factoryKey);
+            if (!actorType.contains("|"))
+                throw new IllegalArgumentException("Unknown actor type: " + factoryKey);
+            int i = actorType.lastIndexOf('|');
+            String location = actorType.substring(i + 1);
             Collection<ServiceReference> serviceReferences = jaBundleContext.
                     getServiceReferences(ActorFactory.class, "FACTORY_KEY=" + factoryKey);
             if (!serviceReferences.isEmpty()) {
                 ServiceReference serviceReference = serviceReferences.iterator().next();
                 af = (ActorFactory) jaBundleContext.getService(serviceReference);
             } else {
-                Bundle b = null;
-                String location = bundle.getLocation();
+                Bundle bundle = null;
                 try {
-                    b = jaBundleContext.installBundle(location);
+                    bundle = jaBundleContext.installBundle(location);
                 } catch (BundleException be) {
                     if (be.getType() != BundleException.DUPLICATE_BUNDLE_ERROR)
                         throw new IllegalArgumentException("Unknown actor type: " + factoryKey, be);
                 }
-                b.start();
+                Bundle systemBundle = jaBundleContext.getBundle(0);
+                int activeStartLevel = systemBundle.adapt(FrameworkStartLevel.class).getStartLevel();
+                int bundleStartLevel = bundle.adapt(BundleStartLevel.class).getStartLevel();
+                if (bundleStartLevel > activeStartLevel)
+                    throw new IllegalStateException("bundle start level is too high");
+                bundle.start(); //will not work if starting level is too high
                 Collection<ServiceReference> srs = jaBundleContext.
                         getServiceReferences(ActorFactory.class, "FACTORY_KEY=" + factoryKey);
                 if (srs.isEmpty())
@@ -253,8 +264,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator{
         if (old == null) {
             types.put(factoryKey, actorFactory);
             registerAsService(actorFactory);
-        }
-        else if (!old.equals(actorFactory))
+        } else if (!old.equals(actorFactory))
             throw new IllegalArgumentException("Actor type is already defined: " + actorType);
     }
 

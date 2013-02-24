@@ -29,7 +29,8 @@ import org.osgi.framework.Constants;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.cm.ManagedService;
 
-import java.util.*;
+import java.util.Hashtable;
+import java.util.Iterator;
 
 public final class Activator implements BundleActivator {
     private static final String CONFIG_PID = "JAOsgi";

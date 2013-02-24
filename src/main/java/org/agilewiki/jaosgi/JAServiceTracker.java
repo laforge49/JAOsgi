@@ -28,7 +28,9 @@ import org.osgi.util.tracker.ServiceTracker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.Dictionary;
+import java.util.HashSet;
+import java.util.Map;
 
 public class JAServiceTracker extends ServiceTracker {
     private HashSet<ServiceReference> references = new HashSet<ServiceReference>();

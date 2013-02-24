@@ -131,7 +131,7 @@ public class JABundleContext extends JLPCActor implements BundleContext {
 
     @Override
     public Bundle getBundle(long id) {
-        throw new UnsupportedOperationException();
+        return bundleContext.getBundle(id);
     }
 
     @Override
