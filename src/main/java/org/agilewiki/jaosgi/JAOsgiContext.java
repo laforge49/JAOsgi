@@ -23,19 +23,38 @@
  */
 package org.agilewiki.jaosgi;
 
-import org.agilewiki.jactor.factory.ActorFactory;
 import org.agilewiki.jactor.factory.FactoryLocator;
 import org.agilewiki.jactor.lpc.JLPCActor;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceRegistration;
 
-public abstract class LocateLocalActor extends JLPCActor {
-    protected FactoryLocator factoryLocator;
+import java.util.Dictionary;
 
-    public void configure(FactoryLocator factoryLocator) throws Exception {
-        this.factoryLocator = factoryLocator;
+public class JAOsgiContext extends JLPCActor {
+    private Activator activator;
+    private ConfigUpdater configUpdater;
+
+    public void setActivator(Activator activator) {
+        if (activator != null)
+            throw new IllegalStateException("duplicate activator");
+        this.activator = activator;
     }
 
-    public ActorFactory getActorFactory(String actorType)
-            throws Exception {
-        return getActorFactory(actorType);
+    public void setConfigUpdater(ConfigUpdater configUpdater) {
+        if (configUpdater != null)
+            throw new IllegalStateException("duplicate configUpdater");
+        this.configUpdater = configUpdater;
+    }
+
+    public BundleContext getBundleContext() {
+        return activator.getBundleContext();
+    }
+
+    public ServiceRegistration registerService(String clazz, Object service, Dictionary properties) {
+        return activator.registerService(clazz, service, properties);
+    }
+
+    public FactoryLocator getFactoryLocator() {
+        return configUpdater.getFactoryLocator();
     }
 }

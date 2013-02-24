@@ -25,9 +25,8 @@ package org.agilewiki.jaosgi;
 
 import org.agilewiki.jactor.JAMailboxFactory;
 import org.agilewiki.jactor.MailboxFactory;
+import org.agilewiki.jactor.factory.FactoryLocator;
 import org.agilewiki.jactor.factory.JAFactoryLocator;
-import org.osgi.framework.BundleContext;
-import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.cm.ManagedService;
 import org.slf4j.Logger;
@@ -35,18 +34,25 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Dictionary;
 import java.util.Hashtable;
-import java.util.List;
 
 public final class ConfigUpdater implements ManagedService {
-    final Logger logger = LoggerFactory.getLogger(ConfigUpdater.class);
-    private List<ServiceRegistration> registrations;
-    private int threadCount = 0;
-    private BundleContext context;
-    private MailboxFactory mailboxFactory;
+    private JAOsgiContext jaOsgiContext;
 
-    public ConfigUpdater(List<ServiceRegistration> registrations, BundleContext context) {
-        this.registrations = registrations;
-        this.context = context;
+    final Logger logger = LoggerFactory.getLogger(ConfigUpdater.class);
+    private int threadCount = 0;
+    private MailboxFactory mailboxFactory;
+    private JAFactoryLocator factoryLocator;
+
+    public MailboxFactory getMailboxFactory() {
+        return mailboxFactory;
+    }
+
+    public FactoryLocator getFactoryLocator() {
+        return factoryLocator;
+    }
+
+    public ConfigUpdater(JAOsgiContext jaOsgiContext) {
+        this.jaOsgiContext = this.jaOsgiContext;
     }
 
     @Override
@@ -58,33 +64,30 @@ public final class ConfigUpdater implements ManagedService {
         String tc = (String) config.get("threadCount");
         try {
             threadCount = Integer.valueOf(tc);
-        } catch(Exception ex) {
-            throw new ConfigurationException("threadCount", "not an int: "+tc, ex);
+        } catch (Exception ex) {
+            throw new ConfigurationException("threadCount", "not an int: " + tc, ex);
         }
         logger.info("threadCount: " + threadCount);
         mailboxFactory = JAMailboxFactory.newMailboxFactory(threadCount);
-        registrations.add(context.registerService(
+        jaOsgiContext.registerService(
                 MailboxFactory.class.getName(),
                 mailboxFactory,
-                new Hashtable<String, Object>()));
+                new Hashtable<String, Object>());
 
-        JAFactoryLocator factoryLocator = new JAFactoryLocator();
         try {
-            factoryLocator.initialize(mailboxFactory.createMailbox());
-        } catch (Exception e) {
-            throw new ConfigurationException("threadCount", "unable to initialize JAFactoryLocator", e);
-        }
-        JidFactories jidFactories = new JidFactories();
-        try {
+            jaOsgiContext.initialize(mailboxFactory.createMailbox());
+            factoryLocator = new JAFactoryLocator();
+            factoryLocator.initialize(mailboxFactory.createMailbox(), jaOsgiContext);
+            JidFactories jidFactories = new JidFactories();
             jidFactories.initialize();
             jidFactories.configure(factoryLocator);
+            jaOsgiContext.registerService(
+                    JidFactories.class.getName(),
+                    jidFactories,
+                    new Hashtable<String, Object>());
         } catch (Exception e) {
-            throw new ConfigurationException("threadCount", "unable to initialize JidFactories", e);
+            throw new RuntimeException("unable to perform initialization", e);
         }
-        registrations.add(context.registerService(
-                JidFactories.class.getName(),
-                jidFactories,
-                new Hashtable<String, Object>()));
     }
 
     public void stop() {

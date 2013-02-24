@@ -29,21 +29,30 @@ import org.osgi.framework.Constants;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.cm.ManagedService;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
-public final class Activator  implements BundleActivator {
+public final class Activator implements BundleActivator {
     private static final String CONFIG_PID = "JAOsgi";
     private List<ServiceRegistration> registrations = new ArrayList<ServiceRegistration>();
     private ConfigUpdater configUpdater;
+    private BundleContext bundleContext;
+    private JAOsgiContext jaOsgiContext;
 
-    public void start(BundleContext context) {
-        ConfigUpdater configUpdater = new ConfigUpdater(registrations, context);
+    public BundleContext getBundleContext() {
+        return bundleContext;
+    }
+
+    public void start(BundleContext bundleContext) {
+        jaOsgiContext = new JAOsgiContext();
+        jaOsgiContext.setActivator(this);
+        this.bundleContext = bundleContext;
+        ConfigUpdater configUpdater = new ConfigUpdater(jaOsgiContext);
         Hashtable<String, Object> properties = new Hashtable<String, Object>();
         properties.put(Constants.SERVICE_PID, CONFIG_PID);
-        registrations.add(context.registerService(ManagedService.class.getName(), configUpdater , properties));
+        registerService(
+                ManagedService.class.getName(),
+                configUpdater,
+                properties);
     }
 
     public void stop(BundleContext context) {
@@ -51,5 +60,11 @@ public final class Activator  implements BundleActivator {
         Iterator<ServiceRegistration> srit = registrations.iterator();
         while (srit.hasNext())
             srit.next().unregister();
+    }
+
+    public ServiceRegistration registerService(String clazz, Object service, Dictionary properties) {
+        ServiceRegistration serviceRegistration = bundleContext.registerService(clazz, service, properties);
+        registrations.add(serviceRegistration);
+        return serviceRegistration;
     }
 }
