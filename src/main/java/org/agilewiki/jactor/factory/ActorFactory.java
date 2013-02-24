@@ -41,7 +41,7 @@ abstract public class ActorFactory {
     private String location;
 
     public String getDescriptor() {
-        return bundleName + "|" + version + "|" + location + "|" + actorType;
+        return actorType + "|" + bundleName + "|" + version + "|" + location;
     }
 
     public void setDescriptor(String bundleName, Version version, String location) {
@@ -53,7 +53,7 @@ abstract public class ActorFactory {
     }
 
     public String getFactoryKey() {
-        return bundleName + "|" + version;
+        return actorType + "|" + bundleName + "|" + version;
     }
 
     /**

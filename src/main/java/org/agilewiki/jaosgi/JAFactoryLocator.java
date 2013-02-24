@@ -28,6 +28,7 @@ import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.factory.ActorFactory;
 import org.agilewiki.jactor.factory._ActorFactory;
 import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.jid.JidFactory;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Version;
@@ -212,6 +213,8 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator{
     }
 
     private void registerAsService(ActorFactory actorFactory) throws Exception {
+        if (!(actorFactory instanceof JidFactory))
+            return;
         JAOsgiContext jaOsgiContext = JAOsgiContext.getJAOsgiContext(this);
         BundleContext bundleContext = jaOsgiContext.getBundleContext();
         Bundle bundle = bundleContext.getBundle();
