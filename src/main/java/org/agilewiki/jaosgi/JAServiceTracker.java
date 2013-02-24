@@ -107,6 +107,18 @@ public class JAServiceTracker extends ServiceTracker {
     }
 
     @Override
+    public void modifiedService(ServiceReference reference, Object service) {
+        super.removedService(reference, service);
+        try {
+            if (references.contains(reference))
+                context.getBundle().stop(Bundle.STOP_TRANSIENT);
+        } catch (BundleException e) {
+            logger.error("unable to stop", e);
+            throw new RuntimeException("unable to stop", e);
+        }
+    }
+
+    @Override
     public void removedService(ServiceReference reference, Object service) {
         super.removedService(reference, service);
         try {
