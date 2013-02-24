@@ -28,7 +28,7 @@ import org.agilewiki.jactor.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jactor.lpc.Request;
 
-public class Stop extends Request<Void, JAOsgiContext> {
+public class Stop extends Request<Void, JABundleContext> {
     private int options;
 
     public Stop(int options) {
@@ -37,12 +37,12 @@ public class Stop extends Request<Void, JAOsgiContext> {
 
     @Override
     public boolean isTargetType(Actor targetActor) {
-        return targetActor instanceof JAOsgiContext;
+        return targetActor instanceof JABundleContext;
     }
 
     @Override
     public void processRequest(JLPCActor targetActor, RP rp) throws Exception {
-        ((JAOsgiContext) targetActor).stop(options);
+        ((JABundleContext) targetActor).stop(options);
         rp.processResponse(null);
     }
 }

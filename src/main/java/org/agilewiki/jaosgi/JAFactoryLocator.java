@@ -30,7 +30,6 @@ import org.agilewiki.jactor.factory._ActorFactory;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jid.JidFactory;
 import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext;
 import org.osgi.framework.Version;
 
 import java.lang.reflect.Constructor;
@@ -215,9 +214,8 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator{
     private void registerAsService(ActorFactory actorFactory) throws Exception {
         if (!(actorFactory instanceof JidFactory))
             return;
-        JAOsgiContext jaOsgiContext = JAOsgiContext.getJAOsgiContext(this);
-        BundleContext bundleContext = jaOsgiContext.getBundleContext();
-        Bundle bundle = bundleContext.getBundle();
+        JABundleContext jaBundleContext = JABundleContext.getJAOsgiContext(this);
+        Bundle bundle = jaBundleContext.getBundle();
         String bundleName = bundle.getSymbolicName();
         Version version = bundle.getVersion();
         String location = bundle.getLocation();
@@ -225,6 +223,6 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator{
         String factoryKey = actorFactory.getFactoryKey();
         Hashtable<String, String> dict = new Hashtable();
         dict.put("FACTORY_KEY", factoryKey);
-        jaOsgiContext.registerService(ActorFactory.class.getName(), actorFactory, dict);
+        jaBundleContext.registerService(ActorFactory.class.getName(), actorFactory, dict);
     }
 }

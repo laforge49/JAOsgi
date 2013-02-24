@@ -29,27 +29,41 @@ import org.osgi.framework.*;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Dictionary;
+import java.util.List;
 
-public class JAOsgiContext extends JLPCActor implements BundleContext {
-    public static JAOsgiContext getJAOsgiContext(final Actor actor)
+public class JABundleContext extends JLPCActor implements BundleContext {
+    public static JABundleContext getJAOsgiContext(final Actor actor)
             throws Exception {
         Actor a = actor;
-        if (!(a instanceof JAOsgiContext))
-            a = a.getAncestor(JAOsgiContext.class);
+        if (!(a instanceof JABundleContext))
+            a = a.getAncestor(JABundleContext.class);
         if (a == null)
-            throw new IllegalStateException("JAOsgiContext is not an ancestor of " + actor);
-        return (JAOsgiContext) a;
+            throw new IllegalStateException("JABundleContext is not an ancestor of " + actor);
+        return (JABundleContext) a;
     }
 
-    private Activator activator;
+    private BundleContext bundleContext;
     private JAServiceTracker jaServiceTracker;
+    private FactoryLocator factoryLocator;
+    private List<ServiceRegistration> serviceRegistrations = new ArrayList<ServiceRegistration>();
 
-    public void setActivator(Activator activator) {
-        if (this.activator != null)
-            throw new IllegalStateException("duplicate activator");
-        this.activator = activator;
+    public List<ServiceRegistration> getServiceRegistrations() {
+        return serviceRegistrations;
+    }
+
+    public void setBundleContext(BundleContext bundleContext) {
+        if (this.bundleContext != null)
+            throw new IllegalStateException("duplicate bundleContext");
+        this.bundleContext = bundleContext;
+    }
+
+    public void setFactoryLocator(FactoryLocator factoryLocator) {
+        if (this.bundleContext != null)
+            throw new IllegalStateException("duplicate bundleContext");
+        this.factoryLocator = factoryLocator;
     }
 
     public void setJAServiceTracker(JAServiceTracker jaServiceTracker) {
@@ -58,69 +72,66 @@ public class JAOsgiContext extends JLPCActor implements BundleContext {
         this.jaServiceTracker = jaServiceTracker;
     }
 
-    public BundleContext getBundleContext() {
-        return activator.getBundleContext();
-    }
-
+    @Override
     public ServiceRegistration registerService(String clazz, Object service, Dictionary properties) {
-        return activator.registerService(clazz, service, properties);
+        ServiceRegistration serviceRegistration = bundleContext.registerService(clazz, service, properties);
+        serviceRegistrations.add(serviceRegistration);
+        return serviceRegistration;
     }
 
-    public ConfigUpdater getConfigUpdater() {
-        return activator.getConfigUpdater();
-    }
-
+    @Override
     public ServiceReference getServiceReference(String clazz) {
         return jaServiceTracker.getServiceReference(clazz);
     }
 
     @Override
     public Object getService(ServiceReference reference) {
-        return getBundleContext().getService(reference);
+        return bundleContext.getService(reference);
     }
 
     @Override
     public File getDataFile(String filename) {
-        return getBundleContext().getDataFile(filename);
+        return bundleContext.getDataFile(filename);
     }
 
     @Override
     public Filter createFilter(String filter) throws InvalidSyntaxException {
-        return getBundleContext().createFilter(filter);
+        return bundleContext.createFilter(filter);
     }
 
     @Override
     public Bundle getBundle(String location) {
-        return getBundleContext().getBundle(location);
+        return bundleContext.getBundle(location);
     }
 
+    @Override
     public ServiceReference getServiceReference(Class clazz) {
         return jaServiceTracker.getServiceReference(clazz);
     }
 
     @Override
     public String getProperty(String key) {
-        return getBundleContext().getProperty(key);
+        return bundleContext.getProperty(key);
     }
 
     @Override
     public Bundle getBundle() {
-        return getBundleContext().getBundle();
+        return bundleContext.getBundle();
     }
 
     @Override
     public Bundle installBundle(String location, InputStream input) throws BundleException {
-        return getBundleContext().installBundle(location, input);
+        return bundleContext.installBundle(location, input);
     }
 
     @Override
     public Bundle installBundle(String location) throws BundleException {
-        return getBundleContext().installBundle(location);
+        return bundleContext.installBundle(location);
     }
 
     @Override
     public Bundle getBundle(long id) {
-        return getBundleContext().getBundle(id);
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -130,47 +141,47 @@ public class JAOsgiContext extends JLPCActor implements BundleContext {
 
     @Override
     public void addServiceListener(ServiceListener listener, String filter) throws InvalidSyntaxException {
-        getBundleContext().addServiceListener(listener, filter);
+        bundleContext.addServiceListener(listener, filter);
     }
 
     @Override
     public void addServiceListener(ServiceListener listener) {
-        getBundleContext().addServiceListener(listener);
+        bundleContext.addServiceListener(listener);
     }
 
     @Override
     public void removeServiceListener(ServiceListener listener) {
-        getBundleContext().removeServiceListener(listener);
+        bundleContext.removeServiceListener(listener);
     }
 
     @Override
     public void addBundleListener(BundleListener listener) {
-        getBundleContext().addBundleListener(listener);
+        bundleContext.addBundleListener(listener);
     }
 
     @Override
     public void removeBundleListener(BundleListener listener) {
-        getBundleContext().removeBundleListener(listener);
+        bundleContext.removeBundleListener(listener);
     }
 
     @Override
     public void addFrameworkListener(FrameworkListener listener) {
-        getBundleContext().addFrameworkListener(listener);
+        bundleContext.addFrameworkListener(listener);
     }
 
     @Override
     public void removeFrameworkListener(FrameworkListener listener) {
-        getBundleContext().removeFrameworkListener(listener);
+        bundleContext.removeFrameworkListener(listener);
     }
 
     @Override
     public ServiceRegistration registerService(String[] clazzes, Object service, Dictionary properties) {
-        return getBundleContext().registerService(clazzes, service, properties);
+        return bundleContext.registerService(clazzes, service, properties);
     }
 
     @Override
     public ServiceRegistration registerService(Class clazz, Object service, Dictionary properties) {
-        return getBundleContext().registerService(clazz, service, properties);
+        return bundleContext.registerService(clazz, service, properties);
     }
 
     public ServiceReference[] getServiceReferences(String clazz, String filter)
@@ -183,20 +194,22 @@ public class JAOsgiContext extends JLPCActor implements BundleContext {
         return new ServiceReference[0];  //To change body of implemented methods use File | Settings | File Templates.
     }
 
+    @Override
     public Collection<ServiceReference> getServiceReferences(Class clazz, String filter)
             throws InvalidSyntaxException {
         return jaServiceTracker.getServiceReferences(clazz, filter);
     }
 
+    @Override
     public boolean ungetService(ServiceReference serviceReference) {
         return jaServiceTracker.ungetService(serviceReference);
     }
 
     public FactoryLocator getFactoryLocator() {
-        return getConfigUpdater().getFactoryLocator();
+        return factoryLocator;
     }
 
     public void stop(int options) throws BundleException {
-        getBundleContext().getBundle().stop(options);
+        bundleContext.getBundle().stop(options);
     }
 }

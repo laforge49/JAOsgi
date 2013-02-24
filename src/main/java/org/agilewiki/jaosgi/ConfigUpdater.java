@@ -35,23 +35,15 @@ import java.util.Dictionary;
 import java.util.Hashtable;
 
 public final class ConfigUpdater implements ManagedService {
-    private JAOsgiContext jaOsgiContext;
+    private JABundleContext jaBundleContext;
 
     final Logger logger = LoggerFactory.getLogger(ConfigUpdater.class);
     private int threadCount = 0;
     private MailboxFactory mailboxFactory;
     private JAFactoryLocator factoryLocator;
 
-    public MailboxFactory getMailboxFactory() {
-        return mailboxFactory;
-    }
-
-    public FactoryLocator getFactoryLocator() {
-        return factoryLocator;
-    }
-
-    public ConfigUpdater(JAOsgiContext jaOsgiContext) {
-        this.jaOsgiContext = jaOsgiContext;
+    public ConfigUpdater(JABundleContext jaBundleContext) {
+        this.jaBundleContext = jaBundleContext;
     }
 
     @Override
@@ -61,7 +53,7 @@ public final class ConfigUpdater implements ManagedService {
         if (threadCount > 0)
             try {
                 logger.warn("restart needed for new threadCount");
-                new Stop(Bundle.STOP_TRANSIENT).sendEvent(jaOsgiContext);
+                new Stop(Bundle.STOP_TRANSIENT).sendEvent(jaBundleContext);
             } catch (Exception ex) {
                 logger.error("unable to send stop event", ex);
             }
@@ -73,26 +65,27 @@ public final class ConfigUpdater implements ManagedService {
         }
         logger.info("threadCount: " + threadCount);
         mailboxFactory = JAMailboxFactory.newMailboxFactory(threadCount);
-        jaOsgiContext.registerService(
+        jaBundleContext.registerService(
                 MailboxFactory.class.getName(),
                 mailboxFactory,
                 new Hashtable<String, Object>());
 
         try {
-            jaOsgiContext.initialize(mailboxFactory.createMailbox());
+            jaBundleContext.initialize(mailboxFactory.createMailbox());
             factoryLocator = new JAFactoryLocator();
-            factoryLocator.initialize(mailboxFactory.createMailbox(), jaOsgiContext);
+            factoryLocator.initialize(mailboxFactory.createMailbox(), jaBundleContext);
+            jaBundleContext.setFactoryLocator(factoryLocator);
             JidFactories jidFactories = new JidFactories();
             jidFactories.initialize();
             jidFactories.configure(factoryLocator);
-            jaOsgiContext.registerService(
+            jaBundleContext.registerService(
                     JidFactories.class.getName(),
                     jidFactories,
                     new Hashtable<String, Object>());
         } catch (Exception e) {
             logger.error("unable to perform initialization", e);
             try {
-                new Stop(0).sendEvent(jaOsgiContext);
+                new Stop(0).sendEvent(jaBundleContext);
             } catch (Exception ex) {
                 logger.error("unable to send stop event", ex);
             }

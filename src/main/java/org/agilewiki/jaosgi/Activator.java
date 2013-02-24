@@ -33,30 +33,21 @@ import java.util.*;
 
 public final class Activator implements BundleActivator {
     private static final String CONFIG_PID = "JAOsgi";
-    private List<ServiceRegistration> registrations = new ArrayList<ServiceRegistration>();
     private ConfigUpdater configUpdater;
     private BundleContext bundleContext;
-    private JAOsgiContext jaOsgiContext;
-
-    public BundleContext getBundleContext() {
-        return bundleContext;
-    }
-
-    public ConfigUpdater getConfigUpdater() {
-        return configUpdater;
-    }
+    private JABundleContext jaBundleContext;
 
     public void start(BundleContext bundleContext) {
-        jaOsgiContext = new JAOsgiContext();
-        jaOsgiContext.setActivator(this);
         this.bundleContext = bundleContext;
+        jaBundleContext = new JABundleContext();
+        jaBundleContext.setBundleContext(bundleContext);
         JAServiceTracker jaServiceTracker = new JAServiceTracker(bundleContext);
         jaServiceTracker.open(true);
-        jaOsgiContext.setJAServiceTracker(jaServiceTracker);
-        ConfigUpdater configUpdater = new ConfigUpdater(jaOsgiContext);
+        jaBundleContext.setJAServiceTracker(jaServiceTracker);
+        ConfigUpdater configUpdater = new ConfigUpdater(jaBundleContext);
         Hashtable<String, Object> properties = new Hashtable<String, Object>();
         properties.put(Constants.SERVICE_PID, CONFIG_PID);
-        registerService(
+        jaBundleContext.registerService(
                 ManagedService.class.getName(),
                 configUpdater,
                 properties);
@@ -64,14 +55,8 @@ public final class Activator implements BundleActivator {
 
     public void stop(BundleContext context) {
         configUpdater.stop();
-        Iterator<ServiceRegistration> srit = registrations.iterator();
+        Iterator<ServiceRegistration> srit = jaBundleContext.getServiceRegistrations().iterator();
         while (srit.hasNext())
             srit.next().unregister();
-    }
-
-    public ServiceRegistration registerService(String clazz, Object service, Dictionary properties) {
-        ServiceRegistration serviceRegistration = bundleContext.registerService(clazz, service, properties);
-        registrations.add(serviceRegistration);
-        return serviceRegistration;
     }
 }
