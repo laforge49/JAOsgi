@@ -28,16 +28,56 @@ import org.osgi.util.tracker.ServiceTracker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Dictionary;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.*;
 
 public class JAServiceTracker extends ServiceTracker {
     private HashSet<ServiceReference> references = new HashSet<ServiceReference>();
     final Logger logger = LoggerFactory.getLogger(ConfigUpdater.class);
+    private final BundleContext bundleContext;
 
-    public JAServiceTracker(BundleContext context) {
-        super(context, new Filter() {
+    public ServiceReference getServiceReference(String clazz) {
+        ServiceReference serviceReference = bundleContext.getServiceReference(clazz);
+        if (serviceReference != null)
+            references.add(serviceReference);
+        return serviceReference;
+    }
+
+    public ServiceReference getServiceReference(Class clazz) {
+        ServiceReference serviceReference = bundleContext.getServiceReference(clazz);
+        if (serviceReference != null)
+            references.add(serviceReference);
+        return serviceReference;
+    }
+
+    public ServiceReference[] getServiceReferences(String clazz, String filter)
+            throws InvalidSyntaxException {
+        ServiceReference[] c = bundleContext.getServiceReferences(clazz, filter);
+        int i = 0;
+        while (i < c.length) {
+            references.add(c[i]);
+        }
+        return c;
+    }
+
+    public Collection<ServiceReference> getServiceReferences(Class clazz, String filter)
+            throws InvalidSyntaxException {
+        Collection<ServiceReference> c = bundleContext.getServiceReferences(clazz, filter);
+        Iterator<ServiceReference> it = c.iterator();
+        while (it.hasNext()) {
+            references.add(it.next());
+        }
+        return c;
+    }
+
+    public boolean ungetService(ServiceReference serviceReference) {
+        boolean stillInUse = bundleContext.ungetService(serviceReference);
+        if (!stillInUse)
+            references.remove(serviceReference);
+        return stillInUse;
+    }
+
+    public JAServiceTracker(BundleContext bundleContext) {
+        super(bundleContext, new Filter() {
             @Override
             public boolean match(ServiceReference reference) {
                 return true;
@@ -58,11 +98,11 @@ public class JAServiceTracker extends ServiceTracker {
                 return true;
             }
         }, null);
+        this.bundleContext = bundleContext;
     }
 
     @Override
     public Object addingService(ServiceReference reference) {
-        references.add(reference);
         return super.addingService(reference);
     }
 

@@ -52,7 +52,7 @@ public final class ConfigUpdater implements ManagedService {
     }
 
     public ConfigUpdater(JAOsgiContext jaOsgiContext) {
-        this.jaOsgiContext = this.jaOsgiContext;
+        this.jaOsgiContext = jaOsgiContext;
     }
 
     @Override

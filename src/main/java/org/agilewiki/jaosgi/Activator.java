@@ -43,10 +43,12 @@ public final class Activator implements BundleActivator {
     }
 
     public void start(BundleContext bundleContext) {
-        new JAServiceTracker(bundleContext).open(true);
         jaOsgiContext = new JAOsgiContext();
         jaOsgiContext.setActivator(this);
         this.bundleContext = bundleContext;
+        JAServiceTracker jaServiceTracker = new JAServiceTracker(bundleContext);
+        jaServiceTracker.open(true);
+        jaOsgiContext.setJAServiceTracker(jaServiceTracker);
         ConfigUpdater configUpdater = new ConfigUpdater(jaOsgiContext);
         Hashtable<String, Object> properties = new Hashtable<String, Object>();
         properties.put(Constants.SERVICE_PID, CONFIG_PID);

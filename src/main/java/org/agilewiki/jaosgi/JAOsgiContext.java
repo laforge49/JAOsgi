@@ -23,27 +23,29 @@
  */
 package org.agilewiki.jaosgi;
 
-import org.agilewiki.jactor.factory.FactoryLocator;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.InvalidSyntaxException;
+import org.osgi.framework.ServiceReference;
 import org.osgi.framework.ServiceRegistration;
 
+import java.util.Collection;
 import java.util.Dictionary;
 
 public class JAOsgiContext extends JLPCActor {
     private Activator activator;
-    private ConfigUpdater configUpdater;
+    private JAServiceTracker jaServiceTracker;
 
     public void setActivator(Activator activator) {
-        if (activator != null)
+        if (this.activator != null)
             throw new IllegalStateException("duplicate activator");
         this.activator = activator;
     }
 
-    public void setConfigUpdater(ConfigUpdater configUpdater) {
-        if (configUpdater != null)
-            throw new IllegalStateException("duplicate configUpdater");
-        this.configUpdater = configUpdater;
+    public void setJAServiceTracker(JAServiceTracker jaServiceTracker) {
+        if (this.jaServiceTracker != null)
+            throw new IllegalStateException("duplicate jaServiceTracker");
+        this.jaServiceTracker = jaServiceTracker;
     }
 
     public BundleContext getBundleContext() {
@@ -54,7 +56,25 @@ public class JAOsgiContext extends JLPCActor {
         return activator.registerService(clazz, service, properties);
     }
 
-    public FactoryLocator getFactoryLocator() {
-        return configUpdater.getFactoryLocator();
+    public ServiceReference getServiceReference(String clazz) {
+        return jaServiceTracker.getServiceReference(clazz);
+    }
+
+    public ServiceReference getServiceReference(Class clazz) {
+        return jaServiceTracker.getServiceReference(clazz);
+    }
+
+    public ServiceReference[] getServiceReferences(String clazz, String filter)
+            throws InvalidSyntaxException {
+        return jaServiceTracker.getServiceReferences(clazz, filter);
+    }
+
+    public Collection<ServiceReference> getServiceReferences(Class clazz, String filter)
+            throws InvalidSyntaxException {
+        return jaServiceTracker.getServiceReferences(clazz, filter);
+    }
+
+    public boolean ungetService(ServiceReference serviceReference) {
+        return jaServiceTracker.ungetService(serviceReference);
     }
 }
