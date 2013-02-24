@@ -27,10 +27,12 @@ import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.osgi.framework.*;
 
+import java.io.File;
+import java.io.InputStream;
 import java.util.Collection;
 import java.util.Dictionary;
 
-public class JAOsgiContext extends JLPCActor {
+public class JAOsgiContext extends JLPCActor implements BundleContext {
     public static JAOsgiContext getJAOsgiContext(final Actor actor)
             throws Exception {
         Actor a = actor;
@@ -72,13 +74,113 @@ public class JAOsgiContext extends JLPCActor {
         return jaServiceTracker.getServiceReference(clazz);
     }
 
+    @Override
+    public Object getService(ServiceReference reference) {
+        return getBundleContext().getService(reference);
+    }
+
+    @Override
+    public File getDataFile(String filename) {
+        return getBundleContext().getDataFile(filename);
+    }
+
+    @Override
+    public Filter createFilter(String filter) throws InvalidSyntaxException {
+        return getBundleContext().createFilter(filter);
+    }
+
+    @Override
+    public Bundle getBundle(String location) {
+        return getBundleContext().getBundle(location);
+    }
+
     public ServiceReference getServiceReference(Class clazz) {
         return jaServiceTracker.getServiceReference(clazz);
+    }
+
+    @Override
+    public String getProperty(String key) {
+        return getBundleContext().getProperty(key);
+    }
+
+    @Override
+    public Bundle getBundle() {
+        return getBundleContext().getBundle();
+    }
+
+    @Override
+    public Bundle installBundle(String location, InputStream input) throws BundleException {
+        return getBundleContext().installBundle(location, input);
+    }
+
+    @Override
+    public Bundle installBundle(String location) throws BundleException {
+        return getBundleContext().installBundle(location);
+    }
+
+    @Override
+    public Bundle getBundle(long id) {
+        return getBundleContext().getBundle(id);
+    }
+
+    @Override
+    public Bundle[] getBundles() {
+        return new Bundle[0];
+    }
+
+    @Override
+    public void addServiceListener(ServiceListener listener, String filter) throws InvalidSyntaxException {
+        getBundleContext().addServiceListener(listener, filter);
+    }
+
+    @Override
+    public void addServiceListener(ServiceListener listener) {
+        getBundleContext().addServiceListener(listener);
+    }
+
+    @Override
+    public void removeServiceListener(ServiceListener listener) {
+        getBundleContext().removeServiceListener(listener);
+    }
+
+    @Override
+    public void addBundleListener(BundleListener listener) {
+        getBundleContext().addBundleListener(listener);
+    }
+
+    @Override
+    public void removeBundleListener(BundleListener listener) {
+        getBundleContext().removeBundleListener(listener);
+    }
+
+    @Override
+    public void addFrameworkListener(FrameworkListener listener) {
+        getBundleContext().addFrameworkListener(listener);
+    }
+
+    @Override
+    public void removeFrameworkListener(FrameworkListener listener) {
+        getBundleContext().removeFrameworkListener(listener);
+    }
+
+    @Override
+    public ServiceRegistration registerService(String[] clazzes, Object service, Dictionary properties) {
+        return getBundleContext().registerService(clazzes, service, properties);
+    }
+
+    @Override
+    public ServiceRegistration registerService(Class clazz, Object service, Dictionary properties) {
+        return getBundleContext().registerService(clazz, service, properties);
     }
 
     public ServiceReference[] getServiceReferences(String clazz, String filter)
             throws InvalidSyntaxException {
         return jaServiceTracker.getServiceReferences(clazz, filter);
+    }
+
+    @Override
+    public ServiceReference[] getAllServiceReferences(String clazz, String filter) throws InvalidSyntaxException {
+        return new ServiceReference[0];  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     public Collection<ServiceReference> getServiceReferences(Class clazz, String filter)
