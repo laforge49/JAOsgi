@@ -62,6 +62,15 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
         return factoryLocator.getActorFactory(actorType);
     }
 
+    public static FactoryLocator getFactoryLocator(Actor actor)
+            throws Exception {
+        if (!(actor instanceof FactoryLocator))
+            actor = actor.getAncestor(FactoryLocator.class);
+        if (actor == null)
+            throw new IllegalArgumentException("not an ancestor: FactoryLocator");
+        return (FactoryLocator) actor;
+    }
+
     /**
      * Creates a new actor.
      *
@@ -170,7 +179,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
 
     public ActorFactory _getActorFactory(String actorType)
             throws Exception {
-        JABundleContext jaBundleContext = JABundleContext.getJAOsgiContext(this);
+        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(this);
         String factoryKey = null;
         if (actorType.contains("|")) {
             int i = actorType.lastIndexOf('|');
@@ -235,7 +244,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
     @Override
     public void defineActorType(String actorType, Class clazz)
             throws Exception {
-        JABundleContext jaBundleContext = JABundleContext.getJAOsgiContext(this);
+        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(this);
         Bundle bundle = jaBundleContext.getBundle();
         String factoryKey = actorType + "||";
         if (bundle != null) {
@@ -264,7 +273,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
     public void registerActorFactory(ActorFactory actorFactory)
             throws Exception {
         String actorType = actorFactory.actorType;
-        JABundleContext jaBundleContext = JABundleContext.getJAOsgiContext(this);
+        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(this);
         Bundle bundle = jaBundleContext.getBundle();
         String factoryKey = actorType + "||";
         if (bundle != null) {
@@ -283,7 +292,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
     private void registerAsService(ActorFactory actorFactory) throws Exception {
         if (!(actorFactory instanceof JidFactory))
             return;
-        JABundleContext jaBundleContext = JABundleContext.getJAOsgiContext(this);
+        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(this);
         Bundle bundle = jaBundleContext.getBundle();
         if (bundle == null) {
             actorFactory.setDescriptor("", "", "");

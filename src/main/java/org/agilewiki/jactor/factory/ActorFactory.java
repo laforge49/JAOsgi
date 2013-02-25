@@ -44,7 +44,7 @@ abstract public class ActorFactory {
     }
 
     public void setDescriptor(String bundleName, String version, String location) {
-        if (bundleName != null)
+        if (this.bundleName != null)
             throw new IllegalStateException("descriptor already set");
         this.bundleName = bundleName;
         this.version = version;

@@ -34,7 +34,7 @@ import java.util.Dictionary;
 import java.util.List;
 
 abstract public class JABundleContext extends JLPCActor {
-    public static JABundleContext getJAOsgiContext(final Actor actor)
+    public static JABundleContext getJABundleContext(final Actor actor)
             throws Exception {
         Actor a = actor;
         if (!(a instanceof JABundleContext))
