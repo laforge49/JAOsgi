@@ -34,7 +34,7 @@ import java.util.Collection;
 import java.util.Dictionary;
 import java.util.List;
 
-public class JABundleContext extends JLPCActor implements BundleContext {
+public class JABundleContext extends JLPCActor {
     public static JABundleContext getJAOsgiContext(final Actor actor)
             throws Exception {
         Actor a = actor;
@@ -72,114 +72,92 @@ public class JABundleContext extends JLPCActor implements BundleContext {
         this.jaServiceTracker = jaServiceTracker;
     }
 
-    @Override
     public ServiceRegistration registerService(String clazz, Object service, Dictionary properties) {
         ServiceRegistration serviceRegistration = bundleContext.registerService(clazz, service, properties);
         serviceRegistrations.add(serviceRegistration);
         return serviceRegistration;
     }
 
-    @Override
     public ServiceReference getServiceReference(String clazz) {
         return bundleContext.getServiceReference(clazz);
     }
 
-    @Override
     public Object getService(ServiceReference reference) {
         return jaServiceTracker.getService(reference);
     }
 
-    @Override
     public File getDataFile(String filename) {
         return bundleContext.getDataFile(filename);
     }
 
-    @Override
     public Filter createFilter(String filter) throws InvalidSyntaxException {
         return bundleContext.createFilter(filter);
     }
 
-    @Override
     public Bundle getBundle(String location) {
         return bundleContext.getBundle(location);
     }
 
-    @Override
     public ServiceReference getServiceReference(Class clazz) {
         return bundleContext.getServiceReference(clazz);
     }
 
-    @Override
     public String getProperty(String key) {
         return bundleContext.getProperty(key);
     }
 
-    @Override
     public Bundle getBundle() {
         return bundleContext.getBundle();
     }
 
-    @Override
     public Bundle installBundle(String location, InputStream input) throws BundleException {
         return bundleContext.installBundle(location, input);
     }
 
-    @Override
     public Bundle installBundle(String location) throws BundleException {
         return bundleContext.installBundle(location);
     }
 
-    @Override
     public Bundle getBundle(long id) {
         return bundleContext.getBundle(id);
     }
 
-    @Override
     public Bundle[] getBundles() {
         return new Bundle[0];
     }
 
-    @Override
     public void addServiceListener(ServiceListener listener, String filter) throws InvalidSyntaxException {
         bundleContext.addServiceListener(listener, filter);
     }
 
-    @Override
     public void addServiceListener(ServiceListener listener) {
         bundleContext.addServiceListener(listener);
     }
 
-    @Override
     public void removeServiceListener(ServiceListener listener) {
         bundleContext.removeServiceListener(listener);
     }
 
-    @Override
     public void addBundleListener(BundleListener listener) {
         bundleContext.addBundleListener(listener);
     }
 
-    @Override
     public void removeBundleListener(BundleListener listener) {
         bundleContext.removeBundleListener(listener);
     }
 
-    @Override
     public void addFrameworkListener(FrameworkListener listener) {
         bundleContext.addFrameworkListener(listener);
     }
 
-    @Override
     public void removeFrameworkListener(FrameworkListener listener) {
         bundleContext.removeFrameworkListener(listener);
     }
 
-    @Override
     public ServiceRegistration registerService(String[] clazzes, Object service, Dictionary properties) {
         return bundleContext.registerService(clazzes, service, properties);
     }
 
-    @Override
     public ServiceRegistration registerService(Class clazz, Object service, Dictionary properties) {
         return bundleContext.registerService(clazz, service, properties);
     }
@@ -189,18 +167,15 @@ public class JABundleContext extends JLPCActor implements BundleContext {
         return bundleContext.getServiceReferences(clazz, filter);
     }
 
-    @Override
     public ServiceReference[] getAllServiceReferences(String clazz, String filter) throws InvalidSyntaxException {
         return new ServiceReference[0];  //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    @Override
     public Collection<ServiceReference> getServiceReferences(Class clazz, String filter)
             throws InvalidSyntaxException {
         return bundleContext.getServiceReferences(clazz, filter);
     }
 
-    @Override
     public boolean ungetService(ServiceReference serviceReference) {
         return jaServiceTracker.ungetService(serviceReference);
     }
