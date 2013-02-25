@@ -74,7 +74,6 @@ public final class ConfigUpdater implements ManagedService {
             jaBundleContext.initialize(mailboxFactory.createMailbox());
             factoryLocator = new JAFactoryLocator();
             factoryLocator.initialize(mailboxFactory.createMailbox(), jaBundleContext);
-            jaBundleContext.setFactoryLocator(factoryLocator);
             JidFactories jidFactories = new JidFactories();
             jidFactories.initialize();
             jidFactories.configure(factoryLocator);

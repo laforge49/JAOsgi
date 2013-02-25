@@ -35,19 +35,12 @@ import java.util.List;
 public class JABCOsgiImpl extends JABundleContext {
     private BundleContext bundleContext;
     private JAServiceTracker jaServiceTracker;
-    private FactoryLocator factoryLocator;
     private List<ServiceRegistration> serviceRegistrations = new ArrayList<ServiceRegistration>();
 
     public void setBundleContext(BundleContext bundleContext) {
         if (this.bundleContext != null)
             throw new IllegalStateException("duplicate bundleContext");
         this.bundleContext = bundleContext;
-    }
-
-    public void setFactoryLocator(FactoryLocator factoryLocator) {
-        if (this.bundleContext != null)
-            throw new IllegalStateException("duplicate bundleContext");
-        this.factoryLocator = factoryLocator;
     }
 
     public void setJAServiceTracker(JAServiceTracker jaServiceTracker) {
@@ -193,11 +186,6 @@ public class JABCOsgiImpl extends JABundleContext {
     @Override
     public boolean ungetService(ServiceReference serviceReference) {
         return jaServiceTracker.ungetService(serviceReference);
-    }
-
-    @Override
-    public FactoryLocator getFactoryLocator() {
-        return factoryLocator;
     }
 
     @Override

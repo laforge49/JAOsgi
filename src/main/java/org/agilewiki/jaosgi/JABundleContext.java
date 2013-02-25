@@ -100,7 +100,5 @@ abstract public class JABundleContext extends JLPCActor {
 
     abstract public boolean ungetService(ServiceReference serviceReference);
 
-    abstract public FactoryLocator getFactoryLocator();
-
     abstract public void stop(int options) throws BundleException;
 }
