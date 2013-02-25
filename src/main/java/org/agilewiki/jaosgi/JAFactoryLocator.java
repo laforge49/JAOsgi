@@ -174,12 +174,16 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
         String factoryKey = null;
         if (actorType.contains("|")) {
             int i = actorType.lastIndexOf('|');
-            factoryKey = actorType.substring(0,i);
+            factoryKey = actorType.substring(0, i);
         } else {
             Bundle bundle = jaBundleContext.getBundle();
-            String bundleName = bundle.getSymbolicName();
-            Version version = bundle.getVersion();
-            factoryKey = actorType + "|" + bundleName + "|" + version;
+            if (bundle == null)
+                factoryKey = actorType+"||";
+            else {
+                String bundleName = bundle.getSymbolicName();
+                Version version = bundle.getVersion();
+                factoryKey = actorType + "|" + bundleName + "|" + version;
+            }
         }
         ActorFactory af = types.get(factoryKey);
         if (af == null) {
@@ -203,6 +207,8 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
                     if (be.getType() != BundleException.DUPLICATE_BUNDLE_ERROR)
                         throw new IllegalArgumentException("Unknown actor type: " + factoryKey, be);
                 }
+                if (bundle == null)
+                    throw new IllegalArgumentException("Unknown actor type: " + factoryKey);
                 Bundle systemBundle = jaBundleContext.getBundle(0);
                 int activeStartLevel = systemBundle.adapt(FrameworkStartLevel.class).getStartLevel();
                 int bundleStartLevel = bundle.adapt(BundleStartLevel.class).getStartLevel();
@@ -231,9 +237,12 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
             throws Exception {
         JABundleContext jaBundleContext = JABundleContext.getJAOsgiContext(this);
         Bundle bundle = jaBundleContext.getBundle();
-        String bundleName = bundle.getSymbolicName();
-        Version version = bundle.getVersion();
-        String factoryKey = actorType + "|" + bundleName + "|" + version;
+        String factoryKey = actorType + "||";
+        if (bundle != null) {
+            String bundleName = bundle.getSymbolicName();
+            Version version = bundle.getVersion();
+            factoryKey = actorType + "|" + bundleName + "|" + version;
+        }
         if (types.containsKey(factoryKey))
             throw new IllegalArgumentException("Actor type is already defined: " + actorType);
         if (Actor.class.isAssignableFrom(clazz)) {
@@ -257,9 +266,12 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
         String actorType = actorFactory.actorType;
         JABundleContext jaBundleContext = JABundleContext.getJAOsgiContext(this);
         Bundle bundle = jaBundleContext.getBundle();
-        String bundleName = bundle.getSymbolicName();
-        Version version = bundle.getVersion();
-        String factoryKey = actorType + "|" + bundleName + "|" + version;
+        String factoryKey = actorType + "||";
+        if (bundle != null) {
+            String bundleName = bundle.getSymbolicName();
+            Version version = bundle.getVersion();
+            factoryKey = actorType + "|" + bundleName + "|" + version;
+        }
         ActorFactory old = types.get(factoryKey);
         if (old == null) {
             types.put(factoryKey, actorFactory);
@@ -273,10 +285,14 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
             return;
         JABundleContext jaBundleContext = JABundleContext.getJAOsgiContext(this);
         Bundle bundle = jaBundleContext.getBundle();
-        String bundleName = bundle.getSymbolicName();
-        Version version = bundle.getVersion();
-        String location = bundle.getLocation();
-        actorFactory.setDescriptor(bundleName, version, location);
+        if (bundle == null) {
+            actorFactory.setDescriptor("", "", "");
+        } else {
+            String bundleName = bundle.getSymbolicName();
+            String version = bundle.getVersion().toString();
+            String location = bundle.getLocation();
+            actorFactory.setDescriptor(bundleName, version, location);
+        }
         String factoryKey = actorFactory.getFactoryKey();
         Hashtable<String, String> dict = new Hashtable();
         dict.put("FACTORY_KEY", factoryKey);

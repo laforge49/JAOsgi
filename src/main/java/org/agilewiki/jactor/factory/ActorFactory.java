@@ -26,7 +26,6 @@ package org.agilewiki.jactor.factory;
 import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.osgi.framework.Version;
 
 /**
  * Creates a JLPCActor.
@@ -37,14 +36,14 @@ abstract public class ActorFactory {
      */
     public final String actorType;
     private String bundleName;
-    private Version version;
+    private String version;
     private String location;
 
     public String getDescriptor() {
         return actorType + "|" + bundleName + "|" + version + "|" + location;
     }
 
-    public void setDescriptor(String bundleName, Version version, String location) {
+    public void setDescriptor(String bundleName, String version, String location) {
         if (bundleName != null)
             throw new IllegalStateException("descriptor already set");
         this.bundleName = bundleName;
