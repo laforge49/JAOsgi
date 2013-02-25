@@ -36,11 +36,11 @@ public final class Activator implements BundleActivator {
     private static final String CONFIG_PID = "JAOsgi";
     private ConfigUpdater configUpdater;
     private BundleContext bundleContext;
-    private JABundleContext jaBundleContext;
+    private JABCOsgiImpl jaBundleContext;
 
     public void start(BundleContext bundleContext) {
         this.bundleContext = bundleContext;
-        jaBundleContext = new JABundleContext();
+        jaBundleContext = new JABCOsgiImpl();
         jaBundleContext.setBundleContext(bundleContext);
         JAServiceTracker jaServiceTracker = new JAServiceTracker(bundleContext);
         jaServiceTracker.open(true);

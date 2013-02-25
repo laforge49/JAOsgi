@@ -35,14 +35,14 @@ import java.util.Dictionary;
 import java.util.Hashtable;
 
 public final class ConfigUpdater implements ManagedService {
-    private JABundleContext jaBundleContext;
+    private JABCOsgiImpl jaBundleContext;
 
     final Logger logger = LoggerFactory.getLogger(ConfigUpdater.class);
     private int threadCount = 0;
     private MailboxFactory mailboxFactory;
     private JAFactoryLocator factoryLocator;
 
-    public ConfigUpdater(JABundleContext jaBundleContext) {
+    public ConfigUpdater(JABCOsgiImpl jaBundleContext) {
         this.jaBundleContext = jaBundleContext;
     }
 

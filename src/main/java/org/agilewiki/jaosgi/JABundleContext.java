@@ -29,12 +29,11 @@ import org.osgi.framework.*;
 
 import java.io.File;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Dictionary;
 import java.util.List;
 
-public class JABundleContext extends JLPCActor {
+abstract public class JABundleContext extends JLPCActor {
     public static JABundleContext getJAOsgiContext(final Actor actor)
             throws Exception {
         Actor a = actor;
@@ -45,146 +44,63 @@ public class JABundleContext extends JLPCActor {
         return (JABundleContext) a;
     }
 
-    private BundleContext bundleContext;
-    private JAServiceTracker jaServiceTracker;
-    private FactoryLocator factoryLocator;
-    private List<ServiceRegistration> serviceRegistrations = new ArrayList<ServiceRegistration>();
+    abstract public List<ServiceRegistration> getServiceRegistrations();
 
-    public List<ServiceRegistration> getServiceRegistrations() {
-        return serviceRegistrations;
-    }
+    abstract public ServiceRegistration registerService(String clazz, Object service, Dictionary properties);
 
-    public void setBundleContext(BundleContext bundleContext) {
-        if (this.bundleContext != null)
-            throw new IllegalStateException("duplicate bundleContext");
-        this.bundleContext = bundleContext;
-    }
+    abstract public ServiceReference getServiceReference(String clazz);
 
-    public void setFactoryLocator(FactoryLocator factoryLocator) {
-        if (this.bundleContext != null)
-            throw new IllegalStateException("duplicate bundleContext");
-        this.factoryLocator = factoryLocator;
-    }
+    abstract public Object getService(ServiceReference reference);
 
-    public void setJAServiceTracker(JAServiceTracker jaServiceTracker) {
-        if (this.jaServiceTracker != null)
-            throw new IllegalStateException("duplicate jaServiceTracker");
-        this.jaServiceTracker = jaServiceTracker;
-    }
+    abstract public File getDataFile(String filename);
 
-    public ServiceRegistration registerService(String clazz, Object service, Dictionary properties) {
-        ServiceRegistration serviceRegistration = bundleContext.registerService(clazz, service, properties);
-        serviceRegistrations.add(serviceRegistration);
-        return serviceRegistration;
-    }
+    abstract public Filter createFilter(String filter) throws InvalidSyntaxException;
 
-    public ServiceReference getServiceReference(String clazz) {
-        return bundleContext.getServiceReference(clazz);
-    }
+    abstract public Bundle getBundle(String location);
 
-    public Object getService(ServiceReference reference) {
-        return jaServiceTracker.getService(reference);
-    }
+    abstract public ServiceReference getServiceReference(Class clazz);
 
-    public File getDataFile(String filename) {
-        return bundleContext.getDataFile(filename);
-    }
+    abstract public String getProperty(String key);
 
-    public Filter createFilter(String filter) throws InvalidSyntaxException {
-        return bundleContext.createFilter(filter);
-    }
+    abstract public Bundle getBundle();
 
-    public Bundle getBundle(String location) {
-        return bundleContext.getBundle(location);
-    }
+    abstract public Bundle installBundle(String location, InputStream input) throws BundleException;
 
-    public ServiceReference getServiceReference(Class clazz) {
-        return bundleContext.getServiceReference(clazz);
-    }
+    abstract public Bundle installBundle(String location) throws BundleException;
 
-    public String getProperty(String key) {
-        return bundleContext.getProperty(key);
-    }
+    abstract public Bundle getBundle(long id);
 
-    public Bundle getBundle() {
-        return bundleContext.getBundle();
-    }
+    abstract public Bundle[] getBundles();
 
-    public Bundle installBundle(String location, InputStream input) throws BundleException {
-        return bundleContext.installBundle(location, input);
-    }
+    abstract public void addServiceListener(ServiceListener listener, String filter) throws InvalidSyntaxException;
 
-    public Bundle installBundle(String location) throws BundleException {
-        return bundleContext.installBundle(location);
-    }
+    abstract public void addServiceListener(ServiceListener listener);
 
-    public Bundle getBundle(long id) {
-        return bundleContext.getBundle(id);
-    }
+    abstract public void removeServiceListener(ServiceListener listener);
 
-    public Bundle[] getBundles() {
-        return new Bundle[0];
-    }
+    abstract public void addBundleListener(BundleListener listener);
 
-    public void addServiceListener(ServiceListener listener, String filter) throws InvalidSyntaxException {
-        bundleContext.addServiceListener(listener, filter);
-    }
+    abstract public void removeBundleListener(BundleListener listener);
 
-    public void addServiceListener(ServiceListener listener) {
-        bundleContext.addServiceListener(listener);
-    }
+    abstract public void addFrameworkListener(FrameworkListener listener);
 
-    public void removeServiceListener(ServiceListener listener) {
-        bundleContext.removeServiceListener(listener);
-    }
+    abstract public void removeFrameworkListener(FrameworkListener listener);
 
-    public void addBundleListener(BundleListener listener) {
-        bundleContext.addBundleListener(listener);
-    }
+    abstract public ServiceRegistration registerService(String[] clazzes, Object service, Dictionary properties);
 
-    public void removeBundleListener(BundleListener listener) {
-        bundleContext.removeBundleListener(listener);
-    }
+    abstract public ServiceRegistration registerService(Class clazz, Object service, Dictionary properties);
 
-    public void addFrameworkListener(FrameworkListener listener) {
-        bundleContext.addFrameworkListener(listener);
-    }
+    abstract public ServiceReference[] getServiceReferences(String clazz, String filter)
+            throws InvalidSyntaxException;
 
-    public void removeFrameworkListener(FrameworkListener listener) {
-        bundleContext.removeFrameworkListener(listener);
-    }
+    abstract public ServiceReference[] getAllServiceReferences(String clazz, String filter) throws InvalidSyntaxException;
 
-    public ServiceRegistration registerService(String[] clazzes, Object service, Dictionary properties) {
-        return bundleContext.registerService(clazzes, service, properties);
-    }
+    abstract public Collection<ServiceReference> getServiceReferences(Class clazz, String filter)
+            throws InvalidSyntaxException;
 
-    public ServiceRegistration registerService(Class clazz, Object service, Dictionary properties) {
-        return bundleContext.registerService(clazz, service, properties);
-    }
+    abstract public boolean ungetService(ServiceReference serviceReference);
 
-    public ServiceReference[] getServiceReferences(String clazz, String filter)
-            throws InvalidSyntaxException {
-        return bundleContext.getServiceReferences(clazz, filter);
-    }
+    abstract public FactoryLocator getFactoryLocator();
 
-    public ServiceReference[] getAllServiceReferences(String clazz, String filter) throws InvalidSyntaxException {
-        return new ServiceReference[0];  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    public Collection<ServiceReference> getServiceReferences(Class clazz, String filter)
-            throws InvalidSyntaxException {
-        return bundleContext.getServiceReferences(clazz, filter);
-    }
-
-    public boolean ungetService(ServiceReference serviceReference) {
-        return jaServiceTracker.ungetService(serviceReference);
-    }
-
-    public FactoryLocator getFactoryLocator() {
-        return factoryLocator;
-    }
-
-    public void stop(int options) throws BundleException {
-        bundleContext.getBundle().stop(options);
-    }
+    abstract public void stop(int options) throws BundleException;
 }
