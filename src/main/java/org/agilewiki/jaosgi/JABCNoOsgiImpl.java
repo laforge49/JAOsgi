@@ -23,6 +23,8 @@
  */
 package org.agilewiki.jaosgi;
 
+import org.agilewiki.jactor.JAMailboxFactory;
+import org.agilewiki.jactor.MailboxFactory;
 import org.osgi.framework.*;
 
 import java.io.File;
@@ -33,6 +35,18 @@ import java.util.Dictionary;
 import java.util.List;
 
 public class JABCNoOsgiImpl extends JABundleContext {
+    public static JABCNoOsgiImpl createJABundleContext(int threadCount) throws Exception {
+        MailboxFactory mailboxFactory = JAMailboxFactory.newMailboxFactory(threadCount);
+        JABCNoOsgiImpl jaBundleContext = new JABCNoOsgiImpl();
+        jaBundleContext.initialize(mailboxFactory.createMailbox());
+        JAFactoryLocator factoryLocator = new JAFactoryLocator();
+        factoryLocator.initialize(mailboxFactory.createMailbox(), jaBundleContext);
+        JidFactories jidFactories = new JidFactories();
+        jidFactories.initialize();
+        jidFactories.configure(factoryLocator);
+        return jaBundleContext;
+    }
+
     @Override
     public List<ServiceRegistration> getServiceRegistrations() {
         return new ArrayList<ServiceRegistration>();
