@@ -35,7 +35,7 @@ import java.util.Dictionary;
 import java.util.List;
 
 public class JABCNoOsgiImpl extends JABundleContext {
-    public static FactoryLocator createNoOsgiFactoryLocator(int threadCount) throws Exception {
+    public static JAFactoryLocator createNoOsgiFactoryLocator(int threadCount) throws Exception {
         MailboxFactory mailboxFactory = JAMailboxFactory.newMailboxFactory(threadCount);
         JABCNoOsgiImpl jaBundleContext = new JABCNoOsgiImpl();
         jaBundleContext.initialize(mailboxFactory.createMailbox());
