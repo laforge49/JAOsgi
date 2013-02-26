@@ -187,7 +187,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
         } else {
             Bundle bundle = jaBundleContext.getBundle();
             if (bundle == null)
-                factoryKey = actorType+"||";
+                factoryKey = actorType + "||";
             else {
                 String bundleName = bundle.getSymbolicName();
                 Version version = bundle.getVersion();
