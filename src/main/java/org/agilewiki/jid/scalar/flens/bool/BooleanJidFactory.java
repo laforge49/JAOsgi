@@ -7,12 +7,10 @@ import org.agilewiki.jaosgi.JidFactories;
  * Creates a BooleanJidA.
  */
 public class BooleanJidFactory extends ActorFactory {
-    final public static BooleanJidFactory fac = new BooleanJidFactory();
-
     /**
      * Create a JLPCActorFactory.
      */
-    protected BooleanJidFactory() {
+    public BooleanJidFactory() {
         super(JidFactories.BOOLEAN_JID_TYPE);
     }
 

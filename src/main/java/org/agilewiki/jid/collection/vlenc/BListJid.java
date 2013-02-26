@@ -59,7 +59,7 @@ public class BListJid<ENTRY_TYPE extends Jid>
     protected void init()
             throws Exception {
         tupleFactories = new ActorFactory[2];
-        tupleFactories[TUPLE_SIZE] = IntegerJidFactory.fac;
+        tupleFactories[TUPLE_SIZE] = new IntegerJidFactory();
         tupleFactories[TUPLE_UNION] = new UnionJidFactory(
                 null,
                 new ListJidFactory("leaf", getEntryFactory(), nodeCapacity),

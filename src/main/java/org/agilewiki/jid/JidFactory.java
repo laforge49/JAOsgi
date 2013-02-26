@@ -30,8 +30,6 @@ import org.agilewiki.jaosgi.JidFactories;
  * Creates a Jid.
  */
 public class JidFactory extends ActorFactory {
-    final public static JidFactory fac = new JidFactory();
-
     /**
      * Create a JLPCActorFactory.
      */

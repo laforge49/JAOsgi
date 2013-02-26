@@ -36,7 +36,7 @@ public class StringMapJid<VALUE_TYPE extends Jid> extends MapJid<String, VALUE_T
      * @return The JidFactory for the key.
      */
     final protected StringJidFactory getKeyFactory() {
-        return StringJidFactory.fac;
+        return new StringJidFactory();
     }
 
     /**

@@ -7,12 +7,10 @@ import org.agilewiki.jaosgi.JidFactories;
  * Creates a LongJidA.
  */
 public class LongJidFactory extends ActorFactory {
-    final public static LongJidFactory fac = new LongJidFactory();
-
     /**
      * Create a JLPCActorFactory.
      */
-    protected LongJidFactory() {
+    public LongJidFactory() {
         super(JidFactories.LONG_JID_TYPE);
     }
 

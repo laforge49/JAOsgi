@@ -7,12 +7,10 @@ import org.agilewiki.jaosgi.JidFactories;
  * Creates a StringJid.
  */
 public class StringJidFactory extends ActorFactory {
-    final public static StringJidFactory fac = new StringJidFactory();
-
     /**
      * Create a JLPCActorFactory.
      */
-    protected StringJidFactory() {
+    public StringJidFactory() {
         super(JidFactories.STRING_JID_TYPE);
     }
 

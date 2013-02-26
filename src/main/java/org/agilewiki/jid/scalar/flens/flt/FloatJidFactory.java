@@ -7,12 +7,10 @@ import org.agilewiki.jaosgi.JidFactories;
  * Creates a FloatJidA.
  */
 public class FloatJidFactory extends ActorFactory {
-    final public static FloatJidFactory fac = new FloatJidFactory();
-
     /**
      * Create a JLPCActorFactory.
      */
-    protected FloatJidFactory() {
+    public FloatJidFactory() {
         super(JidFactories.FLOAT_JID_TYPE);
     }
 

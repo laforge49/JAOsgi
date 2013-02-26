@@ -7,12 +7,10 @@ import org.agilewiki.jaosgi.JidFactories;
  * Creates a IntegerJidA.
  */
 public class IntegerJidFactory extends ActorFactory {
-    final public static IntegerJidFactory fac = new IntegerJidFactory();
-
     /**
      * Create a JLPCActorFactory.
      */
-    protected IntegerJidFactory() {
+    public IntegerJidFactory() {
         super(JidFactories.INTEGER_JID_TYPE);
     }
 

@@ -7,12 +7,10 @@ import org.agilewiki.jaosgi.JidFactories;
  * Creates a DoubleJidA.
  */
 public class DoubleJidFactory extends ActorFactory {
-    final public static DoubleJidFactory fac = new DoubleJidFactory();
-
     /**
      * Create a JLPCActorFactory.
      */
-    protected DoubleJidFactory() {
+    public DoubleJidFactory() {
         super(JidFactories.DOUBLE_JID_TYPE);
     }
 

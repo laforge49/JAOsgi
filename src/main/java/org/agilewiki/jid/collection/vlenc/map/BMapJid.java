@@ -66,7 +66,7 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
     protected void init()
             throws Exception {
         tupleFactories = new ActorFactory[2];
-        tupleFactories[TUPLE_SIZE] = IntegerJidFactory.fac;
+        tupleFactories[TUPLE_SIZE] = new IntegerJidFactory();
         tupleFactories[TUPLE_UNION] = getUnionJidFactory();
     }
 

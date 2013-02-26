@@ -36,7 +36,7 @@ public class IntegerMapJid<VALUE_TYPE extends Jid> extends MapJid<Integer, VALUE
      * @return The JidFactory for the key.
      */
     final protected IntegerJidFactory getKeyFactory() {
-        return IntegerJidFactory.fac;
+        return new IntegerJidFactory();
     }
 
     /**

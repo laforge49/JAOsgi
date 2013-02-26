@@ -36,7 +36,7 @@ public class LongMapJid<VALUE_TYPE extends Jid> extends MapJid<Long, VALUE_TYPE>
      * @return The JidFactory for the key.
      */
     final protected LongJidFactory getKeyFactory() {
-        return LongJidFactory.fac;
+        return new LongJidFactory();
     }
 
     /**

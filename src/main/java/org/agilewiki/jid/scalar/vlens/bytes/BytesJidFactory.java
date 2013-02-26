@@ -7,12 +7,10 @@ import org.agilewiki.jaosgi.JidFactories;
  * Creates a BytesJidA.
  */
 public class BytesJidFactory extends ActorFactory {
-    final public static BytesJidFactory fac = new BytesJidFactory();
-
     /**
      * Create a JLPCActorFactory.
      */
-    protected BytesJidFactory() {
+    public BytesJidFactory() {
         super(JidFactories.BYTES_JID_TYPE);
     }
 

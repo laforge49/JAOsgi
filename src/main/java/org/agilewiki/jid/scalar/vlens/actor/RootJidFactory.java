@@ -7,12 +7,10 @@ import org.agilewiki.jaosgi.JidFactories;
  * Creates a RootJid.
  */
 public class RootJidFactory extends ActorFactory {
-    final public static RootJidFactory fac = new RootJidFactory();
-
     /**
      * Create a JLPCActorFactory.
      */
-    protected RootJidFactory() {
+    public RootJidFactory() {
         super(JidFactories.ROOT_JID_TYPE);
     }
 
