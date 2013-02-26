@@ -43,6 +43,14 @@ import org.agilewiki.jid.scalar.vlens.string.StringJidFactory;
  * </p>
  */
 final public class JidFactories extends LocateLocalActorFactories {
+    public static FactoryLocator createNoOsgiFactoryLocator(int threadCount) throws Exception {
+        FactoryLocator factoryLocator = JABCNoOsgiImpl.createNoOsgiFactoryLocator(threadCount);
+        JidFactories jidFactories = new JidFactories();
+        jidFactories.initialize();
+        jidFactories.configure(factoryLocator);
+        return factoryLocator;
+    }
+
 
     /**
      * The name of the JID actor.

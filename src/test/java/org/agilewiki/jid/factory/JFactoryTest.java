@@ -1,4 +1,4 @@
-package org.agilewiki.jactor.factory;
+package org.agilewiki.jid.factory;
 
 import junit.framework.TestCase;
 import org.agilewiki.jaosgi.FactoryLocator;

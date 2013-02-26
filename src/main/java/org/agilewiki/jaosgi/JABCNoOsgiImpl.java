@@ -35,15 +35,12 @@ import java.util.Dictionary;
 import java.util.List;
 
 public class JABCNoOsgiImpl extends JABundleContext {
-    public static FactoryLocator createFactoryLocator(int threadCount) throws Exception {
+    public static FactoryLocator createNoOsgiFactoryLocator(int threadCount) throws Exception {
         MailboxFactory mailboxFactory = JAMailboxFactory.newMailboxFactory(threadCount);
         JABCNoOsgiImpl jaBundleContext = new JABCNoOsgiImpl();
         jaBundleContext.initialize(mailboxFactory.createMailbox());
         JAFactoryLocator factoryLocator = new JAFactoryLocator();
         factoryLocator.initialize(mailboxFactory.createMailbox(), jaBundleContext);
-        JidFactories jidFactories = new JidFactories();
-        jidFactories.initialize();
-        jidFactories.configure(factoryLocator);
         return factoryLocator;
     }
 

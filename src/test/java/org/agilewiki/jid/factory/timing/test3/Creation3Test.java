@@ -1,10 +1,10 @@
-package org.agilewiki.jactor.factory.timing.test3;
+package org.agilewiki.jid.factory.timing.test3;
 
 import junit.framework.TestCase;
-import org.agilewiki.jactor.factory.timing.A;
 import org.agilewiki.jaosgi.FactoryLocator;
 import org.agilewiki.jaosgi.JABCNoOsgiImpl;
 import org.agilewiki.jaosgi.JABundleContext;
+import org.agilewiki.jid.factory.timing.A;
 
 public class Creation3Test extends TestCase {
     public void test() throws Exception {
