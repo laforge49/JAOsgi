@@ -198,7 +198,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
         if (af == null) {
             JAFactoryLocator a = (JAFactoryLocator) getAncestor(FactoryLocator.class);
             if (a != null)
-                return a._getActorFactory(factoryKey);
+                return a._getActorFactory(actorType);
             if (!actorType.contains("|"))
                 throw new IllegalArgumentException("Unknown actor type: " + factoryKey);
             int i = actorType.lastIndexOf('|');
