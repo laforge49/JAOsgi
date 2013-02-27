@@ -24,6 +24,8 @@
 package org.agilewiki.jid.scalar.vlens.actor;
 
 import org.agilewiki.jactor.factory.ActorFactory;
+import org.agilewiki.jaosgi.FactoryLocator;
+import org.agilewiki.jaosgi.JAFactoryLocator;
 import org.agilewiki.jid.*;
 import org.agilewiki.jid.scalar.Clearable;
 import org.agilewiki.jid.scalar.ScalarJid;
@@ -42,14 +44,17 @@ public class UnionJid extends ScalarJid<String, Jid> implements Clearable, Refer
 
     protected int getFactoryIndex(String actorType)
             throws Exception {
+        FactoryLocator factoryLocator = JAFactoryLocator.getFactoryLocator(this);
+        ActorFactory actorFactory = factoryLocator.getActorFactory(actorType);
+        String factoryKey = actorFactory.getFactoryKey();
         ActorFactory[] uf = getUnionFactories();
         int i = 0;
         while (i < uf.length) {
-            if (uf[i].actorType.equals(actorType))
+            if (uf[i].getFactoryKey().equals(factoryKey))
                 return i;
             i += 1;
         }
-        throw new IllegalArgumentException("Not a valid union type: " + actorType);
+        throw new IllegalArgumentException("Not a valid union type: " + factoryKey);
     }
 
     /**
