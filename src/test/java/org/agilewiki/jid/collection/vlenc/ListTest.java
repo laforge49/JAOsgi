@@ -1,10 +1,20 @@
 package org.agilewiki.jid.collection.vlenc;
 
 import junit.framework.TestCase;
+import org.agilewiki.jactor.Actor;
+import org.agilewiki.jactor.JAFuture;
+import org.agilewiki.jaosgi.JABundleContext;
+import org.agilewiki.jaosgi.JAFactoryLocator;
+import org.agilewiki.jaosgi.JidFactories;
+import org.agilewiki.jid.CopyJID;
+import org.agilewiki.jid.GetSerializedBytes;
+import org.agilewiki.jid.GetSerializedLength;
+import org.agilewiki.jid.collection.ISetBytes;
+import org.agilewiki.jid.scalar.vlens.string.SetString;
 
 public class ListTest extends TestCase {
     public void test() throws Exception {
-        /*
+
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
@@ -21,7 +31,7 @@ public class ListTest extends TestCase {
             Actor l2 = (new CopyJID()).send(future, l1);
             int l2sl = GetSerializedLength.req.send(future, l2);
             assertEquals(12, l2sl);
-            Actor s0 = factoryLocator.newActor(JidFactories.STRING_LIST_JID_TYPE);
+            Actor s0 = factoryLocator.newActor(JidFactories.STRING_JID_TYPE);
             (new SetString("Hi")).send(future, s0);
             int s0sl = GetSerializedLength.req.send(future, s0);
             assertEquals(8, s0sl);
@@ -44,6 +54,5 @@ public class ListTest extends TestCase {
         } finally {
             jaBundleContext.stop(0);
         }
-        */
     }
 }
