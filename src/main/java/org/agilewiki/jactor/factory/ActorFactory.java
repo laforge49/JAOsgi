@@ -85,4 +85,14 @@ abstract public class ActorFactory {
         a.initialize(mailbox, parent, this);
         return a;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (!(o instanceof ActorFactory))
+            return false;
+        ActorFactory af = (ActorFactory) o;
+        return getFactoryKey().equals(af.getFactoryKey());
+    }
 }

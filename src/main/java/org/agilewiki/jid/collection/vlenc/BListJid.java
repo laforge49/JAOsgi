@@ -24,14 +24,15 @@
 package org.agilewiki.jid.collection.vlenc;
 
 import org.agilewiki.jactor.factory.ActorFactory;
+import org.agilewiki.jaosgi.FactoryLocator;
+import org.agilewiki.jaosgi.JAFactoryLocator;
+import org.agilewiki.jaosgi.JidFactories;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.jid._Jid;
 import org.agilewiki.jid.collection.Collection;
 import org.agilewiki.jid.collection.flenc.AppJid;
 import org.agilewiki.jid.scalar.flens.integer.IntegerJid;
-import org.agilewiki.jid.scalar.flens.integer.IntegerJidFactory;
 import org.agilewiki.jid.scalar.vlens.actor.UnionJid;
-import org.agilewiki.jid.scalar.vlens.actor.UnionJidFactory;
 
 /**
  * A balanced tree holding a list of JIDs, all of the same type.
@@ -43,6 +44,7 @@ public class BListJid<ENTRY_TYPE extends Jid>
     protected int nodeCapacity = 28;
     protected boolean isRoot;
     protected ActorFactory entryFactory;
+    protected FactoryLocator factoryLocator;
 
     /**
      * Returns the JidFactory for all the elements in the list.
@@ -58,25 +60,19 @@ public class BListJid<ENTRY_TYPE extends Jid>
 
     protected void init()
             throws Exception {
+        factoryLocator = JAFactoryLocator.getFactoryLocator(this);
         tupleFactories = new ActorFactory[2];
-        tupleFactories[TUPLE_SIZE] = new IntegerJidFactory();
-        tupleFactories[TUPLE_UNION] = new UnionJidFactory(
-                null,
-                new ListJidFactory("leaf", getEntryFactory(), nodeCapacity),
-                new ListJidFactory(
-                        "inode",
-                        new BListJidFactory(
-                                null,
-                                getEntryFactory(),
-                                nodeCapacity,
-                                false,
-                                false),
-                        nodeCapacity));
+        tupleFactories[TUPLE_SIZE] = factoryLocator.getActorFactory(JidFactories.INTEGER_JID_TYPE);
+        tupleFactories[TUPLE_UNION] = factoryLocator.getActorFactory(getActorType());
     }
 
-    protected void setNodeType(String nodeType)
+    protected void setNodeLeaf() throws Exception {
+        getUnionJid().setValue(0);
+    }
+
+    protected void setNodeFactory(ActorFactory actorFactory)
             throws Exception {
-        getUnionJid().setValue(nodeType);
+        getUnionJid().setValue(actorFactory);
     }
 
     protected IntegerJid getSizeJid()
@@ -111,14 +107,14 @@ public class BListJid<ENTRY_TYPE extends Jid>
         return (ListJid) getUnionJid().getValue();
     }
 
-    public String getNodeType()
+    public String getNodeDescriptor()
             throws Exception {
-        return getNode().getActorType();
+        return getNode().getFactory().getDescriptor();
     }
 
     public boolean isLeaf()
             throws Exception {
-        return getNodeType().equals("leaf");
+        return getNodeDescriptor().startsWith("leaf|");
     }
 
     public int nodeSize()
@@ -264,7 +260,7 @@ public class BListJid<ENTRY_TYPE extends Jid>
                 if (bnode.isFat()) {
                     node.iAdd(i - 1);
                     BListJid<ENTRY_TYPE> left = (BListJid) node.iGet(i - 1);
-                    left.setNodeType(bnode.getNodeType());
+                    left.setNodeFactory(bnode.getFactory());
                     bnode.inodeSplit(left);
                     if (node.size() < nodeCapacity)
                         return;
@@ -282,18 +278,18 @@ public class BListJid<ENTRY_TYPE extends Jid>
     protected void rootSplit()
             throws Exception {
         ListJid<ENTRY_TYPE> oldRootNode = getNode();
-        String oldType = oldRootNode.getActorType();
-        getUnionJid().setValue("inode");
+        ActorFactory oldFactory = oldRootNode.getFactory();
+        getUnionJid().setValue(1);
         ListJid<ENTRY_TYPE> newRootNode = getNode();
         newRootNode.iAdd(0);
         newRootNode.iAdd(1);
         BListJid<ENTRY_TYPE> leftBNode = (BListJid) newRootNode.iGet(0);
         BListJid<ENTRY_TYPE> rightBNode = (BListJid) newRootNode.iGet(1);
-        leftBNode.setNodeType(oldType);
-        rightBNode.setNodeType(oldType);
+        leftBNode.setNodeFactory(oldFactory);
+        rightBNode.setNodeFactory(oldFactory);
         int h = nodeCapacity / 2;
         int i = 0;
-        if (oldType.equals("leaf")) {
+        if (oldFactory.actorType.equals("leaf")) {
             while (i < h) {
                 Jid e = (Jid) oldRootNode.iGet(i);
                 byte[] bytes = e.getSerializedBytes();
@@ -404,7 +400,7 @@ public class BListJid<ENTRY_TYPE extends Jid>
                 }
                 if (node.size() == 1 && isRoot && !isLeaf()) {
                     bnode = (BListJid) node.iGet(0);
-                    setNodeType(bnode.getNodeType());
+                    setNodeFactory(bnode.getFactory());
                     IntegerJid sj = getSizeJid();
                     sj.setValue(0);
                     bnode.append(this);

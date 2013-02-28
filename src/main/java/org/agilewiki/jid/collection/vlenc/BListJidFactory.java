@@ -28,14 +28,34 @@ import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.factory.ActorFactory;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jaosgi.FactoryLocator;
+import org.agilewiki.jid.scalar.vlens.actor.UnionJidFactory;
 
 /**
  * Creates ListJids.
  */
 public class BListJidFactory extends ActorFactory {
+    private final static int NODE_CAPACITY = 28;
+
+    public static void registerFactory(FactoryLocator factoryLocator,
+                                         String actorType,
+                                         ActorFactory entryFactory)
+            throws Exception {
+        factoryLocator.registerActorFactory(new UnionJidFactory(
+                "U." + actorType, "LL." + actorType, "IL." + actorType));
+
+        factoryLocator.registerActorFactory(new BListJidFactory(
+                actorType, entryFactory, true, true));
+        factoryLocator.registerActorFactory(new BListJidFactory(
+                "IN." + actorType, entryFactory, false, false));
+
+        factoryLocator.registerActorFactory(new ListJidFactory(
+                "LL." + actorType, entryFactory, 28));
+        factoryLocator.registerActorFactory(new ListJidFactory(
+                "IL." + actorType, "IN." + actorType, NODE_CAPACITY));
+    }
+
     private ActorFactory entryFactory;
     private String entryType;
-    private int nodeCapacity = 28;
     private boolean isRoot = true;
     private boolean auto = true;
 
@@ -44,69 +64,13 @@ public class BListJidFactory extends ActorFactory {
      *
      * @param actorType    The actor type.
      * @param entryFactory The entry factory.
-     */
-    public BListJidFactory(String actorType, ActorFactory entryFactory) {
-        super(actorType);
-        this.entryFactory = entryFactory;
-    }
-
-    /**
-     * Create an ActorFactory.
-     *
-     * @param actorType    The actor type.
-     * @param entryFactory The entry factory.
-     * @param nodeCapacity The size of the nodes.
-     */
-    public BListJidFactory(String actorType, ActorFactory entryFactory,
-                           int nodeCapacity) {
-        super(actorType);
-        this.entryFactory = entryFactory;
-        this.nodeCapacity = nodeCapacity;
-    }
-
-    /**
-     * Create an ActorFactory.
-     *
-     * @param actorType    The actor type.
-     * @param entryFactory The entry factory.
-     * @param nodeCapacity The size of the nodes.
      * @param isRoot       Create a root node when true.
      * @param auto         Define the node as a leaf when true.
      */
-    public BListJidFactory(String actorType, ActorFactory entryFactory,
-                           int nodeCapacity, boolean isRoot, boolean auto) {
+    private BListJidFactory(String actorType, ActorFactory entryFactory,
+                           boolean isRoot, boolean auto) {
         super(actorType);
         this.entryFactory = entryFactory;
-        this.nodeCapacity = nodeCapacity;
-        this.isRoot = isRoot;
-        this.auto = auto;
-    }
-
-    /**
-     * Create an ActorFactory.
-     *
-     * @param actorType The actor type.
-     * @param entryType The entry type.
-     */
-    public BListJidFactory(String actorType, String entryType) {
-        super(actorType);
-        this.entryType = entryType;
-    }
-
-    /**
-     * Create an ActorFactory.
-     *
-     * @param actorType    The actor type.
-     * @param entryType    The entry type.
-     * @param nodeCapacity The size of the nodes.
-     * @param isRoot       Create a root node when true.
-     * @param auto         Define the node as a leaf when true.
-     */
-    public BListJidFactory(String actorType, String entryType,
-                           int nodeCapacity, boolean isRoot, boolean auto) {
-        super(actorType);
-        this.entryType = entryType;
-        this.nodeCapacity = nodeCapacity;
         this.isRoot = isRoot;
         this.auto = auto;
     }
@@ -136,11 +100,11 @@ public class BListJidFactory extends ActorFactory {
             entryFactory = f.getActorFactory(entryType);
         }
         lj.entryFactory = entryFactory;
-        lj.nodeCapacity = nodeCapacity;
+        lj.nodeCapacity = NODE_CAPACITY;
         lj.isRoot = isRoot;
         lj.init();
         if (auto)
-            lj.setNodeType("leaf");
+            lj.setNodeLeaf();
         return lj;
     }
 }

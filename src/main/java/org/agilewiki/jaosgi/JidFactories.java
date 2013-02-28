@@ -439,14 +439,14 @@ final public class JidFactories extends LocateLocalActorFactories {
         factoryLocator.registerActorFactory(new StringJidFactory());
         factoryLocator.registerActorFactory(new BytesJidFactory());
 
-        factoryLocator.registerActorFactory(new BListJidFactory(STRING_BLIST_JID_TYPE, new StringJidFactory()));
-        factoryLocator.registerActorFactory(new BListJidFactory(BYTES_BLIST_JID_TYPE, new BytesJidFactory()));
-        factoryLocator.registerActorFactory(new BListJidFactory(ACTOR_BLIST_JID_TYPE, new ActorJidFactory()));
-        factoryLocator.registerActorFactory(new BListJidFactory(LONG_BLIST_JID_TYPE, new LongJidFactory()));
-        factoryLocator.registerActorFactory(new BListJidFactory(INTEGER_BLIST_JID_TYPE, new IntegerJidFactory()));
-        factoryLocator.registerActorFactory(new BListJidFactory(FLOAT_BLIST_JID_TYPE, new FloatJidFactory()));
-        factoryLocator.registerActorFactory(new BListJidFactory(DOUBLE_BLIST_JID_TYPE, new DoubleJidFactory()));
-        factoryLocator.registerActorFactory(new BListJidFactory(BOOLEAN_BLIST_JID_TYPE, new BooleanJidFactory()));
+        BListJidFactory.registerFactory(factoryLocator, STRING_BLIST_JID_TYPE, new StringJidFactory());
+        BListJidFactory.registerFactory(factoryLocator, BYTES_BLIST_JID_TYPE, new BytesJidFactory());
+        BListJidFactory.registerFactory(factoryLocator, ACTOR_BLIST_JID_TYPE, new ActorJidFactory());
+        BListJidFactory.registerFactory(factoryLocator, LONG_BLIST_JID_TYPE, new LongJidFactory());
+        BListJidFactory.registerFactory(factoryLocator, INTEGER_BLIST_JID_TYPE, new IntegerJidFactory());
+        BListJidFactory.registerFactory(factoryLocator, FLOAT_BLIST_JID_TYPE, new FloatJidFactory());
+        BListJidFactory.registerFactory(factoryLocator, DOUBLE_BLIST_JID_TYPE, new DoubleJidFactory());
+        BListJidFactory.registerFactory(factoryLocator, BOOLEAN_BLIST_JID_TYPE, new BooleanJidFactory());
 
         factoryLocator.registerActorFactory(new ListJidFactory(STRING_LIST_JID_TYPE, new StringJidFactory()));
         factoryLocator.registerActorFactory(new ListJidFactory(BYTES_LIST_JID_TYPE, new BytesJidFactory()));

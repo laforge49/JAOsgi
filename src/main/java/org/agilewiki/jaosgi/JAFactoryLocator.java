@@ -28,7 +28,6 @@ import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.factory.ActorFactory;
 import org.agilewiki.jactor.factory._ActorFactory;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jid.JidFactory;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.ServiceReference;
@@ -290,8 +289,6 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
     }
 
     private void registerAsService(ActorFactory actorFactory) throws Exception {
-        if (!(actorFactory instanceof JidFactory))
-            return;
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(this);
         Bundle bundle = jaBundleContext.getBundle();
         if (bundle == null) {
