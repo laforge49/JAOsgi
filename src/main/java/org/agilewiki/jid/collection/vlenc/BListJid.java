@@ -60,10 +60,13 @@ public class BListJid<ENTRY_TYPE extends Jid>
 
     protected void init()
             throws Exception {
+        String baseType = getActorType();
+        if (baseType.startsWith("IN."))
+            baseType = baseType.substring(3);
         factoryLocator = JAFactoryLocator.getFactoryLocator(this);
         tupleFactories = new ActorFactory[2];
         tupleFactories[TUPLE_SIZE] = factoryLocator.getActorFactory(JidFactories.INTEGER_JID_TYPE);
-        tupleFactories[TUPLE_UNION] = factoryLocator.getActorFactory(getActorType());
+        tupleFactories[TUPLE_UNION] = factoryLocator.getActorFactory("U." + baseType);
     }
 
     protected void setNodeLeaf() throws Exception {
@@ -114,7 +117,7 @@ public class BListJid<ENTRY_TYPE extends Jid>
 
     public boolean isLeaf()
             throws Exception {
-        return getNodeDescriptor().startsWith("leaf|");
+        return getNodeDescriptor().startsWith("LL.");
     }
 
     public int nodeSize()
@@ -289,7 +292,7 @@ public class BListJid<ENTRY_TYPE extends Jid>
         rightBNode.setNodeFactory(oldFactory);
         int h = nodeCapacity / 2;
         int i = 0;
-        if (oldFactory.actorType.equals("leaf")) {
+        if (oldFactory.actorType.startsWith("LL.")) {
             while (i < h) {
                 Jid e = (Jid) oldRootNode.iGet(i);
                 byte[] bytes = e.getSerializedBytes();

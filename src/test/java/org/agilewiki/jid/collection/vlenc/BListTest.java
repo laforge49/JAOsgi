@@ -1,14 +1,17 @@
 package org.agilewiki.jid.collection.vlenc;
 
 import junit.framework.TestCase;
+import org.agilewiki.jaosgi.JABundleContext;
+import org.agilewiki.jaosgi.JAFactoryLocator;
+import org.agilewiki.jaosgi.JidFactories;
 
 public class BListTest extends TestCase {
     public void test1() throws Exception {
-    /*
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
             BListJid stringList1 = (BListJid) factoryLocator.newActor(JidFactories.STRING_BLIST_JID_TYPE);
+            /*
             stringList1.iAdd(0);
             stringList1.iAdd(1);
             stringList1.iAdd(2);
@@ -25,12 +28,12 @@ public class BListTest extends TestCase {
             assertEquals("a", s0.getValue());
             assertEquals("b", s1.getValue());
             assertEquals("c", s2.getValue());
+            */
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             jaBundleContext.stop(0);
         }
-        */
     }
 
     /*
