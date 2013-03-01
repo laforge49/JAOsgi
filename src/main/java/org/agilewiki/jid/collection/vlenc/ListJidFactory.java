@@ -33,32 +33,8 @@ import org.agilewiki.jaosgi.FactoryLocator;
  * Creates ListJids.
  */
 public class ListJidFactory extends ActorFactory {
-    private ActorFactory entryFactory;
     private String entryType;
     private int initialCapacity;
-
-    /**
-     * Create an ActorFactory.
-     *
-     * @param actorType       The actor type.
-     * @param entryFactory    The entry factory.
-     * @param initialCapacity The initial capacity.
-     */
-    public ListJidFactory(String actorType, ActorFactory entryFactory, int initialCapacity) {
-        super(actorType);
-        this.entryFactory = entryFactory;
-        this.initialCapacity = initialCapacity;
-    }
-
-    /**
-     * Create an ActorFactory.
-     *
-     * @param actorType    The actor type.
-     * @param entryFactory The entry factory.
-     */
-    public ListJidFactory(String actorType, ActorFactory entryFactory) {
-        this(actorType, entryFactory, 10);
-    }
 
     /**
      * Create an ActorFactory.
@@ -103,11 +79,8 @@ public class ListJidFactory extends ActorFactory {
     public JLPCActor newActor(Mailbox mailbox, Actor parent)
             throws Exception {
         ListJid lj = (ListJid) super.newActor(mailbox, parent);
-        if (entryFactory == null) {
-            FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
-            entryFactory = fl.getActorFactory(entryType);
-        }
-        lj.entryFactory = entryFactory;
+        FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
+        lj.entryFactory = fl.getActorFactory(entryType);
         lj.initialCapacity = initialCapacity;
         return lj;
     }

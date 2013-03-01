@@ -38,39 +38,30 @@ public class BListJidFactory extends ActorFactory {
 
     public static void registerFactory(FactoryLocator factoryLocator,
                                          String actorType,
-                                         ActorFactory entryFactory)
+                                         String entryType)
             throws Exception {
         factoryLocator.registerActorFactory(new UnionJidFactory(
                 "U." + actorType, "LL." + actorType, "IL." + actorType));
 
         factoryLocator.registerActorFactory(new BListJidFactory(
-                actorType, entryFactory, true, true));
+                actorType, entryType, true, true));
         factoryLocator.registerActorFactory(new BListJidFactory(
-                "IN." + actorType, entryFactory, false, false));
+                "IN." + actorType, entryType, false, false));
 
         factoryLocator.registerActorFactory(new ListJidFactory(
-                "LL." + actorType, entryFactory, 28));
+                "LL." + actorType, entryType, 28));
         factoryLocator.registerActorFactory(new ListJidFactory(
                 "IL." + actorType, "IN." + actorType, NODE_CAPACITY));
     }
 
-    private ActorFactory entryFactory;
     private String entryType;
     private boolean isRoot = true;
     private boolean auto = true;
 
-    /**
-     * Create an ActorFactory.
-     *
-     * @param actorType    The actor type.
-     * @param entryFactory The entry factory.
-     * @param isRoot       Create a root node when true.
-     * @param auto         Define the node as a leaf when true.
-     */
-    private BListJidFactory(String actorType, ActorFactory entryFactory,
+    private BListJidFactory(String actorType, String entryType,
                            boolean isRoot, boolean auto) {
         super(actorType);
-        this.entryFactory = entryFactory;
+        this.entryType = entryType;
         this.isRoot = isRoot;
         this.auto = auto;
     }
@@ -95,11 +86,8 @@ public class BListJidFactory extends ActorFactory {
     public JLPCActor newActor(Mailbox mailbox, Actor parent)
             throws Exception {
         BListJid lj = (BListJid) super.newActor(mailbox, parent);
-        if (entryFactory == null) {
             FactoryLocator f = (FactoryLocator) parent.getMatch(FactoryLocator.class);
-            entryFactory = f.getActorFactory(entryType);
-        }
-        lj.entryFactory = entryFactory;
+        lj.entryFactory = f.getActorFactory(entryType);
         lj.nodeCapacity = NODE_CAPACITY;
         lj.isRoot = isRoot;
         lj.init();

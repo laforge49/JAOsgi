@@ -33,32 +33,8 @@ import org.agilewiki.jaosgi.FactoryLocator;
  * Creates IntegerMapJid's.
  */
 public class IntegerMapJidFactory extends ActorFactory {
-    private ActorFactory valueFactory;
     private String valueType;
     private int initialCapacity = 10;
-
-    /**
-     * Create an ActorFactory.
-     *
-     * @param actorType    The actor type.
-     * @param valueFactory The value factory.
-     */
-    public IntegerMapJidFactory(String actorType, ActorFactory valueFactory, int initialCapacity) {
-        super(actorType);
-        this.valueFactory = valueFactory;
-        this.initialCapacity = initialCapacity;
-    }
-
-    /**
-     * Create an ActorFactory.
-     *
-     * @param actorType    The actor type.
-     * @param valueFactory The value factory.
-     */
-    public IntegerMapJidFactory(String actorType, ActorFactory valueFactory) {
-        super(actorType);
-        this.valueFactory = valueFactory;
-    }
 
     /**
      * Create an ActorFactory.
@@ -104,11 +80,8 @@ public class IntegerMapJidFactory extends ActorFactory {
     public JLPCActor newActor(Mailbox mailbox, Actor parent)
             throws Exception {
         IntegerMapJid imj = (IntegerMapJid) super.newActor(mailbox, parent);
-        if (valueFactory == null) {
-            FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
-            valueFactory = fl.getActorFactory(valueType);
-        }
-        imj.valueFactory = valueFactory;
+        FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
+        imj.valueFactory = fl.getActorFactory(valueType);
         imj.initialCapacity = initialCapacity;
         return imj;
     }

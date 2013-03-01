@@ -33,33 +33,8 @@ import org.agilewiki.jaosgi.FactoryLocator;
  * Creates LongMapJid's.
  */
 public class LongMapJidFactory extends ActorFactory {
-    private ActorFactory valueFactory;
     private String valueType;
     private int initialCapacity = 10;
-
-    /**
-     * Create an ActorFactory.
-     *
-     * @param actorType       The actor type.
-     * @param valueFactory    The value factory.
-     * @param initialCapacity The initial capacity.
-     */
-    public LongMapJidFactory(String actorType, ActorFactory valueFactory, int initialCapacity) {
-        super(actorType);
-        this.valueFactory = valueFactory;
-        this.initialCapacity = initialCapacity;
-    }
-
-    /**
-     * Create an ActorFactory.
-     *
-     * @param actorType    The actor type.
-     * @param valueFactory The value factory.
-     */
-    public LongMapJidFactory(String actorType, ActorFactory valueFactory) {
-        super(actorType);
-        this.valueFactory = valueFactory;
-    }
 
     /**
      * Create an ActorFactory.
@@ -106,11 +81,8 @@ public class LongMapJidFactory extends ActorFactory {
     public JLPCActor newActor(Mailbox mailbox, Actor parent)
             throws Exception {
         LongMapJid imj = (LongMapJid) super.newActor(mailbox, parent);
-        if (valueFactory == null) {
-            FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
-            valueFactory = fl.getActorFactory(valueType);
-        }
-        imj.valueFactory = valueFactory;
+        FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
+        imj.valueFactory = fl.getActorFactory(valueType);
         imj.initialCapacity = initialCapacity;
         return imj;
     }

@@ -33,38 +33,11 @@ import org.agilewiki.jaosgi.FactoryLocator;
  * Creates LongBMapJid's.
  */
 public class LongBMapJidFactory extends ActorFactory {
-    private ActorFactory valueFactory;
+    private final static int NODE_CAPACITY = 28;
+
     private String valueType;
-    private int nodeCapacity = 28;
     private boolean isRoot = true;
     private boolean auto = true;
-
-    /**
-     * Create an ActorFactory.
-     *
-     * @param actorType    The actor type.
-     * @param valueFactory The value factory.
-     */
-    public LongBMapJidFactory(String actorType, ActorFactory valueFactory) {
-        super(actorType);
-        this.valueFactory = valueFactory;
-    }
-
-    /**
-     * Create an ActorFactory.
-     *
-     * @param actorType    The actor type.
-     * @param valueFactory The value factory.
-     * @param nodeCapacity The size of the nodes.
-     */
-    public LongBMapJidFactory(String actorType, ActorFactory valueFactory,
-                              int nodeCapacity, boolean isRoot, boolean auto) {
-        super(actorType);
-        this.valueFactory = valueFactory;
-        this.nodeCapacity = nodeCapacity;
-        this.isRoot = isRoot;
-        this.auto = auto;
-    }
 
     /**
      * Create an ActorFactory.
@@ -82,13 +55,11 @@ public class LongBMapJidFactory extends ActorFactory {
      *
      * @param actorType    The actor type.
      * @param valueType    The value type.
-     * @param nodeCapacity The size of the nodes.
      */
     public LongBMapJidFactory(String actorType, String valueType,
-                              int nodeCapacity, boolean isRoot, boolean auto) {
+                              boolean isRoot, boolean auto) {
         super(actorType);
         this.valueType = valueType;
-        this.nodeCapacity = nodeCapacity;
         this.isRoot = isRoot;
         this.auto = auto;
     }
@@ -113,12 +84,9 @@ public class LongBMapJidFactory extends ActorFactory {
     public JLPCActor newActor(Mailbox mailbox, Actor parent)
             throws Exception {
         LongBMapJid imj = (LongBMapJid) super.newActor(mailbox, parent);
-        if (valueFactory == null) {
-            FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
-            valueFactory = fl.getActorFactory(valueType);
-        }
-        imj.valueFactory = valueFactory;
-        imj.nodeCapacity = nodeCapacity;
+        FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
+        imj.valueFactory = fl.getActorFactory(valueType);
+        imj.nodeCapacity = NODE_CAPACITY;
         imj.isRoot = isRoot;
         imj.init();
         if (auto)
