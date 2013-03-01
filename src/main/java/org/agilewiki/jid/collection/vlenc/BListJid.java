@@ -263,7 +263,7 @@ public class BListJid<ENTRY_TYPE extends Jid>
                 if (bnode.isFat()) {
                     node.iAdd(i - 1);
                     BListJid<ENTRY_TYPE> left = (BListJid) node.iGet(i - 1);
-                    left.setNodeFactory(bnode.getFactory());
+                    left.setNodeFactory(bnode.getNode().getFactory());
                     bnode.inodeSplit(left);
                     if (node.size() < nodeCapacity)
                         return;
@@ -403,7 +403,7 @@ public class BListJid<ENTRY_TYPE extends Jid>
                 }
                 if (node.size() == 1 && isRoot && !isLeaf()) {
                     bnode = (BListJid) node.iGet(0);
-                    setNodeFactory(bnode.getFactory());
+                    setNodeFactory(bnode.getNode().getFactory());
                     IntegerJid sj = getSizeJid();
                     sj.setValue(0);
                     bnode.append(this);
