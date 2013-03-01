@@ -99,7 +99,7 @@ public class IntegerBMapJidFactory extends ActorFactory {
         imj.isRoot = isRoot;
         imj.init();
         if (auto)
-            imj.setNodeType("leaf");
+            imj.setNodeLeaf();
         return imj;
     }
 }

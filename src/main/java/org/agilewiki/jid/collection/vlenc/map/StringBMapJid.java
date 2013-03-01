@@ -23,27 +23,12 @@
  */
 package org.agilewiki.jid.collection.vlenc.map;
 
-import org.agilewiki.jactor.factory.ActorFactory;
 import org.agilewiki.jid.Jid;
-import org.agilewiki.jid.scalar.vlens.actor.UnionJidFactory;
 
 /**
  * A balanced tree that holds a map with String keys.
  */
 public class StringBMapJid<VALUE_TYPE extends Jid> extends BMapJid<String, VALUE_TYPE> {
-    protected ActorFactory getUnionJidFactory()
-            throws Exception {
-        return new UnionJidFactory(null,
-                new StringMapJidFactory(
-                        "leaf",
-                        valueFactory.actorType,
-                        nodeCapacity),
-                new StringMapJidFactory(
-                        "inode",
-                        new StringBMapJidFactory(null, valueFactory.actorType, false, false).actorType,
-                        nodeCapacity));
-    }
-
     /**
      * Converts a string to a key.
      *

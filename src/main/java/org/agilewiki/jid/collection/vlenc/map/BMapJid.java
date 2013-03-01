@@ -24,13 +24,15 @@
 package org.agilewiki.jid.collection.vlenc.map;
 
 import org.agilewiki.jactor.factory.ActorFactory;
+import org.agilewiki.jaosgi.FactoryLocator;
+import org.agilewiki.jaosgi.JAFactoryLocator;
+import org.agilewiki.jaosgi.JidFactories;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.jid._Jid;
 import org.agilewiki.jid.collection.Collection;
 import org.agilewiki.jid.collection.flenc.AppJid;
 import org.agilewiki.jid.collection.vlenc.JAList;
 import org.agilewiki.jid.scalar.flens.integer.IntegerJid;
-import org.agilewiki.jid.scalar.flens.integer.IntegerJidFactory;
 import org.agilewiki.jid.scalar.vlens.actor.UnionJid;
 
 /**
@@ -44,9 +46,7 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
     protected int nodeCapacity = 28;
     protected boolean isRoot;
     public ActorFactory valueFactory;
-
-    abstract protected ActorFactory getUnionJidFactory()
-            throws Exception;
+    protected FactoryLocator factoryLocator;
 
     /**
      * Converts a string to a key.
@@ -65,14 +65,22 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
 
     protected void init()
             throws Exception {
+        String baseType = getActorType();
+        if (baseType.startsWith("IN."))
+            baseType = baseType.substring(3);
+        factoryLocator = JAFactoryLocator.getFactoryLocator(this);
         tupleFactories = new ActorFactory[2];
-        tupleFactories[TUPLE_SIZE] = new IntegerJidFactory();
-        tupleFactories[TUPLE_UNION] = getUnionJidFactory();
+        tupleFactories[TUPLE_SIZE] = factoryLocator.getActorFactory(JidFactories.INTEGER_JID_TYPE);
+        tupleFactories[TUPLE_UNION] = factoryLocator.getActorFactory("U." + baseType);
     }
 
-    protected void setNodeType(String nodeType)
+    protected void setNodeLeaf() throws Exception {
+        getUnionJid().setValue(0);
+    }
+
+    protected void setNodeFactory(ActorFactory actorFactory)
             throws Exception {
-        getUnionJid().setValue(nodeType);
+        getUnionJid().setValue(actorFactory);
     }
 
     protected IntegerJid getSizeJid()
@@ -246,8 +254,8 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
     protected void rootSplit()
             throws Exception {
         MapJid<KEY_TYPE, Jid> oldRootNode = getNode();
-        String oldType = oldRootNode.getActorType();
-        getUnionJid().setValue("inode");
+        ActorFactory oldFactory = oldRootNode.getFactory();
+        getUnionJid().setValue(1);
         MapJid<KEY_TYPE, Jid> newRootNode = getNode();
         newRootNode.iAdd(0);
         newRootNode.iAdd(1);
@@ -255,11 +263,11 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
         MapEntry<KEY_TYPE, BMapJid<KEY_TYPE, Jid>> rightEntry = (MapEntry) newRootNode.iGet(1);
         BMapJid<KEY_TYPE, Jid> leftBNode = leftEntry.getValue();
         BMapJid<KEY_TYPE, Jid> rightBNode = rightEntry.getValue();
-        leftBNode.setNodeType(oldType);
-        rightBNode.setNodeType(oldType);
+        leftBNode.setNodeFactory(oldFactory);
+        rightBNode.setNodeFactory(oldFactory);
         int h = nodeCapacity / 2;
         int i = 0;
-        if (oldType.equals("leaf")) {
+        if (oldFactory.actorType.startsWith("LL.")) {
             while (i < h) {
                 Jid e = (Jid) oldRootNode.iGet(i);
                 byte[] bytes = e.getSerializedBytes();
@@ -295,7 +303,7 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
     protected void inodeSplit(MapEntry<KEY_TYPE, BMapJid<KEY_TYPE, Jid>> leftEntry)
             throws Exception {
         BMapJid<KEY_TYPE, Jid> leftBNode = leftEntry.getValue();
-        leftBNode.setNodeType(getNodeType());
+        leftBNode.setNodeFactory(getNode().getFactory());
         MapJid<KEY_TYPE, Jid> node = getNode();
         int h = nodeCapacity / 2;
         int i = 0;
@@ -384,7 +392,7 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
                 }
                 if (node.size() == 1 && isRoot && !isLeaf()) {
                     bnode = (BMapJid) node.iGet(0).getValue();
-                    setNodeType(bnode.getNodeType());
+                    setNodeFactory(bnode.getNode().getFactory());
                     IntegerJid sj = getSizeJid();
                     sj.setValue(0);
                     bnode.appendTo(this);
@@ -451,7 +459,7 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
         }
         if (node.size() == 1 && isRoot && !isLeaf()) {
             bnode = (BMapJid) node.iGet(0).getValue();
-            setNodeType(bnode.getNodeType());
+            setNodeFactory(bnode.getNode().getFactory());
             IntegerJid sj = getSizeJid();
             sj.setValue(0);
             bnode.appendTo((BMapJid<KEY_TYPE, Jid>) this);
