@@ -28,6 +28,8 @@ import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.factory.ActorFactory;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jaosgi.FactoryLocator;
+import org.agilewiki.jid.collection.vlenc.ListJidFactory;
+import org.agilewiki.jid.scalar.vlens.actor.UnionJidFactory;
 
 /**
  * Creates IntegerBMapJid's.
@@ -35,20 +37,27 @@ import org.agilewiki.jaosgi.FactoryLocator;
 public class IntegerBMapJidFactory extends ActorFactory {
     private final static int NODE_CAPACITY = 28;
 
+    public static void registerFactory(FactoryLocator factoryLocator,
+                                       String actorType,
+                                       String valueType)
+            throws Exception {
+        factoryLocator.registerActorFactory(new UnionJidFactory(
+                "U." + actorType, "LL." + actorType, "IL." + actorType));
+
+        factoryLocator.registerActorFactory(new IntegerBMapJidFactory(
+                actorType, valueType, true, true));
+        factoryLocator.registerActorFactory(new IntegerBMapJidFactory(
+                "IN." + actorType, valueType, false, false));
+
+        factoryLocator.registerActorFactory(new ListJidFactory(
+                "LL." + actorType, valueType, 28));
+        factoryLocator.registerActorFactory(new ListJidFactory(
+                "IL." + actorType, "IN." + actorType, NODE_CAPACITY));
+    }
+
     private String valueType;
     private boolean isRoot = true;
     private boolean auto = true;
-
-    /**
-     * Create an ActorFactory.
-     *
-     * @param actorType The actor type.
-     * @param valueType The value type.
-     */
-    public IntegerBMapJidFactory(String actorType, String valueType) {
-        super(actorType);
-        this.valueType = valueType;
-    }
 
     /**
      * Create an ActorFactory.
