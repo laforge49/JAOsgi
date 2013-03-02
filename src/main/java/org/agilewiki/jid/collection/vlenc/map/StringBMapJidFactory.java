@@ -28,7 +28,6 @@ import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.factory.ActorFactory;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jaosgi.FactoryLocator;
-import org.agilewiki.jid.collection.vlenc.ListJidFactory;
 import org.agilewiki.jid.scalar.vlens.actor.UnionJidFactory;
 
 /**
@@ -42,17 +41,17 @@ public class StringBMapJidFactory extends ActorFactory {
                                        String valueType)
             throws Exception {
         factoryLocator.registerActorFactory(new UnionJidFactory(
-                "U." + actorType, "LL." + actorType, "IL." + actorType));
+                "U." + actorType, "LM." + actorType, "IM." + actorType));
 
         factoryLocator.registerActorFactory(new StringBMapJidFactory(
                 actorType, valueType, true, true));
         factoryLocator.registerActorFactory(new StringBMapJidFactory(
                 "IN." + actorType, valueType, false, false));
 
-        factoryLocator.registerActorFactory(new ListJidFactory(
-                "LL." + actorType, valueType, 28));
-        factoryLocator.registerActorFactory(new ListJidFactory(
-                "IL." + actorType, "IN." + actorType, NODE_CAPACITY));
+        factoryLocator.registerActorFactory(new StringMapJidFactory(
+                "LM." + actorType, valueType, 28));
+        factoryLocator.registerActorFactory(new StringMapJidFactory(
+                "IM." + actorType, "IN." + actorType, NODE_CAPACITY));
     }
 
     private String valueType;

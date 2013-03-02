@@ -115,14 +115,14 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
         return (MapJid) getUnionJid().getValue();
     }
 
-    public String getNodeType()
+    public String getNodeDescriptor()
             throws Exception {
-        return getNode().getActorType();
+        return getNode().getFactory().getDescriptor();
     }
 
     public boolean isLeaf()
             throws Exception {
-        return getNodeType().equals("leaf");
+        return getNodeDescriptor().startsWith("LM.");
     }
 
     public int nodeSize()
@@ -267,7 +267,7 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
         rightBNode.setNodeFactory(oldFactory);
         int h = nodeCapacity / 2;
         int i = 0;
-        if (oldFactory.actorType.startsWith("LL.")) {
+        if (oldFactory.actorType.startsWith("LM.")) {
             while (i < h) {
                 Jid e = (Jid) oldRootNode.iGet(i);
                 byte[] bytes = e.getSerializedBytes();

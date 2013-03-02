@@ -23,6 +23,7 @@
  */
 package org.agilewiki.jaosgi;
 
+import org.agilewiki.jactor.MailboxFactory;
 import org.agilewiki.jid.JidFactory;
 import org.agilewiki.jid.collection.vlenc.BListJidFactory;
 import org.agilewiki.jid.collection.vlenc.ListJidFactory;
@@ -51,6 +52,13 @@ final public class JidFactories extends LocateLocalActorFactories {
         return factoryLocator;
     }
 
+    public static JAFactoryLocator createNoOsgiFactoryLocator(MailboxFactory mailboxFactory) throws Exception {
+        JAFactoryLocator factoryLocator = JABCNoOsgiImpl.createNoOsgiFactoryLocator(mailboxFactory);
+        JidFactories jidFactories = new JidFactories();
+        jidFactories.initialize();
+        jidFactories.configure(factoryLocator);
+        return factoryLocator;
+    }
 
     /**
      * The name of the JID actor.

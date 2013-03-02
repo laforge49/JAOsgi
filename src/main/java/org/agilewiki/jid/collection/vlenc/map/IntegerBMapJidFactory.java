@@ -42,7 +42,7 @@ public class IntegerBMapJidFactory extends ActorFactory {
                                        String valueType)
             throws Exception {
         factoryLocator.registerActorFactory(new UnionJidFactory(
-                "U." + actorType, "LL." + actorType, "IL." + actorType));
+                "U." + actorType, "LM." + actorType, "IM." + actorType));
 
         factoryLocator.registerActorFactory(new IntegerBMapJidFactory(
                 actorType, valueType, true, true));
@@ -50,9 +50,9 @@ public class IntegerBMapJidFactory extends ActorFactory {
                 "IN." + actorType, valueType, false, false));
 
         factoryLocator.registerActorFactory(new ListJidFactory(
-                "LL." + actorType, valueType, 28));
+                "LM." + actorType, valueType, 28));
         factoryLocator.registerActorFactory(new ListJidFactory(
-                "IL." + actorType, "IN." + actorType, NODE_CAPACITY));
+                "IM." + actorType, "IN." + actorType, NODE_CAPACITY));
     }
 
     private String valueType;
