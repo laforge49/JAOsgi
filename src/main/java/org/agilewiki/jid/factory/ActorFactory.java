@@ -21,11 +21,12 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jactor.factory;
+package org.agilewiki.jid.factory;
 
 import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.jid.Jid;
 
 /**
  * Creates a JLPCActor.
@@ -81,7 +82,7 @@ abstract public class ActorFactory {
      */
     public JLPCActor newActor(Mailbox mailbox, Actor parent)
             throws Exception {
-        JLPCActor a = instantiateActor();
+        Jid a = (Jid) instantiateActor();
         a.initialize(mailbox, parent, this);
         return a;
     }

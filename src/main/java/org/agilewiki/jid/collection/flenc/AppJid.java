@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jid.collection.flenc;
 
-import org.agilewiki.jactor.factory.ActorFactory;
+import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.*;
 
 /**

@@ -21,26 +21,30 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jactor.pubsub.actorName;
+package org.agilewiki.jid.factory;
 
-import org.agilewiki.jactor.factory.ActorFactory;
+import org.agilewiki.jactor.lpc.JLPCActor;
+
+import java.lang.reflect.Constructor;
 
 /**
- * Creates a Properties actor.
+ * Creates a JLPCActor using a Constructor.
  */
-public class JActorNameFactory extends ActorFactory {
+final public class _ActorFactory extends ActorFactory {
     /**
-     * The default name of the JFactory actor.
+     * The constructor used to create the actor.
      */
-    public final static String TYPE = "JActorName";
+    private Constructor<JLPCActor> constructor;
 
     /**
      * Create an ActorFactory.
      *
-     * @param actorType The actor type.
+     * @param actorType   The actor type.
+     * @param constructor The constructor used to create the actor.
      */
-    public JActorNameFactory(String actorType) {
+    public _ActorFactory(String actorType, Constructor<JLPCActor> constructor) {
         super(actorType);
+        this.constructor = constructor;
     }
 
     /**
@@ -48,9 +52,8 @@ public class JActorNameFactory extends ActorFactory {
      *
      * @return The new actor.
      */
-    @Override
-    protected JActorName instantiateActor()
+    protected JLPCActor instantiateActor()
             throws Exception {
-        return new JActorName();
+        return constructor.newInstance();
     }
 }

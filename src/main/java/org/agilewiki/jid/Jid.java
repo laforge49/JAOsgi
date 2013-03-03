@@ -26,7 +26,7 @@ package org.agilewiki.jid;
 import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.RP;
-import org.agilewiki.jactor.factory.ActorFactory;
+import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jaosgi.JAFactoryLocator;
 
@@ -36,6 +36,11 @@ import java.util.Arrays;
  * Base class for Incremental Deserialization Actors.
  */
 public class Jid extends JLPCActor implements _Jid {
+    /**
+     * The factory, or null.
+     */
+    private ActorFactory factory;
+
     /**
      * The JID actor which holds this actor.
      */
@@ -311,5 +316,80 @@ public class Jid extends JLPCActor implements _Jid {
                 });
             }
         });
+    }
+
+    /**
+     * Returns the factory.
+     *
+     * @return The factory, or null.
+     */
+    @Override
+    final public ActorFactory getFactory() {
+        return factory;
+    }
+
+    /**
+     * Returns the actor type.
+     *
+     * @return The actor type, or null.
+     */
+    @Override
+    final public String getActorType() {
+        if (factory == null)
+            return null;
+        return factory.actorType;
+    }
+
+    /**
+     * Initialize a LiteActor
+     *
+     * @param mailbox A mailbox which may be shared with other actors.
+     * @param parent  The parent actor.
+     * @param factory The factory.
+     */
+    public void initialize(final Mailbox mailbox, Actor parent, ActorFactory factory) throws Exception {
+        if (this.factory != null)
+            throw new IllegalStateException("already initialized");
+        super.initialize(mailbox, parent);
+        this.factory = factory;
+    }
+
+    /**
+     * Initialize a degraded LiteActor
+     */
+    @Override
+    final public void initialize() throws Exception {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Initialize a degraded LiteActor
+     *
+     * @param parent The parent actor.
+     */
+    @Override
+    final public void initialize(Actor parent) throws Exception {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Initialize a LiteActor
+     *
+     * @param mailbox A mailbox which may be shared with other actors.
+     */
+    @Override
+    final public void initialize(final Mailbox mailbox) throws Exception {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Initialize a LiteActor
+     *
+     * @param mailbox A mailbox which may be shared with other actors.
+     * @param parent  The parent actor.
+     */
+    @Override
+    public void initialize(final Mailbox mailbox, Actor parent) throws Exception {
+        throw new UnsupportedOperationException();
     }
 }

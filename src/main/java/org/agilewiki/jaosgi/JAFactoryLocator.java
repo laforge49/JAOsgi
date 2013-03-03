@@ -25,8 +25,8 @@ package org.agilewiki.jaosgi;
 
 import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.Mailbox;
-import org.agilewiki.jactor.factory.ActorFactory;
-import org.agilewiki.jactor.factory._ActorFactory;
+import org.agilewiki.jid.factory.ActorFactory;
+import org.agilewiki.jid.factory._ActorFactory;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleException;

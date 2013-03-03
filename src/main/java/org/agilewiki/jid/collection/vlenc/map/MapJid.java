@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jid.collection.vlenc.map;
 
-import org.agilewiki.jactor.factory.ActorFactory;
+import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.jid._Jid;
 import org.agilewiki.jid.collection.Collection;

@@ -1,6 +1,6 @@
 package org.agilewiki.jid.scalar.vlens.string;
 
-import org.agilewiki.jactor.factory.ActorFactory;
+import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jaosgi.JidFactories;
 
 /**

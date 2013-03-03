@@ -23,6 +23,7 @@
  */
 package org.agilewiki.jid;
 
+import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jactor.lpc.TargetActor;
 
 /**
@@ -79,4 +80,18 @@ public interface _Jid extends TargetActor {
      */
     public _Jid resolvePathname(String pathname)
             throws Exception;
+
+    /**
+     * Returns the factory.
+     *
+     * @return The factory, or null.
+     */
+    public ActorFactory getFactory();
+
+    /**
+     * Returns the actor type.
+     *
+     * @return The actor type, or null.
+     */
+    public String getActorType();
 }

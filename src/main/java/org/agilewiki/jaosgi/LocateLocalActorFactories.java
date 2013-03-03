@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jaosgi;
 
-import org.agilewiki.jactor.factory.ActorFactory;
+import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 public abstract class LocateLocalActorFactories extends JLPCActor {

@@ -1,6 +1,6 @@
 package org.agilewiki.jid.scalar.vlens.bytes;
 
-import org.agilewiki.jactor.factory.ActorFactory;
+import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jaosgi.JidFactories;
 
 /**

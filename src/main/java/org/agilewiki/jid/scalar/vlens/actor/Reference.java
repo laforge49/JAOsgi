@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jid.scalar.vlens.actor;
 
-import org.agilewiki.jactor.factory.ActorFactory;
+import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.jid.JidFactory;
 import org.agilewiki.jid.scalar.Scalar;

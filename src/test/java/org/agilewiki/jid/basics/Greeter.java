@@ -1,7 +1,7 @@
 package org.agilewiki.jid.basics;
 
 import org.agilewiki.jactor.RP;
-import org.agilewiki.jactor.factory.ActorFactory;
+import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jaosgi.FactoryLocator;
 import org.agilewiki.jid.scalar.vlens.string.StringJid;
