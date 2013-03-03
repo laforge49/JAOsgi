@@ -28,7 +28,6 @@ import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.factory.ActorFactory;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jaosgi.FactoryLocator;
-import org.agilewiki.jid.collection.vlenc.ListJidFactory;
 import org.agilewiki.jid.scalar.vlens.actor.UnionJidFactory;
 
 /**
@@ -49,9 +48,9 @@ public class IntegerBMapJidFactory extends ActorFactory {
         factoryLocator.registerActorFactory(new IntegerBMapJidFactory(
                 "IN." + actorType, valueType, false, false));
 
-        factoryLocator.registerActorFactory(new ListJidFactory(
+        factoryLocator.registerActorFactory(new IntegerMapJidFactory(
                 "LM." + actorType, valueType, 28));
-        factoryLocator.registerActorFactory(new ListJidFactory(
+        factoryLocator.registerActorFactory(new IntegerMapJidFactory(
                 "IM." + actorType, "IN." + actorType, NODE_CAPACITY));
     }
 
