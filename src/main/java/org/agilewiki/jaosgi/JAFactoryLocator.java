@@ -44,6 +44,10 @@ import java.util.concurrent.ConcurrentSkipListMap;
  * An actor for defining actor types and creating instances.
  */
 public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
+    public static String versionString(Version version) {
+        return "" + version.getMajor() + "." + version.getMajor();
+    }
+
     /**
      * Returns the requested actor factory.
      *
@@ -190,7 +194,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
             else {
                 String bundleName = bundle.getSymbolicName();
                 Version version = bundle.getVersion();
-                factoryKey = actorType + "|" + bundleName + "|" + version;
+                factoryKey = actorType + "|" + bundleName + "|" + versionString(version);
             }
         }
         ActorFactory af = types.get(factoryKey);
@@ -249,7 +253,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
         if (bundle != null) {
             String bundleName = bundle.getSymbolicName();
             Version version = bundle.getVersion();
-            factoryKey = actorType + "|" + bundleName + "|" + version;
+            factoryKey = actorType + "|" + bundleName + "|" + versionString(version);
         }
         if (types.containsKey(factoryKey))
             throw new IllegalArgumentException("Actor type is already defined: " + actorType);
@@ -278,7 +282,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
         if (bundle != null) {
             String bundleName = bundle.getSymbolicName();
             Version version = bundle.getVersion();
-            factoryKey = actorType + "|" + bundleName + "|" + version;
+            factoryKey = actorType + "|" + bundleName + "|" + versionString(version);
         }
         ActorFactory old = types.get(factoryKey);
         if (old == null) {
@@ -295,9 +299,9 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
             actorFactory.setDescriptor("", "", "");
         } else {
             String bundleName = bundle.getSymbolicName();
-            String version = bundle.getVersion().toString();
+            Version version = bundle.getVersion();
             String location = bundle.getLocation();
-            actorFactory.setDescriptor(bundleName, version, location);
+            actorFactory.setDescriptor(bundleName, versionString(version), location);
         }
         String factoryKey = actorFactory.getFactoryKey();
         Hashtable<String, String> dict = new Hashtable();
