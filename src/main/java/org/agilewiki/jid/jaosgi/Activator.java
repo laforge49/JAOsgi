@@ -24,7 +24,6 @@
 package org.agilewiki.jid.jaosgi;
 
 import org.agilewiki.jactor.MailboxFactory;
-import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
@@ -64,11 +63,9 @@ public final class Activator implements BundleActivator {
         jaBundleContext.setJAServiceTracker(jaServiceTracker);
         jaBundleContext.initialize(mailboxFactory.createAsyncMailbox());
 
-        JAFactoryLocator factoryLocator = new JAFactoryLocator();
-        factoryLocator.initialize(mailboxFactory.createAsyncMailbox(), jaBundleContext);
         JidFactories jidFactories = new JidFactories();
-        jidFactories.initialize();
-        jidFactories.configure(factoryLocator);
+        jidFactories.initialize(mailboxFactory.createAsyncMailbox(), jaBundleContext);
+        jidFactories.configure();
     }
 
     public void stop(BundleContext context) {

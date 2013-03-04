@@ -25,7 +25,6 @@ package org.agilewiki.jid.jaosgi;
 
 import org.agilewiki.jactor.JAMailboxFactory;
 import org.agilewiki.jactor.MailboxFactory;
-import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.osgi.framework.*;
 
 import java.io.File;
@@ -36,17 +35,15 @@ import java.util.Dictionary;
 import java.util.List;
 
 public class JABCNoOsgiImpl extends JABundleContext {
-    public static JAFactoryLocator createNoOsgiFactoryLocator(int threadCount) throws Exception {
+    public static JABundleContext createNoOsgiJABundleContext(int threadCount) throws Exception {
         MailboxFactory mailboxFactory = JAMailboxFactory.newMailboxFactory(threadCount);
-        return createNoOsgiFactoryLocator(mailboxFactory);
+        return createNoOsgiJABundleContext(mailboxFactory);
     }
 
-    public static JAFactoryLocator createNoOsgiFactoryLocator(MailboxFactory mailboxFactory) throws Exception {
+    public static JABundleContext createNoOsgiJABundleContext(MailboxFactory mailboxFactory) throws Exception {
         JABCNoOsgiImpl jaBundleContext = new JABCNoOsgiImpl();
         jaBundleContext.initialize(mailboxFactory.createMailbox());
-        JAFactoryLocator factoryLocator = new JAFactoryLocator();
-        factoryLocator.initialize(mailboxFactory.createMailbox(), jaBundleContext);
-        return factoryLocator;
+        return jaBundleContext;
     }
 
     @Override

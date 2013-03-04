@@ -24,12 +24,13 @@
 package org.agilewiki.jid.factory;
 
 import org.agilewiki.jactor.MailboxFactory;
-import org.agilewiki.jid.ManifestJidFactory;
-import org.agilewiki.jid.jaosgi.JABCNoOsgiImpl;
 import org.agilewiki.jid.JidFactory;
+import org.agilewiki.jid.ManifestJidFactory;
 import org.agilewiki.jid.collection.vlenc.BListJidFactory;
 import org.agilewiki.jid.collection.vlenc.ListJidFactory;
 import org.agilewiki.jid.collection.vlenc.map.*;
+import org.agilewiki.jid.jaosgi.JABCNoOsgiImpl;
+import org.agilewiki.jid.jaosgi.JABundleContext;
 import org.agilewiki.jid.scalar.flens.bool.BooleanJidFactory;
 import org.agilewiki.jid.scalar.flens.dbl.DoubleJidFactory;
 import org.agilewiki.jid.scalar.flens.flt.FloatJidFactory;
@@ -47,19 +48,17 @@ import org.agilewiki.jid.scalar.vlens.string.StringJidFactory;
  */
 final public class JidFactories extends LocateLocalActorFactories {
     public static JAFactoryLocator createNoOsgiFactoryLocator(int threadCount) throws Exception {
-        JAFactoryLocator factoryLocator = JABCNoOsgiImpl.createNoOsgiFactoryLocator(threadCount);
+        JABundleContext jaBundleContext = JABCNoOsgiImpl.createNoOsgiJABundleContext(threadCount);
         JidFactories jidFactories = new JidFactories();
-        jidFactories.initialize();
-        jidFactories.configure(factoryLocator);
-        return factoryLocator;
+        jidFactories.initialize(jaBundleContext.getMailboxFactory().createAsyncMailbox(), jaBundleContext);
+        return jidFactories.configure();
     }
 
     public static JAFactoryLocator createNoOsgiFactoryLocator(MailboxFactory mailboxFactory) throws Exception {
-        JAFactoryLocator factoryLocator = JABCNoOsgiImpl.createNoOsgiFactoryLocator(mailboxFactory);
+        JABundleContext jaBundleContext = JABCNoOsgiImpl.createNoOsgiJABundleContext(mailboxFactory);
         JidFactories jidFactories = new JidFactories();
-        jidFactories.initialize();
-        jidFactories.configure(factoryLocator);
-        return factoryLocator;
+        jidFactories.initialize(mailboxFactory.createAsyncMailbox(), jaBundleContext);
+        return jidFactories.configure();
     }
 
     public final static String MANIFEST_TYPE = "MANIFEST";
@@ -435,8 +434,8 @@ final public class JidFactories extends LocateLocalActorFactories {
     public final static String LONG_BOOLEAN_MAP_JID_TYPE = "LONG_BOOLEAN_MAP_JID";
 
     @Override
-    public void configure(JAFactoryLocator factoryLocator) throws Exception {
-        super.configure(factoryLocator);
+    public JAFactoryLocator configure() throws Exception {
+        JAFactoryLocator factoryLocator = super.configure();
 
         factoryLocator.registerActorFactory(new ManifestJidFactory());
 
@@ -524,5 +523,6 @@ final public class JidFactories extends LocateLocalActorFactories {
         LongBMapJidFactory.registerFactory(factoryLocator, LONG_FLOAT_BMAP_JID_TYPE, FLOAT_JID_TYPE);
         LongBMapJidFactory.registerFactory(factoryLocator, LONG_DOUBLE_BMAP_JID_TYPE, DOUBLE_JID_TYPE);
         LongBMapJidFactory.registerFactory(factoryLocator, LONG_BOOLEAN_BMAP_JID_TYPE, BOOLEAN_JID_TYPE);
+        return factoryLocator;
     }
 }

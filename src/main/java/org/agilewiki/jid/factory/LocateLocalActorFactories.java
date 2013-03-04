@@ -30,14 +30,17 @@ import org.osgi.framework.Bundle;
 import java.util.Hashtable;
 
 public abstract class LocateLocalActorFactories extends JLPCActor {
-    private FactoryLocator factoryLocator;
+    private JAFactoryLocator factoryLocator;
 
-    public void configure(JAFactoryLocator factoryLocator) throws Exception {
-        this.factoryLocator = factoryLocator;
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
+    public JAFactoryLocator configure() throws Exception {
+        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(this);
+
+        factoryLocator = new JAFactoryLocator();
+        factoryLocator.initialize(getMailboxFactory().createAsyncMailbox(), jaBundleContext);
+
         Bundle bundle = jaBundleContext.getBundle();
         if (bundle == null)
-            return; //no OSGi
+            return factoryLocator; //no OSGi
         factoryLocator.configure(bundle);
         Hashtable<String, Object> properties = new Hashtable<String, Object>();
         properties.put("LOCATOR_KEY", factoryLocator.getLocatorKey());
@@ -45,6 +48,7 @@ public abstract class LocateLocalActorFactories extends JLPCActor {
                 LocateLocalActorFactories.class.getName(),
                 this,
                 properties);
+        return factoryLocator;
     }
 
     public ActorFactory _getActorFactory(String actorType)
