@@ -432,7 +432,7 @@ final public class JidFactories extends LocateLocalActorFactories {
     public final static String LONG_BOOLEAN_MAP_JID_TYPE = "LONG_BOOLEAN_MAP_JID";
 
     @Override
-    public void configure(FactoryLocator factoryLocator) throws Exception {
+    public void configure(JAFactoryLocator factoryLocator) throws Exception {
         super.configure(factoryLocator);
 
         factoryLocator.registerActorFactory(new JidFactory());

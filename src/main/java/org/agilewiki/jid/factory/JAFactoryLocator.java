@@ -114,11 +114,32 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
     }
 
     private ConcurrentSkipListSet<LocateLocalActorFactories> factoryImports = new ConcurrentSkipListSet();
+    private String bundleName = "";
+    private String version = "";
+    private String location = "";
 
     /**
      * A table which maps type names to actor factories.
      */
     private ConcurrentSkipListMap<String, ActorFactory> types = new ConcurrentSkipListMap<String, ActorFactory>();
+
+    public void configure(Bundle bundle) {
+        bundleName = bundle.getSymbolicName();
+        version = versionString(bundle.getVersion());
+        location = bundle.getLocation();
+    }
+
+    public String getBundleName() {
+        return bundleName;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public String getLocation() {
+        return location;
+    }
 
     public void importFactories(LocateLocalActorFactories locateLocalActorFactories) {
         factoryImports.add(locateLocalActorFactories);
