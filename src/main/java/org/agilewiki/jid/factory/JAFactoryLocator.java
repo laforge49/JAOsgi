@@ -26,7 +26,6 @@ package org.agilewiki.jid.factory;
 import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jid.jaosgi.JABundleContext;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.Version;
 
@@ -205,20 +204,12 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
     @Override
     public ActorFactory _getActorFactory(String actorType)
             throws Exception {
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(this);
         String factoryKey = null;
         if (actorType.contains("|")) {
             int i = actorType.lastIndexOf('|');
             factoryKey = actorType.substring(0, i);
         } else {
-            Bundle bundle = jaBundleContext.getBundle();
-            if (bundle == null)
-                factoryKey = actorType + "||";
-            else {
-                String bundleName = bundle.getSymbolicName();
-                Version version = bundle.getVersion();
-                factoryKey = actorType + "|" + bundleName + "|" + versionString(version);
-            }
+            factoryKey = actorType + "|" + bundleName + "|" + version;
         }
         ActorFactory af = types.get(factoryKey);
         if (af == null) {
@@ -241,14 +232,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
     @Override
     public void defineActorType(String actorType, Class clazz)
             throws Exception {
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(this);
-        Bundle bundle = jaBundleContext.getBundle();
-        String factoryKey = actorType + "||";
-        if (bundle != null) {
-            String bundleName = bundle.getSymbolicName();
-            Version version = bundle.getVersion();
-            factoryKey = actorType + "|" + bundleName + "|" + versionString(version);
-        }
+        String factoryKey = actorType + "|" + bundleName + "|" + version;
         if (types.containsKey(factoryKey))
             throw new IllegalArgumentException("Actor type is already defined: " + actorType);
         if (Actor.class.isAssignableFrom(clazz)) {
@@ -270,14 +254,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
     public void registerActorFactory(ActorFactory actorFactory)
             throws Exception {
         String actorType = actorFactory.actorType;
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(this);
-        Bundle bundle = jaBundleContext.getBundle();
-        String factoryKey = actorType + "||";
-        if (bundle != null) {
-            String bundleName = bundle.getSymbolicName();
-            Version version = bundle.getVersion();
-            factoryKey = actorType + "|" + bundleName + "|" + versionString(version);
-        }
+        String factoryKey = actorType + "|" + bundleName + "|" + version;
         ActorFactory old = types.get(factoryKey);
         if (old == null) {
             types.put(factoryKey, actorFactory);
