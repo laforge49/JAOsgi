@@ -24,6 +24,7 @@
 package org.agilewiki.jid.factory;
 
 import org.agilewiki.jactor.MailboxFactory;
+import org.agilewiki.jid.ManifestJidFactory;
 import org.agilewiki.jid.jaosgi.JABCNoOsgiImpl;
 import org.agilewiki.jid.JidFactory;
 import org.agilewiki.jid.collection.vlenc.BListJidFactory;
@@ -60,6 +61,8 @@ final public class JidFactories extends LocateLocalActorFactories {
         jidFactories.configure(factoryLocator);
         return factoryLocator;
     }
+
+    public final static String MANIFEST_TYPE = "MANIFEST";
 
     /**
      * The name of the JID actor.
@@ -434,6 +437,8 @@ final public class JidFactories extends LocateLocalActorFactories {
     @Override
     public void configure(JAFactoryLocator factoryLocator) throws Exception {
         super.configure(factoryLocator);
+
+        factoryLocator.registerActorFactory(new ManifestJidFactory());
 
         factoryLocator.registerActorFactory(new JidFactory());
 

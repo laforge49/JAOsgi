@@ -29,6 +29,7 @@ import org.agilewiki.jactor.RP;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jid.factory.JAFactoryLocator;
+import org.agilewiki.jid.factory.JidFactories;
 
 import java.util.Arrays;
 
@@ -36,6 +37,8 @@ import java.util.Arrays;
  * Base class for Incremental Deserialization Actors.
  */
 public class Jid extends JLPCActor implements _Jid {
+    protected ManifestJid manifestJid;
+
     /**
      * The factory, or null.
      */
@@ -352,6 +355,7 @@ public class Jid extends JLPCActor implements _Jid {
             throw new IllegalStateException("already initialized");
         super.initialize(mailbox, parent);
         this.factory = factory;
+        manifestJid = createManifestJid();
     }
 
     /**
@@ -391,5 +395,9 @@ public class Jid extends JLPCActor implements _Jid {
     @Override
     public void initialize(final Mailbox mailbox, Actor parent) throws Exception {
         throw new UnsupportedOperationException();
+    }
+
+    protected ManifestJid createManifestJid() throws Exception {
+        return (ManifestJid) JAFactoryLocator.newActor(this, JidFactories.MANIFEST_TYPE, getMailbox());
     }
 }
