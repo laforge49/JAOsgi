@@ -140,6 +140,10 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
         return location;
     }
 
+    public String getLocatorKey() {
+        return bundleName + "|" + getVersion();
+    }
+
     public void importFactories(LocateLocalActorFactories locateLocalActorFactories) {
         factoryImports.add(locateLocalActorFactories);
     }

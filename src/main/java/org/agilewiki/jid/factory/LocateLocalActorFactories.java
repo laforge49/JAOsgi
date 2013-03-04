@@ -39,10 +39,12 @@ public abstract class LocateLocalActorFactories extends JLPCActor {
         if (bundle == null)
             return; //no OSGi
         factoryLocator.configure(bundle);
+        Hashtable<String, Object> properties = new Hashtable<String, Object>();
+        properties.put("LOCATOR_KEY", factoryLocator.getLocatorKey());
         jaBundleContext.registerService(
-                this.getClass().getName(),
+                LocateLocalActorFactories.class.getName(),
                 this,
-                new Hashtable<String, Object>());
+                properties);
     }
 
     public ActorFactory _getActorFactory(String actorType)
