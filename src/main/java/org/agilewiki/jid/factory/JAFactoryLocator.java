@@ -31,9 +31,9 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.Version;
 
 import java.lang.reflect.Constructor;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.ConcurrentSkipListMap;
+import java.util.concurrent.ConcurrentSkipListSet;
 
 /**
  * An actor for defining actor types and creating instances.
@@ -113,7 +113,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
         return factoryLocator.newActor(actorType, mailbox, parent);
     }
 
-    private ArrayList<LocateLocalActorFactories> factoryImports = new ArrayList();
+    private ConcurrentSkipListSet<LocateLocalActorFactories> factoryImports = new ConcurrentSkipListSet();
 
     /**
      * A table which maps type names to actor factories.
