@@ -24,12 +24,44 @@
 package org.agilewiki.jid.factory;
 
 import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.jid.jaosgi.JABundleContext;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.Version;
+
+import java.util.Hashtable;
 
 public abstract class LocateLocalActorFactories extends JLPCActor {
-    protected FactoryLocator factoryLocator;
+    private FactoryLocator factoryLocator;
+    private String bundleName = "";
+    private String version = "";
+    private String location = "";
+
+    public String getBundleName() {
+        return bundleName;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public String getLocation() {
+        return location;
+    }
 
     public void configure(FactoryLocator factoryLocator) throws Exception {
         this.factoryLocator = factoryLocator;
+        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
+        Bundle bundle = jaBundleContext.getBundle();
+        if (bundle == null)
+            return; //no OSGi
+        jaBundleContext.registerService(
+                this.getClass().getName(),
+                this,
+                new Hashtable<String, Object>());
+        bundleName = bundle.getSymbolicName();
+        Version v = bundle.getVersion();
+        version = "" + v.getMajor() + "." + v.getMajor();
+        location = bundle.getLocation();
     }
 
     public ActorFactory _getActorFactory(String actorType)

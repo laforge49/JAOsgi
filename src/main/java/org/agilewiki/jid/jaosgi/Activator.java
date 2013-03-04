@@ -33,7 +33,6 @@ import org.osgi.framework.ServiceRegistration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Hashtable;
 import java.util.Iterator;
 
 public final class Activator implements BundleActivator {
@@ -70,10 +69,6 @@ public final class Activator implements BundleActivator {
         JidFactories jidFactories = new JidFactories();
         jidFactories.initialize();
         jidFactories.configure(factoryLocator);
-        jaBundleContext.registerService(
-                JidFactories.class.getName(),
-                jidFactories,
-                new Hashtable<String, Object>());
     }
 
     public void stop(BundleContext context) {
