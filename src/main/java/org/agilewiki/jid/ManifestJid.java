@@ -31,4 +31,27 @@ public class ManifestJid extends StringMapJid<IntegerJid> {
     protected ManifestJid createManifestJid() throws Exception {
         return null;
     }
+
+    /**
+     * Returns true if first usage.
+     */
+    public boolean inc(String locatorKey) throws Exception {
+        boolean rv = kMake(locatorKey);
+        IntegerJid ij = kGet(locatorKey);
+        int i = ij.getValue();
+        ij.setValue(i + 1);
+        return i == 0;
+    }
+
+    /**
+     * Returns true if no more usages
+     */
+    public boolean dec(String locatorKey) throws Exception {
+        boolean rv = kMake(locatorKey);
+        IntegerJid ij = kGet(locatorKey);
+        int i = ij.getValue() - 1;
+        if (i > -1)
+            ij.setValue(i);
+        return i == 0;
+    }
 }

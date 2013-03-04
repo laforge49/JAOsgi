@@ -182,8 +182,31 @@ public class Jid extends JLPCActor implements _Jid {
      * @param containerJid The container, or null.
      */
     @Override
-    public void setContainerJid(_Jid containerJid) {
+    public void setContainerJid(_Jid containerJid) throws Exception {
+    //    if (manifestJid == null) {
+            this.containerJid = containerJid;
+  //          return;
+//        }
+        /*
+        int s = manifestJid.size();
+        if (this.containerJid != null) {
+        }
         this.containerJid = containerJid;
+        if (containerJid == null)
+            return;
+        */
+    }
+
+    @Override
+    public void incRef(String locationKey) throws Exception {
+        if (manifestJid.inc(locationKey) && containerJid != null)
+            containerJid.incRef(locationKey);
+    }
+
+    @Override
+    public void decRef(String locationKey) throws Exception {
+        if (manifestJid.dec(locationKey) && containerJid != null)
+            containerJid.decRef(locationKey);
     }
 
     /**
@@ -343,6 +366,10 @@ public class Jid extends JLPCActor implements _Jid {
         return factory.actorType;
     }
 
+    final public String getLocatorKey() {
+        return factory.getLocatorKey();
+    }
+
     /**
      * Initialize a LiteActor
      *
@@ -356,6 +383,10 @@ public class Jid extends JLPCActor implements _Jid {
         super.initialize(mailbox, parent);
         this.factory = factory;
         manifestJid = createManifestJid();
+        /*
+        if (manifestJid != null)
+            manifestJid.inc(getLocatorKey());
+            */
     }
 
     /**

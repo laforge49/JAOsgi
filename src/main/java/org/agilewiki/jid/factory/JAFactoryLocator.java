@@ -260,9 +260,9 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
         String actorType = actorFactory.actorType;
         String factoryKey = actorType + "|" + bundleName + "|" + version;
         ActorFactory old = types.get(factoryKey);
+        actorFactory.configure(this);
         if (old == null) {
             types.put(factoryKey, actorFactory);
-            actorFactory.configure(this);
         } else if (!old.equals(actorFactory))
             throw new IllegalArgumentException("Actor type is already defined: " + actorType);
     }

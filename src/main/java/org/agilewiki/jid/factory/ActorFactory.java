@@ -38,19 +38,20 @@ abstract public class ActorFactory {
     public final String actorType;
     private JAFactoryLocator factoryLocator;
 
-    public String getDescriptor() {
-        return getFactoryKey() + "|" +
-                factoryLocator.getLocation();
-    }
-
     public void configure(JAFactoryLocator factoryLocator) {
         this.factoryLocator = factoryLocator;
     }
 
+    public String getDescriptor() {
+        return getFactoryKey() + "|" + factoryLocator.getLocation();
+    }
+
     public String getFactoryKey() {
-        return actorType + "|" +
-                factoryLocator.getBundleName() + "|" +
-                factoryLocator.getVersion();
+        return actorType + "|" + getLocatorKey();
+    }
+
+    public String getLocatorKey() {
+        return factoryLocator.getLocatorKey();
     }
 
     /**

@@ -45,7 +45,11 @@ public interface _Jid extends TargetActor {
      *
      * @param containerJid The container, or null.
      */
-    public void setContainerJid(_Jid containerJid);
+    public void setContainerJid(_Jid containerJid) throws Exception;
+
+    public void incRef(String locationKey) throws Exception;
+
+    public void decRef(String locationKey) throws Exception;
 
     /**
      * Returns the number of bytes needed to serialize the persistent data.
