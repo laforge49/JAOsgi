@@ -36,24 +36,21 @@ abstract public class ActorFactory {
      * The actor type.
      */
     public final String actorType;
-    private String bundleName = null;
-    private String version;
-    private String location;
+    private JAFactoryLocator factoryLocator;
 
     public String getDescriptor() {
-        return actorType + "|" + bundleName + "|" + version + "|" + location;
+        return getFactoryKey() + "|" +
+                factoryLocator.getLocation();
     }
 
-    public void setDescriptor(String bundleName, String version, String location) {
-        if (this.bundleName != null)
-            throw new IllegalStateException("descriptor already set for " + actorType);
-        this.bundleName = bundleName;
-        this.version = version;
-        this.location = location;
+    public void configure(JAFactoryLocator factoryLocator) {
+        this.factoryLocator = factoryLocator;
     }
 
     public String getFactoryKey() {
-        return actorType + "|" + bundleName + "|" + version;
+        return actorType + "|" +
+                factoryLocator.getBundleName() + "|" +
+                factoryLocator.getVersion();
     }
 
     /**

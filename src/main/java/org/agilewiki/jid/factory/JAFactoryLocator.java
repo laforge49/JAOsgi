@@ -255,7 +255,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
             Constructor componentConstructor = clazz.getConstructor();
             ActorFactory actorFactory = new _ActorFactory(actorType, componentConstructor);
             types.put(factoryKey, actorFactory);
-            setFactoryDescriptor(actorFactory);
+            actorFactory.configure(this);
             return;
         }
         throw new IllegalArgumentException(clazz.getName());
@@ -281,21 +281,8 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
         ActorFactory old = types.get(factoryKey);
         if (old == null) {
             types.put(factoryKey, actorFactory);
-            setFactoryDescriptor(actorFactory);
+            actorFactory.configure(this);
         } else if (!old.equals(actorFactory))
             throw new IllegalArgumentException("Actor type is already defined: " + actorType);
-    }
-
-    private void setFactoryDescriptor(ActorFactory actorFactory) throws Exception {
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(this);
-        Bundle bundle = jaBundleContext.getBundle();
-        if (bundle == null) {
-            actorFactory.setDescriptor("", "", "");
-        } else {
-            String bundleName = bundle.getSymbolicName();
-            Version version = bundle.getVersion();
-            String location = bundle.getLocation();
-            actorFactory.setDescriptor(bundleName, versionString(version), location);
-        }
     }
 }
