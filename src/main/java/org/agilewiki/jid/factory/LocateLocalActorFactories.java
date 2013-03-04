@@ -32,8 +32,8 @@ public abstract class LocateLocalActorFactories extends JLPCActor {
         this.factoryLocator = factoryLocator;
     }
 
-    public ActorFactory getActorFactory(String actorType)
+    public ActorFactory _getActorFactory(String actorType)
             throws Exception {
-        return factoryLocator.getActorFactory(actorType);
+        return factoryLocator._getActorFactory(actorType);
     }
 }

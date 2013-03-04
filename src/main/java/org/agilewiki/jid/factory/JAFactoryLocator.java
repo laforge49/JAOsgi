@@ -25,8 +25,8 @@ package org.agilewiki.jid.factory;
 
 import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.Mailbox;
-import org.agilewiki.jid.jaosgi.JABundleContext;
 import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.jid.jaosgi.JABundleContext;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.ServiceReference;
@@ -35,8 +35,10 @@ import org.osgi.framework.startlevel.BundleStartLevel;
 import org.osgi.framework.startlevel.FrameworkStartLevel;
 
 import java.lang.reflect.Constructor;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.concurrent.ConcurrentSkipListMap;
 
 /**
@@ -117,10 +119,16 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
         return factoryLocator.newActor(actorType, mailbox, parent);
     }
 
+    private ArrayList<LocateLocalActorFactories> factoryImports = new ArrayList();
+
     /**
      * A table which maps type names to actor factories.
      */
     private ConcurrentSkipListMap<String, ActorFactory> types = new ConcurrentSkipListMap<String, ActorFactory>();
+
+    public void importFactories(LocateLocalActorFactories locateLocalActorFactories) {
+        factoryImports.add(locateLocalActorFactories);
+    }
 
     /**
      * Creates a new actor.
@@ -179,6 +187,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
         return af;
     }
 
+    @Override
     public ActorFactory _getActorFactory(String actorType)
             throws Exception {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(this);
@@ -198,9 +207,12 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
         }
         ActorFactory af = types.get(factoryKey);
         if (af == null) {
-            JAFactoryLocator a = (JAFactoryLocator) getAncestor(FactoryLocator.class);
-            if (a != null)
-                return a._getActorFactory(actorType);
+            Iterator<LocateLocalActorFactories> it = factoryImports.iterator();
+            while (it.hasNext()) {
+                af = it.next()._getActorFactory(actorType);
+                if (af != null)
+                    return af;
+            }
             if (!actorType.contains("|"))
                 throw new IllegalArgumentException("Unknown actor type: " + factoryKey);
             int i = actorType.lastIndexOf('|');

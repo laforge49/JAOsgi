@@ -25,7 +25,6 @@ package org.agilewiki.jid.factory;
 
 import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.Mailbox;
-import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jactor.lpc.TargetActor;
 
 /**
@@ -56,6 +55,9 @@ public interface FactoryLocator extends TargetActor {
      * @return The registered actor factory.
      */
     public ActorFactory getActorFactory(String actorType)
+            throws Exception;
+
+    public ActorFactory _getActorFactory(String actorType)
             throws Exception;
 
     /**
