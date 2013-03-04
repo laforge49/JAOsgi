@@ -21,10 +21,8 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jaosgi;
+package org.agilewiki.jid.jaosgi;
 
-import org.agilewiki.jactor.JAMailboxFactory;
-import org.agilewiki.jactor.MailboxFactory;
 import org.osgi.framework.*;
 
 import java.io.File;
@@ -34,150 +32,164 @@ import java.util.Collection;
 import java.util.Dictionary;
 import java.util.List;
 
-public class JABCNoOsgiImpl extends JABundleContext {
-    public static JAFactoryLocator createNoOsgiFactoryLocator(int threadCount) throws Exception {
-        MailboxFactory mailboxFactory = JAMailboxFactory.newMailboxFactory(threadCount);
-        return createNoOsgiFactoryLocator(mailboxFactory);
+public class JABCOsgiImpl extends JABundleContext {
+    private BundleContext bundleContext;
+    private JAServiceTracker jaServiceTracker;
+    private List<ServiceRegistration> serviceRegistrations = new ArrayList<ServiceRegistration>();
+
+    public void setBundleContext(BundleContext bundleContext) {
+        if (this.bundleContext != null)
+            throw new IllegalStateException("duplicate bundleContext");
+        this.bundleContext = bundleContext;
     }
 
-    public static JAFactoryLocator createNoOsgiFactoryLocator(MailboxFactory mailboxFactory) throws Exception {
-        JABCNoOsgiImpl jaBundleContext = new JABCNoOsgiImpl();
-        jaBundleContext.initialize(mailboxFactory.createMailbox());
-        JAFactoryLocator factoryLocator = new JAFactoryLocator();
-        factoryLocator.initialize(mailboxFactory.createMailbox(), jaBundleContext);
-        return factoryLocator;
+    public void setJAServiceTracker(JAServiceTracker jaServiceTracker) {
+        if (this.jaServiceTracker != null)
+            throw new IllegalStateException("duplicate jaServiceTracker");
+        this.jaServiceTracker = jaServiceTracker;
     }
 
     @Override
     public List<ServiceRegistration> getServiceRegistrations() {
-        return new ArrayList<ServiceRegistration>();
+        return serviceRegistrations;
     }
 
     @Override
     public ServiceRegistration registerService(String clazz, Object service, Dictionary properties) {
-        return null;
+        ServiceRegistration serviceRegistration = bundleContext.registerService(clazz, service, properties);
+        serviceRegistrations.add(serviceRegistration);
+        return serviceRegistration;
     }
 
     @Override
     public ServiceReference getServiceReference(String clazz) {
-        return null;
+        return bundleContext.getServiceReference(clazz);
     }
 
     @Override
     public Object getService(ServiceReference reference) {
-        return null;
+        return jaServiceTracker.getService(reference);
     }
 
     @Override
     public File getDataFile(String filename) {
-        return null;
+        return bundleContext.getDataFile(filename);
     }
 
     @Override
     public Filter createFilter(String filter) throws InvalidSyntaxException {
-        return null;
+        return bundleContext.createFilter(filter);
     }
 
     @Override
     public Bundle getBundle(String location) {
-        return null;
+        return bundleContext.getBundle(location);
     }
 
     @Override
     public ServiceReference getServiceReference(Class clazz) {
-        return null;
+        return bundleContext.getServiceReference(clazz);
     }
 
     @Override
     public String getProperty(String key) {
-        return null;
+        return bundleContext.getProperty(key);
     }
 
     @Override
     public Bundle getBundle() {
-        return null;
+        return bundleContext.getBundle();
     }
 
     @Override
     public Bundle installBundle(String location, InputStream input) throws BundleException {
-        return null;
+        return bundleContext.installBundle(location, input);
     }
 
     @Override
     public Bundle installBundle(String location) throws BundleException {
-        return null;
+        return bundleContext.installBundle(location);
     }
 
     @Override
     public Bundle getBundle(long id) {
-        return null;
+        return bundleContext.getBundle(id);
     }
 
     @Override
     public Bundle[] getBundles() {
-        return new Bundle[0];
+        return bundleContext.getBundles();
     }
 
     @Override
     public void addServiceListener(ServiceListener listener, String filter) throws InvalidSyntaxException {
+        bundleContext.addServiceListener(listener, filter);
     }
 
     @Override
     public void addServiceListener(ServiceListener listener) {
+        bundleContext.addServiceListener(listener);
     }
 
     @Override
     public void removeServiceListener(ServiceListener listener) {
+        bundleContext.removeServiceListener(listener);
     }
 
     @Override
     public void addBundleListener(BundleListener listener) {
+        bundleContext.addBundleListener(listener);
     }
 
     @Override
     public void removeBundleListener(BundleListener listener) {
+        bundleContext.removeBundleListener(listener);
     }
 
     @Override
     public void addFrameworkListener(FrameworkListener listener) {
+        bundleContext.addFrameworkListener(listener);
     }
 
     @Override
     public void removeFrameworkListener(FrameworkListener listener) {
+        bundleContext.removeFrameworkListener(listener);
     }
 
     @Override
     public ServiceRegistration registerService(String[] clazzes, Object service, Dictionary properties) {
-        return null;
+        return bundleContext.registerService(clazzes, service, properties);
     }
 
     @Override
     public ServiceRegistration registerService(Class clazz, Object service, Dictionary properties) {
-        return null;
+        return bundleContext.registerService(clazz, service, properties);
     }
 
     @Override
-    public ServiceReference[] getServiceReferences(String clazz, String filter) throws InvalidSyntaxException {
-        return new ServiceReference[0];
+    public ServiceReference[] getServiceReferences(String clazz, String filter)
+            throws InvalidSyntaxException {
+        return bundleContext.getServiceReferences(clazz, filter);
     }
 
     @Override
     public ServiceReference[] getAllServiceReferences(String clazz, String filter) throws InvalidSyntaxException {
-        return new ServiceReference[0];
+        return new ServiceReference[0];  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    public Collection<ServiceReference> getServiceReferences(Class clazz, String filter) throws InvalidSyntaxException {
-        return new ArrayList<ServiceReference>();
+    public Collection<ServiceReference> getServiceReferences(Class clazz, String filter)
+            throws InvalidSyntaxException {
+        return bundleContext.getServiceReferences(clazz, filter);
     }
 
     @Override
     public boolean ungetService(ServiceReference serviceReference) {
-        return false;
+        return jaServiceTracker.ungetService(serviceReference);
     }
 
     @Override
     public void stop(int options) throws BundleException {
-        getMailboxFactory().close();
+        bundleContext.getBundle().stop(options);
     }
 }

@@ -2,9 +2,9 @@ package org.agilewiki.jid.collection.vlenc;
 
 import junit.framework.TestCase;
 import org.agilewiki.jactor.Mailbox;
-import org.agilewiki.jaosgi.JABundleContext;
-import org.agilewiki.jaosgi.JAFactoryLocator;
-import org.agilewiki.jaosgi.JidFactories;
+import org.agilewiki.jid.jaosgi.JABundleContext;
+import org.agilewiki.jid.factory.JAFactoryLocator;
+import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.scalar.flens.integer.IntegerJid;
 
 public class BListTimingsTest extends TestCase {

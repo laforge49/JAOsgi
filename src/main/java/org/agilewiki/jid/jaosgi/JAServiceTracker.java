@@ -21,7 +21,7 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jaosgi;
+package org.agilewiki.jid.jaosgi;
 
 import org.osgi.framework.*;
 import org.osgi.util.tracker.ServiceTracker;
@@ -34,12 +34,16 @@ import java.util.Map;
 
 public class JAServiceTracker extends ServiceTracker {
     private HashSet<ServiceReference> references = new HashSet<ServiceReference>();
-    final Logger logger = LoggerFactory.getLogger(ConfigUpdater.class);
+    final Logger logger = LoggerFactory.getLogger(JAServiceTracker.class);
     private final BundleContext bundleContext;
 
     @Override
     public Object getService(ServiceReference serviceReference) {
         Object service = super.getService(serviceReference);
+        if (service == null) {
+            ungetService(serviceReference);
+            return null;
+        }
         references.add(serviceReference);
         return service;
     }

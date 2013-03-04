@@ -21,12 +21,11 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jaosgi;
+package org.agilewiki.jid.factory;
 
 import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.Mailbox;
-import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jid.factory._ActorFactory;
+import org.agilewiki.jid.jaosgi.JABundleContext;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleException;

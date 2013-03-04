@@ -21,28 +21,19 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jaosgi;
+package org.agilewiki.jid.factory;
 
-import org.agilewiki.jactor.Actor;
-import org.agilewiki.jactor.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 
-public class Stop extends Request<Void, JABundleContext> {
-    private int options;
+public abstract class LocateLocalActorFactories extends JLPCActor {
+    protected FactoryLocator factoryLocator;
 
-    public Stop(int options) {
-        this.options = options;
+    public void configure(FactoryLocator factoryLocator) throws Exception {
+        this.factoryLocator = factoryLocator;
     }
 
-    @Override
-    public boolean isTargetType(Actor targetActor) {
-        return targetActor instanceof JABundleContext;
-    }
-
-    @Override
-    public void processRequest(JLPCActor targetActor, RP rp) throws Exception {
-        ((JABundleContext) targetActor).stop(options);
-        rp.processResponse(null);
+    public ActorFactory getActorFactory(String actorType)
+            throws Exception {
+        return factoryLocator.getActorFactory(actorType);
     }
 }

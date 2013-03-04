@@ -1,7 +1,7 @@
 package org.agilewiki.jid.scalar.flens.dbl;
 
 import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jaosgi.JidFactories;
+import org.agilewiki.jid.factory.JidFactories;
 
 /**
  * Creates a DoubleJidA.

@@ -1,8 +1,8 @@
 package org.agilewiki.jid.timings.list;
 
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jaosgi.JAFactoryLocator;
-import org.agilewiki.jaosgi.JidFactories;
+import org.agilewiki.jid.factory.JAFactoryLocator;
+import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.ReadableBytes;
 import org.agilewiki.jid.collection.vlenc.ListJid;
 import org.agilewiki.jid.scalar.flens.bool.BooleanJid;

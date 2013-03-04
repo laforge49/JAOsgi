@@ -28,7 +28,7 @@ import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.RP;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jaosgi.JAFactoryLocator;
+import org.agilewiki.jid.factory.JAFactoryLocator;
 
 import java.util.Arrays;
 

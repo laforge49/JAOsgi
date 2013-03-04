@@ -2,9 +2,9 @@ package org.agilewiki.jid;
 
 import junit.framework.TestCase;
 import org.agilewiki.jactor.JAFuture;
-import org.agilewiki.jaosgi.JABundleContext;
-import org.agilewiki.jaosgi.JAFactoryLocator;
-import org.agilewiki.jaosgi.JidFactories;
+import org.agilewiki.jid.jaosgi.JABundleContext;
+import org.agilewiki.jid.factory.JAFactoryLocator;
+import org.agilewiki.jid.factory.JidFactories;
 
 public class JidTest extends TestCase {
     public void test1() throws Exception {

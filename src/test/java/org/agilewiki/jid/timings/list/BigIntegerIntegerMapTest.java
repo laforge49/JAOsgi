@@ -2,9 +2,9 @@ package org.agilewiki.jid.timings.list;
 
 import junit.framework.TestCase;
 import org.agilewiki.jactor.JAFuture;
-import org.agilewiki.jaosgi.JABundleContext;
-import org.agilewiki.jaosgi.JAFactoryLocator;
-import org.agilewiki.jaosgi.JidFactories;
+import org.agilewiki.jid.jaosgi.JABundleContext;
+import org.agilewiki.jid.factory.JAFactoryLocator;
+import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.collection.vlenc.map.IntegerMapJid;
 import org.agilewiki.jid.collection.vlenc.map.KMake;
 import org.agilewiki.jid.scalar.vlens.actor.GetActor;

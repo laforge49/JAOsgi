@@ -24,9 +24,9 @@
 package org.agilewiki.jid.collection.vlenc;
 
 import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jaosgi.FactoryLocator;
-import org.agilewiki.jaosgi.JAFactoryLocator;
-import org.agilewiki.jaosgi.JidFactories;
+import org.agilewiki.jid.factory.FactoryLocator;
+import org.agilewiki.jid.factory.JAFactoryLocator;
+import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.jid._Jid;
 import org.agilewiki.jid.collection.Collection;

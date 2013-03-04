@@ -21,41 +21,62 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jaosgi;
+package org.agilewiki.jid.jaosgi;
 
+import org.agilewiki.jactor.MailboxFactory;
+import org.agilewiki.jid.factory.JAFactoryLocator;
+import org.agilewiki.jid.factory.JidFactories;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.Constants;
+import org.osgi.framework.ServiceReference;
 import org.osgi.framework.ServiceRegistration;
-import org.osgi.service.cm.ManagedService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Hashtable;
 import java.util.Iterator;
 
 public final class Activator implements BundleActivator {
+    private final Logger logger = LoggerFactory.getLogger(Activator.class);
     private static final String CONFIG_PID = "JAOsgi";
-    private ConfigUpdater configUpdater;
-    private BundleContext bundleContext;
     private JABCOsgiImpl jaBundleContext;
 
-    public void start(BundleContext bundleContext) {
-        this.bundleContext = bundleContext;
-        jaBundleContext = new JABCOsgiImpl();
-        jaBundleContext.setBundleContext(bundleContext);
+    public void start(BundleContext bundleContext) throws Exception {
         JAServiceTracker jaServiceTracker = new JAServiceTracker(bundleContext);
         jaServiceTracker.open(true);
+
+        ServiceReference mailboxFactoryServiceReference = bundleContext.
+                getServiceReference(MailboxFactory.class);
+        if (mailboxFactoryServiceReference == null) {
+            String msg = "Unable to get MailboxFactory ServiceReference";
+            logger.error(msg);
+            throw new IllegalStateException(msg);
+        }
+        MailboxFactory mailboxFactory = (MailboxFactory) jaServiceTracker.
+                getService(mailboxFactoryServiceReference);
+        if (mailboxFactory == null) {
+            String msg = "getService on the MailboxFactory ServiceReference returned null";
+            logger.error(msg);
+            throw new IllegalStateException(msg);
+        }
+
+        jaBundleContext = new JABCOsgiImpl();
+        jaBundleContext.setBundleContext(bundleContext);
         jaBundleContext.setJAServiceTracker(jaServiceTracker);
-        ConfigUpdater configUpdater = new ConfigUpdater(jaBundleContext);
-        Hashtable<String, Object> properties = new Hashtable<String, Object>();
-        properties.put(Constants.SERVICE_PID, CONFIG_PID);
+        jaBundleContext.initialize(mailboxFactory.createAsyncMailbox());
+
+        JAFactoryLocator factoryLocator = new JAFactoryLocator();
+        factoryLocator.initialize(mailboxFactory.createAsyncMailbox(), jaBundleContext);
+        JidFactories jidFactories = new JidFactories();
+        jidFactories.initialize();
+        jidFactories.configure(factoryLocator);
         jaBundleContext.registerService(
-                ManagedService.class.getName(),
-                configUpdater,
-                properties);
+                JidFactories.class.getName(),
+                jidFactories,
+                new Hashtable<String, Object>());
     }
 
     public void stop(BundleContext context) {
-        configUpdater.stop();
         Iterator<ServiceRegistration> srit = jaBundleContext.getServiceRegistrations().iterator();
         while (srit.hasNext())
             srit.next().unregister();

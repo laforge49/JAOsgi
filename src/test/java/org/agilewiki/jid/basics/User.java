@@ -1,8 +1,8 @@
 package org.agilewiki.jid.basics;
 
 import org.agilewiki.jactor.RP;
-import org.agilewiki.jaosgi.FactoryLocator;
-import org.agilewiki.jaosgi.JidFactories;
+import org.agilewiki.jid.factory.FactoryLocator;
+import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.collection.flenc.TupleJid;
 import org.agilewiki.jid.collection.flenc.TupleJidFactory;
 import org.agilewiki.jid.scalar.flens.integer.IntegerJid;
