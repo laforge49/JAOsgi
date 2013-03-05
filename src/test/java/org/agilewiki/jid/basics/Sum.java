@@ -18,7 +18,7 @@ public class Sum extends ListJid implements Main {
 
     private static class SumFactory extends ListJidFactory {
         public SumFactory(String actorType) {
-            super(actorType, JidFactories.INTEGER_JID_TYPE);
+            super(actorType, JidFactories.INTEGER_JID_TYPE, 10);
         }
 
         @Override

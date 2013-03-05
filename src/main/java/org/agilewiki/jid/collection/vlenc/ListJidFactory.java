@@ -25,14 +25,31 @@ package org.agilewiki.jid.collection.vlenc;
 
 import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.Mailbox;
-import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 
 /**
  * Creates ListJids.
  */
 public class ListJidFactory extends ActorFactory {
+
+    public static void registerFactory(FactoryLocator factoryLocator,
+                                       String actorType,
+                                       String valueType)
+            throws Exception {
+        registerFactory(factoryLocator, actorType, valueType, 10);
+    }
+
+    public static void registerFactory(FactoryLocator factoryLocator,
+                                       String actorType,
+                                       String valueType,
+                                       int initialCapacity)
+            throws Exception {
+        factoryLocator.registerActorFactory(new ListJidFactory(
+                actorType, valueType, initialCapacity));
+    }
+
     private String entryType;
     private int initialCapacity;
 
@@ -43,20 +60,10 @@ public class ListJidFactory extends ActorFactory {
      * @param entryType       The entry type.
      * @param initialCapacity The initial capacity.
      */
-    public ListJidFactory(String actorType, String entryType, int initialCapacity) {
+    protected ListJidFactory(String actorType, String entryType, int initialCapacity) {
         super(actorType);
         this.entryType = entryType;
         this.initialCapacity = initialCapacity;
-    }
-
-    /**
-     * Create an ActorFactory.
-     *
-     * @param actorType The actor type.
-     * @param entryType The entry type.
-     */
-    public ListJidFactory(String actorType, String entryType) {
-        this(actorType, entryType, 10);
     }
 
     /**
