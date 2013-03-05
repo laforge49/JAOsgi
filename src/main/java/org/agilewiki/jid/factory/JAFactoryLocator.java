@@ -128,6 +128,10 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
         location = bundle.getLocation();
     }
 
+    public void configure(String name) {
+        bundleName = name;
+    }
+
     public String getBundleName() {
         return bundleName;
     }

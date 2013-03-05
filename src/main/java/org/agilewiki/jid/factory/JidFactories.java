@@ -433,9 +433,8 @@ final public class JidFactories extends LocateLocalActorFactories {
      */
     public final static String LONG_BOOLEAN_MAP_JID_TYPE = "LONG_BOOLEAN_MAP_JID";
 
-    @Override
     public JAFactoryLocator configure() throws Exception {
-        JAFactoryLocator factoryLocator = super.configure();
+        JAFactoryLocator factoryLocator = configure("org.agilewiki.jid");
 
         ManifestJidFactory.registerFactory(factoryLocator);
 

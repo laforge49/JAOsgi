@@ -32,15 +32,17 @@ import java.util.Hashtable;
 public abstract class LocateLocalActorFactories extends JLPCActor {
     private JAFactoryLocator factoryLocator;
 
-    public JAFactoryLocator configure() throws Exception {
+    protected JAFactoryLocator configure(String name) throws Exception {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(this);
 
         factoryLocator = new JAFactoryLocator();
         factoryLocator.initialize(getMailboxFactory().createAsyncMailbox(), jaBundleContext);
 
         Bundle bundle = jaBundleContext.getBundle();
-        if (bundle == null)
+        if (bundle == null) {
+            factoryLocator.configure(name);
             return factoryLocator; //no OSGi
+        }
         factoryLocator.configure(bundle);
         Hashtable<String, Object> properties = new Hashtable<String, Object>();
         properties.put("LOCATOR_KEY", factoryLocator.getLocatorKey());
