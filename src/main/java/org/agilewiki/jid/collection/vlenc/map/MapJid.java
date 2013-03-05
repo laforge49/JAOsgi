@@ -44,7 +44,7 @@ abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE e
      *
      * @return The JidFactory for the key.
      */
-    abstract protected ActorFactory getKeyFactory();
+    abstract protected ActorFactory getKeyFactory() throws Exception;
 
     /**
      * Converts a string to a key.

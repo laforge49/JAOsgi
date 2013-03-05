@@ -24,16 +24,23 @@
 package org.agilewiki.jid;
 
 import org.agilewiki.jid.factory.ActorFactory;
+import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 
 /**
  * Creates a Jid.
  */
 public class JidFactory extends ActorFactory {
+
+    public static void registerFactory(FactoryLocator factoryLocator)
+            throws Exception {
+        factoryLocator.registerActorFactory(new JidFactory());
+    }
+
     /**
      * Create a JLPCActorFactory.
      */
-    public JidFactory() {
+    protected JidFactory() {
         super(JidFactories.JID_TYPE);
     }
 

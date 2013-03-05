@@ -24,6 +24,8 @@
 package org.agilewiki.jid.collection.vlenc.map;
 
 import org.agilewiki.jid.Jid;
+import org.agilewiki.jid.factory.JAFactoryLocator;
+import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.scalar.flens.integer.IntegerJidFactory;
 
 /**
@@ -35,8 +37,8 @@ public class IntegerMapJid<VALUE_TYPE extends Jid> extends MapJid<Integer, VALUE
      *
      * @return The JidFactory for the key.
      */
-    final protected IntegerJidFactory getKeyFactory() {
-        return new IntegerJidFactory();
+    final protected IntegerJidFactory getKeyFactory() throws Exception {
+        return (IntegerJidFactory) JAFactoryLocator.getActorFactory(this, JidFactories.INTEGER_JID_TYPE);
     }
 
     /**

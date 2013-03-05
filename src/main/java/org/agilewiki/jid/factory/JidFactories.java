@@ -438,10 +438,10 @@ final public class JidFactories extends LocateLocalActorFactories {
 
         ManifestJidFactory.registerFactory(factoryLocator);
 
-        factoryLocator.registerActorFactory(new JidFactory());
+        JidFactory.registerFactory(factoryLocator);
 
-        factoryLocator.registerActorFactory(new BooleanJidFactory());
-        factoryLocator.registerActorFactory(new IntegerJidFactory());
+        BooleanJidFactory.registerFactory(factoryLocator);
+        IntegerJidFactory.registerFactory(factoryLocator);
         factoryLocator.registerActorFactory(new LongJidFactory());
         factoryLocator.registerActorFactory(new FloatJidFactory());
         factoryLocator.registerActorFactory(new DoubleJidFactory());
