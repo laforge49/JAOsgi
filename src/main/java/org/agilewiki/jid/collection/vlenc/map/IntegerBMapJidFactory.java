@@ -48,10 +48,10 @@ public class IntegerBMapJidFactory extends ActorFactory {
         factoryLocator.registerActorFactory(new IntegerBMapJidFactory(
                 "IN." + actorType, valueType, false, false));
 
-        factoryLocator.registerActorFactory(new IntegerMapJidFactory(
-                "LM." + actorType, valueType, 28));
-        factoryLocator.registerActorFactory(new IntegerMapJidFactory(
-                "IM." + actorType, "IN." + actorType, NODE_CAPACITY));
+        IntegerMapJidFactory.registerFactory(
+                factoryLocator, "LM." + actorType, valueType, NODE_CAPACITY);
+        IntegerMapJidFactory.registerFactory(
+                factoryLocator, "IM." + actorType, "IN." + actorType, NODE_CAPACITY);
     }
 
     private String valueType;

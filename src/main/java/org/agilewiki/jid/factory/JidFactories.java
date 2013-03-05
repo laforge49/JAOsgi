@@ -437,7 +437,7 @@ final public class JidFactories extends LocateLocalActorFactories {
     public JAFactoryLocator configure() throws Exception {
         JAFactoryLocator factoryLocator = super.configure();
 
-        factoryLocator.registerActorFactory(new ManifestJidFactory());
+        ManifestJidFactory.registerFactory(factoryLocator);
 
         factoryLocator.registerActorFactory(new JidFactory());
 

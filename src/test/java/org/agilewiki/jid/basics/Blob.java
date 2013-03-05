@@ -3,6 +3,7 @@ package org.agilewiki.jid.basics;
 import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.RP;
+import org.agilewiki.jid.collection.vlenc.map.MapEntryFactory;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
@@ -12,6 +13,8 @@ public class Blob extends StringMapJid implements Main {
 
     public static void register(FactoryLocator factoryLocator) throws Exception {
         factoryLocator.registerActorFactory(new BlobFactory("blob"));
+        factoryLocator.registerActorFactory(new MapEntryFactory(
+                "E.blob", JidFactories.STRING_JID_TYPE, JidFactories.ACTOR_JID_TYPE));
     }
 
     private static class BlobFactory extends ActorFactory {

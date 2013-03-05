@@ -23,11 +23,23 @@
  */
 package org.agilewiki.jid;
 
+import org.agilewiki.jid.collection.vlenc.map.MapEntryFactory;
 import org.agilewiki.jid.collection.vlenc.map.StringMapJidFactory;
+import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 
 public class ManifestJidFactory extends StringMapJidFactory {
-    public ManifestJidFactory() {
+
+    public static void registerFactory(FactoryLocator factoryLocator)
+            throws Exception {
+        factoryLocator.registerActorFactory(new MapEntryFactory(
+                "E." + JidFactories.MANIFEST_TYPE,
+                JidFactories.STRING_JID_TYPE,
+                JidFactories.INTEGER_JID_TYPE));
+        factoryLocator.registerActorFactory(new ManifestJidFactory());
+    }
+
+    protected ManifestJidFactory() {
         super(JidFactories.MANIFEST_TYPE, JidFactories.INTEGER_JID_TYPE, 1);
     }
 

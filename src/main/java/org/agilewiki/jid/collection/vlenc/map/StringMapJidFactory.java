@@ -28,6 +28,7 @@ import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jid.factory.FactoryLocator;
+import org.agilewiki.jid.factory.JidFactories;
 
 /**
  * Creates StringMapJid's.
@@ -46,6 +47,8 @@ public class StringMapJidFactory extends ActorFactory {
                                        String valueType,
                                        int initialCapacity)
             throws Exception {
+        factoryLocator.registerActorFactory(new MapEntryFactory(
+                "E." + actorType, JidFactories.STRING_JID_TYPE, valueType));
         factoryLocator.registerActorFactory(new StringMapJidFactory(
                 actorType, valueType, initialCapacity));
     }

@@ -23,11 +23,12 @@
  */
 package org.agilewiki.jid.collection.vlenc.map;
 
-import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.jid._Jid;
 import org.agilewiki.jid.collection.Collection;
 import org.agilewiki.jid.collection.vlenc.ListJid;
+import org.agilewiki.jid.factory.ActorFactory;
+import org.agilewiki.jid.factory.JAFactoryLocator;
 
 /**
  * Holds a map.
@@ -61,7 +62,7 @@ abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE e
     @Override
     final protected ActorFactory getEntryFactory()
             throws Exception {
-        return new MapEntryFactory(null, getKeyFactory(), getValueFactory());
+        return JAFactoryLocator.getActorFactory(this, "E." + getActorType());
     }
 
     /**
