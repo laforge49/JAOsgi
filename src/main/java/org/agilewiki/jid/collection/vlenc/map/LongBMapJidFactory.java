@@ -64,7 +64,7 @@ public class LongBMapJidFactory extends ActorFactory {
      * @param actorType    The actor type.
      * @param valueType    The value type.
      */
-    public LongBMapJidFactory(String actorType, String valueType,
+    private LongBMapJidFactory(String actorType, String valueType,
                               boolean isRoot, boolean auto) {
         super(actorType);
         this.valueType = valueType;

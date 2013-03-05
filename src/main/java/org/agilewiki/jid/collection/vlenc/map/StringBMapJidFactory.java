@@ -66,7 +66,7 @@ public class StringBMapJidFactory extends ActorFactory {
      * @param isRoot       Create a root node when true.
      * @param auto         Define the node as a leaf when true.
      */
-    public StringBMapJidFactory(String actorType, String valueType,
+    private StringBMapJidFactory(String actorType, String valueType,
                                 boolean isRoot, boolean auto) {
         super(actorType);
         this.valueType = valueType;
