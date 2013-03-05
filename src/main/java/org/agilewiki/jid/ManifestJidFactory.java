@@ -23,13 +23,12 @@
  */
 package org.agilewiki.jid;
 
-import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
 import org.agilewiki.jid.collection.vlenc.map.StringMapJidFactory;
 import org.agilewiki.jid.factory.JidFactories;
 
 public class ManifestJidFactory extends StringMapJidFactory {
     public ManifestJidFactory() {
-        super(JidFactories.MANIFEST_TYPE, JidFactories.INTEGER_JID_TYPE);
+        super(JidFactories.MANIFEST_TYPE, JidFactories.INTEGER_JID_TYPE, 1);
     }
 
     @Override

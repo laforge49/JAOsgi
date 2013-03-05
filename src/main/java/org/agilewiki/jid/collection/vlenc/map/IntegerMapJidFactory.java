@@ -33,6 +33,23 @@ import org.agilewiki.jid.factory.FactoryLocator;
  * Creates IntegerMapJid's.
  */
 public class IntegerMapJidFactory extends ActorFactory {
+
+    public static void registerFactory(FactoryLocator factoryLocator,
+                                       String actorType,
+                                       String valueType)
+            throws Exception {
+        registerFactory(factoryLocator, actorType, valueType, 10);
+    }
+
+    public static void registerFactory(FactoryLocator factoryLocator,
+                                       String actorType,
+                                       String valueType,
+                                       int initialCapacity)
+            throws Exception {
+        factoryLocator.registerActorFactory(new IntegerMapJidFactory(
+                actorType, valueType, initialCapacity));
+    }
+
     private String valueType;
     private int initialCapacity = 10;
 
@@ -42,21 +59,10 @@ public class IntegerMapJidFactory extends ActorFactory {
      * @param actorType The actor type.
      * @param valueType The value type.
      */
-    public IntegerMapJidFactory(String actorType, String valueType, int initialCapacity) {
+    protected IntegerMapJidFactory(String actorType, String valueType, int initialCapacity) {
         super(actorType);
         this.valueType = valueType;
         this.initialCapacity = initialCapacity;
-    }
-
-    /**
-     * Create an ActorFactory.
-     *
-     * @param actorType The actor type.
-     * @param valueType The value type.
-     */
-    public IntegerMapJidFactory(String actorType, String valueType) {
-        super(actorType);
-        this.valueType = valueType;
     }
 
     /**

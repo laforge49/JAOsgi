@@ -25,14 +25,31 @@ package org.agilewiki.jid.collection.vlenc.map;
 
 import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.Mailbox;
-import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 
 /**
  * Creates LongMapJid's.
  */
 public class LongMapJidFactory extends ActorFactory {
+
+    public static void registerFactory(FactoryLocator factoryLocator,
+                                       String actorType,
+                                       String valueType)
+            throws Exception {
+        registerFactory(factoryLocator, actorType, valueType, 10);
+    }
+
+    public static void registerFactory(FactoryLocator factoryLocator,
+                                       String actorType,
+                                       String valueType,
+                                       int initialCapacity)
+            throws Exception {
+        factoryLocator.registerActorFactory(new LongMapJidFactory(
+                actorType, valueType, initialCapacity));
+    }
+
     private String valueType;
     private int initialCapacity = 10;
 
@@ -43,21 +60,10 @@ public class LongMapJidFactory extends ActorFactory {
      * @param valueType       The value type.
      * @param initialCapacity The initial capacity.
      */
-    public LongMapJidFactory(String actorType, String valueType, int initialCapacity) {
+    protected LongMapJidFactory(String actorType, String valueType, int initialCapacity) {
         super(actorType);
         this.valueType = valueType;
         this.initialCapacity = initialCapacity;
-    }
-
-    /**
-     * Create an ActorFactory.
-     *
-     * @param actorType The actor type.
-     * @param valueType The value type.
-     */
-    public LongMapJidFactory(String actorType, String valueType) {
-        super(actorType);
-        this.valueType = valueType;
     }
 
     /**

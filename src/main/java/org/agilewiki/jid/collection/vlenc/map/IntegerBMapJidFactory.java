@@ -64,7 +64,7 @@ public class IntegerBMapJidFactory extends ActorFactory {
      * @param actorType    The actor type.
      * @param valueType    The value type.
      */
-    private IntegerBMapJidFactory(String actorType, String valueType,
+    protected IntegerBMapJidFactory(String actorType, String valueType,
                                  boolean isRoot, boolean auto) {
         super(actorType);
         this.valueType = valueType;

@@ -33,6 +33,23 @@ import org.agilewiki.jid.factory.FactoryLocator;
  * Creates StringMapJid's.
  */
 public class StringMapJidFactory extends ActorFactory {
+
+    public static void registerFactory(FactoryLocator factoryLocator,
+                                       String actorType,
+                                       String valueType)
+            throws Exception {
+        registerFactory(factoryLocator, actorType, valueType, 10);
+    }
+
+    public static void registerFactory(FactoryLocator factoryLocator,
+                                       String actorType,
+                                       String valueType,
+                                       int initialCapacity)
+            throws Exception {
+        factoryLocator.registerActorFactory(new StringMapJidFactory(
+                actorType, valueType, initialCapacity));
+    }
+
     private String valueType;
     private int initialCapacity = 10;
 
@@ -43,21 +60,10 @@ public class StringMapJidFactory extends ActorFactory {
      * @param valueType       The value type.
      * @param initialCapacity The initial capacity.
      */
-    public StringMapJidFactory(String actorType, String valueType, int initialCapacity) {
+    protected StringMapJidFactory(String actorType, String valueType, int initialCapacity) {
         super(actorType);
         this.valueType = valueType;
         this.initialCapacity = initialCapacity;
-    }
-
-    /**
-     * Create an ActorFactory.
-     *
-     * @param actorType The actor type.
-     * @param valueType The value type.
-     */
-    public StringMapJidFactory(String actorType, String valueType) {
-        super(actorType);
-        this.valueType = valueType;
     }
 
     /**

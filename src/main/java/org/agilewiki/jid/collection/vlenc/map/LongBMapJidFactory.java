@@ -48,10 +48,10 @@ public class LongBMapJidFactory extends ActorFactory {
         factoryLocator.registerActorFactory(new LongBMapJidFactory(
                 "IN." + actorType, valueType, false, false));
 
-        factoryLocator.registerActorFactory(new LongMapJidFactory(
-                "LM." + actorType, valueType, 28));
-        factoryLocator.registerActorFactory(new LongMapJidFactory(
-                "IM." + actorType, "IN." + actorType, NODE_CAPACITY));
+        LongMapJidFactory.registerFactory(
+                factoryLocator, "LM." + actorType, valueType, NODE_CAPACITY);
+        LongMapJidFactory.registerFactory(
+                factoryLocator, "IM." + actorType, "IN." + actorType, NODE_CAPACITY);
     }
 
     private String valueType;
@@ -64,7 +64,7 @@ public class LongBMapJidFactory extends ActorFactory {
      * @param actorType    The actor type.
      * @param valueType    The value type.
      */
-    private LongBMapJidFactory(String actorType, String valueType,
+    protected LongBMapJidFactory(String actorType, String valueType,
                               boolean isRoot, boolean auto) {
         super(actorType);
         this.valueType = valueType;

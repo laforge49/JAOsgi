@@ -48,10 +48,10 @@ public class StringBMapJidFactory extends ActorFactory {
         factoryLocator.registerActorFactory(new StringBMapJidFactory(
                 "IN." + actorType, valueType, false, false));
 
-        factoryLocator.registerActorFactory(new StringMapJidFactory(
-                "LM." + actorType, valueType, 28));
-        factoryLocator.registerActorFactory(new StringMapJidFactory(
-                "IM." + actorType, "IN." + actorType, NODE_CAPACITY));
+        StringMapJidFactory.registerFactory(
+                factoryLocator, "LM." + actorType, valueType, NODE_CAPACITY);
+        StringMapJidFactory.registerFactory(
+                factoryLocator, "IM." + actorType, "IN." + actorType, NODE_CAPACITY);
     }
 
     private String valueType;
@@ -66,7 +66,7 @@ public class StringBMapJidFactory extends ActorFactory {
      * @param isRoot       Create a root node when true.
      * @param auto         Define the node as a leaf when true.
      */
-    private StringBMapJidFactory(String actorType, String valueType,
+    protected StringBMapJidFactory(String actorType, String valueType,
                                 boolean isRoot, boolean auto) {
         super(actorType);
         this.valueType = valueType;
