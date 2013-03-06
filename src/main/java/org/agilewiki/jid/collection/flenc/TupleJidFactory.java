@@ -33,24 +33,13 @@ import org.agilewiki.jid.factory.FactoryLocator;
  * Creates a TupleJid.
  */
 public class TupleJidFactory extends ActorFactory {
-    private ActorFactory[] tupleFactories;
+
+    public static void registerFactory(FactoryLocator factoryLocator,
+                                       String subActorType, String... actorTypes) throws Exception {
+        factoryLocator.registerActorFactory(new TupleJidFactory(subActorType, actorTypes));
+    }
+
     private String[] actorTypes;
-
-    public TupleJidFactory(String subActorType) {
-        super(subActorType);
-        this.tupleFactories = new ActorFactory[0];
-    }
-
-    /**
-     * Create a JLPCActorFactory.
-     *
-     * @param subActorType   The actor type.
-     * @param tupleFactories The element factories.
-     */
-    public TupleJidFactory(String subActorType, ActorFactory... tupleFactories) {
-        super(subActorType);
-        this.tupleFactories = tupleFactories;
-    }
 
     /**
      * Create a JLPCActorFactory.
@@ -58,7 +47,7 @@ public class TupleJidFactory extends ActorFactory {
      * @param subActorType The actor type.
      * @param actorTypes   The element types.
      */
-    public TupleJidFactory(String subActorType, String... actorTypes) {
+    protected TupleJidFactory(String subActorType, String... actorTypes) {
         super(subActorType);
         this.actorTypes = actorTypes;
     }
@@ -84,17 +73,14 @@ public class TupleJidFactory extends ActorFactory {
     public JLPCActor newActor(Mailbox mailbox, Actor parent)
             throws Exception {
         TupleJid tj = (TupleJid) super.newActor(mailbox, parent);
-        if (tupleFactories == null) {
-            FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
-            ActorFactory[] afs = new ActorFactory[actorTypes.length];
-            int i = 0;
-            while (i < actorTypes.length) {
-                afs[i] = fl.getActorFactory(actorTypes[i]);
-                i += 1;
-            }
-            tupleFactories = afs;
+        FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
+        ActorFactory[] afs = new ActorFactory[actorTypes.length];
+        int i = 0;
+        while (i < actorTypes.length) {
+            afs[i] = fl.getActorFactory(actorTypes[i]);
+            i += 1;
         }
-        tj.tupleFactories = tupleFactories;
+        tj.tupleFactories = afs;
         return tj;
     }
 }
