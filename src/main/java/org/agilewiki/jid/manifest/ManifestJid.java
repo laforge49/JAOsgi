@@ -27,19 +27,25 @@ import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
 import org.agilewiki.jid.collection.vlenc.map.StringMapJidFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
-import org.agilewiki.jid.scalar.flens.integer.IntegerJid;
 
-public class ManifestJid extends StringMapJid<IntegerJid> {
+public class ManifestJid extends StringMapJid<ManifestTupleJid> {
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
+        ManifestTupleJid.registerFactory(
+                factoryLocator,
+                "T." + JidFactories.MANIFEST_TYPE,
+                JidFactories.MANIFEST_INTEGER_TYPE,
+                JidFactories.MANIFEST_STRING_TYPE);
+
         ManifestMapEntry.registerFactory(
                 factoryLocator,
                 "E." + JidFactories.MANIFEST_TYPE,
                 JidFactories.MANIFEST_STRING_TYPE,
-                JidFactories.MANIFEST_INTEGER_TYPE);
+                "T." + JidFactories.MANIFEST_TYPE);
+
         factoryLocator.registerActorFactory(new StringMapJidFactory(
-                JidFactories.MANIFEST_TYPE, JidFactories.MANIFEST_INTEGER_TYPE, 1) {
+                JidFactories.MANIFEST_TYPE, "T." + JidFactories.MANIFEST_TYPE, 1) {
             @Override
             protected ManifestJid instantiateActor()
                     throws Exception {
@@ -56,9 +62,12 @@ public class ManifestJid extends StringMapJid<IntegerJid> {
     /**
      * Returns true if first usage.
      */
-    public boolean inc(String locatorKey) throws Exception {
+    public boolean inc(String locatorKey, String location) throws Exception {
         boolean rv = kMake(locatorKey);
-        IntegerJid ij = kGet(locatorKey);
+        ManifestTupleJid tj = kGet(locatorKey);
+        ManifestStringJid sj = (ManifestStringJid) tj.iGet(1);
+        sj.setValue(location);
+        ManifestIntegerJid ij = (ManifestIntegerJid) tj.iGet(0);
         int i = ij.getValue();
         ij.setValue(i + 1);
         return i == 0;
@@ -69,7 +78,8 @@ public class ManifestJid extends StringMapJid<IntegerJid> {
      */
     public boolean dec(String locatorKey) throws Exception {
         boolean rv = kMake(locatorKey);
-        IntegerJid ij = kGet(locatorKey);
+        ManifestTupleJid tj = kGet(locatorKey);
+        ManifestIntegerJid ij = (ManifestIntegerJid) tj.iGet(0);
         int i = ij.getValue() - 1;
         if (i > -1)
             ij.setValue(i);

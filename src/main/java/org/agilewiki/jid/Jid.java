@@ -32,7 +32,8 @@ import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.manifest.ManifestJid;
-import org.agilewiki.jid.scalar.flens.integer.IntegerJid;
+import org.agilewiki.jid.manifest.ManifestStringJid;
+import org.agilewiki.jid.manifest.ManifestTupleJid;
 
 import java.util.Arrays;
 
@@ -194,7 +195,7 @@ public class Jid extends JLPCActor implements _Jid {
         if (this.containerJid != null) {
             int i = 0;
             while (i < s) {
-                MapEntry<String, IntegerJid> me = manifestJid.iGet(i);
+                MapEntry<String, ManifestTupleJid> me = manifestJid.iGet(i);
                 String locatorKey = me.getKey();
                 this.containerJid.decRef(locatorKey);
                 i += 1;
@@ -205,17 +206,19 @@ public class Jid extends JLPCActor implements _Jid {
             return;
         int i = 0;
         while (i < s) {
-            MapEntry<String, IntegerJid> me = manifestJid.iGet(i);
+            MapEntry<String, ManifestTupleJid> me = manifestJid.iGet(i);
             String locatorKey = me.getKey();
-            containerJid.incRef(locatorKey);
+            ManifestTupleJid mt = me.getValue();
+            ManifestStringJid locationJid = (ManifestStringJid) mt.iGet(1);
+            containerJid.incRef(locatorKey, locationJid.getValue());
             i += 1;
         }
     }
 
     @Override
-    public void incRef(String locationKey) throws Exception {
-        if (manifestJid.inc(locationKey) && containerJid != null)
-            containerJid.incRef(locationKey);
+    public void incRef(String locationKey, String location) throws Exception {
+        if (manifestJid.inc(locationKey, location) && containerJid != null)
+            containerJid.incRef(locationKey, location);
     }
 
     @Override
@@ -385,6 +388,10 @@ public class Jid extends JLPCActor implements _Jid {
         return factory.getLocatorKey();
     }
 
+    final public String getLocation() {
+        return factory.getLocation();
+    }
+
     /**
      * Initialize a LiteActor
      *
@@ -399,7 +406,7 @@ public class Jid extends JLPCActor implements _Jid {
         this.factory = factory;
         manifestJid = createManifestJid();
         if (manifestJid != null)
-            manifestJid.inc(getLocatorKey());
+            manifestJid.inc(getLocatorKey(), getLocation());
     }
 
     /**

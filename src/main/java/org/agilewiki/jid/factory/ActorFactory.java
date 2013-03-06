@@ -54,6 +54,10 @@ abstract public class ActorFactory {
         return factoryLocator.getLocatorKey();
     }
 
+    public String getLocation() {
+        return factoryLocator.getLocation();
+    }
+
     /**
      * Create an ActorFactory.
      *
