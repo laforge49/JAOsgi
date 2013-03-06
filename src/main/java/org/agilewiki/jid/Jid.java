@@ -27,10 +27,12 @@ import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.jid.collection.vlenc.map.MapEntry;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.manifest.ManifestJid;
+import org.agilewiki.jid.scalar.flens.integer.IntegerJid;
 
 import java.util.Arrays;
 
@@ -184,18 +186,30 @@ public class Jid extends JLPCActor implements _Jid {
      */
     @Override
     public void setContainerJid(_Jid containerJid) throws Exception {
-        //    if (manifestJid == null) {
-        this.containerJid = containerJid;
-        //          return;
-//        }
-        /*
+        if (manifestJid == null) {
+            this.containerJid = containerJid;
+            return;
+        }
         int s = manifestJid.size();
         if (this.containerJid != null) {
+            int i = 0;
+            while (i < s) {
+                MapEntry<String, IntegerJid> me = manifestJid.iGet(i);
+                String locatorKey = me.getKey();
+                this.containerJid.decRef(locatorKey);
+                i += 1;
+            }
         }
         this.containerJid = containerJid;
         if (containerJid == null)
             return;
-        */
+        int i = 0;
+        while (i < s) {
+            MapEntry<String, IntegerJid> me = manifestJid.iGet(i);
+            String locatorKey = me.getKey();
+            containerJid.incRef(locatorKey);
+            i += 1;
+        }
     }
 
     @Override
@@ -384,8 +398,8 @@ public class Jid extends JLPCActor implements _Jid {
         super.initialize(mailbox, parent);
         this.factory = factory;
         manifestJid = createManifestJid();
-        //if (manifestJid != null)
-          //  manifestJid.inc(getLocatorKey());
+        if (manifestJid != null)
+            manifestJid.inc(getLocatorKey());
     }
 
     /**
