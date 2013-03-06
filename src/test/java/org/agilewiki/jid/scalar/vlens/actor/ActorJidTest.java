@@ -7,13 +7,13 @@ import org.agilewiki.jid.CopyJID;
 import org.agilewiki.jid.GetSerializedBytes;
 import org.agilewiki.jid.GetSerializedLength;
 import org.agilewiki.jid.ResolvePathname;
+import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
 import org.agilewiki.jid.scalar.Clear;
 import org.agilewiki.jid.scalar.vlens.string.GetString;
 import org.agilewiki.jid.scalar.vlens.string.SetString;
-import org.agilewiki.jid.scalar.vlens.string.StringJidFactory;
 
 public class ActorJidTest extends TestCase {
     public void test() throws Exception {
@@ -45,7 +45,7 @@ public class ActorJidTest extends TestCase {
             rpa = (new ResolvePathname("0")).send(future, jidJid11);
             assertNull(rpa);
 
-            StringJidFactory stringJidAFactory = (StringJidFactory) factoryLocator.getActorFactory(JidFactories.STRING_JID_TYPE);
+            ActorFactory stringJidAFactory = factoryLocator.getActorFactory(JidFactories.STRING_JID_TYPE);
             Actor string1 = stringJidAFactory.newActor(factoryLocator.getMailbox(), factoryLocator);
             (new SetString("abc")).send(future, string1);
             byte[] sb = GetSerializedBytes.req.send(future, string1);

@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Bill La Forge
+ * Copyright 2013 Bill La Forge
  *
  * This file is part of AgileWiki and is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -21,33 +21,31 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.collection.vlenc.map;
+package org.agilewiki.jid.manifest;
 
-import org.agilewiki.jid.Jid;
-import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jid.factory.JAFactoryLocator;
-import org.agilewiki.jid.factory.JidFactories;
+import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.jid.collection.vlenc.map.MapEntry;
+import org.agilewiki.jid.collection.vlenc.map.MapEntryFactory;
+import org.agilewiki.jid.factory.FactoryLocator;
 
-/**
- * Holds a map with String keys.
- */
-public class StringMapJid<VALUE_TYPE extends Jid> extends MapJid<String, VALUE_TYPE> {
-    /**
-     * Returns the JidFactory for the key.
-     *
-     * @return The JidFactory for the key.
-     */
-    final protected ActorFactory getKeyFactory() throws Exception {
-        return JAFactoryLocator.getActorFactory(this, JidFactories.STRING_JID_TYPE);
+public class ManifestMapEntry<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE>
+        extends MapEntry<KEY_TYPE, VALUE_TYPE> {
+
+    public static void registerFactory(FactoryLocator factoryLocator,
+                                       String actorType,
+                                       String keyType,
+                                       String valueType) throws Exception {
+        factoryLocator.registerActorFactory(new MapEntryFactory(
+                actorType, keyType, valueType) {
+            @Override
+            protected JLPCActor instantiateActor() throws Exception {
+                return new ManifestMapEntry();
+            }
+        });
     }
 
-    /**
-     * Converts a string to a key.
-     *
-     * @param skey The string to be converted.
-     * @return The key.
-     */
-    final protected String stringToKey(String skey) {
-        return skey;
+    @Override
+    protected ManifestJid createManifestJid() throws Exception {
+        return null;
     }
 }

@@ -25,21 +25,23 @@ package org.agilewiki.jid.factory;
 
 import org.agilewiki.jactor.MailboxFactory;
 import org.agilewiki.jid.JidFactory;
-import org.agilewiki.jid.ManifestJidFactory;
 import org.agilewiki.jid.collection.vlenc.BListJidFactory;
 import org.agilewiki.jid.collection.vlenc.ListJidFactory;
 import org.agilewiki.jid.collection.vlenc.map.*;
 import org.agilewiki.jid.jaosgi.JABCNoOsgiImpl;
 import org.agilewiki.jid.jaosgi.JABundleContext;
+import org.agilewiki.jid.manifest.ManifestIntegerJid;
+import org.agilewiki.jid.manifest.ManifestJid;
+import org.agilewiki.jid.manifest.ManifestStringJid;
 import org.agilewiki.jid.scalar.flens.bool.BooleanJidFactory;
 import org.agilewiki.jid.scalar.flens.dbl.DoubleJidFactory;
 import org.agilewiki.jid.scalar.flens.flt.FloatJidFactory;
-import org.agilewiki.jid.scalar.flens.integer.IntegerJidFactory;
+import org.agilewiki.jid.scalar.flens.integer.IntegerJid;
 import org.agilewiki.jid.scalar.flens.lng.LongJidFactory;
 import org.agilewiki.jid.scalar.vlens.actor.ActorJidFactory;
 import org.agilewiki.jid.scalar.vlens.actor.RootJidFactory;
 import org.agilewiki.jid.scalar.vlens.bytes.BytesJidFactory;
-import org.agilewiki.jid.scalar.vlens.string.StringJidFactory;
+import org.agilewiki.jid.scalar.vlens.string.StringJid;
 
 /**
  * <p>
@@ -62,6 +64,8 @@ final public class JidFactories extends LocateLocalActorFactories {
     }
 
     public final static String MANIFEST_TYPE = "MANIFEST";
+    public final static String MANIFEST_INTEGER_TYPE = "MANIFEST_INTEGER";
+    public final static String MANIFEST_STRING_TYPE = "MANIFEST_STRING";
 
     /**
      * The name of the JID actor.
@@ -436,19 +440,21 @@ final public class JidFactories extends LocateLocalActorFactories {
     public JAFactoryLocator configure() throws Exception {
         JAFactoryLocator factoryLocator = configure("org.agilewiki.jid");
 
-        ManifestJidFactory.registerFactory(factoryLocator);
+        ManifestJid.registerFactory(factoryLocator);
+        ManifestIntegerJid.registerFactory(factoryLocator);
+        ManifestStringJid.registerFactory(factoryLocator);
 
         JidFactory.registerFactory(factoryLocator);
 
         BooleanJidFactory.registerFactory(factoryLocator);
-        IntegerJidFactory.registerFactory(factoryLocator);
+        IntegerJid.registerFactory(factoryLocator);
         LongJidFactory.registerFactory(factoryLocator);
         FloatJidFactory.registerFactory(factoryLocator);
         DoubleJidFactory.registerFactory(factoryLocator);
 
         ActorJidFactory.registerFactory(factoryLocator);
         RootJidFactory.registerFactory(factoryLocator);
-        StringJidFactory.registerFactory(factoryLocator);
+        StringJid.registerFactory(factoryLocator);
         BytesJidFactory.registerFactory(factoryLocator);
 
         BListJidFactory.registerFactory(factoryLocator, STRING_BLIST_JID_TYPE, STRING_JID_TYPE);

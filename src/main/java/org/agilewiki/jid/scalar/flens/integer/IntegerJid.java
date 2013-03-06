@@ -26,6 +26,9 @@ package org.agilewiki.jid.scalar.flens.integer;
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ReadableBytes;
 import org.agilewiki.jid.Util;
+import org.agilewiki.jid.factory.ActorFactory;
+import org.agilewiki.jid.factory.FactoryLocator;
+import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.scalar.flens.FLenScalarJid;
 
 /**
@@ -33,6 +36,18 @@ import org.agilewiki.jid.scalar.flens.FLenScalarJid;
  */
 public class IntegerJid
         extends FLenScalarJid<Integer> {
+
+    public static void registerFactory(FactoryLocator factoryLocator)
+            throws Exception {
+        factoryLocator.registerActorFactory(new ActorFactory(JidFactories.INTEGER_JID_TYPE) {
+            @Override
+            final protected IntegerJid instantiateActor()
+                    throws Exception {
+                return new IntegerJid();
+            }
+        });
+    }
+
     /**
      * Create the value.
      *

@@ -21,12 +21,33 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid;
+package org.agilewiki.jid.manifest;
 
 import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
+import org.agilewiki.jid.collection.vlenc.map.StringMapJidFactory;
+import org.agilewiki.jid.factory.FactoryLocator;
+import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.scalar.flens.integer.IntegerJid;
 
 public class ManifestJid extends StringMapJid<IntegerJid> {
+
+    public static void registerFactory(FactoryLocator factoryLocator)
+            throws Exception {
+        ManifestMapEntry.registerFactory(
+                factoryLocator,
+                "E." + JidFactories.MANIFEST_TYPE,
+                JidFactories.MANIFEST_STRING_TYPE,
+                JidFactories.MANIFEST_INTEGER_TYPE);
+        factoryLocator.registerActorFactory(new StringMapJidFactory(
+                JidFactories.MANIFEST_TYPE, JidFactories.MANIFEST_INTEGER_TYPE, 1) {
+            @Override
+            protected ManifestJid instantiateActor()
+                    throws Exception {
+                return new ManifestJid();
+            }
+        });
+    }
+
     @Override
     protected ManifestJid createManifestJid() throws Exception {
         return null;

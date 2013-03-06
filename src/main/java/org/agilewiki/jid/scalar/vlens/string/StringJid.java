@@ -26,6 +26,9 @@ package org.agilewiki.jid.scalar.vlens.string;
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ComparableKey;
 import org.agilewiki.jid.ReadableBytes;
+import org.agilewiki.jid.factory.ActorFactory;
+import org.agilewiki.jid.factory.FactoryLocator;
+import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.scalar.vlens.VLenScalarJid;
 
 /**
@@ -34,6 +37,18 @@ import org.agilewiki.jid.scalar.vlens.VLenScalarJid;
 public class StringJid
         extends VLenScalarJid<String, String>
         implements ComparableKey<String> {
+
+    public static void registerFactory(FactoryLocator factoryLocator)
+            throws Exception {
+        factoryLocator.registerActorFactory(new ActorFactory(JidFactories.STRING_JID_TYPE) {
+            @Override
+            final protected StringJid instantiateActor()
+                    throws Exception {
+                return new StringJid();
+            }
+        });
+    }
+
     /**
      * Assign a value.
      *
