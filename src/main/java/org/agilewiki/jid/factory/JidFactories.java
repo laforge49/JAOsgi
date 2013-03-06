@@ -442,18 +442,18 @@ final public class JidFactories extends LocateLocalActorFactories {
 
         BooleanJidFactory.registerFactory(factoryLocator);
         IntegerJidFactory.registerFactory(factoryLocator);
-        factoryLocator.registerActorFactory(new LongJidFactory());
-        factoryLocator.registerActorFactory(new FloatJidFactory());
-        factoryLocator.registerActorFactory(new DoubleJidFactory());
+        LongJidFactory.registerFactory(factoryLocator);
+        FloatJidFactory.registerFactory(factoryLocator);
+        DoubleJidFactory.registerFactory(factoryLocator);
 
-        factoryLocator.registerActorFactory(new ActorJidFactory());
-        factoryLocator.registerActorFactory(new RootJidFactory());
-        factoryLocator.registerActorFactory(new StringJidFactory());
-        factoryLocator.registerActorFactory(new BytesJidFactory());
+        ActorJidFactory.registerFactory(factoryLocator);
+        RootJidFactory.registerFactory(factoryLocator);
+        StringJidFactory.registerFactory(factoryLocator);
+        BytesJidFactory.registerFactory(factoryLocator);
 
         BListJidFactory.registerFactory(factoryLocator, STRING_BLIST_JID_TYPE, STRING_JID_TYPE);
         BListJidFactory.registerFactory(factoryLocator, BYTES_BLIST_JID_TYPE, BYTES_JID_TYPE);
-        BListJidFactory.registerFactory(factoryLocator, ACTOR_BLIST_JID_TYPE,ACTOR_JID_TYPE);
+        BListJidFactory.registerFactory(factoryLocator, ACTOR_BLIST_JID_TYPE, ACTOR_JID_TYPE);
         BListJidFactory.registerFactory(factoryLocator, LONG_BLIST_JID_TYPE, LONG_JID_TYPE);
         BListJidFactory.registerFactory(factoryLocator, INTEGER_BLIST_JID_TYPE, INTEGER_JID_TYPE);
         BListJidFactory.registerFactory(factoryLocator, FLOAT_BLIST_JID_TYPE, FLOAT_JID_TYPE);

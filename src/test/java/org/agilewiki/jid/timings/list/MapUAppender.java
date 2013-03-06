@@ -1,10 +1,10 @@
 package org.agilewiki.jid.timings.list;
 
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jid.factory.JAFactoryLocator;
-import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.ReadableBytes;
 import org.agilewiki.jid.collection.vlenc.map.IntegerMapJid;
+import org.agilewiki.jid.factory.JAFactoryLocator;
+import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.scalar.flens.integer.IntegerJid;
 
 public class MapUAppender extends JLPCActor {

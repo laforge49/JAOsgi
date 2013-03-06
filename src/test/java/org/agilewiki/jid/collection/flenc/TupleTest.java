@@ -26,14 +26,14 @@ package org.agilewiki.jid.collection.flenc;
 import junit.framework.TestCase;
 import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.JAFuture;
-import org.agilewiki.jid.jaosgi.JABundleContext;
-import org.agilewiki.jid.factory.JAFactoryLocator;
-import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.CopyJID;
 import org.agilewiki.jid.GetSerializedBytes;
 import org.agilewiki.jid.ResolvePathname;
 import org.agilewiki.jid.collection.IGet;
 import org.agilewiki.jid.collection.ISetBytes;
+import org.agilewiki.jid.factory.JAFactoryLocator;
+import org.agilewiki.jid.factory.JidFactories;
+import org.agilewiki.jid.jaosgi.JABundleContext;
 import org.agilewiki.jid.scalar.vlens.string.GetString;
 import org.agilewiki.jid.scalar.vlens.string.SetString;
 

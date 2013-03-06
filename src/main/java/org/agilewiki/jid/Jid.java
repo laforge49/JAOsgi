@@ -26,8 +26,8 @@ package org.agilewiki.jid;
 import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.RP;
-import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 
@@ -183,9 +183,9 @@ public class Jid extends JLPCActor implements _Jid {
      */
     @Override
     public void setContainerJid(_Jid containerJid) throws Exception {
-    //    if (manifestJid == null) {
-            this.containerJid = containerJid;
-  //          return;
+        //    if (manifestJid == null) {
+        this.containerJid = containerJid;
+        //          return;
 //        }
         /*
         int s = manifestJid.size();

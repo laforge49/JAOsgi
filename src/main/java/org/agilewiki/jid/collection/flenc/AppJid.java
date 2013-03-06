@@ -23,8 +23,8 @@
  */
 package org.agilewiki.jid.collection.flenc;
 
-import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.*;
+import org.agilewiki.jid.factory.ActorFactory;
 
 /**
  * A base class for applications, AppJid provides a durable tuple without an external interface.

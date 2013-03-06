@@ -1,11 +1,11 @@
 package org.agilewiki.jid.basics;
 
 import org.agilewiki.jactor.RP;
-import org.agilewiki.jid.factory.FactoryLocator;
-import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid._Jid;
 import org.agilewiki.jid.collection.vlenc.ListJid;
 import org.agilewiki.jid.collection.vlenc.ListJidFactory;
+import org.agilewiki.jid.factory.FactoryLocator;
+import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.scalar.flens.integer.IntegerJid;
 
 import java.util.Iterator;

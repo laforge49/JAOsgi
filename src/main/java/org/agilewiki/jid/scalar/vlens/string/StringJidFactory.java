@@ -1,16 +1,23 @@
 package org.agilewiki.jid.scalar.vlens.string;
 
 import org.agilewiki.jid.factory.ActorFactory;
+import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 
 /**
  * Creates a StringJid.
  */
 public class StringJidFactory extends ActorFactory {
+
+    public static void registerFactory(FactoryLocator factoryLocator)
+            throws Exception {
+        factoryLocator.registerActorFactory(new StringJidFactory());
+    }
+
     /**
      * Create a JLPCActorFactory.
      */
-    public StringJidFactory() {
+    protected StringJidFactory() {
         super(JidFactories.STRING_JID_TYPE);
     }
 

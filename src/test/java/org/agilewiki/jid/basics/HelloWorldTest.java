@@ -3,11 +3,11 @@ package org.agilewiki.jid.basics;
 import junit.framework.TestCase;
 import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.JAFuture;
-import org.agilewiki.jid.jaosgi.JABundleContext;
-import org.agilewiki.jid.factory.JAFactoryLocator;
-import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.GetSerializedBytes;
 import org.agilewiki.jid.ResolvePathname;
+import org.agilewiki.jid.factory.JAFactoryLocator;
+import org.agilewiki.jid.factory.JidFactories;
+import org.agilewiki.jid.jaosgi.JABundleContext;
 import org.agilewiki.jid.scalar.vlens.actor.RootJid;
 import org.agilewiki.jid.scalar.vlens.actor.SetActor;
 

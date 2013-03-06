@@ -23,8 +23,8 @@
  */
 package org.agilewiki.jid;
 
-import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jactor.lpc.TargetActor;
+import org.agilewiki.jid.factory.ActorFactory;
 
 /**
  * Incremental Deserialization / Reserialization.

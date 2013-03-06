@@ -23,9 +23,9 @@
  */
 package org.agilewiki.jid.collection.flenc;
 
-import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.*;
 import org.agilewiki.jid.collection.CollectionJid;
+import org.agilewiki.jid.factory.ActorFactory;
 
 /**
  * Holds a fixed-size array of JID actors of various types.

@@ -25,8 +25,8 @@ package org.agilewiki.jid.collection.vlenc;
 
 import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.Mailbox;
-import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.scalar.vlens.actor.UnionJidFactory;
 
@@ -37,8 +37,8 @@ public class BListJidFactory extends ActorFactory {
     private final static int NODE_CAPACITY = 28;
 
     public static void registerFactory(FactoryLocator factoryLocator,
-                                         String actorType,
-                                         String entryType)
+                                       String actorType,
+                                       String entryType)
             throws Exception {
         factoryLocator.registerActorFactory(new UnionJidFactory(
                 "U." + actorType, "LL." + actorType, "IL." + actorType));
@@ -59,7 +59,7 @@ public class BListJidFactory extends ActorFactory {
     private boolean auto = true;
 
     private BListJidFactory(String actorType, String entryType,
-                           boolean isRoot, boolean auto) {
+                            boolean isRoot, boolean auto) {
         super(actorType);
         this.entryType = entryType;
         this.isRoot = isRoot;
@@ -86,7 +86,7 @@ public class BListJidFactory extends ActorFactory {
     public JLPCActor newActor(Mailbox mailbox, Actor parent)
             throws Exception {
         BListJid lj = (BListJid) super.newActor(mailbox, parent);
-            FactoryLocator f = (FactoryLocator) parent.getMatch(FactoryLocator.class);
+        FactoryLocator f = (FactoryLocator) parent.getMatch(FactoryLocator.class);
         lj.entryFactory = f.getActorFactory(entryType);
         lj.nodeCapacity = NODE_CAPACITY;
         lj.isRoot = isRoot;

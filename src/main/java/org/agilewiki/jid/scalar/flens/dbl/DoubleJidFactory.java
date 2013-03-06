@@ -1,16 +1,23 @@
 package org.agilewiki.jid.scalar.flens.dbl;
 
 import org.agilewiki.jid.factory.ActorFactory;
+import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 
 /**
  * Creates a DoubleJidA.
  */
 public class DoubleJidFactory extends ActorFactory {
+
+    public static void registerFactory(FactoryLocator factoryLocator)
+            throws Exception {
+        factoryLocator.registerActorFactory(new DoubleJidFactory());
+    }
+
     /**
      * Create a JLPCActorFactory.
      */
-    public DoubleJidFactory() {
+    protected DoubleJidFactory() {
         super(JidFactories.DOUBLE_JID_TYPE);
     }
 

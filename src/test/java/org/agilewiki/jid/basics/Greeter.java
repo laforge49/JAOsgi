@@ -1,8 +1,8 @@
 package org.agilewiki.jid.basics;
 
 import org.agilewiki.jactor.RP;
-import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.scalar.vlens.string.StringJid;
 
@@ -27,6 +27,7 @@ public class Greeter extends StringJid implements Main {
             return greeter;
         }
     }
+
     public String greeting;
 
     @Override

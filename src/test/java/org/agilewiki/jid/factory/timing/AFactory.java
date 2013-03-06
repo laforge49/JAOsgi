@@ -1,7 +1,7 @@
 package org.agilewiki.jid.factory.timing;
 
-import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.jid.factory.ActorFactory;
 
 public class AFactory extends ActorFactory {
 

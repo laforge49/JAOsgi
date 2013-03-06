@@ -1,16 +1,23 @@
 package org.agilewiki.jid.scalar.vlens.actor;
 
 import org.agilewiki.jid.factory.ActorFactory;
+import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 
 /**
  * Creates a RootJid.
  */
 public class RootJidFactory extends ActorFactory {
+
+    public static void registerFactory(FactoryLocator factoryLocator)
+            throws Exception {
+        factoryLocator.registerActorFactory(new RootJidFactory());
+    }
+
     /**
      * Create a JLPCActorFactory.
      */
-    public RootJidFactory() {
+    protected RootJidFactory() {
         super(JidFactories.ROOT_JID_TYPE);
     }
 

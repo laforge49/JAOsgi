@@ -25,8 +25,8 @@ package org.agilewiki.jid.collection.vlenc.map;
 
 import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.Mailbox;
-import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.scalar.vlens.actor.UnionJidFactory;
 
@@ -61,13 +61,13 @@ public class StringBMapJidFactory extends ActorFactory {
     /**
      * Create an ActorFactory.
      *
-     * @param actorType    The actor type.
-     * @param valueType    The value type.
-     * @param isRoot       Create a root node when true.
-     * @param auto         Define the node as a leaf when true.
+     * @param actorType The actor type.
+     * @param valueType The value type.
+     * @param isRoot    Create a root node when true.
+     * @param auto      Define the node as a leaf when true.
      */
     protected StringBMapJidFactory(String actorType, String valueType,
-                                boolean isRoot, boolean auto) {
+                                   boolean isRoot, boolean auto) {
         super(actorType);
         this.valueType = valueType;
         this.isRoot = isRoot;

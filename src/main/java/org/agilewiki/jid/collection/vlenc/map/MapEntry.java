@@ -23,10 +23,10 @@
  */
 package org.agilewiki.jid.collection.vlenc.map;
 
-import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.ComparableKey;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.jid.collection.flenc.AppJid;
+import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.scalar.ScalarJid;
 
 /**
