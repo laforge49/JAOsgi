@@ -32,10 +32,11 @@ public class ManifestJidFactory extends StringMapJidFactory {
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerActorFactory(new MapEntryFactory(
+        MapEntryFactory.registerFactory(
+                factoryLocator,
                 "E." + JidFactories.MANIFEST_TYPE,
                 JidFactories.STRING_JID_TYPE,
-                JidFactories.INTEGER_JID_TYPE));
+                JidFactories.INTEGER_JID_TYPE);
         factoryLocator.registerActorFactory(new ManifestJidFactory());
     }
 

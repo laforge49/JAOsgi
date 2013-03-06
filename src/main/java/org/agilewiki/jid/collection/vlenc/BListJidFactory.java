@@ -40,18 +40,18 @@ public class BListJidFactory extends ActorFactory {
                                        String actorType,
                                        String entryType)
             throws Exception {
-        factoryLocator.registerActorFactory(new UnionJidFactory(
-                "U." + actorType, "LL." + actorType, "IL." + actorType));
+        UnionJidFactory.registerFactory(factoryLocator,
+                "U." + actorType, "LL." + actorType, "IL." + actorType);
 
         factoryLocator.registerActorFactory(new BListJidFactory(
                 actorType, entryType, true, true));
         factoryLocator.registerActorFactory(new BListJidFactory(
                 "IN." + actorType, entryType, false, false));
 
-        factoryLocator.registerActorFactory(new ListJidFactory(
-                "LL." + actorType, entryType, 28));
-        factoryLocator.registerActorFactory(new ListJidFactory(
-                "IL." + actorType, "IN." + actorType, NODE_CAPACITY));
+        ListJidFactory.registerFactory(factoryLocator,
+                "LL." + actorType, entryType, NODE_CAPACITY);
+        ListJidFactory.registerFactory(factoryLocator,
+                "IL." + actorType, "IN." + actorType, NODE_CAPACITY);
     }
 
     private String entryType;

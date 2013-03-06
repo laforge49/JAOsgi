@@ -33,8 +33,16 @@ import org.agilewiki.jid.factory.FactoryLocator;
  * Creates map entries.
  */
 public class MapEntryFactory extends ActorFactory {
-    private ActorFactory keyFactory;
-    private ActorFactory valueFactory;
+
+    public static void registerFactory(FactoryLocator factoryLocator,
+                                       String actorType,
+                                       String keyType,
+                                       String valueType)
+            throws Exception {
+        factoryLocator.registerActorFactory(new MapEntryFactory(
+                actorType, keyType, valueType));
+    }
+
     private String keyType;
     private String valueType;
 
@@ -43,18 +51,7 @@ public class MapEntryFactory extends ActorFactory {
      *
      * @param actorType The actor type.
      */
-    public MapEntryFactory(String actorType, ActorFactory keyFactory, ActorFactory valueFactory) {
-        super(actorType);
-        this.keyFactory = keyFactory;
-        this.valueFactory = valueFactory;
-    }
-
-    /**
-     * Create an ActorFactory.
-     *
-     * @param actorType The actor type.
-     */
-    public MapEntryFactory(String actorType, String keyType, String valueType) {
+    protected MapEntryFactory(String actorType, String keyType, String valueType) {
         super(actorType);
         this.keyType = keyType;
         this.valueType = valueType;
@@ -80,11 +77,9 @@ public class MapEntryFactory extends ActorFactory {
     public JLPCActor newActor(Mailbox mailbox, Actor parent)
             throws Exception {
         MapEntry me = (MapEntry) super.newActor(mailbox, parent);
-        if (keyFactory == null) {
-            FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
-            keyFactory = fl.getActorFactory(keyType);
-            valueFactory = fl.getActorFactory(valueType);
-        }
+        FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
+        ActorFactory keyFactory = fl.getActorFactory(keyType);
+        ActorFactory valueFactory = fl.getActorFactory(valueType);
         me.setFactories(keyFactory, valueFactory);
         return me;
     }

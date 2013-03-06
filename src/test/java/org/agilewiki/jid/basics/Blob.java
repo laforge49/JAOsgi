@@ -14,8 +14,8 @@ public class Blob extends StringMapJid implements Main {
 
     public static void register(FactoryLocator factoryLocator) throws Exception {
         factoryLocator.registerActorFactory(new BlobFactory("blob"));
-        factoryLocator.registerActorFactory(new MapEntryFactory(
-                "E.blob", JidFactories.STRING_JID_TYPE, JidFactories.ACTOR_JID_TYPE));
+        MapEntryFactory.registerFactory(factoryLocator,
+                "E.blob", JidFactories.STRING_JID_TYPE, JidFactories.ACTOR_JID_TYPE);
     }
 
     private static class BlobFactory extends ActorFactory {

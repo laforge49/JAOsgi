@@ -40,8 +40,8 @@ public class LongBMapJidFactory extends ActorFactory {
                                        String actorType,
                                        String valueType)
             throws Exception {
-        factoryLocator.registerActorFactory(new UnionJidFactory(
-                "U." + actorType, "LM." + actorType, "IM." + actorType));
+        UnionJidFactory.registerFactory(factoryLocator,
+                "U." + actorType, "LM." + actorType, "IM." + actorType);
 
         factoryLocator.registerActorFactory(new LongBMapJidFactory(
                 actorType, valueType, true, true));

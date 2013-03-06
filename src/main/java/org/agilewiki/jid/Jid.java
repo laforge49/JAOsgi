@@ -383,10 +383,8 @@ public class Jid extends JLPCActor implements _Jid {
         super.initialize(mailbox, parent);
         this.factory = factory;
         manifestJid = createManifestJid();
-        /*
-        if (manifestJid != null)
-            manifestJid.inc(getLocatorKey());
-            */
+        //if (manifestJid != null)
+          //  manifestJid.inc(getLocatorKey());
     }
 
     /**

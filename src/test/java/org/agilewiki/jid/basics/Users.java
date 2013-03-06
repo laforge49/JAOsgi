@@ -18,8 +18,8 @@ public class Users extends StringMapJid implements Main {
 
     public static void register(FactoryLocator factoryLocator) throws Exception {
         factoryLocator.registerActorFactory(new UsersFactory("users"));
-        factoryLocator.registerActorFactory(new MapEntryFactory(
-                "E.users", JidFactories.STRING_JID_TYPE, JidFactories.STRING_JID_TYPE));
+        MapEntryFactory.registerFactory(factoryLocator,
+                "E.users", JidFactories.STRING_JID_TYPE, JidFactories.STRING_JID_TYPE);
     }
 
     private static class UsersFactory extends ActorFactory {

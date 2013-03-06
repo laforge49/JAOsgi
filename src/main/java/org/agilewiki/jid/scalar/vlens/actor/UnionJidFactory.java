@@ -33,19 +33,16 @@ import org.agilewiki.jid.factory.FactoryLocator;
  * Creates a UnionJid.
  */
 public class UnionJidFactory extends ActorFactory {
+
+    public static void registerFactory(FactoryLocator factoryLocator,
+                                       String subActorType, String... actorTypes)
+            throws Exception {
+        factoryLocator.registerActorFactory(new UnionJidFactory(
+                subActorType, actorTypes));
+    }
+
     private ActorFactory[] unionFactories;
     private String[] actorTypes;
-
-    /**
-     * Create a JLPCActorFactory.
-     *
-     * @param subActorType   The actor type.
-     * @param unionFactories The element factories.
-     */
-    public UnionJidFactory(String subActorType, ActorFactory... unionFactories) {
-        super(subActorType);
-        this.unionFactories = unionFactories;
-    }
 
     /**
      * Create a JLPCActorFactory.
@@ -53,7 +50,7 @@ public class UnionJidFactory extends ActorFactory {
      * @param subActorType The actor type.
      * @param actorTypes   The element types.
      */
-    public UnionJidFactory(String subActorType, String... actorTypes) {
+    protected UnionJidFactory(String subActorType, String... actorTypes) {
         super(subActorType);
         this.actorTypes = actorTypes;
     }
