@@ -56,7 +56,7 @@ public class ManifestJid extends StringMapJid<ManifestTupleJid> {
     }
 
     @Override
-    public ManifestJid getManifestJid() throws Exception {
+    public ManifestJid _getManifestJid() throws Exception {
         return null;
     }
 

@@ -42,7 +42,7 @@ public class ManifestStringJid extends StringJid {
     }
 
     @Override
-    public ManifestJid getManifestJid() throws Exception {
+    public ManifestJid _getManifestJid() throws Exception {
         return null;
     }
 }

@@ -41,7 +41,7 @@ public class ManifestTupleJid extends TupleJid {
     }
 
     @Override
-    public ManifestJid getManifestJid() throws Exception {
+    public ManifestJid _getManifestJid() throws Exception {
         return null;
     }
 }

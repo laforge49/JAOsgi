@@ -277,8 +277,9 @@ public class ActorJid
         throw new IllegalArgumentException("pathname " + pathname);
     }
 
-    public ManifestJid getManifestJid() throws Exception {
-        ManifestJid manifestJid = super.getManifestJid();
+    @Override
+    public ManifestJid _getManifestJid() throws Exception {
+        ManifestJid manifestJid = super._getManifestJid();
         Jid v = getValue();
         if (v == null)
             return manifestJid;

@@ -41,6 +41,8 @@ import java.util.Arrays;
  * Base class for Incremental Deserialization Actors.
  */
 public class Jid extends JLPCActor implements _Jid {
+    protected ManifestJid manifestJid;
+
     /**
      * The factory, or null.
      */
@@ -220,12 +222,14 @@ public class Jid extends JLPCActor implements _Jid {
 
     @Override
     public void incRef(String locationKey, String location) throws Exception {
+        manifestJid = null;
         if (containerJid != null)
                 containerJid.incRef(locationKey, location);
     }
 
     @Override
     public void decRef(String locationKey) throws Exception {
+        manifestJid = null;
         if (containerJid != null)
                 containerJid.decRef(locationKey);
     }
@@ -451,7 +455,13 @@ public class Jid extends JLPCActor implements _Jid {
     protected void createManifestJid() throws Exception {
     }
 
-    public ManifestJid getManifestJid() throws Exception {
+    public final ManifestJid getManifestJid() throws Exception {
+        if (manifestJid == null)
+            manifestJid = _getManifestJid();
+        return manifestJid;
+    }
+
+    public ManifestJid _getManifestJid() throws Exception {
         ManifestJid manifestJid = (ManifestJid) JAFactoryLocator.newActor(this, JidFactories.MANIFEST_TYPE, getMailbox());
         manifestJid.inc(getLocatorKey(), getLocation());
         return manifestJid;

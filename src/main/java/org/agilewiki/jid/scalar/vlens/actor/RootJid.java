@@ -40,8 +40,6 @@ import org.agilewiki.jid.manifest.ManifestJid;
  * The load method simply grabs all the remaining data.
  */
 public class RootJid extends ActorJid {
-    protected ManifestJid manifestJid;
-
     /**
      * Save the serialized data into a byte array.
      *
@@ -145,7 +143,7 @@ public class RootJid extends ActorJid {
     }
 
     @Override
-    public ManifestJid getManifestJid() throws Exception {
+    public ManifestJid _getManifestJid() throws Exception {
         return manifestJid;
     }
 
