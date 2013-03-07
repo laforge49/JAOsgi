@@ -30,6 +30,7 @@ import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jid.collection.vlenc.map.MapEntry;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.JAFactoryLocator;
+import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.manifest.ManifestJid;
 import org.agilewiki.jid.manifest.ManifestStringJid;
 import org.agilewiki.jid.manifest.ManifestTupleJid;
@@ -451,6 +452,8 @@ public class Jid extends JLPCActor implements _Jid {
     }
 
     public ManifestJid getManifestJid() throws Exception {
-        return null;
+        ManifestJid manifestJid = (ManifestJid) JAFactoryLocator.newActor(this, JidFactories.MANIFEST_TYPE, getMailbox());
+        manifestJid.inc(getLocatorKey(), getLocation());
+        return manifestJid;
     }
 }
