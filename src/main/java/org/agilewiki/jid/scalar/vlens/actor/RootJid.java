@@ -23,9 +23,12 @@
  */
 package org.agilewiki.jid.scalar.vlens.actor;
 
+import org.agilewiki.jactor.Actor;
+import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ReadableBytes;
 import org.agilewiki.jid._Jid;
+import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.manifest.ManifestJid;
@@ -37,6 +40,8 @@ import org.agilewiki.jid.manifest.ManifestJid;
  * The load method simply grabs all the remaining data.
  */
 public class RootJid extends ActorJid {
+    protected ManifestJid manifestJid;
+
     /**
      * Save the serialized data into a byte array.
      *
@@ -132,7 +137,25 @@ public class RootJid extends ActorJid {
         return len;
     }
 
-    protected ManifestJid createManifestJid() throws Exception {
-        return (ManifestJid) JAFactoryLocator.newActor(this, JidFactories.MANIFEST_TYPE, getMailbox());
+    @Override
+    public void initialize(final Mailbox mailbox, Actor parent, ActorFactory factory) throws Exception {
+        super.initialize(mailbox, parent, factory);
+        manifestJid = (ManifestJid) JAFactoryLocator.newActor(this, JidFactories.MANIFEST_TYPE, getMailbox());
+        manifestJid.inc(getLocatorKey(), getLocation());
+    }
+
+    @Override
+    public ManifestJid getManifestJid() throws Exception {
+        return manifestJid;
+    }
+
+    @Override
+    public void incRef(String locationKey, String location) throws Exception {
+        manifestJid.inc(locationKey, location);
+    }
+
+    @Override
+    public void decRef(String locationKey) throws Exception {
+        manifestJid.dec(locationKey);
     }
 }

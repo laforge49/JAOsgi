@@ -40,8 +40,6 @@ import java.util.Arrays;
  * Base class for Incremental Deserialization Actors.
  */
 public class Jid extends JLPCActor implements _Jid {
-    protected ManifestJid manifestJid;
-
     /**
      * The factory, or null.
      */
@@ -215,22 +213,20 @@ public class Jid extends JLPCActor implements _Jid {
         }
     }
 
+    protected _Jid getContainerJid() {
+        return containerJid;
+    }
+
     @Override
     public void incRef(String locationKey, String location) throws Exception {
-        if (manifestJid == null) {
-            if (containerJid != null)
+        if (containerJid != null)
                 containerJid.incRef(locationKey, location);
-        } else if (manifestJid.inc(locationKey, location) && containerJid != null)
-            containerJid.incRef(locationKey, location);
     }
 
     @Override
     public void decRef(String locationKey) throws Exception {
-        if (manifestJid == null) {
-            if (containerJid != null)
+        if (containerJid != null)
                 containerJid.decRef(locationKey);
-        } else if (manifestJid.dec(locationKey) && containerJid != null)
-            containerJid.decRef(locationKey);
     }
 
     /**
@@ -410,9 +406,6 @@ public class Jid extends JLPCActor implements _Jid {
             throw new IllegalStateException("already initialized");
         super.initialize(mailbox, parent);
         this.factory = factory;
-        manifestJid = createManifestJid();
-        if (manifestJid != null)
-            manifestJid.inc(getLocatorKey(), getLocation());
     }
 
     /**
@@ -454,11 +447,10 @@ public class Jid extends JLPCActor implements _Jid {
         throw new UnsupportedOperationException();
     }
 
-    protected ManifestJid createManifestJid() throws Exception {
-        return null;
+    protected void createManifestJid() throws Exception {
     }
 
     public ManifestJid getManifestJid() throws Exception {
-        return manifestJid;
+        return null;
     }
 }
