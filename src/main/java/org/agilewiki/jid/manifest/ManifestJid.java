@@ -23,6 +23,7 @@
  */
 package org.agilewiki.jid.manifest;
 
+import org.agilewiki.jid.collection.vlenc.map.MapEntry;
 import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
 import org.agilewiki.jid.collection.vlenc.map.StringMapJidFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
@@ -84,5 +85,20 @@ public class ManifestJid extends StringMapJid<ManifestTupleJid> {
         if (i > -1)
             ij.setValue(i);
         return i == 0;
+    }
+
+    public void addAll(ManifestJid mj) throws Exception {
+        if (mj == null)
+            return;
+        int s = mj.size();
+        int i = 0;
+        while (i < s) {
+            MapEntry<String, ManifestTupleJid> me = mj.iGet(i);
+            String locatorKey = me.getKey();
+            ManifestTupleJid mt = me.getValue();
+            ManifestStringJid locationJid = (ManifestStringJid) mt.iGet(1);
+            inc(locatorKey, locationJid.getValue());
+            i += 1;
+        }
     }
 }
