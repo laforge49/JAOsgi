@@ -30,7 +30,6 @@ import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jid.collection.vlenc.map.MapEntry;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.JAFactoryLocator;
-import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.manifest.ManifestJid;
 import org.agilewiki.jid.manifest.ManifestStringJid;
 import org.agilewiki.jid.manifest.ManifestTupleJid;
@@ -187,15 +186,16 @@ public class Jid extends JLPCActor implements _Jid {
      */
     @Override
     public void setContainerJid(_Jid containerJid) throws Exception {
-        if (manifestJid == null) {
+        ManifestJid mj = getManifestJid();
+        if (mj == null) {
             this.containerJid = containerJid;
             return;
         }
-        int s = manifestJid.size();
+        int s = mj.size();
         if (this.containerJid != null) {
             int i = 0;
             while (i < s) {
-                MapEntry<String, ManifestTupleJid> me = manifestJid.iGet(i);
+                MapEntry<String, ManifestTupleJid> me = mj.iGet(i);
                 String locatorKey = me.getKey();
                 this.containerJid.decRef(locatorKey);
                 i += 1;
@@ -206,7 +206,7 @@ public class Jid extends JLPCActor implements _Jid {
             return;
         int i = 0;
         while (i < s) {
-            MapEntry<String, ManifestTupleJid> me = manifestJid.iGet(i);
+            MapEntry<String, ManifestTupleJid> me = mj.iGet(i);
             String locatorKey = me.getKey();
             ManifestTupleJid mt = me.getValue();
             ManifestStringJid locationJid = (ManifestStringJid) mt.iGet(1);
@@ -217,13 +217,19 @@ public class Jid extends JLPCActor implements _Jid {
 
     @Override
     public void incRef(String locationKey, String location) throws Exception {
-        if (manifestJid.inc(locationKey, location) && containerJid != null)
+        if (manifestJid == null) {
+            if (containerJid != null)
+                containerJid.incRef(locationKey, location);
+        } else if (manifestJid.inc(locationKey, location) && containerJid != null)
             containerJid.incRef(locationKey, location);
     }
 
     @Override
     public void decRef(String locationKey) throws Exception {
-        if (manifestJid.dec(locationKey) && containerJid != null)
+        if (manifestJid == null) {
+            if (containerJid != null)
+                containerJid.decRef(locationKey);
+        } else if (manifestJid.dec(locationKey) && containerJid != null)
             containerJid.decRef(locationKey);
     }
 
@@ -449,6 +455,10 @@ public class Jid extends JLPCActor implements _Jid {
     }
 
     protected ManifestJid createManifestJid() throws Exception {
-        return (ManifestJid) JAFactoryLocator.newActor(this, JidFactories.MANIFEST_TYPE, getMailbox());
+        return null;
+    }
+
+    public ManifestJid getManifestJid() throws Exception {
+        return manifestJid;
     }
 }

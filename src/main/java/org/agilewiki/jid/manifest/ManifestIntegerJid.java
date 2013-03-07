@@ -42,7 +42,7 @@ public class ManifestIntegerJid extends IntegerJid {
     }
 
     @Override
-    protected ManifestJid createManifestJid() throws Exception {
+    public ManifestJid getManifestJid() throws Exception {
         return null;
     }
 }

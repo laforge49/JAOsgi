@@ -26,6 +26,9 @@ package org.agilewiki.jid.scalar.vlens.actor;
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ReadableBytes;
 import org.agilewiki.jid._Jid;
+import org.agilewiki.jid.factory.JAFactoryLocator;
+import org.agilewiki.jid.factory.JidFactories;
+import org.agilewiki.jid.manifest.ManifestJid;
 
 /**
  * The root Jid actor of a tree of Jid actors.
@@ -127,5 +130,9 @@ public class RootJid extends ActorJid {
         if (len == -1)
             return 0;
         return len;
+    }
+
+    protected ManifestJid createManifestJid() throws Exception {
+        return (ManifestJid) JAFactoryLocator.newActor(this, JidFactories.MANIFEST_TYPE, getMailbox());
     }
 }

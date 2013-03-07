@@ -45,7 +45,7 @@ public class ManifestMapEntry<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE>
     }
 
     @Override
-    protected ManifestJid createManifestJid() throws Exception {
+    public ManifestJid getManifestJid() throws Exception {
         return null;
     }
 }
