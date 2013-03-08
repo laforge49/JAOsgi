@@ -53,7 +53,15 @@ public interface _Jid extends TargetActor {
     public void decRef(String locationKey) throws Exception;
 
     /**
-     * Returns the number of bytes needed to serialize the persistent data.
+     * Returns the number of bytes needed to serialize the persistent data, sans manifest.
+     *
+     * @return The minimum size of the byte array needed to serialize the persistent data.
+     */
+    public int _getSerializedLength()
+            throws Exception;
+
+    /**
+     * Returns the total number of bytes needed to serialize the persistent data.
      *
      * @return The minimum size of the byte array needed to serialize the persistent data.
      */

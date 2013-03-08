@@ -56,7 +56,7 @@ abstract public class FLenScalarJid<RESPONSE_TYPE extends Comparable>
     public void load(ReadableBytes readableBytes)
             throws Exception {
         super.load(readableBytes);
-        readableBytes.skip(getSerializedLength());
+        readableBytes.skip(_getSerializedLength());
         value = null;
     }
 

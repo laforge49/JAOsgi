@@ -78,7 +78,7 @@ abstract public class VLenScalarJid<SET_TYPE, RESPONSE_TYPE>
      * @return The minimum size of the byte array needed to serialize the persistent data.
      */
     @Override
-    public int getSerializedLength() {
+    public int _getSerializedLength() {
         if (len == -1)
             return Util.INT_LENGTH;
         return Util.INT_LENGTH + len;

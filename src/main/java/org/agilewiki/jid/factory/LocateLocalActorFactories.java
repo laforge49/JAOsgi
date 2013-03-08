@@ -47,7 +47,7 @@ public abstract class LocateLocalActorFactories extends JLPCActor {
         Hashtable<String, Object> properties = new Hashtable<String, Object>();
         properties.put("LOCATOR_KEY", factoryLocator.getLocatorKey());
         jaBundleContext.registerService(
-                LocateLocalActorFactories.class.getName(),
+                this.getClass(),
                 this,
                 properties);
         return factoryLocator;

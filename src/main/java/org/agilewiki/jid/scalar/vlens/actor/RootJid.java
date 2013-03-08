@@ -129,7 +129,7 @@ public class RootJid extends ActorJid {
      * @return The minimum size of the byte array needed to serialize the persistent data.
      */
     @Override
-    public int getSerializedLength() {
+    public int _getSerializedLength() {
         if (len == -1)
             return 0;
         return len;

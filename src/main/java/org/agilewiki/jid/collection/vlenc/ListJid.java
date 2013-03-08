@@ -84,7 +84,7 @@ public class ListJid<ENTRY_TYPE extends Jid>
      * @return The minimum size of the byte array needed to serialize the persistent data.
      */
     @Override
-    public int getSerializedLength() {
+    public int _getSerializedLength() {
         return Util.INT_LENGTH * 2 + len;
     }
 
@@ -190,8 +190,8 @@ public class ListJid<ENTRY_TYPE extends Jid>
         ENTRY_TYPE oldElementJid = iGet(i);
         oldElementJid.setContainerJid(null);
         list.set(i, elementJid);
-        change(elementJid.getSerializedLength() -
-                oldElementJid.getSerializedLength());
+        change(elementJid._getSerializedLength() -
+                oldElementJid._getSerializedLength());
     }
 
     @Override
@@ -201,7 +201,7 @@ public class ListJid<ENTRY_TYPE extends Jid>
         if (i < 0)
             i = size() + 1 + i;
         ENTRY_TYPE jid = (ENTRY_TYPE) createSubordinate(entryFactory, this, bytes);
-        int c = jid.getSerializedLength();
+        int c = jid._getSerializedLength();
         list.add(i, jid);
         change(c);
     }
@@ -213,7 +213,7 @@ public class ListJid<ENTRY_TYPE extends Jid>
         if (i < 0)
             i = size() + 1 + i;
         ENTRY_TYPE jid = (ENTRY_TYPE) createSubordinate(entryFactory, this);
-        int c = jid.getSerializedLength();
+        int c = jid._getSerializedLength();
         list.add(i, jid);
         change(c);
     }
@@ -227,7 +227,7 @@ public class ListJid<ENTRY_TYPE extends Jid>
         while (i < s) {
             _Jid jid = iGet(i);
             jid.setContainerJid(null);
-            c -= jid.getSerializedLength();
+            c -= jid._getSerializedLength();
             i += 1;
         }
         list.clear();
@@ -244,7 +244,7 @@ public class ListJid<ENTRY_TYPE extends Jid>
             throw new IllegalArgumentException();
         _Jid jid = iGet(i);
         jid.setContainerJid(null);
-        int c = -jid.getSerializedLength();
+        int c = -jid._getSerializedLength();
         list.remove(i);
         change(c);
     }

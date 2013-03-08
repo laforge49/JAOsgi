@@ -63,7 +63,7 @@ public class BooleanJid
      * @return The minimum size of the byte array needed to serialize the persistent data.
      */
     @Override
-    public int getSerializedLength() {
+    public int _getSerializedLength() {
         return Util.BOOLEAN_LENGTH;
     }
 

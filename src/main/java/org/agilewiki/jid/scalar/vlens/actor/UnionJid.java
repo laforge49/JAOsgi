@@ -87,10 +87,10 @@ public class UnionJid extends ScalarJid<String, Jid> implements Clearable, Refer
      * @return The minimum size of the byte array needed to serialize the persistent data.
      */
     @Override
-    public int getSerializedLength() throws Exception {
+    public int _getSerializedLength() throws Exception {
         if (factoryIndex == -1)
             return Util.INT_LENGTH;
-        return Util.INT_LENGTH + value.getSerializedLength();
+        return Util.INT_LENGTH + value._getSerializedLength();
     }
 
     /**
@@ -117,7 +117,7 @@ public class UnionJid extends ScalarJid<String, Jid> implements Clearable, Refer
 
     public void setValue(Integer ndx)
             throws Exception {
-        int oldLength = getSerializedLength();
+        int oldLength = _getSerializedLength();
         if (value != null)
             value.setContainerJid(null);
         if (ndx == -1) {
@@ -129,7 +129,7 @@ public class UnionJid extends ScalarJid<String, Jid> implements Clearable, Refer
             value = (Jid) factory.newActor(getMailbox(), getParent());
             value.setContainerJid(this);
         }
-        change(getSerializedLength() - oldLength);
+        change(_getSerializedLength() - oldLength);
     }
 
     /**
@@ -167,7 +167,7 @@ public class UnionJid extends ScalarJid<String, Jid> implements Clearable, Refer
      */
     public void setUnionBytes(Integer ndx, byte[] bytes)
             throws Exception {
-        int oldLength = getSerializedLength();
+        int oldLength = _getSerializedLength();
         if (value != null)
             value.setContainerJid(null);
         ActorFactory factory = getUnionFactories()[ndx];
@@ -175,7 +175,7 @@ public class UnionJid extends ScalarJid<String, Jid> implements Clearable, Refer
         value = (Jid) factory.newActor(getMailbox(), getParent());
         value.setContainerJid(this);
         value.load(new ReadableBytes(bytes, 0));
-        change(getSerializedLength() - oldLength);
+        change(_getSerializedLength() - oldLength);
     }
 
     /**

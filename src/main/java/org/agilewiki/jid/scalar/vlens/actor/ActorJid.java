@@ -95,7 +95,7 @@ public class ActorJid
     public void setValue(String jidType)
             throws Exception {
         value = createSubordinate(jidType);
-        int l = Util.stringLength(value.getFactory().getDescriptor()) + value.getSerializedLength();
+        int l = Util.stringLength(value.getFactory().getDescriptor()) + value._getSerializedLength();
         change(l);
         serializedBytes = null;
         serializedOffset = -1;
@@ -111,7 +111,7 @@ public class ActorJid
     public void setValue(ActorFactory jidFactory)
             throws Exception {
         value = createSubordinate(jidFactory);
-        int l = Util.stringLength(jidFactory.getDescriptor()) + value.getSerializedLength();
+        int l = Util.stringLength(jidFactory.getDescriptor()) + value._getSerializedLength();
         change(l);
         serializedBytes = null;
         serializedOffset = -1;
@@ -159,7 +159,7 @@ public class ActorJid
     public void setBytes(String jidType, byte[] bytes)
             throws Exception {
         value = createSubordinate(jidType, bytes);
-        int l = Util.stringLength(value.getFactory().getDescriptor()) + value.getSerializedLength();
+        int l = Util.stringLength(value.getFactory().getDescriptor()) + value._getSerializedLength();
         change(l);
         serializedBytes = null;
         serializedOffset = -1;
@@ -207,7 +207,7 @@ public class ActorJid
     public void setBytes(ActorFactory jidFactory, byte[] bytes)
             throws Exception {
         value = createSubordinate(jidFactory, bytes);
-        int l = Util.stringLength(jidFactory.getDescriptor()) + value.getSerializedLength();
+        int l = Util.stringLength(jidFactory.getDescriptor()) + value._getSerializedLength();
         change(l);
         serializedBytes = null;
         serializedOffset = -1;

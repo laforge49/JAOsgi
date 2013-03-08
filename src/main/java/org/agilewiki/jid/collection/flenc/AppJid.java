@@ -72,7 +72,7 @@ public class AppJid extends Jid {
         _Jid oldElementJid = _iGet(i);
         oldElementJid.setContainerJid(null);
         tuple[i] = elementJid;
-        change(elementJid.getSerializedLength() - oldElementJid.getSerializedLength());
+        change(elementJid._getSerializedLength() - oldElementJid._getSerializedLength());
     }
 
     /**
@@ -152,7 +152,7 @@ public class AppJid extends Jid {
         _len = 0;
         while (i < _size()) {
             Jid elementJid = createSubordinate(tupleFactories[i], readableBytes);
-            _len += elementJid.getSerializedLength();
+            _len += elementJid._getSerializedLength();
             tuple[i] = elementJid;
             i += 1;
         }
@@ -192,7 +192,7 @@ public class AppJid extends Jid {
      * @return The minimum size of the byte array needed to serialize the persistent data.
      */
     @Override
-    public int getSerializedLength()
+    public int _getSerializedLength()
             throws Exception {
         _initialize();
         return Util.INT_LENGTH + _len;

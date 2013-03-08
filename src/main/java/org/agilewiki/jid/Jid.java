@@ -240,9 +240,18 @@ public class Jid extends JLPCActor implements _Jid {
      * @return The minimum size of the byte array needed to serialize the persistent data.
      */
     @Override
-    public int getSerializedLength() throws Exception {
+    public int _getSerializedLength() throws Exception {
         return 0;
     }
+
+    @Override
+    public int getSerializedLength() throws Exception {
+        ManifestJid mj = getManifestJid();
+        if (mj == null)
+            return _getSerializedLength();
+        return mj._getSerializedLength() + _getSerializedLength();
+    }
+
 
     /**
      * Returns true when the persistent data is already serialized.
@@ -273,7 +282,7 @@ public class Jid extends JLPCActor implements _Jid {
         if (isSerialized()) {
             byte[] bs = appendableBytes.getBytes();
             int off = appendableBytes.getOffset();
-            appendableBytes.writeBytes(serializedBytes, serializedOffset, getSerializedLength());
+            appendableBytes.writeBytes(serializedBytes, serializedOffset, _getSerializedLength());
             serializedBytes = bs;
             serializedOffset = off;
         } else {
@@ -281,10 +290,10 @@ public class Jid extends JLPCActor implements _Jid {
             serializedOffset = appendableBytes.getOffset();
             serialize(appendableBytes);
         }
-        if (serializedOffset + getSerializedLength() != appendableBytes.getOffset()) {
+        if (serializedOffset + _getSerializedLength() != appendableBytes.getOffset()) {
             System.err.println("\n" + getClass().getName());
             System.err.println("" + serializedOffset +
-                    " + " + getSerializedLength() + " != " + appendableBytes.getOffset());
+                    " + " + _getSerializedLength() + " != " + appendableBytes.getOffset());
             throw new IllegalStateException();
         }
     }
@@ -296,7 +305,7 @@ public class Jid extends JLPCActor implements _Jid {
      */
     public final byte[] getSerializedBytes()
             throws Exception {
-        byte[] bs = new byte[getSerializedLength()];
+        byte[] bs = new byte[_getSerializedLength()];
         AppendableBytes appendableBytes = new AppendableBytes(bs, 0);
         save(appendableBytes);
         return bs;
@@ -354,7 +363,7 @@ public class Jid extends JLPCActor implements _Jid {
         send(jidA, GetSerializedLength.req, new RP<Integer>() {
             @Override
             public void processResponse(Integer response) throws Exception {
-                if (response.intValue() != getSerializedLength()) {
+                if (response.intValue() != _getSerializedLength()) {
                     rp.processResponse(false);
                     return;
                 }
