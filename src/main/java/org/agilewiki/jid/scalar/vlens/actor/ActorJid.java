@@ -25,7 +25,7 @@ package org.agilewiki.jid.scalar.vlens.actor;
 
 import org.agilewiki.jid.*;
 import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jid.manifest.ManifestJid;
+import org.agilewiki.jid.manifest.Manifest;
 import org.agilewiki.jid.scalar.vlens.VLenScalarJid;
 
 /**
@@ -278,12 +278,12 @@ public class ActorJid
     }
 
     @Override
-    public ManifestJid _getManifestJid() throws Exception {
-        ManifestJid manifestJid = super._getManifestJid();
+    public Manifest _getManifest() throws Exception {
+        Manifest manifest = super._getManifest();
         Jid v = getValue();
         if (v == null)
-            return manifestJid;
-        manifestJid.addAll(v.getManifestJid());
-        return manifestJid;
+            return manifest;
+        manifest.incAll(v.getManifest());
+        return manifest;
     }
 }

@@ -23,26 +23,33 @@
  */
 package org.agilewiki.jid.manifest;
 
-import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jid.factory.FactoryLocator;
-import org.agilewiki.jid.factory.JidFactories;
-import org.agilewiki.jid.scalar.vlens.string.StringJid;
+import java.util.Iterator;
+import java.util.TreeMap;
 
-public class ManifestStringJid extends StringJid {
-
-    public static void registerFactory(FactoryLocator factoryLocator)
-            throws Exception {
-        factoryLocator.registerActorFactory(new ActorFactory(JidFactories.MANIFEST_STRING_TYPE) {
-            @Override
-            final protected ManifestStringJid instantiateActor()
-                    throws Exception {
-                return new ManifestStringJid();
-            }
-        });
+public class Manifest extends TreeMap<String, Integer> {
+    public boolean inc(String locatorKey) {
+        int i = 0;
+        if (containsKey(locatorKey))
+            i = get(locatorKey);
+        put(locatorKey, i + 1);
+        return i == 0;
     }
 
-    @Override
-    public Manifest _getManifest() throws Exception {
-        return null;
+    public boolean dec(String locatorKey) {
+        int i = 0;
+        if (containsKey(locatorKey))
+            i = get(locatorKey);
+        if (i > 0)
+            put(locatorKey, i - 1);
+        return i == 0;
+    }
+
+    public void incAll(Manifest manifest) {
+        Iterator<String> it = manifest.keySet().iterator();
+        while (it.hasNext()) {
+            String locatorKey = it.next();
+            if (manifest.get(locatorKey) > 0)
+                inc(locatorKey);
+        }
     }
 }

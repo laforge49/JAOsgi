@@ -25,7 +25,7 @@ package org.agilewiki.jid;
 
 import org.agilewiki.jactor.lpc.TargetActor;
 import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jid.manifest.ManifestJid;
+import org.agilewiki.jid.manifest.Manifest;
 
 /**
  * Incremental Deserialization / Reserialization.
@@ -48,7 +48,7 @@ public interface _Jid extends TargetActor {
      */
     public void setContainerJid(_Jid containerJid) throws Exception;
 
-    public void incRef(String locationKey, String location) throws Exception;
+    public void incRef(String locationKey) throws Exception;
 
     public void decRef(String locationKey) throws Exception;
 
@@ -108,5 +108,5 @@ public interface _Jid extends TargetActor {
      */
     public String getActorType();
 
-    public ManifestJid getManifestJid() throws Exception;
+    public Manifest getManifest() throws Exception;
 }

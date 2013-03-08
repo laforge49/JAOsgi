@@ -147,7 +147,7 @@ public class RootJid extends ActorJid {
     */
 
     @Override
-    public void incRef(String locationKey, String location) throws Exception {
+    public void incRef(String locationKey) throws Exception {
         //manifestJid.inc(locationKey, location);
     }
 

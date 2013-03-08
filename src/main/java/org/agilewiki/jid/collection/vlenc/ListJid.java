@@ -26,7 +26,7 @@ package org.agilewiki.jid.collection.vlenc;
 import org.agilewiki.jid.*;
 import org.agilewiki.jid.collection.CollectionJid;
 import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jid.manifest.ManifestJid;
+import org.agilewiki.jid.manifest.Manifest;
 
 import java.util.ArrayList;
 
@@ -250,16 +250,16 @@ public class ListJid<ENTRY_TYPE extends Jid>
     }
 
     @Override
-    public ManifestJid _getManifestJid() throws Exception {
-        ManifestJid manifestJid = super._getManifestJid();
+    public Manifest _getManifest() throws Exception {
+        Manifest manifest = super._getManifest();
         int s = size();
         int i = 0;
         while (i < s) {
             Jid v = iGet(i);
             if (v != null)
-                manifestJid.addAll(v.getManifestJid());
+                manifest.incAll(v.getManifest());
             i += 1;
         }
-        return manifestJid;
+        return manifest;
     }
 }
