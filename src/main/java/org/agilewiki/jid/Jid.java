@@ -222,13 +222,16 @@ public class Jid extends JLPCActor implements _Jid {
 
     @Override
     public void incRef(String locationKey, String location) throws Exception {
-        manifestJid = null;
+        if (manifestJid != null)
+            manifestJid.inc(locationKey, location);
         if (containerJid != null)
                 containerJid.incRef(locationKey, location);
     }
 
     @Override
     public void decRef(String locationKey) throws Exception {
+        if (manifestJid != null)
+            manifestJid.dec(locationKey);
         manifestJid = null;
         if (containerJid != null)
                 containerJid.decRef(locationKey);

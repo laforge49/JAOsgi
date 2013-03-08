@@ -29,9 +29,6 @@ import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ReadableBytes;
 import org.agilewiki.jid._Jid;
 import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jid.factory.JAFactoryLocator;
-import org.agilewiki.jid.factory.JidFactories;
-import org.agilewiki.jid.manifest.ManifestJid;
 
 /**
  * The root Jid actor of a tree of Jid actors.
@@ -138,22 +135,24 @@ public class RootJid extends ActorJid {
     @Override
     public void initialize(final Mailbox mailbox, Actor parent, ActorFactory factory) throws Exception {
         super.initialize(mailbox, parent, factory);
-        manifestJid = (ManifestJid) JAFactoryLocator.newActor(this, JidFactories.MANIFEST_TYPE, getMailbox());
-        manifestJid.inc(getLocatorKey(), getLocation());
+        //manifestJid = (ManifestJid) JAFactoryLocator.newActor(this, JidFactories.MANIFEST_TYPE, getMailbox());
+       // manifestJid.inc(getLocatorKey(), getLocation());
     }
 
+    /*
     @Override
     public ManifestJid _getManifestJid() throws Exception {
         return manifestJid;
     }
+    */
 
     @Override
     public void incRef(String locationKey, String location) throws Exception {
-        manifestJid.inc(locationKey, location);
+        //manifestJid.inc(locationKey, location);
     }
 
     @Override
     public void decRef(String locationKey) throws Exception {
-        manifestJid.dec(locationKey);
+        //manifestJid.dec(locationKey);
     }
 }
