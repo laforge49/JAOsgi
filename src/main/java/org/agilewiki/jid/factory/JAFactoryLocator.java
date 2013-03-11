@@ -217,8 +217,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
             throws Exception {
         String factoryKey = null;
         if (actorType.contains("|")) {
-            int i = actorType.lastIndexOf('|');
-            factoryKey = actorType.substring(0, i);
+            factoryKey = actorType;
         } else {
             factoryKey = actorType + "|" + bundleName + "|" + version;
         }

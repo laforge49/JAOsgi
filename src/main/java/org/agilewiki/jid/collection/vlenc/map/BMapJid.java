@@ -115,14 +115,14 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
         return (MapJid) getUnionJid().getValue();
     }
 
-    public String getNodeDescriptor()
+    public String getNodeFactoryKey()
             throws Exception {
-        return getNode().getFactory().getDescriptor();
+        return getNode().getFactory().getFactoryKey();
     }
 
     public boolean isLeaf()
             throws Exception {
-        return getNodeDescriptor().startsWith("LM.");
+        return getNodeFactoryKey().startsWith("LM.");
     }
 
     public int nodeSize()

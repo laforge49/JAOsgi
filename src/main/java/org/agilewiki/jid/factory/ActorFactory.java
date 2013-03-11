@@ -33,7 +33,6 @@ import org.agilewiki.jid.Jid;
  */
 abstract public class ActorFactory {
     private String factoryKey;
-    private String descriptor;
 
     /**
      * The actor type.
@@ -43,12 +42,6 @@ abstract public class ActorFactory {
 
     public void configure(JAFactoryLocator factoryLocator) {
         this.factoryLocator = factoryLocator;
-    }
-
-    public String getDescriptor() {
-        if (descriptor == null)
-            descriptor = getFactoryKey() + "|" + factoryLocator.getLocation();
-        return descriptor;
     }
 
     public String getFactoryKey() {

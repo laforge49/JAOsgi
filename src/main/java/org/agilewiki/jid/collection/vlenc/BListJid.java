@@ -110,14 +110,14 @@ public class BListJid<ENTRY_TYPE extends Jid>
         return (ListJid) getUnionJid().getValue();
     }
 
-    public String getNodeDescriptor()
+    public String getNodeFactoryKey()
             throws Exception {
-        return getNode().getFactory().getDescriptor();
+        return getNode().getFactory().getFactoryKey();
     }
 
     public boolean isLeaf()
             throws Exception {
-        return getNodeDescriptor().startsWith("LL.");
+        return getNodeFactoryKey().startsWith("LL.");
     }
 
     public int nodeSize()

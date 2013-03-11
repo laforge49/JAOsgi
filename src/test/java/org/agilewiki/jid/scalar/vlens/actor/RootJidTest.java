@@ -66,7 +66,7 @@ public class RootJidTest extends TestCase {
             sl = GetSerializedLength.req.send(future, jidJid2a);
             assertEquals(0, sl);
             sl = GetSerializedLength.req.send(future, rootJid2);
-            assertEquals(50, sl);
+            assertEquals(48, sl);
             rpa = (new ResolvePathname("")).send(future, rootJid2);
             assertNotNull(rpa);
             assertEquals(rpa, rootJid2);
@@ -81,7 +81,7 @@ public class RootJidTest extends TestCase {
             assertNull(jidJid2a);
             assertNotNull(rootJid22);
             sl = GetSerializedLength.req.send(future, rootJid22);
-            assertEquals(50, sl);
+            assertEquals(48, sl);
             rpa = (new ResolvePathname("")).send(future, rootJid22);
             assertNotNull(rpa);
             assertEquals(rpa, rootJid22);
