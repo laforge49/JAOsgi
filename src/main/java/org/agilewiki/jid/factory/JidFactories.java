@@ -30,7 +30,6 @@ import org.agilewiki.jid.collection.vlenc.ListJidFactory;
 import org.agilewiki.jid.collection.vlenc.map.*;
 import org.agilewiki.jid.jaosgi.JABCNoOsgiImpl;
 import org.agilewiki.jid.jaosgi.JABundleContext;
-import org.agilewiki.jid.manifest.ManifestJid;
 import org.agilewiki.jid.scalar.flens.bool.BooleanJidFactory;
 import org.agilewiki.jid.scalar.flens.dbl.DoubleJidFactory;
 import org.agilewiki.jid.scalar.flens.flt.FloatJidFactory;
@@ -60,8 +59,6 @@ final public class JidFactories extends LocateLocalActorFactories {
         jidFactories.initialize(mailboxFactory.createAsyncMailbox(), jaBundleContext);
         return jidFactories.configure();
     }
-
-    public final static String MANIFEST_TYPE = "MANIFEST";
 
     /**
      * The name of the JID actor.
@@ -435,8 +432,6 @@ final public class JidFactories extends LocateLocalActorFactories {
 
     public JAFactoryLocator configure() throws Exception {
         JAFactoryLocator factoryLocator = configure("org.agilewiki.jid");
-
-        ManifestJid.registerFactory(factoryLocator);
 
         JidFactory.registerFactory(factoryLocator);
 
