@@ -26,7 +26,6 @@ package org.agilewiki.jid.collection.flenc;
 import org.agilewiki.jid.*;
 import org.agilewiki.jid.collection.CollectionJid;
 import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jid.manifest.Manifest;
 
 /**
  * Holds a fixed-size array of JID actors of various types.
@@ -180,19 +179,5 @@ public class TupleJid
             throws Exception {
         ComparableKey<Object> e0 = (ComparableKey<Object>) iGet(0);
         return e0.compareKeyTo(o);
-    }
-
-    @Override
-    public Manifest _getManifest() throws Exception {
-        Manifest manifest = super._getManifest();
-        int s = size();
-        int i = 0;
-        while (i < s) {
-            Jid v = iGet(i);
-            if (v != null)
-                manifest.incAll(v.getManifest());
-            i += 1;
-        }
-        return manifest;
     }
 }

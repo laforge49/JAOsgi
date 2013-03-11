@@ -30,9 +30,7 @@ import org.agilewiki.jid.collection.vlenc.ListJidFactory;
 import org.agilewiki.jid.collection.vlenc.map.*;
 import org.agilewiki.jid.jaosgi.JABCNoOsgiImpl;
 import org.agilewiki.jid.jaosgi.JABundleContext;
-import org.agilewiki.jid.manifest.ManifestIntegerJid;
 import org.agilewiki.jid.manifest.ManifestJid;
-import org.agilewiki.jid.manifest.ManifestStringJid;
 import org.agilewiki.jid.scalar.flens.bool.BooleanJidFactory;
 import org.agilewiki.jid.scalar.flens.dbl.DoubleJidFactory;
 import org.agilewiki.jid.scalar.flens.flt.FloatJidFactory;
@@ -64,8 +62,6 @@ final public class JidFactories extends LocateLocalActorFactories {
     }
 
     public final static String MANIFEST_TYPE = "MANIFEST";
-    public final static String MANIFEST_INTEGER_TYPE = "MANIFEST_INTEGER";
-    public final static String MANIFEST_STRING_TYPE = "MANIFEST_STRING";
 
     /**
      * The name of the JID actor.
@@ -441,8 +437,6 @@ final public class JidFactories extends LocateLocalActorFactories {
         JAFactoryLocator factoryLocator = configure("org.agilewiki.jid");
 
         ManifestJid.registerFactory(factoryLocator);
-        ManifestIntegerJid.registerFactory(factoryLocator);
-        ManifestStringJid.registerFactory(factoryLocator);
 
         JidFactory.registerFactory(factoryLocator);
 

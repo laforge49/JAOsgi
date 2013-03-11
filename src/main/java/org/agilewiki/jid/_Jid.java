@@ -25,7 +25,6 @@ package org.agilewiki.jid;
 
 import org.agilewiki.jactor.lpc.TargetActor;
 import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jid.manifest.Manifest;
 
 /**
  * Incremental Deserialization / Reserialization.
@@ -107,6 +106,4 @@ public interface _Jid extends TargetActor {
      * @return The actor type, or null.
      */
     public String getActorType();
-
-    public Manifest getManifest() throws Exception;
 }

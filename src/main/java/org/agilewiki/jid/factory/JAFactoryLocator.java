@@ -116,6 +116,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
     private String bundleName = "";
     private String version = "";
     private String location = "";
+    private String locatorKey;
 
     /**
      * A table which maps type names to actor factories.
@@ -145,7 +146,9 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
     }
 
     public String getLocatorKey() {
-        return bundleName + "|" + getVersion();
+        if (locatorKey == null)
+            locatorKey = bundleName + "|" + getVersion();
+        return locatorKey;
     }
 
     public void importFactories(LocateLocalActorFactories locateLocalActorFactories) {

@@ -32,6 +32,9 @@ import org.agilewiki.jid.Jid;
  * Creates a JLPCActor.
  */
 abstract public class ActorFactory {
+    private String factoryKey;
+    private String descriptor;
+
     /**
      * The actor type.
      */
@@ -43,11 +46,15 @@ abstract public class ActorFactory {
     }
 
     public String getDescriptor() {
-        return getFactoryKey() + "|" + factoryLocator.getLocation();
+        if (descriptor == null)
+            descriptor = getFactoryKey() + "|" + factoryLocator.getLocation();
+        return descriptor;
     }
 
     public String getFactoryKey() {
-        return actorType + "|" + getLocatorKey();
+        if (factoryKey == null)
+            factoryKey = actorType + "|" + getLocatorKey();
+        return factoryKey;
     }
 
     public String getLocatorKey() {

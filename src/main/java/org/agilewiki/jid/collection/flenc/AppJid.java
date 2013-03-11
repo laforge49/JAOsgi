@@ -25,7 +25,6 @@ package org.agilewiki.jid.collection.flenc;
 
 import org.agilewiki.jid.*;
 import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jid.manifest.Manifest;
 
 /**
  * A base class for applications, AppJid provides a durable tuple without an external interface.
@@ -239,19 +238,5 @@ public class AppJid extends Jid {
             throws Exception {
         _len += lengthChange;
         super.change(lengthChange);
-    }
-
-    @Override
-    public Manifest _getManifest() throws Exception {
-        Manifest manifest = super._getManifest();
-        int s = _size();
-        int i = 0;
-        while (i < s) {
-            _Jid v = _iGet(i);
-            if (v != null)
-                manifest.incAll(v.getManifest());
-            i += 1;
-        }
-        return manifest;
     }
 }

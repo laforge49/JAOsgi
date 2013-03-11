@@ -25,7 +25,6 @@ package org.agilewiki.jid.scalar.vlens.actor;
 
 import org.agilewiki.jid.*;
 import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jid.manifest.Manifest;
 import org.agilewiki.jid.scalar.vlens.VLenScalarJid;
 
 /**
@@ -275,15 +274,5 @@ public class ActorJid
             return v.resolvePathname(pathname.substring(2));
         }
         throw new IllegalArgumentException("pathname " + pathname);
-    }
-
-    @Override
-    public Manifest _getManifest() throws Exception {
-        Manifest manifest = super._getManifest();
-        Jid v = getValue();
-        if (v == null)
-            return manifest;
-        manifest.incAll(v.getManifest());
-        return manifest;
     }
 }

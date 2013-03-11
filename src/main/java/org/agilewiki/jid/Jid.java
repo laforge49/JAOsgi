@@ -29,17 +29,13 @@ import org.agilewiki.jactor.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.JAFactoryLocator;
-import org.agilewiki.jid.manifest.Manifest;
 
 import java.util.Arrays;
-import java.util.Iterator;
 
 /**
  * Base class for Incremental Deserialization Actors.
  */
 public class Jid extends JLPCActor implements _Jid {
-    protected Manifest manifest;
-
     /**
      * The factory, or null.
      */
@@ -184,45 +180,17 @@ public class Jid extends JLPCActor implements _Jid {
      */
     @Override
     public void setContainerJid(_Jid containerJid) throws Exception {
-        Manifest m = getManifest();
-        if (m == null) {
-            this.containerJid = containerJid;
-            return;
-        }
-        if (this.containerJid != null) {
-            Iterator<String> it = m.keySet().iterator();
-            while (it.hasNext()) {
-                String locatorKey = it.next();
-                int i = m.get(locatorKey);
-                if (i > 0)
-                    this.containerJid.decRef(locatorKey);
-            }
-        }
         this.containerJid = containerJid;
-        if (containerJid == null)
-            return;
-        Iterator<String> it = m.keySet().iterator();
-        while (it.hasNext()) {
-            String locatorKey = it.next();
-            int i = m.get(locatorKey);
-            if (i > 0)
-                containerJid.incRef(locatorKey);
-        }
     }
 
     @Override
     public void incRef(String locationKey) throws Exception {
-        if (manifest != null)
-            manifest.inc(locationKey);
         if (containerJid != null)
                 containerJid.incRef(locationKey);
     }
 
     @Override
     public void decRef(String locationKey) throws Exception {
-        if (manifest != null)
-            manifest.dec(locationKey);
-        manifest = null;
         if (containerJid != null)
                 containerJid.decRef(locationKey);
     }
@@ -457,17 +425,5 @@ public class Jid extends JLPCActor implements _Jid {
     }
 
     protected void createManifestJid() throws Exception {
-    }
-
-    public final Manifest getManifest() throws Exception {
-        if (manifest == null)
-            manifest = _getManifest();
-        return manifest;
-    }
-
-    public Manifest _getManifest() throws Exception {
-        Manifest manifest = new Manifest();
-        manifest.inc(getLocatorKey());
-        return manifest;
     }
 }

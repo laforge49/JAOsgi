@@ -27,7 +27,6 @@ import org.agilewiki.jid.*;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JAFactoryLocator;
-import org.agilewiki.jid.manifest.Manifest;
 import org.agilewiki.jid.scalar.Clearable;
 import org.agilewiki.jid.scalar.ScalarJid;
 
@@ -295,22 +294,5 @@ public class UnionJid extends ScalarJid<String, Jid> implements Clearable, Refer
             return v.resolvePathname(pathname.substring(2));
         }
         throw new IllegalArgumentException("pathname " + pathname);
-    }
-
-    @Override
-    public Manifest _getManifest() throws Exception {
-        Manifest manifest = super._getManifest();
-        int s = unionFactories.length;
-        int i = 0;
-        while (i < s) {
-            ActorFactory af = unionFactories[i];
-            manifest.inc(af.getLocatorKey());
-            i += 1;
-        }
-        Jid v = getValue();
-        if (v == null)
-            return manifest;
-        manifest.incAll(v.getManifest());
-        return manifest;
     }
 }

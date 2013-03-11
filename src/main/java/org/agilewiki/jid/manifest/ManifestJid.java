@@ -23,26 +23,31 @@
  */
 package org.agilewiki.jid.manifest;
 
+import org.agilewiki.jid.collection.flenc.TupleJid;
+import org.agilewiki.jid.collection.flenc.TupleJidFactory;
 import org.agilewiki.jid.collection.vlenc.map.MapEntry;
+import org.agilewiki.jid.collection.vlenc.map.MapEntryFactory;
 import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
 import org.agilewiki.jid.collection.vlenc.map.StringMapJidFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
+import org.agilewiki.jid.scalar.flens.integer.IntegerJid;
+import org.agilewiki.jid.scalar.vlens.string.StringJid;
 
-public class ManifestJid extends StringMapJid<ManifestTupleJid> {
+public class ManifestJid extends StringMapJid<TupleJid> {
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        ManifestTupleJid.registerFactory(
+        TupleJidFactory.registerFactory(
                 factoryLocator,
                 "T." + JidFactories.MANIFEST_TYPE,
-                JidFactories.MANIFEST_INTEGER_TYPE,
-                JidFactories.MANIFEST_STRING_TYPE);
+                JidFactories.INTEGER_JID_TYPE,
+                JidFactories.STRING_JID_TYPE);
 
-        ManifestMapEntry.registerFactory(
+        MapEntryFactory.registerFactory(
                 factoryLocator,
                 "E." + JidFactories.MANIFEST_TYPE,
-                JidFactories.MANIFEST_STRING_TYPE,
+                JidFactories.STRING_JID_TYPE,
                 "T." + JidFactories.MANIFEST_TYPE);
 
         factoryLocator.registerActorFactory(new StringMapJidFactory(
@@ -55,20 +60,15 @@ public class ManifestJid extends StringMapJid<ManifestTupleJid> {
         });
     }
 
-    @Override
-    public Manifest _getManifest() throws Exception {
-        return null;
-    }
-
     /**
      * Returns true if first usage.
      */
     public boolean inc(String locatorKey, String location) throws Exception {
         boolean rv = kMake(locatorKey);
-        ManifestTupleJid tj = kGet(locatorKey);
-        ManifestStringJid sj = (ManifestStringJid) tj.iGet(1);
+        TupleJid tj = kGet(locatorKey);
+        StringJid sj = (StringJid) tj.iGet(1);
         sj.setValue(location);
-        ManifestIntegerJid ij = (ManifestIntegerJid) tj.iGet(0);
+        IntegerJid ij = (IntegerJid) tj.iGet(0);
         int i = ij.getValue();
         ij.setValue(i + 1);
         return i == 0;
@@ -79,8 +79,8 @@ public class ManifestJid extends StringMapJid<ManifestTupleJid> {
      */
     public boolean dec(String locatorKey) throws Exception {
         boolean rv = kMake(locatorKey);
-        ManifestTupleJid tj = kGet(locatorKey);
-        ManifestIntegerJid ij = (ManifestIntegerJid) tj.iGet(0);
+        TupleJid tj = kGet(locatorKey);
+        IntegerJid ij = (IntegerJid) tj.iGet(0);
         int i = ij.getValue() - 1;
         if (i > -1)
             ij.setValue(i);
@@ -93,10 +93,10 @@ public class ManifestJid extends StringMapJid<ManifestTupleJid> {
         int s = mj.size();
         int i = 0;
         while (i < s) {
-            MapEntry<String, ManifestTupleJid> me = mj.iGet(i);
+            MapEntry<String, TupleJid> me = mj.iGet(i);
             String locatorKey = me.getKey();
-            ManifestTupleJid mt = me.getValue();
-            ManifestStringJid locationJid = (ManifestStringJid) mt.iGet(1);
+            TupleJid mt = me.getValue();
+            StringJid locationJid = (StringJid) mt.iGet(1);
             inc(locatorKey, locationJid.getValue());
             i += 1;
         }

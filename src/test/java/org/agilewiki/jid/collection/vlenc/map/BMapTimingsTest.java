@@ -9,7 +9,7 @@ import org.agilewiki.jid.scalar.flens.integer.IntegerJid;
 public class BMapTimingsTest extends TestCase {
     public void test1() throws Exception {
 
-        int s = 10000;
+        int s = 1000;
         int r = 1000;
 
         //map size = 10000
