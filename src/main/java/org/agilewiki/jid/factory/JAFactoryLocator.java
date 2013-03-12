@@ -193,6 +193,12 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
         }
     }
 
+    public boolean validateManifest(ConcurrentSkipListMap<String, String> m) {
+        m = new ConcurrentSkipListMap<String, String>(m);
+        unknownManifestEntries(m);
+        return m.isEmpty();
+    }
+
     /**
      * Creates a new actor.
      *
