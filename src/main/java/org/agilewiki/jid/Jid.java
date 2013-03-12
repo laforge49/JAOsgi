@@ -195,11 +195,6 @@ public class Jid extends JLPCActor implements _Jid {
 
     @Override
     public int getSerializedLength() throws Exception {
-        /*
-        ManifestJid mj = getManifestJid();
-        if (mj == null)
-            return _getSerializedLength();
-        */
         return /*mj._getSerializedLength() +*/ _getSerializedLength();
     }
 
@@ -410,8 +405,5 @@ public class Jid extends JLPCActor implements _Jid {
     @Override
     public void initialize(final Mailbox mailbox, Actor parent) throws Exception {
         throw new UnsupportedOperationException();
-    }
-
-    protected void createManifestJid() throws Exception {
     }
 }

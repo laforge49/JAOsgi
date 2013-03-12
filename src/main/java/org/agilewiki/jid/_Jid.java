@@ -48,7 +48,7 @@ public interface _Jid extends TargetActor {
     public void setContainerJid(_Jid containerJid) throws Exception;
 
     /**
-     * Returns the number of bytes needed to serialize the persistent data, sans manifest.
+     * Returns the number of bytes needed to serialize the persistent data.
      *
      * @return The minimum size of the byte array needed to serialize the persistent data.
      */
