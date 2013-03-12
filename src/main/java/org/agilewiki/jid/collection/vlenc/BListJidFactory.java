@@ -83,7 +83,7 @@ public class BListJidFactory extends ActorFactory {
      * @param parent  The parent of the new actor.
      * @return The new actor.
      */
-    public JLPCActor newActor(Mailbox mailbox, Actor parent)
+    public BListJid newActor(Mailbox mailbox, Actor parent)
             throws Exception {
         BListJid lj = (BListJid) super.newActor(mailbox, parent);
         FactoryLocator f = (FactoryLocator) parent.getMatch(FactoryLocator.class);

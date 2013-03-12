@@ -89,7 +89,7 @@ public class LongBMapJidFactory extends ActorFactory {
      * @param parent  The parent of the new actor.
      * @return The new actor.
      */
-    public JLPCActor newActor(Mailbox mailbox, Actor parent)
+    public LongBMapJid newActor(Mailbox mailbox, Actor parent)
             throws Exception {
         LongBMapJid imj = (LongBMapJid) super.newActor(mailbox, parent);
         FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);

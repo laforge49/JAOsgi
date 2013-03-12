@@ -89,7 +89,7 @@ public class IntegerBMapJidFactory extends ActorFactory {
      * @param parent  The parent of the new actor.
      * @return The new actor.
      */
-    public JLPCActor newActor(Mailbox mailbox, Actor parent)
+    public IntegerBMapJid newActor(Mailbox mailbox, Actor parent)
             throws Exception {
         IntegerBMapJid imj = (IntegerBMapJid) super.newActor(mailbox, parent);
         FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);

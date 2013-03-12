@@ -82,7 +82,7 @@ abstract public class ActorFactory {
      * @param parent  The parent of the new actor.
      * @return The new actor.
      */
-    public JLPCActor newActor(Mailbox mailbox, Actor parent)
+    public Jid newActor(Mailbox mailbox, Actor parent)
             throws Exception {
         Jid a = (Jid) instantiateActor();
         a.initialize(mailbox, parent, this);

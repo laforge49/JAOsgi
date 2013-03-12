@@ -83,7 +83,7 @@ public class ListJidFactory extends ActorFactory {
      * @param parent  The parent of the new actor.
      * @return The new actor.
      */
-    public JLPCActor newActor(Mailbox mailbox, Actor parent)
+    public ListJid newActor(Mailbox mailbox, Actor parent)
             throws Exception {
         ListJid lj = (ListJid) super.newActor(mailbox, parent);
         FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);

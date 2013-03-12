@@ -25,7 +25,6 @@ package org.agilewiki.jid.collection.flenc;
 
 import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.Mailbox;
-import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 
@@ -70,7 +69,7 @@ public class TupleJidFactory extends ActorFactory {
      * @param parent  The parent of the new actor.
      * @return The new actor.
      */
-    public JLPCActor newActor(Mailbox mailbox, Actor parent)
+    public TupleJid newActor(Mailbox mailbox, Actor parent)
             throws Exception {
         TupleJid tj = (TupleJid) super.newActor(mailbox, parent);
         FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
