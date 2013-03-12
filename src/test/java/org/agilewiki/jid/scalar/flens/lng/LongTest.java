@@ -17,7 +17,7 @@ public class LongTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            LongJid long1 = (LongJid) factoryLocator.newActor(JidFactories.LONG_JID_TYPE);
+            LongJid long1 = (LongJid) factoryLocator.newJid(JidFactories.LONG_JID_TYPE);
             LongJid long2 = (LongJid) (new CopyJID()).send(future, long1);
             (new SetLong(1L)).send(future, long2);
             LongJid float3 = (LongJid) (new CopyJID()).send(future, long2);
@@ -36,7 +36,7 @@ public class LongTest extends TestCase {
             v = GetLong.req.send(future, float3);
             assertEquals(1L, v);
 
-            Actor jidJid1 = factoryLocator.newActor(JidFactories.ACTOR_JID_TYPE);
+            Actor jidJid1 = factoryLocator.newJid(JidFactories.ACTOR_JID_TYPE);
             SetActor sjvl = new SetActor(JidFactories.LONG_JID_TYPE);
             sjvl.send(future, jidJid1);
             LongJid rpa = (LongJid) (new ResolvePathname("0")).send(future, jidJid1);

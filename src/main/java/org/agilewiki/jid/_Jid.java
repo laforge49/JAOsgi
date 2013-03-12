@@ -101,9 +101,9 @@ public interface _Jid extends TargetActor {
     public ActorFactory getFactory();
 
     /**
-     * Returns the actor type.
+     * Returns the jid type.
      *
-     * @return The actor type, or null.
+     * @return The jid type, or null.
      */
-    public String getActorType();
+    public String getJidType();
 }

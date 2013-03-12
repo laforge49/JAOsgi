@@ -24,7 +24,7 @@ public class BooleanDAppender extends JLPCActor {
         while (j < repeat) {
             ReadableBytes rb = new ReadableBytes(bytes, 0);
             ListJid blj = (ListJid) JAFactoryLocator.
-                    newActor(this, JidFactories.STRING_LIST_JID_TYPE, getMailbox(), getParent());
+                    newJid(this, JidFactories.STRING_LIST_JID_TYPE, getMailbox(), getParent());
             blj.load(rb);
             j += 1;
         }

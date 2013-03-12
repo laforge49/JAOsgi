@@ -21,7 +21,7 @@ public class ActorJidTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            ActorJidFactory actorJidAFactory = (ActorJidFactory) factoryLocator.getActorFactory(JidFactories.ACTOR_JID_TYPE);
+            ActorJidFactory actorJidAFactory = (ActorJidFactory) factoryLocator.getJidFactory(JidFactories.ACTOR_JID_TYPE);
             Actor jidJid1 = actorJidAFactory.newActor(factoryLocator.getMailbox(), factoryLocator);
             int sl = GetSerializedLength.req.send(future, jidJid1);
             assertEquals(4, sl);
@@ -45,7 +45,7 @@ public class ActorJidTest extends TestCase {
             rpa = (new ResolvePathname("0")).send(future, jidJid11);
             assertNull(rpa);
 
-            ActorFactory stringJidAFactory = factoryLocator.getActorFactory(JidFactories.STRING_JID_TYPE);
+            ActorFactory stringJidAFactory = factoryLocator.getJidFactory(JidFactories.STRING_JID_TYPE);
             Actor string1 = stringJidAFactory.newActor(factoryLocator.getMailbox(), factoryLocator);
             (new SetString("abc")).send(future, string1);
             byte[] sb = GetSerializedBytes.req.send(future, string1);
@@ -53,7 +53,7 @@ public class ActorJidTest extends TestCase {
             Actor sj = GetActor.req.send(future, jidJid1);
             assertEquals("abc", GetString.req.send(future, sj));
 
-            Actor jidJid2 = factoryLocator.newActor(JidFactories.ACTOR_JID_TYPE);
+            Actor jidJid2 = factoryLocator.newJid(JidFactories.ACTOR_JID_TYPE);
             sl = GetSerializedLength.req.send(future, jidJid2);
             assertEquals(4, sl);
 
@@ -91,7 +91,7 @@ public class ActorJidTest extends TestCase {
             sl = GetSerializedLength.req.send(future, rpa);
             assertEquals(0, sl);
 
-            Actor jidJid3 = factoryLocator.newActor(JidFactories.ACTOR_JID_TYPE);
+            Actor jidJid3 = factoryLocator.newJid(JidFactories.ACTOR_JID_TYPE);
             sl = GetSerializedLength.req.send(future, jidJid3);
             assertEquals(4, sl);
             MakeActor mjvjj = new MakeActor(JidFactories.ACTOR_JID_TYPE);

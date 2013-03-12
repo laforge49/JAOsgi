@@ -75,7 +75,7 @@ public class Jid extends JLPCActor implements _Jid {
 
     final public Jid createSubordinate(String actorType, Actor parent)
             throws Exception {
-        Jid jid = (Jid) JAFactoryLocator.newActor(this, actorType, getMailbox(), parent);
+        Jid jid = (Jid) JAFactoryLocator.newJid(this, actorType, getMailbox(), parent);
         jid.setContainerJid(this);
         return jid;
     }
@@ -104,7 +104,7 @@ public class Jid extends JLPCActor implements _Jid {
             throws Exception {
         if (bytes == null)
             return createSubordinate(actorType, parent);
-        Jid jid = (Jid) JAFactoryLocator.newActor(this, actorType, getMailbox(), parent);
+        Jid jid = (Jid) JAFactoryLocator.newJid(this, actorType, getMailbox(), parent);
         jid.load(new ReadableBytes(bytes, 0));
         jid.setContainerJid(this);
         return jid;
@@ -131,7 +131,7 @@ public class Jid extends JLPCActor implements _Jid {
 
     final public Jid createSubordinate(String actorType, Actor parent, ReadableBytes readableBytes)
             throws Exception {
-        Jid jid = (Jid) JAFactoryLocator.newActor(this, actorType, getMailbox(), parent);
+        Jid jid = (Jid) JAFactoryLocator.newJid(this, actorType, getMailbox(), parent);
         if (readableBytes != null)
             jid.load(readableBytes);
         jid.setContainerJid(this);
@@ -186,13 +186,13 @@ public class Jid extends JLPCActor implements _Jid {
     @Override
     public void incRef(String locationKey) throws Exception {
         if (containerJid != null)
-                containerJid.incRef(locationKey);
+            containerJid.incRef(locationKey);
     }
 
     @Override
     public void decRef(String locationKey) throws Exception {
         if (containerJid != null)
-                containerJid.decRef(locationKey);
+            containerJid.decRef(locationKey);
     }
 
     /**
@@ -352,15 +352,15 @@ public class Jid extends JLPCActor implements _Jid {
     }
 
     /**
-     * Returns the actor type.
+     * Returns the jid type.
      *
-     * @return The actor type, or null.
+     * @return The jid type, or null.
      */
     @Override
-    final public String getActorType() {
+    final public String getJidType() {
         if (factory == null)
             return null;
-        return factory.actorType;
+        return factory.jidType;
     }
 
     final public String getLocatorKey() {

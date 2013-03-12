@@ -14,7 +14,7 @@ public class StringStringMapJidTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            Actor m = factoryLocator.newActor(JidFactories.STRING_STRING_MAP_JID_TYPE);
+            Actor m = factoryLocator.newJid(JidFactories.STRING_STRING_MAP_JID_TYPE);
             assertNull(new KGet<String, StringJid>("a").send(future, m));
             assertTrue(new KMake<String, StringJid>("b").send(future, m));
             assertNull(new KGet<String, StringJid>("a").send(future, m));

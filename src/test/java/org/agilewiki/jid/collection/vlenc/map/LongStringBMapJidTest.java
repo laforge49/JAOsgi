@@ -12,7 +12,7 @@ public class LongStringBMapJidTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
             BMapJid<Long, StringJid> m = (BMapJid) factoryLocator.
-                    newActor(JidFactories.LONG_STRING_BMAP_JID_TYPE);
+                    newJid(JidFactories.LONG_STRING_BMAP_JID_TYPE);
             assertEquals(0, m.size());
             assertTrue(m.kMake(1L));
             assertFalse(m.kMake(1L));

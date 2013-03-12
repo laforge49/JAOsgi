@@ -13,7 +13,7 @@ import org.agilewiki.jid.scalar.vlens.actor.ActorJid;
 public class Blob extends StringMapJid implements Main {
 
     public static void register(FactoryLocator factoryLocator) throws Exception {
-        factoryLocator.registerActorFactory(new BlobFactory("blob"));
+        factoryLocator.registerJidFactory(new BlobFactory("blob"));
         MapEntryFactory.registerFactory(factoryLocator,
                 "E.blob", JidFactories.STRING_JID_TYPE, JidFactories.ACTOR_JID_TYPE);
     }
@@ -33,7 +33,7 @@ public class Blob extends StringMapJid implements Main {
         public Blob newActor(Mailbox mailbox, Actor parent) throws Exception {
             Blob blob = (Blob) super.newActor(mailbox, parent);
             FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
-            blob.valueFactory = fl.getActorFactory(JidFactories.ACTOR_JID_TYPE);
+            blob.valueFactory = fl.getJidFactory(JidFactories.ACTOR_JID_TYPE);
             return blob;
         }
     }

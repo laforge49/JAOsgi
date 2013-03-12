@@ -7,7 +7,7 @@ import org.agilewiki.jid.scalar.flens.integer.IntegerJid;
 public class LuckyNumber extends IntegerJid implements Main {
 
     public static void register(FactoryLocator factoryLocator) throws Exception {
-        factoryLocator.defineActorType("lucky number", LuckyNumber.class);
+        factoryLocator.defineJidType("lucky number", LuckyNumber.class);
     }
 
     @Override

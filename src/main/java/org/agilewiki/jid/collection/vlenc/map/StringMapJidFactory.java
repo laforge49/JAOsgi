@@ -48,7 +48,7 @@ public class StringMapJidFactory extends ActorFactory {
             throws Exception {
         MapEntryFactory.registerFactory(factoryLocator,
                 "E." + actorType, JidFactories.STRING_JID_TYPE, valueType);
-        factoryLocator.registerActorFactory(new StringMapJidFactory(
+        factoryLocator.registerJidFactory(new StringMapJidFactory(
                 actorType, valueType, initialCapacity));
     }
 
@@ -58,12 +58,12 @@ public class StringMapJidFactory extends ActorFactory {
     /**
      * Create an ActorFactory.
      *
-     * @param actorType       The actor type.
+     * @param jidType         The jid type.
      * @param valueType       The value type.
      * @param initialCapacity The initial capacity.
      */
-    protected StringMapJidFactory(String actorType, String valueType, int initialCapacity) {
-        super(actorType);
+    protected StringMapJidFactory(String jidType, String valueType, int initialCapacity) {
+        super(jidType);
         this.valueType = valueType;
         this.initialCapacity = initialCapacity;
     }
@@ -90,7 +90,7 @@ public class StringMapJidFactory extends ActorFactory {
             throws Exception {
         StringMapJid imj = (StringMapJid) super.newActor(mailbox, parent);
         FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
-        imj.valueFactory = fl.getActorFactory(valueType);
+        imj.valueFactory = fl.getJidFactory(valueType);
         imj.initialCapacity = initialCapacity;
         return imj;
     }

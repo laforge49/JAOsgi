@@ -22,7 +22,7 @@ public class BlobTest extends TestCase {
         Blob.register(factoryLocator);
         HelloWorld.register(factoryLocator);
         JAFuture future = new JAFuture();
-        RootJid root = (RootJid) factoryLocator.newActor(JidFactories.ROOT_JID_TYPE);
+        RootJid root = (RootJid) factoryLocator.newJid(JidFactories.ROOT_JID_TYPE);
         (new SetActor("blob")).send(future, root);
         Blob blob = (Blob) (new ResolvePathname("0")).send(future, root);
         new KMake<String, ActorJid>("fun").send(future, blob);
@@ -30,7 +30,7 @@ public class BlobTest extends TestCase {
         (new SetActor("hi")).send(future, fun);
         byte[] rootBytes = GetSerializedBytes.req.send(future, root);
 
-        RootJid root2 = (RootJid) factoryLocator.newActor(JidFactories.ROOT_JID_TYPE);
+        RootJid root2 = (RootJid) factoryLocator.newJid(JidFactories.ROOT_JID_TYPE);
         root2.load(rootBytes);
         Actor a = (new ResolvePathname("0")).send(future, root2);
         Proc.req.send(future, a);

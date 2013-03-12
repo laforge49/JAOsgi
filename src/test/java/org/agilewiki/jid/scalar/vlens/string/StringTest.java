@@ -18,7 +18,7 @@ public class StringTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            StringJid string1 = (StringJid) factoryLocator.newActor(JidFactories.STRING_JID_TYPE);
+            StringJid string1 = (StringJid) factoryLocator.newJid(JidFactories.STRING_JID_TYPE);
             StringJid string2 = (StringJid) (new CopyJID()).send(future, string1);
             (new SetString("abc")).send(future, string2);
             StringJid string3 = (StringJid) (new CopyJID()).send(future, string2);
@@ -34,7 +34,7 @@ public class StringTest extends TestCase {
             assertEquals("abc", GetString.req.send(future, string2));
             assertEquals("abc", GetString.req.send(future, string3));
 
-            Actor jidJid1 = factoryLocator.newActor(JidFactories.ACTOR_JID_TYPE);
+            Actor jidJid1 = factoryLocator.newJid(JidFactories.ACTOR_JID_TYPE);
             SetActor sjvbs = new SetActor(JidFactories.STRING_JID_TYPE);
             sjvbs.send(future, jidJid1);
             StringJid rpa = (StringJid) (new ResolvePathname("0")).send(future, jidJid1);

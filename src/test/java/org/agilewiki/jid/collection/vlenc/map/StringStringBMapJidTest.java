@@ -12,7 +12,7 @@ public class StringStringBMapJidTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
             BMapJid<String, StringJid> m = (BMapJid) factoryLocator.
-                    newActor(JidFactories.STRING_STRING_BMAP_JID_TYPE);
+                    newJid(JidFactories.STRING_STRING_BMAP_JID_TYPE);
             assertEquals(0, m.size());
             assertTrue(m.kMake("1"));
             assertFalse(m.kMake("1"));

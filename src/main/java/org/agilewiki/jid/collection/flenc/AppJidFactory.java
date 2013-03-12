@@ -10,7 +10,7 @@ import org.agilewiki.jid.factory.FactoryLocator;
  */
 abstract public class AppJidFactory extends ActorFactory {
     private ActorFactory[] tupleFactories;
-    private String[] actorTypes;
+    private String[] jidTypes;
 
     public AppJidFactory(String subActorType) {
         super(subActorType);
@@ -20,23 +20,23 @@ abstract public class AppJidFactory extends ActorFactory {
     /**
      * Create a JLPCActorFactory.
      *
-     * @param subActorType   The actor type.
+     * @param subJidType     The jid type.
      * @param tupleFactories The element factories.
      */
-    public AppJidFactory(String subActorType, ActorFactory... tupleFactories) {
-        super(subActorType);
+    public AppJidFactory(String subJidType, ActorFactory... tupleFactories) {
+        super(subJidType);
         this.tupleFactories = tupleFactories;
     }
 
     /**
      * Create a JLPCActorFactory.
      *
-     * @param subActorType The actor type.
-     * @param actorTypes   The element types.
+     * @param subJidType The jid type.
+     * @param jidTypes   The element types.
      */
-    public AppJidFactory(String subActorType, String... actorTypes) {
-        super(subActorType);
-        this.actorTypes = actorTypes;
+    public AppJidFactory(String subJidType, String... jidTypes) {
+        super(subJidType);
+        this.jidTypes = jidTypes;
     }
 
     /**
@@ -51,10 +51,10 @@ abstract public class AppJidFactory extends ActorFactory {
         AppJid tj = (AppJid) super.newActor(mailbox, parent);
         if (tupleFactories == null) {
             FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
-            ActorFactory[] afs = new ActorFactory[actorTypes.length];
+            ActorFactory[] afs = new ActorFactory[jidTypes.length];
             int i = 0;
-            while (i < actorTypes.length) {
-                afs[i] = fl.getActorFactory(actorTypes[i]);
+            while (i < jidTypes.length) {
+                afs[i] = fl.getJidFactory(jidTypes[i]);
                 i += 1;
             }
             tupleFactories = afs;

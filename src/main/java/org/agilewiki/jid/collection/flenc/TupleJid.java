@@ -34,7 +34,7 @@ public class TupleJid
         extends CollectionJid<Jid>
         implements ComparableKey<Object> {
     /**
-     * An array of actor types, one for each element in the tuple.
+     * An array of jid factories, one for each element in the tuple.
      */
     protected ActorFactory[] tupleFactories;
 

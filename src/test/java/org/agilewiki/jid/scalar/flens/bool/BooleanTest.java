@@ -17,7 +17,7 @@ public class BooleanTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            BooleanJid boolean1 = (BooleanJid) factoryLocator.newActor(JidFactories.BOOLEAN_JID_TYPE);
+            BooleanJid boolean1 = (BooleanJid) factoryLocator.newJid(JidFactories.BOOLEAN_JID_TYPE);
             BooleanJid boolean2 = (BooleanJid) (new CopyJID()).send(future, boolean1);
             (new SetBoolean(true)).send(future, boolean2);
             BooleanJid boolean3 = (BooleanJid) (new CopyJID()).send(future, boolean2);
@@ -33,7 +33,7 @@ public class BooleanTest extends TestCase {
             assertTrue(GetBoolean.req.send(future, boolean2));
             assertTrue(GetBoolean.req.send(future, boolean3));
 
-            Actor jidJid1 = factoryLocator.newActor(JidFactories.ACTOR_JID_TYPE);
+            Actor jidJid1 = factoryLocator.newJid(JidFactories.ACTOR_JID_TYPE);
             SetActor sjvb = new SetActor(JidFactories.BOOLEAN_JID_TYPE);
             sjvb.send(future, jidJid1);
             BooleanJid rpa = (BooleanJid) (new ResolvePathname("0")).send(future, jidJid1);

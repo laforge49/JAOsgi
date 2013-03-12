@@ -21,7 +21,7 @@ public class RootJidTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            RootJidFactory rootJidFactory = (RootJidFactory) factoryLocator.getActorFactory(JidFactories.ROOT_JID_TYPE);
+            RootJidFactory rootJidFactory = (RootJidFactory) factoryLocator.getJidFactory(JidFactories.ROOT_JID_TYPE);
             Actor rootJid1 = rootJidFactory.newActor(factoryLocator.getMailbox(), factoryLocator);
             int sl = GetSerializedLength.req.send(future, rootJid1);
             assertEquals(0, sl);
@@ -45,7 +45,7 @@ public class RootJidTest extends TestCase {
             rpa = (new ResolvePathname("0")).send(future, rootJid11);
             assertNull(rpa);
 
-            ActorFactory stringJidAFactory = factoryLocator.getActorFactory(JidFactories.STRING_JID_TYPE);
+            ActorFactory stringJidAFactory = factoryLocator.getJidFactory(JidFactories.STRING_JID_TYPE);
             Actor string1 = stringJidAFactory.newActor(factoryLocator.getMailbox(), factoryLocator);
             (new SetString("abc")).send(future, string1);
             byte[] sb = GetSerializedBytes.req.send(future, string1);

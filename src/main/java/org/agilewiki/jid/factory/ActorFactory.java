@@ -35,9 +35,9 @@ abstract public class ActorFactory {
     private String factoryKey;
 
     /**
-     * The actor type.
+     * The jid type.
      */
-    public final String actorType;
+    public final String jidType;
     private JAFactoryLocator factoryLocator;
 
     public void configure(JAFactoryLocator factoryLocator) {
@@ -46,7 +46,7 @@ abstract public class ActorFactory {
 
     public String getFactoryKey() {
         if (factoryKey == null)
-            factoryKey = actorType + "|" + getLocatorKey();
+            factoryKey = jidType + "|" + getLocatorKey();
         return factoryKey;
     }
 
@@ -61,10 +61,10 @@ abstract public class ActorFactory {
     /**
      * Create an ActorFactory.
      *
-     * @param actorType The actor type.
+     * @param jidType The jid type.
      */
-    public ActorFactory(String actorType) {
-        this.actorType = actorType;
+    public ActorFactory(String jidType) {
+        this.jidType = jidType;
     }
 
     /**

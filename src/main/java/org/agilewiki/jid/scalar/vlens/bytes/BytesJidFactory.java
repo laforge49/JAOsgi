@@ -11,7 +11,7 @@ public class BytesJidFactory extends ActorFactory {
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerActorFactory(new BytesJidFactory());
+        factoryLocator.registerJidFactory(new BytesJidFactory());
     }
 
     /**

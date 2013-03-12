@@ -18,7 +18,7 @@ public class BytesTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            Actor bytes1 = factoryLocator.newActor(JidFactories.BYTES_JID_TYPE);
+            Actor bytes1 = factoryLocator.newJid(JidFactories.BYTES_JID_TYPE);
             Actor bytes2 = (new CopyJID()).send(future, bytes1);
             (new SetBytes(new byte[3])).send(future, bytes2);
             Actor bytes3 = (new CopyJID()).send(future, bytes2);
@@ -34,7 +34,7 @@ public class BytesTest extends TestCase {
             assertEquals(3, GetBytes.req.send(future, bytes2).length);
             assertEquals(3, GetBytes.req.send(future, bytes3).length);
 
-            Actor jidJid1 = factoryLocator.newActor(JidFactories.ACTOR_JID_TYPE);
+            Actor jidJid1 = factoryLocator.newJid(JidFactories.ACTOR_JID_TYPE);
             SetActor sjvbs = new SetActor(JidFactories.BYTES_JID_TYPE);
             sjvbs.send(future, jidJid1);
             Actor rpa = (new ResolvePathname("0")).send(future, jidJid1);

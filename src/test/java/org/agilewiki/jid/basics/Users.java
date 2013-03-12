@@ -17,7 +17,7 @@ import java.util.Iterator;
 public class Users extends StringMapJid implements Main {
 
     public static void register(FactoryLocator factoryLocator) throws Exception {
-        factoryLocator.registerActorFactory(new UsersFactory("users"));
+        factoryLocator.registerJidFactory(new UsersFactory("users"));
         MapEntryFactory.registerFactory(factoryLocator,
                 "E.users", JidFactories.STRING_JID_TYPE, JidFactories.STRING_JID_TYPE);
     }
@@ -37,7 +37,7 @@ public class Users extends StringMapJid implements Main {
         public Users newActor(Mailbox mailbox, Actor parent) throws Exception {
             Users users = (Users) super.newActor(mailbox, parent);
             FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
-            users.valueFactory = fl.getActorFactory(JidFactories.STRING_JID_TYPE);
+            users.valueFactory = fl.getJidFactory(JidFactories.STRING_JID_TYPE);
             return users;
         }
     }

@@ -9,7 +9,7 @@ import org.agilewiki.jid.scalar.vlens.string.StringJid;
 public class Greeter extends StringJid implements Main {
 
     public static void register(FactoryLocator factoryLocator, String actorType, String greeting) throws Exception {
-        factoryLocator.registerActorFactory(new GreeterFactory(actorType, greeting));
+        factoryLocator.registerJidFactory(new GreeterFactory(actorType, greeting));
     }
 
     private static class GreeterFactory extends ActorFactory {

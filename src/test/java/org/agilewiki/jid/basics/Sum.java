@@ -13,7 +13,7 @@ import java.util.Iterator;
 public class Sum extends ListJid implements Main {
 
     public static void register(FactoryLocator factoryLocator) throws Exception {
-        factoryLocator.registerActorFactory(new SumFactory("sum"));
+        factoryLocator.registerJidFactory(new SumFactory("sum"));
     }
 
     private static class SumFactory extends ListJidFactory {

@@ -36,7 +36,7 @@ public class AppJid extends Jid {
     private int _len;
 
     /**
-     * An array of actor types, one for each element in the tuple.
+     * An array of jid factories, one for each element in the tuple.
      */
     protected ActorFactory[] tupleFactories;
 

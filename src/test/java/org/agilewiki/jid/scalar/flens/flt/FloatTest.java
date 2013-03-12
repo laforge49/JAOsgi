@@ -17,7 +17,7 @@ public class FloatTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            FloatJid float1 = (FloatJid) factoryLocator.newActor(JidFactories.FLOAT_JID_TYPE);
+            FloatJid float1 = (FloatJid) factoryLocator.newJid(JidFactories.FLOAT_JID_TYPE);
             FloatJid float2 = (FloatJid) (new CopyJID()).send(future, float1);
             (new SetFloat(1.0f)).send(future, float2);
             Actor float3 = (new CopyJID()).send(future, float2);
@@ -36,7 +36,7 @@ public class FloatTest extends TestCase {
             v = GetFloat.req.send(future, float3);
             assertEquals(1.f, v);
 
-            Actor jidJid1 = factoryLocator.newActor(JidFactories.ACTOR_JID_TYPE);
+            Actor jidJid1 = factoryLocator.newJid(JidFactories.ACTOR_JID_TYPE);
             SetActor sjvf = new SetActor(JidFactories.FLOAT_JID_TYPE);
             sjvf.send(future, jidJid1);
             FloatJid rpa = (FloatJid) (new ResolvePathname("0")).send(future, jidJid1);

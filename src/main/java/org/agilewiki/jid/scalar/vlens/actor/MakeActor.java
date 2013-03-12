@@ -35,9 +35,9 @@ import org.agilewiki.jid.JidFactory;
 public class MakeActor
         extends Request<Boolean, Reference> {
     /**
-     * The actor type.
+     * The jid type.
      */
-    private String actorType;
+    private String jidType;
 
     /**
      * The jid factory.
@@ -45,12 +45,12 @@ public class MakeActor
     private JidFactory jidFactory;
 
     /**
-     * Returns the actor type.
+     * Returns the jid type.
      *
-     * @return The actor type.
+     * @return The jid type.
      */
     public String getValue() {
-        return actorType;
+        return jidType;
     }
 
     /**
@@ -65,12 +65,12 @@ public class MakeActor
     /**
      * Creates the request.
      *
-     * @param actorType The actor type.
+     * @param jidType The jid type.
      */
-    public MakeActor(String actorType) {
-        if (actorType == null)
+    public MakeActor(String jidType) {
+        if (jidType == null)
             throw new IllegalArgumentException("value may not be null");
-        this.actorType = actorType;
+        this.jidType = jidType;
     }
 
     /**
@@ -96,8 +96,8 @@ public class MakeActor
 
     @Override
     public void processRequest(JLPCActor targetActor, RP rp) throws Exception {
-        if (actorType != null)
-            rp.processResponse(((Reference) targetActor).makeValue(actorType));
+        if (jidType != null)
+            rp.processResponse(((Reference) targetActor).makeValue(jidType));
         else
             rp.processResponse(((Reference) targetActor).makeValue(jidFactory));
     }

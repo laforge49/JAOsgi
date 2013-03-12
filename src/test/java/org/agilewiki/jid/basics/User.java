@@ -11,7 +11,7 @@ import org.agilewiki.jid.scalar.vlens.string.StringJid;
 public class User extends TupleJid implements Main {
 
     public static void register(FactoryLocator factoryLocator) throws Exception {
-        factoryLocator.registerActorFactory(new UserFactory("user"));
+        factoryLocator.registerJidFactory(new UserFactory("user"));
     }
 
     private static class UserFactory extends TupleJidFactory {

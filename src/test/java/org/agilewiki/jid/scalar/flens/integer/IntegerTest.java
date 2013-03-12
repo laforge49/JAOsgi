@@ -17,7 +17,7 @@ public class IntegerTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            IntegerJid int1 = (IntegerJid) factoryLocator.newActor(JidFactories.INTEGER_JID_TYPE);
+            IntegerJid int1 = (IntegerJid) factoryLocator.newJid(JidFactories.INTEGER_JID_TYPE);
             IntegerJid int2 = (IntegerJid) (new CopyJID()).send(future, int1);
             (new SetInteger(1)).send(future, int2);
             IntegerJid int3 = (IntegerJid) (new CopyJID()).send(future, int2);
@@ -36,7 +36,7 @@ public class IntegerTest extends TestCase {
             v = GetInteger.req.send(future, int3);
             assertEquals(1, v);
 
-            Actor jidJid1 = factoryLocator.newActor(JidFactories.ACTOR_JID_TYPE);
+            Actor jidJid1 = factoryLocator.newJid(JidFactories.ACTOR_JID_TYPE);
             SetActor sjvi = new SetActor(JidFactories.INTEGER_JID_TYPE);
             sjvi.send(future, jidJid1);
             IntegerJid rpa = (IntegerJid) (new ResolvePathname("0")).send(future, jidJid1);

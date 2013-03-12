@@ -40,7 +40,7 @@ public class StringJid
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerActorFactory(new ActorFactory(JidFactories.STRING_JID_TYPE) {
+        factoryLocator.registerJidFactory(new ActorFactory(JidFactories.STRING_JID_TYPE) {
             @Override
             final protected StringJid instantiateActor()
                     throws Exception {

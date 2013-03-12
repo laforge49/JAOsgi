@@ -43,9 +43,9 @@ public class LongBMapJidFactory extends ActorFactory {
         UnionJidFactory.registerFactory(factoryLocator,
                 "U." + actorType, "LM." + actorType, "IM." + actorType);
 
-        factoryLocator.registerActorFactory(new LongBMapJidFactory(
+        factoryLocator.registerJidFactory(new LongBMapJidFactory(
                 actorType, valueType, true, true));
-        factoryLocator.registerActorFactory(new LongBMapJidFactory(
+        factoryLocator.registerJidFactory(new LongBMapJidFactory(
                 "IN." + actorType, valueType, false, false));
 
         LongMapJidFactory.registerFactory(
@@ -61,12 +61,12 @@ public class LongBMapJidFactory extends ActorFactory {
     /**
      * Create an ActorFactory.
      *
-     * @param actorType The actor type.
+     * @param jidType   The jid type.
      * @param valueType The value type.
      */
-    protected LongBMapJidFactory(String actorType, String valueType,
+    protected LongBMapJidFactory(String jidType, String valueType,
                                  boolean isRoot, boolean auto) {
-        super(actorType);
+        super(jidType);
         this.valueType = valueType;
         this.isRoot = isRoot;
         this.auto = auto;
@@ -93,7 +93,7 @@ public class LongBMapJidFactory extends ActorFactory {
             throws Exception {
         LongBMapJid imj = (LongBMapJid) super.newActor(mailbox, parent);
         FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
-        imj.valueFactory = fl.getActorFactory(valueType);
+        imj.valueFactory = fl.getJidFactory(valueType);
         imj.nodeCapacity = NODE_CAPACITY;
         imj.isRoot = isRoot;
         imj.init();

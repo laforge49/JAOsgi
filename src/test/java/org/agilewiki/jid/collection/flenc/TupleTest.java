@@ -45,7 +45,7 @@ public class TupleTest extends TestCase {
             JAFuture future = new JAFuture();
             TupleJidFactory tjf = new TupleJidFactory(
                     "sst", JidFactories.STRING_JID_TYPE, JidFactories.STRING_JID_TYPE);
-            factoryLocator.registerActorFactory(tjf);
+            factoryLocator.registerJidFactory(tjf);
             Actor t0 = tjf.newActor(factoryLocator.getMailbox(), factoryLocator);
             IGet iget0 = new IGet(0);
             IGet iget1 = new IGet(1);
@@ -63,7 +63,7 @@ public class TupleTest extends TestCase {
             Actor f1 = (new ResolvePathname("1")).send(future, t1);
             assertEquals("Oranges", GetString.req.send(future, f1));
 
-            Actor string1 = factoryLocator.newActor(JidFactories.STRING_JID_TYPE);
+            Actor string1 = factoryLocator.newJid(JidFactories.STRING_JID_TYPE);
             (new SetString("Peaches")).send(future, string1);
             byte[] sb = GetSerializedBytes.req.send(future, string1);
             (new ISetBytes(1, sb)).send(future, t1);

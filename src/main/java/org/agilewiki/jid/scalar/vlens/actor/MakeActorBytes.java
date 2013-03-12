@@ -35,9 +35,9 @@ import org.agilewiki.jid.JidFactory;
 final public class MakeActorBytes
         extends Request<Boolean, Reference> {
     /**
-     * An actor type name.
+     * An jid type name.
      */
-    private String actorType;
+    private String jidType;
 
     /**
      * The jid factory.
@@ -52,13 +52,13 @@ final public class MakeActorBytes
     /**
      * Create the request.
      *
-     * @param actorType An actor type name.
-     * @param bytes     The serialized data.
+     * @param jidType An jid type name.
+     * @param bytes   The serialized data.
      */
-    public MakeActorBytes(String actorType, byte[] bytes) {
-        if (actorType == null)
+    public MakeActorBytes(String jidType, byte[] bytes) {
+        if (jidType == null)
             throw new IllegalArgumentException("value may not be null");
-        this.actorType = actorType;
+        this.jidType = jidType;
         this.bytes = bytes;
     }
 
@@ -76,12 +76,12 @@ final public class MakeActorBytes
     }
 
     /**
-     * Returns an actor type name.
+     * Returns an jid type name.
      *
-     * @return An actor type name.
+     * @return An jid type name.
      */
-    public String getActorType() {
-        return actorType;
+    public String getJidType() {
+        return jidType;
     }
 
     /**
@@ -104,8 +104,8 @@ final public class MakeActorBytes
 
     @Override
     public void processRequest(JLPCActor targetActor, RP rp) throws Exception {
-        if (actorType != null)
-            rp.processResponse(((Reference) targetActor).makeJidBytes(actorType, bytes));
+        if (jidType != null)
+            rp.processResponse(((Reference) targetActor).makeJidBytes(jidType, bytes));
         else
             rp.processResponse(((Reference) targetActor).makeJidBytes(jidFactory, bytes));
     }

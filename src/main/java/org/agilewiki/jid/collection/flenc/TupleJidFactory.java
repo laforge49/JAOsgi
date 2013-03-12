@@ -35,20 +35,20 @@ public class TupleJidFactory extends ActorFactory {
 
     public static void registerFactory(FactoryLocator factoryLocator,
                                        String subActorType, String... actorTypes) throws Exception {
-        factoryLocator.registerActorFactory(new TupleJidFactory(subActorType, actorTypes));
+        factoryLocator.registerJidFactory(new TupleJidFactory(subActorType, actorTypes));
     }
 
-    private String[] actorTypes;
+    private String[] jidTypes;
 
     /**
      * Create a JLPCActorFactory.
      *
-     * @param subActorType The actor type.
-     * @param actorTypes   The element types.
+     * @param subJidType The jid type.
+     * @param jidTypes   The element types.
      */
-    protected TupleJidFactory(String subActorType, String... actorTypes) {
-        super(subActorType);
-        this.actorTypes = actorTypes;
+    protected TupleJidFactory(String subJidType, String... jidTypes) {
+        super(subJidType);
+        this.jidTypes = jidTypes;
     }
 
     /**
@@ -73,10 +73,10 @@ public class TupleJidFactory extends ActorFactory {
             throws Exception {
         TupleJid tj = (TupleJid) super.newActor(mailbox, parent);
         FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
-        ActorFactory[] afs = new ActorFactory[actorTypes.length];
+        ActorFactory[] afs = new ActorFactory[jidTypes.length];
         int i = 0;
-        while (i < actorTypes.length) {
-            afs[i] = fl.getActorFactory(actorTypes[i]);
+        while (i < jidTypes.length) {
+            afs[i] = fl.getJidFactory(jidTypes[i]);
             i += 1;
         }
         tj.tupleFactories = afs;

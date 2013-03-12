@@ -35,9 +35,9 @@ import org.agilewiki.jid.factory.ActorFactory;
 public class SetActor
         extends Request<Object, Reference> {
     /**
-     * The actor type.
+     * The jid type.
      */
-    private String actorType;
+    private String jidType;
 
     /**
      * The jid factory.
@@ -45,12 +45,12 @@ public class SetActor
     private ActorFactory jidFactory;
 
     /**
-     * Returns the actor type.
+     * Returns the jid factory.
      *
-     * @return The actor type.
+     * @return The jid factory.
      */
     public String getValue() {
-        return actorType;
+        return jidType;
     }
 
     /**
@@ -65,12 +65,12 @@ public class SetActor
     /**
      * Creates the request.
      *
-     * @param actorType The actor type.
+     * @param jidType The jid type.
      */
-    public SetActor(String actorType) {
-        if (actorType == null)
+    public SetActor(String jidType) {
+        if (jidType == null)
             throw new IllegalArgumentException("value may not be null");
-        this.actorType = actorType;
+        this.jidType = jidType;
     }
 
     /**
@@ -86,8 +86,8 @@ public class SetActor
 
     @Override
     public void processRequest(JLPCActor targetActor, RP rp) throws Exception {
-        if (actorType != null)
-            ((Reference) targetActor).setValue(actorType);
+        if (jidType != null)
+            ((Reference) targetActor).setValue(jidType);
         else
             ((Reference) targetActor).setValue(jidFactory);
         rp.processResponse(null);

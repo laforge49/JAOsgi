@@ -37,7 +37,7 @@ public class ListJid<ENTRY_TYPE extends Jid>
     public int initialCapacity = 10;
 
     /**
-     * Actor type of the elements.
+     * Jid factory of the elements.
      */
     protected ActorFactory entryFactory;
 

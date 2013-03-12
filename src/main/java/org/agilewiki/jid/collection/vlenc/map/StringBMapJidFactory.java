@@ -43,9 +43,9 @@ public class StringBMapJidFactory extends ActorFactory {
         UnionJidFactory.registerFactory(factoryLocator,
                 "U." + actorType, "LM." + actorType, "IM." + actorType);
 
-        factoryLocator.registerActorFactory(new StringBMapJidFactory(
+        factoryLocator.registerJidFactory(new StringBMapJidFactory(
                 actorType, valueType, true, true));
-        factoryLocator.registerActorFactory(new StringBMapJidFactory(
+        factoryLocator.registerJidFactory(new StringBMapJidFactory(
                 "IN." + actorType, valueType, false, false));
 
         StringMapJidFactory.registerFactory(
@@ -61,14 +61,14 @@ public class StringBMapJidFactory extends ActorFactory {
     /**
      * Create an ActorFactory.
      *
-     * @param actorType The actor type.
+     * @param jidType   The jid type.
      * @param valueType The value type.
      * @param isRoot    Create a root node when true.
      * @param auto      Define the node as a leaf when true.
      */
-    protected StringBMapJidFactory(String actorType, String valueType,
+    protected StringBMapJidFactory(String jidType, String valueType,
                                    boolean isRoot, boolean auto) {
-        super(actorType);
+        super(jidType);
         this.valueType = valueType;
         this.isRoot = isRoot;
         this.auto = auto;
@@ -95,7 +95,7 @@ public class StringBMapJidFactory extends ActorFactory {
             throws Exception {
         StringBMapJid imj = (StringBMapJid) super.newActor(mailbox, parent);
         FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
-        imj.valueFactory = fl.getActorFactory(valueType);
+        imj.valueFactory = fl.getJidFactory(valueType);
         imj.nodeCapacity = NODE_CAPACITY;
         imj.isRoot = isRoot;
         imj.init();

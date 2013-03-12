@@ -6,7 +6,7 @@ import org.agilewiki.jid.factory.FactoryLocator;
 
 public class HelloWorld extends Jid implements Main {
     public static void register(FactoryLocator factoryLocator) throws Exception {
-        factoryLocator.defineActorType("hi", HelloWorld.class);
+        factoryLocator.defineJidType("hi", HelloWorld.class);
     }
 
     @Override

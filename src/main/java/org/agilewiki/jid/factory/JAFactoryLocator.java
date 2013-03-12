@@ -26,6 +26,7 @@ package org.agilewiki.jid.factory;
 import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.jid.Jid;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.Version;
 
@@ -35,7 +36,7 @@ import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.concurrent.ConcurrentSkipListSet;
 
 /**
- * An actor for defining actor types and creating instances.
+ * An actor for defining jid types and creating instances.
  */
 public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
     public static String versionString(Version version) {
@@ -45,18 +46,18 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
     /**
      * Returns the requested actor factory.
      *
-     * @param actor     The actor which is the factory or which has a factory as an ancestor.
-     * @param actorType The actor type.
+     * @param actor   The actor which is the factory or which has a factory as an ancestor.
+     * @param jidType The jid type.
      * @return The registered actor factory.
      */
-    public static ActorFactory getActorFactory(Actor actor, String actorType)
+    public static ActorFactory getActorFactory(Actor actor, String jidType)
             throws Exception {
         if (!(actor instanceof FactoryLocator))
             actor = actor.getAncestor(FactoryLocator.class);
         if (actor == null)
-            throw new IllegalArgumentException("Unknown actor type: " + actorType);
+            throw new IllegalArgumentException("Unknown jid type: " + jidType);
         FactoryLocator factoryLocator = (FactoryLocator) actor;
-        return factoryLocator.getActorFactory(actorType);
+        return factoryLocator.getJidFactory(jidType);
     }
 
     public static FactoryLocator getFactoryLocator(Actor actor)
@@ -71,45 +72,45 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
     /**
      * Creates a new actor.
      *
-     * @param actor     The actor which is the factory or which has a factory as an ancestor.
-     * @param actorType The actor type.
-     * @return The new actor.
+     * @param actor   The actor which is the factory or which has a factory as an ancestor.
+     * @param jidType The jid type.
+     * @return The new jid.
      */
-    public static Actor newActor(Actor actor, String actorType)
+    public static Jid newJid(Actor actor, String jidType)
             throws Exception {
-        return newActor(actor, actorType, null, null);
+        return newJid(actor, jidType, null, null);
     }
 
     /**
      * Creates a new actor.
      *
      * @param actor     The actor which is the factory or which has a factory as an ancestor.
-     * @param actorType The actor type.
+     * @param actorType The jid type.
      * @param mailbox   A mailbox which may be shared with other actors, or null.
-     * @return The new actor.
+     * @return The new jid.
      */
-    public static Actor newActor(Actor actor, String actorType, Mailbox mailbox)
+    public static Actor newJid(Actor actor, String actorType, Mailbox mailbox)
             throws Exception {
-        return newActor(actor, actorType, mailbox, null);
+        return newJid(actor, actorType, mailbox, null);
     }
 
     /**
      * Creates a new actor.
      *
-     * @param actor     The actor which is the factory or which has a factory as an ancestor.
-     * @param actorType The actor type.
-     * @param mailbox   A mailbox which may be shared with other actors, or null.
-     * @param parent    The parent actor to which unrecognized requests are forwarded, or null.
-     * @return The new actor.
+     * @param actor   The actor which is the factory or which has a factory as an ancestor.
+     * @param jidType The jid type.
+     * @param mailbox A mailbox which may be shared with other actors, or null.
+     * @param parent  The parent actor to which unrecognized requests are forwarded, or null.
+     * @return The new jid.
      */
-    public static Actor newActor(Actor actor, String actorType, Mailbox mailbox, Actor parent)
+    public static Jid newJid(Actor actor, String jidType, Mailbox mailbox, Actor parent)
             throws Exception {
         if (!(actor instanceof FactoryLocator))
             actor = actor.getAncestor(FactoryLocator.class);
         if (actor == null)
             return null;
         FactoryLocator factoryLocator = (FactoryLocator) actor;
-        return factoryLocator.newActor(actorType, mailbox, parent);
+        return factoryLocator.newJid(jidType, mailbox, parent);
     }
 
     private ConcurrentSkipListSet<LocateLocalActorFactories> factoryImports = new ConcurrentSkipListSet();
@@ -207,56 +208,56 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
     /**
      * Creates a new actor.
      *
-     * @param actorType The actor type.
-     * @return The new actor.
+     * @param jidType The jid type.
+     * @return The new jid.
      */
-    public Actor newActor(String actorType)
+    public Jid newJid(String jidType)
             throws Exception {
-        return newActor(actorType, null, null);
+        return newJid(jidType, null, null);
     }
 
     /**
      * Creates a new actor.
      *
-     * @param actorType The actor type.
-     * @param mailbox   A mailbox which may be shared with other actors, or null.
-     * @return The new actor.
+     * @param jidType The jid type.
+     * @param mailbox A mailbox which may be shared with other actors, or null.
+     * @return The new jid.
      */
-    public Actor newActor(String actorType, Mailbox mailbox)
+    public Jid newJid(String jidType, Mailbox mailbox)
             throws Exception {
-        return newActor(actorType, mailbox, null);
+        return newJid(jidType, mailbox, null);
     }
 
     /**
      * Creates a new actor.
      *
-     * @param actorType The actor type.
-     * @param mailbox   A mailbox which may be shared with other actors, or null.
-     * @param parent    The parent actor to which unrecognized requests are forwarded, or null.
-     * @return The new actor.
+     * @param jidType The jid type.
+     * @param mailbox A mailbox which may be shared with other actors, or null.
+     * @param parent  The parent actor to which unrecognized requests are forwarded, or null.
+     * @return The new jid.
      */
-    public Actor newActor(String actorType, Mailbox mailbox, Actor parent)
+    public Jid newJid(String jidType, Mailbox mailbox, Actor parent)
             throws Exception {
         if (mailbox == null || parent == null) {
             if (mailbox == null) mailbox = getMailbox();
             if (parent == null) parent = this;
         }
-        ActorFactory af = getActorFactory(actorType);
+        ActorFactory af = getJidFactory(jidType);
         return af.newActor(mailbox, parent);
     }
 
     /**
      * Returns the requested actor factory.
      *
-     * @param actorType The actor type.
+     * @param jidType The jid type.
      * @return The registered actor factory.
      */
     @Override
-    public ActorFactory getActorFactory(String actorType)
+    public ActorFactory getJidFactory(String jidType)
             throws Exception {
-        ActorFactory af = _getActorFactory(actorType);
+        ActorFactory af = _getActorFactory(jidType);
         if (af == null) {
-            throw new IllegalArgumentException("Unknown actor type: " + actorType);
+            throw new IllegalArgumentException("Unknown jid type: " + jidType);
         }
         return af;
     }
@@ -283,20 +284,20 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
     }
 
     /**
-     * Bind an actor type to a Class.
+     * Bind an jid type to a Class.
      *
-     * @param actorType The actor type.
-     * @param clazz     The class of the actor.
+     * @param jidType The jid type.
+     * @param clazz   The class of the actor.
      */
     @Override
-    public void defineActorType(String actorType, Class clazz)
+    public void defineJidType(String jidType, Class clazz)
             throws Exception {
-        String factoryKey = actorType + "|" + bundleName + "|" + version;
+        String factoryKey = jidType + "|" + bundleName + "|" + version;
         if (types.containsKey(factoryKey))
-            throw new IllegalArgumentException("Actor type is already defined: " + actorType);
+            throw new IllegalArgumentException("Jid type is already defined: " + jidType);
         if (Actor.class.isAssignableFrom(clazz)) {
             Constructor componentConstructor = clazz.getConstructor();
-            ActorFactory actorFactory = new _ActorFactory(actorType, componentConstructor);
+            ActorFactory actorFactory = new _ActorFactory(jidType, componentConstructor);
             types.put(factoryKey, actorFactory);
             actorFactory.configure(this);
             return;
@@ -310,15 +311,15 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
      * @param actorFactory An actor factory.
      */
     @Override
-    public void registerActorFactory(ActorFactory actorFactory)
+    public void registerJidFactory(ActorFactory actorFactory)
             throws Exception {
-        String actorType = actorFactory.actorType;
+        String actorType = actorFactory.jidType;
         String factoryKey = actorType + "|" + bundleName + "|" + version;
         ActorFactory old = types.get(factoryKey);
         actorFactory.configure(this);
         if (old == null) {
             types.put(factoryKey, actorFactory);
         } else if (!old.equals(actorFactory))
-            throw new IllegalArgumentException("Actor type is already defined: " + actorType);
+            throw new IllegalArgumentException("Jid type is already defined: " + actorType);
     }
 }

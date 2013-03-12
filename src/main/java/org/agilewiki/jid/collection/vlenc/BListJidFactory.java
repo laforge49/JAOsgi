@@ -43,9 +43,9 @@ public class BListJidFactory extends ActorFactory {
         UnionJidFactory.registerFactory(factoryLocator,
                 "U." + actorType, "LL." + actorType, "IL." + actorType);
 
-        factoryLocator.registerActorFactory(new BListJidFactory(
+        factoryLocator.registerJidFactory(new BListJidFactory(
                 actorType, entryType, true, true));
-        factoryLocator.registerActorFactory(new BListJidFactory(
+        factoryLocator.registerJidFactory(new BListJidFactory(
                 "IN." + actorType, entryType, false, false));
 
         ListJidFactory.registerFactory(factoryLocator,
@@ -87,7 +87,7 @@ public class BListJidFactory extends ActorFactory {
             throws Exception {
         BListJid lj = (BListJid) super.newActor(mailbox, parent);
         FactoryLocator f = (FactoryLocator) parent.getMatch(FactoryLocator.class);
-        lj.entryFactory = f.getActorFactory(entryType);
+        lj.entryFactory = f.getJidFactory(entryType);
         lj.nodeCapacity = NODE_CAPACITY;
         lj.isRoot = isRoot;
         lj.init();

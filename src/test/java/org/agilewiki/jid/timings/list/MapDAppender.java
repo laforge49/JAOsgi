@@ -24,7 +24,7 @@ public class MapDAppender extends JLPCActor {
         while (j < repeat) {
             ReadableBytes rb = new ReadableBytes(bytes, 0);
             IntegerMapJid blj = (IntegerMapJid) JAFactoryLocator.
-                    newActor(this, JidFactories.INTEGER_INTEGER_MAP_JID_TYPE, getMailbox(), getParent());
+                    newJid(this, JidFactories.INTEGER_INTEGER_MAP_JID_TYPE, getMailbox(), getParent());
             blj.load(rb);
             j += 1;
         }

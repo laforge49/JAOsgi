@@ -11,7 +11,7 @@ public class BooleanJidFactory extends ActorFactory {
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerActorFactory(new BooleanJidFactory());
+        factoryLocator.registerJidFactory(new BooleanJidFactory());
     }
 
     /**

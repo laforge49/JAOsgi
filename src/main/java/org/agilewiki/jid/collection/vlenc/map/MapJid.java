@@ -55,20 +55,20 @@ abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE e
     abstract protected KEY_TYPE stringToKey(String skey);
 
     /**
-     * Returns the actor type of all the elements in the list.
+     * Returns the jid type of all the elements in the list.
      *
-     * @return The actor type of all the elements in the list.
+     * @return The jid type of all the elements in the list.
      */
     @Override
     final protected ActorFactory getEntryFactory()
             throws Exception {
-        return JAFactoryLocator.getActorFactory(this, "E." + getActorType());
+        return JAFactoryLocator.getActorFactory(this, "E." + getJidType());
     }
 
     /**
      * Returns the JidFactory for the values in the map.
      *
-     * @return The actor type of the values in the list.
+     * @return The jid factory of the values in the list.
      */
     protected ActorFactory getValueFactory()
             throws Exception {

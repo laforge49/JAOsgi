@@ -39,7 +39,7 @@ public class IntegerJid
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerActorFactory(new ActorFactory(JidFactories.INTEGER_JID_TYPE) {
+        factoryLocator.registerJidFactory(new ActorFactory(JidFactories.INTEGER_JID_TYPE) {
             @Override
             final protected IntegerJid instantiateActor()
                     throws Exception {

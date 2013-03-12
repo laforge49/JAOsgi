@@ -26,6 +26,7 @@ package org.agilewiki.jid.factory;
 import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.lpc.TargetActor;
+import org.agilewiki.jid.Jid;
 
 /**
  * Defines actor types and instantiating
@@ -34,10 +35,10 @@ public interface FactoryLocator extends TargetActor {
     /**
      * Bind an actor type to a Class.
      *
-     * @param actorType The actor type.
-     * @param clazz     The class of the actor.
+     * @param jidType The jid type.
+     * @param clazz   The class of the actor.
      */
-    public void defineActorType(String actorType, Class clazz)
+    public void defineJidType(String jidType, Class clazz)
             throws Exception;
 
     /**
@@ -45,16 +46,16 @@ public interface FactoryLocator extends TargetActor {
      *
      * @param actorFactory An actor factory.
      */
-    public void registerActorFactory(ActorFactory actorFactory)
+    public void registerJidFactory(ActorFactory actorFactory)
             throws Exception;
 
     /**
      * Returns the requested actor factory.
      *
-     * @param actorType The actor type.
+     * @param jidType The jid type.
      * @return The registered actor factory.
      */
-    public ActorFactory getActorFactory(String actorType)
+    public ActorFactory getJidFactory(String jidType)
             throws Exception;
 
     public ActorFactory _getActorFactory(String actorType)
@@ -63,30 +64,30 @@ public interface FactoryLocator extends TargetActor {
     /**
      * Creates a new actor.
      *
-     * @param actorType The actor type.
-     * @return The new actor.
+     * @param jidType The jid type.
+     * @return The new jid.
      */
-    public Actor newActor(String actorType)
+    public Jid newJid(String jidType)
             throws Exception;
 
     /**
      * Creates a new actor.
      *
-     * @param actorType The actor type.
-     * @param mailbox   A mailbox which may be shared with other actors, or null.
+     * @param jidType The jid type.
+     * @param mailbox A mailbox which may be shared with other actors, or null.
      * @return The new actor.
      */
-    public Actor newActor(String actorType, Mailbox mailbox)
+    public Jid newJid(String jidType, Mailbox mailbox)
             throws Exception;
 
     /**
      * Creates a new actor.
      *
-     * @param actorType The actor type.
-     * @param mailbox   A mailbox which may be shared with other actors, or null.
-     * @param parent    The parent actor to which unrecognized requests are forwarded, or null.
+     * @param jidType The jid type.
+     * @param mailbox A mailbox which may be shared with other actors, or null.
+     * @param parent  The parent actor to which unrecognized requests are forwarded, or null.
      * @return The new actor.
      */
-    public Actor newActor(String actorType, Mailbox mailbox, Actor parent)
+    public Jid newJid(String jidType, Mailbox mailbox, Actor parent)
             throws Exception;
 }

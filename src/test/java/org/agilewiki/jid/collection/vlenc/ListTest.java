@@ -19,7 +19,7 @@ public class ListTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            Actor l0 = factoryLocator.newActor(JidFactories.STRING_LIST_JID_TYPE);
+            Actor l0 = factoryLocator.newJid(JidFactories.STRING_LIST_JID_TYPE);
             int l0sl = GetSerializedLength.req.send(future, l0);
             assertEquals(8, l0sl);
             Actor l1 = (new CopyJID()).send(future, l0);
@@ -31,7 +31,7 @@ public class ListTest extends TestCase {
             Actor l2 = (new CopyJID()).send(future, l1);
             int l2sl = GetSerializedLength.req.send(future, l2);
             assertEquals(12, l2sl);
-            Actor s0 = factoryLocator.newActor(JidFactories.STRING_JID_TYPE);
+            Actor s0 = factoryLocator.newJid(JidFactories.STRING_JID_TYPE);
             (new SetString("Hi")).send(future, s0);
             int s0sl = GetSerializedLength.req.send(future, s0);
             assertEquals(8, s0sl);

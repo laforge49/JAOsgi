@@ -13,8 +13,8 @@ public class UnionJidTest extends TestCase {
         try {
             UnionJidFactory siuf =
                     new UnionJidFactory("siUnion", JidFactories.STRING_JID_TYPE, "siUnion");
-            factoryLocator.registerActorFactory(siuf);
-            UnionJid siu1 = (UnionJid) factoryLocator.newActor("siUnion");
+            factoryLocator.registerJidFactory(siuf);
+            UnionJid siu1 = (UnionJid) factoryLocator.newJid("siUnion");
             assertNull(siu1.getValue());
             UnionJid siu2 = (UnionJid) siu1.copyJID(factoryLocator.getMailbox());
             assertNull(siu2.getValue());

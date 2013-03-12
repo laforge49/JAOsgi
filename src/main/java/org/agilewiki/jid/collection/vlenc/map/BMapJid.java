@@ -65,13 +65,13 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
 
     protected void init()
             throws Exception {
-        String baseType = getActorType();
+        String baseType = getJidType();
         if (baseType.startsWith("IN."))
             baseType = baseType.substring(3);
         factoryLocator = JAFactoryLocator.getFactoryLocator(this);
         tupleFactories = new ActorFactory[2];
-        tupleFactories[TUPLE_SIZE] = factoryLocator.getActorFactory(JidFactories.INTEGER_JID_TYPE);
-        tupleFactories[TUPLE_UNION] = factoryLocator.getActorFactory("U." + baseType);
+        tupleFactories[TUPLE_SIZE] = factoryLocator.getJidFactory(JidFactories.INTEGER_JID_TYPE);
+        tupleFactories[TUPLE_UNION] = factoryLocator.getJidFactory("U." + baseType);
     }
 
     protected void setNodeLeaf() throws Exception {
@@ -267,7 +267,7 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
         rightBNode.setNodeFactory(oldFactory);
         int h = nodeCapacity / 2;
         int i = 0;
-        if (oldFactory.actorType.startsWith("LM.")) {
+        if (oldFactory.jidType.startsWith("LM.")) {
             while (i < h) {
                 Jid e = (Jid) oldRootNode.iGet(i);
                 byte[] bytes = e.getSerializedBytes();

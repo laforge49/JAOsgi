@@ -48,7 +48,7 @@ public class LongMapJidFactory extends ActorFactory {
             throws Exception {
         MapEntryFactory.registerFactory(factoryLocator,
                 "E." + actorType, JidFactories.LONG_JID_TYPE, valueType);
-        factoryLocator.registerActorFactory(new LongMapJidFactory(
+        factoryLocator.registerJidFactory(new LongMapJidFactory(
                 actorType, valueType, initialCapacity));
     }
 
@@ -58,12 +58,12 @@ public class LongMapJidFactory extends ActorFactory {
     /**
      * Create an ActorFactory.
      *
-     * @param actorType       The actor type.
+     * @param jidType         The jid type.
      * @param valueType       The value type.
      * @param initialCapacity The initial capacity.
      */
-    protected LongMapJidFactory(String actorType, String valueType, int initialCapacity) {
-        super(actorType);
+    protected LongMapJidFactory(String jidType, String valueType, int initialCapacity) {
+        super(jidType);
         this.valueType = valueType;
         this.initialCapacity = initialCapacity;
     }
@@ -90,7 +90,7 @@ public class LongMapJidFactory extends ActorFactory {
             throws Exception {
         LongMapJid imj = (LongMapJid) super.newActor(mailbox, parent);
         FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
-        imj.valueFactory = fl.getActorFactory(valueType);
+        imj.valueFactory = fl.getJidFactory(valueType);
         imj.initialCapacity = initialCapacity;
         return imj;
     }

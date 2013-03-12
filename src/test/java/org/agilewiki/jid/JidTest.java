@@ -13,7 +13,7 @@ public class JidTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            Jid a = (Jid) factoryLocator.newActor(JidFactories.JID_TYPE);
+            Jid a = (Jid) factoryLocator.newJid(JidFactories.JID_TYPE);
             int l = GetSerializedLength.req.send(future, a);
             System.err.println(l);
             assertEquals(l, 0);
@@ -30,7 +30,7 @@ public class JidTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            Jid a = (Jid) factoryLocator.newActor(JidFactories.JID_TYPE);
+            Jid a = (Jid) factoryLocator.newJid(JidFactories.JID_TYPE);
             int l = GetSerializedLength.req.send(future, a);
             AppendableBytes appendableBytes = new AppendableBytes(l);
             (new Save(appendableBytes)).send(future, a);
@@ -47,7 +47,7 @@ public class JidTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            Jid a = (Jid) factoryLocator.newActor(JidFactories.JID_TYPE);
+            Jid a = (Jid) factoryLocator.newJid(JidFactories.JID_TYPE);
             byte[] bytes = GetSerializedBytes.req.send(future, a);
             int l = bytes.length;
             System.err.println(l);
@@ -65,7 +65,7 @@ public class JidTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            Jid a = (Jid) factoryLocator.newActor(JidFactories.JID_TYPE);
+            Jid a = (Jid) factoryLocator.newJid(JidFactories.JID_TYPE);
             a.load(new ReadableBytes(new byte[0], 0));
             int l = GetSerializedLength.req.send(future, a);
             System.err.println(l);
@@ -83,7 +83,7 @@ public class JidTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            Jid jid1 = (Jid) factoryLocator.newActor(JidFactories.JID_TYPE);
+            Jid jid1 = (Jid) factoryLocator.newJid(JidFactories.JID_TYPE);
             jid1.load(new ReadableBytes(new byte[0], 0));
             Jid jid2 = (Jid) (new CopyJID(factoryLocator.getMailbox())).send(future, jid1);
             int l = GetSerializedLength.req.send(future, jid2);
@@ -104,7 +104,7 @@ public class JidTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            Jid a = (Jid) factoryLocator.newActor(JidFactories.JID_TYPE);
+            Jid a = (Jid) factoryLocator.newJid(JidFactories.JID_TYPE);
             Jid b = (Jid) future.send(a, new ResolvePathname(""));
             assertEquals(a, b);
         } catch (Exception e) {

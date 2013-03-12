@@ -35,9 +35,9 @@ import org.agilewiki.jid.factory.ActorFactory;
 final public class SetActorBytes
         extends Request<Object, Reference> {
     /**
-     * An actor type name.
+     * An jid type name.
      */
-    private String actorType;
+    private String jidType;
 
     /**
      * The jid factory.
@@ -52,13 +52,13 @@ final public class SetActorBytes
     /**
      * Create the request.
      *
-     * @param actorType An actor type name.
-     * @param bytes     The serialized data.
+     * @param jidType A jid type name.
+     * @param bytes   The serialized data.
      */
-    public SetActorBytes(String actorType, byte[] bytes) {
-        if (actorType == null)
+    public SetActorBytes(String jidType, byte[] bytes) {
+        if (jidType == null)
             throw new IllegalArgumentException("value may not be null");
-        this.actorType = actorType;
+        this.jidType = jidType;
         this.bytes = bytes;
     }
 
@@ -76,12 +76,12 @@ final public class SetActorBytes
     }
 
     /**
-     * Returns an actor type name.
+     * Returns an jid type name.
      *
-     * @return An actor type name.
+     * @return An jid type name.
      */
-    public String getActorType() {
-        return actorType;
+    public String getJidType() {
+        return jidType;
     }
 
     /**
@@ -104,8 +104,8 @@ final public class SetActorBytes
 
     @Override
     public void processRequest(JLPCActor targetActor, RP rp) throws Exception {
-        if (actorType != null)
-            ((Reference) targetActor).setJidBytes(actorType, bytes);
+        if (jidType != null)
+            ((Reference) targetActor).setJidBytes(jidType, bytes);
         else
             ((Reference) targetActor).setJidBytes(jidFactory, bytes);
         rp.processResponse(null);

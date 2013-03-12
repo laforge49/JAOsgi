@@ -39,11 +39,11 @@ final public class _ActorFactory extends ActorFactory {
     /**
      * Create an ActorFactory.
      *
-     * @param actorType   The actor type.
+     * @param jidType     The jid type.
      * @param constructor The constructor used to create the actor.
      */
-    public _ActorFactory(String actorType, Constructor<JLPCActor> constructor) {
-        super(actorType);
+    public _ActorFactory(String jidType, Constructor<JLPCActor> constructor) {
+        super(jidType);
         this.constructor = constructor;
     }
 

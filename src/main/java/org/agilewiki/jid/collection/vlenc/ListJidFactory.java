@@ -46,7 +46,7 @@ public class ListJidFactory extends ActorFactory {
                                        String valueType,
                                        int initialCapacity)
             throws Exception {
-        factoryLocator.registerActorFactory(new ListJidFactory(
+        factoryLocator.registerJidFactory(new ListJidFactory(
                 actorType, valueType, initialCapacity));
     }
 
@@ -56,12 +56,12 @@ public class ListJidFactory extends ActorFactory {
     /**
      * Create an ActorFactory.
      *
-     * @param actorType       The actor type.
+     * @param jidType         The jid type.
      * @param entryType       The entry type.
      * @param initialCapacity The initial capacity.
      */
-    protected ListJidFactory(String actorType, String entryType, int initialCapacity) {
-        super(actorType);
+    protected ListJidFactory(String jidType, String entryType, int initialCapacity) {
+        super(jidType);
         this.entryType = entryType;
         this.initialCapacity = initialCapacity;
     }
@@ -87,7 +87,7 @@ public class ListJidFactory extends ActorFactory {
             throws Exception {
         ListJid lj = (ListJid) super.newActor(mailbox, parent);
         FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
-        lj.entryFactory = fl.getActorFactory(entryType);
+        lj.entryFactory = fl.getJidFactory(entryType);
         lj.initialCapacity = initialCapacity;
         return lj;
     }

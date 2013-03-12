@@ -71,7 +71,7 @@ public class ActorJid
     /**
      * Assign a value unless one is already present.
      *
-     * @param jidFactory The actor type.
+     * @param jidFactory The jid factory.
      * @return True if a new value is created.
      * @throws Exception Any uncaught exception raised.
      */
@@ -87,7 +87,7 @@ public class ActorJid
     /**
      * Assign a value.
      *
-     * @param jidType The actor type.
+     * @param jidType The jid type.
      * @throws Exception Any uncaught exception raised.
      */
     @Override
@@ -103,7 +103,7 @@ public class ActorJid
     /**
      * Assign a value.
      *
-     * @param jidFactory The actor type.
+     * @param jidFactory The jid factory.
      * @throws Exception Any uncaught exception raised.
      */
     @Override
@@ -119,39 +119,39 @@ public class ActorJid
     /**
      * Creates a JID actor and loads its serialized data.
      *
-     * @param actorType An actor type name.
-     * @param bytes     The serialized data.
+     * @param jidType An jid type name.
+     * @param bytes   The serialized data.
      * @throws Exception Any uncaught exception raised.
      */
     @Override
-    public void setJidBytes(String actorType, byte[] bytes)
+    public void setJidBytes(String jidType, byte[] bytes)
             throws Exception {
         if (len > -1)
             clear();
-        setBytes(actorType, bytes);
+        setBytes(jidType, bytes);
     }
 
     /**
      * Creates a JID actor and loads its serialized data, unless a JID actor is already present.
      *
-     * @param actorType An actor type name.
-     * @param bytes     The serialized data.
+     * @param jidType An jid type name.
+     * @param bytes   The serialized data.
      * @return True if a new value is created.
      * @throws Exception Any uncaught exception raised.
      */
     @Override
-    public Boolean makeJidBytes(String actorType, byte[] bytes)
+    public Boolean makeJidBytes(String jidType, byte[] bytes)
             throws Exception {
         if (len > -1)
             return false;
-        setBytes(actorType, bytes);
+        setBytes(jidType, bytes);
         return true;
     }
 
     /**
      * Creates a JID actor and loads its serialized data.
      *
-     * @param jidType The actor type.
+     * @param jidType The jid type.
      * @param bytes   The serialized data.
      * @throws Exception Any uncaught exception raised.
      */
@@ -167,7 +167,7 @@ public class ActorJid
     /**
      * Creates a JID actor and loads its serialized data.
      *
-     * @param jidFactory The actor type.
+     * @param jidFactory The jid factory.
      * @param bytes      The serialized data.
      * @throws Exception Any uncaught exception raised.
      */
@@ -182,7 +182,7 @@ public class ActorJid
     /**
      * Creates a JID actor and loads its serialized data, unless a JID actor is already present.
      *
-     * @param jidFactory The actor type.
+     * @param jidFactory The jid factory.
      * @param bytes      The serialized data.
      * @return True if a new value is created.
      * @throws Exception Any uncaught exception raised.
@@ -199,7 +199,7 @@ public class ActorJid
     /**
      * Creates a JID actor and loads its serialized data.
      *
-     * @param jidFactory The actor type.
+     * @param jidFactory The jid factory.
      * @param bytes      The serialized data.
      * @throws Exception Any uncaught exception raised.
      */

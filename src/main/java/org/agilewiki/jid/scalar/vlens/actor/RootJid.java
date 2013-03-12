@@ -135,8 +135,8 @@ public class RootJid extends ActorJid {
     @Override
     public void initialize(final Mailbox mailbox, Actor parent, ActorFactory factory) throws Exception {
         super.initialize(mailbox, parent, factory);
-        //manifestJid = (ManifestJid) JAFactoryLocator.newActor(this, JidFactories.MANIFEST_TYPE, getMailbox());
-       // manifestJid.inc(getLocatorKey(), getLocation());
+        //manifestJid = (ManifestJid) JAFactoryLocator.newJid(this, JidFactories.MANIFEST_TYPE, getMailbox());
+        // manifestJid.inc(getLocatorKey(), getLocation());
     }
 
     /*

@@ -39,7 +39,7 @@ public class MapEntryFactory extends ActorFactory {
                                        String keyType,
                                        String valueType)
             throws Exception {
-        factoryLocator.registerActorFactory(new MapEntryFactory(
+        factoryLocator.registerJidFactory(new MapEntryFactory(
                 actorType, keyType, valueType));
     }
 
@@ -49,10 +49,10 @@ public class MapEntryFactory extends ActorFactory {
     /**
      * Create an ActorFactory.
      *
-     * @param actorType The actor type.
+     * @param jidType The jid type.
      */
-    protected MapEntryFactory(String actorType, String keyType, String valueType) {
-        super(actorType);
+    protected MapEntryFactory(String jidType, String keyType, String valueType) {
+        super(jidType);
         this.keyType = keyType;
         this.valueType = valueType;
     }
@@ -78,8 +78,8 @@ public class MapEntryFactory extends ActorFactory {
             throws Exception {
         MapEntry me = (MapEntry) super.newActor(mailbox, parent);
         FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
-        ActorFactory keyFactory = fl.getActorFactory(keyType);
-        ActorFactory valueFactory = fl.getActorFactory(valueType);
+        ActorFactory keyFactory = fl.getJidFactory(keyType);
+        ActorFactory valueFactory = fl.getJidFactory(valueType);
         me.setFactories(keyFactory, valueFactory);
         return me;
     }

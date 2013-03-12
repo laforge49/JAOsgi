@@ -36,7 +36,7 @@ public class UnionJidFactory extends ActorFactory {
     public static void registerFactory(FactoryLocator factoryLocator,
                                        String subActorType, String... actorTypes)
             throws Exception {
-        factoryLocator.registerActorFactory(new UnionJidFactory(
+        factoryLocator.registerJidFactory(new UnionJidFactory(
                 subActorType, actorTypes));
     }
 
@@ -46,11 +46,11 @@ public class UnionJidFactory extends ActorFactory {
     /**
      * Create a JLPCActorFactory.
      *
-     * @param subActorType The actor type.
-     * @param actorTypes   The element types.
+     * @param subJidType The jid type.
+     * @param actorTypes The element types.
      */
-    protected UnionJidFactory(String subActorType, String... actorTypes) {
-        super(subActorType);
+    protected UnionJidFactory(String subJidType, String... actorTypes) {
+        super(subJidType);
         this.actorTypes = actorTypes;
     }
 
@@ -89,7 +89,7 @@ public class UnionJidFactory extends ActorFactory {
             ActorFactory[] afs = new ActorFactory[actorTypes.length];
             int i = 0;
             while (i < actorTypes.length) {
-                afs[i] = fl.getActorFactory(actorTypes[i]);
+                afs[i] = fl.getJidFactory(actorTypes[i]);
                 i += 1;
             }
             unionFactories = afs;

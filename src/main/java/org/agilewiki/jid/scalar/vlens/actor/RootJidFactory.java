@@ -11,7 +11,7 @@ public class RootJidFactory extends ActorFactory {
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerActorFactory(new RootJidFactory());
+        factoryLocator.registerJidFactory(new RootJidFactory());
     }
 
     /**

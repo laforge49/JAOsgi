@@ -43,9 +43,9 @@ public class IntegerBMapJidFactory extends ActorFactory {
         UnionJidFactory.registerFactory(factoryLocator,
                 "U." + actorType, "LM." + actorType, "IM." + actorType);
 
-        factoryLocator.registerActorFactory(new IntegerBMapJidFactory(
+        factoryLocator.registerJidFactory(new IntegerBMapJidFactory(
                 actorType, valueType, true, true));
-        factoryLocator.registerActorFactory(new IntegerBMapJidFactory(
+        factoryLocator.registerJidFactory(new IntegerBMapJidFactory(
                 "IN." + actorType, valueType, false, false));
 
         IntegerMapJidFactory.registerFactory(
@@ -61,12 +61,12 @@ public class IntegerBMapJidFactory extends ActorFactory {
     /**
      * Create an ActorFactory.
      *
-     * @param actorType The actor type.
+     * @param jidType   The jid type.
      * @param valueType The value type.
      */
-    protected IntegerBMapJidFactory(String actorType, String valueType,
+    protected IntegerBMapJidFactory(String jidType, String valueType,
                                     boolean isRoot, boolean auto) {
-        super(actorType);
+        super(jidType);
         this.valueType = valueType;
         this.isRoot = isRoot;
         this.auto = auto;
@@ -93,7 +93,7 @@ public class IntegerBMapJidFactory extends ActorFactory {
             throws Exception {
         IntegerBMapJid imj = (IntegerBMapJid) super.newActor(mailbox, parent);
         FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
-        imj.valueFactory = fl.getActorFactory(valueType);
+        imj.valueFactory = fl.getJidFactory(valueType);
         imj.nodeCapacity = NODE_CAPACITY;
         imj.isRoot = isRoot;
         imj.init();

@@ -12,7 +12,7 @@ public class IntIntBMapJidTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
             BMapJid<Integer, IntegerJid> m = (BMapJid) factoryLocator.
-                    newActor(JidFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
+                    newJid(JidFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
             m.kMake(0);
             m.kMake(1);
             m.kMake(2);
@@ -39,7 +39,7 @@ public class IntIntBMapJidTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
             BMapJid<Integer, IntegerJid> m = (BMapJid) factoryLocator.
-                    newActor(JidFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
+                    newJid(JidFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
             int i = 0;
             while (i < 28) {
                 m.kMake(i);
@@ -64,7 +64,7 @@ public class IntIntBMapJidTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
             BMapJid<Integer, IntegerJid> m = (BMapJid) factoryLocator.
-                    newActor(JidFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
+                    newJid(JidFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
             int i = 0;
             while (i < 41) {
                 m.kMake(i);
@@ -89,7 +89,7 @@ public class IntIntBMapJidTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
             BMapJid<Integer, IntegerJid> m = (BMapJid) factoryLocator.
-                    newActor(JidFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
+                    newJid(JidFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
             int i = 0;
             while (i < 391) {
                 m.kMake(i);
@@ -114,7 +114,7 @@ public class IntIntBMapJidTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
             BMapJid<Integer, IntegerJid> m = (BMapJid) factoryLocator.
-                    newActor(JidFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
+                    newJid(JidFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
             int i = 0;
             while (i < 10000) {
                 m.kMake(i);
@@ -139,7 +139,7 @@ public class IntIntBMapJidTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
             BMapJid<Integer, IntegerJid> m = (BMapJid) factoryLocator.
-                    newActor(JidFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
+                    newJid(JidFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
             int i = 0;
             while (i < 10000) {
                 m.kMake(i);
@@ -164,7 +164,7 @@ public class IntIntBMapJidTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
             BMapJid<Integer, IntegerJid> m = (BMapJid) factoryLocator.
-                    newActor(JidFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
+                    newJid(JidFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
             int i = 0;
             while (i < 10000) {
                 m.kMake(i);
@@ -189,7 +189,7 @@ public class IntIntBMapJidTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
             BMapJid<Integer, IntegerJid> m = (BMapJid) factoryLocator.
-                    newActor(JidFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
+                    newJid(JidFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
             int i = 0;
             while (i < 10000) {
                 m.kMake(i);
@@ -214,7 +214,7 @@ public class IntIntBMapJidTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
             BMapJid<Integer, IntegerJid> m = (BMapJid) factoryLocator.
-                    newActor(JidFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
+                    newJid(JidFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
             int i = 0;
             while (i < 10000) {
                 m.kMake(i);
