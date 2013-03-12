@@ -47,10 +47,6 @@ public interface _Jid extends TargetActor {
      */
     public void setContainerJid(_Jid containerJid) throws Exception;
 
-    public void incRef(String locationKey) throws Exception;
-
-    public void decRef(String locationKey) throws Exception;
-
     /**
      * Returns the number of bytes needed to serialize the persistent data, sans manifest.
      *

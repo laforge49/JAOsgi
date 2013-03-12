@@ -183,18 +183,6 @@ public class Jid extends JLPCActor implements _Jid {
         this.containerJid = containerJid;
     }
 
-    @Override
-    public void incRef(String locationKey) throws Exception {
-        if (containerJid != null)
-            containerJid.incRef(locationKey);
-    }
-
-    @Override
-    public void decRef(String locationKey) throws Exception {
-        if (containerJid != null)
-            containerJid.decRef(locationKey);
-    }
-
     /**
      * Returns the number of bytes needed to serialize the persistent data.
      *

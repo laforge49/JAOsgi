@@ -145,14 +145,4 @@ public class RootJid extends ActorJid {
         return manifestJid;
     }
     */
-
-    @Override
-    public void incRef(String locationKey) throws Exception {
-        //manifestJid.inc(locationKey, location);
-    }
-
-    @Override
-    public void decRef(String locationKey) throws Exception {
-        //manifestJid.dec(locationKey);
-    }
 }
