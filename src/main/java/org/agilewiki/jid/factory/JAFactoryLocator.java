@@ -117,11 +117,16 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
     private String version = "";
     private String location = "";
     private String locatorKey;
+    private ConcurrentSkipListMap<String, String> manifest;
 
     /**
      * A table which maps type names to actor factories.
      */
     private ConcurrentSkipListMap<String, ActorFactory> types = new ConcurrentSkipListMap<String, ActorFactory>();
+
+    private boolean isLocked() {
+        return manifest == null;
+    }
 
     public void configure(Bundle bundle) {
         bundleName = bundle.getSymbolicName();
@@ -152,7 +157,40 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
     }
 
     public void importFactories(LocateLocalActorFactories locateLocalActorFactories) {
+        if (isLocked())
+            throw new IllegalStateException("Once a manifest is built, imports are locked");
         factoryImports.add(locateLocalActorFactories);
+    }
+
+    public ConcurrentSkipListMap<String, String> getManifest() {
+        if (isLocked())
+            return manifest;
+        manifest = new ConcurrentSkipListMap<String, String>();
+        manifest.put(getLocatorKey(), getLocation());
+        Iterator<LocateLocalActorFactories> it = factoryImports.iterator();
+        while (it.hasNext()) {
+            LocateLocalActorFactories llaf = it.next();
+            llaf.updateManifest(manifest);
+        }
+        return manifest;
+    }
+
+    public void updateManifest(ConcurrentSkipListMap<String, String> m) {
+        Iterator<String> it = manifest.keySet().iterator();
+        while (it.hasNext()) {
+            String locatorKey = it.next();
+            String location = manifest.get(locatorKey);
+            m.put(locatorKey, location);
+        }
+    }
+
+    public void unknownManifestEntries(ConcurrentSkipListMap<String, String> m) {
+        m.remove(getLocatorKey());
+        Iterator<LocateLocalActorFactories> it = factoryImports.iterator();
+        while (it.hasNext()) {
+            LocateLocalActorFactories llaf = it.next();
+            llaf.unknownManifestEntries(manifest);
+        }
     }
 
     /**

@@ -28,6 +28,7 @@ import org.agilewiki.jid.jaosgi.JABundleContext;
 import org.osgi.framework.Bundle;
 
 import java.util.Hashtable;
+import java.util.concurrent.ConcurrentSkipListMap;
 
 public abstract class LocateLocalActorFactories extends JLPCActor {
     private JAFactoryLocator factoryLocator;
@@ -56,5 +57,13 @@ public abstract class LocateLocalActorFactories extends JLPCActor {
     public ActorFactory _getActorFactory(String actorType)
             throws Exception {
         return factoryLocator._getActorFactory(actorType);
+    }
+
+    public void updateManifest(ConcurrentSkipListMap<String, String> manifest) {
+        factoryLocator.updateManifest(manifest);
+    }
+
+    public void unknownManifestEntries(ConcurrentSkipListMap<String, String> manifest) {
+        factoryLocator.unknownManifestEntries(manifest);
     }
 }
