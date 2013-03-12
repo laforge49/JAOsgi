@@ -199,6 +199,11 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
         return m.isEmpty();
     }
 
+    public void load(ConcurrentSkipListMap<String, String> m) throws Exception {
+        if (!validateManifest(m))
+            throw new UnsupportedOperationException("Did not load " + m.size() + " bundles");
+    }
+
     /**
      * Creates a new actor.
      *
