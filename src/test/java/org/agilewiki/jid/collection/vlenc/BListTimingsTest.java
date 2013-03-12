@@ -10,23 +10,28 @@ import org.agilewiki.jid.scalar.flens.integer.IntegerJid;
 public class BListTimingsTest extends TestCase {
     public void test() throws Exception {
 
-        int s = 1000;
-        int r = 1000;
+        int s = 100000;
+        int r = 10000;
+
+        //list size = 1,000
+        //repetitions = 1,000
+        //total run time (milliseconds) =  14
+        //time per update (microseconds) = 16
 
         //list size = 10,000
         //repetitions = 10,000
-        //total run time (milliseconds) = 359
-        //time per update (microseconds) = 35
+        //total run time (milliseconds) = 379
+        //time per update (microseconds) = 37
 
         //list size = 100,000
         //repetitions = 10,000
-        //total run time (milliseconds) = 2394
-        //time per update (microseconds) = 239
+        //total run time (milliseconds) = 2595
+        //time per update (microseconds) = 259
 
         //list size = 1,000,000
-        //repetitions = 1,000
-        //total run time (milliseconds) = 2927
-        //time per update (microseconds) = 2927
+        //repetitions = 10,000
+        //total run time (milliseconds) = 29379
+        //time per update (microseconds) = 2937
 
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);

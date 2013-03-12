@@ -12,20 +12,25 @@ public class BMapTimingsTest extends TestCase {
         int s = 1000;
         int r = 1000;
 
+        //map size = 1000
+        //repetitions = 1000
+        //total run time (milliseconds) =  38
+        //time per update (microseconds) = 38
+
         //map size = 10000
         //repetitions = 10000
-        //total run time (milliseconds) = 567
+        //total run time (milliseconds) = 568
         //time per update (microseconds) = 56
 
         //map size = 100000
         //repetitions = 10000
-        //total run time (milliseconds) = 4775
-        //time per update (microseconds) = 477
+        //total run time (milliseconds) = 5123
+        //time per update (microseconds) = 512
 
         //map size = 1000000
         //repetitions = 1000
-        //total run time (milliseconds) = 6854
-        //time per update (microseconds) = 6854
+        //total run time (milliseconds) =  7277
+        //time per update (microseconds) = 7277
 
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
