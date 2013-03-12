@@ -65,7 +65,7 @@ public class MapEntry<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE>
         old.setContainerJid(null);
         Jid elementJid = createSubordinate(tupleFactories[TUPLE_VALUE], this, bytes);
         tuple[TUPLE_VALUE] = elementJid;
-        change(elementJid._getSerializedLength() - old._getSerializedLength());
+        change(elementJid.getSerializedLength() - old.getSerializedLength());
     }
 
     /**

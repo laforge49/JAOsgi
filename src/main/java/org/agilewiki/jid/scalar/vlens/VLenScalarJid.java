@@ -78,7 +78,7 @@ abstract public class VLenScalarJid<SET_TYPE, RESPONSE_TYPE>
      * @return The minimum size of the byte array needed to serialize the persistent data.
      */
     @Override
-    public int _getSerializedLength() {
+    public int getSerializedLength() {
         if (len == -1)
             return Util.INT_LENGTH;
         return Util.INT_LENGTH + len;
@@ -90,7 +90,7 @@ abstract public class VLenScalarJid<SET_TYPE, RESPONSE_TYPE>
      * @param readableBytes Holds the serialized data.
      * @return The size of the serialized data (exclusive of its length header).
      */
-    protected int loadLen(ReadableBytes readableBytes) {
+    protected int loadLen(ReadableBytes readableBytes) throws Exception {
         int l = readableBytes.readInt();
         return l;
     }
@@ -100,7 +100,7 @@ abstract public class VLenScalarJid<SET_TYPE, RESPONSE_TYPE>
      *
      * @param appendableBytes The object written to.
      */
-    protected void saveLen(AppendableBytes appendableBytes) {
+    protected void saveLen(AppendableBytes appendableBytes) throws Exception {
         appendableBytes.writeInt(len);
     }
 

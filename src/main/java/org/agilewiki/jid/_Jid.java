@@ -52,14 +52,6 @@ public interface _Jid extends TargetActor {
      *
      * @return The minimum size of the byte array needed to serialize the persistent data.
      */
-    public int _getSerializedLength()
-            throws Exception;
-
-    /**
-     * Returns the total number of bytes needed to serialize the persistent data.
-     *
-     * @return The minimum size of the byte array needed to serialize the persistent data.
-     */
     public int getSerializedLength()
             throws Exception;
 

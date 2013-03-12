@@ -24,10 +24,10 @@ public class RootJidTest extends TestCase {
             RootJidFactory rootJidFactory = (RootJidFactory) factoryLocator.getJidFactory(JidFactories.ROOT_JID_TYPE);
             Actor rootJid1 = rootJidFactory.newActor(factoryLocator.getMailbox(), factoryLocator);
             int sl = GetSerializedLength.req.send(future, rootJid1);
-            assertEquals(0, sl);
+            assertEquals(56, sl);
             Clear.req.send(future, rootJid1);
             sl = GetSerializedLength.req.send(future, rootJid1);
-            assertEquals(0, sl);
+            assertEquals(56, sl);
             Actor rootJid1a = GetActor.req.send(future, rootJid1);
             assertNull(rootJid1a);
             Actor rpa = (new ResolvePathname("")).send(future, rootJid1);
@@ -38,7 +38,7 @@ public class RootJidTest extends TestCase {
             Actor rootJid11 = (new CopyJID()).send(future, rootJid1);
             assertNotNull(rootJid11);
             sl = GetSerializedLength.req.send(future, rootJid11);
-            assertEquals(0, sl);
+            assertEquals(56, sl);
             rpa = (new ResolvePathname("")).send(future, rootJid11);
             assertNotNull(rpa);
             assertEquals(rpa, rootJid11);
@@ -55,7 +55,7 @@ public class RootJidTest extends TestCase {
 
             Actor rootJid2 = rootJidFactory.newActor(factoryLocator.getMailbox(), factoryLocator);
             sl = GetSerializedLength.req.send(future, rootJid2);
-            assertEquals(0, sl);
+            assertEquals(56, sl);
             SetActor sjvj = new SetActor(JidFactories.JID_TYPE);
             sjvj.send(future, rootJid2);
             MakeActor mjvj = new MakeActor(JidFactories.JID_TYPE);
@@ -66,7 +66,7 @@ public class RootJidTest extends TestCase {
             sl = GetSerializedLength.req.send(future, jidJid2a);
             assertEquals(0, sl);
             sl = GetSerializedLength.req.send(future, rootJid2);
-            assertEquals(48, sl);
+            assertEquals(104, sl);
             rpa = (new ResolvePathname("")).send(future, rootJid2);
             assertNotNull(rpa);
             assertEquals(rpa, rootJid2);
@@ -76,12 +76,12 @@ public class RootJidTest extends TestCase {
             Actor rootJid22 = (new CopyJID()).send(future, rootJid2);
             Clear.req.send(future, rootJid2);
             sl = GetSerializedLength.req.send(future, rootJid2);
-            assertEquals(0, sl);
+            assertEquals(56, sl);
             jidJid2a = GetActor.req.send(future, rootJid2);
             assertNull(jidJid2a);
             assertNotNull(rootJid22);
             sl = GetSerializedLength.req.send(future, rootJid22);
-            assertEquals(48, sl);
+            assertEquals(104, sl);
             rpa = (new ResolvePathname("")).send(future, rootJid22);
             assertNotNull(rpa);
             assertEquals(rpa, rootJid22);

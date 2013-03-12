@@ -189,15 +189,9 @@ public class Jid extends JLPCActor implements _Jid {
      * @return The minimum size of the byte array needed to serialize the persistent data.
      */
     @Override
-    public int _getSerializedLength() throws Exception {
+    public int getSerializedLength() throws Exception {
         return 0;
     }
-
-    @Override
-    public int getSerializedLength() throws Exception {
-        return /*mj._getSerializedLength() +*/ _getSerializedLength();
-    }
-
 
     /**
      * Returns true when the persistent data is already serialized.
@@ -228,7 +222,7 @@ public class Jid extends JLPCActor implements _Jid {
         if (isSerialized()) {
             byte[] bs = appendableBytes.getBytes();
             int off = appendableBytes.getOffset();
-            appendableBytes.writeBytes(serializedBytes, serializedOffset, _getSerializedLength());
+            appendableBytes.writeBytes(serializedBytes, serializedOffset, getSerializedLength());
             serializedBytes = bs;
             serializedOffset = off;
         } else {
@@ -236,10 +230,10 @@ public class Jid extends JLPCActor implements _Jid {
             serializedOffset = appendableBytes.getOffset();
             serialize(appendableBytes);
         }
-        if (serializedOffset + _getSerializedLength() != appendableBytes.getOffset()) {
+        if (serializedOffset + getSerializedLength() != appendableBytes.getOffset()) {
             System.err.println("\n" + getClass().getName());
             System.err.println("" + serializedOffset +
-                    " + " + _getSerializedLength() + " != " + appendableBytes.getOffset());
+                    " + " + getSerializedLength() + " != " + appendableBytes.getOffset());
             throw new IllegalStateException();
         }
     }
@@ -251,7 +245,7 @@ public class Jid extends JLPCActor implements _Jid {
      */
     public final byte[] getSerializedBytes()
             throws Exception {
-        byte[] bs = new byte[_getSerializedLength()];
+        byte[] bs = new byte[getSerializedLength()];
         AppendableBytes appendableBytes = new AppendableBytes(bs, 0);
         save(appendableBytes);
         return bs;
@@ -289,12 +283,12 @@ public class Jid extends JLPCActor implements _Jid {
      * @param m The mailbox.
      * @return a copy of the actor.
      */
-    final public Actor copyJID(Mailbox m)
+    public Actor copyJID(Mailbox m)
             throws Exception {
         Mailbox mb = m;
         if (mb == null)
             mb = getMailbox();
-        Jid jid = (Jid) getFactory().newActor(mb, getParent());
+        Jid jid = getFactory().newActor(mb, getParent());
         jid.load(new ReadableBytes(getSerializedBytes(), 0));
         return jid;
     }
@@ -309,7 +303,7 @@ public class Jid extends JLPCActor implements _Jid {
         send(jidA, GetSerializedLength.req, new RP<Integer>() {
             @Override
             public void processResponse(Integer response) throws Exception {
-                if (response.intValue() != _getSerializedLength()) {
+                if (response.intValue() != getSerializedLength()) {
                     rp.processResponse(false);
                     return;
                 }

@@ -62,7 +62,7 @@ public class LongJid
      * @return The minimum size of the byte array needed to serialize the persistent data.
      */
     @Override
-    public int _getSerializedLength() {
+    public int getSerializedLength() {
         return Util.LONG_LENGTH;
     }
 

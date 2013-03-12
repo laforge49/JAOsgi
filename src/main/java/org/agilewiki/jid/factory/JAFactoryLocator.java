@@ -169,7 +169,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
     private ConcurrentSkipListMap<String, ActorFactory> types = new ConcurrentSkipListMap<String, ActorFactory>();
 
     private boolean isLocked() {
-        return manifest == null;
+        return manifest != null;
     }
 
     public void configure(Bundle bundle) {
@@ -250,7 +250,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
     public boolean validateManifest(StringMapJid<StringJid> m) throws Exception {
         StringMapJid<StringJid> mc = (StringMapJid<StringJid>) m.copyJID(getMailbox());
         unknownManifestEntries(mc);
-        return m.size() == 0;
+        return mc.size() == 0;
     }
 
     @Override

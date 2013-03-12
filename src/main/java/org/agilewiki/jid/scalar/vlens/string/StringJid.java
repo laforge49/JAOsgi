@@ -109,7 +109,7 @@ public class StringJid
      * @param appendableBytes The wrapped byte array into which the persistent data is to be serialized.
      */
     @Override
-    protected void serialize(AppendableBytes appendableBytes) {
+    protected void serialize(AppendableBytes appendableBytes) throws Exception {
         if (len == -1)
             saveLen(appendableBytes);
         else

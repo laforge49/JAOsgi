@@ -26,6 +26,7 @@ package org.agilewiki.jid.scalar.vlens.actor;
 import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jid.AppendableBytes;
+import org.agilewiki.jid.Jid;
 import org.agilewiki.jid.ReadableBytes;
 import org.agilewiki.jid._Jid;
 import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
@@ -100,7 +101,9 @@ public class RootJid extends ActorJid {
      * @return The size of the remaining bytes of serialized data.
      */
     @Override
-    protected int loadLen(ReadableBytes readableBytes) {
+    protected int loadLen(ReadableBytes readableBytes) throws Exception {
+        manifest.load(readableBytes);
+        loadBundles();
         int l = readableBytes.remaining();
         if (l == 0)
             return -1;
@@ -114,6 +117,7 @@ public class RootJid extends ActorJid {
      */
     @Override
     protected void skipLen(ReadableBytes readableBytes) {
+        readableBytes.skip(manifest.getSerializedLength());
     }
 
     /**
@@ -122,7 +126,8 @@ public class RootJid extends ActorJid {
      * @param appendableBytes The object written to.
      */
     @Override
-    protected void saveLen(AppendableBytes appendableBytes) {
+    protected void saveLen(AppendableBytes appendableBytes) throws Exception {
+        manifest.save(appendableBytes);
     }
 
     /**
@@ -131,16 +136,26 @@ public class RootJid extends ActorJid {
      * @return The minimum size of the byte array needed to serialize the persistent data.
      */
     @Override
-    public int _getSerializedLength() {
+    public int getSerializedLength() {
         if (len == -1)
-            return 0;
-        return len;
+            return manifest.getSerializedLength();
+        return manifest.getSerializedLength() + len;
     }
 
     @Override
     public void initialize(final Mailbox mailbox, Actor parent, ActorFactory factory) throws Exception {
         super.initialize(mailbox, parent, factory);
         manifest = JAFactoryLocator.getManifestCopy(this, getMailbox());
+    }
+
+    public Actor copyJID(Mailbox m)
+            throws Exception {
+        Mailbox mb = m;
+        if (mb == null)
+            mb = getMailbox();
+        Jid jid = getFactory().newActor(mb, getParent());
+        jid.load(new ReadableBytes(getSerializedBytes(), 0));
+        return jid;
     }
 
     public StringMapJid<StringJid> getManifestJidCopy(Mailbox mailbox) throws Exception {

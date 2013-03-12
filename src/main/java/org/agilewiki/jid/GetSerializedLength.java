@@ -49,6 +49,6 @@ final public class GetSerializedLength
 
     @Override
     public void processRequest(JLPCActor targetActor, RP rp) throws Exception {
-        rp.processResponse(((Jid) targetActor)._getSerializedLength());
+        rp.processResponse(((Jid) targetActor).getSerializedLength());
     }
 }

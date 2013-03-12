@@ -63,7 +63,7 @@ public class TupleJid
         len = 0;
         while (i < size()) {
             Jid elementJid = createSubordinate(tupleFactories[i], readableBytes);
-            len += elementJid._getSerializedLength();
+            len += elementJid.getSerializedLength();
             tuple[i] = elementJid;
             i += 1;
         }
@@ -96,7 +96,7 @@ public class TupleJid
         _Jid oldElementJid = iGet(i);
         oldElementJid.setContainerJid(null);
         tuple[i] = elementJid;
-        change(elementJid._getSerializedLength() - oldElementJid._getSerializedLength());
+        change(elementJid.getSerializedLength() - oldElementJid.getSerializedLength());
     }
 
     /**
@@ -105,7 +105,7 @@ public class TupleJid
      * @return The minimum size of the byte array needed to serialize the persistent data.
      */
     @Override
-    public int _getSerializedLength()
+    public int getSerializedLength()
             throws Exception {
         initializeTuple();
         return Util.INT_LENGTH + len;
