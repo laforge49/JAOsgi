@@ -28,7 +28,10 @@ import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ReadableBytes;
 import org.agilewiki.jid._Jid;
+import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
 import org.agilewiki.jid.factory.ActorFactory;
+import org.agilewiki.jid.factory.JAFactoryLocator;
+import org.agilewiki.jid.scalar.vlens.string.StringJid;
 
 /**
  * The root Jid actor of a tree of Jid actors.
@@ -37,6 +40,8 @@ import org.agilewiki.jid.factory.ActorFactory;
  * The load method simply grabs all the remaining data.
  */
 public class RootJid extends ActorJid {
+    private StringMapJid<StringJid> manifest;
+
     /**
      * Save the serialized data into a byte array.
      *
@@ -135,14 +140,22 @@ public class RootJid extends ActorJid {
     @Override
     public void initialize(final Mailbox mailbox, Actor parent, ActorFactory factory) throws Exception {
         super.initialize(mailbox, parent, factory);
-        //manifestJid = (ManifestJid) JAFactoryLocator.newJid(this, JidFactories.MANIFEST_TYPE, getMailbox());
-        // manifestJid.inc(getLocatorKey(), getLocation());
+        manifest = JAFactoryLocator.getManifestCopy(this, getMailbox());
     }
 
-    /*
-    @Override
-    public ManifestJid _getManifestJid() throws Exception {
-        return manifestJid;
+    public StringMapJid<StringJid> getManifestJidCopy(Mailbox mailbox) throws Exception {
+        return (StringMapJid<StringJid>) manifest.copyJID(mailbox);
     }
-    */
+
+    public boolean validateManifest() throws Exception {
+        return JAFactoryLocator.validateManifest(this, manifest);
+    }
+
+    public void loadBundles() throws Exception {
+        JAFactoryLocator.loadBundles(this, manifest);
+    }
+
+    public void unknownManifestEntries() throws Exception {
+        JAFactoryLocator.unknownManifestEntries(this, manifest);
+    }
 }

@@ -116,14 +116,14 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
         return factoryLocator.newJid(jidType, mailbox, parent);
     }
 
-    public static StringMapJid<StringJid> getManifestCopy(Actor actor)
+    public static StringMapJid<StringJid> getManifestCopy(Actor actor, Mailbox mailbox)
             throws Exception {
         if (!(actor instanceof FactoryLocator))
             actor = actor.getAncestor(FactoryLocator.class);
         if (actor == null)
             throw new IllegalStateException("FactoryLocator is not an ancestor");
         FactoryLocator factoryLocator = (FactoryLocator) actor;
-        return factoryLocator.getManifestCopy();
+        return factoryLocator.getManifestCopy(mailbox);
     }
 
     public static void unknownManifestEntries(Actor actor, StringMapJid<StringJid> m)
@@ -146,14 +146,14 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
         return factoryLocator.validateManifest(m);
     }
 
-    public static void load(Actor actor, StringMapJid<StringJid> m)
+    public static void loadBundles(Actor actor, StringMapJid<StringJid> m)
             throws Exception {
         if (!(actor instanceof FactoryLocator))
             actor = actor.getAncestor(FactoryLocator.class);
         if (actor == null)
             throw new IllegalStateException("FactoryLocator is not an ancestor");
         FactoryLocator factoryLocator = (FactoryLocator) actor;
-        factoryLocator.load(m);
+        factoryLocator.loadBundles(m);
     }
 
     private ConcurrentSkipListSet<LocateLocalActorFactories> factoryImports = new ConcurrentSkipListSet();
@@ -207,7 +207,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
     }
 
     @Override
-    public StringMapJid<StringJid> getManifestCopy() throws Exception {
+    public StringMapJid<StringJid> getManifestCopy(Mailbox mailbox) throws Exception {
         if (isLocked())
             return manifest;
         manifest = (StringMapJid<StringJid>) newJid(JidFactories.STRING_STRING_MAP_JID_TYPE);
@@ -219,7 +219,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
             LocateLocalActorFactories llaf = it.next();
             llaf.updateManifest(manifest);
         }
-        return (StringMapJid<StringJid>) manifest.copyJID(getMailbox());
+        return (StringMapJid<StringJid>) manifest.copyJID(mailbox);
     }
 
     public void updateManifest(StringMapJid<StringJid> m) throws Exception {
@@ -254,7 +254,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
     }
 
     @Override
-    public void load(StringMapJid<StringJid> m) throws Exception {
+    public void loadBundles(StringMapJid<StringJid> m) throws Exception {
         if (!validateManifest(m))
             throw new UnsupportedOperationException("Did not load " + m.size() + " bundles");
     }

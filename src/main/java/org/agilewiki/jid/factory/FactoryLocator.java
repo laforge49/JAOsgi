@@ -93,11 +93,11 @@ public interface FactoryLocator extends TargetActor {
     public Jid newJid(String jidType, Mailbox mailbox, Actor parent)
             throws Exception;
 
-    public StringMapJid<StringJid> getManifestCopy() throws Exception;
+    public StringMapJid<StringJid> getManifestCopy(Mailbox mailbox) throws Exception;
 
     public boolean validateManifest(StringMapJid<StringJid> m) throws Exception;
 
-    public void load(StringMapJid<StringJid> m) throws Exception;
+    public void loadBundles(StringMapJid<StringJid> m) throws Exception;
 
     public void unknownManifestEntries(StringMapJid<StringJid> m) throws Exception;
 }
