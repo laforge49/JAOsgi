@@ -24,11 +24,12 @@
 package org.agilewiki.jid.factory;
 
 import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
 import org.agilewiki.jid.jaosgi.JABundleContext;
+import org.agilewiki.jid.scalar.vlens.string.StringJid;
 import org.osgi.framework.Bundle;
 
 import java.util.Hashtable;
-import java.util.concurrent.ConcurrentSkipListMap;
 
 public abstract class LocateLocalActorFactories extends JLPCActor {
     private JAFactoryLocator factoryLocator;
@@ -59,11 +60,11 @@ public abstract class LocateLocalActorFactories extends JLPCActor {
         return factoryLocator._getActorFactory(actorType);
     }
 
-    public void updateManifest(ConcurrentSkipListMap<String, String> manifest) {
+    public void updateManifest(StringMapJid<StringJid> manifest) throws Exception {
         factoryLocator.updateManifest(manifest);
     }
 
-    public void unknownManifestEntries(ConcurrentSkipListMap<String, String> manifest) {
+    public void unknownManifestEntries(StringMapJid<StringJid> manifest) throws Exception {
         factoryLocator.unknownManifestEntries(manifest);
     }
 }

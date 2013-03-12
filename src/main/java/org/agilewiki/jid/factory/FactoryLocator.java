@@ -27,6 +27,8 @@ import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.lpc.TargetActor;
 import org.agilewiki.jid.Jid;
+import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
+import org.agilewiki.jid.scalar.vlens.string.StringJid;
 
 /**
  * Defines actor types and instantiating
@@ -90,4 +92,12 @@ public interface FactoryLocator extends TargetActor {
      */
     public Jid newJid(String jidType, Mailbox mailbox, Actor parent)
             throws Exception;
+
+    public StringMapJid<StringJid> getManifestCopy() throws Exception;
+
+    public boolean validateManifest(StringMapJid<StringJid> m) throws Exception;
+
+    public void load(StringMapJid<StringJid> m) throws Exception;
+
+    public void unknownManifestEntries(StringMapJid<StringJid> m) throws Exception;
 }

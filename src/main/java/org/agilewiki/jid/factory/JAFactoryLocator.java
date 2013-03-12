@@ -27,6 +27,9 @@ import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jid.Jid;
+import org.agilewiki.jid.collection.vlenc.map.MapEntry;
+import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
+import org.agilewiki.jid.scalar.vlens.string.StringJid;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.Version;
 
@@ -113,12 +116,52 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
         return factoryLocator.newJid(jidType, mailbox, parent);
     }
 
+    public static StringMapJid<StringJid> getManifestCopy(Actor actor)
+            throws Exception {
+        if (!(actor instanceof FactoryLocator))
+            actor = actor.getAncestor(FactoryLocator.class);
+        if (actor == null)
+            throw new IllegalStateException("FactoryLocator is not an ancestor");
+        FactoryLocator factoryLocator = (FactoryLocator) actor;
+        return factoryLocator.getManifestCopy();
+    }
+
+    public static void unknownManifestEntries(Actor actor, StringMapJid<StringJid> m)
+            throws Exception {
+        if (!(actor instanceof FactoryLocator))
+            actor = actor.getAncestor(FactoryLocator.class);
+        if (actor == null)
+            throw new IllegalStateException("FactoryLocator is not an ancestor");
+        FactoryLocator factoryLocator = (FactoryLocator) actor;
+        factoryLocator.unknownManifestEntries(m);
+    }
+
+    public static boolean validateManifest(Actor actor, StringMapJid<StringJid> m)
+            throws Exception {
+        if (!(actor instanceof FactoryLocator))
+            actor = actor.getAncestor(FactoryLocator.class);
+        if (actor == null)
+            throw new IllegalStateException("FactoryLocator is not an ancestor");
+        FactoryLocator factoryLocator = (FactoryLocator) actor;
+        return factoryLocator.validateManifest(m);
+    }
+
+    public static void load(Actor actor, StringMapJid<StringJid> m)
+            throws Exception {
+        if (!(actor instanceof FactoryLocator))
+            actor = actor.getAncestor(FactoryLocator.class);
+        if (actor == null)
+            throw new IllegalStateException("FactoryLocator is not an ancestor");
+        FactoryLocator factoryLocator = (FactoryLocator) actor;
+        factoryLocator.load(m);
+    }
+
     private ConcurrentSkipListSet<LocateLocalActorFactories> factoryImports = new ConcurrentSkipListSet();
     private String bundleName = "";
     private String version = "";
     private String location = "";
     private String locatorKey;
-    private ConcurrentSkipListMap<String, String> manifest;
+    private StringMapJid<StringJid> manifest;
 
     /**
      * A table which maps type names to actor factories.
@@ -163,30 +206,39 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
         factoryImports.add(locateLocalActorFactories);
     }
 
-    public ConcurrentSkipListMap<String, String> getManifest() {
+    @Override
+    public StringMapJid<StringJid> getManifestCopy() throws Exception {
         if (isLocked())
             return manifest;
-        manifest = new ConcurrentSkipListMap<String, String>();
-        manifest.put(getLocatorKey(), getLocation());
+        manifest = (StringMapJid<StringJid>) newJid(JidFactories.STRING_STRING_MAP_JID_TYPE);
+        manifest.kMake(getLocatorKey());
+        StringJid sj = manifest.kGet(getLocatorKey());
+        sj.setValue(getLocation());
         Iterator<LocateLocalActorFactories> it = factoryImports.iterator();
         while (it.hasNext()) {
             LocateLocalActorFactories llaf = it.next();
             llaf.updateManifest(manifest);
         }
-        return manifest;
+        return (StringMapJid<StringJid>) manifest.copyJID(getMailbox());
     }
 
-    public void updateManifest(ConcurrentSkipListMap<String, String> m) {
-        Iterator<String> it = manifest.keySet().iterator();
-        while (it.hasNext()) {
-            String locatorKey = it.next();
-            String location = manifest.get(locatorKey);
-            m.put(locatorKey, location);
+    public void updateManifest(StringMapJid<StringJid> m) throws Exception {
+        int s = manifest.size();
+        int i = 0;
+        while (i < s) {
+            MapEntry<String, StringJid> me = manifest.iGet(i);
+            String locatorKey = me.getKey();
+            String location = me.getValue().getValue();
+            m.kMake(locatorKey);
+            StringJid sj = m.kGet(locatorKey);
+            sj.setValue(location);
+            i += 1;
         }
     }
 
-    public void unknownManifestEntries(ConcurrentSkipListMap<String, String> m) {
-        m.remove(getLocatorKey());
+    @Override
+    public void unknownManifestEntries(StringMapJid<StringJid> m) throws Exception {
+        m.kRemove(getLocatorKey());
         Iterator<LocateLocalActorFactories> it = factoryImports.iterator();
         while (it.hasNext()) {
             LocateLocalActorFactories llaf = it.next();
@@ -194,13 +246,15 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
         }
     }
 
-    public boolean validateManifest(ConcurrentSkipListMap<String, String> m) {
-        m = new ConcurrentSkipListMap<String, String>(m);
-        unknownManifestEntries(m);
-        return m.isEmpty();
+    @Override
+    public boolean validateManifest(StringMapJid<StringJid> m) throws Exception {
+        StringMapJid<StringJid> mc = (StringMapJid<StringJid>) m.copyJID(getMailbox());
+        unknownManifestEntries(mc);
+        return m.size() == 0;
     }
 
-    public void load(ConcurrentSkipListMap<String, String> m) throws Exception {
+    @Override
+    public void load(StringMapJid<StringJid> m) throws Exception {
         if (!validateManifest(m))
             throw new UnsupportedOperationException("Did not load " + m.size() + " bundles");
     }
