@@ -10,6 +10,7 @@ import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
 import org.agilewiki.jid.scalar.Clear;
+import org.agilewiki.jid.scalar.vlens.actor.ActorJid;
 import org.agilewiki.jid.scalar.vlens.actor.SetActor;
 
 public class BytesTest extends TestCase {
@@ -18,7 +19,7 @@ public class BytesTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            Actor bytes1 = factoryLocator.newJid(JidFactories.BYTES_JID_TYPE);
+            Actor bytes1 = BytesJid.create(factoryLocator, null, null);
             Actor bytes2 = (new CopyJID()).send(future, bytes1);
             (new SetBytes(new byte[3])).send(future, bytes2);
             Actor bytes3 = (new CopyJID()).send(future, bytes2);
@@ -34,7 +35,7 @@ public class BytesTest extends TestCase {
             assertEquals(3, GetBytes.req.send(future, bytes2).length);
             assertEquals(3, GetBytes.req.send(future, bytes3).length);
 
-            Actor jidJid1 = factoryLocator.newJid(JidFactories.ACTOR_JID_TYPE);
+            ActorJid jidJid1 = ActorJid.create(factoryLocator, null, null);
             SetActor sjvbs = new SetActor(JidFactories.BYTES_JID_TYPE);
             sjvbs.send(future, jidJid1);
             Actor rpa = (new ResolvePathname("0")).send(future, jidJid1);

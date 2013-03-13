@@ -23,8 +23,13 @@
  */
 package org.agilewiki.jid.scalar.vlens.actor;
 
+import org.agilewiki.jactor.Actor;
+import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jid.*;
 import org.agilewiki.jid.factory.ActorFactory;
+import org.agilewiki.jid.factory.FactoryLocator;
+import org.agilewiki.jid.factory.JAFactoryLocator;
+import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.scalar.vlens.VLenScalarJid;
 
 /**
@@ -32,6 +37,21 @@ import org.agilewiki.jid.scalar.vlens.VLenScalarJid;
  */
 public class ActorJid
         extends VLenScalarJid<String, Jid> implements Reference {
+    public static ActorJid create(Actor actor, Mailbox mailbox, Actor parent) throws Exception {
+        return (ActorJid) JAFactoryLocator.newJid(actor, JidFactories.ACTOR_JID_TYPE, mailbox, parent);
+    }
+
+    public static void registerFactory(FactoryLocator factoryLocator)
+            throws Exception {
+        factoryLocator.registerJidFactory(new ActorFactory(JidFactories.ACTOR_JID_TYPE) {
+            @Override
+            final protected ActorJid instantiateActor()
+                    throws Exception {
+                return new ActorJid();
+            }
+        });
+    }
+
     /**
      * Clear the content.
      *

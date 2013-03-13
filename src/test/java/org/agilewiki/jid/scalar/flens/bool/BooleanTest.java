@@ -1,7 +1,6 @@
 package org.agilewiki.jid.scalar.flens.bool;
 
 import junit.framework.TestCase;
-import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.JAFuture;
 import org.agilewiki.jid.CopyJID;
 import org.agilewiki.jid.GetSerializedLength;
@@ -9,6 +8,7 @@ import org.agilewiki.jid.ResolvePathname;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
+import org.agilewiki.jid.scalar.vlens.actor.ActorJid;
 import org.agilewiki.jid.scalar.vlens.actor.SetActor;
 
 public class BooleanTest extends TestCase {
@@ -33,7 +33,7 @@ public class BooleanTest extends TestCase {
             assertTrue(GetBoolean.req.send(future, boolean2));
             assertTrue(GetBoolean.req.send(future, boolean3));
 
-            Actor jidJid1 = factoryLocator.newJid(JidFactories.ACTOR_JID_TYPE);
+            ActorJid jidJid1 = ActorJid.create(factoryLocator, null, null);
             SetActor sjvb = new SetActor(JidFactories.BOOLEAN_JID_TYPE);
             sjvb.send(future, jidJid1);
             BooleanJid rpa = (BooleanJid) (new ResolvePathname("0")).send(future, jidJid1);

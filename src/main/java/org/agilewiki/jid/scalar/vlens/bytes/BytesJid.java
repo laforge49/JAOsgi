@@ -23,8 +23,14 @@
  */
 package org.agilewiki.jid.scalar.vlens.bytes;
 
+import org.agilewiki.jactor.Actor;
+import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ReadableBytes;
+import org.agilewiki.jid.factory.ActorFactory;
+import org.agilewiki.jid.factory.FactoryLocator;
+import org.agilewiki.jid.factory.JAFactoryLocator;
+import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.scalar.vlens.VLenScalarJid;
 
 import java.io.ByteArrayInputStream;
@@ -37,6 +43,21 @@ import java.io.ObjectOutputStream;
  */
 public class BytesJid
         extends VLenScalarJid<byte[], byte[]> {
+    public static BytesJid create(Actor actor, Mailbox mailbox, Actor parent) throws Exception {
+        return (BytesJid) JAFactoryLocator.newJid(actor, JidFactories.BYTES_JID_TYPE, mailbox, parent);
+    }
+
+    public static void registerFactory(FactoryLocator factoryLocator)
+            throws Exception {
+        factoryLocator.registerJidFactory(new ActorFactory(JidFactories.BYTES_JID_TYPE) {
+            @Override
+            final protected BytesJid instantiateActor()
+                    throws Exception {
+                return new BytesJid();
+            }
+        });
+    }
+
     /**
      * Assign a value.
      *

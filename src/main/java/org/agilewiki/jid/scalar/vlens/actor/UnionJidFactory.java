@@ -32,7 +32,6 @@ import org.agilewiki.jid.factory.FactoryLocator;
  * Creates a UnionJid.
  */
 public class UnionJidFactory extends ActorFactory {
-
     public static void registerFactory(FactoryLocator factoryLocator,
                                        String subActorType, String... actorTypes)
             throws Exception {

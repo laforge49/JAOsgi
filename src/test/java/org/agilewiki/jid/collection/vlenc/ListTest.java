@@ -11,6 +11,7 @@ import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
 import org.agilewiki.jid.scalar.vlens.string.SetString;
+import org.agilewiki.jid.scalar.vlens.string.StringJid;
 
 public class ListTest extends TestCase {
     public void test() throws Exception {
@@ -31,7 +32,7 @@ public class ListTest extends TestCase {
             Actor l2 = (new CopyJID()).send(future, l1);
             int l2sl = GetSerializedLength.req.send(future, l2);
             assertEquals(12, l2sl);
-            Actor s0 = factoryLocator.newJid(JidFactories.STRING_JID_TYPE);
+            StringJid s0 = StringJid.create(factoryLocator, null, null);
             (new SetString("Hi")).send(future, s0);
             int s0sl = GetSerializedLength.req.send(future, s0);
             assertEquals(8, s0sl);

@@ -1,7 +1,6 @@
 package org.agilewiki.jid.scalar.vlens.string;
 
 import junit.framework.TestCase;
-import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.JAFuture;
 import org.agilewiki.jid.CopyJID;
 import org.agilewiki.jid.GetSerializedLength;
@@ -10,6 +9,7 @@ import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
 import org.agilewiki.jid.scalar.Clear;
+import org.agilewiki.jid.scalar.vlens.actor.ActorJid;
 import org.agilewiki.jid.scalar.vlens.actor.SetActor;
 
 public class StringTest extends TestCase {
@@ -18,7 +18,7 @@ public class StringTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            StringJid string1 = (StringJid) factoryLocator.newJid(JidFactories.STRING_JID_TYPE);
+            StringJid string1 = StringJid.create(factoryLocator, null, null);
             StringJid string2 = (StringJid) (new CopyJID()).send(future, string1);
             (new SetString("abc")).send(future, string2);
             StringJid string3 = (StringJid) (new CopyJID()).send(future, string2);
@@ -34,7 +34,7 @@ public class StringTest extends TestCase {
             assertEquals("abc", GetString.req.send(future, string2));
             assertEquals("abc", GetString.req.send(future, string3));
 
-            Actor jidJid1 = factoryLocator.newJid(JidFactories.ACTOR_JID_TYPE);
+            ActorJid jidJid1 = ActorJid.create(factoryLocator, null, null);
             SetActor sjvbs = new SetActor(JidFactories.STRING_JID_TYPE);
             sjvbs.send(future, jidJid1);
             StringJid rpa = (StringJid) (new ResolvePathname("0")).send(future, jidJid1);

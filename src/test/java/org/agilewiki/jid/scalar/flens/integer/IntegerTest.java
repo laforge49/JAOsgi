@@ -1,7 +1,6 @@
 package org.agilewiki.jid.scalar.flens.integer;
 
 import junit.framework.TestCase;
-import org.agilewiki.jactor.Actor;
 import org.agilewiki.jactor.JAFuture;
 import org.agilewiki.jid.CopyJID;
 import org.agilewiki.jid.GetSerializedLength;
@@ -9,6 +8,7 @@ import org.agilewiki.jid.ResolvePathname;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
+import org.agilewiki.jid.scalar.vlens.actor.ActorJid;
 import org.agilewiki.jid.scalar.vlens.actor.SetActor;
 
 public class IntegerTest extends TestCase {
@@ -36,7 +36,7 @@ public class IntegerTest extends TestCase {
             v = GetInteger.req.send(future, int3);
             assertEquals(1, v);
 
-            Actor jidJid1 = factoryLocator.newJid(JidFactories.ACTOR_JID_TYPE);
+            ActorJid jidJid1 = ActorJid.create(factoryLocator, null, null);
             SetActor sjvi = new SetActor(JidFactories.INTEGER_JID_TYPE);
             sjvi.send(future, jidJid1);
             IntegerJid rpa = (IntegerJid) (new ResolvePathname("0")).send(future, jidJid1);

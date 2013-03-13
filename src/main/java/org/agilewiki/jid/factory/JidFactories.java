@@ -35,9 +35,9 @@ import org.agilewiki.jid.scalar.flens.dbl.DoubleJidFactory;
 import org.agilewiki.jid.scalar.flens.flt.FloatJidFactory;
 import org.agilewiki.jid.scalar.flens.integer.IntegerJid;
 import org.agilewiki.jid.scalar.flens.lng.LongJidFactory;
-import org.agilewiki.jid.scalar.vlens.actor.ActorJidFactory;
+import org.agilewiki.jid.scalar.vlens.actor.ActorJid;
 import org.agilewiki.jid.scalar.vlens.actor.RootJidFactory;
-import org.agilewiki.jid.scalar.vlens.bytes.BytesJidFactory;
+import org.agilewiki.jid.scalar.vlens.bytes.BytesJid;
 import org.agilewiki.jid.scalar.vlens.string.StringJid;
 
 /**
@@ -441,10 +441,10 @@ final public class JidFactories extends LocateLocalActorFactories {
         FloatJidFactory.registerFactory(factoryLocator);
         DoubleJidFactory.registerFactory(factoryLocator);
 
-        ActorJidFactory.registerFactory(factoryLocator);
+        ActorJid.registerFactory(factoryLocator);
         RootJidFactory.registerFactory(factoryLocator);
         StringJid.registerFactory(factoryLocator);
-        BytesJidFactory.registerFactory(factoryLocator);
+        BytesJid.registerFactory(factoryLocator);
 
         BListJidFactory.registerFactory(factoryLocator, STRING_BLIST_JID_TYPE, STRING_JID_TYPE);
         BListJidFactory.registerFactory(factoryLocator, BYTES_BLIST_JID_TYPE, BYTES_JID_TYPE);

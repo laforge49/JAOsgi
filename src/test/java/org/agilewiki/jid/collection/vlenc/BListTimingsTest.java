@@ -10,8 +10,8 @@ import org.agilewiki.jid.scalar.flens.integer.IntegerJid;
 public class BListTimingsTest extends TestCase {
     public void test() throws Exception {
 
-        int s = 100000;
-        int r = 10000;
+        int s = 1000;
+        int r = 1000;
 
         //list size = 1,000
         //repetitions = 1,000

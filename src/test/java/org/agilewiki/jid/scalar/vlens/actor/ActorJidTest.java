@@ -21,7 +21,7 @@ public class ActorJidTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            ActorJidFactory actorJidAFactory = (ActorJidFactory) factoryLocator.getJidFactory(JidFactories.ACTOR_JID_TYPE);
+            ActorFactory actorJidAFactory = factoryLocator.getJidFactory(JidFactories.ACTOR_JID_TYPE);
             Actor jidJid1 = actorJidAFactory.newActor(factoryLocator.getMailbox(), factoryLocator);
             int sl = GetSerializedLength.req.send(future, jidJid1);
             assertEquals(4, sl);
@@ -53,7 +53,7 @@ public class ActorJidTest extends TestCase {
             Actor sj = GetActor.req.send(future, jidJid1);
             assertEquals("abc", GetString.req.send(future, sj));
 
-            Actor jidJid2 = factoryLocator.newJid(JidFactories.ACTOR_JID_TYPE);
+            ActorJid jidJid2 = ActorJid.create(factoryLocator, null, null);
             sl = GetSerializedLength.req.send(future, jidJid2);
             assertEquals(4, sl);
 
@@ -91,7 +91,7 @@ public class ActorJidTest extends TestCase {
             sl = GetSerializedLength.req.send(future, rpa);
             assertEquals(0, sl);
 
-            Actor jidJid3 = factoryLocator.newJid(JidFactories.ACTOR_JID_TYPE);
+            ActorJid jidJid3 = ActorJid.create(factoryLocator, null, null);
             sl = GetSerializedLength.req.send(future, jidJid3);
             assertEquals(4, sl);
             MakeActor mjvjj = new MakeActor(JidFactories.ACTOR_JID_TYPE);

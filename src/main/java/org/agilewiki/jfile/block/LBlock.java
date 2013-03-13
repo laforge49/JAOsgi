@@ -28,9 +28,8 @@ import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ReadableBytes;
 import org.agilewiki.jid.Util;
-import org.agilewiki.jid.factory.JAFactoryLocator;
-import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.scalar.vlens.actor.RootJid;
+import org.agilewiki.jid.scalar.vlens.actor.RootJidFactory;
 
 /**
  * A block with a length in the header.
@@ -182,14 +181,14 @@ public class LBlock implements Block {
      * @return The deserialized RootJid, or null.
      */
     @Override
-    public RootJid getRootJid(Mailbox mailbox, Actor parent)
+    public RootJid getRootJid(Actor actor, Mailbox mailbox, Actor parent)
             throws Exception {
         if (rootJid != null)
             return rootJid;
         rb = null;
         if (rootJidBytes == null)
             return null;
-        rootJid = (RootJid) JAFactoryLocator.newJid(parent, JidFactories.ROOT_JID_TYPE, mailbox, parent);
+        rootJid = RootJidFactory.create(actor, mailbox, parent);
         rootJid.load(new ReadableBytes(rootJidBytes, 0));
         return rootJid;
     }
