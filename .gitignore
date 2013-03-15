@@ -6,6 +6,8 @@
 target
 .settings
 .metadata
+.classpath
+.project
 *.docs
 .scala_dependencies
 *.iml

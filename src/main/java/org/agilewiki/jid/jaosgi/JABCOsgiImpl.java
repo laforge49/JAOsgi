@@ -178,7 +178,7 @@ public class JABCOsgiImpl extends JABundleContext {
     }
 
     @Override
-    public <S> Collection<ServiceReference<S>> getServiceReferences(Class<S> clazz, String filter)
+    public Collection<ServiceReference> getServiceReferences(Class clazz, String filter)
             throws InvalidSyntaxException {
         return bundleContext.getServiceReferences(clazz, filter);
     }

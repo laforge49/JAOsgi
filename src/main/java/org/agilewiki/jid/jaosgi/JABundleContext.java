@@ -95,7 +95,7 @@ abstract public class JABundleContext extends JLPCActor {
 
     abstract public ServiceReference[] getAllServiceReferences(String clazz, String filter) throws InvalidSyntaxException;
 
-    abstract public <S> Collection<ServiceReference<S>> getServiceReferences(Class<S> clazz, String filter)
+    abstract public Collection<ServiceReference> getServiceReferences(Class clazz, String filter)
             throws InvalidSyntaxException;
 
     abstract public boolean ungetService(ServiceReference serviceReference);
