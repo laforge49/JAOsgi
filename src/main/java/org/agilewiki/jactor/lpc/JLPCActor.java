@@ -23,6 +23,8 @@
  */
 package org.agilewiki.jactor.lpc;
 
+import org.agilewiki.jactor.Ancestor;
+import org.agilewiki.jactor.JActor;
 import org.agilewiki.jactor.apc.*;
 import org.agilewiki.jactor.bufferedEvents.BufferedEventsDestination;
 import org.agilewiki.jactor.bufferedEvents.BufferedEventsQueue;
@@ -120,10 +122,8 @@ abstract public class JLPCActor implements TargetActor, RequestProcessor,
     }
 
     @Override
-    public JLPCActor getMatch(final Class targetClass) {
-        if (targetClass.isInstance(this))
-            return this;
-        return getAncestor(targetClass);
+    public Ancestor getMatch(final Class targetClass) {
+        return JActor.getMatch(this, targetClass);
     }
 
     /**

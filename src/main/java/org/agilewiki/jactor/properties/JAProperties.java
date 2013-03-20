@@ -39,20 +39,18 @@ public class JAProperties
 
     public static Object getProperty(Actor targetActor, String propertyName)
             throws Exception {
-        if (targetActor != null)
-            targetActor = targetActor.getMatch(Properties.class);
-        if (targetActor == null)
+        Properties properties = (Properties) targetActor.getMatch(Properties.class);
+        if (properties == null)
             throw new UnsupportedOperationException("getProperty");
-        return ((Properties) targetActor).getProperty(propertyName);
+        return properties.getProperty(propertyName);
     }
 
     public static void setProperty(Actor targetActor, String propertyName, Object propertyValue)
             throws Exception {
-        if (targetActor != null)
-            targetActor = targetActor.getMatch(Properties.class);
-        if (targetActor == null)
+        Properties properties = (Properties) targetActor.getMatch(Properties.class);
+        if (properties == null)
             throw new UnsupportedOperationException("getProperty");
-        ((Properties) targetActor).setProperty(propertyName, propertyValue);
+        properties.setProperty(propertyName, propertyValue);
     }
 
     /**
@@ -67,11 +65,10 @@ public class JAProperties
         if (properties.containsKey(propertyName))
             return properties.get(propertyName);
         Actor targetActor = getParent();
-        if (targetActor != null)
-            targetActor = targetActor.getMatch(Properties.class);
-        if (targetActor == null)
+        Properties properties = (Properties) targetActor.getMatch(Properties.class);
+        if (properties == null)
             return null;
-        return ((Properties) targetActor).getProperty(propertyName);
+        return properties.getProperty(propertyName);
     }
 
     /**

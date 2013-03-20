@@ -23,6 +23,7 @@
  */
 package org.agilewiki.jactor.old;
 
+import org.agilewiki.jactor.Ancestor;
 import org.agilewiki.jactor.apc.APCRequestSource;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jactor.lpc.Request;
@@ -48,7 +49,7 @@ import org.agilewiki.jactor.lpc.Request;
  * as asynchronous message passing tends to be slow.
  * </p>
  */
-public interface Actor {
+public interface Actor extends Ancestor {
     /**
      * Wraps and enqueues an unwrapped request in the requester's inbox.
      *
@@ -90,6 +91,7 @@ public interface Actor {
      *
      * @return The actor's parent, or null.
      */
+    @Override
     public JLPCActor getParent();
 
     /**
@@ -100,5 +102,5 @@ public interface Actor {
      */
     public JLPCActor getAncestor(Class targetClass);
 
-    public JLPCActor getMatch(Class targetClass);
+    public Ancestor getMatch(Class targetClass);
 }
