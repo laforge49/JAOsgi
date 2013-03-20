@@ -1,11 +1,11 @@
 package org.agilewiki.jactor.nbLock.exceptionsTest;
 
 import junit.framework.TestCase;
-import org.agilewiki.jactor.*;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jactor.lpc.Request;
 import org.agilewiki.jactor.lpc.TargetActor;
 import org.agilewiki.jactor.nbLock.JANBLock;
+import org.agilewiki.jactor.old.*;
 
 /**
  * Test code.

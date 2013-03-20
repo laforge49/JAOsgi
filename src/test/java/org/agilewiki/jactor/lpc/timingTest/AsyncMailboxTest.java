@@ -2,6 +2,7 @@ package org.agilewiki.jactor.lpc.timingTest;
 
 import junit.framework.TestCase;
 import org.agilewiki.jactor.*;
+import org.agilewiki.jactor.old.*;
 
 /**
  * Test code.

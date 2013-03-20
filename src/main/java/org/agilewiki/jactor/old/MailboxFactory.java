@@ -21,8 +21,51 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jactor;
+package org.agilewiki.jactor.old;
 
-public interface Closable {
+import org.agilewiki.jactor.concurrent.ThreadManager;
+import org.agilewiki.jactor.lpc.Request;
+
+import java.util.Timer;
+
+/**
+ * Creates Mailboxes and provides access to the thread manager.
+ */
+public interface MailboxFactory {
+    /**
+     * Returns the thread manager.
+     *
+     * @return The thread manager.
+     */
+    ThreadManager getThreadManager();
+
+    /**
+     * Create a mailbox.
+     *
+     * @return A new mailbox.
+     */
+    Mailbox createMailbox();
+
+    /**
+     * Create an asynchronous mailbox.
+     *
+     * @return A new asynchronous mailbox.
+     */
+    Mailbox createAsyncMailbox();
+
+    public boolean addClosable(final Closable closable);
+
+    public boolean removeClosable(final Closable closable);
+
+    /**
+     * Stop all the threads as they complete their tasks.
+     */
     public void close();
+
+    public void eventException(final Request request, final Throwable exception);
+
+    public void logException(final boolean fatal, final String msg,
+                             final Throwable exception);
+
+    public Timer timer() throws Exception;
 }

@@ -1,6 +1,6 @@
 package org.agilewiki.jactor.pubsub.latency;
 
-import org.agilewiki.jactor.RP;
+import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jactor.pubsub.publisher.JAPublisher;
 import org.agilewiki.jactor.pubsub.publisher.Publish;

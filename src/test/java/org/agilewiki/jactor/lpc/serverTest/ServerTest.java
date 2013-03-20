@@ -3,6 +3,7 @@ package org.agilewiki.jactor.lpc.serverTest;
 import junit.framework.TestCase;
 import org.agilewiki.jactor.*;
 import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.jactor.old.*;
 
 import java.util.Random;
 

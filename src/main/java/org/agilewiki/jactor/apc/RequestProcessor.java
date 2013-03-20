@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jactor.apc;
 
-import org.agilewiki.jactor.ExceptionHandler;
+import org.agilewiki.jactor.old.ExceptionHandler;
 
 /**
  * Processes events and manages events and an exception handler.

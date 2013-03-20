@@ -21,40 +21,8 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jactor;
+package org.agilewiki.jactor.old;
 
-/**
- * Used with on-way messages (Events) to signal that no response is required.
- */
-final public class JANoResponse extends RP {
-    /**
-     * An immutable instance of JANoResponse.
-     */
-    public final static JANoResponse nrp = new JANoResponse();
-
-    /**
-     * Create a JANoResponse.
-     */
-    private JANoResponse() {
-    }
-
-    /**
-     * Receives and ignores a response.
-     *
-     * @param response The response.
-     * @throws Exception Any uncaught exceptions raised when processing the response.
-     */
-    @Override
-    public void processResponse(Object response) throws Exception {
-    }
-
-    /**
-     * Returns true when no response is expected.
-     *
-     * @return True.
-     */
-    @Override
-    public boolean isEvent() {
-        return true;
-    }
+public interface Closable {
+    public void close();
 }

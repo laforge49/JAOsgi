@@ -1,6 +1,6 @@
 package org.agilewiki.jactor.lpc.syncTiming;
 
-import org.agilewiki.jactor.RP;
+import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 public class Sender extends JLPCActor {

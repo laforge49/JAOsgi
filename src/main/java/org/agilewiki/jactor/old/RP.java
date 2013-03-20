@@ -21,51 +21,26 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jactor;
-
-import org.agilewiki.jactor.concurrent.ThreadManager;
-import org.agilewiki.jactor.lpc.Request;
-
-import java.util.Timer;
+package org.agilewiki.jactor.old;
 
 /**
- * Creates Mailboxes and provides access to the thread manager.
+ * Types the response.
  */
-public interface MailboxFactory {
+abstract public class RP<RESPONSE_TYPE> {
     /**
-     * Returns the thread manager.
+     * Receives and processes a response.
      *
-     * @return The thread manager.
+     * @param response The response.
+     * @throws Exception Any uncaught exceptions raised when processing the response.
      */
-    ThreadManager getThreadManager();
+    abstract public void processResponse(RESPONSE_TYPE response) throws Exception;
 
     /**
-     * Create a mailbox.
+     * Returns true when no response is expected.
      *
-     * @return A new mailbox.
+     * @return True when no response is expected.
      */
-    Mailbox createMailbox();
-
-    /**
-     * Create an asynchronous mailbox.
-     *
-     * @return A new asynchronous mailbox.
-     */
-    Mailbox createAsyncMailbox();
-
-    public boolean addClosable(final Closable closable);
-
-    public boolean removeClosable(final Closable closable);
-
-    /**
-     * Stop all the threads as they complete their tasks.
-     */
-    public void close();
-
-    public void eventException(final Request request, final Throwable exception);
-
-    public void logException(final boolean fatal, final String msg,
-                             final Throwable exception);
-
-    public Timer timer() throws Exception;
+    public boolean isEvent() {
+        return false;
+    }
 }

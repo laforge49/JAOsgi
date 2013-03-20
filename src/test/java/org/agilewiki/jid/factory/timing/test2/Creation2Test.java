@@ -1,9 +1,9 @@
 package org.agilewiki.jid.factory.timing.test2;
 
 import junit.framework.TestCase;
-import org.agilewiki.jactor.JAMailboxFactory;
-import org.agilewiki.jactor.Mailbox;
-import org.agilewiki.jactor.MailboxFactory;
+import org.agilewiki.jactor.old.JAMailboxFactory;
+import org.agilewiki.jactor.old.Mailbox;
+import org.agilewiki.jactor.old.MailboxFactory;
 import org.agilewiki.jid.factory.timing.A;
 
 public class Creation2Test extends TestCase {

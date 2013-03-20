@@ -1,7 +1,7 @@
 package org.agilewiki.jid;
 
 import junit.framework.TestCase;
-import org.agilewiki.jactor.JAFuture;
+import org.agilewiki.jactor.old.JAFuture;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;

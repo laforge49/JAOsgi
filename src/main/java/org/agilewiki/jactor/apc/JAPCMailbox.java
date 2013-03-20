@@ -23,8 +23,8 @@
  */
 package org.agilewiki.jactor.apc;
 
-import org.agilewiki.jactor.ExceptionHandler;
-import org.agilewiki.jactor.MailboxFactory;
+import org.agilewiki.jactor.old.ExceptionHandler;
+import org.agilewiki.jactor.old.MailboxFactory;
 import org.agilewiki.jactor.bufferedEvents.BufferedEventsDestination;
 import org.agilewiki.jactor.bufferedEvents.BufferedEventsQueue;
 import org.agilewiki.jactor.bufferedEvents.JABufferedEventsQueue;

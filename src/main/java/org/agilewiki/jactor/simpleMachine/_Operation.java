@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jactor.simpleMachine;
 
-import org.agilewiki.jactor.RP;
+import org.agilewiki.jactor.old.RP;
 
 /**
  * An operation performed by a state machine.

@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jactor.nbLock;
 
-import org.agilewiki.jactor.RP;
+import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 import java.util.ArrayDeque;

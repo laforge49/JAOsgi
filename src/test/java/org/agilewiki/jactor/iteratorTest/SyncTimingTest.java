@@ -1,8 +1,8 @@
 package org.agilewiki.jactor.iteratorTest;
 
 import junit.framework.TestCase;
-import org.agilewiki.jactor.JAIterator;
-import org.agilewiki.jactor.RP;
+import org.agilewiki.jactor.old.JAIterator;
+import org.agilewiki.jactor.old.RP;
 
 /**
  * Test code.

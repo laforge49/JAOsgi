@@ -1,7 +1,7 @@
 package org.agilewiki.jactor.iteratorTest.factorialTest;
 
-import org.agilewiki.jactor.JAIterator;
-import org.agilewiki.jactor.RP;
+import org.agilewiki.jactor.old.JAIterator;
+import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.SimpleRequest;
 import org.agilewiki.jactor.SimpleRequestReceiver;
 import org.agilewiki.jactor.lpc.JLPCActor;

@@ -1,4 +1,4 @@
-package org.agilewiki.jactor;
+package org.agilewiki.jactor.old;
 
 /**
  * Represents a null when exiting JAIterator.iterate.

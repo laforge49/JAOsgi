@@ -1,6 +1,6 @@
 package org.agilewiki.jactor.advanced.allInOne;
 
-import org.agilewiki.jactor.Actor;
+import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.lpc.Request;
 
 abstract public class AllInOneReq extends Request<Object, AllInOne> {

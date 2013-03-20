@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jactor.parallel;
 
-import org.agilewiki.jactor.RP;
+import org.agilewiki.jactor.old.RP;
 
 /**
  * Counts the number of responses received

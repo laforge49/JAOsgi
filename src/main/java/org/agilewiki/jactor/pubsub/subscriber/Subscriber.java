@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jactor.pubsub.subscriber;
 
-import org.agilewiki.jactor.RP;
+import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.pubsub.actorName.ActorName;
 import org.agilewiki.jactor.pubsub.publisher.Publisher;
 

@@ -1,6 +1,6 @@
 package org.agilewiki.jactor.basics;
 
-import org.agilewiki.jactor.RP;
+import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.TargetActor;
 
 /**

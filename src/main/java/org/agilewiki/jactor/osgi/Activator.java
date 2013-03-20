@@ -23,8 +23,8 @@
  */
 package org.agilewiki.jactor.osgi;
 
-import org.agilewiki.jactor.JAMailboxFactory;
-import org.agilewiki.jactor.MailboxFactory;
+import org.agilewiki.jactor.old.JAMailboxFactory;
+import org.agilewiki.jactor.old.MailboxFactory;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;

@@ -23,8 +23,8 @@
  */
 package org.agilewiki.jactor.pubsub.publisher;
 
-import org.agilewiki.jactor.Actor;
-import org.agilewiki.jactor.RP;
+import org.agilewiki.jactor.old.Actor;
+import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jactor.lpc.Request;
 import org.agilewiki.jactor.pubsub.subscriber.Subscriber;

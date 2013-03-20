@@ -1,9 +1,9 @@
 package org.agilewiki.jactor.continuation;
 
 import junit.framework.TestCase;
-import org.agilewiki.jactor.*;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.old.*;
 
 public class ContinuationTest extends TestCase {
     public void test() throws Exception {

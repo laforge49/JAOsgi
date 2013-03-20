@@ -1,9 +1,9 @@
 package org.agilewiki.jactor.iteratorTest.factorialTest;
 
 import junit.framework.TestCase;
-import org.agilewiki.jactor.JAFuture;
-import org.agilewiki.jactor.JAMailboxFactory;
-import org.agilewiki.jactor.MailboxFactory;
+import org.agilewiki.jactor.old.JAFuture;
+import org.agilewiki.jactor.old.JAMailboxFactory;
+import org.agilewiki.jactor.old.MailboxFactory;
 import org.agilewiki.jactor.SimpleRequest;
 
 /**

@@ -1,9 +1,9 @@
 package org.agilewiki.jactor.advanced.many;
 
 import junit.framework.TestCase;
-import org.agilewiki.jactor.JAFuture;
-import org.agilewiki.jactor.JAMailboxFactory;
-import org.agilewiki.jactor.MailboxFactory;
+import org.agilewiki.jactor.old.JAFuture;
+import org.agilewiki.jactor.old.JAMailboxFactory;
+import org.agilewiki.jactor.old.MailboxFactory;
 
 public class ManyTest extends TestCase {
     public void test()

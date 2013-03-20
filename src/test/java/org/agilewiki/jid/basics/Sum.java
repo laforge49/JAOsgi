@@ -1,6 +1,6 @@
 package org.agilewiki.jid.basics;
 
-import org.agilewiki.jactor.RP;
+import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jid._Jid;
 import org.agilewiki.jid.collection.vlenc.ListJid;
 import org.agilewiki.jid.collection.vlenc.ListJidFactory;

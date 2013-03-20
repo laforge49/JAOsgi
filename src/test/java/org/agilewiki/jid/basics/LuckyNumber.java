@@ -1,6 +1,6 @@
 package org.agilewiki.jid.basics;
 
-import org.agilewiki.jactor.RP;
+import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.scalar.flens.integer.IntegerJid;
 

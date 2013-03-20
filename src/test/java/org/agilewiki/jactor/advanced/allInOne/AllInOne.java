@@ -1,6 +1,6 @@
 package org.agilewiki.jactor.advanced.allInOne;
 
-import org.agilewiki.jactor.RP;
+import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 import static junit.framework.Assert.assertEquals;

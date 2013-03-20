@@ -23,8 +23,8 @@
  */
 package org.agilewiki.jid.scalar.vlens.string;
 
-import org.agilewiki.jactor.Actor;
-import org.agilewiki.jactor.Mailbox;
+import org.agilewiki.jactor.old.Actor;
+import org.agilewiki.jactor.old.Mailbox;
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ComparableKey;
 import org.agilewiki.jid.ReadableBytes;

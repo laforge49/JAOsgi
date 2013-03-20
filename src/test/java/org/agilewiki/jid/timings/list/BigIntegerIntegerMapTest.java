@@ -1,7 +1,7 @@
 package org.agilewiki.jid.timings.list;
 
 import junit.framework.TestCase;
-import org.agilewiki.jactor.JAFuture;
+import org.agilewiki.jactor.old.JAFuture;
 import org.agilewiki.jid.collection.vlenc.map.IntegerMapJid;
 import org.agilewiki.jid.collection.vlenc.map.KMake;
 import org.agilewiki.jid.factory.JAFactoryLocator;

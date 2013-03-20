@@ -23,8 +23,8 @@
  */
 package org.agilewiki.jactor.simpleMachine;
 
-import org.agilewiki.jactor.JAIterator;
-import org.agilewiki.jactor.RP;
+import org.agilewiki.jactor.old.JAIterator;
+import org.agilewiki.jactor.old.RP;
 
 /**
  * <p>

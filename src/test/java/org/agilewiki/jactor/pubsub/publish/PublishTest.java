@@ -1,9 +1,9 @@
 package org.agilewiki.jactor.pubsub.publish;
 
 import junit.framework.TestCase;
-import org.agilewiki.jactor.*;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.old.*;
 import org.agilewiki.jactor.pubsub.publisher.*;
 import org.agilewiki.jactor.pubsub.subscriber.JASubscriber;
 import org.agilewiki.jactor.pubsub.subscriber.Subscriber;

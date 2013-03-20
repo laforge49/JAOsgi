@@ -23,8 +23,8 @@
  */
 package org.agilewiki.jactor.lpc.timingTest;
 
-import org.agilewiki.jactor.Actor;
-import org.agilewiki.jactor.RP;
+import org.agilewiki.jactor.old.Actor;
+import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.SimpleRequest;
 import org.agilewiki.jactor.SimpleRequestReceiver;
 import org.agilewiki.jactor.lpc.JLPCActor;

@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jactor.properties;
 
-import org.agilewiki.jactor.Actor;
+import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 import java.util.concurrent.ConcurrentSkipListMap;

@@ -23,8 +23,8 @@
  */
 package org.agilewiki.jid.jaosgi;
 
-import org.agilewiki.jactor.JAMailboxFactory;
-import org.agilewiki.jactor.MailboxFactory;
+import org.agilewiki.jactor.old.JAMailboxFactory;
+import org.agilewiki.jactor.old.MailboxFactory;
 import org.osgi.framework.*;
 
 import java.io.File;

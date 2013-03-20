@@ -23,10 +23,10 @@
  */
 package org.agilewiki.jactor.lpc;
 
-import org.agilewiki.jactor.Actor;
-import org.agilewiki.jactor.JAEvent;
-import org.agilewiki.jactor.JAFuture;
-import org.agilewiki.jactor.RP;
+import org.agilewiki.jactor.old.Actor;
+import org.agilewiki.jactor.old.JAEvent;
+import org.agilewiki.jactor.old.JAFuture;
+import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.apc.APCRequestSource;
 
 /**

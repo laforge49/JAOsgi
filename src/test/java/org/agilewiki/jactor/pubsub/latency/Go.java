@@ -1,7 +1,7 @@
 package org.agilewiki.jactor.pubsub.latency;
 
-import org.agilewiki.jactor.Actor;
-import org.agilewiki.jactor.RP;
+import org.agilewiki.jactor.old.Actor;
+import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jactor.lpc.Request;
 

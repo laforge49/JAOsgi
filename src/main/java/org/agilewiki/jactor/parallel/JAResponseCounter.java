@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jactor.parallel;
 
-import org.agilewiki.jactor.RP;
+import org.agilewiki.jactor.old.RP;
 
 /**
  * Returns a response only when the expected number of responses are received.

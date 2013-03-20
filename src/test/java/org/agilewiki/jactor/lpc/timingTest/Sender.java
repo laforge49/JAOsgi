@@ -2,6 +2,9 @@ package org.agilewiki.jactor.lpc.timingTest;
 
 import org.agilewiki.jactor.*;
 import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.jactor.old.Actor;
+import org.agilewiki.jactor.old.JAIterator;
+import org.agilewiki.jactor.old.RP;
 
 /**
  * Test code.

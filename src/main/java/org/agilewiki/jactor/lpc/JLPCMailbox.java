@@ -1,7 +1,7 @@
 package org.agilewiki.jactor.lpc;
 
-import org.agilewiki.jactor.Mailbox;
-import org.agilewiki.jactor.MailboxFactory;
+import org.agilewiki.jactor.old.Mailbox;
+import org.agilewiki.jactor.old.MailboxFactory;
 import org.agilewiki.jactor.apc.JAMessage;
 import org.agilewiki.jactor.apc.JAPCMailbox;
 import org.agilewiki.jactor.bufferedEvents.BufferedEventsQueue;

@@ -1,8 +1,8 @@
 package org.agilewiki.jactor.lpc.exceptionsTest;
 
-import org.agilewiki.jactor.Actor;
-import org.agilewiki.jactor.ExceptionHandler;
-import org.agilewiki.jactor.RP;
+import org.agilewiki.jactor.old.Actor;
+import org.agilewiki.jactor.old.ExceptionHandler;
+import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 /**

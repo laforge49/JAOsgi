@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jactor.simpleMachine;
 
-import org.agilewiki.jactor.RP;
+import org.agilewiki.jactor.old.RP;
 
 /**
  * Supports processing sensitive to how a response is returned.

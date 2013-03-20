@@ -2,6 +2,10 @@ package org.agilewiki.jactor.lpc;
 
 import junit.framework.TestCase;
 import org.agilewiki.jactor.*;
+import org.agilewiki.jactor.old.JAFuture;
+import org.agilewiki.jactor.old.JAMailboxFactory;
+import org.agilewiki.jactor.old.MailboxFactory;
+import org.agilewiki.jactor.old.RP;
 
 /**
  * Test code.

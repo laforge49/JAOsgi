@@ -1,8 +1,8 @@
 package org.agilewiki.jid.scalar.vlens.bytes;
 
 import junit.framework.TestCase;
-import org.agilewiki.jactor.Actor;
-import org.agilewiki.jactor.JAFuture;
+import org.agilewiki.jactor.old.Actor;
+import org.agilewiki.jactor.old.JAFuture;
 import org.agilewiki.jid.CopyJID;
 import org.agilewiki.jid.GetSerializedLength;
 import org.agilewiki.jid.ResolvePathname;

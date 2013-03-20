@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jid.factory;
 
-import org.agilewiki.jactor.MailboxFactory;
+import org.agilewiki.jactor.old.MailboxFactory;
 import org.agilewiki.jid.JidFactory;
 import org.agilewiki.jid.collection.vlenc.BListJidFactory;
 import org.agilewiki.jid.collection.vlenc.ListJidFactory;
