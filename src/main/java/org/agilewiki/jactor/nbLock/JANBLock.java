@@ -23,6 +23,8 @@
  */
 package org.agilewiki.jactor.nbLock;
 
+import org.agilewiki.jactor.Ancestor;
+import org.agilewiki.jactor.JActor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
@@ -32,6 +34,10 @@ import java.util.ArrayDeque;
  * <p>Non-blocking Lock.</p>
  */
 public class JANBLock extends JLPCActor {
+    public static JANBLock get(Ancestor ancestor) {
+        return (JANBLock) JActor.getMatch(ancestor, JANBLock.class);
+    }
+
     private ArrayDeque<RP<Object>> deque = new ArrayDeque<RP<Object>>();
 
     public void lock(RP rp)
