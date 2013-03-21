@@ -11,7 +11,7 @@ import org.agilewiki.jactor.lpc.Request;
 public class PrintParallelResponse<RESPONSE> extends Request<Object, ParallelResponsePrinter> {
     private int count;
     private PrintResponse<RESPONSE> printResponse;
-    private Actor[] responsePrinters;
+    private ResponsePrinter[] responsePrinters;
 
     public PrintResponse<RESPONSE> getPrintResponse() {
         return printResponse;
@@ -26,7 +26,7 @@ public class PrintParallelResponse<RESPONSE> extends Request<Object, ParallelRes
     }
 
     public PrintParallelResponse(int count,
-                                 Actor[] responsePrinters,
+                                 ResponsePrinter[] responsePrinters,
                                  PrintResponse<RESPONSE> printResponse) {
         this.count = count;
         this.responsePrinters = responsePrinters;

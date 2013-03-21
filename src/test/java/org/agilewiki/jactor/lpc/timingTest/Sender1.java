@@ -11,10 +11,10 @@ import org.agilewiki.jactor.old.RP;
  */
 public class Sender1 extends SimpleRequestReceiver implements RealRequestReceiver {
 
-    private Actor echo;
+    private SimpleRequestReceiver echo;
     private final int count;
 
-    public Sender1(Actor echo, int c, int b) {
+    public Sender1(SimpleRequestReceiver echo, int c, int b) {
         this.echo = echo;
         echo.setInitialBufferCapacity(b + 10);
         count = c;

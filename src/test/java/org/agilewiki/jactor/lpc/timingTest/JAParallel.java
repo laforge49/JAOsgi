@@ -51,7 +51,7 @@ final public class JAParallel extends SimpleRequestReceiver implements RealReque
         int i = 0;
 
         while (i < p) {
-            req.send(this, actors[i], responseCounter);
+            req.send(this, SimpleRequestReceiver.get(actors[i]), responseCounter);
             i += 1;
         }
     }
@@ -64,7 +64,7 @@ final public class JAParallel extends SimpleRequestReceiver implements RealReque
         if (requests.length != p)
             throw new IllegalArgumentException("Request and actor arrays not the same length");
         while (i < p) {
-            requests[i].send(this, actors[i], responseCounter);
+            requests[i].send(this, SimpleRequestReceiver.get(actors[i]), responseCounter);
             i += 1;
         }
     }

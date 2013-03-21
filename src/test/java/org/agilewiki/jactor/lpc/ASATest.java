@@ -35,7 +35,7 @@ public class ASATest extends TestCase {
 
         @Override
         public void processRequest(SimpleRequest request, final RP rp) throws Exception {
-            request.send(this, n, new RP<Object>() {
+            request.send(this, SimpleRequestReceiver.get(n), new RP<Object>() {
                 @Override
                 public void processResponse(Object response) throws Exception {
                     rp.processResponse(null);

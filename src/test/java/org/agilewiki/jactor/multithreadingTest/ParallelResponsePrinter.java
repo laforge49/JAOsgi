@@ -10,7 +10,7 @@ import org.agilewiki.jactor.parallel.JAResponseCounter2;
  */
 public class ParallelResponsePrinter extends JLPCActor {
     public void printParallelResponse(int count,
-                                      Actor[] responsePrinters,
+                                      ResponsePrinter[] responsePrinters,
                                       PrintResponse printResponse,
                                       RP rp) throws Exception {
         JAResponseCounter2 psrp = new JAResponseCounter2(rp);
