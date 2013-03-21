@@ -16,7 +16,7 @@ public class GreeterTest extends TestCase {
     public void test()
             throws Exception {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
+        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         Greeter.register(factoryLocator, "hi greeter", "Hi");
         JAFuture future = new JAFuture();
         RootJid root = (RootJid) factoryLocator.newJid(JidFactories.ROOT_JID_TYPE);

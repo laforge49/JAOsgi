@@ -26,7 +26,7 @@ public class SetFTest extends TestCase {
         }
     }
 
-    class SetF1 extends JLPCActor implements SimpleRequestReceiver {
+    class SetF1 extends SimpleRequestReceiver {
         @Override
         public void processRequest(SimpleRequest unwrappedRequest, RP rp) throws Exception {
             SMBuilder smb = new SMBuilder();

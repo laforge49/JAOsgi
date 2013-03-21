@@ -44,7 +44,7 @@ public class UnionJid extends ScalarJid<String, Jid> implements Clearable, Refer
 
     protected int getFactoryIndex(String actorType)
             throws Exception {
-        FactoryLocator factoryLocator = JAFactoryLocator.getFactoryLocator(this);
+        FactoryLocator factoryLocator = JAFactoryLocator.get(this);
         ActorFactory actorFactory = factoryLocator.getJidFactory(actorType);
         return getFactoryIndex(actorFactory);
     }

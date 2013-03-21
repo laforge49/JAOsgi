@@ -135,60 +135,9 @@ abstract public class Request<RESPONSE_TYPE, TARGET_TYPE extends TargetActor> {
      * @param targetActor The target actor.
      * @throws Exception Any uncaught exceptions raised while processing the request.
      */
-    final public void sendEvent(Actor targetActor)
-            throws Exception {
-        if (isTargetType(targetActor)) {
-            targetActor.acceptEvent(JAEvent.requestSource, this);
-            return;
-        }
-        Actor parent = targetActor.getParent();
-        if (parent != null) {
-            if (isTargetType(parent)) {
-                parent.acceptEvent(JAEvent.requestSource, this);
-                return;
-            }
-            parent = parent.getParent();
-        }
-        throw new UnsupportedOperationException(
-                "request: " + getClass().getName() +
-                        " target actor: " + targetActor.getClass().getName());
-    }
-
-    /**
-     * Send a request event.
-     *
-     * @param targetActor The target actor.
-     * @throws Exception Any uncaught exceptions raised while processing the request.
-     */
     final public void sendEvent(TARGET_TYPE targetActor)
             throws Exception {
         ((Actor) targetActor).acceptEvent(JAEvent.requestSource, this);
-    }
-
-    /**
-     * Send a request event.
-     *
-     * @param requestSource The sender of the request.
-     * @param targetActor   The target actor.
-     * @throws Exception Any uncaught exceptions raised while processing the request.
-     */
-    final public void sendEvent(APCRequestSource requestSource, Actor targetActor)
-            throws Exception {
-        if (isTargetType(targetActor)) {
-            targetActor.acceptEvent(requestSource, this);
-            return;
-        }
-        Actor parent = targetActor.getParent();
-        if (parent != null) {
-            if (isTargetType(parent)) {
-                parent.acceptEvent(requestSource, this);
-                return;
-            }
-            parent = parent.getParent();
-        }
-        throw new UnsupportedOperationException(
-                "request: " + getClass().getName() +
-                        " target actor: " + targetActor.getClass().getName());
     }
 
     /**

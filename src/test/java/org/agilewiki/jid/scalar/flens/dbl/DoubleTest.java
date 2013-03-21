@@ -14,7 +14,7 @@ import org.agilewiki.jid.scalar.vlens.actor.SetActor;
 public class DoubleTest extends TestCase {
     public void test() throws Exception {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
+        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
             DoubleJid double1 = (DoubleJid) factoryLocator.newJid(JidFactories.DOUBLE_JID_TYPE);

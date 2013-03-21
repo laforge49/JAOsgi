@@ -8,7 +8,7 @@ import org.agilewiki.jactor.lpc.JLPCActor;
 /**
  * Test code.
  */
-public class Driver2 extends JLPCActor implements SimpleRequestReceiver {
+public class Driver2 extends SimpleRequestReceiver {
     @Override
     public void processRequest(SimpleRequest request, final RP rp)
             throws Exception {

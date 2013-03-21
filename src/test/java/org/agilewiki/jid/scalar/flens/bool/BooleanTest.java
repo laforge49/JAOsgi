@@ -14,7 +14,7 @@ import org.agilewiki.jid.scalar.vlens.actor.SetActor;
 public class BooleanTest extends TestCase {
     public void test() throws Exception {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
+        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
             BooleanJid boolean1 = (BooleanJid) factoryLocator.newJid(JidFactories.BOOLEAN_JID_TYPE);

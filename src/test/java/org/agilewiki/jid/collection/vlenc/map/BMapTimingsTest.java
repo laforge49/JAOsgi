@@ -33,7 +33,7 @@ public class BMapTimingsTest extends TestCase {
         //time per update (microseconds) = 7277
 
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
+        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
             BMapJid<Integer, IntegerJid> m1 = (BMapJid) factoryLocator.
                     newJid(JidFactories.INTEGER_INTEGER_BMAP_JID_TYPE);

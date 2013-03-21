@@ -26,7 +26,7 @@ public class GotoTest extends TestCase {
         }
     }
 
-    class Goto extends JLPCActor implements SimpleRequestReceiver {
+    class Goto extends SimpleRequestReceiver {
 
         @Override
         public void processRequest(SimpleRequest unwrappedRequest, RP rp) throws Exception {

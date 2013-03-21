@@ -90,7 +90,7 @@ public class StringMapJidFactory extends ActorFactory {
     public StringMapJid newActor(Mailbox mailbox, Actor parent)
             throws Exception {
         StringMapJid imj = (StringMapJid) super.newActor(mailbox, parent);
-        FactoryLocator fl = JAFactoryLocator.getFactoryLocator(parent);
+        FactoryLocator fl = JAFactoryLocator.get(parent);
         imj.valueFactory = fl.getJidFactory(valueType);
         imj.initialCapacity = initialCapacity;
         return imj;

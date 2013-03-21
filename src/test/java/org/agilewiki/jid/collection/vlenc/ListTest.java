@@ -17,7 +17,7 @@ public class ListTest extends TestCase {
     public void test() throws Exception {
 
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
+        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
             Actor l0 = factoryLocator.newJid(JidFactories.STRING_LIST_JID_TYPE);

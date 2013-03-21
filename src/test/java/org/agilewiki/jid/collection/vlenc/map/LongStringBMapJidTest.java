@@ -9,7 +9,7 @@ import org.agilewiki.jid.scalar.vlens.string.StringJid;
 public class LongStringBMapJidTest extends TestCase {
     public void test() throws Exception {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
+        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
             BMapJid<Long, StringJid> m = (BMapJid) factoryLocator.
                     newJid(JidFactories.LONG_STRING_BMAP_JID_TYPE);

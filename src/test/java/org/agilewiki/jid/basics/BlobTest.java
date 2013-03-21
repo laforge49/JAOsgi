@@ -18,7 +18,7 @@ public class BlobTest extends TestCase {
     public void test()
             throws Exception {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
+        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         Blob.register(factoryLocator);
         HelloWorld.register(factoryLocator);
         JAFuture future = new JAFuture();

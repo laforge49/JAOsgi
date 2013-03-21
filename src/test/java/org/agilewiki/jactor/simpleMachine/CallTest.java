@@ -26,7 +26,7 @@ public class CallTest extends TestCase {
         }
     }
 
-    class Call extends JLPCActor implements SimpleRequestReceiver {
+    class Call extends SimpleRequestReceiver {
         @Override
         public void processRequest(SimpleRequest request, RP rp)
                 throws Exception {

@@ -41,7 +41,7 @@ import org.agilewiki.jid.scalar.vlens.string.StringJid;
 public class TupleTest extends TestCase {
     public void test() throws Exception {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
+        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
             TupleJidFactory tjf = new TupleJidFactory(

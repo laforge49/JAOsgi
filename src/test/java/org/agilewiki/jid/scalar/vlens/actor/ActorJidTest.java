@@ -18,7 +18,7 @@ import org.agilewiki.jid.scalar.vlens.string.SetString;
 public class ActorJidTest extends TestCase {
     public void test() throws Exception {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
+        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
             ActorFactory actorJidAFactory = factoryLocator.getJidFactory(JidFactories.ACTOR_JID_TYPE);

@@ -9,7 +9,7 @@ import org.agilewiki.jactor.old.RP;
 /**
  * Test code.
  */
-public class Sender extends JLPCActor implements SimpleRequestReceiver, RealRequestReceiver {
+public class Sender extends SimpleRequestReceiver implements RealRequestReceiver {
 
     private Actor echo;
     private final int count;

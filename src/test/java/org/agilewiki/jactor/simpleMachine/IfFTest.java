@@ -26,7 +26,7 @@ public class IfFTest extends TestCase {
         }
     }
 
-    class IfF extends JLPCActor implements SimpleRequestReceiver {
+    class IfF extends SimpleRequestReceiver {
 
         @Override
         public void processRequest(SimpleRequest unwrappedRequest, RP rp) throws Exception {

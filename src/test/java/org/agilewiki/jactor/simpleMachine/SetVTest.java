@@ -27,7 +27,7 @@ public class SetVTest extends TestCase {
     }
 }
 
-class SetV1 extends JLPCActor implements SimpleRequestReceiver {
+class SetV1 extends SimpleRequestReceiver {
     @Override
     public void processRequest(SimpleRequest request, RP rp)
             throws Exception {

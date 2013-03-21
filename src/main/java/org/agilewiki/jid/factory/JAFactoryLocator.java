@@ -28,7 +28,6 @@ import org.agilewiki.jactor.JActor;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.Mailbox;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.properties.Properties;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.jid.collection.vlenc.map.MapEntry;
 import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
@@ -49,7 +48,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
         return "" + version.getMajor() + "." + version.getMajor();
     }
 
-    public static JAFactoryLocator getFactoryLocator(Ancestor ancestor) {
+    public static JAFactoryLocator get(Ancestor ancestor) {
         return (JAFactoryLocator) JActor.getMatch(ancestor, JAFactoryLocator.class);
     }
 
@@ -62,7 +61,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
      */
     public static ActorFactory getActorFactory(Actor actor, String jidType)
             throws Exception {
-        FactoryLocator factoryLocator = getFactoryLocator(actor);
+        FactoryLocator factoryLocator = get(actor);
         if (factoryLocator == null)
             throw new IllegalArgumentException("Unknown jid type: " + jidType);
         return factoryLocator.getJidFactory(jidType);
@@ -104,7 +103,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
      */
     public static Jid newJid(Actor actor, String jidType, Mailbox mailbox, Actor parent)
             throws Exception {
-        FactoryLocator factoryLocator = getFactoryLocator(actor);
+        FactoryLocator factoryLocator = get(actor);
         if (factoryLocator == null)
             return null;
         return factoryLocator.newJid(jidType, mailbox, parent);
@@ -112,7 +111,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
 
     public static StringMapJid<StringJid> getManifestCopy(Actor actor, Mailbox mailbox)
             throws Exception {
-        FactoryLocator factoryLocator = getFactoryLocator(actor);
+        FactoryLocator factoryLocator = get(actor);
         if (factoryLocator == null)
             throw new IllegalStateException("FactoryLocator is not an ancestor");
         return factoryLocator.getManifestCopy(mailbox);
@@ -120,7 +119,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
 
     public static void unknownManifestEntries(Actor actor, StringMapJid<StringJid> m)
             throws Exception {
-        FactoryLocator factoryLocator = getFactoryLocator(actor);
+        FactoryLocator factoryLocator = get(actor);
         if (factoryLocator == null)
             throw new IllegalStateException("FactoryLocator is not an ancestor");
         factoryLocator.unknownManifestEntries(m);
@@ -128,7 +127,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
 
     public static boolean validateManifest(Actor actor, StringMapJid<StringJid> m)
             throws Exception {
-        FactoryLocator factoryLocator = getFactoryLocator(actor);
+        FactoryLocator factoryLocator = get(actor);
         if (factoryLocator == null)
             throw new IllegalStateException("FactoryLocator is not an ancestor");
         return factoryLocator.validateManifest(m);
@@ -136,7 +135,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
 
     public static void loadBundles(Actor actor, StringMapJid<StringJid> m)
             throws Exception {
-        FactoryLocator factoryLocator = getFactoryLocator(actor);
+        FactoryLocator factoryLocator = get(actor);
         if (factoryLocator == null)
             throw new IllegalStateException("FactoryLocator is not an ancestor");
         factoryLocator.loadBundles(m);

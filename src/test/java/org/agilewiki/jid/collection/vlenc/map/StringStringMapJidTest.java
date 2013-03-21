@@ -11,7 +11,7 @@ import org.agilewiki.jid.scalar.vlens.string.StringJid;
 public class StringStringMapJidTest extends TestCase {
     public void test() throws Exception {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
+        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
             Actor m = factoryLocator.newJid(JidFactories.STRING_STRING_MAP_JID_TYPE);

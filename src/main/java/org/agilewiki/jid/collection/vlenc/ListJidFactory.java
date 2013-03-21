@@ -87,7 +87,7 @@ public class ListJidFactory extends ActorFactory {
     public ListJid newActor(Mailbox mailbox, Actor parent)
             throws Exception {
         ListJid lj = (ListJid) super.newActor(mailbox, parent);
-        FactoryLocator fl = JAFactoryLocator.getFactoryLocator(parent);
+        FactoryLocator fl = JAFactoryLocator.get(parent);
         lj.entryFactory = fl.getJidFactory(entryType);
         lj.initialCapacity = initialCapacity;
         return lj;

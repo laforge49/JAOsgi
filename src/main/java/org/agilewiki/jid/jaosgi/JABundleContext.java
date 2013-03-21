@@ -36,7 +36,7 @@ import java.util.Dictionary;
 import java.util.List;
 
 abstract public class JABundleContext extends JLPCActor {
-    public static JABundleContext getJABundleContext(final Actor actor)
+    public static JABundleContext get(final Actor actor)
             throws Exception {
         JABundleContext bundleContext = (JABundleContext) JActor.
                 getMatch(actor, JABundleContext.class);

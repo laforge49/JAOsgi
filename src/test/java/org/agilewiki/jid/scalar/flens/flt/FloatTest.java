@@ -15,7 +15,7 @@ import org.agilewiki.jid.scalar.vlens.actor.SetActor;
 public class FloatTest extends TestCase {
     public void test() throws Exception {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
+        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
             FloatJid float1 = (FloatJid) factoryLocator.newJid(JidFactories.FLOAT_JID_TYPE);

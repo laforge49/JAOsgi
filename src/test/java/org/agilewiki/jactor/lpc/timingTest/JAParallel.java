@@ -34,7 +34,7 @@ import org.agilewiki.jactor.parallel.JAResponseCounter;
 /**
  * Supports parallel request processing.
  */
-final public class JAParallel extends JLPCActor implements SimpleRequestReceiver, RealRequestReceiver {
+final public class JAParallel extends SimpleRequestReceiver implements RealRequestReceiver {
     /**
      * The actors to be run in parallel.
      */

@@ -14,7 +14,7 @@ import org.agilewiki.jid.scalar.vlens.actor.SetActor;
 public class BigIntegerIntegerMapTest extends TestCase {
     public void test1() throws Exception {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
+        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         JAFuture future = new JAFuture();
         RootJid root = (RootJid) factoryLocator.newJid(JidFactories.ROOT_JID_TYPE);
         SetActor setMap = new SetActor(
@@ -33,7 +33,7 @@ public class BigIntegerIntegerMapTest extends TestCase {
 
     public void test2() throws Exception {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
+        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         JAFuture future = new JAFuture();
         RootJid root = (RootJid) factoryLocator.newJid(JidFactories.ROOT_JID_TYPE);
         SetActor setMap = new SetActor(
@@ -67,7 +67,7 @@ public class BigIntegerIntegerMapTest extends TestCase {
 
     public void test3() throws Exception {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
+        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         JAFuture future = new JAFuture();
         RootJid root = (RootJid) factoryLocator.newJid(JidFactories.ROOT_JID_TYPE);
         SetActor setMap = new SetActor(
@@ -103,7 +103,7 @@ public class BigIntegerIntegerMapTest extends TestCase {
 
     public void test4() throws Exception {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
+        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         JAFuture future = new JAFuture();
         RootJid root = (RootJid) factoryLocator.newJid(JidFactories.ROOT_JID_TYPE);
         SetActor setMap = new SetActor(
@@ -139,7 +139,7 @@ public class BigIntegerIntegerMapTest extends TestCase {
 
     public void test5() throws Exception {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
+        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         JAFuture future = new JAFuture();
         RootJid root = (RootJid) factoryLocator.newJid(JidFactories.ROOT_JID_TYPE);
         SetActor setMap = new SetActor(
@@ -175,7 +175,7 @@ public class BigIntegerIntegerMapTest extends TestCase {
 
     public void test6() throws Exception {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
+        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         JAFuture future = new JAFuture();
         RootJid root = (RootJid) factoryLocator.newJid(JidFactories.ROOT_JID_TYPE);
         SetActor setMap = new SetActor(

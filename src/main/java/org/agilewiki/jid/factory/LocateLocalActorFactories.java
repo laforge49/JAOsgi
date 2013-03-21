@@ -35,7 +35,7 @@ public abstract class LocateLocalActorFactories extends JLPCActor {
     private JAFactoryLocator factoryLocator;
 
     protected JAFactoryLocator configure(String name) throws Exception {
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(this);
+        JABundleContext jaBundleContext = JABundleContext.get(this);
 
         factoryLocator = new JAFactoryLocator();
         factoryLocator.initialize(getMailboxFactory().createAsyncMailbox(), jaBundleContext);

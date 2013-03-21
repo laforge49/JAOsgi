@@ -33,7 +33,7 @@ public class ServerTest extends TestCase {
 /**
  * Test code.
  */
-class Driver extends JLPCActor implements SimpleRequestReceiver {
+class Driver extends SimpleRequestReceiver {
     public int times;
 
     @Override

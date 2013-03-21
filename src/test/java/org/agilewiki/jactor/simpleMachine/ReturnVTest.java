@@ -29,7 +29,7 @@ public class ReturnVTest extends TestCase {
         }
     }
 
-    class ReturnV1 extends JLPCActor implements SimpleRequestReceiver {
+    class ReturnV1 extends SimpleRequestReceiver {
         @Override
         public void processRequest(SimpleRequest unwrappedRequest, RP rp) throws Exception {
             SMBuilder smb = new SMBuilder();
@@ -42,7 +42,7 @@ public class ReturnVTest extends TestCase {
         }
     }
 
-    class ReturnV2 extends JLPCActor implements SimpleRequestReceiver {
+    class ReturnV2 extends SimpleRequestReceiver {
         @Override
         public void processRequest(SimpleRequest unwrappedRequest, RP rp) throws Exception {
             SMBuilder smb = new SMBuilder();

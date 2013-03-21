@@ -18,7 +18,7 @@ import org.agilewiki.jid.scalar.vlens.string.SetString;
 public class RootJidTest extends TestCase {
     public void test() throws Exception {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
+        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
             RootJidFactory rootJidFactory = (RootJidFactory) factoryLocator.getJidFactory(JidFactories.ROOT_JID_TYPE);

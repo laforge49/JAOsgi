@@ -35,7 +35,7 @@ public class SendVFTest extends TestCase {
         }
     }
 
-    class Send extends JLPCActor implements SimpleRequestReceiver {
+    class Send extends SimpleRequestReceiver {
         @Override
         public void processRequest(SimpleRequest request, RP rp)
                 throws Exception {

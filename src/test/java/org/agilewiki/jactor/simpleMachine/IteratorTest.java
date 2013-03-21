@@ -26,7 +26,7 @@ public class IteratorTest extends TestCase {
         }
     }
 
-    class It extends JLPCActor implements SimpleRequestReceiver {
+    class It extends SimpleRequestReceiver {
         @Override
         public void processRequest(SimpleRequest unwrappedRequest, RP rp) throws Exception {
             SMBuilder smb = new SMBuilder();

@@ -85,7 +85,7 @@ public class UnionJidFactory extends ActorFactory {
             throws Exception {
         UnionJid uj = (UnionJid) super.newActor(mailbox, parent);
         if (unionFactories == null) {
-            FactoryLocator fl = JAFactoryLocator.getFactoryLocator(parent);
+            FactoryLocator fl = JAFactoryLocator.get(parent);
             ActorFactory[] afs = new ActorFactory[actorTypes.length];
             int i = 0;
             while (i < actorTypes.length) {

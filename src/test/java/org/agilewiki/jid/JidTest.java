@@ -10,7 +10,7 @@ public class JidTest extends TestCase {
     public void test1() throws Exception {
         System.err.println("\nTest 1");
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
+        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
             Jid a = (Jid) factoryLocator.newJid(JidFactories.JID_TYPE);
@@ -27,7 +27,7 @@ public class JidTest extends TestCase {
     public void test3() throws Exception {
         System.err.println("\nTest 3");
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
+        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
             Jid a = (Jid) factoryLocator.newJid(JidFactories.JID_TYPE);
@@ -44,7 +44,7 @@ public class JidTest extends TestCase {
     public void test4() throws Exception {
         System.err.println("\nTest 4");
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
+        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
             Jid a = (Jid) factoryLocator.newJid(JidFactories.JID_TYPE);
@@ -62,7 +62,7 @@ public class JidTest extends TestCase {
     public void test5() throws Exception {
         System.err.println("\nTest 5");
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
+        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
             Jid a = (Jid) factoryLocator.newJid(JidFactories.JID_TYPE);
@@ -80,7 +80,7 @@ public class JidTest extends TestCase {
     public void test6() throws Exception {
         System.err.println("\nTest 6");
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
+        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
             Jid jid1 = (Jid) factoryLocator.newJid(JidFactories.JID_TYPE);
@@ -101,7 +101,7 @@ public class JidTest extends TestCase {
     public void test7() throws Exception {
         System.err.println("\nTest 7");
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
+        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
             Jid a = (Jid) factoryLocator.newJid(JidFactories.JID_TYPE);

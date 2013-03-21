@@ -87,7 +87,7 @@ public class BListJidFactory extends ActorFactory {
     public BListJid newActor(Mailbox mailbox, Actor parent)
             throws Exception {
         BListJid lj = (BListJid) super.newActor(mailbox, parent);
-        FactoryLocator f = JAFactoryLocator.getFactoryLocator(parent);
+        FactoryLocator f = JAFactoryLocator.get(parent);
         lj.entryFactory = f.getJidFactory(entryType);
         lj.nodeCapacity = NODE_CAPACITY;
         lj.isRoot = isRoot;

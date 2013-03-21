@@ -51,7 +51,7 @@ abstract public class AppJidFactory extends ActorFactory {
             throws Exception {
         AppJid tj = (AppJid) super.newActor(mailbox, parent);
         if (tupleFactories == null) {
-            FactoryLocator fl = JAFactoryLocator.getFactoryLocator(parent);
+            FactoryLocator fl = JAFactoryLocator.get(parent);
             ActorFactory[] afs = new ActorFactory[jidTypes.length];
             int i = 0;
             while (i < jidTypes.length) {

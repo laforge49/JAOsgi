@@ -12,7 +12,7 @@ import org.agilewiki.jactor.simpleMachine._Operation;
 /**
  * Test code.
  */
-final public class Driver extends JLPCActor implements SimpleRequestReceiver {
+final public class Driver extends SimpleRequestReceiver {
     SMBuilder smb = new SMBuilder();
 
     public void initialize(Mailbox mailbox, final CounterActor counterActor, final long runs)

@@ -33,7 +33,7 @@ public class Blob extends StringMapJid implements Main {
         @Override
         public Blob newActor(Mailbox mailbox, Actor parent) throws Exception {
             Blob blob = (Blob) super.newActor(mailbox, parent);
-            FactoryLocator fl = JAFactoryLocator.getFactoryLocator(parent);
+            FactoryLocator fl = JAFactoryLocator.get(parent);
             blob.valueFactory = fl.getJidFactory(JidFactories.ACTOR_JID_TYPE);
             return blob;
         }

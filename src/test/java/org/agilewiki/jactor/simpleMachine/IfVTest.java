@@ -26,7 +26,7 @@ public class IfVTest extends TestCase {
         }
     }
 
-    class IfV extends JLPCActor implements SimpleRequestReceiver {
+    class IfV extends SimpleRequestReceiver {
         @Override
         public void processRequest(SimpleRequest unwrappedRequest, RP rp) throws Exception {
             SMBuilder smb = new SMBuilder();

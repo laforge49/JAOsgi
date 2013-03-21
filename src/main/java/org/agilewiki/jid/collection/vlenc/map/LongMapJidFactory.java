@@ -90,7 +90,7 @@ public class LongMapJidFactory extends ActorFactory {
     public LongMapJid newActor(Mailbox mailbox, Actor parent)
             throws Exception {
         LongMapJid imj = (LongMapJid) super.newActor(mailbox, parent);
-        FactoryLocator fl = JAFactoryLocator.getFactoryLocator(parent);
+        FactoryLocator fl = JAFactoryLocator.get(parent);
         imj.valueFactory = fl.getJidFactory(valueType);
         imj.initialCapacity = initialCapacity;
         return imj;

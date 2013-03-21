@@ -39,13 +39,13 @@ public class JAProperties
         extends JLPCActor
         implements Properties {
 
-    public static JAProperties getProperties(Ancestor ancestor) {
+    public static JAProperties get(Ancestor ancestor) {
         return (JAProperties) JActor.getMatch(ancestor, Properties.class);
     }
 
     public static Object getProperty(Actor targetActor, String propertyName)
             throws Exception {
-        Properties properties = getProperties(targetActor);
+        Properties properties = get(targetActor);
         if (properties == null)
             throw new UnsupportedOperationException("getProperty");
         return properties.getProperty(propertyName);
@@ -53,7 +53,7 @@ public class JAProperties
 
     public static void setProperty(Actor targetActor, String propertyName, Object propertyValue)
             throws Exception {
-        Properties properties = getProperties(targetActor);
+        Properties properties = get(targetActor);
         if (properties == null)
             throw new UnsupportedOperationException("getProperty");
         properties.setProperty(propertyName, propertyValue);
@@ -71,7 +71,7 @@ public class JAProperties
         if (properties.containsKey(propertyName))
             return properties.get(propertyName);
         Actor targetActor = getParent();
-        Properties properties = getProperties(targetActor);
+        Properties properties = get(targetActor);
         if (properties == null)
             return null;
         return properties.getProperty(propertyName);

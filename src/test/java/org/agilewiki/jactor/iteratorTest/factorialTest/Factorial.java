@@ -9,7 +9,7 @@ import org.agilewiki.jactor.lpc.JLPCActor;
 /**
  * Test code.
  */
-public class Factorial extends JLPCActor implements SimpleRequestReceiver {
+public class Factorial extends SimpleRequestReceiver {
     @Override
     public void processRequest(SimpleRequest req, final RP rp)
             throws Exception {

@@ -73,7 +73,7 @@ public class TupleJidFactory extends ActorFactory {
     public TupleJid newActor(Mailbox mailbox, Actor parent)
             throws Exception {
         TupleJid tj = (TupleJid) super.newActor(mailbox, parent);
-        FactoryLocator fl = JAFactoryLocator.getFactoryLocator(parent);
+        FactoryLocator fl = JAFactoryLocator.get(parent);
         ActorFactory[] afs = new ActorFactory[jidTypes.length];
         int i = 0;
         while (i < jidTypes.length) {

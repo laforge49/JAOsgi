@@ -9,7 +9,7 @@ import org.agilewiki.jid.scalar.vlens.string.StringJid;
 public class UnionJidTest extends TestCase {
     public void test() throws Exception {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
+        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
             UnionJidFactory siuf =
                     new UnionJidFactory("siUnion", JidFactories.STRING_JID_TYPE, "siUnion");

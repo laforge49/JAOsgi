@@ -34,7 +34,7 @@ public class BListTimingsTest extends TestCase {
         //time per update (microseconds) = 2937
 
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
+        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
             BListJid intList1 = (BListJid) factoryLocator.newJid(JidFactories.INTEGER_BLIST_JID_TYPE);
             Mailbox mailbox = factoryLocator.getMailbox();

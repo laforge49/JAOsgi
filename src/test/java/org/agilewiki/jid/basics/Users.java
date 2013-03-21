@@ -37,7 +37,7 @@ public class Users extends StringMapJid implements Main {
         @Override
         public Users newActor(Mailbox mailbox, Actor parent) throws Exception {
             Users users = (Users) super.newActor(mailbox, parent);
-            FactoryLocator fl = JAFactoryLocator.getFactoryLocator(parent);
+            FactoryLocator fl = JAFactoryLocator.get(parent);
             users.valueFactory = fl.getJidFactory(JidFactories.STRING_JID_TYPE);
             return users;
         }

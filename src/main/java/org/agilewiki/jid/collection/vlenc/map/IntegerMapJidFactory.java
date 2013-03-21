@@ -89,7 +89,7 @@ public class IntegerMapJidFactory extends ActorFactory {
     public IntegerMapJid newActor(Mailbox mailbox, Actor parent)
             throws Exception {
         IntegerMapJid imj = (IntegerMapJid) super.newActor(mailbox, parent);
-        FactoryLocator fl = JAFactoryLocator.getFactoryLocator(parent);
+        FactoryLocator fl = JAFactoryLocator.get(parent);
         imj.valueFactory = fl.getJidFactory(valueType);
         imj.initialCapacity = initialCapacity;
         return imj;

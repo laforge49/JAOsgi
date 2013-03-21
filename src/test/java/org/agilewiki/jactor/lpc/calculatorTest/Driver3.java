@@ -10,7 +10,7 @@ import org.agilewiki.jactor.simpleMachine.SimpleMachine;
 /**
  * Test code.
  */
-public class Driver3 extends JLPCActor implements SimpleRequestReceiver {
+public class Driver3 extends SimpleRequestReceiver {
     @Override
     public void processRequest(SimpleRequest request, final RP rp)
             throws Exception {

@@ -78,7 +78,7 @@ public class MapEntryFactory extends ActorFactory {
     public MapEntry newActor(Mailbox mailbox, Actor parent)
             throws Exception {
         MapEntry me = (MapEntry) super.newActor(mailbox, parent);
-        FactoryLocator fl = JAFactoryLocator.getFactoryLocator(parent);
+        FactoryLocator fl = JAFactoryLocator.get(parent);
         ActorFactory keyFactory = fl.getJidFactory(keyType);
         ActorFactory valueFactory = fl.getJidFactory(valueType);
         me.setFactories(keyFactory, valueFactory);

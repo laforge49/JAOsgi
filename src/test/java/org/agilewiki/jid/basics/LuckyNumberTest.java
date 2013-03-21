@@ -16,7 +16,7 @@ public class LuckyNumberTest extends TestCase {
     public void test()
             throws Exception {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
+        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         LuckyNumber.register(factoryLocator);
         JAFuture future = new JAFuture();
 

@@ -14,7 +14,7 @@ import org.agilewiki.jid.scalar.vlens.actor.SetActor;
 public class LongTest extends TestCase {
     public void test() throws Exception {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.getJABundleContext(factoryLocator);
+        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
             LongJid long1 = (LongJid) factoryLocator.newJid(JidFactories.LONG_JID_TYPE);

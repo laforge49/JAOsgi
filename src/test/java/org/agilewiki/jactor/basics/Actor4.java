@@ -16,7 +16,7 @@ public class Actor4 extends JLPCActor {
                 rp.processResponse(false);
             }
         });
-        Greet1.req.send(this, getParent(), new RP<Object>() {
+        Greet1.req.send(this, Greeter.get(this), new RP<Object>() {
             @Override
             public void processResponse(final Object response) throws Exception {
                 rp.processResponse(true);

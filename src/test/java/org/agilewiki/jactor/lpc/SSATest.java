@@ -26,7 +26,7 @@ public class SSATest extends TestCase {
         }
     }
 
-    class S extends JLPCActor implements SimpleRequestReceiver {
+    class S extends SimpleRequestReceiver {
         Actor n;
 
         S(Actor n) {
@@ -46,7 +46,7 @@ public class SSATest extends TestCase {
         }
     }
 
-    class A extends JLPCActor implements SimpleRequestReceiver {
+    class A extends SimpleRequestReceiver {
         @Override
         public void processRequest(SimpleRequest request, RP rp) throws Exception {
             System.err.println("A got request");

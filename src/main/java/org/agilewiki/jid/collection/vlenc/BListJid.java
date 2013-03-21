@@ -63,7 +63,7 @@ public class BListJid<ENTRY_TYPE extends Jid>
         String baseType = getJidType();
         if (baseType.startsWith("IN."))
             baseType = baseType.substring(3);
-        factoryLocator = JAFactoryLocator.getFactoryLocator(this);
+        factoryLocator = JAFactoryLocator.get(this);
         tupleFactories = new ActorFactory[2];
         tupleFactories[TUPLE_SIZE] = factoryLocator.getJidFactory(JidFactories.INTEGER_JID_TYPE);
         tupleFactories[TUPLE_UNION] = factoryLocator.getJidFactory("U." + baseType);
