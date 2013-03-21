@@ -1,5 +1,7 @@
 package org.agilewiki.jactor;
 
+import org.agilewiki.jactor.ancestor.Ancestor;
+import org.agilewiki.jactor.ancestor.AncestorActor;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jactor.old.RP;
 

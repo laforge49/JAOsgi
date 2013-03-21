@@ -23,9 +23,7 @@
  */
 package org.agilewiki.jactor.old;
 
-import org.agilewiki.jactor.Ancestor;
 import org.agilewiki.jactor.apc.APCRequestSource;
-import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jactor.lpc.Request;
 
 /**

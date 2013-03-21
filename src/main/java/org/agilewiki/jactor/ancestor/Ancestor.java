@@ -1,4 +1,4 @@
-package org.agilewiki.jactor;
+package org.agilewiki.jactor.ancestor;
 
 import org.agilewiki.jactor.old.Actor;
 

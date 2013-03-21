@@ -23,8 +23,7 @@
  */
 package org.agilewiki.jid.collection.vlenc;
 
-import org.agilewiki.jactor.Ancestor;
-import org.agilewiki.jactor.old.Actor;
+import org.agilewiki.jactor.ancestor.Ancestor;
 import org.agilewiki.jactor.old.Mailbox;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jid.factory.ActorFactory;

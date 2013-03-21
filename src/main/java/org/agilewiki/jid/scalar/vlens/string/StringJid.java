@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jid.scalar.vlens.string;
 
-import org.agilewiki.jactor.Ancestor;
+import org.agilewiki.jactor.ancestor.Ancestor;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.Mailbox;
 import org.agilewiki.jid.AppendableBytes;

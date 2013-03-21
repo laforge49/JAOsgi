@@ -23,8 +23,8 @@
  */
 package org.agilewiki.jactor.properties;
 
-import org.agilewiki.jactor.Ancestor;
-import org.agilewiki.jactor.AncestorActor;
+import org.agilewiki.jactor.ancestor.Ancestor;
+import org.agilewiki.jactor.ancestor.AncestorActor;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.lpc.JLPCActor;
 

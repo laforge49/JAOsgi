@@ -1,7 +1,5 @@
 package org.agilewiki.jactor.counterTest;
 
-import org.agilewiki.jactor.Ancestor;
-import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jactor.lpc.Request;
