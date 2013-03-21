@@ -94,13 +94,5 @@ public interface Actor extends Ancestor {
     @Override
     public JLPCActor getParent();
 
-    /**
-     * Returns A matching ancestor from the parent chain.
-     *
-     * @param targetClass A class which the ancestor is an instanceof.
-     * @return The matching ancestor, or null.
-     */
-    public Ancestor getAncestor(Class targetClass);
-
     public Ancestor getMatch(Class targetClass);
 }

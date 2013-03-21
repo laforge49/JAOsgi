@@ -127,17 +127,6 @@ abstract public class JLPCActor implements TargetActor, RequestProcessor,
     }
 
     /**
-     * Returns A matching ancestor from the parent chain.
-     *
-     * @param targetClass A class which the ancestor is an instanceof.
-     * @return The matching ancestor, or null.
-     */
-    @Override
-    final public Ancestor getAncestor(final Class targetClass) {
-        return JActor.getAncestor(this, targetClass);
-    }
-
-    /**
      * Returns the exception handler.
      *
      * @return The exception handler.
