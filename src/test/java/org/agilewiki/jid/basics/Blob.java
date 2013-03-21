@@ -7,6 +7,7 @@ import org.agilewiki.jid.collection.vlenc.map.MapEntryFactory;
 import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
+import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.scalar.vlens.actor.ActorJid;
 
@@ -32,7 +33,7 @@ public class Blob extends StringMapJid implements Main {
         @Override
         public Blob newActor(Mailbox mailbox, Actor parent) throws Exception {
             Blob blob = (Blob) super.newActor(mailbox, parent);
-            FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
+            FactoryLocator fl = JAFactoryLocator.getFactoryLocator(parent);
             blob.valueFactory = fl.getJidFactory(JidFactories.ACTOR_JID_TYPE);
             return blob;
         }

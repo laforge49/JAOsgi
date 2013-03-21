@@ -27,6 +27,7 @@ import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.Mailbox;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
+import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 
 /**
@@ -88,7 +89,7 @@ public class IntegerMapJidFactory extends ActorFactory {
     public IntegerMapJid newActor(Mailbox mailbox, Actor parent)
             throws Exception {
         IntegerMapJid imj = (IntegerMapJid) super.newActor(mailbox, parent);
-        FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
+        FactoryLocator fl = JAFactoryLocator.getFactoryLocator(parent);
         imj.valueFactory = fl.getJidFactory(valueType);
         imj.initialCapacity = initialCapacity;
         return imj;

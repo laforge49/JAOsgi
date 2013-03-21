@@ -9,6 +9,7 @@ import org.agilewiki.jid.collection.vlenc.map.MapEntryFactory;
 import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
+import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.scalar.vlens.string.StringJid;
 
@@ -36,7 +37,7 @@ public class Users extends StringMapJid implements Main {
         @Override
         public Users newActor(Mailbox mailbox, Actor parent) throws Exception {
             Users users = (Users) super.newActor(mailbox, parent);
-            FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
+            FactoryLocator fl = JAFactoryLocator.getFactoryLocator(parent);
             users.valueFactory = fl.getJidFactory(JidFactories.STRING_JID_TYPE);
             return users;
         }

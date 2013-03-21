@@ -28,6 +28,7 @@ import org.agilewiki.jactor.old.Mailbox;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
+import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.scalar.vlens.actor.UnionJidFactory;
 
 /**
@@ -92,7 +93,7 @@ public class LongBMapJidFactory extends ActorFactory {
     public LongBMapJid newActor(Mailbox mailbox, Actor parent)
             throws Exception {
         LongBMapJid imj = (LongBMapJid) super.newActor(mailbox, parent);
-        FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
+        FactoryLocator fl = JAFactoryLocator.getFactoryLocator(parent);
         imj.valueFactory = fl.getJidFactory(valueType);
         imj.nodeCapacity = NODE_CAPACITY;
         imj.isRoot = isRoot;

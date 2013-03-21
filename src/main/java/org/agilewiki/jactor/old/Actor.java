@@ -93,6 +93,4 @@ public interface Actor extends Ancestor {
      */
     @Override
     public JLPCActor getParent();
-
-    public Ancestor getMatch(Class targetClass);
 }

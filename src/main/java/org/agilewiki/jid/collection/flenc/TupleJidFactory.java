@@ -27,6 +27,7 @@ import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.Mailbox;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
+import org.agilewiki.jid.factory.JAFactoryLocator;
 
 /**
  * Creates a TupleJid.
@@ -72,7 +73,7 @@ public class TupleJidFactory extends ActorFactory {
     public TupleJid newActor(Mailbox mailbox, Actor parent)
             throws Exception {
         TupleJid tj = (TupleJid) super.newActor(mailbox, parent);
-        FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
+        FactoryLocator fl = JAFactoryLocator.getFactoryLocator(parent);
         ActorFactory[] afs = new ActorFactory[jidTypes.length];
         int i = 0;
         while (i < jidTypes.length) {

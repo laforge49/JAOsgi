@@ -121,11 +121,6 @@ abstract public class JLPCActor implements TargetActor, RequestProcessor,
         return parent;
     }
 
-    @Override
-    public Ancestor getMatch(final Class targetClass) {
-        return JActor.getMatch(this, targetClass);
-    }
-
     /**
      * Returns the exception handler.
      *

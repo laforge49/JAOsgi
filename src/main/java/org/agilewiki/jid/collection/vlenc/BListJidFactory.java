@@ -28,6 +28,7 @@ import org.agilewiki.jactor.old.Mailbox;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
+import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.scalar.vlens.actor.UnionJidFactory;
 
 /**
@@ -86,7 +87,7 @@ public class BListJidFactory extends ActorFactory {
     public BListJid newActor(Mailbox mailbox, Actor parent)
             throws Exception {
         BListJid lj = (BListJid) super.newActor(mailbox, parent);
-        FactoryLocator f = (FactoryLocator) parent.getMatch(FactoryLocator.class);
+        FactoryLocator f = JAFactoryLocator.getFactoryLocator(parent);
         lj.entryFactory = f.getJidFactory(entryType);
         lj.nodeCapacity = NODE_CAPACITY;
         lj.isRoot = isRoot;

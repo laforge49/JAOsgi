@@ -28,6 +28,7 @@ import org.agilewiki.jactor.old.Mailbox;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
+import org.agilewiki.jid.factory.JAFactoryLocator;
 
 /**
  * Creates map entries.
@@ -77,7 +78,7 @@ public class MapEntryFactory extends ActorFactory {
     public MapEntry newActor(Mailbox mailbox, Actor parent)
             throws Exception {
         MapEntry me = (MapEntry) super.newActor(mailbox, parent);
-        FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
+        FactoryLocator fl = JAFactoryLocator.getFactoryLocator(parent);
         ActorFactory keyFactory = fl.getJidFactory(keyType);
         ActorFactory valueFactory = fl.getJidFactory(valueType);
         me.setFactories(keyFactory, valueFactory);

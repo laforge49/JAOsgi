@@ -27,6 +27,7 @@ import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.Mailbox;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
+import org.agilewiki.jid.factory.JAFactoryLocator;
 
 /**
  * Creates a UnionJid.
@@ -84,7 +85,7 @@ public class UnionJidFactory extends ActorFactory {
             throws Exception {
         UnionJid uj = (UnionJid) super.newActor(mailbox, parent);
         if (unionFactories == null) {
-            FactoryLocator fl = (FactoryLocator) parent.getMatch(FactoryLocator.class);
+            FactoryLocator fl = JAFactoryLocator.getFactoryLocator(parent);
             ActorFactory[] afs = new ActorFactory[actorTypes.length];
             int i = 0;
             while (i < actorTypes.length) {
