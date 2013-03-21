@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jid.jaosgi;
 
-import org.agilewiki.jactor.ancestor.AncestorActor;
+import org.agilewiki.jactor.ancestor.AncestorBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.osgi.framework.*;
@@ -37,7 +37,7 @@ import java.util.List;
 abstract public class JABundleContext extends JLPCActor {
     public static JABundleContext get(final Actor actor)
             throws Exception {
-        JABundleContext bundleContext = (JABundleContext) AncestorActor.
+        JABundleContext bundleContext = (JABundleContext) AncestorBase.
                 getMatch(actor, JABundleContext.class);
         if (bundleContext == null)
             throw new IllegalStateException("JABundleContext is not an ancestor of " + actor);

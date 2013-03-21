@@ -24,7 +24,7 @@
 package org.agilewiki.jid.factory;
 
 import org.agilewiki.jactor.ancestor.Ancestor;
-import org.agilewiki.jactor.ancestor.AncestorActor;
+import org.agilewiki.jactor.ancestor.AncestorBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.Mailbox;
 import org.agilewiki.jid.Jid;
@@ -42,13 +42,13 @@ import java.util.concurrent.ConcurrentSkipListSet;
 /**
  * An actor for defining jid types and creating instances.
  */
-public class JAFactoryLocator extends AncestorActor implements FactoryLocator {
+public class JAFactoryLocator extends AncestorBase implements FactoryLocator {
     public static String versionString(Version version) {
         return "" + version.getMajor() + "." + version.getMajor();
     }
 
     public static JAFactoryLocator get(Ancestor ancestor) {
-        return (JAFactoryLocator) AncestorActor.getMatch(ancestor, JAFactoryLocator.class);
+        return (JAFactoryLocator) AncestorBase.getMatch(ancestor, JAFactoryLocator.class);
     }
 
     /**

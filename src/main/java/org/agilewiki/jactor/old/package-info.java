@@ -23,22 +23,22 @@
  */
 
 /**
- * <h2>Introduction to AncestorActor</h2>
+ * <h2>Introduction to AncestorBase</h2>
  * <p>
- *     AncestorActor is blazing fast, passing messages at a rate of up to 1 billion messages per second. It achieves this
- *     by using synchronous operations whenever possible. Indeed, AncestorActor is fast enough that you can use actors
+ *     AncestorBase is blazing fast, passing messages at a rate of up to 1 billion messages per second. It achieves this
+ *     by using synchronous operations whenever possible. Indeed, AncestorBase is fast enough that you can use actors
  *     everywhere.
  * </p>
  * <p>
  *     On the other hand, it is easy enough to force an actor to operate asynchronously--without changing how messages
  *     are sent to it. So I/O and computations taking longer than a few microseconds can execute on a different thread.
- *     Jactor is entirely free of locks and parallel operations are easy to code, making AncestorActor ideal for applications
+ *     Jactor is entirely free of locks and parallel operations are easy to code, making AncestorBase ideal for applications
  *     that need to scale vertically.
  * </p>
  *
  * <h2>The Mailbox Factory</h2>
  * <p>
- *     Every program needs a MailboxFactory. It allocates the threads used by AncestorActor and creates the mailboxes used
+ *     Every program needs a MailboxFactory. It allocates the threads used by AncestorBase and creates the mailboxes used
  *     by the actors. The MailboxFactory.newMailboxFactory method takes one argument--the number of threads to be
  *     allocated. This should be at least as large as the number of hardware threads on your computer, but add
  *     additional threads to support parallel I/O operations.
@@ -156,7 +156,7 @@
  * <p>
  *     The send method of an actor is used to send a request to another actor. And the 3rd parameter is a
  *     RP object. But the RP object sent by one actor is often not the same object that
- *     is received by the other actor. The AncestorActor code does a lot of intermediation with RP objects.
+ *     is received by the other actor. The AncestorBase code does a lot of intermediation with RP objects.
  * </p>
  * <pre>
  *     send(anotherActor, someRequest, new RP() {
@@ -232,7 +232,7 @@
  * <p>
  *     A good example of this can be found in the
  *     <a target="_blank"
- * href="https://github.com/laforge49/AncestorActor/blob/master/src/main/java/org/agilewiki/jactor/components/factory/Factory.java"
+ * href="https://github.com/laforge49/AncestorBase/blob/master/src/main/java/org/agilewiki/jactor/components/factory/Factory.java"
  * >Factory</a> class, though it only makes limited use of SMBuilder's capabilities.
  * </p>
  * <pre>
@@ -256,7 +256,7 @@
  *     Benchmarks for parallelism are probably the simplest of all, as the responses do not need to be aggregated. The
  *     JAParallel class was developed specifically to support this,
  *     <a target="_blank"
- * href="https://github.com/laforge49/AncestorActor/blob/master/src/test/java/org/agilewiki/jactor/lpc/timingTest/SharedMailboxTest.java"
+ * href="https://github.com/laforge49/AncestorBase/blob/master/src/test/java/org/agilewiki/jactor/lpc/timingTest/SharedMailboxTest.java"
  * >SharedMailboxTest</a> being a good case in point.
  * </p>
  *

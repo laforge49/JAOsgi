@@ -24,7 +24,7 @@
 package org.agilewiki.jactor.properties;
 
 import org.agilewiki.jactor.ancestor.Ancestor;
-import org.agilewiki.jactor.ancestor.AncestorActor;
+import org.agilewiki.jactor.ancestor.AncestorBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
@@ -40,7 +40,7 @@ public class JAProperties
         implements Properties {
 
     public static JAProperties get(Ancestor ancestor) {
-        return (JAProperties) AncestorActor.getMatch(ancestor, Properties.class);
+        return (JAProperties) AncestorBase.getMatch(ancestor, Properties.class);
     }
 
     public static Object getProperty(Actor targetActor, String propertyName)

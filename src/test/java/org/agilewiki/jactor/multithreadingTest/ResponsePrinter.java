@@ -1,7 +1,7 @@
 package org.agilewiki.jactor.multithreadingTest;
 
 import org.agilewiki.jactor.ancestor.Ancestor;
-import org.agilewiki.jactor.ancestor.AncestorActor;
+import org.agilewiki.jactor.ancestor.AncestorBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
@@ -12,7 +12,7 @@ import org.agilewiki.jactor.lpc.Request;
  */
 public class ResponsePrinter extends JLPCActor {
     public static ResponsePrinter get(Ancestor ancestor) {
-        return (ResponsePrinter) AncestorActor.getMatch(ancestor, ResponsePrinter.class);
+        return (ResponsePrinter) AncestorBase.getMatch(ancestor, ResponsePrinter.class);
     }
 
     public void printResponse(Request wrappedRequest, Actor actor, final RP rp) throws Exception {

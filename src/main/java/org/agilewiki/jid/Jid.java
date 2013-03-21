@@ -24,7 +24,7 @@
 package org.agilewiki.jid;
 
 import org.agilewiki.jactor.ancestor.Ancestor;
-import org.agilewiki.jactor.ancestor.AncestorActor;
+import org.agilewiki.jactor.ancestor.AncestorBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.Mailbox;
 import org.agilewiki.jactor.old.RP;
@@ -36,7 +36,7 @@ import java.util.Arrays;
 /**
  * Base class for Incremental Deserialization Actors.
  */
-public class Jid extends AncestorActor implements _Jid {
+public class Jid extends AncestorBase implements _Jid {
     /**
      * The factory, or null.
      */

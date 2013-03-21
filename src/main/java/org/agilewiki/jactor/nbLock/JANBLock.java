@@ -24,7 +24,7 @@
 package org.agilewiki.jactor.nbLock;
 
 import org.agilewiki.jactor.ancestor.Ancestor;
-import org.agilewiki.jactor.ancestor.AncestorActor;
+import org.agilewiki.jactor.ancestor.AncestorBase;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
@@ -35,7 +35,7 @@ import java.util.ArrayDeque;
  */
 public class JANBLock extends JLPCActor {
     public static JANBLock get(Ancestor ancestor) {
-        return (JANBLock) AncestorActor.getMatch(ancestor, JANBLock.class);
+        return (JANBLock) AncestorBase.getMatch(ancestor, JANBLock.class);
     }
 
     private ArrayDeque<RP<Object>> deque = new ArrayDeque<RP<Object>>();
