@@ -23,8 +23,6 @@
  */
 package org.agilewiki.jactor.lpc;
 
-import org.agilewiki.jactor.Ancestor;
-import org.agilewiki.jactor.JActor;
 import org.agilewiki.jactor.apc.*;
 import org.agilewiki.jactor.bufferedEvents.BufferedEventsDestination;
 import org.agilewiki.jactor.bufferedEvents.BufferedEventsQueue;
@@ -34,58 +32,18 @@ import org.agilewiki.jactor.simpleMachine._SMBuilder;
 
 import java.util.List;
 
-/**
- * <p>
- * An actor which implements Local Procedure Calls (LPC)
- * and mostly works synchronously.
- * Actors need to implement the processRequest method.
- * </p>
- * <pre>
- * public class Multiply {
- *     public int a;
- *     public int b;
- * }
- *
- * public class Multiplier extends JLPCActor {
- *
- *     public Multiplier(Mailbox mailbox) {
- *         super(mailbox);
- *     }
- *
- *     protected void processRequest(Object req, RP rp)
- *             throws Exception {
- *         Multiply m = (Multiply) req;
- *         rp.process(new Integer(m.a * m.b));
- *     }
- * }
- * </pre>
- */
 abstract public class JLPCActor implements TargetActor, RequestProcessor,
         RequestSource {
     /**
      * The inbox and outbox of the actor.
      */
-    private Mailbox mailbox;
-
-    /**
-     * The parent actor, for dependency injection.
-     */
-    private JLPCActor parent;
+    protected Mailbox mailbox;
 
     /**
      * Initialize a degraded LiteActor
      */
     public void initialize() throws Exception {
-        initialize(null, null);
-    }
-
-    /**
-     * Initialize a degraded LiteActor
-     *
-     * @param parent The parent actor.
-     */
-    public void initialize(final Actor parent) throws Exception {
-        initialize(null, parent);
+        initialize(null);
     }
 
     /**
@@ -94,31 +52,9 @@ abstract public class JLPCActor implements TargetActor, RequestProcessor,
      * @param mailbox A mailbox which may be shared with other actors.
      */
     public void initialize(final Mailbox mailbox) throws Exception {
-        initialize(mailbox, null);
-    }
-
-    /**
-     * Initialize a LiteActor
-     *
-     * @param mailbox A mailbox which may be shared with other actors.
-     * @param parent  The parent actor.
-     */
-    public void initialize(final Mailbox mailbox, final Actor parent)
-            throws Exception {
-        if (this.mailbox != null || this.parent != null)
+        if (this.mailbox != null)
             throw new IllegalStateException("already initialized");
         this.mailbox = mailbox;
-        this.parent = (JLPCActor) parent;
-    }
-
-    /**
-     * Returns the actor's parent.
-     *
-     * @return The actor's parent, or null.
-     */
-    @Override
-    final public JLPCActor getParent() {
-        return parent;
     }
 
     /**
@@ -258,7 +194,7 @@ abstract public class JLPCActor implements TargetActor, RequestProcessor,
         mailbox.setCurrentRequest(syncRequest);
         try {
             setExceptionHandler(null);
-            request.processRequest(this, syncRequest);
+            request.processRequest(syncRequest);
             if (!syncRequest.sync) {
                 syncRequest.async = true;
                 syncRequest.restoreSourceMailbox();
@@ -350,7 +286,7 @@ abstract public class JLPCActor implements TargetActor, RequestProcessor,
         mailbox.setCurrentRequest(jaRequest);
         try {
             setExceptionHandler(null);
-            request.processRequest(this, JANoResponse.nrp);
+            request.processRequest(JANoResponse.nrp);
         } catch (final Throwable ex) {
             final ExceptionHandler eh = getExceptionHandler();
             if (eh != null)

@@ -33,86 +33,21 @@ import org.agilewiki.jactor.apc.APCRequestSource;
  * A request.
  */
 abstract public class Request<RESPONSE_TYPE, TARGET_TYPE extends TargetActor> {
-    /**
-     * Returns true when targetActor is an instanceof TARGET_TYPE
-     *
-     * @param targetActor The actor to be called.
-     * @return True when targetActor is an instanceof TARGET_TYPE.
-     */
-    abstract public boolean isTargetType(Actor targetActor);
+    protected TARGET_TYPE actor;
 
-    /**
-     * Searches the parent stack for the matching TARGET_TYPE.
-     *
-     * @param parent A stack of actors, or null.
-     * @return The matching parent, or null.
-     */
-    final public TARGET_TYPE getTargetActor(Actor parent) {
-        while (parent != null && !isTargetType(parent)) {
-            parent = parent.getParent();
-        }
-        return (TARGET_TYPE) parent;
+    public Request(TARGET_TYPE actor) {
+        this.actor = actor;
     }
 
     /**
      * Send a request and waits for a response.
      *
      * @param future      The future.
-     * @param targetActor The target actor.
      * @throws Exception Any uncaught exceptions raised while processing the request.
      */
-    final public RESPONSE_TYPE send(JAFuture future, Actor targetActor)
+    final public RESPONSE_TYPE send(JAFuture future)
             throws Exception {
-        if (isTargetType(targetActor))
-            return (RESPONSE_TYPE) future.send(targetActor, this);
-        Actor parent = targetActor.getParent();
-        while (parent != null) {
-            if (isTargetType(parent))
-                return (RESPONSE_TYPE) future.send(parent, this);
-            parent = parent.getParent();
-        }
-        throw new UnsupportedOperationException(
-                "request: " + getClass().getName() +
-                        " target actor: " + targetActor.getClass().getName());
-    }
-
-    /**
-     * Send a request and waits for a response.
-     *
-     * @param future      The future.
-     * @param targetActor The target actor.
-     * @throws Exception Any uncaught exceptions raised while processing the request.
-     */
-    final public RESPONSE_TYPE send(JAFuture future, TARGET_TYPE targetActor)
-            throws Exception {
-        return (RESPONSE_TYPE) future.send((Actor) targetActor, this);
-    }
-
-    /**
-     * Send a request.
-     *
-     * @param requestSource The sender of the request.
-     * @param targetActor   The target actor.
-     * @param rp            The response processor.
-     * @throws Exception Any uncaught exceptions raised while processing the request.
-     */
-    final public void send(APCRequestSource requestSource, Actor targetActor, RP<RESPONSE_TYPE> rp)
-            throws Exception {
-        if (isTargetType(targetActor)) {
-            targetActor.acceptRequest(requestSource, this, rp);
-            return;
-        }
-        Actor parent = targetActor.getParent();
-        while (parent != null) {
-            if (isTargetType(parent)) {
-                parent.acceptRequest(requestSource, this, rp);
-                return;
-            }
-            parent = parent.getParent();
-        }
-        throw new UnsupportedOperationException(
-                "request: " + getClass().getName() +
-                        " target actor: " + targetActor.getClass().getName());
+        return (RESPONSE_TYPE) future.send(actor, this);
     }
 
 
@@ -120,39 +55,31 @@ abstract public class Request<RESPONSE_TYPE, TARGET_TYPE extends TargetActor> {
      * Send a request.
      *
      * @param requestSource The sender of the request.
-     * @param targetActor   The target actor.
      * @param rp            The response processor.
      * @throws Exception Any uncaught exceptions raised while processing the request.
      */
-    final public void send(APCRequestSource requestSource, TARGET_TYPE targetActor, RP<RESPONSE_TYPE> rp)
+    final public void send(APCRequestSource requestSource, RP<RESPONSE_TYPE> rp)
             throws Exception {
-        ((Actor) targetActor).acceptRequest(requestSource, this, rp);
+        actor.acceptRequest(requestSource, this, rp);
     }
 
     /**
      * Send a request event.
-     *
-     * @param targetActor The target actor.
-     * @throws Exception Any uncaught exceptions raised while processing the request.
      */
-    final public void sendEvent(TARGET_TYPE targetActor)
+    final public void sendEvent()
             throws Exception {
-        ((Actor) targetActor).acceptEvent(JAEvent.requestSource, this);
+        actor.acceptEvent(JAEvent.requestSource, this);
     }
 
     /**
      * Send a request event.
      *
      * @param requestSource The sender of the request.
-     * @param targetActor   The target actor.
-     * @throws Exception Any uncaught exceptions raised while processing the request.
      */
-    final public void sendEvent(APCRequestSource requestSource, TARGET_TYPE targetActor)
+    final public void sendEvent(APCRequestSource requestSource)
             throws Exception {
-        ((Actor) targetActor).acceptEvent(requestSource, this);
+        actor.acceptEvent(requestSource, this);
     }
 
-    public abstract void processRequest(JLPCActor targetActor, RP rp) throws Exception; /* {
-        targetActor.processRequest(this, rp);
-    } */
+    public abstract void processRequest(RP rp) throws Exception;
 }

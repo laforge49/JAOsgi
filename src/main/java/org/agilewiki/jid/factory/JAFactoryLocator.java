@@ -24,7 +24,7 @@
 package org.agilewiki.jid.factory;
 
 import org.agilewiki.jactor.Ancestor;
-import org.agilewiki.jactor.JActor;
+import org.agilewiki.jactor.AncestorActor;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.Mailbox;
 import org.agilewiki.jactor.lpc.JLPCActor;
@@ -43,13 +43,13 @@ import java.util.concurrent.ConcurrentSkipListSet;
 /**
  * An actor for defining jid types and creating instances.
  */
-public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
+public class JAFactoryLocator extends AncestorActor implements FactoryLocator {
     public static String versionString(Version version) {
         return "" + version.getMajor() + "." + version.getMajor();
     }
 
     public static JAFactoryLocator get(Ancestor ancestor) {
-        return (JAFactoryLocator) JActor.getMatch(ancestor, JAFactoryLocator.class);
+        return (JAFactoryLocator) AncestorActor.getMatch(ancestor, JAFactoryLocator.class);
     }
 
     /**
@@ -59,7 +59,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
      * @param jidType The jid type.
      * @return The registered actor factory.
      */
-    public static ActorFactory getActorFactory(Actor actor, String jidType)
+    public static ActorFactory getActorFactory(Ancestor actor, String jidType)
             throws Exception {
         FactoryLocator factoryLocator = get(actor);
         if (factoryLocator == null)
@@ -74,7 +74,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
      * @param jidType The jid type.
      * @return The new jid.
      */
-    public static Jid newJid(Actor actor, String jidType)
+    public static Jid newJid(Ancestor actor, String jidType)
             throws Exception {
         return newJid(actor, jidType, null, null);
     }
@@ -87,7 +87,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
      * @param mailbox   A mailbox which may be shared with other actors, or null.
      * @return The new jid.
      */
-    public static Actor newJid(Actor actor, String actorType, Mailbox mailbox)
+    public static Actor newJid(Ancestor actor, String actorType, Mailbox mailbox)
             throws Exception {
         return newJid(actor, actorType, mailbox, null);
     }
@@ -101,7 +101,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
      * @param parent  The parent actor to which unrecognized requests are forwarded, or null.
      * @return The new jid.
      */
-    public static Jid newJid(Actor actor, String jidType, Mailbox mailbox, Actor parent)
+    public static Jid newJid(Ancestor actor, String jidType, Mailbox mailbox, Ancestor parent)
             throws Exception {
         FactoryLocator factoryLocator = get(actor);
         if (factoryLocator == null)
@@ -109,7 +109,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
         return factoryLocator.newJid(jidType, mailbox, parent);
     }
 
-    public static StringMapJid<StringJid> getManifestCopy(Actor actor, Mailbox mailbox)
+    public static StringMapJid<StringJid> getManifestCopy(Ancestor actor, Mailbox mailbox)
             throws Exception {
         FactoryLocator factoryLocator = get(actor);
         if (factoryLocator == null)
@@ -117,7 +117,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
         return factoryLocator.getManifestCopy(mailbox);
     }
 
-    public static void unknownManifestEntries(Actor actor, StringMapJid<StringJid> m)
+    public static void unknownManifestEntries(Ancestor actor, StringMapJid<StringJid> m)
             throws Exception {
         FactoryLocator factoryLocator = get(actor);
         if (factoryLocator == null)
@@ -125,7 +125,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
         factoryLocator.unknownManifestEntries(m);
     }
 
-    public static boolean validateManifest(Actor actor, StringMapJid<StringJid> m)
+    public static boolean validateManifest(Ancestor actor, StringMapJid<StringJid> m)
             throws Exception {
         FactoryLocator factoryLocator = get(actor);
         if (factoryLocator == null)
@@ -133,7 +133,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
         return factoryLocator.validateManifest(m);
     }
 
-    public static void loadBundles(Actor actor, StringMapJid<StringJid> m)
+    public static void loadBundles(Ancestor actor, StringMapJid<StringJid> m)
             throws Exception {
         FactoryLocator factoryLocator = get(actor);
         if (factoryLocator == null)
@@ -275,7 +275,7 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
      * @param parent  The parent actor to which unrecognized requests are forwarded, or null.
      * @return The new jid.
      */
-    public Jid newJid(String jidType, Mailbox mailbox, Actor parent)
+    public Jid newJid(String jidType, Mailbox mailbox, Ancestor parent)
             throws Exception {
         if (mailbox == null || parent == null) {
             if (mailbox == null) mailbox = getMailbox();

@@ -23,6 +23,7 @@
  */
 package org.agilewiki.jid.collection.vlenc;
 
+import org.agilewiki.jactor.Ancestor;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.Mailbox;
 import org.agilewiki.jactor.lpc.JLPCActor;
@@ -84,7 +85,7 @@ public class ListJidFactory extends ActorFactory {
      * @param parent  The parent of the new actor.
      * @return The new actor.
      */
-    public ListJid newActor(Mailbox mailbox, Actor parent)
+    public ListJid newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
         ListJid lj = (ListJid) super.newActor(mailbox, parent);
         FactoryLocator fl = JAFactoryLocator.get(parent);

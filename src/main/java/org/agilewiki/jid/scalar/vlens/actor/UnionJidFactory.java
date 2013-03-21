@@ -23,6 +23,7 @@
  */
 package org.agilewiki.jid.scalar.vlens.actor;
 
+import org.agilewiki.jactor.Ancestor;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.Mailbox;
 import org.agilewiki.jid.factory.ActorFactory;
@@ -81,7 +82,7 @@ public class UnionJidFactory extends ActorFactory {
      * @param parent  The parent of the new actor.
      * @return The new actor.
      */
-    public UnionJid newActor(Mailbox mailbox, Actor parent)
+    public UnionJid newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
         UnionJid uj = (UnionJid) super.newActor(mailbox, parent);
         if (unionFactories == null) {

@@ -23,6 +23,7 @@
  */
 package org.agilewiki.jid.scalar.vlens.actor;
 
+import org.agilewiki.jactor.Ancestor;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.Mailbox;
 import org.agilewiki.jid.AppendableBytes;
@@ -143,7 +144,7 @@ public class RootJid extends ActorJid {
     }
 
     @Override
-    public void initialize(final Mailbox mailbox, Actor parent, ActorFactory factory) throws Exception {
+    public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
         super.initialize(mailbox, parent, factory);
         manifest = JAFactoryLocator.getManifestCopy(this, getMailbox());
     }

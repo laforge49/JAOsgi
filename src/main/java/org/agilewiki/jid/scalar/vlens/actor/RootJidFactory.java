@@ -1,5 +1,6 @@
 package org.agilewiki.jid.scalar.vlens.actor;
 
+import org.agilewiki.jactor.Ancestor;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.Mailbox;
 import org.agilewiki.jid.factory.ActorFactory;
@@ -11,7 +12,7 @@ import org.agilewiki.jid.factory.JidFactories;
  * Creates a RootJid.
  */
 public class RootJidFactory extends ActorFactory {
-    public static RootJid create(Actor actor, Mailbox mailbox, Actor parent) throws Exception {
+    public static RootJid create(Actor actor, Mailbox mailbox, Ancestor parent) throws Exception {
         return (RootJid) JAFactoryLocator.newJid(actor, JidFactories.ROOT_JID_TYPE, mailbox, parent);
     }
 

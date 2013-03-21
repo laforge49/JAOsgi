@@ -23,6 +23,7 @@
  */
 package org.agilewiki.jid.factory;
 
+import org.agilewiki.jactor.Ancestor;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.Mailbox;
 import org.agilewiki.jactor.lpc.TargetActor;
@@ -90,7 +91,7 @@ public interface FactoryLocator extends TargetActor {
      * @param parent  The parent actor to which unrecognized requests are forwarded, or null.
      * @return The new actor.
      */
-    public Jid newJid(String jidType, Mailbox mailbox, Actor parent)
+    public Jid newJid(String jidType, Mailbox mailbox, Ancestor parent)
             throws Exception;
 
     public StringMapJid<StringJid> getManifestCopy(Mailbox mailbox) throws Exception;

@@ -23,8 +23,11 @@
  */
 package org.agilewiki.jid.scalar.vlens.bytes;
 
+import org.agilewiki.jactor.Ancestor;
+import org.agilewiki.jactor.lpc.Request;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.Mailbox;
+import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ReadableBytes;
 import org.agilewiki.jid.factory.ActorFactory;
@@ -43,7 +46,7 @@ import java.io.ObjectOutputStream;
  */
 public class BytesJid
         extends VLenScalarJid<byte[], byte[]> {
-    public static BytesJid create(Actor actor, Mailbox mailbox, Actor parent) throws Exception {
+    public static BytesJid create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
         return (BytesJid) JAFactoryLocator.newJid(actor, JidFactories.BYTES_JID_TYPE, mailbox, parent);
     }
 
@@ -73,6 +76,16 @@ public class BytesJid
         serializedBytes = null;
         serializedOffset = -1;
         change(c);
+    }
+
+    public Request<Void, BytesJid> setBytes(final byte[] v) {
+        return new Request<Void, BytesJid>(this) {
+            @Override
+            public void processRequest(RP rp) throws Exception {
+                setValue(v);
+                rp.processResponse(null);
+            }
+        };
     }
 
     public void setObject(Object v) throws Exception {
@@ -105,6 +118,15 @@ public class BytesJid
         return true;
     }
 
+    public Request<Boolean, BytesJid> makeBytes(final byte[] v) {
+        return new Request<Boolean, BytesJid>(this) {
+            @Override
+            public void processRequest(RP rp) throws Exception {
+                rp.processResponse(makeValue(v));
+            }
+        };
+    }
+
     /**
      * Returns the value held by this component.
      *
@@ -119,6 +141,15 @@ public class BytesJid
         skipLen(readableBytes);
         value = readableBytes.readBytes(len);
         return value;
+    }
+
+    public Request<byte[], BytesJid> getBytes() {
+        return new Request<byte[], BytesJid>(this) {
+            @Override
+            public void processRequest(RP rp) throws Exception {
+                rp.processResponse(getValue());
+            }
+        };
     }
 
     public Object getObject() throws Exception {

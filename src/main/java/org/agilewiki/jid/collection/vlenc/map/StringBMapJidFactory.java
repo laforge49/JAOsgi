@@ -23,6 +23,7 @@
  */
 package org.agilewiki.jid.collection.vlenc.map;
 
+import org.agilewiki.jactor.Ancestor;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.Mailbox;
 import org.agilewiki.jactor.lpc.JLPCActor;
@@ -92,7 +93,7 @@ public class StringBMapJidFactory extends ActorFactory {
      * @param parent  The parent of the new actor.
      * @return The new actor.
      */
-    public StringBMapJid newActor(Mailbox mailbox, Actor parent)
+    public StringBMapJid newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
         StringBMapJid imj = (StringBMapJid) super.newActor(mailbox, parent);
         FactoryLocator fl = JAFactoryLocator.get(parent);

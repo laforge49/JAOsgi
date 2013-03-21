@@ -1,5 +1,6 @@
 package org.agilewiki.jactor.counterTest;
 
+import org.agilewiki.jactor.Ancestor;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
@@ -15,10 +16,5 @@ final public class AddCount extends Request<Object, CounterActor> {
     public void processRequest(JLPCActor targetActor, RP rp) throws Exception {
         CounterActor ca = (CounterActor) targetActor;
         ca.processRequest(this, rp);
-    }
-
-    @Override
-    public boolean isTargetType(Actor targetActor) {
-        return targetActor instanceof CounterActor;
     }
 }

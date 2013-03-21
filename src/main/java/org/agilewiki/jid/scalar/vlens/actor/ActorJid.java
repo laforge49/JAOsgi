@@ -23,6 +23,7 @@
  */
 package org.agilewiki.jid.scalar.vlens.actor;
 
+import org.agilewiki.jactor.Ancestor;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.Mailbox;
 import org.agilewiki.jid.*;
@@ -37,7 +38,7 @@ import org.agilewiki.jid.scalar.vlens.VLenScalarJid;
  */
 public class ActorJid
         extends VLenScalarJid<String, Jid> implements Reference {
-    public static ActorJid create(Actor actor, Mailbox mailbox, Actor parent) throws Exception {
+    public static ActorJid create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
         return (ActorJid) JAFactoryLocator.newJid(actor, JidFactories.ACTOR_JID_TYPE, mailbox, parent);
     }
 

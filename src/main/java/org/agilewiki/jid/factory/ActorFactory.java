@@ -23,6 +23,7 @@
  */
 package org.agilewiki.jid.factory;
 
+import org.agilewiki.jactor.Ancestor;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.Mailbox;
 import org.agilewiki.jactor.lpc.JLPCActor;
@@ -82,7 +83,7 @@ abstract public class ActorFactory {
      * @param parent  The parent of the new actor.
      * @return The new actor.
      */
-    public Jid newActor(Mailbox mailbox, Actor parent)
+    public Jid newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
         Jid a = (Jid) instantiateActor();
         a.initialize(mailbox, parent, this);

@@ -23,6 +23,8 @@
  */
 package org.agilewiki.jid;
 
+import org.agilewiki.jactor.Ancestor;
+import org.agilewiki.jactor.AncestorActor;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.Mailbox;
 import org.agilewiki.jactor.old.RP;
@@ -35,7 +37,7 @@ import java.util.Arrays;
 /**
  * Base class for Incremental Deserialization Actors.
  */
-public class Jid extends JLPCActor implements _Jid {
+public class Jid extends AncestorActor implements _Jid {
     /**
      * The factory, or null.
      */
@@ -66,14 +68,14 @@ public class Jid extends JLPCActor implements _Jid {
         return createSubordinate(actorType, getParent());
     }
 
-    final public Jid createSubordinate(ActorFactory factory, Actor parent)
+    final public Jid createSubordinate(ActorFactory factory, Ancestor parent)
             throws Exception {
         Jid jid = (Jid) factory.newActor(getMailbox(), parent);
         jid.setContainerJid(this);
         return jid;
     }
 
-    final public Jid createSubordinate(String actorType, Actor parent)
+    final public Jid createSubordinate(String actorType, Ancestor parent)
             throws Exception {
         Jid jid = (Jid) JAFactoryLocator.newJid(this, actorType, getMailbox(), parent);
         jid.setContainerJid(this);
@@ -90,7 +92,7 @@ public class Jid extends JLPCActor implements _Jid {
         return createSubordinate(actorType, getParent(), bytes);
     }
 
-    final public Jid createSubordinate(ActorFactory factory, Actor parent, byte[] bytes)
+    final public Jid createSubordinate(ActorFactory factory, Ancestor parent, byte[] bytes)
             throws Exception {
         if (bytes == null)
             return createSubordinate(factory, parent);
@@ -100,7 +102,7 @@ public class Jid extends JLPCActor implements _Jid {
         return jid;
     }
 
-    final public Jid createSubordinate(String actorType, Actor parent, byte[] bytes)
+    final public Jid createSubordinate(String actorType, Ancestor parent, byte[] bytes)
             throws Exception {
         if (bytes == null)
             return createSubordinate(actorType, parent);
@@ -120,7 +122,7 @@ public class Jid extends JLPCActor implements _Jid {
         return createSubordinate(actorType, getParent(), readableBytes);
     }
 
-    final public Jid createSubordinate(ActorFactory factory, Actor parent, ReadableBytes readableBytes)
+    final public Jid createSubordinate(ActorFactory factory, Ancestor parent, ReadableBytes readableBytes)
             throws Exception {
         Jid jid = (Jid) factory.newActor(getMailbox(), parent);
         if (readableBytes != null)
@@ -129,7 +131,7 @@ public class Jid extends JLPCActor implements _Jid {
         return jid;
     }
 
-    final public Jid createSubordinate(String actorType, Actor parent, ReadableBytes readableBytes)
+    final public Jid createSubordinate(String actorType, Ancestor parent, ReadableBytes readableBytes)
             throws Exception {
         Jid jid = (Jid) JAFactoryLocator.newJid(this, actorType, getMailbox(), parent);
         if (readableBytes != null)
@@ -355,7 +357,7 @@ public class Jid extends JLPCActor implements _Jid {
      * @param parent  The parent actor.
      * @param factory The factory.
      */
-    public void initialize(final Mailbox mailbox, Actor parent, ActorFactory factory) throws Exception {
+    public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
         if (this.factory != null)
             throw new IllegalStateException("already initialized");
         super.initialize(mailbox, parent);
@@ -376,7 +378,7 @@ public class Jid extends JLPCActor implements _Jid {
      * @param parent The parent actor.
      */
     @Override
-    final public void initialize(Actor parent) throws Exception {
+    final public void initialize(Ancestor parent) throws Exception {
         throw new UnsupportedOperationException();
     }
 
@@ -397,7 +399,7 @@ public class Jid extends JLPCActor implements _Jid {
      * @param parent  The parent actor.
      */
     @Override
-    public void initialize(final Mailbox mailbox, Actor parent) throws Exception {
+    public void initialize(final Mailbox mailbox, Ancestor parent) throws Exception {
         throw new UnsupportedOperationException();
     }
 }

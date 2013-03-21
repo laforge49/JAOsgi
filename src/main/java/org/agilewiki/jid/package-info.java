@@ -23,7 +23,7 @@
  */
 
 /**
- * <h2>Incremental Deserialization for JActor.</h2>
+ * <h2>Incremental Deserialization for AncestorActor.</h2>
  * <p>
  * Fast serialization/deserialization is critical for databases. The key is to deserialize only what you need and to
  * keep the serialized data for items that have not been changed for reserialization after an update.

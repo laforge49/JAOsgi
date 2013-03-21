@@ -49,7 +49,7 @@ import org.agilewiki.jactor.lpc.Request;
  * as asynchronous message passing tends to be slow.
  * </p>
  */
-public interface Actor extends Ancestor {
+public interface Actor {
     /**
      * Wraps and enqueues an unwrapped request in the requester's inbox.
      *
@@ -85,12 +85,4 @@ public interface Actor extends Ancestor {
      * @return The actor's mailbox.
      */
     public Mailbox getMailbox();
-
-    /**
-     * Returns the actor's parent.
-     *
-     * @return The actor's parent, or null.
-     */
-    @Override
-    public JLPCActor getParent();
 }
