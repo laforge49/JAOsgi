@@ -23,9 +23,12 @@
  */
 package org.agilewiki.jid.factory;
 
+import org.agilewiki.jactor.Ancestor;
+import org.agilewiki.jactor.JActor;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.Mailbox;
 import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.jactor.properties.Properties;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.jid.collection.vlenc.map.MapEntry;
 import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
@@ -46,6 +49,10 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
         return "" + version.getMajor() + "." + version.getMajor();
     }
 
+    public static JAFactoryLocator getFactoryLocator(Ancestor ancestor) {
+        return (JAFactoryLocator) JActor.getMatch(ancestor, JAFactoryLocator.class);
+    }
+
     /**
      * Returns the requested actor factory.
      *
@@ -55,21 +62,10 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
      */
     public static ActorFactory getActorFactory(Actor actor, String jidType)
             throws Exception {
-        if (!(actor instanceof FactoryLocator))
-            actor = actor.getAncestor(FactoryLocator.class);
-        if (actor == null)
+        FactoryLocator factoryLocator = getFactoryLocator(actor);
+        if (factoryLocator == null)
             throw new IllegalArgumentException("Unknown jid type: " + jidType);
-        FactoryLocator factoryLocator = (FactoryLocator) actor;
         return factoryLocator.getJidFactory(jidType);
-    }
-
-    public static FactoryLocator getFactoryLocator(Actor actor)
-            throws Exception {
-        if (!(actor instanceof FactoryLocator))
-            actor = actor.getAncestor(FactoryLocator.class);
-        if (actor == null)
-            throw new IllegalArgumentException("not an ancestor: FactoryLocator");
-        return (FactoryLocator) actor;
     }
 
     /**
@@ -108,51 +104,41 @@ public class JAFactoryLocator extends JLPCActor implements FactoryLocator {
      */
     public static Jid newJid(Actor actor, String jidType, Mailbox mailbox, Actor parent)
             throws Exception {
-        if (!(actor instanceof FactoryLocator))
-            actor = actor.getAncestor(FactoryLocator.class);
-        if (actor == null)
+        FactoryLocator factoryLocator = getFactoryLocator(actor);
+        if (factoryLocator == null)
             return null;
-        FactoryLocator factoryLocator = (FactoryLocator) actor;
         return factoryLocator.newJid(jidType, mailbox, parent);
     }
 
     public static StringMapJid<StringJid> getManifestCopy(Actor actor, Mailbox mailbox)
             throws Exception {
-        if (!(actor instanceof FactoryLocator))
-            actor = actor.getAncestor(FactoryLocator.class);
-        if (actor == null)
+        FactoryLocator factoryLocator = getFactoryLocator(actor);
+        if (factoryLocator == null)
             throw new IllegalStateException("FactoryLocator is not an ancestor");
-        FactoryLocator factoryLocator = (FactoryLocator) actor;
         return factoryLocator.getManifestCopy(mailbox);
     }
 
     public static void unknownManifestEntries(Actor actor, StringMapJid<StringJid> m)
             throws Exception {
-        if (!(actor instanceof FactoryLocator))
-            actor = actor.getAncestor(FactoryLocator.class);
-        if (actor == null)
+        FactoryLocator factoryLocator = getFactoryLocator(actor);
+        if (factoryLocator == null)
             throw new IllegalStateException("FactoryLocator is not an ancestor");
-        FactoryLocator factoryLocator = (FactoryLocator) actor;
         factoryLocator.unknownManifestEntries(m);
     }
 
     public static boolean validateManifest(Actor actor, StringMapJid<StringJid> m)
             throws Exception {
-        if (!(actor instanceof FactoryLocator))
-            actor = actor.getAncestor(FactoryLocator.class);
-        if (actor == null)
+        FactoryLocator factoryLocator = getFactoryLocator(actor);
+        if (factoryLocator == null)
             throw new IllegalStateException("FactoryLocator is not an ancestor");
-        FactoryLocator factoryLocator = (FactoryLocator) actor;
         return factoryLocator.validateManifest(m);
     }
 
     public static void loadBundles(Actor actor, StringMapJid<StringJid> m)
             throws Exception {
-        if (!(actor instanceof FactoryLocator))
-            actor = actor.getAncestor(FactoryLocator.class);
-        if (actor == null)
+        FactoryLocator factoryLocator = getFactoryLocator(actor);
+        if (factoryLocator == null)
             throw new IllegalStateException("FactoryLocator is not an ancestor");
-        FactoryLocator factoryLocator = (FactoryLocator) actor;
         factoryLocator.loadBundles(m);
     }
 

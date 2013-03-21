@@ -23,6 +23,8 @@
  */
 package org.agilewiki.jactor.properties;
 
+import org.agilewiki.jactor.Ancestor;
+import org.agilewiki.jactor.JActor;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
@@ -37,9 +39,13 @@ public class JAProperties
         extends JLPCActor
         implements Properties {
 
+    public static JAProperties getProperties(Ancestor ancestor) {
+        return (JAProperties) JActor.getMatch(ancestor, Properties.class);
+    }
+
     public static Object getProperty(Actor targetActor, String propertyName)
             throws Exception {
-        Properties properties = (Properties) targetActor.getMatch(Properties.class);
+        Properties properties = getProperties(targetActor);
         if (properties == null)
             throw new UnsupportedOperationException("getProperty");
         return properties.getProperty(propertyName);
@@ -47,7 +53,7 @@ public class JAProperties
 
     public static void setProperty(Actor targetActor, String propertyName, Object propertyValue)
             throws Exception {
-        Properties properties = (Properties) targetActor.getMatch(Properties.class);
+        Properties properties = getProperties(targetActor);
         if (properties == null)
             throw new UnsupportedOperationException("getProperty");
         properties.setProperty(propertyName, propertyValue);
@@ -65,7 +71,7 @@ public class JAProperties
         if (properties.containsKey(propertyName))
             return properties.get(propertyName);
         Actor targetActor = getParent();
-        Properties properties = (Properties) targetActor.getMatch(Properties.class);
+        Properties properties = getProperties(targetActor);
         if (properties == null)
             return null;
         return properties.getProperty(propertyName);

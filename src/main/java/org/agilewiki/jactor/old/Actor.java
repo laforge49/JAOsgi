@@ -100,7 +100,7 @@ public interface Actor extends Ancestor {
      * @param targetClass A class which the ancestor is an instanceof.
      * @return The matching ancestor, or null.
      */
-    public JLPCActor getAncestor(Class targetClass);
+    public Ancestor getAncestor(Class targetClass);
 
     public Ancestor getMatch(Class targetClass);
 }
