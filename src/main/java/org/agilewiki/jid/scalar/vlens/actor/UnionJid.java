@@ -23,6 +23,9 @@
  */
 package org.agilewiki.jid.scalar.vlens.actor;
 
+import org.agilewiki.jactor.Request;
+import org.agilewiki.jactor.RequestBase;
+import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jid.*;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
@@ -30,7 +33,7 @@ import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.scalar.Clearable;
 import org.agilewiki.jid.scalar.ScalarJid;
 
-public class UnionJid extends ScalarJid<String, Jid> implements Clearable, Reference {
+public class UnionJid extends ScalarJid<String, Jid> implements Clearable {
     protected ActorFactory[] unionFactories;
     protected int factoryIndex = -1;
     protected Jid value;
@@ -103,13 +106,22 @@ public class UnionJid extends ScalarJid<String, Jid> implements Clearable, Refer
     }
 
     @Override
-    public void setValue(String actorType)
+    public void setValue(final String actorType)
             throws Exception {
         setValue(getFactoryIndex(actorType));
     }
 
-    @Override
-    public void setValue(ActorFactory actorFactory)
+    public Request<Void> setActorReq(final String actorType) {
+        return new RequestBase<Void>(this) {
+            @Override
+            public void processRequest(RP rp) throws Exception {
+                setValue(actorType);
+                rp.processResponse(null);
+            }
+        };
+    }
+
+    public void setValue(final ActorFactory actorFactory)
             throws Exception {
         setValue(getFactoryIndex(actorFactory));
     }
@@ -138,23 +150,19 @@ public class UnionJid extends ScalarJid<String, Jid> implements Clearable, Refer
      * @param bytes   The serialized data.
      * @throws Exception Any uncaught exception raised.
      */
-    @Override
-    public void setJidBytes(String jidType, byte[] bytes)
+    public void setJidBytes(final String jidType, final byte[] bytes)
             throws Exception {
         setUnionBytes(getFactoryIndex(jidType), bytes);
     }
 
-    /**
-     * Creates a JID actor and loads its serialized data.
-     *
-     * @param jidFactory The jid factory.
-     * @param bytes      The serialized data.
-     * @throws Exception Any uncaught exception raised.
-     */
-    @Override
-    public void setJidBytes(ActorFactory jidFactory, byte[] bytes)
-            throws Exception {
-        setUnionBytes(getFactoryIndex(jidFactory.jidType), bytes);
+    public Request<Void> setActorBytesReq(final String jidType, final byte[] bytes) {
+        return new RequestBase<Void>(this) {
+            @Override
+            public void processRequest(RP rp) throws Exception {
+                setJidBytes(jidType, bytes);
+                rp.processResponse(null);
+            }
+        };
     }
 
     /**
@@ -184,23 +192,18 @@ public class UnionJid extends ScalarJid<String, Jid> implements Clearable, Refer
      * @return True if a new value is created.
      * @throws Exception Any uncaught exception raised.
      */
-    @Override
-    public Boolean makeValue(String jidType)
+    public Boolean makeValue(final String jidType)
             throws Exception {
         return makeUnionValue(getFactoryIndex(jidType));
     }
 
-    /**
-     * Assign a value unless one is already present.
-     *
-     * @param jidFactory The jid factory.
-     * @return True if a new value is created.
-     * @throws Exception Any uncaught exception raised.
-     */
-    @Override
-    public Boolean makeValue(JidFactory jidFactory)
-            throws Exception {
-        return makeUnionValue(getFactoryIndex(jidFactory.jidType));
+    public Request<Boolean> makeActorReq(final String jidType) {
+        return new RequestBase<Boolean>(this) {
+            @Override
+            public void processRequest(RP rp) throws Exception {
+                rp.processResponse(makeValue(jidType));
+            }
+        };
     }
 
     /**
@@ -226,22 +229,18 @@ public class UnionJid extends ScalarJid<String, Jid> implements Clearable, Refer
      * @return True if a new value is created.
      * @throws Exception Any uncaught exception raised.
      */
-    public Boolean makeJidBytes(String jidType, byte[] bytes)
+    public Boolean makeJidBytes(final String jidType, final byte[] bytes)
             throws Exception {
         return makeUnionBytes(getFactoryIndex(jidType), bytes);
     }
 
-    /**
-     * Creates a JID actor and loads its serialized data, unless a JID actor is already present.
-     *
-     * @param jidFactory The jid factory.
-     * @param bytes      The serialized data.
-     * @return True if a new value is created.
-     * @throws Exception Any uncaught exception raised.
-     */
-    public Boolean makeJidBytes(JidFactory jidFactory, byte[] bytes)
-            throws Exception {
-        return makeUnionBytes(getFactoryIndex(jidFactory.jidType), bytes);
+    public Request<Boolean> makeActorBytesReq(final String jidType, final byte[] bytes) {
+        return new RequestBase<Boolean>(this) {
+            @Override
+            public void processRequest(RP rp) throws Exception {
+                rp.processResponse(makeJidBytes(jidType, bytes));
+            }
+        };
     }
 
     public Boolean makeUnionBytes(Integer ndx, byte[] bytes)
@@ -256,6 +255,13 @@ public class UnionJid extends ScalarJid<String, Jid> implements Clearable, Refer
     public Jid getValue() throws Exception {
         return value;
     }
+
+    public final Request<Jid> getActorReq = new RequestBase<Jid>(this) {
+        @Override
+        public void processRequest(RP rp) throws Exception {
+            rp.processResponse(getValue());
+        }
+    };
 
     /**
      * Serialize the persistent data.

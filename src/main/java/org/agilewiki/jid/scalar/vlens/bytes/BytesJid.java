@@ -68,7 +68,7 @@ public class BytesJid
      * @throws Exception Any uncaught exception raised.
      */
     @Override
-    public void setValue(byte[] v) throws Exception {
+    public void setValue(final byte[] v) throws Exception {
         int c = v.length;
         if (len > -1)
             c -= len;
@@ -78,7 +78,7 @@ public class BytesJid
         change(c);
     }
 
-    public Request<Void> setBytes(final byte[] v) {
+    public Request<Void> setBytesReq(final byte[] v) {
         return new RequestBase<Void>(this) {
             @Override
             public void processRequest(RP rp) throws Exception {
@@ -105,7 +105,7 @@ public class BytesJid
      * @throws Exception Any uncaught exception raised.
      */
     @Override
-    protected Boolean makeValue(byte[] v) throws Exception {
+    protected Boolean makeValue(final byte[] v) throws Exception {
         if (len > -1)
             return false;
         int c = v.length;
@@ -118,7 +118,7 @@ public class BytesJid
         return true;
     }
 
-    public Request<Boolean> makeBytes(final byte[] v) {
+    public Request<Boolean> makeBytesReq(final byte[] v) {
         return new RequestBase<Boolean>(this) {
             @Override
             public void processRequest(RP rp) throws Exception {
@@ -143,14 +143,12 @@ public class BytesJid
         return value;
     }
 
-    public Request<byte[]> getBytes() {
-        return new RequestBase<byte[]>(this) {
-            @Override
-            public void processRequest(RP rp) throws Exception {
-                rp.processResponse(getValue());
-            }
-        };
-    }
+    public final Request<byte[]> getBytesReq = new RequestBase<byte[]>(this) {
+        @Override
+        public void processRequest(RP rp) throws Exception {
+            rp.processResponse(getValue());
+        }
+    };
 
     public Object getObject() throws Exception {
         byte[] bytes = getValue();
