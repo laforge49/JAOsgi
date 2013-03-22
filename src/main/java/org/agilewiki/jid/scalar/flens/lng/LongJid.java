@@ -23,6 +23,9 @@
  */
 package org.agilewiki.jid.scalar.flens.lng;
 
+import org.agilewiki.jactor.Request;
+import org.agilewiki.jactor.RequestBase;
+import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ReadableBytes;
 import org.agilewiki.jid.Util;
@@ -54,6 +57,23 @@ public class LongJid
         ReadableBytes readableBytes = readable();
         value = readableBytes.readLong();
         return value;
+    }
+
+    public final Request<Long> getLongReq = new RequestBase<Long>(this) {
+        @Override
+        public void processRequest(RP rp) throws Exception {
+            rp.processResponse(getValue());
+        }
+    };
+
+    public Request<Void> setLongReq(final Long v) {
+        return new RequestBase<Void>(this) {
+            @Override
+            public void processRequest(RP rp) throws Exception {
+                setValue(getValue());
+                rp.processResponse(null);
+            }
+        };
     }
 
     /**

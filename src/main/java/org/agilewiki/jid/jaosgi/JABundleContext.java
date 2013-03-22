@@ -23,6 +23,7 @@
  */
 package org.agilewiki.jid.jaosgi;
 
+import org.agilewiki.jactor.ancestor.Ancestor;
 import org.agilewiki.jactor.ancestor.AncestorBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.lpc.JLPCActor;
@@ -34,8 +35,8 @@ import java.util.Collection;
 import java.util.Dictionary;
 import java.util.List;
 
-abstract public class JABundleContext extends JLPCActor {
-    public static JABundleContext get(final Actor actor)
+abstract public class JABundleContext extends AncestorBase {
+    public static JABundleContext get(final Ancestor actor)
             throws Exception {
         JABundleContext bundleContext = (JABundleContext) AncestorBase.
                 getMatch(actor, JABundleContext.class);

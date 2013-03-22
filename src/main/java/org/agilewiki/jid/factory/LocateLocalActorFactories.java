@@ -23,6 +23,7 @@
  */
 package org.agilewiki.jid.factory;
 
+import org.agilewiki.jactor.ancestor.AncestorBase;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
 import org.agilewiki.jid.jaosgi.JABundleContext;
@@ -31,7 +32,7 @@ import org.osgi.framework.Bundle;
 
 import java.util.Hashtable;
 
-public abstract class LocateLocalActorFactories extends JLPCActor {
+public abstract class LocateLocalActorFactories extends AncestorBase {
     private JAFactoryLocator factoryLocator;
 
     protected JAFactoryLocator configure(String name) throws Exception {
