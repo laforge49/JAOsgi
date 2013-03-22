@@ -24,10 +24,9 @@
 package org.agilewiki.jid.factory;
 
 import org.agilewiki.jactor.ancestor.AncestorBase;
-import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
 import org.agilewiki.jid.jaosgi.JABundleContext;
-import org.agilewiki.jid.scalar.vlens.string.StringJid;
+import org.agilewiki.jid.scalar.vlens.StringJid;
 import org.osgi.framework.Bundle;
 
 import java.util.Hashtable;

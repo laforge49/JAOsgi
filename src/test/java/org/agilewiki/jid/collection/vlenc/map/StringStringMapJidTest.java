@@ -6,7 +6,7 @@ import org.agilewiki.jactor.old.JAFuture;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
-import org.agilewiki.jid.scalar.vlens.string.StringJid;
+import org.agilewiki.jid.scalar.vlens.StringJid;
 
 public class StringStringMapJidTest extends TestCase {
     public void test() throws Exception {

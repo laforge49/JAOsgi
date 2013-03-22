@@ -34,11 +34,11 @@ import org.agilewiki.jid.scalar.flens.bool.BooleanJidFactory;
 import org.agilewiki.jid.scalar.flens.dbl.DoubleJidFactory;
 import org.agilewiki.jid.scalar.flens.flt.FloatJidFactory;
 import org.agilewiki.jid.scalar.flens.integer.IntegerJid;
-import org.agilewiki.jid.scalar.flens.lng.LongJid;
+import org.agilewiki.jid.scalar.flens.LongJid;
 import org.agilewiki.jid.scalar.vlens.actor.ActorJid;
 import org.agilewiki.jid.scalar.vlens.actor.RootJidFactory;
-import org.agilewiki.jid.scalar.vlens.bytes.BytesJid;
-import org.agilewiki.jid.scalar.vlens.string.StringJid;
+import org.agilewiki.jid.scalar.vlens.BytesJid;
+import org.agilewiki.jid.scalar.vlens.StringJid;
 
 /**
  * <p>

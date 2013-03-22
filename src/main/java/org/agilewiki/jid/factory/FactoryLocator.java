@@ -28,7 +28,7 @@ import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.lpc.TargetActor;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
-import org.agilewiki.jid.scalar.vlens.string.StringJid;
+import org.agilewiki.jid.scalar.vlens.StringJid;
 
 /**
  * Defines actor types and instantiating

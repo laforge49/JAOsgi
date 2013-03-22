@@ -21,12 +21,11 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.scalar.vlens.string;
+package org.agilewiki.jid.scalar.vlens;
 
 import org.agilewiki.jactor.Request;
 import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.ancestor.Ancestor;
-import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jid.AppendableBytes;
@@ -36,7 +35,6 @@ import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
-import org.agilewiki.jid.scalar.vlens.VLenScalarJid;
 
 /**
  * A JID actor that holds a String.

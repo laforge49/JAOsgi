@@ -21,7 +21,7 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.scalar.flens.lng;
+package org.agilewiki.jid.scalar.flens;
 
 import org.agilewiki.jactor.Request;
 import org.agilewiki.jactor.RequestBase;
@@ -32,7 +32,6 @@ import org.agilewiki.jid.Util;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
-import org.agilewiki.jid.scalar.flens.FLenScalarJid;
 
 /**
  * A JID actor that holds a long.

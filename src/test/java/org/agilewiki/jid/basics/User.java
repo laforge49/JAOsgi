@@ -6,7 +6,7 @@ import org.agilewiki.jid.collection.flenc.TupleJidFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.scalar.flens.integer.IntegerJid;
-import org.agilewiki.jid.scalar.vlens.string.StringJid;
+import org.agilewiki.jid.scalar.vlens.StringJid;
 
 public class User extends TupleJid implements Main {
 
