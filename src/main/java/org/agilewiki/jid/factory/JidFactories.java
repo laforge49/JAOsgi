@@ -34,7 +34,7 @@ import org.agilewiki.jid.scalar.flens.bool.BooleanJidFactory;
 import org.agilewiki.jid.scalar.flens.dbl.DoubleJidFactory;
 import org.agilewiki.jid.scalar.flens.flt.FloatJidFactory;
 import org.agilewiki.jid.scalar.flens.integer.IntegerJid;
-import org.agilewiki.jid.scalar.flens.lng.LongJidFactory;
+import org.agilewiki.jid.scalar.flens.lng.LongJid;
 import org.agilewiki.jid.scalar.vlens.actor.ActorJid;
 import org.agilewiki.jid.scalar.vlens.actor.RootJidFactory;
 import org.agilewiki.jid.scalar.vlens.bytes.BytesJid;
@@ -437,7 +437,7 @@ final public class JidFactories extends LocateLocalActorFactories {
 
         BooleanJidFactory.registerFactory(factoryLocator);
         IntegerJid.registerFactory(factoryLocator);
-        LongJidFactory.registerFactory(factoryLocator);
+        LongJid.registerFactory(factoryLocator);
         FloatJidFactory.registerFactory(factoryLocator);
         DoubleJidFactory.registerFactory(factoryLocator);
 
