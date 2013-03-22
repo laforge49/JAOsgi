@@ -23,10 +23,10 @@
  */
 package org.agilewiki.jid;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 
 /**
  * <p>
@@ -34,7 +34,7 @@ import org.agilewiki.jactor.lpc.Request;
  * </p>
  */
 final public class GetSerializedLength
-        extends Request<Integer, Jid> {
+        extends RequestBase<Integer, Jid> {
     public final static GetSerializedLength req = new GetSerializedLength();
 
     /**

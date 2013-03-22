@@ -23,15 +23,15 @@
  */
 package org.agilewiki.jid.scalar.flens.dbl;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 
 /**
  * Returns a value.
  */
-public class GetDouble extends Request<Double, DoubleJid> {
+public class GetDouble extends RequestBase<Double, DoubleJid> {
     final public static GetDouble req = new GetDouble();
 
     /**

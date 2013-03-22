@@ -23,11 +23,11 @@
  */
 package org.agilewiki.jactor.simpleMachine;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.JAIterator;
 import org.agilewiki.jactor.old.JANull;
 import org.agilewiki.jactor.old.RP;
-import org.agilewiki.jactor.lpc.Request;
 
 import java.util.HashMap;
 
@@ -114,7 +114,7 @@ public class SimpleMachine {
      * @param rp      The response processor.
      * @throws Exception Any uncaught exceptions raised while processing the request.
      */
-    public void send(Actor actor, Request request, RP rp)
+    public void send(Actor actor, RequestBase request, RP rp)
             throws Exception {
         smBuilder.send(actor, request, rp);
     }

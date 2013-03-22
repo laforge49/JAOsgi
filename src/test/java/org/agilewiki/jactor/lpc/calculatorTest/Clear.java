@@ -1,14 +1,14 @@
 package org.agilewiki.jactor.lpc.calculatorTest;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 
 /**
  * Test code.
  */
-public class Clear extends Request<Integer, _Calculator> {
+public class Clear extends RequestBase<Integer, _Calculator> {
 
     @Override
     public void processRequest(JLPCActor targetActor, RP rp) throws Exception {

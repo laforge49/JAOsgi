@@ -26,7 +26,7 @@ package org.agilewiki.jid;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 
 /**
  * <p>
@@ -34,7 +34,7 @@ import org.agilewiki.jactor.lpc.Request;
  * </p>
  */
 final public class Save
-        extends Request<Object, Jid> {
+        extends RequestBase<Object, Jid> {
     /**
      * Where the persistent data is to be saved.
      */

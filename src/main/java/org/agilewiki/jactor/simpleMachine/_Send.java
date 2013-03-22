@@ -23,9 +23,9 @@
  */
 package org.agilewiki.jactor.simpleMachine;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
-import org.agilewiki.jactor.lpc.Request;
 
 /**
  * Send a request to an actor.
@@ -41,7 +41,7 @@ abstract public class _Send implements _Operation {
     @Override
     final public void call(final SimpleMachine stateMachine, final RP rp) throws Exception {
         Actor a = getTargetActor(stateMachine);
-        Request r = getRequest(stateMachine);
+        RequestBase r = getRequest(stateMachine);
         stateMachine.send(a, r, new RP() {
             @Override
             final public void processResponse(Object response) throws Exception {
@@ -66,7 +66,7 @@ abstract public class _Send implements _Operation {
      * @param stateMachine The state machine.
      * @return The request.
      */
-    abstract public Request getRequest(SimpleMachine stateMachine);
+    abstract public RequestBase getRequest(SimpleMachine stateMachine);
 
     /**
      * Returns the name of the result, or null.

@@ -1,8 +1,8 @@
 package org.agilewiki.jactor.continuation;
 
 import junit.framework.TestCase;
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 import org.agilewiki.jactor.old.*;
 
 public class ContinuationTest extends TestCase {
@@ -19,7 +19,7 @@ public class ContinuationTest extends TestCase {
     }
 }
 
-class Doit extends Request<String, Driver> {
+class Doit extends RequestBase<String, Driver> {
     public static Doit req = new Doit();
 
     @Override

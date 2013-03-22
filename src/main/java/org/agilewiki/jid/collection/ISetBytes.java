@@ -23,15 +23,15 @@
  */
 package org.agilewiki.jid.collection;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 
 /**
  * Creates a JID actor in place of the ith element of the collection and loads its serialized data.
  */
-public class ISetBytes extends Request<Object, Collection> {
+public class ISetBytes extends RequestBase<Object, Collection> {
     /**
      * The index of the desired element.
      */

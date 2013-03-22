@@ -23,16 +23,16 @@
  */
 package org.agilewiki.jid.collection.vlenc;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 
 /**
  * Removes a JID from the ith position.
  * If i < 0, the new JID is removed from position size + 1 - i.
  */
-public class IRemove extends Request<Object, JAList> {
+public class IRemove extends RequestBase<Object, JAList> {
     /**
      * The index of the desired element.
      */

@@ -26,12 +26,12 @@ package org.agilewiki.jid.scalar.vlens.actor;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 
 /**
  * Returns a value.
  */
-public class GetActor extends Request<Actor, Reference> {
+public class GetActor extends RequestBase<Actor, Reference> {
     final public static GetActor req = new GetActor();
 
     /**

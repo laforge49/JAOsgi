@@ -26,12 +26,12 @@ package org.agilewiki.jid;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 
 /**
  * Returns true when the persistent content are equal.
  */
-public class IsJidEqual extends Request<Boolean, Jid> {
+public class IsJidEqual extends RequestBase<Boolean, Jid> {
     private Actor jidActor;
 
     /**

@@ -23,16 +23,16 @@
  */
 package org.agilewiki.jid.scalar.flens.bool;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 
 /**
  * Returns a value.
  */
 public class GetBoolean
-        extends Request<Boolean, BooleanJid> {
+        extends RequestBase<Boolean, BooleanJid> {
     final public static GetBoolean req = new GetBoolean();
 
     /**

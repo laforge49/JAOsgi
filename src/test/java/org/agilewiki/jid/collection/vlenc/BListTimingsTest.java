@@ -1,7 +1,7 @@
 package org.agilewiki.jid.collection.vlenc;
 
 import junit.framework.TestCase;
-import org.agilewiki.jactor.old.Mailbox;
+import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;

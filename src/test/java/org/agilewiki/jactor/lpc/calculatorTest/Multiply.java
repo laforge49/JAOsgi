@@ -3,12 +3,12 @@ package org.agilewiki.jactor.lpc.calculatorTest;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 
 /**
  * Test code.
  */
-public class Multiply extends Request<Integer, _Calculator> {
+public class Multiply extends RequestBase<Integer, _Calculator> {
 
     @Override
     public void processRequest(JLPCActor targetActor, RP rp) throws Exception {

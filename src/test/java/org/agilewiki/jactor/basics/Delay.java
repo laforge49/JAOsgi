@@ -3,12 +3,12 @@ package org.agilewiki.jactor.basics;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 
 /**
  * Test code.
  */
-public class Delay extends Request<Object, Actor5> {
+public class Delay extends RequestBase<Object, Actor5> {
     public static final Delay req = new Delay();
 
     @Override

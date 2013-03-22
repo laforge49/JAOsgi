@@ -1,14 +1,14 @@
 package org.agilewiki.jactor.basics;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 
 /**
  * Test code.
  */
-public class Parallel extends Request<Boolean, Actor5a> {
+public class Parallel extends RequestBase<Boolean, Actor5a> {
     public static final Parallel req = new Parallel();
 
     @Override

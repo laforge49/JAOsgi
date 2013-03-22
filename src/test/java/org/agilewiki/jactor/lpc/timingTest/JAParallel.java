@@ -23,12 +23,11 @@
  */
 package org.agilewiki.jactor.lpc.timingTest;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.SimpleRequest;
 import org.agilewiki.jactor.SimpleRequestReceiver;
-import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 import org.agilewiki.jactor.parallel.JAResponseCounter;
 
 /**
@@ -45,7 +44,7 @@ final public class JAParallel extends SimpleRequestReceiver implements RealReque
      */
     private JAResponseCounter responseCounter;
 
-    public void run1Parallel(Request req, RP rd1) throws Exception {
+    public void run1Parallel(RequestBase req, RP rd1) throws Exception {
         int p = actors.length;
         responseCounter = new JAResponseCounter(p, rd1);
         int i = 0;
@@ -56,13 +55,13 @@ final public class JAParallel extends SimpleRequestReceiver implements RealReque
         }
     }
 
-    public void runParallel(Request[] requests, RP rd1) throws Exception {
+    public void runParallel(RequestBase[] requests, RP rd1) throws Exception {
         int p = actors.length;
         responseCounter = new JAResponseCounter(p, rd1);
         int i = 0;
 
         if (requests.length != p)
-            throw new IllegalArgumentException("Request and actor arrays not the same length");
+            throw new IllegalArgumentException("RequestBase and actor arrays not the same length");
         while (i < p) {
             requests[i].send(this, SimpleRequestReceiver.get(actors[i]), responseCounter);
             i += 1;

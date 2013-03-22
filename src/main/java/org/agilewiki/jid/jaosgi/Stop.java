@@ -23,12 +23,12 @@
  */
 package org.agilewiki.jid.jaosgi;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 
-public class Stop extends Request<Void, JABundleContext> {
+public class Stop extends RequestBase<Void, JABundleContext> {
     private int options;
 
     public Stop(int options) {

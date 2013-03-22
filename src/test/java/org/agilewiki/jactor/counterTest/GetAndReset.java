@@ -3,12 +3,12 @@ package org.agilewiki.jactor.counterTest;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 
 /**
  * Test code.
  */
-final public class GetAndReset extends Request<Long, CounterActor> {
+final public class GetAndReset extends RequestBase<Long, CounterActor> {
     public long number;
 
     @Override

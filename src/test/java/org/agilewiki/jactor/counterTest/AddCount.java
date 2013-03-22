@@ -1,13 +1,13 @@
 package org.agilewiki.jactor.counterTest;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 
 /**
  * Test code.
  */
-final public class AddCount extends Request<Object, CounterActor> {
+final public class AddCount extends RequestBase<Object, CounterActor> {
     public long number;
 
     @Override

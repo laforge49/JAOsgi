@@ -1,11 +1,11 @@
 package org.agilewiki.jid.timings.list;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 
-public class TimeBooleanDAppender extends Request<Long, BooleanDAppender> {
+public class TimeBooleanDAppender extends RequestBase<Long, BooleanDAppender> {
     final static public TimeBooleanDAppender req = new TimeBooleanDAppender();
 
     @Override

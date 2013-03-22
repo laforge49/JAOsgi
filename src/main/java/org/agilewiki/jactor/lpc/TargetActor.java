@@ -27,7 +27,7 @@ import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.ExceptionHandler;
 
 /**
- * Used by Request to extend TARGET_TYPE instead of Actor
+ * Used by RequestBase to extend TARGET_TYPE instead of Actor
  * as a means of avoiding ambiguous method signatures.
  */
 public interface TargetActor extends Actor {

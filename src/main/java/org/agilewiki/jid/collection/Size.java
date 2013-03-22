@@ -26,12 +26,12 @@ package org.agilewiki.jid.collection;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 
 /**
  * Returns the size of the collection.
  */
-public class Size extends Request<Integer, Collection> {
+public class Size extends RequestBase<Integer, Collection> {
     public final static Size req = new Size();
 
     /**

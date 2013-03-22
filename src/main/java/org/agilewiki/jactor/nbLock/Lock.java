@@ -23,15 +23,15 @@
  */
 package org.agilewiki.jactor.nbLock;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 
 /**
  * Gain exclusive use of a resource.
  */
-final public class Lock extends Request<Object, JANBLock> {
+final public class Lock extends RequestBase<Object, JANBLock> {
     public final static Lock req = new Lock();
 
     /**

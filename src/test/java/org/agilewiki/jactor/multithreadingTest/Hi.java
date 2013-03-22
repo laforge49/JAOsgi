@@ -3,12 +3,12 @@ package org.agilewiki.jactor.multithreadingTest;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 
 /**
  * Test code.
  */
-public class Hi extends Request<String, Greeter> {
+public class Hi extends RequestBase<String, Greeter> {
     @Override
     public boolean isTargetType(Actor targetActor) {
         return targetActor instanceof Greeter;

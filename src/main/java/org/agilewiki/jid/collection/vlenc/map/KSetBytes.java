@@ -26,12 +26,12 @@ package org.agilewiki.jid.collection.vlenc.map;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 
 /**
  * Replace the assigned value.
  */
-public class KSetBytes<KEY_TYPE extends Comparable<KEY_TYPE>> extends Request<Object, JAMap> {
+public class KSetBytes<KEY_TYPE extends Comparable<KEY_TYPE>> extends RequestBase<Object, JAMap> {
     /**
      * The KEY of the desired element.
      */

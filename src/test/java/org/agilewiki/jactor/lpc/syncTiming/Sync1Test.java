@@ -3,7 +3,7 @@ package org.agilewiki.jactor.lpc.syncTiming;
 import junit.framework.TestCase;
 import org.agilewiki.jactor.old.JAFuture;
 import org.agilewiki.jactor.old.JAMailboxFactory;
-import org.agilewiki.jactor.old.Mailbox;
+import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.old.MailboxFactory;
 
 public class Sync1Test extends TestCase {

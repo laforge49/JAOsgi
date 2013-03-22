@@ -3,9 +3,9 @@ package org.agilewiki.jactor.lpc.timingTest;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 
-public class RealRequest extends Request<Object, RealRequestReceiver> {
+public class RealRequest extends RequestBase<Object, RealRequestReceiver> {
     public final static RealRequest req = new RealRequest();
 
     @Override

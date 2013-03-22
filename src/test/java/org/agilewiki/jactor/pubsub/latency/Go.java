@@ -3,12 +3,12 @@ package org.agilewiki.jactor.pubsub.latency;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 
 /**
  * Test code.
  */
-public class Go extends Request<Object, Src> {
+public class Go extends RequestBase<Object, Src> {
     public final static Go req = new Go();
 
     @Override

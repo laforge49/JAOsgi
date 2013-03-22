@@ -23,15 +23,15 @@
  */
 package org.agilewiki.jid.collection.vlenc;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 
 /**
  * Empty a collection.
  */
-public class Empty extends Request<Object, JAList> {
+public class Empty extends RequestBase<Object, JAList> {
     public final static Empty req = new Empty();
 
     /**

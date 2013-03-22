@@ -24,7 +24,7 @@
 package org.agilewiki.jactor.simpleMachine;
 
 import org.agilewiki.jactor.old.Actor;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 
 /**
  * <p>
@@ -101,8 +101,8 @@ final public class _SendFF extends _Send {
      * @return The request.
      */
     @Override
-    public Request getRequest(SimpleMachine stateMachine) {
-        return (Request) request.get(stateMachine);
+    public RequestBase getRequest(SimpleMachine stateMachine) {
+        return (RequestBase) request.get(stateMachine);
     }
 
     /**

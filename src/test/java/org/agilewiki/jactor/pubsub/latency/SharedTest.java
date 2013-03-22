@@ -3,7 +3,7 @@ package org.agilewiki.jactor.pubsub.latency;
 import junit.framework.TestCase;
 import org.agilewiki.jactor.old.JAFuture;
 import org.agilewiki.jactor.old.JAMailboxFactory;
-import org.agilewiki.jactor.old.Mailbox;
+import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.old.MailboxFactory;
 import org.agilewiki.jactor.pubsub.publisher.JAPublisher;
 

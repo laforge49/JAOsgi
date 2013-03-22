@@ -23,17 +23,17 @@
  */
 package org.agilewiki.jid;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
-import org.agilewiki.jactor.old.Mailbox;
+import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 
 /**
  * Returns a copy of the JID.
  */
 final public class CopyJID
-        extends Request<Actor, Jid> {
+        extends RequestBase<Actor, Jid> {
     /**
      * A mailbox which may be shared with other actors.
      */

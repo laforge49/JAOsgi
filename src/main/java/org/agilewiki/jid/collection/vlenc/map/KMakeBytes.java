@@ -23,15 +23,15 @@
  */
 package org.agilewiki.jid.collection.vlenc.map;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 
 /**
  * Create a keyed entry.
  */
-public class KMakeBytes<KEY_TYPE extends Comparable<KEY_TYPE>> extends Request<Boolean, JAMap> {
+public class KMakeBytes<KEY_TYPE extends Comparable<KEY_TYPE>> extends RequestBase<Boolean, JAMap> {
     /**
      * The key of the new element.
      */

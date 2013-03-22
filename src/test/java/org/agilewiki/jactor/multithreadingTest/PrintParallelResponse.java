@@ -1,14 +1,14 @@
 package org.agilewiki.jactor.multithreadingTest;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 
 /**
  * Test code.
  */
-public class PrintParallelResponse<RESPONSE> extends Request<Object, ParallelResponsePrinter> {
+public class PrintParallelResponse<RESPONSE> extends RequestBase<Object, ParallelResponsePrinter> {
     private int count;
     private PrintResponse<RESPONSE> printResponse;
     private ResponsePrinter[] responsePrinters;

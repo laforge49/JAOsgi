@@ -23,8 +23,8 @@
  */
 package org.agilewiki.jactor.pubsub.publisher;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.RP;
-import org.agilewiki.jactor.lpc.Request;
 import org.agilewiki.jactor.pubsub.subscriber.Subscriber;
 
 /**
@@ -64,6 +64,6 @@ public interface Publisher extends Subscriber {
      * @param publishRequest The request to be published.
      * @param rp             The response processor.
      */
-    public void publish(Request publishRequest, RP rp)
+    public void publish(RequestBase publishRequest, RP rp)
             throws Exception;
 }

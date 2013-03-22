@@ -23,16 +23,16 @@
  */
 package org.agilewiki.jactor.pubsub.publisher;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 import org.agilewiki.jactor.pubsub.subscriber.Subscriber;
 
 /**
  * Get a subscriber with the given name.
  */
-public class GetSubscriber extends Request<Subscriber, Publisher> {
+public class GetSubscriber extends RequestBase<Subscriber, Publisher> {
     /**
      * The name of the subscribing actor.
      */

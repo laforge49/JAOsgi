@@ -1,7 +1,7 @@
 package org.agilewiki.jactor.ancestor;
 
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.old.Mailbox;
+import org.agilewiki.jactor.Mailbox;
 
 public class AncestorBase extends JLPCActor implements Ancestor {
     public static Ancestor getAncestor(final Ancestor child, final Class targetClass) {

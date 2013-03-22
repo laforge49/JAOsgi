@@ -21,8 +21,9 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jactor.lpc;
+package org.agilewiki.jactor;
 
+import org.agilewiki.jactor.lpc.TargetActor;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.JAEvent;
 import org.agilewiki.jactor.old.JAFuture;
@@ -32,10 +33,11 @@ import org.agilewiki.jactor.apc.APCRequestSource;
 /**
  * A request.
  */
-abstract public class Request<RESPONSE_TYPE, TARGET_TYPE extends TargetActor> {
+abstract public class RequestBase<RESPONSE_TYPE, TARGET_TYPE
+        extends TargetActor> implements Request<RESPONSE_TYPE, TARGET_TYPE> {
     protected TARGET_TYPE actor;
 
-    public Request(TARGET_TYPE actor) {
+    public RequestBase(TARGET_TYPE actor) {
         this.actor = actor;
     }
 
@@ -45,6 +47,7 @@ abstract public class Request<RESPONSE_TYPE, TARGET_TYPE extends TargetActor> {
      * @param future      The future.
      * @throws Exception Any uncaught exceptions raised while processing the request.
      */
+    @Override
     final public RESPONSE_TYPE send(JAFuture future)
             throws Exception {
         return (RESPONSE_TYPE) future.send(actor, this);
@@ -58,6 +61,7 @@ abstract public class Request<RESPONSE_TYPE, TARGET_TYPE extends TargetActor> {
      * @param rp            The response processor.
      * @throws Exception Any uncaught exceptions raised while processing the request.
      */
+    @Override
     final public void send(APCRequestSource requestSource, RP<RESPONSE_TYPE> rp)
             throws Exception {
         actor.acceptRequest(requestSource, this, rp);
@@ -66,6 +70,7 @@ abstract public class Request<RESPONSE_TYPE, TARGET_TYPE extends TargetActor> {
     /**
      * Send a request event.
      */
+    @Override
     final public void sendEvent()
             throws Exception {
         actor.acceptEvent(JAEvent.requestSource, this);
@@ -76,10 +81,9 @@ abstract public class Request<RESPONSE_TYPE, TARGET_TYPE extends TargetActor> {
      *
      * @param requestSource The sender of the request.
      */
+    @Override
     final public void sendEvent(APCRequestSource requestSource)
             throws Exception {
         actor.acceptEvent(requestSource, this);
     }
-
-    public abstract void processRequest(RP rp) throws Exception;
 }

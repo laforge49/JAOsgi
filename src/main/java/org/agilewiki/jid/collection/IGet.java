@@ -26,12 +26,12 @@ package org.agilewiki.jid.collection;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 
 /**
  * Returns the ith JID component, or null if the index is out of range.
  */
-public class IGet extends Request<Actor, Collection> {
+public class IGet extends RequestBase<Actor, Collection> {
     /**
      * The index of the desired element.
      */

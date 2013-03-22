@@ -26,7 +26,7 @@ package org.agilewiki.jid;
 import org.agilewiki.jactor.ancestor.Ancestor;
 import org.agilewiki.jactor.ancestor.AncestorBase;
 import org.agilewiki.jactor.old.Actor;
-import org.agilewiki.jactor.old.Mailbox;
+import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.JAFactoryLocator;

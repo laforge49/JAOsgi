@@ -23,12 +23,12 @@
  */
 package org.agilewiki.jactor.apc;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.ExceptionHandler;
-import org.agilewiki.jactor.old.Mailbox;
+import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.bufferedEvents.BufferedEventsQueue;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 import org.agilewiki.jactor.lpc.RequestSource;
 
 /**
@@ -53,7 +53,7 @@ public abstract class JARequest extends RP implements JAMessage {
     /**
      * The unwrapped request that was sent to a JLPCActor.
      */
-    private Request unwrappedRequest;
+    private RequestBase unwrappedRequest;
 
     /**
      * Initially true, active is set to false when a response is sent.
@@ -82,7 +82,7 @@ public abstract class JARequest extends RP implements JAMessage {
 
     public JARequest(RequestSource requestSource,
                      JLPCActor destinationActor,
-                     Request unwrappedRequest,
+                     RequestBase unwrappedRequest,
                      RP rp,
                      Mailbox mailbox) {
         this.mailbox = mailbox;
@@ -114,7 +114,7 @@ public abstract class JARequest extends RP implements JAMessage {
      *
      * @return The unwrapped request.
      */
-    final public Request getUnwrappedRequest() {
+    final public RequestBase getUnwrappedRequest() {
         return unwrappedRequest;
     }
 

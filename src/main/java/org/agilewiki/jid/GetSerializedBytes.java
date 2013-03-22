@@ -23,16 +23,16 @@
  */
 package org.agilewiki.jid;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 
 /**
  * Returns a byte array holding the serialized persistent data.
  */
 final public class GetSerializedBytes extends
-        Request<byte[], Jid> {
+        RequestBase<byte[], Jid> {
     public final static GetSerializedBytes req = new GetSerializedBytes();
 
     /**

@@ -1,11 +1,11 @@
 package org.agilewiki.jid.basics;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 
-public class Proc extends Request<Object, Main> {
+public class Proc extends RequestBase<Object, Main> {
     public final static Proc req = new Proc();
 
     @Override

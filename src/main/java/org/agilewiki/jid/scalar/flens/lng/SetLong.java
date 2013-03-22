@@ -26,13 +26,13 @@ package org.agilewiki.jid.scalar.flens.lng;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 
 /**
  * Assigns a value.
  */
 public class SetLong
-        extends Request<Object, LongJid> {
+        extends RequestBase<Object, LongJid> {
     /**
      * The value.
      */

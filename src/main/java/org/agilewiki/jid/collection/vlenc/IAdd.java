@@ -26,14 +26,14 @@ package org.agilewiki.jid.collection.vlenc;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 
 /**
  * Creates a JID and inserts it in the ith position.
  * If i < 0, the new JID is placed at position size + 1 - i.
  * (If i == -1, the element is added to the end of the list.)
  */
-public class IAdd extends Request<Object, JAList> {
+public class IAdd extends RequestBase<Object, JAList> {
     /**
      * The insertion index of the new element.
      */

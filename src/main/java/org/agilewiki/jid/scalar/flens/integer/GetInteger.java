@@ -23,15 +23,15 @@
  */
 package org.agilewiki.jid.scalar.flens.integer;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 
 /**
  * Returns a value.
  */
-public class GetInteger extends Request<Integer, IntegerJid> {
+public class GetInteger extends RequestBase<Integer, IntegerJid> {
     final public static GetInteger req = new GetInteger();
 
     /**

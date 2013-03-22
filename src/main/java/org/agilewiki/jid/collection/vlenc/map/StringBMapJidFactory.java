@@ -24,7 +24,7 @@
 package org.agilewiki.jid.collection.vlenc.map;
 
 import org.agilewiki.jactor.ancestor.Ancestor;
-import org.agilewiki.jactor.old.Mailbox;
+import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;

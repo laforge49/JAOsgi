@@ -1,14 +1,14 @@
 package org.agilewiki.jactor.basics;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 
 /**
  * Test code.
  */
-public class Validate1 extends Request<Boolean, Actor4> {
+public class Validate1 extends RequestBase<Boolean, Actor4> {
     public static final Validate1 req = new Validate1();
 
     @Override

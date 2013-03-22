@@ -23,17 +23,17 @@
  */
 package org.agilewiki.jid.collection.vlenc.map;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 import org.agilewiki.jid.Jid;
 
 /**
  * Returns the Actor value with a greater key.
  */
 public class GetHigher<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends Jid>
-        extends Request<Actor, JAMap<KEY_TYPE, VALUE_TYPE>> {
+        extends RequestBase<Actor, JAMap<KEY_TYPE, VALUE_TYPE>> {
     /**
      * The key.
      */

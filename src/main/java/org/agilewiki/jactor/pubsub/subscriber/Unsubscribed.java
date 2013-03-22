@@ -23,16 +23,16 @@
  */
 package org.agilewiki.jactor.pubsub.subscriber;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 import org.agilewiki.jactor.pubsub.publisher.Publisher;
 
 /**
  * The target actor no longer has a subscription.
  */
-final public class Unsubscribed extends Request<Object, Subscriber> {
+final public class Unsubscribed extends RequestBase<Object, Subscriber> {
     /**
      * The publisher to which the target actor was subscribed.
      */

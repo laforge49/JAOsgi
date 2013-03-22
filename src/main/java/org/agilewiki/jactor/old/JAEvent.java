@@ -23,12 +23,13 @@
  */
 package org.agilewiki.jactor.old;
 
+import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.apc.JAMessage;
 import org.agilewiki.jactor.apc.JARequest;
 import org.agilewiki.jactor.apc.JAResponse;
 import org.agilewiki.jactor.bufferedEvents.BufferedEventsDestination;
 import org.agilewiki.jactor.bufferedEvents.BufferedEventsQueue;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.lpc.RequestSource;
 
 import java.util.ArrayList;
@@ -81,7 +82,7 @@ public class JAEvent {
      * @param request The request.
      */
     public void sendEvent(final Actor actor,
-                          final Request request)
+                          final RequestBase request)
             throws Exception {
         actor.acceptRequest(requestSource, request, JANoResponse.nrp);
     }

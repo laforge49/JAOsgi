@@ -1,14 +1,14 @@
 package org.agilewiki.jactor.basics;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 
 /**
  * Test code.
  */
-public class Greet1 extends Request<Object, Greeter> {
+public class Greet1 extends RequestBase<Object, Greeter> {
     public static final Greet1 req = new Greet1();
 
     @Override

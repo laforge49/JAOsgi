@@ -24,7 +24,7 @@
 package org.agilewiki.jactor.lpc;
 
 import org.agilewiki.jactor.old.ExceptionHandler;
-import org.agilewiki.jactor.old.Mailbox;
+import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.apc.APCRequestSource;
 
 /**

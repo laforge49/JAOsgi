@@ -1,11 +1,10 @@
 package org.agilewiki.jactor;
 
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 
-public class IntegerRequest extends Request<Object, IntegerReceiver> {
+public class IntegerRequest extends RequestBase<Object, IntegerReceiver> {
     public final int value;
 
     public IntegerRequest(int value) {

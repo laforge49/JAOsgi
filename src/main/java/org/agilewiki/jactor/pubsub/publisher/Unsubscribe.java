@@ -23,17 +23,17 @@
  */
 package org.agilewiki.jactor.pubsub.publisher;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 import org.agilewiki.jactor.pubsub.subscriber.Subscriber;
 
 /**
  * Unsubscribe from a publisher.
  * The result returned is true when a subscriber has been removed.
  */
-public class Unsubscribe extends Request<Boolean, Publisher> {
+public class Unsubscribe extends RequestBase<Boolean, Publisher> {
     /**
      * The name of the subscribing actor.
      */

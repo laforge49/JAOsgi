@@ -26,13 +26,13 @@ package org.agilewiki.jid.scalar.flens.integer;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 
 /**
  * Assigns a value.
  */
 public class SetInteger
-        extends Request<Object, IntegerJid> {
+        extends RequestBase<Object, IntegerJid> {
     /**
      * The value.
      */

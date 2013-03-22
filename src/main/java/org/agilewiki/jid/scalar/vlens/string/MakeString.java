@@ -26,13 +26,13 @@ package org.agilewiki.jid.scalar.vlens.string;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 
 /**
  * Assigns a value if not already present.
  */
 public class MakeString
-        extends Request<Boolean, StringJid> {
+        extends RequestBase<Boolean, StringJid> {
     /**
      * The value.
      */

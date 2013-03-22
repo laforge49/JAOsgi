@@ -2,11 +2,10 @@ package org.agilewiki.jactor;
 
 
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 
-public class SimpleRequest extends Request<Object, SimpleRequestReceiver> {
+public class SimpleRequest extends RequestBase<Object, SimpleRequestReceiver> {
     public final static SimpleRequest req = new SimpleRequest();
 
     @Override

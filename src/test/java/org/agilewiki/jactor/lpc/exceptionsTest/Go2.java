@@ -3,9 +3,9 @@ package org.agilewiki.jactor.lpc.exceptionsTest;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 
-public class Go2 extends Request<Object, GoReceiver> {
+public class Go2 extends RequestBase<Object, GoReceiver> {
     public final static Go2 req = new Go2();
 
     @Override

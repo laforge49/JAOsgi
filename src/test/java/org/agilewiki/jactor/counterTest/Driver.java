@@ -1,9 +1,8 @@
 package org.agilewiki.jactor.counterTest;
 
 import org.agilewiki.jactor.*;
-import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jactor.old.JAIterator;
-import org.agilewiki.jactor.old.Mailbox;
+import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.simpleMachine.ObjectFunc;
 import org.agilewiki.jactor.simpleMachine.SimpleMachine;

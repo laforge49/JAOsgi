@@ -26,12 +26,12 @@ package org.agilewiki.jid.scalar.vlens.string;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 
 /**
  * Returns a value.
  */
-public class GetString extends Request<String, StringJid> {
+public class GetString extends RequestBase<String, StringJid> {
     final public static GetString req = new GetString();
 
     /**

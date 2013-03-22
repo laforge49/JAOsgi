@@ -26,14 +26,14 @@ package org.agilewiki.jactor.pubsub.publisher;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.pubsub.subscriber.Subscriber;
 
 /**
  * Subscribe to a publisher.
  * The result returned is true when a new subscriber has been added.
  */
-public class Subscribe extends Request<Boolean, Publisher> {
+public class Subscribe extends RequestBase<Boolean, Publisher> {
     /**
      * The subscribing actor.
      */

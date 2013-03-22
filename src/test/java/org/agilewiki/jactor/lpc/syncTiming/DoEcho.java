@@ -1,11 +1,11 @@
 package org.agilewiki.jactor.lpc.syncTiming;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 
-public class DoEcho extends Request<Object, Echo> {
+public class DoEcho extends RequestBase<Object, Echo> {
     public final static DoEcho req = new DoEcho();
 
     @Override

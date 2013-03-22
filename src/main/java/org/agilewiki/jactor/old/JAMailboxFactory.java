@@ -23,10 +23,11 @@
  */
 package org.agilewiki.jactor.old;
 
+import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.concurrent.JAThreadManager;
 import org.agilewiki.jactor.concurrent.ThreadManager;
 import org.agilewiki.jactor.lpc.JLPCMailbox;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -140,7 +141,7 @@ public class JAMailboxFactory implements MailboxFactory {
     }
 
     @Override
-    public void eventException(final Request request, final Throwable exception) {
+    public void eventException(final RequestBase request, final Throwable exception) {
         logException(false,
                 request.getClass().getName() + " event exception: ", exception);
     }

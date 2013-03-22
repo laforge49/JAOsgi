@@ -2,7 +2,7 @@ package org.agilewiki.jactor.nbLock.exceptionsTest;
 
 import junit.framework.TestCase;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.lpc.TargetActor;
 import org.agilewiki.jactor.nbLock.JANBLock;
 import org.agilewiki.jactor.old.*;
@@ -38,7 +38,7 @@ interface Does extends TargetActor {
 /**
  * Test code.
  */
-class DoItEx extends Request<Object, Does> {
+class DoItEx extends RequestBase<Object, Does> {
 
     /**
      * Returns true when targetActor is an instanceof TARGET_TYPE

@@ -26,7 +26,7 @@ package org.agilewiki.jactor.continuation;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.lpc.TargetActor;
 
 public class Continuation<RESPONSE_TYPE> extends RP<RESPONSE_TYPE> {
@@ -48,7 +48,7 @@ public class Continuation<RESPONSE_TYPE> extends RP<RESPONSE_TYPE> {
     }
 }
 
-class ContinuationRequest extends Request<Object, TargetActor> {
+class ContinuationRequest extends RequestBase<Object, TargetActor> {
     private RP _rp;
     private Object rsp;
 

@@ -23,8 +23,9 @@
  */
 package org.agilewiki.jactor.old;
 
+import org.agilewiki.jactor.Mailbox;
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.apc.APCRequestSource;
-import org.agilewiki.jactor.lpc.Request;
 
 /**
  * <p>
@@ -56,7 +57,7 @@ public interface Actor {
      * @param rp            The request processor.
      */
     public void acceptRequest(APCRequestSource requestSource,
-                              Request request,
+                              RequestBase request,
                               RP rp)
             throws Exception;
 
@@ -67,7 +68,7 @@ public interface Actor {
      * @param request       The unwrapped request to be sent.
      */
     public void acceptEvent(APCRequestSource requestSource,
-                            Request request)
+                            RequestBase request)
             throws Exception;
 
     /**

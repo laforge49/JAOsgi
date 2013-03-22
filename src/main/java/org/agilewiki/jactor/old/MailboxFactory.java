@@ -23,8 +23,9 @@
  */
 package org.agilewiki.jactor.old;
 
+import org.agilewiki.jactor.Mailbox;
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.concurrent.ThreadManager;
-import org.agilewiki.jactor.lpc.Request;
 
 import java.util.Timer;
 
@@ -62,7 +63,7 @@ public interface MailboxFactory {
      */
     public void close();
 
-    public void eventException(final Request request, final Throwable exception);
+    public void eventException(final RequestBase request, final Throwable exception);
 
     public void logException(final boolean fatal, final String msg,
                              final Throwable exception);

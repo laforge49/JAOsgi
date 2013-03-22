@@ -26,14 +26,14 @@ package org.agilewiki.jid.scalar.vlens.actor;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jid.JidFactory;
 
 /**
  * Creates a JID actor and loads its serialized data, unless a JID actor is already present.
  */
 final public class MakeActorBytes
-        extends Request<Boolean, Reference> {
+        extends RequestBase<Boolean, Reference> {
     /**
      * An jid type name.
      */

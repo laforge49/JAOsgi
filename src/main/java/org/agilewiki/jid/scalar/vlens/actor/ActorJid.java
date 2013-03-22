@@ -24,7 +24,7 @@
 package org.agilewiki.jid.scalar.vlens.actor;
 
 import org.agilewiki.jactor.ancestor.Ancestor;
-import org.agilewiki.jactor.old.Mailbox;
+import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jid.*;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;

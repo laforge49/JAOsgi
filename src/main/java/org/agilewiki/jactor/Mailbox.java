@@ -21,9 +21,10 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jactor.old;
+package org.agilewiki.jactor;
 
 import org.agilewiki.jactor.apc.APCMailbox;
+import org.agilewiki.jactor.old.MailboxFactory;
 
 /**
  * <p>

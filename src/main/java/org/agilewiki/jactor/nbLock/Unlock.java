@@ -26,12 +26,12 @@ package org.agilewiki.jactor.nbLock;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 
 /**
  * Release exclusive use of a resource.
  */
-final public class Unlock extends Request<Object, JANBLock> {
+final public class Unlock extends RequestBase<Object, JANBLock> {
     public final static Unlock req = new Unlock();
 
     /**

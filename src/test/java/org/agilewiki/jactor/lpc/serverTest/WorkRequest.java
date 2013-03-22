@@ -1,14 +1,14 @@
 package org.agilewiki.jactor.lpc.serverTest;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 
 /**
  * Test code.
  */
-public class WorkRequest extends Request<Object, Worker> {
+public class WorkRequest extends RequestBase<Object, Worker> {
     public int id;
 
     @Override

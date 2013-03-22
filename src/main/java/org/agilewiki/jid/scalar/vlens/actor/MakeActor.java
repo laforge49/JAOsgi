@@ -26,14 +26,14 @@ package org.agilewiki.jid.scalar.vlens.actor;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jid.JidFactory;
 
 /**
  * Assigns a value if not already present.
  */
 public class MakeActor
-        extends Request<Boolean, Reference> {
+        extends RequestBase<Boolean, Reference> {
     /**
      * The jid type.
      */

@@ -23,9 +23,10 @@
  */
 package org.agilewiki.jid.scalar.vlens.bytes;
 
+import org.agilewiki.jactor.Request;
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.ancestor.Ancestor;
-import org.agilewiki.jactor.lpc.Request;
-import org.agilewiki.jactor.old.Mailbox;
+import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ReadableBytes;
@@ -78,7 +79,7 @@ public class BytesJid
     }
 
     public Request<Void, BytesJid> setBytes(final byte[] v) {
-        return new Request<Void, BytesJid>(this) {
+        return new RequestBase<Void, BytesJid>(this) {
             @Override
             public void processRequest(RP rp) throws Exception {
                 setValue(v);
@@ -118,7 +119,7 @@ public class BytesJid
     }
 
     public Request<Boolean, BytesJid> makeBytes(final byte[] v) {
-        return new Request<Boolean, BytesJid>(this) {
+        return new RequestBase<Boolean, BytesJid>(this) {
             @Override
             public void processRequest(RP rp) throws Exception {
                 rp.processResponse(makeValue(v));
@@ -143,7 +144,7 @@ public class BytesJid
     }
 
     public Request<byte[], BytesJid> getBytes() {
-        return new Request<byte[], BytesJid>(this) {
+        return new RequestBase<byte[], BytesJid>(this) {
             @Override
             public void processRequest(RP rp) throws Exception {
                 rp.processResponse(getValue());

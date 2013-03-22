@@ -1,8 +1,9 @@
 package org.agilewiki.jactor.pubsub.publish;
 
 import junit.framework.TestCase;
+import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.*;
 import org.agilewiki.jactor.pubsub.publisher.*;
 import org.agilewiki.jactor.pubsub.subscriber.JASubscriber;
@@ -55,7 +56,7 @@ class Sub extends JASubscriber {
 /**
  * Test code.
  */
-class Req extends Request<Object, Sub> {
+class Req extends RequestBase<Object, Sub> {
 
     @Override
     public boolean isTargetType(Actor targetActor) {

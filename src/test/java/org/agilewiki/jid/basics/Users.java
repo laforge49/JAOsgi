@@ -1,7 +1,7 @@
 package org.agilewiki.jid.basics;
 
 import org.agilewiki.jactor.old.Actor;
-import org.agilewiki.jactor.old.Mailbox;
+import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jid._Jid;
 import org.agilewiki.jid.collection.vlenc.map.MapEntry;

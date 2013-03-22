@@ -2,7 +2,7 @@ package org.agilewiki.jactor.nbLock;
 
 import junit.framework.TestCase;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.*;
 
 /**
@@ -27,7 +27,7 @@ public class NBLockTest extends TestCase {
 /**
  * Test code.
  */
-class DoIt extends Request<Object, Driver> {
+class DoIt extends RequestBase<Object, Driver> {
 
     /**
      * Returns true when targetActor is an instanceof TARGET_TYPE

@@ -26,12 +26,12 @@ package org.agilewiki.jid.scalar.flens.flt;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 
 /**
  * Returns a value.
  */
-public class GetFloat extends Request<Float, FloatJid> {
+public class GetFloat extends RequestBase<Float, FloatJid> {
     final public static GetFloat req = new GetFloat();
 
     /**

@@ -23,15 +23,15 @@
  */
 package org.agilewiki.jid.scalar.flens.lng;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 
 /**
  * Returns a value.
  */
-public class GetLong extends Request<Long, LongJid> {
+public class GetLong extends RequestBase<Long, LongJid> {
     final public static GetLong req = new GetLong();
 
     /**

@@ -1,14 +1,14 @@
 package org.agilewiki.jactor.lpc.calculatorTest;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 
 /**
  * Test code.
  */
-final public class Factorial extends Request<Integer, FactorialCalculation> {
+final public class Factorial extends RequestBase<Integer, FactorialCalculation> {
     public Factorial(int value) {
         this.value = value;
     }

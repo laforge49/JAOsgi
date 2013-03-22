@@ -26,24 +26,24 @@ package org.agilewiki.jactor.pubsub.publisher;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 
 /**
  * Broadcast a request to all applicable subscribers.
  * The response is the number of subscribers to which the request was broadcast.
  */
-public class Publish extends Request<Integer, Publisher> {
+public class Publish extends RequestBase<Integer, Publisher> {
     /**
      * The request to be published.
      */
-    public final Request publishRequest;
+    public final RequestBase publishRequest;
 
     /**
      * Create a Publish request.
      *
      * @param publishRequest The request to be published.
      */
-    public Publish(Request publishRequest) {
+    public Publish(RequestBase publishRequest) {
         this.publishRequest = publishRequest;
     }
 

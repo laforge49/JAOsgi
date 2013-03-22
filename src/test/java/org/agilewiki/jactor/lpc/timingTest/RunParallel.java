@@ -1,25 +1,25 @@
 package org.agilewiki.jactor.lpc.timingTest;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 
 /**
  * A wrapper of an array of requests to be sent to multiple actors.
  */
-public class RunParallel extends Request<Object, JAParallel> {
+public class RunParallel extends RequestBase<Object, JAParallel> {
     /**
      * The wrapped requests;
      */
-    private Request[] requests;
+    private RequestBase[] requests;
 
     /**
      * Returns the wrapped requests.
      *
      * @return The wrapped requests.
      */
-    public Request[] getRequests() {
+    public RequestBase[] getRequests() {
         return requests;
     }
 
@@ -28,7 +28,7 @@ public class RunParallel extends Request<Object, JAParallel> {
      *
      * @param requests the requests to be run in parallel.
      */
-    public RunParallel(Request[] requests) {
+    public RunParallel(RequestBase[] requests) {
         this.requests = requests;
     }
 

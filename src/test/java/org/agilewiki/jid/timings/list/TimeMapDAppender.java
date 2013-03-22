@@ -3,9 +3,9 @@ package org.agilewiki.jid.timings.list;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
+import org.agilewiki.jactor.RequestBase;
 
-public class TimeMapDAppender extends Request<Long, MapDAppender> {
+public class TimeMapDAppender extends RequestBase<Long, MapDAppender> {
     final static public TimeMapDAppender req = new TimeMapDAppender();
 
     @Override

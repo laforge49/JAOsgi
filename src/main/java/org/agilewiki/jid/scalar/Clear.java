@@ -23,16 +23,16 @@
  */
 package org.agilewiki.jid.scalar;
 
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.lpc.Request;
 
 /**
  * Clears the container.
  */
 final public class Clear
-        extends Request<Object, Clearable> {
+        extends RequestBase<Object, Clearable> {
     public final static Clear req = new Clear();
 
     /**
