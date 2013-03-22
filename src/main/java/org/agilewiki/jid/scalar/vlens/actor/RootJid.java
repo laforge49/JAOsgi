@@ -149,7 +149,7 @@ public class RootJid extends ActorJid {
         manifest = JAFactoryLocator.getManifestCopy(this, getMailbox());
     }
 
-    public Actor copyJID(Mailbox m)
+    public Jid copyJID(Mailbox m)
             throws Exception {
         Mailbox mb = m;
         if (mb == null)
