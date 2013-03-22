@@ -75,6 +75,13 @@ public class ActorJid
         len = -1;
     }
 
+    public Request<Void> clearReq = new RequestBase<Void>(this) {
+        public void processRequest(RP rp) throws Exception {
+            clear();
+            rp.processResponse(null);
+        }
+    };
+
     /**
      * Assign a value unless one is already present.
      *

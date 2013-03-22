@@ -30,10 +30,9 @@ import org.agilewiki.jid.*;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JAFactoryLocator;
-import org.agilewiki.jid.scalar.Clearable;
 import org.agilewiki.jid.scalar.ScalarJid;
 
-public class UnionJid extends ScalarJid<String, Jid> implements Clearable {
+public class UnionJid extends ScalarJid<String, Jid> {
     protected ActorFactory[] unionFactories;
     protected int factoryIndex = -1;
     protected Jid value;
@@ -100,10 +99,16 @@ public class UnionJid extends ScalarJid<String, Jid> implements Clearable {
      *
      * @throws Exception Any uncaught exception raised.
      */
-    @Override
     public void clear() throws Exception {
         setValue(-1);
     }
+
+    public Request<Void> clearReq = new RequestBase<Void>(this) {
+        public void processRequest(RP rp) throws Exception {
+            clear();
+            rp.processResponse(null);
+        }
+    };
 
     @Override
     public void setValue(final String actorType)

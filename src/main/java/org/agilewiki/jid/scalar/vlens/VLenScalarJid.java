@@ -23,17 +23,19 @@
  */
 package org.agilewiki.jid.scalar.vlens;
 
+import org.agilewiki.jactor.Request;
+import org.agilewiki.jactor.RequestBase;
+import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ReadableBytes;
 import org.agilewiki.jid.Util;
-import org.agilewiki.jid.scalar.Clearable;
 import org.agilewiki.jid.scalar.ScalarJid;
 
 /**
  * A JID component that holds a variable-length value, or null.
  */
 abstract public class VLenScalarJid<SET_TYPE, RESPONSE_TYPE>
-        extends ScalarJid<SET_TYPE, RESPONSE_TYPE> implements Clearable {
+        extends ScalarJid<SET_TYPE, RESPONSE_TYPE> {
 
     /**
      * Holds the value, or null.
@@ -60,7 +62,6 @@ abstract public class VLenScalarJid<SET_TYPE, RESPONSE_TYPE>
      *
      * @throws Exception Any uncaught exception raised.
      */
-    @Override
     public void clear() throws Exception {
         if (len == -1)
             return;
@@ -71,6 +72,13 @@ abstract public class VLenScalarJid<SET_TYPE, RESPONSE_TYPE>
         change(-l);
         len = -1;
     }
+
+    public Request<Void> clearReq = new RequestBase<Void>(this) {
+        public void processRequest(RP rp) throws Exception {
+            clear();
+            rp.processResponse(null);
+        }
+    };
 
     /**
      * Returns the number of bytes needed to serialize the persistent data.
