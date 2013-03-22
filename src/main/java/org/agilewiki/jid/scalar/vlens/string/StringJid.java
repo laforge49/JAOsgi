@@ -23,9 +23,12 @@
  */
 package org.agilewiki.jid.scalar.vlens.string;
 
+import org.agilewiki.jactor.Request;
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.ancestor.Ancestor;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.Mailbox;
+import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ComparableKey;
 import org.agilewiki.jid.ReadableBytes;
@@ -41,7 +44,7 @@ import org.agilewiki.jid.scalar.vlens.VLenScalarJid;
 public class StringJid
         extends VLenScalarJid<String, String>
         implements ComparableKey<String> {
-    public static StringJid create(Actor actor, Mailbox mailbox, Ancestor parent) throws Exception {
+    public static StringJid create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
         return (StringJid) JAFactoryLocator.newJid(actor, JidFactories.STRING_JID_TYPE, mailbox, parent);
     }
 
@@ -63,7 +66,7 @@ public class StringJid
      * @throws Exception Any uncaught exception raised.
      */
     @Override
-    public void setValue(String v) throws Exception {
+    public void setValue(final String v) throws Exception {
         int c = v.length() * 2;
         if (len > -1)
             c -= len;
@@ -71,6 +74,18 @@ public class StringJid
         serializedBytes = null;
         serializedOffset = -1;
         change(c);
+    }
+
+    public Request<Void> setStringReq(final String v) {
+        if (v == null)
+            throw new IllegalArgumentException("value may not be null");
+        return new RequestBase<Void>(this) {
+            @Override
+            public void processRequest(RP rp) throws Exception {
+                setValue(v);
+                rp.processResponse(null);
+            }
+        };
     }
 
     /**
@@ -94,11 +109,23 @@ public class StringJid
         return true;
     }
 
+    public Request<Boolean> makeStringReq(final String v) {
+        if (v == null)
+            throw new IllegalArgumentException("value may not be null");
+        return new RequestBase<Boolean>(this) {
+            @Override
+            public void processRequest(RP rp) throws Exception {
+                rp.processResponse(makeValue(v));
+            }
+        };
+    }
+
     /**
      * Returns the value held by this component.
      *
      * @return The value held by this component, or null.
      */
+    @Override
     public String getValue() {
         if (len == -1)
             return null;
@@ -109,6 +136,13 @@ public class StringJid
         value = readableBytes.readString(len);
         return value;
     }
+
+    public Request<String> getStringReq = new RequestBase<String>(this) {
+        @Override
+        public void processRequest(RP rp) throws Exception {
+            rp.processResponse(getValue());
+        }
+    };
 
     /**
      * Serialize the persistent data.
