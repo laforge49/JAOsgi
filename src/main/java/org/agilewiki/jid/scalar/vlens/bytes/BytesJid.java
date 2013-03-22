@@ -78,8 +78,8 @@ public class BytesJid
         change(c);
     }
 
-    public Request<Void, BytesJid> setBytes(final byte[] v) {
-        return new RequestBase<Void, BytesJid>(this) {
+    public Request<Void> setBytes(final byte[] v) {
+        return new RequestBase<Void>(this) {
             @Override
             public void processRequest(RP rp) throws Exception {
                 setValue(v);
@@ -118,8 +118,8 @@ public class BytesJid
         return true;
     }
 
-    public Request<Boolean, BytesJid> makeBytes(final byte[] v) {
-        return new RequestBase<Boolean, BytesJid>(this) {
+    public Request<Boolean> makeBytes(final byte[] v) {
+        return new RequestBase<Boolean>(this) {
             @Override
             public void processRequest(RP rp) throws Exception {
                 rp.processResponse(makeValue(v));
@@ -143,8 +143,8 @@ public class BytesJid
         return value;
     }
 
-    public Request<byte[], BytesJid> getBytes() {
-        return new RequestBase<byte[], BytesJid>(this) {
+    public Request<byte[]> getBytes() {
+        return new RequestBase<byte[]>(this) {
             @Override
             public void processRequest(RP rp) throws Exception {
                 rp.processResponse(getValue());

@@ -33,11 +33,10 @@ import org.agilewiki.jactor.apc.APCRequestSource;
 /**
  * A request.
  */
-abstract public class RequestBase<RESPONSE_TYPE, TARGET_TYPE
-        extends TargetActor> implements Request<RESPONSE_TYPE, TARGET_TYPE> {
-    protected TARGET_TYPE actor;
+abstract public class RequestBase<RESPONSE_TYPE> implements Request<RESPONSE_TYPE> {
+    protected Actor actor;
 
-    public RequestBase(TARGET_TYPE actor) {
+    public RequestBase(Actor actor) {
         this.actor = actor;
     }
 
