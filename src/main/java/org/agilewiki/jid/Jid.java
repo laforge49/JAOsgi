@@ -58,6 +58,9 @@ public class Jid extends AncestorBase implements _Jid {
      * The start of the serialized data.
      */
     protected int serializedOffset;
+    public Request<byte[]> getSerializedBytesReq;
+
+    public Request<Integer> getSerializedLengthReq;
 
     final public Jid createSubordinate(ActorFactory factory)
             throws Exception {
@@ -196,13 +199,6 @@ public class Jid extends AncestorBase implements _Jid {
         return 0;
     }
 
-    public final Request<Integer> getSerializedLengthReq = new RequestBase<Integer>(this) {
-        @Override
-        public void processRequest(RP rp) throws Exception {
-            rp.processResponse(getSerializedLength());
-        }
-    };
-
     /**
      * Returns true when the persistent data is already serialized.
      *
@@ -270,13 +266,6 @@ public class Jid extends AncestorBase implements _Jid {
         save(appendableBytes);
         return bs;
     }
-
-    public final Request<byte[]> getSerializedBytesReq = new RequestBase<byte[]>(this) {
-        @Override
-        public void processRequest(RP rp) throws Exception {
-            rp.processResponse(getSerializedBytes());
-        }
-    };
 
     /**
      * Load the serialized data into the JID.
@@ -409,6 +398,20 @@ public class Jid extends AncestorBase implements _Jid {
             throw new IllegalStateException("already initialized");
         super.initialize(mailbox, parent);
         this.factory = factory;
+
+        getSerializedLengthReq = new RequestBase<Integer>(this) {
+            @Override
+            public void processRequest(RP rp) throws Exception {
+                rp.processResponse(getSerializedLength());
+            }
+        };
+
+        getSerializedBytesReq = new RequestBase<byte[]>(this) {
+            @Override
+            public void processRequest(RP rp) throws Exception {
+                rp.processResponse(getSerializedBytes());
+            }
+        };
     }
 
     /**

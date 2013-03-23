@@ -60,6 +60,8 @@ public class BytesJid
         });
     }
 
+    public Request<byte[]> getBytesReq;
+
     /**
      * Assign a value.
      *
@@ -142,13 +144,6 @@ public class BytesJid
         return value;
     }
 
-    public final Request<byte[]> getBytesReq = new RequestBase<byte[]>(this) {
-        @Override
-        public void processRequest(RP rp) throws Exception {
-            rp.processResponse(getValue());
-        }
-    };
-
     public Object getObject() throws Exception {
         byte[] bytes = getValue();
         ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
@@ -169,5 +164,14 @@ public class BytesJid
         if (len == -1)
             return;
         appendableBytes.writeBytes(value);
+    }
+
+    public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
+        getBytesReq = new RequestBase<byte[]>(this) {
+            @Override
+            public void processRequest(RP rp) throws Exception {
+                rp.processResponse(getValue());
+            }
+        };
     }
 }

@@ -55,6 +55,8 @@ public class ActorJid
         });
     }
 
+    public Request<Void> clearReq;
+    public Request<Jid> getActorReq;
     /**
      * Clear the content.
      *
@@ -74,13 +76,6 @@ public class ActorJid
         change(-l);
         len = -1;
     }
-
-    public Request<Void> clearReq = new RequestBase<Void>(this) {
-        public void processRequest(RP rp) throws Exception {
-            clear();
-            rp.processResponse(null);
-        }
-    };
 
     /**
      * Assign a value unless one is already present.
@@ -252,13 +247,6 @@ public class ActorJid
         return (Jid) value;
     }
 
-    public final Request<Jid> getActorReq = new RequestBase<Jid>(this) {
-        @Override
-        public void processRequest(RP rp) throws Exception {
-            rp.processResponse(getValue());
-        }
-    };
-
     /**
      * Serialize the persistent data.
      *
@@ -298,5 +286,21 @@ public class ActorJid
             return v.resolvePathname(pathname.substring(2));
         }
         throw new IllegalArgumentException("pathname " + pathname);
+    }
+
+    public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
+        clearReq = new RequestBase<Void>(this) {
+            public void processRequest(RP rp) throws Exception {
+                clear();
+                rp.processResponse(null);
+            }
+        };
+
+        getActorReq = new RequestBase<Jid>(this) {
+            @Override
+            public void processRequest(RP rp) throws Exception {
+                rp.processResponse(getValue());
+            }
+        };
     }
 }

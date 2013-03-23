@@ -23,8 +23,10 @@
  */
 package org.agilewiki.jid.scalar.vlens.actor;
 
+import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.Request;
 import org.agilewiki.jactor.RequestBase;
+import org.agilewiki.jactor.ancestor.Ancestor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jid.*;
 import org.agilewiki.jid.factory.ActorFactory;
@@ -36,6 +38,9 @@ public class UnionJid extends ScalarJid<String, Jid> {
     protected ActorFactory[] unionFactories;
     protected int factoryIndex = -1;
     protected Jid value;
+
+    public Request<Void> clearReq;
+    public Request<Jid> getActorReq;
 
     protected ActorFactory[] getUnionFactories()
             throws Exception {
@@ -102,13 +107,6 @@ public class UnionJid extends ScalarJid<String, Jid> {
     public void clear() throws Exception {
         setValue(-1);
     }
-
-    public Request<Void> clearReq = new RequestBase<Void>(this) {
-        public void processRequest(RP rp) throws Exception {
-            clear();
-            rp.processResponse(null);
-        }
-    };
 
     @Override
     public void setValue(final String actorType)
@@ -261,13 +259,6 @@ public class UnionJid extends ScalarJid<String, Jid> {
         return value;
     }
 
-    public final Request<Jid> getActorReq = new RequestBase<Jid>(this) {
-        @Override
-        public void processRequest(RP rp) throws Exception {
-            rp.processResponse(getValue());
-        }
-    };
-
     /**
      * Serialize the persistent data.
      *
@@ -305,5 +296,21 @@ public class UnionJid extends ScalarJid<String, Jid> {
             return v.resolvePathname(pathname.substring(2));
         }
         throw new IllegalArgumentException("pathname " + pathname);
+    }
+
+    public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
+        clearReq = new RequestBase<Void>(this) {
+            public void processRequest(RP rp) throws Exception {
+                clear();
+                rp.processResponse(null);
+            }
+        };
+
+        getActorReq = new RequestBase<Jid>(this) {
+            @Override
+            public void processRequest(RP rp) throws Exception {
+                rp.processResponse(getValue());
+            }
+        };
     }
 }

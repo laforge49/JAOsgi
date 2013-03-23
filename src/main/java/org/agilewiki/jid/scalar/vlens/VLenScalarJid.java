@@ -23,12 +23,15 @@
  */
 package org.agilewiki.jid.scalar.vlens;
 
+import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.Request;
 import org.agilewiki.jactor.RequestBase;
+import org.agilewiki.jactor.ancestor.Ancestor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ReadableBytes;
 import org.agilewiki.jid.Util;
+import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.scalar.ScalarJid;
 
 /**
@@ -46,6 +49,8 @@ abstract public class VLenScalarJid<SET_TYPE, RESPONSE_TYPE>
      * The size of the serialized (exclusive of its length header).
      */
     protected int len = -1;
+
+    public Request<Void> clearReq;
 
     /**
      * Assign a value unless one is already present.
@@ -72,13 +77,6 @@ abstract public class VLenScalarJid<SET_TYPE, RESPONSE_TYPE>
         change(-l);
         len = -1;
     }
-
-    public Request<Void> clearReq = new RequestBase<Void>(this) {
-        public void processRequest(RP rp) throws Exception {
-            clear();
-            rp.processResponse(null);
-        }
-    };
 
     /**
      * Returns the number of bytes needed to serialize the persistent data.
@@ -149,5 +147,14 @@ abstract public class VLenScalarJid<SET_TYPE, RESPONSE_TYPE>
         value = null;
         if (len > -1)
             readableBytes.skip(len);
+    }
+
+    public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
+        clearReq = new RequestBase<Void>(this) {
+            public void processRequest(RP rp) throws Exception {
+                clear();
+                rp.processResponse(null);
+            }
+        };
     }
 }

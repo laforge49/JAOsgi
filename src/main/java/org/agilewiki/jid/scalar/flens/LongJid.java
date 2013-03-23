@@ -23,8 +23,10 @@
  */
 package org.agilewiki.jid.scalar.flens;
 
+import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.Request;
 import org.agilewiki.jactor.RequestBase;
+import org.agilewiki.jactor.ancestor.Ancestor;
 import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ReadableBytes;
@@ -50,6 +52,8 @@ public class LongJid
         });
     }
 
+    public Request<Long> getLongReq;
+
     /**
      * Create the value.
      *
@@ -72,13 +76,6 @@ public class LongJid
         value = readableBytes.readLong();
         return value;
     }
-
-    public final Request<Long> getLongReq = new RequestBase<Long>(this) {
-        @Override
-        public void processRequest(RP rp) throws Exception {
-            rp.processResponse(getValue());
-        }
-    };
 
     public Request<Void> setLongReq(final Long v) {
         return new RequestBase<Void>(this) {
@@ -108,5 +105,14 @@ public class LongJid
     @Override
     protected void serialize(AppendableBytes appendableBytes) {
         appendableBytes.writeLong(value);
+    }
+
+    public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
+        getLongReq = new RequestBase<Long>(this) {
+            @Override
+            public void processRequest(RP rp) throws Exception {
+                rp.processResponse(getValue());
+            }
+        };
     }
 }

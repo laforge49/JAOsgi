@@ -57,6 +57,8 @@ public class StringJid
         });
     }
 
+    public Request<String> getStringReq;
+
     /**
      * Assign a value.
      *
@@ -135,13 +137,6 @@ public class StringJid
         return value;
     }
 
-    public Request<String> getStringReq = new RequestBase<String>(this) {
-        @Override
-        public void processRequest(RP rp) throws Exception {
-            rp.processResponse(getValue());
-        }
-    };
-
     /**
      * Serialize the persistent data.
      *
@@ -164,5 +159,14 @@ public class StringJid
     @Override
     public int compareKeyTo(String o) {
         return getValue().compareTo(o);
+    }
+
+    public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
+        getStringReq = new RequestBase<String>(this) {
+            @Override
+            public void processRequest(RP rp) throws Exception {
+                rp.processResponse(getValue());
+            }
+        };
     }
 }
