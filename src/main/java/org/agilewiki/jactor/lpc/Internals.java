@@ -24,7 +24,7 @@
 package org.agilewiki.jactor.lpc;
 
 import org.agilewiki.jactor.old.Actor;
-import org.agilewiki.jactor.old.ExceptionHandler;
+import org.agilewiki.jactor.ExceptionHandler;
 import org.agilewiki.jactor.ResponseProcessor;
 
 /**

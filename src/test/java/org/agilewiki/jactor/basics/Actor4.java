@@ -1,7 +1,7 @@
 package org.agilewiki.jactor.basics;
 
 import org.agilewiki.jactor.ResponseProcessor;
-import org.agilewiki.jactor.old.ExceptionHandler;
+import org.agilewiki.jactor.ExceptionHandler;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 /**

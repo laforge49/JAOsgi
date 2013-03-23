@@ -2,7 +2,7 @@ package org.agilewiki.jactor.nbLock.exceptionsTest;
 
 import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.nbLock.JANBLock;
-import org.agilewiki.jactor.old.ExceptionHandler;
+import org.agilewiki.jactor.ExceptionHandler;
 import org.agilewiki.jactor.nbLock.Lock;
 import org.agilewiki.jactor.nbLock.Unlock;
 import org.agilewiki.jactor.pubsub.actorName.JActorName;

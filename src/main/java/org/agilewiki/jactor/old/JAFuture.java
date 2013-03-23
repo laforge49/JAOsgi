@@ -23,6 +23,7 @@
  */
 package org.agilewiki.jactor.old;
 
+import org.agilewiki.jactor.ExceptionHandler;
 import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.apc.JAMessage;
