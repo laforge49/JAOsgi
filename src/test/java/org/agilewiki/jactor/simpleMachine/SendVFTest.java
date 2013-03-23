@@ -6,7 +6,7 @@ import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jactor.old.JAFuture;
 import org.agilewiki.jactor.old.JAMailboxFactory;
 import org.agilewiki.jactor.old.MailboxFactory;
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 
 /**
  * Test code.
@@ -28,7 +28,7 @@ public class SendVFTest extends TestCase {
 
     class Doubler extends JLPCActor implements IntegerReceiver {
         @Override
-        public void processRequest(IntegerRequest request, RP rp)
+        public void processRequest(IntegerRequest request, ResponseProcessor rp)
                 throws Exception {
             int req = request.value;
             rp.processResponse(req * 2);
@@ -37,7 +37,7 @@ public class SendVFTest extends TestCase {
 
     class Send extends SimpleRequestReceiver {
         @Override
-        public void processRequest(SimpleRequest request, RP rp)
+        public void processRequest(SimpleRequest request, ResponseProcessor rp)
                 throws Exception {
             SMBuilder smb = new SMBuilder();
             Doubler d = new Doubler();

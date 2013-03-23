@@ -1,6 +1,6 @@
 package org.agilewiki.jactor.nbLock.exceptionsTest;
 
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 /**
@@ -10,10 +10,10 @@ public class Driver
         extends JLPCActor
         implements Does {
     @Override
-    public void does(final RP rp) throws Exception {
+    public void does(final ResponseProcessor rp) throws Exception {
         DoItEx req = new DoItEx();
 
-        final RP<Object> rpc = new RP<Object>() {
+        final ResponseProcessor<Object> rpc = new ResponseProcessor<Object>() {
             int count = 3;
 
             @Override

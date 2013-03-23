@@ -1,6 +1,7 @@
 package org.agilewiki.jactor.nbLock.exceptionsTest;
 
 import junit.framework.TestCase;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.lpc.TargetActor;
@@ -32,7 +33,7 @@ public class NBLockExceptionsTest extends TestCase {
  * Test code.
  */
 interface Does extends TargetActor {
-    public void does(RP rp) throws Exception;
+    public void does(ResponseProcessor rp) throws Exception;
 }
 
 /**
@@ -51,7 +52,7 @@ class DoItEx extends RequestBase<Object, Does> {
     }
 
     @Override
-    public void processRequest(JLPCActor targetActor, RP rp) throws Exception {
+    public void processRequest(JLPCActor targetActor, ResponseProcessor rp) throws Exception {
         ((Does) targetActor).does(rp);
     }
 }

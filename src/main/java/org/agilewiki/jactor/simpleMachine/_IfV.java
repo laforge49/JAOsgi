@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jactor.simpleMachine;
 
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 
 /**
  * <p>
@@ -79,7 +79,7 @@ final public class _IfV extends _Goto {
      * @throws Exception Any uncaught exceptions raised while performing the operation.
      */
     @Override
-    public void call(SimpleMachine stateMachine, RP rp) throws Exception {
+    public void call(SimpleMachine stateMachine, ResponseProcessor rp) throws Exception {
         if (condition) super.call(stateMachine, rp);
         else rp.processResponse(null);
     }

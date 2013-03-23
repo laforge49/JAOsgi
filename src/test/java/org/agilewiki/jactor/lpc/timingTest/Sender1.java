@@ -1,10 +1,8 @@
 package org.agilewiki.jactor.lpc.timingTest;
 
 import org.agilewiki.jactor.*;
-import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.JAIterator;
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 
 /**
  * Test code.
@@ -21,13 +19,13 @@ public class Sender1 extends SimpleRequestReceiver implements RealRequestReceive
     }
 
     @Override
-    public void processRequest(final SimpleRequest unwrappedRequest, final RP rd1)
+    public void processRequest(final SimpleRequest unwrappedRequest, final ResponseProcessor rd1)
             throws Exception {
         (new JAIterator() {
             int i;
 
             @Override
-            public void process(final RP rd2) throws Exception {
+            public void process(final ResponseProcessor rd2) throws Exception {
                 if (i > count) rd2.processResponse(this);
                 else {
                     i += 1;
@@ -38,13 +36,13 @@ public class Sender1 extends SimpleRequestReceiver implements RealRequestReceive
     }
 
     @Override
-    public void processRequest(final RealRequest unwrappedRequest, final RP rd1)
+    public void processRequest(final RealRequest unwrappedRequest, final ResponseProcessor rd1)
             throws Exception {
         (new JAIterator() {
             int i;
 
             @Override
-            public void process(final RP rd2) throws Exception {
+            public void process(final ResponseProcessor rd2) throws Exception {
                 if (i > count) rd2.processResponse(this);
                 else {
                     i += 1;

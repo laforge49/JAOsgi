@@ -25,7 +25,7 @@ package org.agilewiki.jid.jaosgi;
 
 import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 public class Stop extends RequestBase<Void, JABundleContext> {
@@ -41,7 +41,7 @@ public class Stop extends RequestBase<Void, JABundleContext> {
     }
 
     @Override
-    public void processRequest(JLPCActor targetActor, RP rp) throws Exception {
+    public void processRequest(JLPCActor targetActor, ResponseProcessor rp) throws Exception {
         ((JABundleContext) targetActor).stop(options);
         rp.processResponse(null);
     }

@@ -23,12 +23,12 @@
  */
 package org.agilewiki.jactor.simpleMachine;
 
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 
 /**
  * Supports processing sensitive to how a response is returned.
  */
-abstract public class ExtendedResponseProcessor<RESPONSE_TYPE> extends RP<RESPONSE_TYPE> {
+abstract public class ExtendedResponseProcessor<RESPONSE_TYPE> extends ResponseProcessor<RESPONSE_TYPE> {
     /**
      * Set true when a response is received synchronously.
      */

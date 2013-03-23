@@ -24,8 +24,8 @@
 package org.agilewiki.jid.collection.vlenc.map;
 
 import org.agilewiki.jactor.RequestBase;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.old.Actor;
-import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jid.Jid;
 
@@ -68,7 +68,7 @@ public class KMake<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends Jid
     }
 
     @Override
-    public void processRequest(JLPCActor targetActor, RP rp) throws Exception {
+    public void processRequest(JLPCActor targetActor, ResponseProcessor rp) throws Exception {
         rp.processResponse(((JAMap<KEY_TYPE, VALUE_TYPE>) targetActor).kMake(key));
     }
 }

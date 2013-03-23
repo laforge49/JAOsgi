@@ -2,11 +2,10 @@ package org.agilewiki.jactor.simpleMachine;
 
 import junit.framework.TestCase;
 import org.agilewiki.jactor.*;
-import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jactor.old.JAFuture;
 import org.agilewiki.jactor.old.JAMailboxFactory;
 import org.agilewiki.jactor.old.MailboxFactory;
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 
 /**
  * Test code.
@@ -28,7 +27,7 @@ public class IfVTest extends TestCase {
 
     class IfV extends SimpleRequestReceiver {
         @Override
-        public void processRequest(SimpleRequest unwrappedRequest, RP rp) throws Exception {
+        public void processRequest(SimpleRequest unwrappedRequest, ResponseProcessor rp) throws Exception {
             SMBuilder smb = new SMBuilder();
             boolean condition = true;
             smb._if(condition, "skip");

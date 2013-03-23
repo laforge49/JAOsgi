@@ -24,8 +24,8 @@
 package org.agilewiki.jactor.pubsub.subscriber;
 
 import org.agilewiki.jactor.RequestBase;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.old.Actor;
-import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jactor.pubsub.publisher.Publisher;
 
@@ -58,7 +58,7 @@ final public class Subscribed extends RequestBase<Object, Subscriber> {
     }
 
     @Override
-    public void processRequest(JLPCActor targetActor, RP rp) throws Exception {
+    public void processRequest(JLPCActor targetActor, ResponseProcessor rp) throws Exception {
         ((Subscriber) targetActor).subscribed(publisher);
         rp.processResponse(null);
     }

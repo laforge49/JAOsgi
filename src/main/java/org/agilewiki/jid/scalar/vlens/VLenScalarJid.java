@@ -27,7 +27,7 @@ import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.Request;
 import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.ancestor.Ancestor;
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ReadableBytes;
 import org.agilewiki.jid.Util;
@@ -151,7 +151,7 @@ abstract public class VLenScalarJid<SET_TYPE, RESPONSE_TYPE>
 
     public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
         clearReq = new RequestBase<Void>(this) {
-            public void processRequest(RP rp) throws Exception {
+            public void processRequest(ResponseProcessor rp) throws Exception {
                 clear();
                 rp.processResponse(null);
             }

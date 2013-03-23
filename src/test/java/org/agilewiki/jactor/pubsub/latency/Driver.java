@@ -1,6 +1,6 @@
 package org.agilewiki.jactor.pubsub.latency;
 
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jactor.pubsub.publisher.JAPublisher;
 import org.agilewiki.jactor.pubsub.publisher.Publish;
@@ -17,7 +17,7 @@ public class Driver extends JLPCActor implements Src {
     private int count;
     private Publish publish = new Publish(Ping.req);
 
-    public void sender(final RP done, ExtendedResponseProcessor<Integer> erp) throws Exception {
+    public void sender(final ResponseProcessor done, ExtendedResponseProcessor<Integer> erp) throws Exception {
         while (true) {
             if (count == r) {
                 done.processResponse(null);
@@ -35,7 +35,7 @@ public class Driver extends JLPCActor implements Src {
     }
 
     @Override
-    public void go(final RP rp) throws Exception {
+    public void go(final ResponseProcessor rp) throws Exception {
         count = 0;
         int i = 0;
         while (i < s) {

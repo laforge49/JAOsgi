@@ -1,6 +1,6 @@
 package org.agilewiki.jactor.advanced.many;
 
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 import static junit.framework.Assert.assertEquals;
@@ -8,9 +8,9 @@ import static junit.framework.Assert.assertEquals;
 public class AllocateDriver extends JLPCActor {
     public Doer doer;
 
-    public void startAllocate(final RP rp)
+    public void startAllocate(final ResponseProcessor rp)
             throws Exception {
-        Allocate.req.send(this, doer, new RP<Object>() {
+        Allocate.req.send(this, doer, new ResponseProcessor<Object>() {
             @Override
             public void processResponse(Object response) throws Exception {
                 assertEquals(

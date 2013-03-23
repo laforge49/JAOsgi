@@ -24,6 +24,7 @@
 package org.agilewiki.jactor.old;
 
 import org.agilewiki.jactor.Mailbox;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.apc.JAMessage;
 import org.agilewiki.jactor.apc.JARequest;
 import org.agilewiki.jactor.apc.JAResponse;
@@ -117,7 +118,7 @@ final public class JAFuture {
     public Object send(final Actor actor, final RequestBase request)
             throws Exception {
         done = new Semaphore(0);
-        actor.acceptRequest(requestSource, request, new RP() {
+        actor.acceptRequest(requestSource, request, new ResponseProcessor() {
             @Override
             public void processResponse(final Object response) throws Exception {
                 result = response;

@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jactor.pubsub.subscriber;
 
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.pubsub.actorName.JActorName;
 import org.agilewiki.jactor.pubsub.publisher.Publisher;
 
@@ -49,7 +49,7 @@ public class JASubscriber
      * @param rp        The response processor.
      */
     @Override
-    public void unsubscribed(Publisher publisher, RP rp)
+    public void unsubscribed(Publisher publisher, ResponseProcessor rp)
             throws Exception {
         rp.processResponse(null);
     }

@@ -27,7 +27,7 @@ import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.Request;
 import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.ancestor.Ancestor;
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ReadableBytes;
 import org.agilewiki.jid.Util;
@@ -80,7 +80,7 @@ public class LongJid
     public Request<Void> setLongReq(final Long v) {
         return new RequestBase<Void>(this) {
             @Override
-            public void processRequest(RP rp) throws Exception {
+            public void processRequest(ResponseProcessor rp) throws Exception {
                 setValue(getValue());
                 rp.processResponse(null);
             }
@@ -110,7 +110,7 @@ public class LongJid
     public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
         getLongReq = new RequestBase<Long>(this) {
             @Override
-            public void processRequest(RP rp) throws Exception {
+            public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(getValue());
             }
         };

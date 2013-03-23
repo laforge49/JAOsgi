@@ -1,6 +1,6 @@
 package org.agilewiki.jactor.advanced.many;
 
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 import static junit.framework.Assert.assertEquals;
@@ -8,9 +8,9 @@ import static junit.framework.Assert.assertEquals;
 public class ReleaseDriver extends JLPCActor {
     public Doer doer;
 
-    public void startRelease(final RP rp)
+    public void startRelease(final ResponseProcessor rp)
             throws Exception {
-        Release.req.send(this, doer, new RP<Object>() {
+        Release.req.send(this, doer, new ResponseProcessor<Object>() {
             @Override
             public void processResponse(Object response) throws Exception {
                 assertEquals(

@@ -23,8 +23,8 @@
  */
 package org.agilewiki.jid.collection.vlenc.map;
 
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.old.Actor;
-import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jactor.RequestBase;
 
@@ -64,7 +64,7 @@ public class KSetBytes<KEY_TYPE extends Comparable<KEY_TYPE>> extends RequestBas
     }
 
     @Override
-    public void processRequest(JLPCActor targetActor, RP rp) throws Exception {
+    public void processRequest(JLPCActor targetActor, ResponseProcessor rp) throws Exception {
         ((JAMap) targetActor).kSetBytes(key, bytes);
         rp.processResponse(null);
     }

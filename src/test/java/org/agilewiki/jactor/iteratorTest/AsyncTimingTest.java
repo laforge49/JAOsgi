@@ -1,8 +1,8 @@
 package org.agilewiki.jactor.iteratorTest;
 
 import junit.framework.TestCase;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.old.JAIterator;
-import org.agilewiki.jactor.old.RP;
 
 /**
  * Test code.
@@ -17,7 +17,7 @@ public class AsyncTimingTest extends TestCase {
 
         final long t0 = System.currentTimeMillis();
 
-        final RP done = new RP() {
+        final ResponseProcessor done = new ResponseProcessor() {
             @Override
             public void processResponse(Object unwrappedResponse) throws Exception {
                 final long t1 = System.currentTimeMillis();
@@ -29,10 +29,10 @@ public class AsyncTimingTest extends TestCase {
 
         class It extends JAIterator {
             long i;
-            RP rp;
+            ResponseProcessor rp;
 
             @Override
-            protected void process(RP rp) throws Exception {
+            protected void process(ResponseProcessor rp) throws Exception {
                 this.rp = rp;
             }
         }

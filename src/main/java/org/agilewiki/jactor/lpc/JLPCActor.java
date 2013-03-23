@@ -24,6 +24,7 @@
 package org.agilewiki.jactor.lpc;
 
 import org.agilewiki.jactor.Mailbox;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.apc.*;
 import org.agilewiki.jactor.bufferedEvents.BufferedEventsDestination;
@@ -144,7 +145,7 @@ abstract public class JLPCActor implements TargetActor, RequestProcessor,
      */
     @Override
     final public void acceptRequest(final APCRequestSource apcRequestSource,
-            final RequestBase request, final RP rp) throws Exception {
+            final RequestBase request, final ResponseProcessor rp) throws Exception {
         final RequestSource rs = (RequestSource) apcRequestSource;
         final Mailbox sourceMailbox = rs.getMailbox();
         if (sourceMailbox == mailbox) {
@@ -159,7 +160,7 @@ abstract public class JLPCActor implements TargetActor, RequestProcessor,
     }
 
     private void acceptOtherRequest(final Mailbox sourceMailbox,
-            final RequestSource rs, final RequestBase request, final RP rp)
+            final RequestSource rs, final RequestBase request, final ResponseProcessor rp)
             throws Exception {
         final EventQueue<List<JAMessage>> eventQueue = mailbox
                 .getEventQueue();
@@ -183,14 +184,14 @@ abstract public class JLPCActor implements TargetActor, RequestProcessor,
     }
 
     private void asyncSend(final RequestSource rs, final RequestBase request,
-            final RP rp) throws Exception {
+            final ResponseProcessor rp) throws Exception {
         final AsyncRequest asyncRequest = new AsyncRequest(rs, this, request,
                 rp, mailbox);
         rs.send(mailbox, asyncRequest);
     }
 
     private void syncSend(final RequestSource rs, final RequestBase request,
-            final RP rp) throws Exception {
+            final ResponseProcessor rp) throws Exception {
         final SyncRequest syncRequest = new SyncRequest(rs, JLPCActor.this,
                 request, rp, mailbox);
         mailbox.setCurrentRequest(syncRequest);
@@ -315,7 +316,7 @@ abstract public class JLPCActor implements TargetActor, RequestProcessor,
      * @throws Exception Any uncaught exceptions raised while processing the request.
      */
     final protected void send(final Actor actor, final RequestBase request,
-            final RP rp) throws Exception {
+            final ResponseProcessor rp) throws Exception {
         actor.acceptRequest(this, request, rp);
     }
 
@@ -339,7 +340,7 @@ abstract public class JLPCActor implements TargetActor, RequestProcessor,
     final public class SMBuilder extends _SMBuilder {
         @Override
         final public void send(final Actor actor, final RequestBase request,
-                final RP rp) throws Exception {
+                final ResponseProcessor rp) throws Exception {
             JLPCActor.this.send(actor, request, rp);
         }
     }
@@ -367,7 +368,7 @@ final class SyncRequest extends JARequest {
 
     public SyncRequest(final RequestSource requestSource,
             final JLPCActor destinationActor, final RequestBase unwrappedRequest,
-            final RP rp, final Mailbox mailbox) {
+            final ResponseProcessor rp, final Mailbox mailbox) {
         super(requestSource, destinationActor, unwrappedRequest, rp, mailbox);
     }
 
@@ -423,7 +424,7 @@ final class SyncRequest extends JARequest {
 final class AsyncRequest extends JARequest {
     public AsyncRequest(final RequestSource requestSource,
             final JLPCActor destinationActor, final RequestBase unwrappedRequest,
-            final RP rp, final Mailbox mailbox) {
+            final ResponseProcessor rp, final Mailbox mailbox) {
         super(requestSource, destinationActor, unwrappedRequest, rp, mailbox);
     }
 

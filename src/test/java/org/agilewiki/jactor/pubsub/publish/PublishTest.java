@@ -2,6 +2,7 @@ package org.agilewiki.jactor.pubsub.publish;
 
 import junit.framework.TestCase;
 import org.agilewiki.jactor.Mailbox;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.*;
@@ -64,7 +65,7 @@ class Req extends RequestBase<Object, Sub> {
     }
 
     @Override
-    public void processRequest(JLPCActor targetActor, RP rp) throws Exception {
+    public void processRequest(JLPCActor targetActor, ResponseProcessor rp) throws Exception {
         ((Sub) targetActor).req();
         rp.processResponse(null);
     }

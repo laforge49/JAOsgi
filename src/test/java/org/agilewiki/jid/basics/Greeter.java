@@ -1,6 +1,6 @@
 package org.agilewiki.jid.basics;
 
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
@@ -31,7 +31,7 @@ public class Greeter extends StringJid implements Main {
     public String greeting;
 
     @Override
-    public void processRequest(Proc request, RP rp) throws Exception {
+    public void processRequest(Proc request, ResponseProcessor rp) throws Exception {
         if (greeting == null)
             throw new IllegalStateException("greeting is null");
         System.out.println(greeting + " " + getValue());

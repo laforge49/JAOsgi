@@ -1,6 +1,6 @@
 package org.agilewiki.jactor.lpc.serverTest;
 
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 import java.util.Random;
@@ -9,7 +9,7 @@ import java.util.Random;
  * Test code.
  */
 public class Worker extends JLPCActor {
-    protected void processRequest(WorkRequest wr, RP rp) throws Exception {
+    protected void processRequest(WorkRequest wr, ResponseProcessor rp) throws Exception {
         System.out.println("start request " + wr.id);
         //sleep some times,simulate db read write
         int delay = 10 * new Random().nextInt(10);

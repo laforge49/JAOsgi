@@ -2,7 +2,7 @@ package org.agilewiki.jid.basics;
 
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.Mailbox;
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jid.collection.vlenc.map.MapEntryFactory;
 import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
 import org.agilewiki.jid.factory.ActorFactory;
@@ -40,7 +40,7 @@ public class Blob extends StringMapJid implements Main {
     }
 
     @Override
-    public void processRequest(Proc request, RP rp) throws Exception {
+    public void processRequest(Proc request, ResponseProcessor rp) throws Exception {
         initializeList();
         ActorJid aj = (ActorJid) kGet("fun");
         Actor a = aj.getValue();

@@ -24,9 +24,9 @@
 package org.agilewiki.jactor.apc;
 
 import org.agilewiki.jactor.RequestBase;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.old.ExceptionHandler;
 import org.agilewiki.jactor.Mailbox;
-import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.bufferedEvents.BufferedEventsQueue;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jactor.lpc.RequestSource;
@@ -34,7 +34,7 @@ import org.agilewiki.jactor.lpc.RequestSource;
 /**
  * Requests sent to a JAPCMailbox are wrapped by an JARequest.
  */
-public abstract class JARequest extends RP implements JAMessage {
+public abstract class JARequest extends ResponseProcessor implements JAMessage {
 
     public Mailbox mailbox;
 
@@ -67,7 +67,7 @@ public abstract class JARequest extends RP implements JAMessage {
 
     public ExceptionHandler sourceExceptionHandler;
 
-    public RP rp;
+    public ResponseProcessor rp;
 
     protected final void reset() {
         mailbox = null;
@@ -83,7 +83,7 @@ public abstract class JARequest extends RP implements JAMessage {
     public JARequest(RequestSource requestSource,
                      JLPCActor destinationActor,
                      RequestBase unwrappedRequest,
-                     RP rp,
+                     ResponseProcessor rp,
                      Mailbox mailbox) {
         this.mailbox = mailbox;
         this.requestSource = requestSource;

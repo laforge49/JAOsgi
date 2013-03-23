@@ -1,14 +1,14 @@
 package org.agilewiki.jactor.advanced.many;
 
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 import static junit.framework.Assert.assertEquals;
 
 public class Doer extends JLPCActor {
-    RP pending;
+    ResponseProcessor pending;
 
-    public void release(RP rp)
+    public void release(ResponseProcessor rp)
             throws Exception {
         this.pending = rp;
         assertEquals(

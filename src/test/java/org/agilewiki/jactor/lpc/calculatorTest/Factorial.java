@@ -1,8 +1,8 @@
 package org.agilewiki.jactor.lpc.calculatorTest;
 
 import org.agilewiki.jactor.RequestBase;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.old.Actor;
-import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 /**
@@ -20,7 +20,7 @@ final public class Factorial extends RequestBase<Integer, FactorialCalculation> 
     private int value;
 
     @Override
-    public void processRequest(JLPCActor targetActor, RP rp) throws Exception {
+    public void processRequest(JLPCActor targetActor, ResponseProcessor rp) throws Exception {
         FactorialCalculation fc = (FactorialCalculation) targetActor;
         fc.processRequest(this, rp);
     }

@@ -1,8 +1,8 @@
 package org.agilewiki.jactor.lpc.exceptionsTest;
 
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.ExceptionHandler;
-import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 /**
@@ -12,7 +12,7 @@ public class Driver extends JLPCActor implements GoReceiver {
     public Actor doer;
 
     @Override
-    public void processRequest(final Go1 request, final RP rp) throws Exception {
+    public void processRequest(final Go1 request, final ResponseProcessor rp) throws Exception {
         setExceptionHandler(new ExceptionHandler() {
             @Override
             public void process(final Throwable exception) throws Exception {
@@ -24,7 +24,7 @@ public class Driver extends JLPCActor implements GoReceiver {
     }
 
     @Override
-    public void processRequest(final Go2 request, final RP rp) throws Exception {
+    public void processRequest(final Go2 request, final ResponseProcessor rp) throws Exception {
         setExceptionHandler(new ExceptionHandler() {
             @Override
             public void process(final Throwable exception) throws Exception {
@@ -32,7 +32,7 @@ public class Driver extends JLPCActor implements GoReceiver {
                 rp.processResponse(null);
             }
         });
-        send(doer, request, new RP() {
+        send(doer, request, new ResponseProcessor() {
             @Override
             public void processResponse(final Object unwrappedResponse)
                     throws Exception {

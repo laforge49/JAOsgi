@@ -1,6 +1,6 @@
 package org.agilewiki.jid.basics;
 
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.jid.factory.FactoryLocator;
 
@@ -10,7 +10,7 @@ public class HelloWorld extends Jid implements Main {
     }
 
     @Override
-    public void processRequest(Proc request, RP rp) throws Exception {
+    public void processRequest(Proc request, ResponseProcessor rp) throws Exception {
         System.out.println("Hello world!");
         rp.processResponse(null);
     }

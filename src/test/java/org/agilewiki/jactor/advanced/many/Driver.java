@@ -1,16 +1,16 @@
 package org.agilewiki.jactor.advanced.many;
 
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.old.MailboxFactory;
-import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 import static junit.framework.Assert.assertEquals;
 
 public class Driver extends JLPCActor {
     int count;
-    RP _rp;
+    ResponseProcessor _rp;
 
-    public void start(final RP rp)
+    public void start(final ResponseProcessor rp)
             throws Exception {
         assertEquals(
                 Start.req,
@@ -22,7 +22,7 @@ public class Driver extends JLPCActor {
 
     void loop()
             throws Exception {
-        Trial.req.send(Driver.this, Driver.this, new RP<Object>() {
+        Trial.req.send(Driver.this, Driver.this, new ResponseProcessor<Object>() {
             @Override
             public void processResponse(Object response) throws Exception {
                 assertEquals(
@@ -43,7 +43,7 @@ public class Driver extends JLPCActor {
         });
     }
 
-    public void trial(final RP rp)
+    public void trial(final ResponseProcessor rp)
             throws Exception {
         MailboxFactory mailboxFactory = getMailboxFactory();
 
@@ -66,7 +66,7 @@ public class Driver extends JLPCActor {
         }
         allocateDriver.doer = doer;
 
-        StartRelease.req.send(this, releaseDriver, new RP<Object>() {
+        StartRelease.req.send(this, releaseDriver, new ResponseProcessor<Object>() {
             @Override
             public void processResponse(Object response) throws Exception {
                 assertEquals(
@@ -81,7 +81,7 @@ public class Driver extends JLPCActor {
             }
         });
 
-        StartAllocate.req.send(this, allocateDriver, new RP<Object>() {
+        StartAllocate.req.send(this, allocateDriver, new ResponseProcessor<Object>() {
             @Override
             public void processResponse(Object response) throws Exception {
             }

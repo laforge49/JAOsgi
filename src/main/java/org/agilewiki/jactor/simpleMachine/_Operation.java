@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jactor.simpleMachine;
 
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 
 /**
  * An operation performed by a state machine.
@@ -37,5 +37,5 @@ public interface _Operation {
      * @param rp           The response processor.
      * @throws Exception Any uncaught exceptions raised while performing the operation.
      */
-    abstract public void call(SimpleMachine stateMachine, RP rp) throws Exception;
+    abstract public void call(SimpleMachine stateMachine, ResponseProcessor rp) throws Exception;
 }

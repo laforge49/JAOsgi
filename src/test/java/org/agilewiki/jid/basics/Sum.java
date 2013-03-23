@@ -1,6 +1,6 @@
 package org.agilewiki.jid.basics;
 
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jid._Jid;
 import org.agilewiki.jid.collection.vlenc.ListJid;
 import org.agilewiki.jid.collection.vlenc.ListJidFactory;
@@ -30,7 +30,7 @@ public class Sum extends ListJid implements Main {
     }
 
     @Override
-    public void processRequest(Proc request, RP rp) throws Exception {
+    public void processRequest(Proc request, ResponseProcessor rp) throws Exception {
         initializeList();
         int sum = 0;
         Iterator<_Jid> it = list.iterator();

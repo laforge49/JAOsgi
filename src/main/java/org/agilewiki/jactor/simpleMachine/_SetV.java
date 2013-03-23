@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jactor.simpleMachine;
 
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 
 /**
  * <p>
@@ -78,7 +78,7 @@ public class _SetV implements _Operation {
      * @throws Exception Any uncaught exceptions raised while performing the operation.
      */
     @Override
-    public void call(SimpleMachine stateMachine, RP rp) throws Exception {
+    public void call(SimpleMachine stateMachine, ResponseProcessor rp) throws Exception {
         if (resultName != null) stateMachine.put(resultName, value);
         rp.processResponse(null);
     }

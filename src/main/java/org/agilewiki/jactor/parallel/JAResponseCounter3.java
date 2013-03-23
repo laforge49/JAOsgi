@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jactor.parallel;
 
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 
 import java.util.List;
 
@@ -31,7 +31,7 @@ import java.util.List;
  * Counts the number of responses received
  * and responds with the count of requests sent when the iteration is finished.
  */
-public class JAResponseCounter3 extends RP {
+public class JAResponseCounter3 extends ResponseProcessor {
     /**
      * The number of requests sent.
      */
@@ -50,7 +50,7 @@ public class JAResponseCounter3 extends RP {
     /**
      * The mechanism for responding when finished.
      */
-    private RP xrp;
+    private ResponseProcessor xrp;
 
     private List<JAResponseCounter3> pool;
 
@@ -62,9 +62,9 @@ public class JAResponseCounter3 extends RP {
     /**
      * Initialize.
      *
-     * @param xrp The external RP
+     * @param xrp The external ResponseProcessor
      */
-    public void setup(RP xrp) {
+    public void setup(ResponseProcessor xrp) {
         sent = 0;
         received = 0;
         complete = false;

@@ -24,7 +24,7 @@
 package org.agilewiki.jactor.pubsub.publisher;
 
 import org.agilewiki.jactor.RequestBase;
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.parallel.JAResponseCounter3;
 import org.agilewiki.jactor.pubsub.subscriber.JASubscriber;
 import org.agilewiki.jactor.pubsub.subscriber.Subscriber;
@@ -98,7 +98,7 @@ public class JAPublisher
      * @param publishRequest The request to be published.
      * @param rp             The response processor.
      */
-    public void publish(RequestBase publishRequest, RP rp)
+    public void publish(RequestBase publishRequest, ResponseProcessor rp)
             throws Exception {
         JAResponseCounter3 rc;
         int ps = pool.size();
@@ -128,7 +128,7 @@ public class JAPublisher
      * @param rp        The response processor.
      */
     @Override
-    public void unsubscribed(Publisher publisher, RP rp)
+    public void unsubscribed(Publisher publisher, ResponseProcessor rp)
             throws Exception {
         Unsubscribed unsubscribed = new Unsubscribed(this);
         publish(unsubscribed, rp);

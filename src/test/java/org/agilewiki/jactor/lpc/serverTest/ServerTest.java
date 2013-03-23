@@ -36,8 +36,8 @@ class Driver extends SimpleRequestReceiver {
     public int times;
 
     @Override
-    public void processRequest(SimpleRequest request, final RP rp) throws Exception {
-        RP counter = new RP() {
+    public void processRequest(SimpleRequest request, final ResponseProcessor rp) throws Exception {
+        ResponseProcessor counter = new ResponseProcessor() {
             int rem = times;
 
             @Override

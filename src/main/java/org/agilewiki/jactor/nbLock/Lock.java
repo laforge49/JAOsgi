@@ -25,7 +25,7 @@ package org.agilewiki.jactor.nbLock;
 
 import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 /**
@@ -45,7 +45,7 @@ final public class Lock extends RequestBase<Object, JANBLock> {
     }
 
     @Override
-    public void processRequest(JLPCActor targetActor, RP rp) throws Exception {
+    public void processRequest(JLPCActor targetActor, ResponseProcessor rp) throws Exception {
         ((JANBLock) targetActor).lock(rp);
     }
 }

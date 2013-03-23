@@ -1,5 +1,6 @@
 package org.agilewiki.jactor.old;
 
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.simpleMachine.ExtendedResponseProcessor;
 
 /**
@@ -11,7 +12,7 @@ import org.agilewiki.jactor.simpleMachine.ExtendedResponseProcessor;
  * </p>
  * <pre>
  *        final int max = 5;
- *        RP printResult = new RP() {
+ *        ResponseProcessor printResult = new ResponseProcessor() {
  *            public void process(Object rsp) {
  *                System.out.println(rsp);
  *            }
@@ -21,7 +22,7 @@ import org.agilewiki.jactor.simpleMachine.ExtendedResponseProcessor;
  *            int i;
  *            int r = 1;
  *
- *            public void process(RP rp) throws Exception {
+ *            public void process(ResponseProcessor rp) throws Exception {
  *                if (i >= max) rp.process(new Integer(r));
  *                else {
  *                    i += 1;
@@ -43,10 +44,10 @@ import org.agilewiki.jactor.simpleMachine.ExtendedResponseProcessor;
  *         super(mailbox);
  *     }
  *
- *     protected void processRequest(Object req, final RP rp)
+ *     protected void processRequest(Object req, final ResponseProcessor rp)
  *             throws Exception {
  *         final int max = 5;
- *         RP printResult = new RP() {
+ *         ResponseProcessor printResult = new ResponseProcessor() {
  *             public void process(Object rsp) throws Exception {
  *                 System.out.println(rsp);
  *                 rp.process(null);
@@ -57,14 +58,14 @@ import org.agilewiki.jactor.simpleMachine.ExtendedResponseProcessor;
  *             int r = 1;
  *             Multiplier mp = new Multiplier(getMailbox());
  *
- *             protected void process(RP rp) throws Exception {
+ *             protected void process(ResponseProcessor rp) throws Exception {
  *                 if (i >= max) rp.process(new Integer(r));
  *                 else {
  *                     i += 1;
  *                     Multiply m = new Multiply();
  *                     m.a = r;
  *                     m.b = i;
- *                     send(mp, m, new RP() {
+ *                     send(mp, m, new ResponseProcessor() {
  *                         public void process(Object rsp) throws Exception {
  *                             r = ((Integer) rsp).intValue();
  *                         }
@@ -84,7 +85,7 @@ abstract public class JAIterator {
      * @param responseProcessor The response processor.
      * @throws Exception Any uncaught exceptions raised by the process method.
      */
-    public void iterate(final RP responseProcessor) throws Exception {
+    public void iterate(final ResponseProcessor responseProcessor) throws Exception {
         ExtendedResponseProcessor erp = new ExtendedResponseProcessor() {
             @Override
             public void processResponse(Object response) throws Exception {
@@ -114,5 +115,5 @@ abstract public class JAIterator {
      * @param responseProcessor Processes the response.
      * @throws Exception Any uncaught exceptions raised by the process method.
      */
-    abstract protected void process(RP responseProcessor) throws Exception;
+    abstract protected void process(ResponseProcessor responseProcessor) throws Exception;
 }

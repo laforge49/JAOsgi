@@ -23,13 +23,13 @@
  */
 package org.agilewiki.jactor.parallel;
 
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 
 /**
  * Counts the number of responses received
  * and responds with the count of requests sent when the iteration is finished.
  */
-public class JAResponseCounter2 extends RP {
+public class JAResponseCounter2 extends ResponseProcessor {
     /**
      * The number of requests sent.
      */
@@ -48,14 +48,14 @@ public class JAResponseCounter2 extends RP {
     /**
      * The mechanism for responding when finished.
      */
-    private RP xrp;
+    private ResponseProcessor xrp;
 
     /**
      * Create a PubSubResponseProcessor.
      *
      * @param xrp The external response processor.
      */
-    public JAResponseCounter2(RP xrp) {
+    public JAResponseCounter2(ResponseProcessor xrp) {
         this.xrp = xrp;
     }
 

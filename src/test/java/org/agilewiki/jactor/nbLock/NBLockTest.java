@@ -1,6 +1,7 @@
 package org.agilewiki.jactor.nbLock;
 
 import junit.framework.TestCase;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.*;
@@ -40,7 +41,7 @@ class DoIt extends RequestBase<Object, Driver> {
     }
 
     @Override
-    public void processRequest(JLPCActor targetActor, RP rp) throws Exception {
+    public void processRequest(JLPCActor targetActor, ResponseProcessor rp) throws Exception {
         ((Driver) targetActor).doit(rp);
     }
 }

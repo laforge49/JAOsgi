@@ -35,7 +35,7 @@ public class ShATest extends TestCase {
         }
 
         @Override
-        public void processRequest(SimpleRequest request, RP rp) throws Exception {
+        public void processRequest(SimpleRequest request, ResponseProcessor rp) throws Exception {
             System.err.println("S got request");
             send(n, request, rp);
         }
@@ -43,7 +43,7 @@ public class ShATest extends TestCase {
 
     class A extends SimpleRequestReceiver {
         @Override
-        public void processRequest(SimpleRequest request, RP rp) throws Exception {
+        public void processRequest(SimpleRequest request, ResponseProcessor rp) throws Exception {
             System.err.println("A got request");
             rp.processResponse(request);
         }

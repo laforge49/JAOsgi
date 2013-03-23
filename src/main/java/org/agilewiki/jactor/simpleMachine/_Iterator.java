@@ -24,7 +24,7 @@
 package org.agilewiki.jactor.simpleMachine;
 
 import org.agilewiki.jactor.old.JAIterator;
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 
 /**
  * <p>
@@ -40,7 +40,7 @@ import org.agilewiki.jactor.old.RP;
  * max = ((Integer) sm.request).intValue();
  * }
  * <p/>
- * protected void process(RP rp2) throws Exception {
+ * protected void process(ResponseProcessor rp2) throws Exception {
  * if (i >= max) rp2.process(new Integer(r));
  * else {
  * i += 1;
@@ -93,9 +93,9 @@ abstract public class _Iterator extends JAIterator implements _Operation {
      * @throws Exception Any uncaught exceptions raised while performing the operation.
      */
     @Override
-    final public void call(final SimpleMachine stateMachine, final RP rp) throws Exception {
+    final public void call(final SimpleMachine stateMachine, final ResponseProcessor rp) throws Exception {
         init(stateMachine);
-        iterate(new RP() {
+        iterate(new ResponseProcessor() {
             @Override
             public void processResponse(Object response) throws Exception {
                 if (resultName != null) {
@@ -113,7 +113,7 @@ abstract public class _Iterator extends JAIterator implements _Operation {
      * @param responseProcessor The response processor.
      * @throws Exception Any uncaught exceptions raised by the process method.
      */
-    final public void iterate(final RP responseProcessor) throws Exception {
+    final public void iterate(final ResponseProcessor responseProcessor) throws Exception {
         super.iterate(responseProcessor);
     }
 

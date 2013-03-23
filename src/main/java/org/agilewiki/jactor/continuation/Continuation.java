@@ -23,17 +23,17 @@
  */
 package org.agilewiki.jactor.continuation;
 
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.old.Actor;
-import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.lpc.TargetActor;
 
-public class Continuation<RESPONSE_TYPE> extends RP<RESPONSE_TYPE> {
+public class Continuation<RESPONSE_TYPE> extends ResponseProcessor<RESPONSE_TYPE> {
     private TargetActor targetActor;
-    private RP _rp;
+    private ResponseProcessor _rp;
 
-    public Continuation(TargetActor targetActor, RP _rp) {
+    public Continuation(TargetActor targetActor, ResponseProcessor _rp) {
         this.targetActor = targetActor;
         this._rp = _rp;
     }
@@ -49,10 +49,10 @@ public class Continuation<RESPONSE_TYPE> extends RP<RESPONSE_TYPE> {
 }
 
 class ContinuationRequest extends RequestBase<Object, TargetActor> {
-    private RP _rp;
+    private ResponseProcessor _rp;
     private Object rsp;
 
-    ContinuationRequest(RP _rp, Object rsp) {
+    ContinuationRequest(ResponseProcessor _rp, Object rsp) {
         this._rp = _rp;
         this.rsp = rsp;
     }
@@ -63,7 +63,7 @@ class ContinuationRequest extends RequestBase<Object, TargetActor> {
     }
 
     @Override
-    public void processRequest(JLPCActor targetActor, RP rp) throws Exception {
+    public void processRequest(JLPCActor targetActor, ResponseProcessor rp) throws Exception {
         _rp.processResponse(rsp);
         rp.processResponse(null);
     }

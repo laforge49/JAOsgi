@@ -24,6 +24,7 @@
 package org.agilewiki.jactor.old;
 
 import org.agilewiki.jactor.Mailbox;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.apc.APCRequestSource;
 
@@ -58,7 +59,7 @@ public interface Actor {
      */
     public void acceptRequest(APCRequestSource requestSource,
                               RequestBase request,
-                              RP rp)
+                              ResponseProcessor rp)
             throws Exception;
 
     /**

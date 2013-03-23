@@ -1,7 +1,7 @@
 package org.agilewiki.jactor.basics;
 
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.old.Actor;
-import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jactor.RequestBase;
 
@@ -12,7 +12,7 @@ public class Delay extends RequestBase<Object, Actor5> {
     public static final Delay req = new Delay();
 
     @Override
-    public void processRequest(JLPCActor targetActor, RP rp) throws Exception {
+    public void processRequest(JLPCActor targetActor, ResponseProcessor rp) throws Exception {
         Actor5 a = (Actor5) targetActor;
         a.processRequest(this, rp);
     }

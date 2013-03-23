@@ -1,7 +1,7 @@
 package org.agilewiki.jactor.pubsub.latency;
 
 import org.agilewiki.jactor.old.Actor;
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jactor.RequestBase;
 
@@ -17,7 +17,7 @@ public class Go extends RequestBase<Object, Src> {
     }
 
     @Override
-    public void processRequest(JLPCActor targetActor, RP rp) throws Exception {
+    public void processRequest(JLPCActor targetActor, ResponseProcessor rp) throws Exception {
         ((Src) targetActor).go(rp);
     }
 }

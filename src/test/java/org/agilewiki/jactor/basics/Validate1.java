@@ -2,7 +2,7 @@ package org.agilewiki.jactor.basics;
 
 import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 /**
@@ -12,7 +12,7 @@ public class Validate1 extends RequestBase<Boolean, Actor4> {
     public static final Validate1 req = new Validate1();
 
     @Override
-    public void processRequest(JLPCActor targetActor, RP rp) throws Exception {
+    public void processRequest(JLPCActor targetActor, ResponseProcessor rp) throws Exception {
         Actor4 a = (Actor4) targetActor;
         a.processRequest(this, rp);
     }

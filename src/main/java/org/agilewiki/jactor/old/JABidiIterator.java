@@ -1,5 +1,6 @@
 package org.agilewiki.jactor.old;
 
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.simpleMachine.ExtendedResponseProcessor;
 
 /**
@@ -17,7 +18,7 @@ abstract public class JABidiIterator {
      * @throws Exception Any uncaught exceptions raised by the process method.
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void iterate(final RP finalResponseProcessor) throws Exception {
+    public void iterate(final ResponseProcessor finalResponseProcessor) throws Exception {
         ExtendedResponseProcessor erp = new ExtendedResponseProcessor() {
             @Override
             public void processResponse(Object otherResponse) throws Exception {
@@ -49,12 +50,12 @@ abstract public class JABidiIterator {
     }
 
     /**
-     * Performs the request to the other actor. Passes the given RP to it, to collect it's response.
+     * Performs the request to the other actor. Passes the given ResponseProcessor to it, to collect it's response.
      *
      * @param responseProcessor Processes the response of the other actor.
      * @throws Exception Any uncaught exceptions raised by the process method.
      */
-    abstract protected void sendRequest(RP responseProcessor) throws Exception;
+    abstract protected void sendRequest(ResponseProcessor responseProcessor) throws Exception;
 
     /**
      * Processes the response of the other actor.

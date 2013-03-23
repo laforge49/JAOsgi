@@ -25,9 +25,9 @@ package org.agilewiki.jid.scalar.vlens;
 
 import org.agilewiki.jactor.Request;
 import org.agilewiki.jactor.RequestBase;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.ancestor.Ancestor;
 import org.agilewiki.jactor.Mailbox;
-import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ComparableKey;
 import org.agilewiki.jid.ReadableBytes;
@@ -81,7 +81,7 @@ public class StringJid
             throw new IllegalArgumentException("value may not be null");
         return new RequestBase<Void>(this) {
             @Override
-            public void processRequest(RP rp) throws Exception {
+            public void processRequest(ResponseProcessor rp) throws Exception {
                 setValue(v);
                 rp.processResponse(null);
             }
@@ -114,7 +114,7 @@ public class StringJid
             throw new IllegalArgumentException("value may not be null");
         return new RequestBase<Boolean>(this) {
             @Override
-            public void processRequest(RP rp) throws Exception {
+            public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(makeValue(v));
             }
         };
@@ -164,7 +164,7 @@ public class StringJid
     public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
         getStringReq = new RequestBase<String>(this) {
             @Override
-            public void processRequest(RP rp) throws Exception {
+            public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(getValue());
             }
         };

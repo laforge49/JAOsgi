@@ -2,7 +2,6 @@ package org.agilewiki.jactor;
 
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jactor.old.Actor;
-import org.agilewiki.jactor.old.RP;
 
 public class IntegerRequest extends RequestBase<Object, IntegerReceiver> {
     public final int value;
@@ -12,7 +11,7 @@ public class IntegerRequest extends RequestBase<Object, IntegerReceiver> {
     }
 
     @Override
-    public void processRequest(JLPCActor targetActor, RP rp)
+    public void processRequest(JLPCActor targetActor, ResponseProcessor rp)
             throws Exception {
         IntegerReceiver ir = (IntegerReceiver) targetActor;
         ir.processRequest(this, rp);

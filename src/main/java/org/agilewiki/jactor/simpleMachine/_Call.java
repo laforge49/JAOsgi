@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jactor.simpleMachine;
 
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 
 /**
  * <p>
@@ -95,11 +95,11 @@ final public class _Call implements _Operation {
      * @throws Exception Any uncaught exceptions raised while performing the operation.
      */
     @Override
-    public void call(final SimpleMachine stateMachine, final RP rp)
+    public void call(final SimpleMachine stateMachine, final ResponseProcessor rp)
             throws Exception {
         Object req = null;
         if (request != null) req = request.get(stateMachine);
-        smb.call(req, new RP() {
+        smb.call(req, new ResponseProcessor() {
             @Override
             final public void processResponse(Object response) throws Exception {
                 if (resultName != null) stateMachine.put(resultName, response);

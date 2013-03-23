@@ -1,6 +1,6 @@
 package org.agilewiki.jid.basics;
 
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jid.collection.flenc.TupleJid;
 import org.agilewiki.jid.collection.flenc.TupleJidFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
@@ -27,7 +27,7 @@ public class User extends TupleJid implements Main {
     }
 
     @Override
-    public void processRequest(Proc request, RP rp) throws Exception {
+    public void processRequest(Proc request, ResponseProcessor rp) throws Exception {
         StringJid name = (StringJid) iGet(0);
         System.out.println("name: " + name.getValue());
         IntegerJid age = (IntegerJid) iGet(1);

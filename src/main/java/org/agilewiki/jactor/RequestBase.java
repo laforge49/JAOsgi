@@ -23,11 +23,9 @@
  */
 package org.agilewiki.jactor;
 
-import org.agilewiki.jactor.lpc.TargetActor;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.JAEvent;
 import org.agilewiki.jactor.old.JAFuture;
-import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.apc.APCRequestSource;
 
 /**
@@ -61,7 +59,7 @@ abstract public class RequestBase<RESPONSE_TYPE> implements Request<RESPONSE_TYP
      * @throws Exception Any uncaught exceptions raised while processing the request.
      */
     @Override
-    final public void send(APCRequestSource requestSource, RP<RESPONSE_TYPE> rp)
+    final public void send(APCRequestSource requestSource, ResponseProcessor<RESPONSE_TYPE> rp)
             throws Exception {
         actor.acceptRequest(requestSource, this, rp);
     }

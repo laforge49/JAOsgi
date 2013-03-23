@@ -23,12 +23,12 @@
  */
 package org.agilewiki.jactor.parallel;
 
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 
 /**
  * Returns a response only when the expected number of responses are received.
  */
-final public class JAResponseCounter extends RP {
+final public class JAResponseCounter extends ResponseProcessor {
     /**
      * Number of responses expected.
      */
@@ -37,7 +37,7 @@ final public class JAResponseCounter extends RP {
     /**
      * Used to send the response on completion.
      */
-    private RP rp;
+    private ResponseProcessor rp;
 
     /**
      * The number of responses received.
@@ -55,7 +55,7 @@ final public class JAResponseCounter extends RP {
      * @param max Number of responses expected.
      * @param rp  Used to send the response on completion.
      */
-    public JAResponseCounter(int max, RP rp) {
+    public JAResponseCounter(int max, ResponseProcessor rp) {
         this.max = max;
         this.rp = rp;
     }

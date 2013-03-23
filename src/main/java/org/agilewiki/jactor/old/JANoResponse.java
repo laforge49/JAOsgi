@@ -23,10 +23,12 @@
  */
 package org.agilewiki.jactor.old;
 
+import org.agilewiki.jactor.ResponseProcessor;
+
 /**
  * Used with on-way messages (Events) to signal that no response is required.
  */
-final public class JANoResponse extends RP {
+final public class JANoResponse extends ResponseProcessor {
     /**
      * An immutable instance of JANoResponse.
      */

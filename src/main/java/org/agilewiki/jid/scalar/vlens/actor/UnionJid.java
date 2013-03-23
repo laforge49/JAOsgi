@@ -26,8 +26,8 @@ package org.agilewiki.jid.scalar.vlens.actor;
 import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.Request;
 import org.agilewiki.jactor.RequestBase;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.ancestor.Ancestor;
-import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jid.*;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
@@ -117,7 +117,7 @@ public class UnionJid extends ScalarJid<String, Jid> {
     public Request<Void> setActorReq(final String actorType) {
         return new RequestBase<Void>(this) {
             @Override
-            public void processRequest(RP rp) throws Exception {
+            public void processRequest(ResponseProcessor rp) throws Exception {
                 setValue(actorType);
                 rp.processResponse(null);
             }
@@ -161,7 +161,7 @@ public class UnionJid extends ScalarJid<String, Jid> {
     public Request<Void> setActorBytesReq(final String jidType, final byte[] bytes) {
         return new RequestBase<Void>(this) {
             @Override
-            public void processRequest(RP rp) throws Exception {
+            public void processRequest(ResponseProcessor rp) throws Exception {
                 setJidBytes(jidType, bytes);
                 rp.processResponse(null);
             }
@@ -203,7 +203,7 @@ public class UnionJid extends ScalarJid<String, Jid> {
     public Request<Boolean> makeActorReq(final String jidType) {
         return new RequestBase<Boolean>(this) {
             @Override
-            public void processRequest(RP rp) throws Exception {
+            public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(makeValue(jidType));
             }
         };
@@ -240,7 +240,7 @@ public class UnionJid extends ScalarJid<String, Jid> {
     public Request<Boolean> makeActorBytesReq(final String jidType, final byte[] bytes) {
         return new RequestBase<Boolean>(this) {
             @Override
-            public void processRequest(RP rp) throws Exception {
+            public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(makeJidBytes(jidType, bytes));
             }
         };
@@ -300,7 +300,7 @@ public class UnionJid extends ScalarJid<String, Jid> {
 
     public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
         clearReq = new RequestBase<Void>(this) {
-            public void processRequest(RP rp) throws Exception {
+            public void processRequest(ResponseProcessor rp) throws Exception {
                 clear();
                 rp.processResponse(null);
             }
@@ -308,7 +308,7 @@ public class UnionJid extends ScalarJid<String, Jid> {
 
         getActorReq = new RequestBase<Jid>(this) {
             @Override
-            public void processRequest(RP rp) throws Exception {
+            public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(getValue());
             }
         };

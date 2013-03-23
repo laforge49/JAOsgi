@@ -5,7 +5,7 @@ import org.agilewiki.jactor.*;
 import org.agilewiki.jactor.old.JAFuture;
 import org.agilewiki.jactor.old.JAMailboxFactory;
 import org.agilewiki.jactor.old.MailboxFactory;
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 
 /**
  * Test code.
@@ -29,7 +29,7 @@ public class EventTest extends TestCase {
 }
 
 class EventAReceiver extends SimpleRequestReceiver {
-    public void processRequest(SimpleRequest request, RP rp) throws Exception {
+    public void processRequest(SimpleRequest request, ResponseProcessor rp) throws Exception {
         System.err.println("A got request");
         rp.processResponse(request);
     }

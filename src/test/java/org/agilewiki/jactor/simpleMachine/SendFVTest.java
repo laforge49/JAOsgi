@@ -25,7 +25,7 @@ public class SendFVTest extends TestCase {
 
     class Doubler extends JLPCActor implements IntegerReceiver {
         @Override
-        public void processRequest(IntegerRequest request, RP rp)
+        public void processRequest(IntegerRequest request, ResponseProcessor rp)
                 throws Exception {
             int req = request.value;
             rp.processResponse(req * 2);
@@ -34,7 +34,7 @@ public class SendFVTest extends TestCase {
 
     class Send extends SimpleRequestReceiver {
         @Override
-        public void processRequest(SimpleRequest request, RP rp)
+        public void processRequest(SimpleRequest request, ResponseProcessor rp)
                 throws Exception {
             SMBuilder smb = new SMBuilder();
             smb._send(new ActorFunc() {

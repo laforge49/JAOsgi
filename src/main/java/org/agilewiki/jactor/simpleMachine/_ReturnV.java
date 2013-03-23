@@ -24,7 +24,7 @@
 package org.agilewiki.jactor.simpleMachine;
 
 import org.agilewiki.jactor.old.JANull;
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 
 /**
  * <p>
@@ -73,7 +73,7 @@ final public class _ReturnV implements _Operation {
      * @throws Exception Any uncaught exceptions raised while performing the operation.
      */
     @Override
-    final public void call(SimpleMachine stateMachine, RP rp) throws Exception {
+    final public void call(SimpleMachine stateMachine, ResponseProcessor rp) throws Exception {
         Object rv = result;
         if (rv == null) rv = JANull.jan;
         rp.processResponse(rv);

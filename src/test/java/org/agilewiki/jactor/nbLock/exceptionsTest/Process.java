@@ -1,8 +1,8 @@
 package org.agilewiki.jactor.nbLock.exceptionsTest;
 
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.nbLock.JANBLock;
 import org.agilewiki.jactor.old.ExceptionHandler;
-import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.nbLock.Lock;
 import org.agilewiki.jactor.nbLock.Unlock;
 import org.agilewiki.jactor.pubsub.actorName.JActorName;
@@ -12,9 +12,9 @@ import org.agilewiki.jactor.pubsub.actorName.JActorName;
  */
 public class Process extends JActorName implements Does {
     @Override
-    public void does(final RP rp) throws Exception {
+    public void does(final ResponseProcessor rp) throws Exception {
         final String me = getActorName();
-        Lock.req.send(this, JANBLock.get(this), new RP<Object>() {
+        Lock.req.send(this, JANBLock.get(this), new ResponseProcessor<Object>() {
             @Override
             public void processResponse(final Object response) throws Exception {
                 setExceptionHandler(new ExceptionHandler() {
@@ -22,7 +22,7 @@ public class Process extends JActorName implements Does {
                     public void process(final Throwable exception)
                             throws Exception {
                         Unlock.req.send(Process.this, JANBLock.get(Process.this),
-                                new RP<Object>() {
+                                new ResponseProcessor<Object>() {
                                     @Override
                                     public void processResponse(
                                             final Object response)

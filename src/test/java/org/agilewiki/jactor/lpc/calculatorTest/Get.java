@@ -1,8 +1,8 @@
 package org.agilewiki.jactor.lpc.calculatorTest;
 
 import org.agilewiki.jactor.RequestBase;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.old.Actor;
-import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 /**
@@ -11,7 +11,7 @@ import org.agilewiki.jactor.lpc.JLPCActor;
 public class Get extends RequestBase<Integer, _Calculator> {
 
     @Override
-    public void processRequest(JLPCActor targetActor, RP rp) throws Exception {
+    public void processRequest(JLPCActor targetActor, ResponseProcessor rp) throws Exception {
         _Calculator c = (_Calculator) targetActor;
         c.get(this, rp);
     }

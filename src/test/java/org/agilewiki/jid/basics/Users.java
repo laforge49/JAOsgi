@@ -1,8 +1,8 @@
 package org.agilewiki.jid.basics;
 
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.Mailbox;
-import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jid._Jid;
 import org.agilewiki.jid.collection.vlenc.map.MapEntry;
 import org.agilewiki.jid.collection.vlenc.map.MapEntryFactory;
@@ -44,7 +44,7 @@ public class Users extends StringMapJid implements Main {
     }
 
     @Override
-    public void processRequest(Proc request, RP rp) throws Exception {
+    public void processRequest(Proc request, ResponseProcessor rp) throws Exception {
         initializeList();
         Iterator<_Jid> it = list.iterator();
         while (it.hasNext()) {

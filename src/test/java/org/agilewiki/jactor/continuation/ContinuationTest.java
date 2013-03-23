@@ -1,6 +1,7 @@
 package org.agilewiki.jactor.continuation;
 
 import junit.framework.TestCase;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jactor.old.*;
@@ -28,13 +29,13 @@ class Doit extends RequestBase<String, Driver> {
     }
 
     @Override
-    public void processRequest(JLPCActor targetActor, RP rp) throws Exception {
+    public void processRequest(JLPCActor targetActor, ResponseProcessor rp) throws Exception {
         ((Driver) targetActor).doit(rp);
     }
 }
 
 class Driver extends JLPCActor {
-    void doit(RP<String> rp) {
+    void doit(ResponseProcessor<String> rp) {
         Continuation<String> continuation = new Continuation(this, rp);
         Application applicatin = new Application();
         applicatin.continuation = continuation;

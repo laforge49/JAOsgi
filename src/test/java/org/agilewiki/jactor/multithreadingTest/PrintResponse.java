@@ -2,7 +2,7 @@ package org.agilewiki.jactor.multithreadingTest;
 
 import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 /**
@@ -31,7 +31,7 @@ public class PrintResponse<RESPONSE_TYPE> extends RequestBase<Object, ResponsePr
     }
 
     @Override
-    public void processRequest(JLPCActor targetActor, RP rp) throws Exception {
+    public void processRequest(JLPCActor targetActor, ResponseProcessor rp) throws Exception {
         ((ResponsePrinter) targetActor).printResponse(request, actor, rp);
     }
 }

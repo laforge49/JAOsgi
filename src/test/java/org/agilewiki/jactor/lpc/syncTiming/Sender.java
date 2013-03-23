@@ -1,6 +1,6 @@
 package org.agilewiki.jactor.lpc.syncTiming;
 
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 public class Sender extends JLPCActor {
@@ -10,7 +10,7 @@ public class Sender extends JLPCActor {
     boolean sync;
     int i = 0;
 
-    public void sender(final RP rp) throws Exception {
+    public void sender(final ResponseProcessor rp) throws Exception {
         while (true) {
             i += 1;
             if (i > count) {
@@ -19,7 +19,7 @@ public class Sender extends JLPCActor {
             }
             async = false;
             sync = false;
-            DoEcho.req.send(this, echo, new RP<Object>() {
+            DoEcho.req.send(this, echo, new ResponseProcessor<Object>() {
                 @Override
                 public void processResponse(Object response) throws Exception {
                     if (!async) {

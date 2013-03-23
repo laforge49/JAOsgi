@@ -25,7 +25,7 @@ package org.agilewiki.jactor.lpc;
 
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.ExceptionHandler;
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 
 /**
  * The API used when processing a request.
@@ -41,7 +41,7 @@ public interface Internals {
      */
     public void send(final Actor actor,
                      final Object request,
-                     final RP rp)
+                     final ResponseProcessor rp)
             throws Exception;
 
     /**

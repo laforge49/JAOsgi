@@ -3,7 +3,7 @@ package org.agilewiki.jactor.lpc.calculatorTest;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.ExceptionHandler;
 import org.agilewiki.jactor.Mailbox;
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 /**
@@ -21,7 +21,7 @@ public class PrintingCalculator extends JLPCActor implements _Calculator {
     }
 
     @Override
-    public void clear(final Clear request, final RP rp) throws Exception {
+    public void clear(final Clear request, final ResponseProcessor rp) throws Exception {
         setExceptionHandler(new ExceptionHandler() {
             @Override
             public void process(final Throwable exception) throws Exception {
@@ -29,7 +29,7 @@ public class PrintingCalculator extends JLPCActor implements _Calculator {
                 rp.processResponse(null);
             }
         });
-        send(calculator, request, new RP() {
+        send(calculator, request, new ResponseProcessor() {
             @Override
             public void processResponse(final Object response) throws Exception {
                 System.out.println("Clear => " + response);
@@ -39,7 +39,7 @@ public class PrintingCalculator extends JLPCActor implements _Calculator {
     }
 
     @Override
-    public void get(final Get request, final RP rp) throws Exception {
+    public void get(final Get request, final ResponseProcessor rp) throws Exception {
         setExceptionHandler(new ExceptionHandler() {
             @Override
             public void process(final Throwable exception) throws Exception {
@@ -47,7 +47,7 @@ public class PrintingCalculator extends JLPCActor implements _Calculator {
                 rp.processResponse(null);
             }
         });
-        send(calculator, request, new RP() {
+        send(calculator, request, new ResponseProcessor() {
             @Override
             public void processResponse(final Object response) throws Exception {
                 System.out.println("Get => " + response);
@@ -57,7 +57,7 @@ public class PrintingCalculator extends JLPCActor implements _Calculator {
     }
 
     @Override
-    public void set(final Set request, final RP rp) throws Exception {
+    public void set(final Set request, final ResponseProcessor rp) throws Exception {
         setExceptionHandler(new ExceptionHandler() {
             @Override
             public void process(final Throwable exception) throws Exception {
@@ -66,7 +66,7 @@ public class PrintingCalculator extends JLPCActor implements _Calculator {
                 rp.processResponse(null);
             }
         });
-        send(calculator, request, new RP() {
+        send(calculator, request, new ResponseProcessor() {
             @Override
             public void processResponse(final Object response) throws Exception {
                 System.out.println("Set " + request.getValue() + " => "
@@ -77,7 +77,7 @@ public class PrintingCalculator extends JLPCActor implements _Calculator {
     }
 
     @Override
-    public void add(final Add request, final RP rp) throws Exception {
+    public void add(final Add request, final ResponseProcessor rp) throws Exception {
         setExceptionHandler(new ExceptionHandler() {
             @Override
             public void process(final Throwable exception) throws Exception {
@@ -86,7 +86,7 @@ public class PrintingCalculator extends JLPCActor implements _Calculator {
                 rp.processResponse(null);
             }
         });
-        send(calculator, request, new RP() {
+        send(calculator, request, new ResponseProcessor() {
             @Override
             public void processResponse(final Object response) throws Exception {
                 System.out.println("+ " + request.getValue() + " => "
@@ -97,7 +97,7 @@ public class PrintingCalculator extends JLPCActor implements _Calculator {
     }
 
     @Override
-    public void subtract(final Subtract request, final RP rp) throws Exception {
+    public void subtract(final Subtract request, final ResponseProcessor rp) throws Exception {
         setExceptionHandler(new ExceptionHandler() {
             @Override
             public void process(final Throwable exception) throws Exception {
@@ -106,7 +106,7 @@ public class PrintingCalculator extends JLPCActor implements _Calculator {
                 rp.processResponse(null);
             }
         });
-        send(calculator, request, new RP() {
+        send(calculator, request, new ResponseProcessor() {
             @Override
             public void processResponse(final Object response) throws Exception {
                 System.out.println("- " + request.getValue() + " => "
@@ -117,7 +117,7 @@ public class PrintingCalculator extends JLPCActor implements _Calculator {
     }
 
     @Override
-    public void multiply(final Multiply request, final RP rp) throws Exception {
+    public void multiply(final Multiply request, final ResponseProcessor rp) throws Exception {
         setExceptionHandler(new ExceptionHandler() {
             @Override
             public void process(final Throwable exception) throws Exception {
@@ -126,7 +126,7 @@ public class PrintingCalculator extends JLPCActor implements _Calculator {
                 rp.processResponse(null);
             }
         });
-        send(calculator, request, new RP() {
+        send(calculator, request, new ResponseProcessor() {
             @Override
             public void processResponse(final Object response) throws Exception {
                 System.out.println("* " + request.getValue() + " => "
@@ -137,7 +137,7 @@ public class PrintingCalculator extends JLPCActor implements _Calculator {
     }
 
     @Override
-    public void divide(final Divide request, final RP rp) throws Exception {
+    public void divide(final Divide request, final ResponseProcessor rp) throws Exception {
         setExceptionHandler(new ExceptionHandler() {
             @Override
             public void process(final Throwable exception) throws Exception {
@@ -146,7 +146,7 @@ public class PrintingCalculator extends JLPCActor implements _Calculator {
                 rp.processResponse(null);
             }
         });
-        send(calculator, request, new RP() {
+        send(calculator, request, new ResponseProcessor() {
             @Override
             public void processResponse(final Object response) throws Exception {
                 System.out.println("/ " + request.getValue() + " => "

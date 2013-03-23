@@ -2,11 +2,10 @@ package org.agilewiki.jactor.simpleMachine;
 
 import junit.framework.TestCase;
 import org.agilewiki.jactor.*;
-import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jactor.old.JAFuture;
 import org.agilewiki.jactor.old.JAMailboxFactory;
 import org.agilewiki.jactor.old.MailboxFactory;
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 
 /**
  * Test code.
@@ -28,7 +27,7 @@ public class IteratorTest extends TestCase {
 
     class It extends SimpleRequestReceiver {
         @Override
-        public void processRequest(SimpleRequest unwrappedRequest, RP rp) throws Exception {
+        public void processRequest(SimpleRequest unwrappedRequest, ResponseProcessor rp) throws Exception {
             SMBuilder smb = new SMBuilder();
             new _Iterator(smb, "rs") {
                 int i;
@@ -41,7 +40,7 @@ public class IteratorTest extends TestCase {
                 }
 
                 @Override
-                protected void process(RP rp2) throws Exception {
+                protected void process(ResponseProcessor rp2) throws Exception {
                     if (i >= max) rp2.processResponse(new Integer(r));
                     else {
                         i += 1;

@@ -25,7 +25,7 @@ package org.agilewiki.jid.collection.vlenc.map;
 
 import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 /**
@@ -64,7 +64,7 @@ public class KMakeBytes<KEY_TYPE extends Comparable<KEY_TYPE>> extends RequestBa
     }
 
     @Override
-    public void processRequest(JLPCActor targetActor, RP rp) throws Exception {
+    public void processRequest(JLPCActor targetActor, ResponseProcessor rp) throws Exception {
         ((JAMap) targetActor).kMakeBytes(key, bytes);
         rp.processResponse(null);
     }

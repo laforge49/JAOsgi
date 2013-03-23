@@ -1,13 +1,13 @@
 package org.agilewiki.jactor.nbLock;
 
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 
 /**
  * Test code.
  */
 public class Driver extends JANBLock {
-    public void doit(final RP rp) throws Exception {
-        final RP<Object> rpc = new RP<Object>() {
+    public void doit(final ResponseProcessor rp) throws Exception {
+        final ResponseProcessor<Object> rpc = new ResponseProcessor<Object>() {
             int count = 3;
 
             @Override
@@ -18,7 +18,7 @@ public class Driver extends JANBLock {
             }
         };
 
-        Lock.req.send(this, this, new RP<Object>() {
+        Lock.req.send(this, this, new ResponseProcessor<Object>() {
             @Override
             public void processResponse(Object response) throws Exception {
                 System.out.println("start 1");
@@ -28,7 +28,7 @@ public class Driver extends JANBLock {
             }
         });
 
-        Lock.req.send(this, this, new RP<Object>() {
+        Lock.req.send(this, this, new ResponseProcessor<Object>() {
             @Override
             public void processResponse(Object response) throws Exception {
                 System.out.println("start 2");
@@ -38,7 +38,7 @@ public class Driver extends JANBLock {
             }
         });
 
-        Lock.req.send(this, this, new RP<Object>() {
+        Lock.req.send(this, this, new ResponseProcessor<Object>() {
             @Override
             public void processResponse(Object response) throws Exception {
                 System.out.println("start 3");

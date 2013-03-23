@@ -27,7 +27,7 @@ import org.agilewiki.jactor.Request;
 import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.ancestor.Ancestor;
 import org.agilewiki.jactor.Mailbox;
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ReadableBytes;
 import org.agilewiki.jid.factory.ActorFactory;
@@ -82,7 +82,7 @@ public class BytesJid
     public Request<Void> setBytesReq(final byte[] v) {
         return new RequestBase<Void>(this) {
             @Override
-            public void processRequest(RP rp) throws Exception {
+            public void processRequest(ResponseProcessor rp) throws Exception {
                 setValue(v);
                 rp.processResponse(null);
             }
@@ -122,7 +122,7 @@ public class BytesJid
     public Request<Boolean> makeBytesReq(final byte[] v) {
         return new RequestBase<Boolean>(this) {
             @Override
-            public void processRequest(RP rp) throws Exception {
+            public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(makeValue(v));
             }
         };
@@ -169,7 +169,7 @@ public class BytesJid
     public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
         getBytesReq = new RequestBase<byte[]>(this) {
             @Override
-            public void processRequest(RP rp) throws Exception {
+            public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(getValue());
             }
         };

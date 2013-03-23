@@ -2,11 +2,10 @@ package org.agilewiki.jactor.simpleMachine;
 
 import junit.framework.TestCase;
 import org.agilewiki.jactor.*;
-import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jactor.old.JAFuture;
 import org.agilewiki.jactor.old.JAMailboxFactory;
 import org.agilewiki.jactor.old.MailboxFactory;
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 
 /**
  * Test code.
@@ -29,7 +28,7 @@ public class SetVTest extends TestCase {
 
 class SetV1 extends SimpleRequestReceiver {
     @Override
-    public void processRequest(SimpleRequest request, RP rp)
+    public void processRequest(SimpleRequest request, ResponseProcessor rp)
             throws Exception {
         SMBuilder smb = new SMBuilder();
         String sv = "Hello world!";

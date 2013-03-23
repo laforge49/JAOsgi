@@ -25,11 +25,11 @@ package org.agilewiki.jid;
 
 import org.agilewiki.jactor.Request;
 import org.agilewiki.jactor.RequestBase;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.ancestor.Ancestor;
 import org.agilewiki.jactor.ancestor.AncestorBase;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.Mailbox;
-import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 
@@ -247,7 +247,7 @@ public class Jid extends AncestorBase implements _Jid {
     final public Request<Void> saveReq(final AppendableBytes appendableBytes) {
         return new RequestBase<Void>(this) {
             @Override
-            public void processRequest(RP rp) throws Exception {
+            public void processRequest(ResponseProcessor rp) throws Exception {
                 save(appendableBytes);
                 rp.processResponse(null);
             }
@@ -296,7 +296,7 @@ public class Jid extends AncestorBase implements _Jid {
     public Request<Jid> resolvePathnameReq(final String pathname) {
         return new RequestBase<Jid>(this) {
             @Override
-            public void processRequest(RP rp) throws Exception {
+            public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(resolvePathname(pathname));
             }
         };
@@ -321,7 +321,7 @@ public class Jid extends AncestorBase implements _Jid {
     public final Request<Jid> copyJIDReq(final Mailbox m) {
         return new RequestBase<Jid>(this) {
             @Override
-            public void processRequest(RP rp) throws Exception {
+            public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(copyJID(m));
             }
         };
@@ -330,20 +330,20 @@ public class Jid extends AncestorBase implements _Jid {
     public final Request<Boolean> isJidEqualReq(final Actor actor) {
         return new RequestBase<Boolean>(this) {
             @Override
-            public void processRequest(final RP rp) throws Exception {
+            public void processRequest(final ResponseProcessor rp) throws Exception {
                 if (!(actor instanceof Jid)) {
                     rp.processResponse(false);
                     return;
                 }
                 final Jid jidA = (Jid) actor;
-                getSerializedLengthReq.send(jidA, new RP<Integer>() {
+                getSerializedLengthReq.send(jidA, new ResponseProcessor<Integer>() {
                     @Override
                     public void processResponse(Integer response) throws Exception {
                         if (response.intValue() != getSerializedLength()) {
                             rp.processResponse(false);
                             return;
                         }
-                        getSerializedBytesReq.send(jidA, new RP<byte[]>() {
+                        getSerializedBytesReq.send(jidA, new ResponseProcessor<byte[]>() {
                             @Override
                             public void processResponse(byte[] response) throws Exception {
                                 boolean eq = Arrays.equals(response, getSerializedBytes());
@@ -401,14 +401,14 @@ public class Jid extends AncestorBase implements _Jid {
 
         getSerializedLengthReq = new RequestBase<Integer>(this) {
             @Override
-            public void processRequest(RP rp) throws Exception {
+            public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(getSerializedLength());
             }
         };
 
         getSerializedBytesReq = new RequestBase<byte[]>(this) {
             @Override
-            public void processRequest(RP rp) throws Exception {
+            public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(getSerializedBytes());
             }
         };

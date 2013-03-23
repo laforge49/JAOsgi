@@ -1,14 +1,14 @@
 package org.agilewiki.jactor.basics;
 
 import org.agilewiki.jactor.old.MailboxFactory;
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 /**
  * Test code.
  */
 public class Actor5a extends JLPCActor {
-    protected void processRequest(Parallel request, final RP rp) throws Exception {
+    protected void processRequest(Parallel request, final ResponseProcessor rp) throws Exception {
         MailboxFactory mf = getMailboxFactory();
         Actor5 a = new Actor5();
         a.initialize(mf.createAsyncMailbox());
@@ -20,7 +20,7 @@ public class Actor5a extends JLPCActor {
         c.delay = 500;
         a.delay = 500;
         final long t0 = System.currentTimeMillis();
-        RP<Object> rc = new RP<Object>() {
+        ResponseProcessor<Object> rc = new ResponseProcessor<Object>() {
             int c = 3;
 
             @Override

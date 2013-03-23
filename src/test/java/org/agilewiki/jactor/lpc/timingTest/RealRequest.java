@@ -1,7 +1,7 @@
 package org.agilewiki.jactor.lpc.timingTest;
 
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.old.Actor;
-import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jactor.RequestBase;
 
@@ -14,7 +14,7 @@ public class RealRequest extends RequestBase<Object, RealRequestReceiver> {
     }
 
     @Override
-    public void processRequest(JLPCActor targetActor, RP rp) throws Exception {
+    public void processRequest(JLPCActor targetActor, ResponseProcessor rp) throws Exception {
         RealRequestReceiver smDriver = (RealRequestReceiver) targetActor;
         smDriver.processRequest(this, rp);
     }

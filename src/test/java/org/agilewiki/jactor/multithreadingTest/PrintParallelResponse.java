@@ -2,7 +2,7 @@ package org.agilewiki.jactor.multithreadingTest;
 
 import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.old.Actor;
-import org.agilewiki.jactor.old.RP;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 /**
@@ -40,7 +40,7 @@ public class PrintParallelResponse<RESPONSE> extends RequestBase<Object, Paralle
     }
 
     @Override
-    public void processRequest(JLPCActor targetActor, RP rp) throws Exception {
+    public void processRequest(JLPCActor targetActor, ResponseProcessor rp) throws Exception {
         ((ParallelResponsePrinter) targetActor).
                 printParallelResponse(count, responsePrinters, printResponse, rp);
     }

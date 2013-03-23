@@ -23,9 +23,9 @@
  */
 package org.agilewiki.jactor.nbLock;
 
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.ancestor.Ancestor;
 import org.agilewiki.jactor.ancestor.AncestorBase;
-import org.agilewiki.jactor.old.RP;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 import java.util.ArrayDeque;
@@ -38,9 +38,9 @@ public class JANBLock extends JLPCActor {
         return (JANBLock) AncestorBase.getMatch(ancestor, JANBLock.class);
     }
 
-    private ArrayDeque<RP<Object>> deque = new ArrayDeque<RP<Object>>();
+    private ArrayDeque<ResponseProcessor<Object>> deque = new ArrayDeque<ResponseProcessor<Object>>();
 
-    public void lock(RP rp)
+    public void lock(ResponseProcessor rp)
             throws Exception {
         deque.addLast(rp);
         if (deque.size() == 1) {
@@ -48,11 +48,11 @@ public class JANBLock extends JLPCActor {
         }
     }
 
-    public void unlock(RP rp)
+    public void unlock(ResponseProcessor rp)
             throws Exception {
         deque.removeFirst();
         rp.processResponse(null);
-        RP<Object> rp1 = deque.peekFirst();
+        ResponseProcessor<Object> rp1 = deque.peekFirst();
         if (rp1 != null) {
             rp1.processResponse(null);
         }

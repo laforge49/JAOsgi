@@ -1,8 +1,8 @@
 package org.agilewiki.jactor.iteratorTest;
 
 import junit.framework.TestCase;
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.old.JAIterator;
-import org.agilewiki.jactor.old.RP;
 
 /**
  * Test code.
@@ -10,7 +10,7 @@ import org.agilewiki.jactor.old.RP;
 public class SimpleFactorialTest extends TestCase {
     public void testFactorial() throws Exception {
         final int max = 5;
-        RP printResult = new RP() {
+        ResponseProcessor printResult = new ResponseProcessor() {
             public void processResponse(Object rsp) {
                 System.out.println(rsp);
             }
@@ -20,7 +20,7 @@ public class SimpleFactorialTest extends TestCase {
             int i;
             int r = 1;
 
-            public void process(RP rp) throws Exception {
+            public void process(ResponseProcessor rp) throws Exception {
                 if (i >= max) rp.processResponse(new Integer(r));
                 else {
                     i += 1;
