@@ -12,5 +12,5 @@ public interface Request <RESPONSE_TYPE> {
 
     public void sendEvent(APCRequestSource requestSource) throws Exception;
 
-    public void processRequest(ResponseProcessor rp) throws Exception;
+    public void processRequest(ResponseProcessor<RESPONSE_TYPE> rp) throws Exception;
 }

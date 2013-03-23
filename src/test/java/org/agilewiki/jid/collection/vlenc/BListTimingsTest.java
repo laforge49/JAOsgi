@@ -5,7 +5,7 @@ import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
-import org.agilewiki.jid.scalar.flens.integer.IntegerJid;
+import org.agilewiki.jid.scalar.flens.IntegerJid;
 
 public class BListTimingsTest extends TestCase {
     public void test() throws Exception {

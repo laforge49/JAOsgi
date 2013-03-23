@@ -2,7 +2,7 @@ package org.agilewiki.jid.basics;
 
 import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jid.factory.FactoryLocator;
-import org.agilewiki.jid.scalar.flens.integer.IntegerJid;
+import org.agilewiki.jid.scalar.flens.IntegerJid;
 
 public class LuckyNumber extends IntegerJid implements Main {
 

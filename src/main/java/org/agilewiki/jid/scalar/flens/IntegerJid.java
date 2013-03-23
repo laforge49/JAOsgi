@@ -21,15 +21,19 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.scalar.flens.integer;
+package org.agilewiki.jid.scalar.flens;
 
+import org.agilewiki.jactor.Mailbox;
+import org.agilewiki.jactor.Request;
+import org.agilewiki.jactor.RequestBase;
+import org.agilewiki.jactor.ResponseProcessor;
+import org.agilewiki.jactor.ancestor.Ancestor;
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ReadableBytes;
 import org.agilewiki.jid.Util;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
-import org.agilewiki.jid.scalar.flens.FLenScalarJid;
 
 /**
  * A JID actor that holds an integer.
@@ -47,6 +51,8 @@ public class IntegerJid
             }
         });
     }
+
+    public Request<Integer> getIntegerReq;
 
     /**
      * Create the value.
@@ -89,5 +95,24 @@ public class IntegerJid
     @Override
     protected void serialize(AppendableBytes appendableBytes) {
         appendableBytes.writeInt(value);
+    }
+
+    public Request<Void> setIntegerReq(final Integer v) {
+        return new RequestBase<Void>(this) {
+            @Override
+            public void processRequest(ResponseProcessor<Void> rp) throws Exception {
+                setValue(v);
+                rp.processResponse(null);
+            }
+        };
+    }
+
+    public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
+        getIntegerReq = new RequestBase<Integer>(this) {
+            @Override
+            public void processRequest(ResponseProcessor rp) throws Exception {
+                rp.processResponse(getValue());
+            }
+        };
     }
 }

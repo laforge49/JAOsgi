@@ -4,7 +4,7 @@ import junit.framework.TestCase;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
-import org.agilewiki.jid.scalar.flens.integer.IntegerJid;
+import org.agilewiki.jid.scalar.flens.IntegerJid;
 
 public class IntIntBMapJidTest extends TestCase {
     public void test1() throws Exception {
