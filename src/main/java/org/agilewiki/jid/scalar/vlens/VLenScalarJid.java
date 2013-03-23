@@ -50,7 +50,11 @@ abstract public class VLenScalarJid<SET_TYPE, RESPONSE_TYPE>
      */
     protected int len = -1;
 
-    public Request<Void> clearReq;
+    private Request<Void> clearReq;
+
+    public Request<Void> clearReq() {
+        return clearReq;
+    }
 
     /**
      * Assign a value unless one is already present.

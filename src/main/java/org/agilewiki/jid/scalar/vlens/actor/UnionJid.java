@@ -39,8 +39,16 @@ public class UnionJid extends ScalarJid<String, Jid> {
     protected int factoryIndex = -1;
     protected Jid value;
 
-    public Request<Void> clearReq;
-    public Request<Jid> getActorReq;
+    private Request<Void> clearReq;
+    private Request<Jid> getActorReq;
+
+    public Request<Void> clearReq() {
+        return clearReq;
+    }
+
+    public Request<Jid> getActorReq() {
+        return getActorReq;
+    }
 
     protected ActorFactory[] getUnionFactories()
             throws Exception {

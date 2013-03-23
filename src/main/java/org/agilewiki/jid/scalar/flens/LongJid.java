@@ -52,7 +52,11 @@ public class LongJid
         });
     }
 
-    public Request<Long> getLongReq;
+    private Request<Long> getLongReq;
+
+    public Request<Long> getLongReq() {
+        return getLongReq;
+    }
 
     /**
      * Create the value.

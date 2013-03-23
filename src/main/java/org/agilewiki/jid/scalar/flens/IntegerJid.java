@@ -52,7 +52,11 @@ public class IntegerJid
         });
     }
 
-    public Request<Integer> getIntegerReq;
+    private Request<Integer> getIntegerReq;
+
+    public Request<Integer> getGetIntegerReq() {
+        return getIntegerReq;
+    }
 
     /**
      * Create the value.

@@ -55,8 +55,17 @@ public class ActorJid
         });
     }
 
-    public Request<Void> clearReq;
-    public Request<Jid> getActorReq;
+    private Request<Void> clearReq;
+    private Request<Jid> getActorReq;
+
+    public Request<Void> clearReq() {
+        return clearReq;
+    }
+
+    public Request<Jid> getActorReq() {
+        return getActorReq;
+    }
+
     /**
      * Clear the content.
      *

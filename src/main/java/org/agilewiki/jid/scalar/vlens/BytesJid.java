@@ -60,7 +60,11 @@ public class BytesJid
         });
     }
 
-    public Request<byte[]> getBytesReq;
+    private Request<byte[]> getBytesReq;
+
+    public Request<byte[]> getBytesReq() {
+        return getBytesReq;
+    }
 
     /**
      * Assign a value.

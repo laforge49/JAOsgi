@@ -58,9 +58,17 @@ public class Jid extends AncestorBase implements _Jid {
      * The start of the serialized data.
      */
     protected int serializedOffset;
-    public Request<byte[]> getSerializedBytesReq;
 
-    public Request<Integer> getSerializedLengthReq;
+    private Request<byte[]> getSerializedBytesReq;
+    private Request<Integer> getSerializedLengthReq;
+
+    public Request<byte[]> getSerializedBytesReq() {
+        return getSerializedBytesReq;
+    }
+
+    public Request<Integer> getSerializedLengthReq() {
+        return getSerializedLengthReq;
+    }
 
     final public Jid createSubordinate(ActorFactory factory)
             throws Exception {

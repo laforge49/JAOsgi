@@ -57,7 +57,11 @@ public class StringJid
         });
     }
 
-    public Request<String> getStringReq;
+    private Request<String> getStringReq;
+
+    public Request<String> getStringReq() {
+        return getStringReq;
+    }
 
     /**
      * Assign a value.
