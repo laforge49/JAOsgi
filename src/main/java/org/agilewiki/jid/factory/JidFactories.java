@@ -30,15 +30,15 @@ import org.agilewiki.jid.collection.vlenc.ListJidFactory;
 import org.agilewiki.jid.collection.vlenc.map.*;
 import org.agilewiki.jid.jaosgi.JABCNoOsgiImpl;
 import org.agilewiki.jid.jaosgi.JABundleContext;
-import org.agilewiki.jid.scalar.flens.bool.BooleanJidFactory;
-import org.agilewiki.jid.scalar.flens.dbl.DoubleJidFactory;
-import org.agilewiki.jid.scalar.flens.flt.FloatJidFactory;
-import org.agilewiki.jid.scalar.flens.integer.IntegerJid;
 import org.agilewiki.jid.scalar.flens.LongJid;
-import org.agilewiki.jid.scalar.vlens.actor.ActorJid;
-import org.agilewiki.jid.scalar.vlens.actor.RootJidFactory;
+import org.agilewiki.jid.scalar.flens.bool.BooleanJid;
+import org.agilewiki.jid.scalar.flens.dbl.DoubleJid;
+import org.agilewiki.jid.scalar.flens.flt.FloatJid;
+import org.agilewiki.jid.scalar.flens.integer.IntegerJid;
 import org.agilewiki.jid.scalar.vlens.BytesJid;
 import org.agilewiki.jid.scalar.vlens.StringJid;
+import org.agilewiki.jid.scalar.vlens.actor.ActorJid;
+import org.agilewiki.jid.scalar.vlens.actor.RootJidFactory;
 
 /**
  * <p>
@@ -435,11 +435,11 @@ final public class JidFactories extends LocateLocalActorFactories {
 
         JidFactory.registerFactory(factoryLocator);
 
-        BooleanJidFactory.registerFactory(factoryLocator);
+        BooleanJid.registerFactory(factoryLocator);
         IntegerJid.registerFactory(factoryLocator);
         LongJid.registerFactory(factoryLocator);
-        FloatJidFactory.registerFactory(factoryLocator);
-        DoubleJidFactory.registerFactory(factoryLocator);
+        FloatJid.registerFactory(factoryLocator);
+        DoubleJid.registerFactory(factoryLocator);
 
         ActorJid.registerFactory(factoryLocator);
         RootJidFactory.registerFactory(factoryLocator);
