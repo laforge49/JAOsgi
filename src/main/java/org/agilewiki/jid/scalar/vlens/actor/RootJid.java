@@ -23,8 +23,6 @@
  */
 package org.agilewiki.jid.scalar.vlens.actor;
 
-import org.agilewiki.jactor.ancestor.Ancestor;
-import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.jid.ReadableBytes;
@@ -33,6 +31,8 @@ import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.scalar.vlens.StringJid;
+import org.agilewiki.pactor.Mailbox;
+import org.agilewiki.pautil.Ancestor;
 
 /**
  * The root Jid actor of a tree of Jid actors.

@@ -23,11 +23,11 @@
  */
 package org.agilewiki.jid.scalar.vlens.actor;
 
-import org.agilewiki.jactor.ancestor.Ancestor;
-import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JAFactoryLocator;
+import org.agilewiki.pactor.Mailbox;
+import org.agilewiki.pautil.Ancestor;
 
 /**
  * Creates a UnionJid.
