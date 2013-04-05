@@ -5,7 +5,7 @@ import org.agilewiki.jid.ReadableBytes;
 import org.agilewiki.jid.collection.vlenc.ListJid;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
-import org.agilewiki.jid.scalar.flens.bool.BooleanJid;
+import org.agilewiki.jid.scalar.flens.BooleanJid;
 
 public class BooleanUAppender extends JLPCActor {
     public int count;

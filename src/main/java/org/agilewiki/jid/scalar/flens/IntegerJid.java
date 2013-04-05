@@ -33,13 +33,14 @@ import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;
 import org.agilewiki.pactor.ResponseProcessor;
+import org.agilewiki.paid.IntegerPAID;
 import org.agilewiki.pautil.Ancestor;
 
 /**
  * A JID actor that holds an integer.
  */
 public class IntegerJid
-        extends FLenScalarJid<Integer> {
+        extends FLenScalarJid<Integer> implements IntegerPAID {
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
@@ -54,7 +55,8 @@ public class IntegerJid
 
     private Request<Integer> getIntegerReq;
 
-    public Request<Integer> getGetIntegerReq() {
+    @Override
+    public Request<Integer> getIntegerReq() {
         return getIntegerReq;
     }
 
@@ -73,6 +75,7 @@ public class IntegerJid
      *
      * @return The value held by this component.
      */
+    @Override
     public Integer getValue() {
         if (value != null)
             return value;
@@ -101,6 +104,7 @@ public class IntegerJid
         appendableBytes.writeInt(value);
     }
 
+    @Override
     public Request<Void> setIntegerReq(final Integer v) {
         return new RequestBase<Void>(getMailbox()) {
             @Override
@@ -111,6 +115,7 @@ public class IntegerJid
         };
     }
 
+    @Override
     public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
         getIntegerReq = new RequestBase<Integer>(getMailbox()) {
             @Override

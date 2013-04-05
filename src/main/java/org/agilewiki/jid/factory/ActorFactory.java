@@ -25,12 +25,13 @@ package org.agilewiki.jid.factory;
 
 import org.agilewiki.jid.Jid;
 import org.agilewiki.pactor.Mailbox;
+import org.agilewiki.paid.PAIDFactory;
 import org.agilewiki.pautil.Ancestor;
 
 /**
  * Creates a JLPCActor.
  */
-abstract public class ActorFactory {
+abstract public class ActorFactory implements PAIDFactory {
     private String factoryKey;
 
     /**
@@ -38,6 +39,11 @@ abstract public class ActorFactory {
      */
     public final String jidType;
     private JAFactoryLocator factoryLocator;
+
+    @Override
+    public String getType() {
+        return jidType;
+    }
 
     public void configure(JAFactoryLocator factoryLocator) {
         this.factoryLocator = factoryLocator;

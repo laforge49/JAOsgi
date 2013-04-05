@@ -21,7 +21,7 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.scalar.flens.dbl;
+package org.agilewiki.jid.scalar.flens;
 
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ReadableBytes;
@@ -29,13 +29,18 @@ import org.agilewiki.jid.Util;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
-import org.agilewiki.jid.scalar.flens.FLenScalarJid;
+import org.agilewiki.pactor.Mailbox;
+import org.agilewiki.pactor.Request;
+import org.agilewiki.pactor.RequestBase;
+import org.agilewiki.pactor.ResponseProcessor;
+import org.agilewiki.paid.DoublePAID;
+import org.agilewiki.pautil.Ancestor;
 
 /**
  * A JID actor that holds a double.
  */
 public class DoubleJid
-        extends FLenScalarJid<Double> {
+        extends FLenScalarJid<Double> implements DoublePAID {
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
@@ -46,6 +51,13 @@ public class DoubleJid
                 return new DoubleJid();
             }
         });
+    }
+
+    private Request<Double> getDoubleReq;
+
+    @Override
+    public Request<Double> getDoubleReq() {
+        return getDoubleReq;
     }
 
     /**
@@ -71,6 +83,17 @@ public class DoubleJid
         return value;
     }
 
+    @Override
+    public Request<Void> setDoubleReq(final Double v) {
+        return new RequestBase<Void>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor rp) throws Exception {
+                setValue(v);
+                rp.processResponse(null);
+            }
+        };
+    }
+
     /**
      * Returns the number of bytes needed to serialize the persistent data.
      *
@@ -89,5 +112,15 @@ public class DoubleJid
     @Override
     protected void serialize(AppendableBytes appendableBytes) {
         appendableBytes.writeDouble(value);
+    }
+
+    @Override
+    public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
+        getDoubleReq = new RequestBase<Double>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor rp) throws Exception {
+                rp.processResponse(getValue());
+            }
+        };
     }
 }

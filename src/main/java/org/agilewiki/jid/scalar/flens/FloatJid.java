@@ -33,13 +33,14 @@ import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;
 import org.agilewiki.pactor.ResponseProcessor;
+import org.agilewiki.paid.FloatPAID;
 import org.agilewiki.pautil.Ancestor;
 
 /**
  * A JID actor that holds a float.
  */
 public class FloatJid
-        extends FLenScalarJid<Float> {
+        extends FLenScalarJid<Float> implements FloatPAID {
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
@@ -54,7 +55,8 @@ public class FloatJid
 
     private Request<Float> getFloatReq;
 
-    public Request<Float> getGetFloatReq() {
+    @Override
+    public Request<Float> getFloatReq() {
         return getFloatReq;
     }
 
@@ -73,6 +75,7 @@ public class FloatJid
      *
      * @return The value held by this component.
      */
+    @Override
     public Float getValue() {
         if (value != null)
             return value;
@@ -81,6 +84,7 @@ public class FloatJid
         return value;
     }
 
+    @Override
     public Request<Void> setFloatReq(final Float v) {
         return new RequestBase<Void>(getMailbox()) {
             @Override
@@ -111,6 +115,7 @@ public class FloatJid
         appendableBytes.writeFloat(value);
     }
 
+    @Override
     public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
         getFloatReq = new RequestBase<Float>(getMailbox()) {
             @Override

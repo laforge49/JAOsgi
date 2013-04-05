@@ -86,6 +86,7 @@ public interface _Jid extends PAID {
      *
      * @return The factory, or null.
      */
+    @Override
     public ActorFactory getFactory();
 
     /**

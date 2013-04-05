@@ -33,13 +33,14 @@ import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;
 import org.agilewiki.pactor.ResponseProcessor;
+import org.agilewiki.paid.LongPAID;
 import org.agilewiki.pautil.Ancestor;
 
 /**
  * A JID actor that holds a long.
  */
 public class LongJid
-        extends FLenScalarJid<Long> {
+        extends FLenScalarJid<Long> implements LongPAID {
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
@@ -54,6 +55,7 @@ public class LongJid
 
     private Request<Long> getLongReq;
 
+    @Override
     public Request<Long> getLongReq() {
         return getLongReq;
     }
@@ -73,6 +75,7 @@ public class LongJid
      *
      * @return The value held by this component.
      */
+    @Override
     public Long getValue() {
         if (value != null)
             return value;
@@ -81,11 +84,12 @@ public class LongJid
         return value;
     }
 
-    public Request<Void> setLongReq(final Long v) {
+    @Override
+    public Request<Void> setLongReq(final Long _v) {
         return new RequestBase<Void>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
-                setValue(v);
+                setValue(_v);
                 rp.processResponse(null);
             }
         };
@@ -111,6 +115,7 @@ public class LongJid
         appendableBytes.writeLong(value);
     }
 
+    @Override
     public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
         getLongReq = new RequestBase<Long>(getMailbox()) {
             @Override
