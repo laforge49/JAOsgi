@@ -23,11 +23,6 @@
  */
 package org.agilewiki.jid.scalar.vlens;
 
-import org.agilewiki.jactor.Request;
-import org.agilewiki.jactor.RequestBase;
-import org.agilewiki.jactor.ResponseProcessor;
-import org.agilewiki.jactor.ancestor.Ancestor;
-import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ComparableKey;
 import org.agilewiki.jid.ReadableBytes;
@@ -35,13 +30,19 @@ import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
+import org.agilewiki.pactor.Mailbox;
+import org.agilewiki.pactor.Request;
+import org.agilewiki.pactor.RequestBase;
+import org.agilewiki.pactor.ResponseProcessor;
+import org.agilewiki.paid.StringPAID;
+import org.agilewiki.pautil.Ancestor;
 
 /**
  * A JID actor that holds a String.
  */
 public class StringJid
         extends VLenScalarJid<String, String>
-        implements ComparableKey<String> {
+        implements ComparableKey<String>, StringPAID {
     public static StringJid create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
         return (StringJid) JAFactoryLocator.newJid(actor, JidFactories.STRING_JID_TYPE, mailbox, parent);
     }
@@ -83,7 +84,7 @@ public class StringJid
     public Request<Void> setStringReq(final String v) {
         if (v == null)
             throw new IllegalArgumentException("value may not be null");
-        return new RequestBase<Void>(this) {
+        return new RequestBase<Void>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
                 setValue(v);
@@ -116,7 +117,7 @@ public class StringJid
     public Request<Boolean> makeStringReq(final String v) {
         if (v == null)
             throw new IllegalArgumentException("value may not be null");
-        return new RequestBase<Boolean>(this) {
+        return new RequestBase<Boolean>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(makeValue(v));
@@ -166,7 +167,7 @@ public class StringJid
     }
 
     public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
-        getStringReq = new RequestBase<String>(this) {
+        getStringReq = new RequestBase<String>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(getValue());

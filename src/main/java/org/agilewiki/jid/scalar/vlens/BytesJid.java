@@ -23,17 +23,18 @@
  */
 package org.agilewiki.jid.scalar.vlens;
 
-import org.agilewiki.jactor.Request;
-import org.agilewiki.jactor.RequestBase;
-import org.agilewiki.jactor.ancestor.Ancestor;
-import org.agilewiki.jactor.Mailbox;
-import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ReadableBytes;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
+import org.agilewiki.pactor.Mailbox;
+import org.agilewiki.pactor.Request;
+import org.agilewiki.pactor.RequestBase;
+import org.agilewiki.pactor.ResponseProcessor;
+import org.agilewiki.paid.BytesPAID;
+import org.agilewiki.pautil.Ancestor;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -44,7 +45,7 @@ import java.io.ObjectOutputStream;
  * A JID component that holds a byte array.
  */
 public class BytesJid
-        extends VLenScalarJid<byte[], byte[]> {
+        extends VLenScalarJid<byte[], byte[]> implements BytesPAID {
     public static BytesJid create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
         return (BytesJid) JAFactoryLocator.newJid(actor, JidFactories.BYTES_JID_TYPE, mailbox, parent);
     }
@@ -62,6 +63,7 @@ public class BytesJid
 
     private Request<byte[]> getBytesReq;
 
+    @Override
     public Request<byte[]> getBytesReq() {
         return getBytesReq;
     }
@@ -83,8 +85,9 @@ public class BytesJid
         change(c);
     }
 
+    @Override
     public Request<Void> setBytesReq(final byte[] v) {
-        return new RequestBase<Void>(this) {
+        return new RequestBase<Void>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
                 setValue(v);
@@ -123,8 +126,9 @@ public class BytesJid
         return true;
     }
 
+    @Override
     public Request<Boolean> makeBytesReq(final byte[] v) {
-        return new RequestBase<Boolean>(this) {
+        return new RequestBase<Boolean>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(makeValue(v));
@@ -137,6 +141,7 @@ public class BytesJid
      *
      * @return The value held by this component, or null.
      */
+    @Override
     public byte[] getValue() {
         if (len == -1)
             return null;
@@ -170,8 +175,9 @@ public class BytesJid
         appendableBytes.writeBytes(value);
     }
 
+    @Override
     public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
-        getBytesReq = new RequestBase<byte[]>(this) {
+        getBytesReq = new RequestBase<byte[]>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(getValue());

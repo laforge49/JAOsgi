@@ -23,16 +23,16 @@
  */
 package org.agilewiki.jid.scalar.vlens;
 
-import org.agilewiki.jactor.Mailbox;
-import org.agilewiki.jactor.Request;
-import org.agilewiki.jactor.RequestBase;
-import org.agilewiki.jactor.ancestor.Ancestor;
-import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ReadableBytes;
 import org.agilewiki.jid.Util;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.scalar.ScalarJid;
+import org.agilewiki.pactor.Mailbox;
+import org.agilewiki.pactor.Request;
+import org.agilewiki.pactor.RequestBase;
+import org.agilewiki.pactor.ResponseProcessor;
+import org.agilewiki.pautil.Ancestor;
 
 /**
  * A JID component that holds a variable-length value, or null.
@@ -154,7 +154,7 @@ abstract public class VLenScalarJid<SET_TYPE, RESPONSE_TYPE>
     }
 
     public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
-        clearReq = new RequestBase<Void>(this) {
+        clearReq = new RequestBase<Void>(getMailbox()) {
             public void processRequest(ResponseProcessor rp) throws Exception {
                 clear();
                 rp.processResponse(null);
