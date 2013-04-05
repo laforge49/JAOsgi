@@ -32,7 +32,7 @@ import org.agilewiki.jid.jaosgi.JABundleContext;
 import org.agilewiki.jid.scalar.flens.LongJid;
 import org.agilewiki.jid.scalar.flens.bool.BooleanJid;
 import org.agilewiki.jid.scalar.flens.dbl.DoubleJid;
-import org.agilewiki.jid.scalar.flens.flt.FloatJid;
+import org.agilewiki.jid.scalar.flens.FloatJid;
 import org.agilewiki.jid.scalar.flens.IntegerJid;
 import org.agilewiki.jid.scalar.vlens.BytesJid;
 import org.agilewiki.jid.scalar.vlens.StringJid;

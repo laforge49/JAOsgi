@@ -23,17 +23,17 @@
  */
 package org.agilewiki.jid.scalar.flens;
 
-import org.agilewiki.jactor.Mailbox;
-import org.agilewiki.jactor.Request;
-import org.agilewiki.jactor.RequestBase;
-import org.agilewiki.jactor.ResponseProcessor;
-import org.agilewiki.jactor.ancestor.Ancestor;
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ReadableBytes;
 import org.agilewiki.jid.Util;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
+import org.agilewiki.pactor.Mailbox;
+import org.agilewiki.pactor.Request;
+import org.agilewiki.pactor.RequestBase;
+import org.agilewiki.pactor.ResponseProcessor;
+import org.agilewiki.pautil.Ancestor;
 
 /**
  * A JID actor that holds an integer.
@@ -102,7 +102,7 @@ public class IntegerJid
     }
 
     public Request<Void> setIntegerReq(final Integer v) {
-        return new RequestBase<Void>(this) {
+        return new RequestBase<Void>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor<Void> rp) throws Exception {
                 setValue(v);
@@ -112,7 +112,7 @@ public class IntegerJid
     }
 
     public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
-        getIntegerReq = new RequestBase<Integer>(this) {
+        getIntegerReq = new RequestBase<Integer>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(getValue());

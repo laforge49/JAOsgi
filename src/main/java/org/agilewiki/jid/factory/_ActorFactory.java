@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jid.factory;
 
-import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.jid.Jid;
 
 import java.lang.reflect.Constructor;
 
@@ -34,7 +34,7 @@ final public class _ActorFactory extends ActorFactory {
     /**
      * The constructor used to create the actor.
      */
-    private Constructor<JLPCActor> constructor;
+    private Constructor<Jid> constructor;
 
     /**
      * Create an ActorFactory.
@@ -42,7 +42,7 @@ final public class _ActorFactory extends ActorFactory {
      * @param jidType     The jid type.
      * @param constructor The constructor used to create the actor.
      */
-    public _ActorFactory(String jidType, Constructor<JLPCActor> constructor) {
+    public _ActorFactory(String jidType, Constructor<Jid> constructor) {
         super(jidType);
         this.constructor = constructor;
     }
@@ -52,7 +52,7 @@ final public class _ActorFactory extends ActorFactory {
      *
      * @return The new actor.
      */
-    protected JLPCActor instantiateActor()
+    protected Jid instantiateActor()
             throws Exception {
         return constructor.newInstance();
     }

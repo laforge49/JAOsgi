@@ -24,12 +24,12 @@
 package org.agilewiki.jid;
 
 import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.pactor.Actor;
+import org.agilewiki.paid.PAID;
 
 /**
  * Incremental Deserialization / Reserialization.
  */
-public interface _Jid extends Actor {
+public interface _Jid extends PAID {
 
     /**
      * Process a change in the persistent data.
