@@ -23,8 +23,8 @@
  */
 package org.agilewiki.jid.jaosgi;
 
-import org.agilewiki.jactor.old.MailboxFactory;
 import org.agilewiki.jid.factory.JidFactories;
+import org.agilewiki.pactor.MailboxFactory;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
@@ -61,10 +61,10 @@ public final class Activator implements BundleActivator {
         jaBundleContext = new JABCOsgiImpl();
         jaBundleContext.setBundleContext(bundleContext);
         jaBundleContext.setJAServiceTracker(jaServiceTracker);
-        jaBundleContext.initialize(mailboxFactory.createAsyncMailbox());
+        jaBundleContext.initialize(mailboxFactory.createMailbox(true));
 
         JidFactories jidFactories = new JidFactories();
-        jidFactories.initialize(mailboxFactory.createAsyncMailbox(), jaBundleContext);
+        jidFactories.initialize(mailboxFactory.createMailbox(true), jaBundleContext);
         jidFactories.configure();
     }
 

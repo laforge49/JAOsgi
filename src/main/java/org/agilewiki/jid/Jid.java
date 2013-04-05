@@ -23,15 +23,11 @@
  */
 package org.agilewiki.jid;
 
-import org.agilewiki.jactor.Request;
-import org.agilewiki.jactor.RequestBase;
-import org.agilewiki.jactor.ResponseProcessor;
-import org.agilewiki.jactor.ancestor.Ancestor;
-import org.agilewiki.jactor.ancestor.AncestorBase;
-import org.agilewiki.jactor.old.Actor;
-import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.JAFactoryLocator;
+import org.agilewiki.pactor.*;
+import org.agilewiki.pautil.Ancestor;
+import org.agilewiki.pautil.AncestorBase;
 
 import java.util.Arrays;
 
@@ -82,14 +78,14 @@ public class Jid extends AncestorBase implements _Jid {
 
     final public Jid createSubordinate(ActorFactory factory, Ancestor parent)
             throws Exception {
-        Jid jid = (Jid) factory.newActor(getMailbox(), parent);
+        Jid jid = factory.newActor(getMailbox(), parent);
         jid.setContainerJid(this);
         return jid;
     }
 
     final public Jid createSubordinate(String actorType, Ancestor parent)
             throws Exception {
-        Jid jid = (Jid) JAFactoryLocator.newJid(this, actorType, getMailbox(), parent);
+        Jid jid = JAFactoryLocator.newJid(this, actorType, getMailbox(), parent);
         jid.setContainerJid(this);
         return jid;
     }
@@ -253,7 +249,7 @@ public class Jid extends AncestorBase implements _Jid {
     }
 
     final public Request<Void> saveReq(final AppendableBytes appendableBytes) {
-        return new RequestBase<Void>(this) {
+        return new RequestBase<Void>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
                 save(appendableBytes);
@@ -302,7 +298,7 @@ public class Jid extends AncestorBase implements _Jid {
     }
 
     public Request<Jid> resolvePathnameReq(final String pathname) {
-        return new RequestBase<Jid>(this) {
+        return new RequestBase<Jid>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(resolvePathname(pathname));
@@ -327,7 +323,7 @@ public class Jid extends AncestorBase implements _Jid {
     }
 
     public final Request<Jid> copyJIDReq(final Mailbox m) {
-        return new RequestBase<Jid>(this) {
+        return new RequestBase<Jid>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(copyJID(m));
@@ -335,23 +331,18 @@ public class Jid extends AncestorBase implements _Jid {
         };
     }
 
-    public final Request<Boolean> isJidEqualReq(final Actor actor) {
-        return new RequestBase<Boolean>(this) {
+    public final Request<Boolean> isJidEqualReq(final Jid jidA) {
+        return new RequestBase<Boolean>(getMailbox()) {
             @Override
             public void processRequest(final ResponseProcessor rp) throws Exception {
-                if (!(actor instanceof Jid)) {
-                    rp.processResponse(false);
-                    return;
-                }
-                final Jid jidA = (Jid) actor;
-                getSerializedLengthReq.send(jidA, new ResponseProcessor<Integer>() {
+                getSerializedLengthReq.send(jidA.getMailbox(), new ResponseProcessor<Integer>() {
                     @Override
                     public void processResponse(Integer response) throws Exception {
                         if (response.intValue() != getSerializedLength()) {
                             rp.processResponse(false);
                             return;
                         }
-                        getSerializedBytesReq.send(jidA, new ResponseProcessor<byte[]>() {
+                        getSerializedBytesReq.send(jidA.getMailbox(), new ResponseProcessor<byte[]>() {
                             @Override
                             public void processResponse(byte[] response) throws Exception {
                                 boolean eq = Arrays.equals(response, getSerializedBytes());
@@ -407,47 +398,19 @@ public class Jid extends AncestorBase implements _Jid {
         super.initialize(mailbox, parent);
         this.factory = factory;
 
-        getSerializedLengthReq = new RequestBase<Integer>(this) {
+        getSerializedLengthReq = new RequestBase<Integer>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(getSerializedLength());
             }
         };
 
-        getSerializedBytesReq = new RequestBase<byte[]>(this) {
+        getSerializedBytesReq = new RequestBase<byte[]>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(getSerializedBytes());
             }
         };
-    }
-
-    /**
-     * Initialize a degraded LiteActor
-     */
-    @Override
-    final public void initialize() throws Exception {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Initialize a degraded LiteActor
-     *
-     * @param parent The parent actor.
-     */
-    @Override
-    final public void initialize(Ancestor parent) throws Exception {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Initialize a LiteActor
-     *
-     * @param mailbox A mailbox which may be shared with other actors.
-     */
-    @Override
-    final public void initialize(final Mailbox mailbox) throws Exception {
-        throw new UnsupportedOperationException();
     }
 
     /**

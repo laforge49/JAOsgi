@@ -23,7 +23,6 @@
  */
 package org.agilewiki.jid.factory;
 
-import org.agilewiki.jactor.old.MailboxFactory;
 import org.agilewiki.jid.JidFactory;
 import org.agilewiki.jid.collection.vlenc.BListJidFactory;
 import org.agilewiki.jid.collection.vlenc.ListJidFactory;
@@ -39,6 +38,7 @@ import org.agilewiki.jid.scalar.vlens.BytesJid;
 import org.agilewiki.jid.scalar.vlens.StringJid;
 import org.agilewiki.jid.scalar.vlens.actor.ActorJid;
 import org.agilewiki.jid.scalar.vlens.actor.RootJidFactory;
+import org.agilewiki.pactor.MailboxFactory;
 
 /**
  * <p>
@@ -49,14 +49,14 @@ final public class JidFactories extends LocateLocalActorFactories {
     public static JAFactoryLocator createNoOsgiFactoryLocator(int threadCount) throws Exception {
         JABundleContext jaBundleContext = JABCNoOsgiImpl.createNoOsgiJABundleContext(threadCount);
         JidFactories jidFactories = new JidFactories();
-        jidFactories.initialize(jaBundleContext.getMailboxFactory().createAsyncMailbox(), jaBundleContext);
+        jidFactories.initialize(jaBundleContext.getMailbox().getMailboxFactory().createMailbox(true), jaBundleContext);
         return jidFactories.configure();
     }
 
     public static JAFactoryLocator createNoOsgiFactoryLocator(MailboxFactory mailboxFactory) throws Exception {
         JABundleContext jaBundleContext = JABCNoOsgiImpl.createNoOsgiJABundleContext(mailboxFactory);
         JidFactories jidFactories = new JidFactories();
-        jidFactories.initialize(mailboxFactory.createAsyncMailbox(), jaBundleContext);
+        jidFactories.initialize(mailboxFactory.createMailbox(true), jaBundleContext);
         return jidFactories.configure();
     }
 

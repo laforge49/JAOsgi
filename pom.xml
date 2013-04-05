@@ -98,6 +98,21 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.agilewiki</groupId>
+            <artifactId>pactor</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.agilewiki</groupId>
+            <artifactId>pamailbox</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.agilewiki</groupId>
+            <artifactId>pautil</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
             <version>2.1</version>

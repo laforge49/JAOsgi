@@ -23,17 +23,17 @@
  */
 package org.agilewiki.jid.factory;
 
-import org.agilewiki.jactor.ancestor.Ancestor;
-import org.agilewiki.jactor.Mailbox;
-import org.agilewiki.jactor.lpc.TargetActor;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
 import org.agilewiki.jid.scalar.vlens.StringJid;
+import org.agilewiki.pactor.Actor;
+import org.agilewiki.pactor.Mailbox;
+import org.agilewiki.pautil.Ancestor;
 
 /**
  * Defines actor types and instantiating
  */
-public interface FactoryLocator extends TargetActor {
+public interface FactoryLocator extends Actor {
     /**
      * Bind an actor type to a Class.
      *

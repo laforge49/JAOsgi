@@ -23,10 +23,8 @@
  */
 package org.agilewiki.jid.jaosgi;
 
-import org.agilewiki.jactor.ancestor.Ancestor;
-import org.agilewiki.jactor.ancestor.AncestorBase;
-import org.agilewiki.jactor.old.Actor;
-import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.pautil.Ancestor;
+import org.agilewiki.pautil.AncestorBase;
 import org.osgi.framework.*;
 
 import java.io.File;
@@ -101,5 +99,5 @@ abstract public class JABundleContext extends AncestorBase {
 
     abstract public boolean ungetService(ServiceReference serviceReference);
 
-    abstract public void stop(int options) throws BundleException;
+    abstract public void stop(int options) throws Exception;
 }

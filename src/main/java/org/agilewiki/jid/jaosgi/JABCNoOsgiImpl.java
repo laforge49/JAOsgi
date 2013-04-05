@@ -23,8 +23,8 @@
  */
 package org.agilewiki.jid.jaosgi;
 
-import org.agilewiki.jactor.old.JAMailboxFactory;
-import org.agilewiki.jactor.old.MailboxFactory;
+import org.agilewiki.pactor.MailboxFactory;
+import org.agilewiki.pamailbox.DefaultMailboxFactoryImpl;
 import org.osgi.framework.*;
 
 import java.io.File;
@@ -36,7 +36,8 @@ import java.util.List;
 
 public class JABCNoOsgiImpl extends JABundleContext {
     public static JABundleContext createNoOsgiJABundleContext(int threadCount) throws Exception {
-        MailboxFactory mailboxFactory = JAMailboxFactory.newMailboxFactory(threadCount);
+        //todo threadCount?
+        MailboxFactory mailboxFactory = new DefaultMailboxFactoryImpl();
         return createNoOsgiJABundleContext(mailboxFactory);
     }
 
@@ -175,7 +176,7 @@ public class JABCNoOsgiImpl extends JABundleContext {
     }
 
     @Override
-    public void stop(int options) throws BundleException {
-        getMailboxFactory().close();
+    public void stop(int options) throws Exception {
+        getMailbox().getMailboxFactory().close();
     }
 }

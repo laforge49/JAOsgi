@@ -23,10 +23,10 @@
  */
 package org.agilewiki.jid.factory;
 
-import org.agilewiki.jactor.ancestor.AncestorBase;
 import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
 import org.agilewiki.jid.jaosgi.JABundleContext;
 import org.agilewiki.jid.scalar.vlens.StringJid;
+import org.agilewiki.pautil.AncestorBase;
 import org.osgi.framework.Bundle;
 
 import java.util.Hashtable;
@@ -38,7 +38,7 @@ public abstract class LocateLocalActorFactories extends AncestorBase {
         JABundleContext jaBundleContext = JABundleContext.get(this);
 
         factoryLocator = new JAFactoryLocator();
-        factoryLocator.initialize(getMailboxFactory().createAsyncMailbox(), jaBundleContext);
+        factoryLocator.initialize(getMailbox().getMailboxFactory().createMailbox(true), jaBundleContext);
 
         Bundle bundle = jaBundleContext.getBundle();
         if (bundle == null) {

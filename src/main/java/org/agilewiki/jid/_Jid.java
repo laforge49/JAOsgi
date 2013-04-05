@@ -23,13 +23,13 @@
  */
 package org.agilewiki.jid;
 
-import org.agilewiki.jactor.lpc.TargetActor;
 import org.agilewiki.jid.factory.ActorFactory;
+import org.agilewiki.pactor.Actor;
 
 /**
  * Incremental Deserialization / Reserialization.
  */
-public interface _Jid extends TargetActor {
+public interface _Jid extends Actor {
 
     /**
      * Process a change in the persistent data.
