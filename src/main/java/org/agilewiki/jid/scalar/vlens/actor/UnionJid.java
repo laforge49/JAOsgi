@@ -32,22 +32,25 @@ import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;
 import org.agilewiki.pactor.ResponseProcessor;
+import org.agilewiki.paid.PAID;
+import org.agilewiki.paid.UnionPAID;
 import org.agilewiki.pautil.Ancestor;
 
-public class UnionJid extends ScalarJid<String, Jid> {
+public class UnionJid extends ScalarJid<String, Jid> implements UnionPAID {
     protected ActorFactory[] unionFactories;
     protected int factoryIndex = -1;
     protected Jid value;
 
     private Request<Void> clearReq;
-    private Request<Jid> getActorReq;
+    private Request<PAID> getPAIDReq;
 
     public Request<Void> clearReq() {
         return clearReq;
     }
 
-    public Request<Jid> getActorReq() {
-        return getActorReq;
+    @Override
+    public Request<PAID> getPAIDReq() {
+        return getPAIDReq;
     }
 
     protected ActorFactory[] getUnionFactories()
@@ -122,7 +125,8 @@ public class UnionJid extends ScalarJid<String, Jid> {
         setValue(getFactoryIndex(actorType));
     }
 
-    public Request<Void> setActorReq(final String actorType) {
+    @Override
+    public Request<Void> setPAIDReq(final String actorType) {
         return new RequestBase<Void>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
@@ -161,16 +165,17 @@ public class UnionJid extends ScalarJid<String, Jid> {
      * @param bytes   The serialized data.
      * @throws Exception Any uncaught exception raised.
      */
-    public void setJidBytes(final String jidType, final byte[] bytes)
+    public void setValue(final String jidType, final byte[] bytes)
             throws Exception {
         setUnionBytes(getFactoryIndex(jidType), bytes);
     }
 
-    public Request<Void> setActorBytesReq(final String jidType, final byte[] bytes) {
+    @Override
+    public Request<Void> setPAIDReq(final String jidType, final byte[] bytes) {
         return new RequestBase<Void>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
-                setJidBytes(jidType, bytes);
+                setValue(jidType, bytes);
                 rp.processResponse(null);
             }
         };
@@ -208,7 +213,8 @@ public class UnionJid extends ScalarJid<String, Jid> {
         return makeUnionValue(getFactoryIndex(jidType));
     }
 
-    public Request<Boolean> makeActorReq(final String jidType) {
+    @Override
+    public Request<Boolean> makePAIDReq(final String jidType) {
         return new RequestBase<Boolean>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
@@ -240,16 +246,17 @@ public class UnionJid extends ScalarJid<String, Jid> {
      * @return True if a new value is created.
      * @throws Exception Any uncaught exception raised.
      */
-    public Boolean makeJidBytes(final String jidType, final byte[] bytes)
+    public Boolean makeValue(final String jidType, final byte[] bytes)
             throws Exception {
         return makeUnionBytes(getFactoryIndex(jidType), bytes);
     }
 
-    public Request<Boolean> makeActorBytesReq(final String jidType, final byte[] bytes) {
+    @Override
+    public Request<Boolean> makePAIDReq(final String jidType, final byte[] bytes) {
         return new RequestBase<Boolean>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
-                rp.processResponse(makeJidBytes(jidType, bytes));
+                rp.processResponse(makeValue(jidType, bytes));
             }
         };
     }
@@ -314,7 +321,7 @@ public class UnionJid extends ScalarJid<String, Jid> {
             }
         };
 
-        getActorReq = new RequestBase<Jid>(getMailbox()) {
+        getPAIDReq = new RequestBase<PAID>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(getValue());

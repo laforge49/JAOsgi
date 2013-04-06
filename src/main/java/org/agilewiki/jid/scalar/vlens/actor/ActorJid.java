@@ -33,13 +33,15 @@ import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;
 import org.agilewiki.pactor.ResponseProcessor;
+import org.agilewiki.paid.PAID;
+import org.agilewiki.paid.PAIDPAID;
 import org.agilewiki.pautil.Ancestor;
 
 /**
  * A JID actor that holds a JID actor.
  */
 public class ActorJid
-        extends VLenScalarJid<String, Jid> {
+        extends VLenScalarJid<String, Jid> implements PAIDPAID {
     public static ActorJid create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
         return (ActorJid) JAFactoryLocator.newJid(actor, JidFactories.ACTOR_JID_TYPE, mailbox, parent);
     }
@@ -56,14 +58,16 @@ public class ActorJid
     }
 
     private Request<Void> clearReq;
-    private Request<Jid> getActorReq;
+    private Request<PAID> getPAIDReq;
 
+    @Override
     public Request<Void> clearReq() {
         return clearReq;
     }
 
-    public Request<Jid> getActorReq() {
-        return getActorReq;
+    @Override
+    public Request<PAID> getPAIDReq() {
+        return getPAIDReq;
     }
 
     /**
@@ -102,7 +106,8 @@ public class ActorJid
         return true;
     }
 
-    public Request<Boolean> makeActorReq(final String jidType) {
+    @Override
+    public Request<Boolean> makePAIDReq(final String jidType) {
         return new RequestBase<Boolean>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
@@ -127,7 +132,8 @@ public class ActorJid
         serializedOffset = -1;
     }
 
-    public Request<Void> setActorReq(final String actorType) {
+    @Override
+    public Request<Void> setPAIDReq(final String actorType) {
         return new RequestBase<Void>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
@@ -138,39 +144,25 @@ public class ActorJid
     }
 
     /**
-     * Assign a value.
-     *
-     * @param jidFactory The jid factory.
-     * @throws Exception Any uncaught exception raised.
-     */
-    public void setValue(final ActorFactory jidFactory)
-            throws Exception {
-        value = createSubordinate(jidFactory);
-        int l = Util.stringLength(jidFactory.getFactoryKey()) + value.getSerializedLength();
-        change(l);
-        serializedBytes = null;
-        serializedOffset = -1;
-    }
-
-    /**
      * Creates a JID actor and loads its serialized data.
      *
      * @param jidType An jid type name.
      * @param bytes   The serialized data.
      * @throws Exception Any uncaught exception raised.
      */
-    public void setJidBytes(final String jidType, final byte[] bytes)
+    public void setValue(final String jidType, final byte[] bytes)
             throws Exception {
         if (len > -1)
             clear();
         setBytes(jidType, bytes);
     }
 
-    public Request<Void> setActorBytesReq(final String jidType, final byte[] bytes) {
+    @Override
+    public Request<Void> setPAIDReq(final String jidType, final byte[] bytes) {
         return new RequestBase<Void>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
-                setJidBytes(jidType, bytes);
+                setValue(jidType, bytes);
                 rp.processResponse(null);
             }
         };
@@ -184,7 +176,7 @@ public class ActorJid
      * @return True if a new value is created.
      * @throws Exception Any uncaught exception raised.
      */
-    public Boolean makeJidBytes(final String jidType, final byte[] bytes)
+    public Boolean makeValue(final String jidType, final byte[] bytes)
             throws Exception {
         if (len > -1)
             return false;
@@ -192,11 +184,12 @@ public class ActorJid
         return true;
     }
 
-    public Request<Boolean> makeActorBytesReq(final String jidType, final byte[] bytes) {
+    @Override
+    public Request<Boolean> makePAIDReq(final String jidType, final byte[] bytes) {
         return new RequestBase<Boolean>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
-                rp.processResponse(makeJidBytes(jidType, bytes));
+                rp.processResponse(makeValue(jidType, bytes));
             }
         };
     }
@@ -305,7 +298,7 @@ public class ActorJid
             }
         };
 
-        getActorReq = new RequestBase<Jid>(getMailbox()) {
+        getPAIDReq = new RequestBase<PAID>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(getValue());

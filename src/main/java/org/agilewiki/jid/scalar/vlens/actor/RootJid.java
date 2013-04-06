@@ -34,6 +34,7 @@ import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.scalar.vlens.StringJid;
 import org.agilewiki.pactor.Mailbox;
+import org.agilewiki.paid.RootPAID;
 import org.agilewiki.pautil.Ancestor;
 
 /**
@@ -42,7 +43,7 @@ import org.agilewiki.pautil.Ancestor;
  * The serialized form of RootJid does NOT contain its length.
  * The load method simply grabs all the remaining data.
  */
-public class RootJid extends ActorJid {
+public class RootJid extends ActorJid implements RootPAID {
     public static RootJid create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
         return (RootJid) JAFactoryLocator.newJid(actor, JidFactories.ROOT_JID_TYPE, mailbox, parent);
     }
