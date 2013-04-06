@@ -1,9 +1,9 @@
 package org.agilewiki.jactor.lpc.exceptionsTest;
 
-import org.agilewiki.jactor.old.Actor;
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.RequestBase;
+import org.agilewiki.jactor.old.Actor;
 
 public class Go1 extends RequestBase<Object, GoReceiver> {
     public final static Go1 req = new Go1();

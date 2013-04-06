@@ -1,8 +1,9 @@
 package org.agilewiki.jactor.lpc.timingTest;
 
-import org.agilewiki.jactor.*;
-import org.agilewiki.jactor.old.JAIterator;
 import org.agilewiki.jactor.ResponseProcessor;
+import org.agilewiki.jactor.SimpleRequest;
+import org.agilewiki.jactor.SimpleRequestReceiver;
+import org.agilewiki.jactor.old.JAIterator;
 
 /**
  * Test code.

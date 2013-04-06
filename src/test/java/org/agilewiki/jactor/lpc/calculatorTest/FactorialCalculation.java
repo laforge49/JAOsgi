@@ -1,8 +1,8 @@
 package org.agilewiki.jactor.lpc.calculatorTest;
 
 import org.agilewiki.jactor.ResponseProcessor;
-import org.agilewiki.jactor.old.JAIterator;
 import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.jactor.old.JAIterator;
 
 /**
  * Test code.

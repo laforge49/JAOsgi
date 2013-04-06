@@ -1,8 +1,8 @@
 package org.agilewiki.jactor.basics;
 
-import org.agilewiki.jactor.old.MailboxFactory;
 import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.jactor.old.MailboxFactory;
 
 /**
  * Test code.

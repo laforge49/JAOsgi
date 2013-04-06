@@ -29,15 +29,11 @@ import org.agilewiki.jid.collection.vlenc.ListJidFactory;
 import org.agilewiki.jid.collection.vlenc.map.*;
 import org.agilewiki.jid.jaosgi.JABCNoOsgiImpl;
 import org.agilewiki.jid.jaosgi.JABundleContext;
-import org.agilewiki.jid.scalar.flens.LongJid;
-import org.agilewiki.jid.scalar.flens.BooleanJid;
-import org.agilewiki.jid.scalar.flens.DoubleJid;
-import org.agilewiki.jid.scalar.flens.FloatJid;
-import org.agilewiki.jid.scalar.flens.IntegerJid;
+import org.agilewiki.jid.scalar.flens.*;
 import org.agilewiki.jid.scalar.vlens.BytesJid;
 import org.agilewiki.jid.scalar.vlens.StringJid;
 import org.agilewiki.jid.scalar.vlens.actor.ActorJid;
-import org.agilewiki.jid.scalar.vlens.actor.RootJidFactory;
+import org.agilewiki.jid.scalar.vlens.actor.RootJid;
 import org.agilewiki.pactor.MailboxFactory;
 
 /**
@@ -442,7 +438,7 @@ final public class JidFactories extends LocateLocalActorFactories {
         DoubleJid.registerFactory(factoryLocator);
 
         ActorJid.registerFactory(factoryLocator);
-        RootJidFactory.registerFactory(factoryLocator);
+        RootJid.registerFactory(factoryLocator);
         StringJid.registerFactory(factoryLocator);
         BytesJid.registerFactory(factoryLocator);
 

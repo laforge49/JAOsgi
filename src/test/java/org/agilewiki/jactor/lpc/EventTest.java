@@ -1,11 +1,12 @@
 package org.agilewiki.jactor.lpc;
 
 import junit.framework.TestCase;
-import org.agilewiki.jactor.*;
+import org.agilewiki.jactor.ResponseProcessor;
+import org.agilewiki.jactor.SimpleRequest;
+import org.agilewiki.jactor.SimpleRequestReceiver;
 import org.agilewiki.jactor.old.JAFuture;
 import org.agilewiki.jactor.old.JAMailboxFactory;
 import org.agilewiki.jactor.old.MailboxFactory;
-import org.agilewiki.jactor.ResponseProcessor;
 
 /**
  * Test code.

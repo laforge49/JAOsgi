@@ -1,7 +1,8 @@
 package org.agilewiki.jactor.lpc;
 
 import junit.framework.TestCase;
-import org.agilewiki.jactor.*;
+import org.agilewiki.jactor.SimpleRequest;
+import org.agilewiki.jactor.SimpleRequestReceiver;
 import org.agilewiki.jactor.old.*;
 
 /**

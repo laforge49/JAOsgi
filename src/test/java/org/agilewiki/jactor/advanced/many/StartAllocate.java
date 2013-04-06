@@ -2,8 +2,8 @@ package org.agilewiki.jactor.advanced.many;
 
 import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.ResponseProcessor;
-import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.jactor.old.Actor;
 
 public class StartAllocate extends RequestBase<Object, AllocateDriver> {
     public final static StartAllocate req = new StartAllocate();

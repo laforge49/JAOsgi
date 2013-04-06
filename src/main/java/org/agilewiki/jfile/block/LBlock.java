@@ -23,8 +23,8 @@
  */
 package org.agilewiki.jfile.block;
 
-import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.Mailbox;
+import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ReadableBytes;
 import org.agilewiki.jid.Util;

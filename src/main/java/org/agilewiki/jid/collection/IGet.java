@@ -23,10 +23,10 @@
  */
 package org.agilewiki.jid.collection;
 
-import org.agilewiki.jactor.ResponseProcessor;
-import org.agilewiki.jactor.old.Actor;
-import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jactor.RequestBase;
+import org.agilewiki.jactor.ResponseProcessor;
+import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.jactor.old.Actor;
 
 /**
  * Returns the ith JID component, or null if the index is out of range.

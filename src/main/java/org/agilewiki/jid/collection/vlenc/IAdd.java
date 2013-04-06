@@ -23,10 +23,10 @@
  */
 package org.agilewiki.jid.collection.vlenc;
 
-import org.agilewiki.jactor.ResponseProcessor;
-import org.agilewiki.jactor.old.Actor;
-import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jactor.RequestBase;
+import org.agilewiki.jactor.ResponseProcessor;
+import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.jactor.old.Actor;
 
 /**
  * Creates a JID and inserts it in the ith position.

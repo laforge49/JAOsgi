@@ -3,8 +3,6 @@ package org.agilewiki.jactor.advanced.many;
 import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
-import static junit.framework.Assert.assertEquals;
-
 public class ReleaseDriver extends JLPCActor {
     public Doer doer;
 

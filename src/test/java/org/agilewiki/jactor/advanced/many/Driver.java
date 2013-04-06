@@ -1,10 +1,8 @@
 package org.agilewiki.jactor.advanced.many;
 
 import org.agilewiki.jactor.ResponseProcessor;
-import org.agilewiki.jactor.old.MailboxFactory;
 import org.agilewiki.jactor.lpc.JLPCActor;
-
-import static junit.framework.Assert.assertEquals;
+import org.agilewiki.jactor.old.MailboxFactory;
 
 public class Driver extends JLPCActor {
     int count;

@@ -23,13 +23,12 @@
  */
 package org.agilewiki.jid.collection.vlenc;
 
-import org.agilewiki.jactor.ancestor.Ancestor;
-import org.agilewiki.jactor.Mailbox;
-import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.scalar.vlens.actor.UnionJidFactory;
+import org.agilewiki.pactor.Mailbox;
+import org.agilewiki.pautil.Ancestor;
 
 /**
  * Creates ListJids.
@@ -73,7 +72,7 @@ public class BListJidFactory extends ActorFactory {
      * @return The new actor.
      */
     @Override
-    protected JLPCActor instantiateActor() throws Exception {
+    protected BListJid instantiateActor() throws Exception {
         return new BListJid();
     }
 

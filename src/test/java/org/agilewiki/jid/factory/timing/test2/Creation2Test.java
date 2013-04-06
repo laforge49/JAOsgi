@@ -1,8 +1,8 @@
 package org.agilewiki.jid.factory.timing.test2;
 
 import junit.framework.TestCase;
-import org.agilewiki.jactor.old.JAMailboxFactory;
 import org.agilewiki.jactor.Mailbox;
+import org.agilewiki.jactor.old.JAMailboxFactory;
 import org.agilewiki.jactor.old.MailboxFactory;
 import org.agilewiki.jid.factory.timing.A;
 

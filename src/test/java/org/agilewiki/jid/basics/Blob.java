@@ -1,8 +1,8 @@
 package org.agilewiki.jid.basics;
 
-import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jactor.ResponseProcessor;
+import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jid.collection.vlenc.map.MapEntryFactory;
 import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
 import org.agilewiki.jid.factory.ActorFactory;

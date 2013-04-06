@@ -1,8 +1,8 @@
 package org.agilewiki.jactor.basics;
 
+import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.ancestor.Ancestor;
 import org.agilewiki.jactor.ancestor.AncestorBase;
-import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
 /**

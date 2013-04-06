@@ -10,8 +10,8 @@ import org.agilewiki.jid.collection.ISetBytes;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
-import org.agilewiki.jid.scalar.vlens.string.SetString;
 import org.agilewiki.jid.scalar.vlens.StringJid;
+import org.agilewiki.jid.scalar.vlens.string.SetString;
 
 public class ListTest extends TestCase {
     public void test() throws Exception {

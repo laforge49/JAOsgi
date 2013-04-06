@@ -3,8 +3,6 @@ package org.agilewiki.jactor.advanced.allInOne;
 import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.lpc.JLPCActor;
 
-import static junit.framework.Assert.assertEquals;
-
 public class AllInOne extends JLPCActor {
     ResponseProcessor pending;
 

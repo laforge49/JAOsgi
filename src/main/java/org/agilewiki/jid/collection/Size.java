@@ -23,26 +23,14 @@
  */
 package org.agilewiki.jid.collection;
 
-import org.agilewiki.jactor.old.Actor;
-import org.agilewiki.jactor.ResponseProcessor;
-import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.RequestBase;
+import org.agilewiki.pactor.RequestBase;
+import org.agilewiki.pactor.ResponseProcessor;
 
 /**
  * Returns the size of the collection.
  */
 public class Size extends RequestBase<Integer, Collection> {
     public final static Size req = new Size();
-
-    /**
-     * Returns true when targetActor is an instanceof TARGET_TYPE
-     *
-     * @param targetActor The actor to be called.
-     * @return True when targetActor is an instanceof TARGET_TYPE.
-     */
-    public boolean isTargetType(Actor targetActor) {
-        return targetActor instanceof Collection;
-    }
 
     @Override
     public void processRequest(JLPCActor targetActor, ResponseProcessor rp) throws Exception {

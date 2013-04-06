@@ -1,9 +1,9 @@
 package org.agilewiki.jid.timings.list;
 
-import org.agilewiki.jactor.old.Actor;
+import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jactor.RequestBase;
+import org.agilewiki.jactor.old.Actor;
 
 public class TimeBooleanSAppender extends RequestBase<Long, BooleanSAppender> {
     final static public TimeBooleanSAppender req = new TimeBooleanSAppender();

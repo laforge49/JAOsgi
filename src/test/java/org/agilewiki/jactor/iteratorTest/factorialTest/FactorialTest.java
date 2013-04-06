@@ -1,10 +1,10 @@
 package org.agilewiki.jactor.iteratorTest.factorialTest;
 
 import junit.framework.TestCase;
+import org.agilewiki.jactor.SimpleRequest;
 import org.agilewiki.jactor.old.JAFuture;
 import org.agilewiki.jactor.old.JAMailboxFactory;
 import org.agilewiki.jactor.old.MailboxFactory;
-import org.agilewiki.jactor.SimpleRequest;
 
 /**
  * Test code.

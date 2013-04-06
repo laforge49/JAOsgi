@@ -25,9 +25,9 @@ package org.agilewiki.jactor.lpc.timingTest;
 
 import org.agilewiki.jactor.RequestBase;
 import org.agilewiki.jactor.ResponseProcessor;
-import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.SimpleRequest;
 import org.agilewiki.jactor.SimpleRequestReceiver;
+import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.parallel.JAResponseCounter;
 
 /**

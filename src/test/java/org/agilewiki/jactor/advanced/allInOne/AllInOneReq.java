@@ -1,7 +1,7 @@
 package org.agilewiki.jactor.advanced.allInOne;
 
-import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.RequestBase;
+import org.agilewiki.jactor.old.Actor;
 
 abstract public class AllInOneReq extends RequestBase<Object, AllInOne> {
     @Override

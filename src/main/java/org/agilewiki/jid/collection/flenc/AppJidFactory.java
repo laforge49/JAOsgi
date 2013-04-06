@@ -1,10 +1,10 @@
 package org.agilewiki.jid.collection.flenc;
 
-import org.agilewiki.jactor.old.Actor;
-import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JAFactoryLocator;
+import org.agilewiki.pactor.Mailbox;
+import org.agilewiki.pautil.Ancestor;
 
 /**
  * Creates AppJid objects.
@@ -47,7 +47,7 @@ abstract public class AppJidFactory extends ActorFactory {
      * @param parent  The parent of the new actor.
      * @return The new actor.
      */
-    public AppJid newActor(Mailbox mailbox, Actor parent)
+    public AppJid newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
         AppJid tj = (AppJid) super.newActor(mailbox, parent);
         if (tupleFactories == null) {
