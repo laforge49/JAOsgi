@@ -23,6 +23,7 @@
  */
 package org.agilewiki.jid.collection.vlenc;
 
+import org.agilewiki.incdes.PAIncDes;
 import org.agilewiki.incdes.PAList;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.jid.collection.Collection;
@@ -30,7 +31,7 @@ import org.agilewiki.jid.collection.Collection;
 /**
  * Defines list operations.
  */
-public interface JAList<ENTRY_TYPE extends Jid>
+public interface JAList<ENTRY_TYPE extends PAIncDes>
         extends Collection<ENTRY_TYPE>, PAList<ENTRY_TYPE> {
     public void iAdd(int i)
             throws Exception;

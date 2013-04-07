@@ -24,13 +24,14 @@
 package org.agilewiki.jid.collection;
 
 import org.agilewiki.incdes.PACollection;
+import org.agilewiki.incdes.PAIncDes;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.jid._Jid;
 
 /**
  * A collection of JID actors.
  */
-public interface Collection<ENTRY_TYPE extends Jid>
+public interface Collection<ENTRY_TYPE extends PAIncDes>
         extends _Jid, PACollection<ENTRY_TYPE> {
 
     /**
