@@ -35,7 +35,7 @@ public interface JAList<ENTRY_TYPE extends Jid>
     public void iAdd(int i)
             throws Exception;
 
-    public void iAddBytes(int i, byte[] bytes)
+    public void iAdd(int i, byte[] bytes)
             throws Exception;
 
     public void empty()

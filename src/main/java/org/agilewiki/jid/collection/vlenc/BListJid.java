@@ -52,10 +52,15 @@ public class BListJid<ENTRY_TYPE extends Jid>
     protected FactoryLocator factoryLocator;
 
     private Request<Integer> sizeReq;
+    private Request<Void> emptyReq;
 
     @Override
     public Request<Integer> sizeReq() {
         return sizeReq;
+    }
+
+    public Request<Void> emptyReq() {
+        return emptyReq;
     }
 
     /**
@@ -259,13 +264,35 @@ public class BListJid<ENTRY_TYPE extends Jid>
     }
 
     @Override
-    public void iAdd(int i)
-            throws Exception {
-        iAddBytes(i, null);
+    public Request<Void> iAddReq(final int _i) {
+        return new RequestBase<Void>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor<Void> _rp) throws Exception {
+                iAdd(_i);
+                _rp.processResponse(null);
+            }
+        };
     }
 
     @Override
-    public void iAddBytes(int ndx, byte[] bytes)
+    public void iAdd(int i)
+            throws Exception {
+        iAdd(i, null);
+    }
+
+    @Override
+    public Request<Void> iAddReq(final int _i, final byte[] _bytes) {
+        return new RequestBase<Void>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor<Void> _rp) throws Exception {
+                iAdd(_i, _bytes);
+                _rp.processResponse(null);
+            }
+        };
+    }
+
+    @Override
+    public void iAdd(int ndx, byte[] bytes)
             throws Exception {
         if (ndx < 0)
             ndx = size() + 1 + ndx;
@@ -277,7 +304,7 @@ public class BListJid<ENTRY_TYPE extends Jid>
             if (bytes == null)
                 node.iAdd(ndx);
             else
-                node.iAddBytes(ndx, bytes);
+                node.iAdd(ndx, bytes);
             if (node.size() < nodeCapacity)
                 return;
             if (isRoot) {
@@ -292,7 +319,7 @@ public class BListJid<ENTRY_TYPE extends Jid>
             int bns = bnode.size();
             i += 1;
             if (ndx < bns || i == node.size()) {
-                bnode.iAddBytes(ndx, bytes);
+                bnode.iAdd(ndx, bytes);
                 if (bnode.isFat()) {
                     node.iAdd(i - 1);
                     BListJid<ENTRY_TYPE> left = (BListJid) node.iGet(i - 1);
@@ -329,13 +356,13 @@ public class BListJid<ENTRY_TYPE extends Jid>
             while (i < h) {
                 Jid e = (Jid) oldRootNode.iGet(i);
                 byte[] bytes = e.getSerializedBytes();
-                leftBNode.iAddBytes(-1, bytes);
+                leftBNode.iAdd(-1, bytes);
                 i += 1;
             }
             while (i < nodeCapacity) {
                 Jid e = (Jid) oldRootNode.iGet(i);
                 byte[] bytes = e.getSerializedBytes();
-                rightBNode.iAddBytes(-1, bytes);
+                rightBNode.iAdd(-1, bytes);
                 i += 1;
             }
         } else {
@@ -366,7 +393,7 @@ public class BListJid<ENTRY_TYPE extends Jid>
                 Jid e = (Jid) node.iGet(0);
                 node.iRemove(0);
                 byte[] bytes = e.getSerializedBytes();
-                leftBNode.iAddBytes(-1, bytes);
+                leftBNode.iAdd(-1, bytes);
                 i += 1;
             }
             incSize(-h);
@@ -390,6 +417,17 @@ public class BListJid<ENTRY_TYPE extends Jid>
         node.empty();
         IntegerJid sj = getSizeJid();
         sj.setValue(0);
+    }
+
+    @Override
+    public Request<Void> iRemoveReq(final int _i) {
+        return new RequestBase<Void>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor<Void> _rp) throws Exception {
+                iRemove(_i);
+                _rp.processResponse(null);
+            }
+        };
     }
 
     @Override
@@ -471,7 +509,7 @@ public class BListJid<ENTRY_TYPE extends Jid>
     void append(byte[] bytes, int eSize)
             throws Exception {
         ListJid<ENTRY_TYPE> node = getNode();
-        node.iAddBytes(-1, bytes);
+        node.iAdd(-1, bytes);
         incSize(eSize);
     }
 
@@ -481,6 +519,13 @@ public class BListJid<ENTRY_TYPE extends Jid>
             @Override
             public void processRequest(ResponseProcessor<Integer> _rp) throws Exception {
                 _rp.processResponse(size());
+            }
+        };
+        emptyReq = new RequestBase<Void>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor<Void> _rp) throws Exception {
+                empty();
+                _rp.processResponse(null);
             }
         };
     }

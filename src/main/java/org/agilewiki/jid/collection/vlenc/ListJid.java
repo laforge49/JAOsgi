@@ -26,6 +26,11 @@ package org.agilewiki.jid.collection.vlenc;
 import org.agilewiki.jid.*;
 import org.agilewiki.jid.collection.CollectionJid;
 import org.agilewiki.jid.factory.ActorFactory;
+import org.agilewiki.pactor.Mailbox;
+import org.agilewiki.pactor.Request;
+import org.agilewiki.pactor.RequestBase;
+import org.agilewiki.pactor.ResponseProcessor;
+import org.agilewiki.pautil.Ancestor;
 
 import java.util.ArrayList;
 
@@ -45,6 +50,12 @@ public class ListJid<ENTRY_TYPE extends Jid>
      * A list of JID actors.
      */
     protected ArrayList<ENTRY_TYPE> list;
+
+    private Request<Void> emptyReq;
+
+    public Request<Void> emptyReq() {
+        return emptyReq;
+    }
 
     /**
      * Returns the size of the collection.
@@ -194,7 +205,18 @@ public class ListJid<ENTRY_TYPE extends Jid>
     }
 
     @Override
-    public void iAddBytes(int i, byte[] bytes)
+    public Request<Void> iAddReq(final int _i, final byte[] _bytes) {
+        return new RequestBase<Void>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor<Void> _rp) throws Exception {
+                iAdd(_i, _bytes);
+                _rp.processResponse(null);
+            }
+        };
+    }
+
+    @Override
+    public void iAdd(int i, byte[] bytes)
             throws Exception {
         initializeList();
         if (i < 0)
@@ -203,6 +225,17 @@ public class ListJid<ENTRY_TYPE extends Jid>
         int c = jid.getSerializedLength();
         list.add(i, jid);
         change(c);
+    }
+
+    @Override
+    public Request<Void> iAddReq(final int _i) {
+        return new RequestBase<Void>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor<Void> _rp) throws Exception {
+                iAdd(_i);
+                _rp.processResponse(null);
+            }
+        };
     }
 
     @Override
@@ -234,6 +267,17 @@ public class ListJid<ENTRY_TYPE extends Jid>
     }
 
     @Override
+    public Request<Void> iRemoveReq(final int _i) {
+        return new RequestBase<Void>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor<Void> _rp) throws Exception {
+                iRemove(_i);
+                _rp.processResponse(null);
+            }
+        };
+    }
+
+    @Override
     public void iRemove(int i)
             throws Exception {
         int s = size();
@@ -246,5 +290,16 @@ public class ListJid<ENTRY_TYPE extends Jid>
         int c = -jid.getSerializedLength();
         list.remove(i);
         change(c);
+    }
+
+    public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
+        super.initialize(mailbox, parent, factory);
+        emptyReq = new RequestBase<Void>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor<Void> _rp) throws Exception {
+                empty();
+                _rp.processResponse(null);
+            }
+        };
     }
 }

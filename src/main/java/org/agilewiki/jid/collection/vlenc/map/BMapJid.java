@@ -184,7 +184,7 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
     }
 
     @Override
-    public void iAddBytes(int ndx, byte[] bytes)
+    public void iAdd(int ndx, byte[] bytes)
             throws Exception {
         throw new UnsupportedOperationException();
     }
@@ -271,13 +271,13 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
             while (i < h) {
                 Jid e = (Jid) oldRootNode.iGet(i);
                 byte[] bytes = e.getSerializedBytes();
-                leftBNode.iAddBytes(-1, bytes);
+                leftBNode.iAdd(-1, bytes);
                 i += 1;
             }
             while (i < nodeCapacity) {
                 Jid e = (Jid) oldRootNode.iGet(i);
                 byte[] bytes = e.getSerializedBytes();
-                rightBNode.iAddBytes(-1, bytes);
+                rightBNode.iAdd(-1, bytes);
                 i += 1;
             }
         } else {
@@ -312,7 +312,7 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
                 Jid e = (Jid) node.iGet(0);
                 node.iRemove(0);
                 byte[] bytes = e.getSerializedBytes();
-                leftBNode.iAddBytes(-1, bytes);
+                leftBNode.iAdd(-1, bytes);
                 i += 1;
             }
             incSize(-h);
@@ -489,7 +489,7 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
     void append(byte[] bytes, int eSize)
             throws Exception {
         MapJid<KEY_TYPE, Jid> node = getNode();
-        node.iAddBytes(-1, bytes);
+        node.iAdd(-1, bytes);
         incSize(eSize);
     }
 
