@@ -23,12 +23,15 @@
  */
 package org.agilewiki.jid.collection.vlenc;
 
-import org.agilewiki.jid._Jid;
+import org.agilewiki.incdes.PAList;
+import org.agilewiki.jid.Jid;
+import org.agilewiki.jid.collection.Collection;
 
 /**
  * Defines list operations.
  */
-public interface JAList extends _Jid {
+public interface JAList<ENTRY_TYPE extends Jid>
+        extends Collection<ENTRY_TYPE>, PAList<ENTRY_TYPE> {
     public void iAdd(int i)
             throws Exception;
 

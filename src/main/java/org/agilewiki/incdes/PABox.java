@@ -2,8 +2,8 @@ package org.agilewiki.incdes;
 
 import org.agilewiki.pactor.Request;
 
-public interface PAIDPAID extends PAID {
-    Request<PAID> getPAIDReq();
+public interface PABox extends PAIncDes {
+    Request<PAIncDes> getPAIDReq();
 
     Request<Void> clearReq();
 

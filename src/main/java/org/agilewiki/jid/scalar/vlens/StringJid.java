@@ -23,6 +23,7 @@
  */
 package org.agilewiki.jid.scalar.vlens;
 
+import org.agilewiki.incdes.PAString;
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ComparableKey;
 import org.agilewiki.jid.ReadableBytes;
@@ -34,7 +35,6 @@ import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;
 import org.agilewiki.pactor.ResponseProcessor;
-import org.agilewiki.incdes.StringPAID;
 import org.agilewiki.pautil.Ancestor;
 
 /**
@@ -42,7 +42,7 @@ import org.agilewiki.pautil.Ancestor;
  */
 public class StringJid
         extends VLenScalarJid<String, String>
-        implements ComparableKey<String>, StringPAID {
+        implements ComparableKey<String>, PAString {
     public static StringJid create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
         return (StringJid) JAFactoryLocator.newJid(actor, JidFactories.STRING_JID_TYPE, mailbox, parent);
     }

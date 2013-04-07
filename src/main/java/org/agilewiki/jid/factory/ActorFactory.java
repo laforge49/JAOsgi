@@ -23,15 +23,15 @@
  */
 package org.agilewiki.jid.factory;
 
+import org.agilewiki.incdes.PAFactory;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.pactor.Mailbox;
-import org.agilewiki.incdes.PAIDFactory;
 import org.agilewiki.pautil.Ancestor;
 
 /**
  * Creates a JLPCActor.
  */
-abstract public class ActorFactory implements PAIDFactory {
+abstract public class ActorFactory implements PAFactory {
     private String factoryKey;
 
     /**

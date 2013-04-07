@@ -23,6 +23,7 @@
  */
 package org.agilewiki.jid.scalar.flens;
 
+import org.agilewiki.incdes.PAFloat;
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ReadableBytes;
 import org.agilewiki.jid.Util;
@@ -33,14 +34,13 @@ import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;
 import org.agilewiki.pactor.ResponseProcessor;
-import org.agilewiki.incdes.FloatPAID;
 import org.agilewiki.pautil.Ancestor;
 
 /**
  * A JID actor that holds a float.
  */
 public class FloatJid
-        extends FLenScalarJid<Float> implements FloatPAID {
+        extends FLenScalarJid<Float> implements PAFloat {
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {

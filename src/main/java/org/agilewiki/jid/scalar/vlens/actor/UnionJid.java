@@ -23,6 +23,8 @@
  */
 package org.agilewiki.jid.scalar.vlens.actor;
 
+import org.agilewiki.incdes.PAIncDes;
+import org.agilewiki.incdes.PAUnion;
 import org.agilewiki.jid.*;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
@@ -32,24 +34,22 @@ import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;
 import org.agilewiki.pactor.ResponseProcessor;
-import org.agilewiki.incdes.PAID;
-import org.agilewiki.incdes.UnionPAID;
 import org.agilewiki.pautil.Ancestor;
 
-public class UnionJid extends ScalarJid<String, Jid> implements UnionPAID {
+public class UnionJid extends ScalarJid<String, Jid> implements PAUnion {
     protected ActorFactory[] unionFactories;
     protected int factoryIndex = -1;
     protected Jid value;
 
     private Request<Void> clearReq;
-    private Request<PAID> getPAIDReq;
+    private Request<PAIncDes> getPAIDReq;
 
     public Request<Void> clearReq() {
         return clearReq;
     }
 
     @Override
-    public Request<PAID> getPAIDReq() {
+    public Request<PAIncDes> getPAIDReq() {
         return getPAIDReq;
     }
 
@@ -322,7 +322,7 @@ public class UnionJid extends ScalarJid<String, Jid> implements UnionPAID {
             }
         };
 
-        getPAIDReq = new RequestBase<PAID>(getMailbox()) {
+        getPAIDReq = new RequestBase<PAIncDes>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(getValue());

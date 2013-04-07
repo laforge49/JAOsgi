@@ -23,6 +23,7 @@
  */
 package org.agilewiki.jid.scalar.vlens;
 
+import org.agilewiki.incdes.PABytes;
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ReadableBytes;
 import org.agilewiki.jid.factory.ActorFactory;
@@ -33,7 +34,6 @@ import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;
 import org.agilewiki.pactor.ResponseProcessor;
-import org.agilewiki.incdes.BytesPAID;
 import org.agilewiki.pautil.Ancestor;
 
 import java.io.ByteArrayInputStream;
@@ -45,7 +45,7 @@ import java.io.ObjectOutputStream;
  * A JID component that holds a byte array.
  */
 public class BytesJid
-        extends VLenScalarJid<byte[], byte[]> implements BytesPAID {
+        extends VLenScalarJid<byte[], byte[]> implements PABytes {
     public static BytesJid create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
         return (BytesJid) JAFactoryLocator.newJid(actor, JidFactories.BYTES_JID_TYPE, mailbox, parent);
     }

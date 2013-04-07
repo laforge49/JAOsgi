@@ -23,13 +23,13 @@
  */
 package org.agilewiki.jid;
 
+import org.agilewiki.incdes.PAIncDes;
 import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.incdes.PAID;
 
 /**
  * Incremental Deserialization / Reserialization.
  */
-public interface _Jid extends PAID {
+public interface _Jid extends PAIncDes {
 
     /**
      * Process a change in the persistent data.

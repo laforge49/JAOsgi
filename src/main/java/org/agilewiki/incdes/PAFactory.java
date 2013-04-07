@@ -1,5 +1,5 @@
 package org.agilewiki.incdes;
 
-public interface PAIDFactory {
+public interface PAFactory {
     String getType();
 }

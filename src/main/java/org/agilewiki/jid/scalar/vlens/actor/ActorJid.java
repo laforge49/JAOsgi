@@ -23,6 +23,8 @@
  */
 package org.agilewiki.jid.scalar.vlens.actor;
 
+import org.agilewiki.incdes.PABox;
+import org.agilewiki.incdes.PAIncDes;
 import org.agilewiki.jid.*;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
@@ -33,15 +35,13 @@ import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;
 import org.agilewiki.pactor.ResponseProcessor;
-import org.agilewiki.incdes.PAID;
-import org.agilewiki.incdes.PAIDPAID;
 import org.agilewiki.pautil.Ancestor;
 
 /**
  * A JID actor that holds a JID actor.
  */
 public class ActorJid
-        extends VLenScalarJid<String, Jid> implements PAIDPAID {
+        extends VLenScalarJid<String, Jid> implements PABox {
     public static ActorJid create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
         return (ActorJid) JAFactoryLocator.newJid(actor, JidFactories.ACTOR_JID_TYPE, mailbox, parent);
     }
@@ -58,7 +58,7 @@ public class ActorJid
     }
 
     private Request<Void> clearReq;
-    private Request<PAID> getPAIDReq;
+    private Request<PAIncDes> getPAIDReq;
 
     @Override
     public Request<Void> clearReq() {
@@ -66,7 +66,7 @@ public class ActorJid
     }
 
     @Override
-    public Request<PAID> getPAIDReq() {
+    public Request<PAIncDes> getPAIDReq() {
         return getPAIDReq;
     }
 
@@ -299,7 +299,7 @@ public class ActorJid
             }
         };
 
-        getPAIDReq = new RequestBase<PAID>(getMailbox()) {
+        getPAIDReq = new RequestBase<PAIncDes>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(getValue());

@@ -23,6 +23,7 @@
  */
 package org.agilewiki.jid.scalar.flens;
 
+import org.agilewiki.incdes.PADouble;
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ReadableBytes;
 import org.agilewiki.jid.Util;
@@ -33,14 +34,13 @@ import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;
 import org.agilewiki.pactor.ResponseProcessor;
-import org.agilewiki.incdes.DoublePAID;
 import org.agilewiki.pautil.Ancestor;
 
 /**
  * A JID actor that holds a double.
  */
 public class DoubleJid
-        extends FLenScalarJid<Double> implements DoublePAID {
+        extends FLenScalarJid<Double> implements PADouble {
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {

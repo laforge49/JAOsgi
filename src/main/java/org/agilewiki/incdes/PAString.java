@@ -2,7 +2,7 @@ package org.agilewiki.incdes;
 
 import org.agilewiki.pactor.Request;
 
-public interface StringPAID extends PAID {
+public interface PAString extends PAIncDes {
     Request<String> getStringReq();
 
     Request<Void> setStringReq(final String _v);
