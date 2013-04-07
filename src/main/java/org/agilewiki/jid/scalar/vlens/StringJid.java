@@ -166,7 +166,9 @@ public class StringJid
         return getValue().compareTo(o);
     }
 
-    public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
+    public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory)
+            throws Exception {
+        super.initialize(mailbox, parent, factory);
         getStringReq = new RequestBase<String>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {

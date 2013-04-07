@@ -117,6 +117,7 @@ public class LongJid
 
     @Override
     public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
+        super.initialize(mailbox, parent, factory);
         getLongReq = new RequestBase<Long>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {

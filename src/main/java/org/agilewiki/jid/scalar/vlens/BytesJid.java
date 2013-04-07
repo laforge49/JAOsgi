@@ -177,6 +177,7 @@ public class BytesJid
 
     @Override
     public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
+        super.initialize(mailbox, parent, factory);
         getBytesReq = new RequestBase<byte[]>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {

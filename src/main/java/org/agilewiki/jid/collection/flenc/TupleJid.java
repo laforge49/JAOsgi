@@ -89,7 +89,7 @@ public class TupleJid
      * @throws Exception Any exceptions thrown while processing the request.
      */
     @Override
-    public void iSetBytes(int i, byte[] bytes)
+    public void iSet(int i, byte[] bytes)
             throws Exception {
         initializeTuple();
         Jid elementJid = createSubordinate(tupleFactories[i], bytes);

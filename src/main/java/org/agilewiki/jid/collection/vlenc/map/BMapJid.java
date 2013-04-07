@@ -172,7 +172,7 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
      * @throws Exception Any exceptions thrown while processing the request.
      */
     @Override
-    public void iSetBytes(int ndx, byte[] bytes)
+    public void iSet(int ndx, byte[] bytes)
             throws Exception {
         throw new UnsupportedOperationException();
     }

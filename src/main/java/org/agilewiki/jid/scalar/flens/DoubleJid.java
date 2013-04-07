@@ -116,6 +116,7 @@ public class DoubleJid
 
     @Override
     public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
+        super.initialize(mailbox, parent, factory);
         getDoubleReq = new RequestBase<Double>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {

@@ -167,11 +167,11 @@ public class BListJid<ENTRY_TYPE extends Jid>
      * @throws Exception Any exceptions thrown while processing the request.
      */
     @Override
-    public void iSetBytes(int ndx, byte[] bytes)
+    public void iSet(int ndx, byte[] bytes)
             throws Exception {
         ListJid<ENTRY_TYPE> node = getNode();
         if (isLeaf()) {
-            node.iSetBytes(ndx, bytes);
+            node.iSet(ndx, bytes);
             return;
         }
         if (ndx < 0)
@@ -183,7 +183,7 @@ public class BListJid<ENTRY_TYPE extends Jid>
             BListJid<ENTRY_TYPE> bnode = (BListJid) node.iGet(i);
             int bns = bnode.size();
             if (ndx < bns) {
-                bnode.iSetBytes(ndx, bytes);
+                bnode.iSet(ndx, bytes);
                 return;
             }
             ndx -= bns;

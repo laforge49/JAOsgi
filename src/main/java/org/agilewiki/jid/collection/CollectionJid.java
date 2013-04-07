@@ -24,6 +24,12 @@
 package org.agilewiki.jid.collection;
 
 import org.agilewiki.jid.*;
+import org.agilewiki.jid.factory.ActorFactory;
+import org.agilewiki.pactor.Mailbox;
+import org.agilewiki.pactor.Request;
+import org.agilewiki.pactor.RequestBase;
+import org.agilewiki.pactor.ResponseProcessor;
+import org.agilewiki.pautil.Ancestor;
 
 /**
  * A collection of JID actors.
@@ -36,6 +42,34 @@ abstract public class CollectionJid<ENTRY_TYPE extends Jid>
      * The size of the serialized data (exclusive of its length header).
      */
     protected int len;
+
+    private Request<Integer> sizeReq;
+
+    @Override
+    public Request<Integer> sizeReq() {
+        return sizeReq;
+    }
+
+    @Override
+    public Request<ENTRY_TYPE> iGetReq(final int _i) {
+        return new RequestBase<ENTRY_TYPE>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor<ENTRY_TYPE> _rp) throws Exception {
+                _rp.processResponse(iGet(_i));
+            }
+        };
+    }
+
+    @Override
+    public Request<Void> iSetReq(final int _i, final byte[] _bytes) {
+        return new RequestBase<Void>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor _rp) throws Exception {
+                iSet(_i, _bytes);
+                _rp.processResponse(null);
+            }
+        };
+    }
 
     /**
      * Skip over the length at the beginning of the serialized data.
@@ -109,5 +143,15 @@ abstract public class CollectionJid<ENTRY_TYPE extends Jid>
         if (s == pathname.length())
             return jid;
         return jid.resolvePathname(pathname.substring(s + 1));
+    }
+
+    public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
+        super.initialize(mailbox, parent, factory);
+        sizeReq = new RequestBase<Integer>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor<Integer> _rp) throws Exception {
+                _rp.processResponse(size());
+            }
+        };
     }
 }

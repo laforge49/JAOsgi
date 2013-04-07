@@ -23,6 +23,7 @@
  */
 package org.agilewiki.jid.collection;
 
+import org.agilewiki.incdes.CollectionPAID;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.jid._Jid;
 
@@ -30,7 +31,7 @@ import org.agilewiki.jid._Jid;
  * A collection of JID actors.
  */
 public interface Collection<ENTRY_TYPE extends Jid>
-        extends _Jid {
+        extends _Jid, CollectionPAID {
 
     /**
      * Returns the size of the collection.
@@ -56,6 +57,6 @@ public interface Collection<ENTRY_TYPE extends Jid>
      * @param bytes Holds the serialized data.
      * @throws Exception Any exceptions thrown while processing the request.
      */
-    public void iSetBytes(int i, byte[] bytes)
+    public void iSet(int i, byte[] bytes)
             throws Exception;
 }

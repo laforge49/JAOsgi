@@ -83,7 +83,7 @@ public class ISetBytes extends RequestBase<Object, Collection> {
 
     @Override
     public void processRequest(JLPCActor targetActor, ResponseProcessor rp) throws Exception {
-        ((Collection) targetActor).iSetBytes(i, bytes);
+        ((Collection) targetActor).iSet(i, bytes);
         rp.processResponse(null);
     }
 }

@@ -178,7 +178,7 @@ public class ListJid<ENTRY_TYPE extends Jid>
      * @throws Exception Any exceptions thrown while processing the request.
      */
     @Override
-    public void iSetBytes(int i, byte[] bytes)
+    public void iSet(int i, byte[] bytes)
             throws Exception {
         initializeList();
         if (i < 0)

@@ -117,6 +117,7 @@ public class FloatJid
 
     @Override
     public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
+        super.initialize(mailbox, parent, factory);
         getFloatReq = new RequestBase<Float>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
