@@ -23,6 +23,7 @@
  */
 package org.agilewiki.jid.collection.vlenc.map;
 
+import org.agilewiki.incdes.PAIncDes;
 import org.agilewiki.incdes.PAMap;
 import org.agilewiki.incdes.PAMapEntry;
 import org.agilewiki.jid.Jid;
@@ -31,7 +32,7 @@ import org.agilewiki.jid.collection.vlenc.JAList;
 /**
  * Holds a map.
  */
-public interface JAMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends Jid>
+public interface JAMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends PAIncDes>
         extends JAList<PAMapEntry<KEY_TYPE, VALUE_TYPE>>, PAMap<KEY_TYPE, VALUE_TYPE> {
 
     /**

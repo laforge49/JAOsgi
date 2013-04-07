@@ -23,6 +23,7 @@
  */
 package org.agilewiki.jid.collection.vlenc;
 
+import org.agilewiki.incdes.PAIncDes;
 import org.agilewiki.jid.*;
 import org.agilewiki.jid.collection.CollectionJid;
 import org.agilewiki.jid.factory.ActorFactory;
@@ -37,7 +38,7 @@ import java.util.ArrayList;
 /**
  * Holds an ArrayList of JID actors, all of the same type.
  */
-public class ListJid<ENTRY_TYPE extends Jid>
+public class ListJid<ENTRY_TYPE extends PAIncDes>
         extends CollectionJid<ENTRY_TYPE> implements JAList<ENTRY_TYPE> {
     public int initialCapacity = 10;
 
@@ -162,7 +163,7 @@ public class ListJid<ENTRY_TYPE extends Jid>
         appendableBytes.writeInt(size());
         int i = 0;
         while (i < size()) {
-            iGet(i).save(appendableBytes);
+            ((_Jid) iGet(i)).save(appendableBytes);
             i += 1;
         }
     }
@@ -196,10 +197,10 @@ public class ListJid<ENTRY_TYPE extends Jid>
             i += list.size();
         if (i < 0 || i >= list.size())
             throw new IllegalArgumentException();
-        ENTRY_TYPE elementJid = (ENTRY_TYPE) createSubordinate(entryFactory, this, bytes);
-        ENTRY_TYPE oldElementJid = iGet(i);
+        _Jid elementJid = createSubordinate(entryFactory, this, bytes);
+        _Jid oldElementJid = (_Jid) iGet(i);
         oldElementJid.setContainerJid(null);
-        list.set(i, elementJid);
+        list.set(i, (ENTRY_TYPE) elementJid);
         change(elementJid.getSerializedLength() -
                 oldElementJid.getSerializedLength());
     }
@@ -221,9 +222,9 @@ public class ListJid<ENTRY_TYPE extends Jid>
         initializeList();
         if (i < 0)
             i = size() + 1 + i;
-        ENTRY_TYPE jid = (ENTRY_TYPE) createSubordinate(entryFactory, this, bytes);
+        _Jid jid = (_Jid) createSubordinate(entryFactory, this, bytes);
         int c = jid.getSerializedLength();
-        list.add(i, jid);
+        list.add(i, (ENTRY_TYPE) jid);
         change(c);
     }
 
@@ -244,9 +245,9 @@ public class ListJid<ENTRY_TYPE extends Jid>
         initializeList();
         if (i < 0)
             i = size() + 1 + i;
-        ENTRY_TYPE jid = (ENTRY_TYPE) createSubordinate(entryFactory, this);
+        _Jid jid = (_Jid) createSubordinate(entryFactory, this);
         int c = jid.getSerializedLength();
-        list.add(i, jid);
+        list.add(i, (ENTRY_TYPE) jid);
         change(c);
     }
 
@@ -257,7 +258,7 @@ public class ListJid<ENTRY_TYPE extends Jid>
         int i = 0;
         int s = size();
         while (i < s) {
-            _Jid jid = iGet(i);
+            _Jid jid = (_Jid) iGet(i);
             jid.setContainerJid(null);
             c -= jid.getSerializedLength();
             i += 1;
@@ -285,7 +286,7 @@ public class ListJid<ENTRY_TYPE extends Jid>
             i += s;
         if (i < 0 || i >= s)
             throw new IllegalArgumentException();
-        _Jid jid = iGet(i);
+        _Jid jid = (_Jid) iGet(i);
         jid.setContainerJid(null);
         int c = -jid.getSerializedLength();
         list.remove(i);

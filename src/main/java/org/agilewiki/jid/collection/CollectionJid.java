@@ -23,6 +23,7 @@
  */
 package org.agilewiki.jid.collection;
 
+import org.agilewiki.incdes.PAIncDes;
 import org.agilewiki.jid.*;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.pactor.Mailbox;
@@ -34,7 +35,7 @@ import org.agilewiki.pautil.Ancestor;
 /**
  * A collection of JID actors.
  */
-abstract public class CollectionJid<ENTRY_TYPE extends Jid>
+abstract public class CollectionJid<ENTRY_TYPE extends PAIncDes>
         extends Jid
         implements Collection<ENTRY_TYPE> {
 
@@ -139,7 +140,7 @@ abstract public class CollectionJid<ENTRY_TYPE extends Jid>
         }
         if (n < 0 || n >= size())
             throw new IllegalArgumentException("pathname " + pathname);
-        _Jid jid = iGet(n);
+        _Jid jid = (_Jid) iGet(n);
         if (s == pathname.length())
             return jid;
         return jid.resolvePathname(pathname.substring(s + 1));

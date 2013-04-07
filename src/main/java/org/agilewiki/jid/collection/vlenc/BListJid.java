@@ -23,6 +23,7 @@
  */
 package org.agilewiki.jid.collection.vlenc;
 
+import org.agilewiki.incdes.PAIncDes;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.jid._Jid;
 import org.agilewiki.jid.collection.Collection;
@@ -42,7 +43,7 @@ import org.agilewiki.pautil.Ancestor;
 /**
  * A balanced tree holding a list of JIDs, all of the same type.
  */
-public class BListJid<ENTRY_TYPE extends Jid>
+public class BListJid<ENTRY_TYPE extends PAIncDes>
         extends AppJid
         implements JAList<ENTRY_TYPE> {
     protected final int TUPLE_SIZE = 0;
@@ -258,7 +259,7 @@ public class BListJid<ENTRY_TYPE extends Jid>
         }
         if (n < 0 || n >= size())
             throw new IllegalArgumentException("pathname " + pathname);
-        _Jid jid = iGet(n);
+        _Jid jid = (_Jid) iGet(n);
         if (s == pathname.length())
             return jid;
         return jid.resolvePathname(pathname.substring(s + 1));

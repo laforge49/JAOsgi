@@ -23,6 +23,8 @@
  */
 package org.agilewiki.jid.collection.vlenc.map;
 
+import org.agilewiki.incdes.PAIncDes;
+import org.agilewiki.incdes.PAMapEntry;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.jid._Jid;
 import org.agilewiki.jid.collection.Collection;
@@ -33,8 +35,8 @@ import org.agilewiki.jid.factory.JAFactoryLocator;
 /**
  * Holds a map.
  */
-abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends Jid>
-        extends ListJid<MapEntry<KEY_TYPE, VALUE_TYPE>>
+abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends PAIncDes>
+        extends ListJid<PAMapEntry<KEY_TYPE, VALUE_TYPE>>
         implements JAMap<KEY_TYPE, VALUE_TYPE> {
 
     public ActorFactory valueFactory;
@@ -90,7 +92,7 @@ abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE e
         int high = size() - 1;
         while (low <= high) {
             int mid = (low + high) >>> 1;
-            MapEntry<KEY_TYPE, VALUE_TYPE> midVal = iGet(mid);
+            MapEntry<KEY_TYPE, VALUE_TYPE> midVal = (MapEntry<KEY_TYPE, VALUE_TYPE>) iGet(mid);
             int c = midVal.compareKeyTo(key);
             if (c < 0)
                 low = mid + 1;
@@ -164,7 +166,7 @@ abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE e
             return false;
         i = -i - 1;
         iAdd(i);
-        MapEntry<KEY_TYPE, VALUE_TYPE> me = iGet(i);
+        MapEntry<KEY_TYPE, VALUE_TYPE> me = (MapEntry<KEY_TYPE, VALUE_TYPE>) iGet(i);
         me.setKey(key);
         return true;
     }
@@ -189,7 +191,7 @@ abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE e
         int i = search(key);
         if (i < 0)
             return null;
-        return iGet(i);
+        return (MapEntry<KEY_TYPE, VALUE_TYPE>) iGet(i);
     }
 
     /**
@@ -219,7 +221,7 @@ abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE e
         int i = higher(key);
         if (i < 0)
             return null;
-        return iGet(i);
+        return (MapEntry<KEY_TYPE, VALUE_TYPE>) iGet(i);
     }
 
     /**
@@ -234,7 +236,7 @@ abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE e
         int i = ceiling(key);
         if (i < 0)
             return null;
-        return iGet(i);
+        return (MapEntry<KEY_TYPE, VALUE_TYPE>) iGet(i);
     }
 
     /**
@@ -272,7 +274,7 @@ abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE e
         if (s == 0)
             throw new IllegalArgumentException("pathname " + pathname);
         String ns = pathname.substring(0, s);
-        _Jid jid = kGet(stringToKey(ns));
+        _Jid jid = (_Jid) kGet(stringToKey(ns));
         if (jid == null)
             return null;
         if (s == pathname.length())
@@ -282,12 +284,12 @@ abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE e
 
     public MapEntry<KEY_TYPE, VALUE_TYPE> getFirst()
             throws Exception {
-        return iGet(0);
+        return (MapEntry<KEY_TYPE, VALUE_TYPE>) iGet(0);
     }
 
     public MapEntry<KEY_TYPE, VALUE_TYPE> getLast()
             throws Exception {
-        return iGet(-1);
+        return (MapEntry<KEY_TYPE, VALUE_TYPE>) iGet(-1);
     }
 
     public KEY_TYPE getLastKey()
