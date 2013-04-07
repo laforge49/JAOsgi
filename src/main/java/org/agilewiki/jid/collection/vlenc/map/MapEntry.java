@@ -23,6 +23,7 @@
  */
 package org.agilewiki.jid.collection.vlenc.map;
 
+import org.agilewiki.incdes.PAMapEntry;
 import org.agilewiki.jid.ComparableKey;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.jid.collection.flenc.AppJid;
@@ -34,7 +35,7 @@ import org.agilewiki.jid.scalar.ScalarJid;
  */
 public class MapEntry<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE>
         extends AppJid
-        implements ComparableKey<KEY_TYPE> {
+        implements ComparableKey<KEY_TYPE>, PAMapEntry<KEY_TYPE, VALUE_TYPE> {
 
     private final static int TUPLE_KEY = 0;
     private final static int TUPLE_VALUE = 1;
