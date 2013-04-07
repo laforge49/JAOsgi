@@ -33,18 +33,30 @@ import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.scalar.flens.IntegerJid;
 import org.agilewiki.jid.scalar.vlens.actor.UnionJid;
+import org.agilewiki.pactor.Mailbox;
+import org.agilewiki.pactor.Request;
+import org.agilewiki.pactor.RequestBase;
+import org.agilewiki.pactor.ResponseProcessor;
+import org.agilewiki.pautil.Ancestor;
 
 /**
  * A balanced tree holding a list of JIDs, all of the same type.
  */
 public class BListJid<ENTRY_TYPE extends Jid>
-        extends AppJid implements Collection<ENTRY_TYPE>, JAList {
+        extends AppJid implements Collection<ENTRY_TYPE>, JAList<ENTRY_TYPE> {
     protected final int TUPLE_SIZE = 0;
     protected final int TUPLE_UNION = 1;
     protected int nodeCapacity = 28;
     protected boolean isRoot;
     protected ActorFactory entryFactory;
     protected FactoryLocator factoryLocator;
+
+    private Request<Integer> sizeReq;
+
+    @Override
+    public Request<Integer> sizeReq() {
+        return sizeReq;
+    }
 
     /**
      * Returns the JidFactory for all the elements in the list.
@@ -129,6 +141,16 @@ public class BListJid<ENTRY_TYPE extends Jid>
         return nodeSize() >= nodeCapacity;
     }
 
+    @Override
+    public Request<ENTRY_TYPE> iGetReq(final int _i) {
+        return new RequestBase<ENTRY_TYPE>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor<ENTRY_TYPE> _rp) throws Exception {
+                _rp.processResponse(iGet(_i));
+            }
+        };
+    }
+
     /**
      * Returns the selected element.
      *
@@ -157,6 +179,17 @@ public class BListJid<ENTRY_TYPE extends Jid>
             i += 1;
         }
         return null;
+    }
+
+    @Override
+    public Request<Void> iSetReq(final int _i, final byte[] _bytes) {
+        return new RequestBase<Void>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor _rp) throws Exception {
+                iSet(_i, _bytes);
+                _rp.processResponse(null);
+            }
+        };
     }
 
     /**
@@ -440,5 +473,15 @@ public class BListJid<ENTRY_TYPE extends Jid>
         ListJid<ENTRY_TYPE> node = getNode();
         node.iAddBytes(-1, bytes);
         incSize(eSize);
+    }
+
+    public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
+        super.initialize(mailbox, parent, factory);
+        sizeReq = new RequestBase<Integer>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor<Integer> _rp) throws Exception {
+                _rp.processResponse(size());
+            }
+        };
     }
 }

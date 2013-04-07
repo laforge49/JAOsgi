@@ -33,7 +33,7 @@ import java.util.ArrayList;
  * Holds an ArrayList of JID actors, all of the same type.
  */
 public class ListJid<ENTRY_TYPE extends Jid>
-        extends CollectionJid<ENTRY_TYPE> implements JAList {
+        extends CollectionJid<ENTRY_TYPE> implements JAList<ENTRY_TYPE> {
     public int initialCapacity = 10;
 
     /**
