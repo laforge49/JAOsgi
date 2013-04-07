@@ -25,7 +25,7 @@ package org.agilewiki.jid.factory;
 
 import org.agilewiki.jid.Jid;
 import org.agilewiki.pactor.Mailbox;
-import org.agilewiki.paid.PAIDFactory;
+import org.agilewiki.incdes.PAIDFactory;
 import org.agilewiki.pautil.Ancestor;
 
 /**

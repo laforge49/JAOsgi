@@ -24,7 +24,7 @@
 package org.agilewiki.jid;
 
 import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.paid.PAID;
+import org.agilewiki.incdes.PAID;
 
 /**
  * Incremental Deserialization / Reserialization.

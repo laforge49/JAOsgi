@@ -33,7 +33,7 @@ import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;
 import org.agilewiki.pactor.ResponseProcessor;
-import org.agilewiki.paid.IntegerPAID;
+import org.agilewiki.incdes.IntegerPAID;
 import org.agilewiki.pautil.Ancestor;
 
 /**

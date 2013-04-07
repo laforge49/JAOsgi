@@ -1,4 +1,4 @@
-package org.agilewiki.paid;
+package org.agilewiki.incdes;
 
 public interface PAIDFactory {
     String getType();

@@ -32,8 +32,8 @@ import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;
 import org.agilewiki.pactor.ResponseProcessor;
-import org.agilewiki.paid.PAID;
-import org.agilewiki.paid.UnionPAID;
+import org.agilewiki.incdes.PAID;
+import org.agilewiki.incdes.UnionPAID;
 import org.agilewiki.pautil.Ancestor;
 
 public class UnionJid extends ScalarJid<String, Jid> implements UnionPAID {
