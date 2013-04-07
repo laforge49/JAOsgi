@@ -40,7 +40,7 @@ import org.agilewiki.jid.scalar.vlens.actor.UnionJid;
  */
 abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends Jid>
         extends AppJid
-        implements Collection<MapEntry<KEY_TYPE, VALUE_TYPE>>, JAList, JAMap<KEY_TYPE, VALUE_TYPE> {
+        implements JAMap<KEY_TYPE, VALUE_TYPE> {
     protected final int TUPLE_SIZE = 0;
     protected final int TUPLE_UNION = 1;
     protected int nodeCapacity = 28;

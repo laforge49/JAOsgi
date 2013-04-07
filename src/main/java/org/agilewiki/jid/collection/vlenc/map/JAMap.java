@@ -24,21 +24,13 @@
 package org.agilewiki.jid.collection.vlenc.map;
 
 import org.agilewiki.jid.Jid;
-import org.agilewiki.jid._Jid;
+import org.agilewiki.jid.collection.vlenc.JAList;
 
 /**
  * Holds a map.
  */
 public interface JAMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends Jid>
-        extends _Jid {
-
-    /**
-     * Returns the size of the collection.
-     *
-     * @return The size of the collection.
-     */
-    public int size()
-            throws Exception;
+        extends JAList<MapEntry<KEY_TYPE, VALUE_TYPE>> {
 
     /**
      * Add a tuple to the map unless there is a tuple with a matching first element.

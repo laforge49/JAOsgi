@@ -35,7 +35,7 @@ import org.agilewiki.jid.factory.JAFactoryLocator;
  */
 abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends Jid>
         extends ListJid<MapEntry<KEY_TYPE, VALUE_TYPE>>
-        implements JAMap<KEY_TYPE, VALUE_TYPE>, Collection<MapEntry<KEY_TYPE, VALUE_TYPE>> {
+        implements JAMap<KEY_TYPE, VALUE_TYPE> {
 
     public ActorFactory valueFactory;
 
