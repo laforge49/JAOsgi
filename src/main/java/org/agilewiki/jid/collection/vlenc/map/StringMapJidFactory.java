@@ -27,6 +27,7 @@ import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
+import org.agilewiki.jid.scalar.vlens.actor.UnionJid;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
@@ -47,7 +48,7 @@ public class StringMapJidFactory extends ActorFactory {
                                        String valueType,
                                        int initialCapacity)
             throws Exception {
-        MapEntryFactory.registerFactory(factoryLocator,
+        UnionJid.registerFactory(factoryLocator,
                 "E." + actorType, JidFactories.STRING_JID_TYPE, valueType);
         factoryLocator.registerJidFactory(new StringMapJidFactory(
                 actorType, valueType, initialCapacity));

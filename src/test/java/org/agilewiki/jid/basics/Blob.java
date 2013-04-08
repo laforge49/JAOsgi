@@ -1,21 +1,20 @@
 package org.agilewiki.jid.basics;
 
-import org.agilewiki.jactor.Mailbox;
-import org.agilewiki.jactor.ResponseProcessor;
-import org.agilewiki.jactor.old.Actor;
-import org.agilewiki.jid.collection.vlenc.map.MapEntryFactory;
 import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.scalar.vlens.actor.ActorJid;
+import org.agilewiki.jid.scalar.vlens.actor.UnionJid;
+import org.agilewiki.pactor.Mailbox;
+import org.agilewiki.pautil.Ancestor;
 
 public class Blob extends StringMapJid implements Main {
 
     public static void register(FactoryLocator factoryLocator) throws Exception {
         factoryLocator.registerJidFactory(new BlobFactory("blob"));
-        MapEntryFactory.registerFactory(factoryLocator,
+        UnionJid.registerFactory(factoryLocator,
                 "E.blob", JidFactories.STRING_JID_TYPE, JidFactories.ACTOR_JID_TYPE);
     }
 
@@ -31,7 +30,7 @@ public class Blob extends StringMapJid implements Main {
         }
 
         @Override
-        public Blob newActor(Mailbox mailbox, Actor parent) throws Exception {
+        public Blob newActor(Mailbox mailbox, Ancestor parent) throws Exception {
             Blob blob = (Blob) super.newActor(mailbox, parent);
             FactoryLocator fl = JAFactoryLocator.get(parent);
             blob.valueFactory = fl.getJidFactory(JidFactories.ACTOR_JID_TYPE);

@@ -25,7 +25,10 @@ package org.agilewiki.jid.scalar.vlens.actor;
 
 import org.agilewiki.incdes.PAIncDes;
 import org.agilewiki.incdes.PAUnion;
-import org.agilewiki.jid.*;
+import org.agilewiki.jid.AppendableBytes;
+import org.agilewiki.jid.Jid;
+import org.agilewiki.jid.ReadableBytes;
+import org.agilewiki.jid.Util;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JAFactoryLocator;
@@ -37,6 +40,36 @@ import org.agilewiki.pactor.ResponseProcessor;
 import org.agilewiki.pautil.Ancestor;
 
 public class UnionJid extends ScalarJid<String, Jid> implements PAUnion {
+
+    public static void registerFactory(final FactoryLocator _factoryLocator,
+                                       final String _subActorType,
+                                       final String... _actorTypes)
+            throws Exception {
+        _factoryLocator.registerJidFactory(new ActorFactory(_subActorType) {
+
+            @Override
+            protected UnionJid instantiateActor()
+                    throws Exception {
+                return new UnionJid();
+            }
+
+            @Override
+            public UnionJid newActor(Mailbox mailbox, Ancestor parent)
+                    throws Exception {
+                UnionJid uj = (UnionJid) super.newActor(mailbox, parent);
+                FactoryLocator fl = JAFactoryLocator.get(parent);
+                ActorFactory[] afs = new ActorFactory[_actorTypes.length];
+                int i = 0;
+                while (i < _actorTypes.length) {
+                    afs[i] = fl.getJidFactory(_actorTypes[i]);
+                    i += 1;
+                }
+                uj.unionFactories = afs;
+                return uj;
+            }
+        });
+    }
+
     protected ActorFactory[] unionFactories;
     protected int factoryIndex = -1;
     protected Jid value;
