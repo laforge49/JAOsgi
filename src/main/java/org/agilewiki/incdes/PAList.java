@@ -11,16 +11,16 @@ public interface PAList<ENTRY_TYPE extends IncDes> extends PACollection<ENTRY_TY
 
     Request<Void> iAddReq(final int _i);
 
-    void iAdd(int i)
+    void iAdd(final int _i)
             throws Exception;
 
     Request<Void> iAddReq(final int _i, final byte[] _bytes);
 
-    void iAdd(int i, byte[] bytes)
+    void iAdd(final int _i, final byte[] _bytes)
             throws Exception;
 
     Request<Void> iRemoveReq(final int _i);
 
-    void iRemove(int i)
+    void iRemove(final int _i)
             throws Exception;
 }
