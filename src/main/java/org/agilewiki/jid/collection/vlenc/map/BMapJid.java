@@ -27,9 +27,7 @@ import org.agilewiki.incdes.PAIncDes;
 import org.agilewiki.incdes.PAMapEntry;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.jid._Jid;
-import org.agilewiki.jid.collection.Collection;
 import org.agilewiki.jid.collection.flenc.AppJid;
-import org.agilewiki.jid.collection.vlenc.JAList;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JAFactoryLocator;
@@ -57,6 +55,8 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
 
     private Request<Integer> sizeReq;
     private Request<Void> emptyReq;
+    private Request<PAMapEntry<KEY_TYPE, VALUE_TYPE>> getFirstReq;
+    private Request<PAMapEntry<KEY_TYPE, VALUE_TYPE>> getLastReq;
 
     @Override
     public Request<Integer> sizeReq() {
@@ -65,6 +65,14 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
 
     public Request<Void> emptyReq() {
         return emptyReq;
+    }
+
+    public Request<PAMapEntry<KEY_TYPE, VALUE_TYPE>> getFirstReq() {
+        return getFirstReq;
+    }
+
+    public Request<PAMapEntry<KEY_TYPE, VALUE_TYPE>> getLastReq() {
+        return getLastReq;
     }
 
     /**
@@ -251,6 +259,16 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
         throw new UnsupportedOperationException();
     }
 
+    @Override
+    public Request<Boolean> kMakeReq(final KEY_TYPE _key, final byte[] _bytes) {
+        return new RequestBase<Boolean>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor<Boolean> _rp) throws Exception {
+                _rp.processResponse(kMake(_key, _bytes));
+            }
+        };
+    }
+
     /**
      * Add a tuple to the map unless there is a tuple with a matching first element.
      *
@@ -258,12 +276,22 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
      * @param bytes The serialized form of a JID of the appropriate type.
      * @return True if a new tuple was created; otherwise the old value is unaltered.
      */
-    public Boolean kMakeBytes(KEY_TYPE key, byte[] bytes)
+    public Boolean kMake(KEY_TYPE key, byte[] bytes)
             throws Exception {
         if (!kMake(key))
             return false;
-        kSetBytes(key, bytes);
+        kSet(key, bytes);
         return true;
+    }
+
+    @Override
+    public Request<Boolean> kMakeReq(final KEY_TYPE _key) {
+        return new RequestBase<Boolean>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor<Boolean> _rp) throws Exception {
+                _rp.processResponse(kMake(_key));
+            }
+        };
     }
 
     /**
@@ -478,6 +506,16 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
         throw new IllegalArgumentException();
     }
 
+    @Override
+    public Request<Boolean> kRemoveReq(final KEY_TYPE _key) {
+        return new RequestBase<Boolean>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor<Boolean> _rp) throws Exception {
+                _rp.processResponse(kRemove(_key));
+            }
+        };
+    }
+
     /**
      * Removes the item identified by the key.
      *
@@ -582,6 +620,16 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
         return bnode.kGetEntry(key);
     }
 
+    @Override
+    public Request<VALUE_TYPE> kGetReq(final KEY_TYPE _key) {
+        return new RequestBase<VALUE_TYPE>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor<VALUE_TYPE> _rp) throws Exception {
+                _rp.processResponse(kGet(_key));
+            }
+        };
+    }
+
     /**
      * Returns the JID value associated with the key.
      *
@@ -595,6 +643,16 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
         if (entry == null)
             return null;
         return entry.getValue();
+    }
+
+    @Override
+    public Request<PAMapEntry<KEY_TYPE, VALUE_TYPE>> getCeilingReq(final KEY_TYPE _key) {
+        return new RequestBase<PAMapEntry<KEY_TYPE, VALUE_TYPE>>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor<PAMapEntry<KEY_TYPE, VALUE_TYPE>> _rp) throws Exception {
+                _rp.processResponse(getCeiling(_key));
+            }
+        };
     }
 
     /**
@@ -615,6 +673,16 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
             return null;
         BMapJid<KEY_TYPE, VALUE_TYPE> bnode = (BMapJid) ((MapEntry) node.iGet(i)).getValue();
         return bnode.getCeiling(key);
+    }
+
+    @Override
+    public Request<PAMapEntry<KEY_TYPE, VALUE_TYPE>> getHigherReq(final KEY_TYPE _key) {
+        return new RequestBase<PAMapEntry<KEY_TYPE, VALUE_TYPE>>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor<PAMapEntry<KEY_TYPE, VALUE_TYPE>> _rp) throws Exception {
+                _rp.processResponse(getHigher(_key));
+            }
+        };
     }
 
     /**
@@ -681,7 +749,18 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
     }
 
     @Override
-    public void kSetBytes(KEY_TYPE key, byte[] bytes)
+    public Request<Void> kSetReq(final KEY_TYPE _key, final byte[] _bytes) {
+        return new RequestBase<Void>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor<Void> _rp) throws Exception {
+                kSet(_key, _bytes);
+                _rp.processResponse(null);
+            }
+        };
+    }
+
+    @Override
+    public void kSet(KEY_TYPE key, byte[] bytes)
             throws Exception {
         MapEntry<KEY_TYPE, VALUE_TYPE> entry = kGetEntry(key);
         if (entry == null)
@@ -702,6 +781,18 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
             public void processRequest(ResponseProcessor<Void> _rp) throws Exception {
                 empty();
                 _rp.processResponse(null);
+            }
+        };
+        getFirstReq = new RequestBase<PAMapEntry<KEY_TYPE, VALUE_TYPE>>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor<PAMapEntry<KEY_TYPE, VALUE_TYPE>> _rp) throws Exception {
+                _rp.processResponse(getFirst());
+            }
+        };
+        getLastReq = new RequestBase<PAMapEntry<KEY_TYPE, VALUE_TYPE>>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor<PAMapEntry<KEY_TYPE, VALUE_TYPE>> _rp) throws Exception {
+                _rp.processResponse(getLast());
             }
         };
     }

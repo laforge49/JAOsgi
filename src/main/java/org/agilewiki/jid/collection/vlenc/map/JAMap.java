@@ -35,23 +35,10 @@ import org.agilewiki.jid.collection.vlenc.JAList;
 public interface JAMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends PAIncDes>
         extends JAList<PAMapEntry<KEY_TYPE, VALUE_TYPE>>, PAMap<KEY_TYPE, VALUE_TYPE> {
 
-    /**
-     * Add a tuple to the map unless there is a tuple with a matching first element.
-     *
-     * @param key Used to match the first element of the tuples.
-     * @return True if a new tuple was created.
-     */
-    public Boolean kMake(KEY_TYPE key)
+    public MapEntry<KEY_TYPE, VALUE_TYPE> getFirst()
             throws Exception;
 
-    /**
-     * Add a tuple to the map unless there is a tuple with a matching first element.
-     *
-     * @param key   Used to match the first element of the tuples.
-     * @param bytes The serialized form of a JID of the appropriate type.
-     * @return True if a new tuple was created; otherwise the old value is unaltered.
-     */
-    public Boolean kMakeBytes(KEY_TYPE key, byte[] bytes)
+    public MapEntry<KEY_TYPE, VALUE_TYPE> getLast()
             throws Exception;
 
     /**
@@ -81,6 +68,28 @@ public interface JAMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends
     public MapEntry<KEY_TYPE, VALUE_TYPE> getCeiling(KEY_TYPE key)
             throws Exception;
 
+    public void kSet(KEY_TYPE key, byte[] bytes)
+            throws Exception;
+
+    /**
+     * Add a tuple to the map unless there is a tuple with a matching first element.
+     *
+     * @param key Used to match the first element of the tuples.
+     * @return True if a new tuple was created.
+     */
+    public Boolean kMake(KEY_TYPE key)
+            throws Exception;
+
+    /**
+     * Add a tuple to the map unless there is a tuple with a matching first element.
+     *
+     * @param key   Used to match the first element of the tuples.
+     * @param bytes The serialized form of a JID of the appropriate type.
+     * @return True if a new tuple was created; otherwise the old value is unaltered.
+     */
+    public Boolean kMake(KEY_TYPE key, byte[] bytes)
+            throws Exception;
+
     /**
      * Removes the item identified by the key.
      *
@@ -88,14 +97,5 @@ public interface JAMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends
      * @return True when the item was present and removed.
      */
     public boolean kRemove(KEY_TYPE key)
-            throws Exception;
-
-    public MapEntry<KEY_TYPE, VALUE_TYPE> getFirst()
-            throws Exception;
-
-    public MapEntry<KEY_TYPE, VALUE_TYPE> getLast()
-            throws Exception;
-
-    public void kSetBytes(KEY_TYPE key, byte[] bytes)
             throws Exception;
 }
