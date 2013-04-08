@@ -75,6 +75,7 @@ public class DoubleJid
      *
      * @return The value held by this component.
      */
+    @Override
     public Double getValue() {
         if (value != null)
             return value;
