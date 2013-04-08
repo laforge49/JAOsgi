@@ -22,34 +22,34 @@ public interface IncDes extends Ancestor {
     byte[] getSerializedBytes()
             throws Exception;
 
-    Request<Void> saveReq(final AppendableBytes appendableBytes);
+    Request<Void> saveReq(final AppendableBytes _appendableBytes);
 
     /**
      * Saves the persistent data in a byte array.
      *
-     * @param appendableBytes Holds the byte array and offset.
+     * @param _appendableBytes Holds the byte array and offset.
      */
-    void save(AppendableBytes appendableBytes)
+    void save(final AppendableBytes _appendableBytes)
             throws Exception;
 
     /**
      * Load the serialized data into the JID.
      *
-     * @param readableBytes Holds the serialized data.
+     * @param _readableBytes Holds the serialized data.
      */
-    void load(ReadableBytes readableBytes)
+    void load(final ReadableBytes _readableBytes)
             throws Exception;
 
-    Request<IncDes> resolvePathnameReq(final String pathname);
+    Request<IncDes> resolvePathnameReq(final String _pathname);
 
     /**
      * Resolves a JID pathname, returning a JID actor or null.
      *
-     * @param pathname A JID pathname.
+     * @param _pathname A JID pathname.
      * @return A JID actor or null.
      * @throws Exception Any uncaught exception which occurred while processing the request.
      */
-    IncDes resolvePathname(String pathname)
+    IncDes resolvePathname(final String _pathname)
             throws Exception;
 
     /**
@@ -66,10 +66,10 @@ public interface IncDes extends Ancestor {
      */
     String getJidType();
 
-    Request<IncDes> copyJIDReq(final Mailbox m);
+    Request<IncDes> copyJIDReq(final Mailbox _m);
 
     IncDes copyJID(final Mailbox m)
             throws Exception;
 
-    Request<Boolean> isJidEqualReq(final IncDes jidA);
+    Request<Boolean> isJidEqualReq(final IncDes _jidA);
 }

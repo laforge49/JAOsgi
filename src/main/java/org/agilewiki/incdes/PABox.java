@@ -15,21 +15,21 @@ public interface PABox extends IncDes {
 
     Request<Void> setIncDesReq(final String _v);
 
-    void setValue(final String jidType)
+    void setValue(final String _jidType)
             throws Exception;
 
     Request<Void> setIncDesReq(final String _v, final byte[] _bytes);
 
-    void setValue(final String jidType, final byte[] bytes)
+    void setValue(final String _jidType, final byte[] _bytes)
             throws Exception;
 
     Request<Boolean> makeIncDesReq(final String _v);
 
-    Boolean makeValue(final String jidType)
+    Boolean makeValue(final String _jidType)
             throws Exception;
 
     Request<Boolean> makeIncDesReq(final String _v, final byte[] _bytes);
 
-    Boolean makeValue(final String jidType, final byte[] bytes)
+    Boolean makeValue(final String _jidType, final byte[] _bytes)
             throws Exception;
 }

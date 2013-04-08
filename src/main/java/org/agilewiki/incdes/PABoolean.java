@@ -9,5 +9,5 @@ public interface PABoolean extends IncDes {
 
     Request<Void> setBooleanReq(final Boolean _v);
 
-    void setValue(final Boolean v) throws Exception;
+    void setValue(final Boolean _v) throws Exception;
 }
