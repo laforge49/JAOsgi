@@ -101,7 +101,7 @@ public class StringJid
      * @throws Exception Any uncaught exception raised.
      */
     @Override
-    protected Boolean makeValue(String v) throws Exception {
+    public Boolean makeValue(String v) throws Exception {
         if (len > -1)
             return false;
         int c = v.length() * 2;

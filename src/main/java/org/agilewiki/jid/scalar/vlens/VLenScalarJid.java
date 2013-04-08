@@ -63,7 +63,7 @@ abstract public class VLenScalarJid<SET_TYPE, RESPONSE_TYPE>
      * @return True if a new value is created.
      * @throws Exception Any uncaught exception raised.
      */
-    abstract protected Boolean makeValue(SET_TYPE v)
+    abstract public Boolean makeValue(SET_TYPE v)
             throws Exception;
 
     /**
