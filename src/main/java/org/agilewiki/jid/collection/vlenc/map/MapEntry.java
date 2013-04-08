@@ -35,7 +35,7 @@ import org.agilewiki.jid.scalar.ScalarJid;
  */
 public class MapEntry<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE>
         extends AppJid
-        implements ComparableKey<KEY_TYPE>, PAMapEntry<KEY_TYPE, VALUE_TYPE> {
+        implements PAMapEntry<KEY_TYPE, VALUE_TYPE> {
 
     private final static int TUPLE_KEY = 0;
     private final static int TUPLE_VALUE = 1;
@@ -46,6 +46,7 @@ public class MapEntry<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE>
         tupleFactories[TUPLE_VALUE] = valueFactory;
     }
 
+    @Override
     public KEY_TYPE getKey()
             throws Exception {
         return (KEY_TYPE) ((ScalarJid) _iGet(TUPLE_KEY)).getValue();
@@ -56,6 +57,7 @@ public class MapEntry<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE>
         ((ScalarJid) _iGet(TUPLE_KEY)).setValue(key);
     }
 
+    @Override
     public VALUE_TYPE getValue()
             throws Exception {
         return (VALUE_TYPE) _iGet(TUPLE_VALUE);
