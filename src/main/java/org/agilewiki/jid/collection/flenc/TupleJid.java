@@ -24,6 +24,8 @@
 package org.agilewiki.jid.collection.flenc;
 
 import org.agilewiki.incdes.AppendableBytes;
+import org.agilewiki.incdes.IncDes;
+import org.agilewiki.incdes.PATuple;
 import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.jid.*;
 import org.agilewiki.jid.collection.CollectionJid;
@@ -33,8 +35,8 @@ import org.agilewiki.jid.factory.ActorFactory;
  * Holds a fixed-size array of JID actors of various types.
  */
 public class TupleJid
-        extends CollectionJid<Jid>
-        implements ComparableKey<Object> {
+        extends CollectionJid<IncDes>
+        implements ComparableKey<Object>, PATuple {
     /**
      * An array of jid factories, one for each element in the tuple.
      */
