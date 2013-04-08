@@ -28,8 +28,8 @@ import org.agilewiki.incdes.PAMap;
 import org.agilewiki.incdes.PAMapEntry;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.jid._Jid;
+import org.agilewiki.jid.collection.Collection;
 import org.agilewiki.jid.collection.flenc.AppJid;
-import org.agilewiki.jid.collection.vlenc.JAList;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JAFactoryLocator;
@@ -47,7 +47,7 @@ import org.agilewiki.pautil.Ancestor;
  */
 abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends PAIncDes>
         extends AppJid
-        implements PAMap<KEY_TYPE, VALUE_TYPE>, JAList<PAMapEntry<KEY_TYPE, VALUE_TYPE>> {
+        implements PAMap<KEY_TYPE, VALUE_TYPE>, Collection<PAMapEntry<KEY_TYPE, VALUE_TYPE>> {
     protected final int TUPLE_SIZE = 0;
     protected final int TUPLE_UNION = 1;
     protected int nodeCapacity = 28;
@@ -374,14 +374,14 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
             }
         } else {
             while (i < h) {
-                BMapJid<KEY_TYPE, Jid> e = (BMapJid) ((MapEntry<KEY_TYPE, VALUE_TYPE>)oldRootNode.iGet(i)).getValue();
+                BMapJid<KEY_TYPE, Jid> e = (BMapJid) ((MapEntry<KEY_TYPE, VALUE_TYPE>) oldRootNode.iGet(i)).getValue();
                 int eSize = e.size();
                 byte[] bytes = e.getSerializedBytes();
                 leftBNode.append(bytes, eSize);
                 i += 1;
             }
             while (i < nodeCapacity) {
-                BMapJid<KEY_TYPE, Jid> e = (BMapJid) ((MapEntry<KEY_TYPE, VALUE_TYPE>)oldRootNode.iGet(i)).getValue();
+                BMapJid<KEY_TYPE, Jid> e = (BMapJid) ((MapEntry<KEY_TYPE, VALUE_TYPE>) oldRootNode.iGet(i)).getValue();
                 int eSize = e.size();
                 byte[] bytes = e.getSerializedBytes();
                 rightBNode.append(bytes, eSize);
@@ -410,7 +410,7 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
             incSize(-h);
         } else {
             while (i < h) {
-                BMapJid<KEY_TYPE, VALUE_TYPE> e = (BMapJid) ((MapEntry<KEY_TYPE, VALUE_TYPE>)node.iGet(0)).getValue();
+                BMapJid<KEY_TYPE, VALUE_TYPE> e = (BMapJid) ((MapEntry<KEY_TYPE, VALUE_TYPE>) node.iGet(0)).getValue();
                 node.iRemove(0);
                 int eSize = e.size();
                 incSize(-eSize);
@@ -494,7 +494,7 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
                     }
                 }
                 if (node.size() == 1 && isRoot && !isLeaf()) {
-                    bnode = (BMapJid) ((MapEntry<KEY_TYPE, VALUE_TYPE>)node.iGet(0)).getValue();
+                    bnode = (BMapJid) ((MapEntry<KEY_TYPE, VALUE_TYPE>) node.iGet(0)).getValue();
                     setNodeFactory(bnode.getNode().getFactory());
                     IntegerJid sj = getSizeJid();
                     sj.setValue(0);

@@ -24,7 +24,12 @@
 package org.agilewiki.jid.collection.vlenc;
 
 import org.agilewiki.incdes.PAIncDes;
-import org.agilewiki.jid.*;
+import org.agilewiki.incdes.PAList;
+import org.agilewiki.jid.AppendableBytes;
+import org.agilewiki.jid.ReadableBytes;
+import org.agilewiki.jid.Util;
+import org.agilewiki.jid._Jid;
+import org.agilewiki.jid.collection.Collection;
 import org.agilewiki.jid.collection.CollectionJid;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.pactor.Mailbox;
@@ -39,7 +44,8 @@ import java.util.ArrayList;
  * Holds an ArrayList of JID actors, all of the same type.
  */
 public class ListJid<ENTRY_TYPE extends PAIncDes>
-        extends CollectionJid<ENTRY_TYPE> implements JAList<ENTRY_TYPE> {
+        extends CollectionJid<ENTRY_TYPE>
+        implements PAList<ENTRY_TYPE>, Collection<ENTRY_TYPE> {
     public int initialCapacity = 10;
 
     /**

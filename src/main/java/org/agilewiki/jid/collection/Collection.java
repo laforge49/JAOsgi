@@ -25,7 +25,6 @@ package org.agilewiki.jid.collection;
 
 import org.agilewiki.incdes.PACollection;
 import org.agilewiki.incdes.PAIncDes;
-import org.agilewiki.jid.Jid;
 import org.agilewiki.jid._Jid;
 
 /**

@@ -24,6 +24,7 @@
 package org.agilewiki.jid.collection.vlenc;
 
 import org.agilewiki.incdes.PAIncDes;
+import org.agilewiki.incdes.PAList;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.jid._Jid;
 import org.agilewiki.jid.collection.Collection;
@@ -45,7 +46,7 @@ import org.agilewiki.pautil.Ancestor;
  */
 public class BListJid<ENTRY_TYPE extends PAIncDes>
         extends AppJid
-        implements JAList<ENTRY_TYPE> {
+        implements PAList<ENTRY_TYPE>, Collection<ENTRY_TYPE> {
     protected final int TUPLE_SIZE = 0;
     protected final int TUPLE_UNION = 1;
     protected int nodeCapacity = 28;
