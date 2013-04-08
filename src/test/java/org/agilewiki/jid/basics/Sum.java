@@ -1,12 +1,12 @@
 package org.agilewiki.jid.basics;
 
-import org.agilewiki.jactor.ResponseProcessor;
-import org.agilewiki.jid._Jid;
+import org.agilewiki.incdes.PAIncDes;
 import org.agilewiki.jid.collection.vlenc.ListJid;
 import org.agilewiki.jid.collection.vlenc.ListJidFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.scalar.flens.IntegerJid;
+import org.agilewiki.pactor.ResponseProcessor;
 
 import java.util.Iterator;
 
@@ -33,7 +33,7 @@ public class Sum extends ListJid implements Main {
     public void processRequest(Proc request, ResponseProcessor rp) throws Exception {
         initializeList();
         int sum = 0;
-        Iterator<_Jid> it = list.iterator();
+        Iterator<PAIncDes> it = list.iterator();
         while (it.hasNext()) {
             IntegerJid ij = (IntegerJid) it.next();
             sum += ij.getValue();

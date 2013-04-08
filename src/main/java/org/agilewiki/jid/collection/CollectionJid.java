@@ -122,7 +122,7 @@ abstract public class CollectionJid<ENTRY_TYPE extends PAIncDes>
      * @throws Exception Any uncaught exception which occurred while processing the request.
      */
     @Override
-    public _Jid resolvePathname(String pathname)
+    public PAIncDes resolvePathname(String pathname)
             throws Exception {
         if (pathname.length() == 0) {
             return this;
@@ -141,7 +141,7 @@ abstract public class CollectionJid<ENTRY_TYPE extends PAIncDes>
         }
         if (n < 0 || n >= size())
             throw new IllegalArgumentException("pathname " + pathname);
-        _Jid jid = (_Jid) iGet(n);
+        PAIncDes jid = iGet(n);
         if (s == pathname.length())
             return jid;
         return jid.resolvePathname(pathname.substring(s + 1));

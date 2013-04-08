@@ -23,6 +23,7 @@
  */
 package org.agilewiki.jid.collection.flenc;
 
+import org.agilewiki.incdes.PAIncDes;
 import org.agilewiki.jid.*;
 import org.agilewiki.jid.factory.ActorFactory;
 
@@ -43,7 +44,7 @@ public class AppJid extends Jid {
     /**
      * A tuple of actors.
      */
-    protected _Jid[] tuple;
+    protected PAIncDes[] tuple;
 
     /**
      * Returns the element factories.
@@ -68,7 +69,7 @@ public class AppJid extends Jid {
             throws Exception {
         _initialize();
         Jid elementJid = createSubordinate(tupleFactories[i], bytes);
-        _Jid oldElementJid = _iGet(i);
+        PAIncDes oldElementJid = _iGet(i);
         oldElementJid.setContainerJid(null);
         tuple[i] = elementJid;
         change(elementJid.getSerializedLength() - oldElementJid.getSerializedLength());
@@ -90,7 +91,7 @@ public class AppJid extends Jid {
      * @param i The index of the element of interest.
      * @return The ith JID component, or null if the index is out of range.
      */
-    protected _Jid _iGet(int i) throws Exception {
+    protected PAIncDes _iGet(int i) throws Exception {
         _initialize();
         if (i < 0)
             i += _size();
@@ -106,7 +107,7 @@ public class AppJid extends Jid {
      * @return A JID actor or null.
      * @throws Exception Any uncaught exception which occurred while processing the request.
      */
-    protected _Jid _resolvePathname(String pathname)
+    protected PAIncDes _resolvePathname(String pathname)
             throws Exception {
         if (pathname.length() == 0) {
             return this;
@@ -125,7 +126,7 @@ public class AppJid extends Jid {
         }
         if (n < 0 || n >= _size())
             throw new IllegalArgumentException("pathname " + pathname);
-        _Jid jid = _iGet(n);
+        PAIncDes jid = _iGet(n);
         if (s == pathname.length())
             return jid;
         return jid.resolvePathname(pathname.substring(s + 1));
@@ -146,7 +147,7 @@ public class AppJid extends Jid {
             readableBytes = readable();
             _skipLen(readableBytes);
         }
-        tuple = new _Jid[_size()];
+        tuple = new PAIncDes[_size()];
         int i = 0;
         _len = 0;
         while (i < _size()) {

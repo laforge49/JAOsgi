@@ -23,6 +23,7 @@
  */
 package org.agilewiki.jid;
 
+import org.agilewiki.incdes.PAIncDes;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.pactor.Mailbox;
@@ -37,7 +38,7 @@ import java.util.Arrays;
 /**
  * Base class for Incremental Deserialization Actors.
  */
-public class Jid extends AncestorBase implements _Jid {
+public class Jid extends AncestorBase implements PAIncDes {
     /**
      * The factory, or null.
      */
@@ -46,7 +47,7 @@ public class Jid extends AncestorBase implements _Jid {
     /**
      * The JID actor which holds this actor.
      */
-    private _Jid containerJid;
+    private PAIncDes containerJid;
 
     /**
      * Holds the serialized data.
@@ -192,7 +193,7 @@ public class Jid extends AncestorBase implements _Jid {
      * @param containerJid The container, or null.
      */
     @Override
-    public void setContainerJid(_Jid containerJid) throws Exception {
+    public void setContainerJid(PAIncDes containerJid) throws Exception {
         this.containerJid = containerJid;
     }
 
@@ -294,7 +295,7 @@ public class Jid extends AncestorBase implements _Jid {
      * @throws Exception Any uncaught exception which occurred while processing the request.
      */
     @Override
-    public _Jid resolvePathname(final String pathname) throws Exception {
+    public PAIncDes resolvePathname(final String pathname) throws Exception {
         if (pathname != "")
             throw new IllegalArgumentException("pathname " + pathname);
         return this;

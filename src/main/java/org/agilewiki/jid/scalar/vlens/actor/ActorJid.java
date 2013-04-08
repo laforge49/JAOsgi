@@ -273,7 +273,7 @@ public class ActorJid
      * @throws Exception Any uncaught exception which occurred while processing the request.
      */
     @Override
-    public _Jid resolvePathname(String pathname)
+    public PAIncDes resolvePathname(String pathname)
             throws Exception {
         if (pathname.length() == 0) {
             return this;
@@ -282,7 +282,7 @@ public class ActorJid
             return getValue();
         }
         if (pathname.startsWith("0/")) {
-            _Jid v = getValue();
+            PAIncDes v = getValue();
             if (v == null)
                 return null;
             return v.resolvePathname(pathname.substring(2));

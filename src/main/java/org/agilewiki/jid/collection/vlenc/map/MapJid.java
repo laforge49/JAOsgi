@@ -27,7 +27,6 @@ import org.agilewiki.incdes.PACollection;
 import org.agilewiki.incdes.PAIncDes;
 import org.agilewiki.incdes.PAMap;
 import org.agilewiki.incdes.PAMapEntry;
-import org.agilewiki.jid._Jid;
 import org.agilewiki.jid.collection.vlenc.ListJid;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.JAFactoryLocator;
@@ -339,7 +338,7 @@ abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE e
      * @throws Exception Any uncaught exception which occurred while processing the request.
      */
     @Override
-    final public _Jid resolvePathname(String pathname)
+    final public PAIncDes resolvePathname(String pathname)
             throws Exception {
         if (pathname.length() == 0) {
             return this;
@@ -350,7 +349,7 @@ abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE e
         if (s == 0)
             throw new IllegalArgumentException("pathname " + pathname);
         String ns = pathname.substring(0, s);
-        _Jid jid = (_Jid) kGet(stringToKey(ns));
+        PAIncDes jid = kGet(stringToKey(ns));
         if (jid == null)
             return null;
         if (s == pathname.length())
