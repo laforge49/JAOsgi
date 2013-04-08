@@ -3,7 +3,7 @@ package org.agilewiki.incdes;
 import org.agilewiki.jid.ComparableKey;
 
 public interface PAMapEntry<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE>
-        extends PAIncDes, ComparableKey<KEY_TYPE> {
+        extends IncDes, ComparableKey<KEY_TYPE> {
 
     KEY_TYPE getKey() throws Exception;
 

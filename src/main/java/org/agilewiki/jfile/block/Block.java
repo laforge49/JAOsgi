@@ -23,7 +23,6 @@
  */
 package org.agilewiki.jfile.block;
 
-import org.agilewiki.incdes.PAIncDes;
 import org.agilewiki.jid.scalar.vlens.actor.RootJid;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;

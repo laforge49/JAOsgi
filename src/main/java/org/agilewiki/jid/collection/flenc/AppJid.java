@@ -24,7 +24,7 @@
 package org.agilewiki.jid.collection.flenc;
 
 import org.agilewiki.incdes.AppendableBytes;
-import org.agilewiki.incdes.PAIncDes;
+import org.agilewiki.incdes.IncDes;
 import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.jid.*;
 import org.agilewiki.jid.factory.ActorFactory;
@@ -46,7 +46,7 @@ public class AppJid extends Jid {
     /**
      * A tuple of actors.
      */
-    protected PAIncDes[] tuple;
+    protected IncDes[] tuple;
 
     /**
      * Returns the element factories.
@@ -93,7 +93,7 @@ public class AppJid extends Jid {
      * @param i The index of the element of interest.
      * @return The ith JID component, or null if the index is out of range.
      */
-    protected PAIncDes _iGet(int i) throws Exception {
+    protected IncDes _iGet(int i) throws Exception {
         _initialize();
         if (i < 0)
             i += _size();
@@ -109,7 +109,7 @@ public class AppJid extends Jid {
      * @return A JID actor or null.
      * @throws Exception Any uncaught exception which occurred while processing the request.
      */
-    protected PAIncDes _resolvePathname(String pathname)
+    protected IncDes _resolvePathname(String pathname)
             throws Exception {
         if (pathname.length() == 0) {
             return this;
@@ -128,7 +128,7 @@ public class AppJid extends Jid {
         }
         if (n < 0 || n >= _size())
             throw new IllegalArgumentException("pathname " + pathname);
-        PAIncDes jid = _iGet(n);
+        IncDes jid = _iGet(n);
         if (s == pathname.length())
             return jid;
         return jid.resolvePathname(pathname.substring(s + 1));
@@ -149,7 +149,7 @@ public class AppJid extends Jid {
             readableBytes = readable();
             _skipLen(readableBytes);
         }
-        tuple = new PAIncDes[_size()];
+        tuple = new IncDes[_size()];
         int i = 0;
         _len = 0;
         while (i < _size()) {

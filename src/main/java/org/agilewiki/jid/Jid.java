@@ -24,7 +24,7 @@
 package org.agilewiki.jid;
 
 import org.agilewiki.incdes.AppendableBytes;
-import org.agilewiki.incdes.PAIncDes;
+import org.agilewiki.incdes.IncDes;
 import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.JAFactoryLocator;
@@ -40,7 +40,7 @@ import java.util.Arrays;
 /**
  * Base class for Incremental Deserialization Actors.
  */
-public class Jid extends AncestorBase implements PAIncDes {
+public class Jid extends AncestorBase implements IncDes {
     /**
      * The factory, or null.
      */
@@ -298,15 +298,15 @@ public class Jid extends AncestorBase implements PAIncDes {
      * @throws Exception Any uncaught exception which occurred while processing the request.
      */
     @Override
-    public PAIncDes resolvePathname(final String pathname) throws Exception {
+    public IncDes resolvePathname(final String pathname) throws Exception {
         if (pathname != "")
             throw new IllegalArgumentException("pathname " + pathname);
         return this;
     }
 
     @Override
-    public Request<PAIncDes> resolvePathnameReq(final String pathname) {
-        return new RequestBase<PAIncDes>(getMailbox()) {
+    public Request<IncDes> resolvePathnameReq(final String pathname) {
+        return new RequestBase<IncDes>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(resolvePathname(pathname));
@@ -331,8 +331,8 @@ public class Jid extends AncestorBase implements PAIncDes {
         return jid;
     }
 
-    public final Request<PAIncDes> copyJIDReq(final Mailbox m) {
-        return new RequestBase<PAIncDes>(getMailbox()) {
+    public final Request<IncDes> copyJIDReq(final Mailbox m) {
+        return new RequestBase<IncDes>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(copyJID(m));
@@ -340,7 +340,7 @@ public class Jid extends AncestorBase implements PAIncDes {
         };
     }
 
-    public final Request<Boolean> isJidEqualReq(final PAIncDes jidA) {
+    public final Request<Boolean> isJidEqualReq(final IncDes jidA) {
         return new RequestBase<Boolean>(getMailbox()) {
             @Override
             public void processRequest(final ResponseProcessor rp) throws Exception {

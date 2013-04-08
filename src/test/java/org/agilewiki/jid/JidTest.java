@@ -2,7 +2,7 @@ package org.agilewiki.jid;
 
 import junit.framework.TestCase;
 import org.agilewiki.incdes.AppendableBytes;
-import org.agilewiki.incdes.PAIncDes;
+import org.agilewiki.incdes.IncDes;
 import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.jactor.old.JAFuture;
 import org.agilewiki.jid.factory.JAFactoryLocator;
@@ -15,7 +15,7 @@ public class JidTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
-            PAIncDes a = factoryLocator.newJid(JidFactories.JID_TYPE);
+            IncDes a = factoryLocator.newJid(JidFactories.JID_TYPE);
             int l = a.getSerializedLength();
             System.err.println(l);
             assertEquals(l, 0);
@@ -31,7 +31,7 @@ public class JidTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
-            PAIncDes a = factoryLocator.newJid(JidFactories.JID_TYPE);
+            IncDes a = factoryLocator.newJid(JidFactories.JID_TYPE);
             int l = a.getSerializedLength();
             AppendableBytes appendableBytes = new AppendableBytes(l);
             a.save(appendableBytes);
@@ -81,9 +81,9 @@ public class JidTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
-            PAIncDes jid1 = factoryLocator.newJid(JidFactories.JID_TYPE);
+            IncDes jid1 = factoryLocator.newJid(JidFactories.JID_TYPE);
             jid1.load(new ReadableBytes(new byte[0], 0));
-            PAIncDes jid2 = (Jid) (new CopyJID(factoryLocator.getMailbox())).send(future, jid1);
+            IncDes jid2 = (Jid) (new CopyJID(factoryLocator.getMailbox())).send(future, jid1);
             int l = GetSerializedLength.req.send(future, jid2);
             System.err.println(l);
             assertEquals(l, 0);

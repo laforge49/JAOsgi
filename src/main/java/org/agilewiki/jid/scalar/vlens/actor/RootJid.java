@@ -23,7 +23,6 @@
  */
 package org.agilewiki.jid.scalar.vlens.actor;
 
-import org.agilewiki.incdes.PAIncDes;
 import org.agilewiki.incdes.PARoot;
 import org.agilewiki.incdes.AppendableBytes;
 import org.agilewiki.jid.Jid;

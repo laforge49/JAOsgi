@@ -23,11 +23,8 @@
  */
 package org.agilewiki.jid.collection.vlenc;
 
-import org.agilewiki.incdes.PACollection;
-import org.agilewiki.incdes.PAIncDes;
-import org.agilewiki.incdes.PAList;
-import org.agilewiki.incdes.AppendableBytes;
-import org.agilewiki.incdes.ReadableBytes;
+import org.agilewiki.incdes.*;
+import org.agilewiki.incdes.IncDes;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.jid.Util;
 import org.agilewiki.jid.collection.CollectionJid;
@@ -43,7 +40,7 @@ import java.util.ArrayList;
 /**
  * Holds an ArrayList of JID actors, all of the same type.
  */
-public class ListJid<ENTRY_TYPE extends PAIncDes>
+public class ListJid<ENTRY_TYPE extends IncDes>
         extends CollectionJid<ENTRY_TYPE>
         implements PAList<ENTRY_TYPE>, PACollection<ENTRY_TYPE> {
     public int initialCapacity = 10;
@@ -182,7 +179,7 @@ public class ListJid<ENTRY_TYPE extends PAIncDes>
      * @throws Exception Any uncaught exception which occurred while processing the request.
      */
     @Override
-    public PAIncDes resolvePathname(String pathname)
+    public IncDes resolvePathname(String pathname)
             throws Exception {
         initializeList();
         return super.resolvePathname(pathname);
@@ -203,7 +200,7 @@ public class ListJid<ENTRY_TYPE extends PAIncDes>
             i += list.size();
         if (i < 0 || i >= list.size())
             throw new IllegalArgumentException();
-        PAIncDes elementJid = createSubordinate(entryFactory, this, bytes);
+        IncDes elementJid = createSubordinate(entryFactory, this, bytes);
         Jid oldElementJid = (Jid) iGet(i);
         oldElementJid.setContainerJid(null);
         list.set(i, (ENTRY_TYPE) elementJid);
@@ -228,7 +225,7 @@ public class ListJid<ENTRY_TYPE extends PAIncDes>
         initializeList();
         if (i < 0)
             i = size() + 1 + i;
-        PAIncDes jid = createSubordinate(entryFactory, this, bytes);
+        IncDes jid = createSubordinate(entryFactory, this, bytes);
         int c = jid.getSerializedLength();
         list.add(i, (ENTRY_TYPE) jid);
         change(c);
@@ -251,7 +248,7 @@ public class ListJid<ENTRY_TYPE extends PAIncDes>
         initializeList();
         if (i < 0)
             i = size() + 1 + i;
-        PAIncDes jid = createSubordinate(entryFactory, this);
+        IncDes jid = createSubordinate(entryFactory, this);
         int c = jid.getSerializedLength();
         list.add(i, (ENTRY_TYPE) jid);
         change(c);

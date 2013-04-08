@@ -5,7 +5,7 @@ import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pautil.Ancestor;
 
-public interface PAIncDes extends Ancestor {
+public interface IncDes extends Ancestor {
 
     Request<Integer> getSerializedLengthReq();
 
@@ -40,7 +40,7 @@ public interface PAIncDes extends Ancestor {
     void load(ReadableBytes readableBytes)
             throws Exception;
 
-    Request<PAIncDes> resolvePathnameReq(final String pathname);
+    Request<IncDes> resolvePathnameReq(final String pathname);
 
     /**
      * Resolves a JID pathname, returning a JID actor or null.
@@ -49,7 +49,7 @@ public interface PAIncDes extends Ancestor {
      * @return A JID actor or null.
      * @throws Exception Any uncaught exception which occurred while processing the request.
      */
-    PAIncDes resolvePathname(String pathname)
+    IncDes resolvePathname(String pathname)
             throws Exception;
 
     /**
@@ -66,10 +66,10 @@ public interface PAIncDes extends Ancestor {
      */
     String getJidType();
 
-    Request<PAIncDes> copyJIDReq(final Mailbox m);
+    Request<IncDes> copyJIDReq(final Mailbox m);
 
-    PAIncDes copyJID(final Mailbox m)
+    IncDes copyJID(final Mailbox m)
             throws Exception;
 
-    Request<Boolean> isJidEqualReq(final PAIncDes jidA);
+    Request<Boolean> isJidEqualReq(final IncDes jidA);
 }

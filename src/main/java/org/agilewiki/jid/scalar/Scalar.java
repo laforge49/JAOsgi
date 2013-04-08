@@ -23,13 +23,13 @@
  */
 package org.agilewiki.jid.scalar;
 
-import org.agilewiki.incdes.PAIncDes;
+import org.agilewiki.incdes.IncDes;
 
 /**
  * A JID component that holds a value.
  */
 public interface Scalar<SET_TYPE, RESPONSE_TYPE>
-        extends PAIncDes {
+        extends IncDes {
 
     /**
      * Assign a value.

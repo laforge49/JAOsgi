@@ -1,6 +1,6 @@
 package org.agilewiki.jid.basics;
 
-import org.agilewiki.incdes.PAIncDes;
+import org.agilewiki.incdes.IncDes;
 import org.agilewiki.jid.collection.vlenc.ListJid;
 import org.agilewiki.jid.collection.vlenc.ListJidFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
@@ -33,7 +33,7 @@ public class Sum extends ListJid implements Main {
     public void processRequest(Proc request, ResponseProcessor rp) throws Exception {
         initializeList();
         int sum = 0;
-        Iterator<PAIncDes> it = list.iterator();
+        Iterator<IncDes> it = list.iterator();
         while (it.hasNext()) {
             IntegerJid ij = (IntegerJid) it.next();
             sum += ij.getValue();

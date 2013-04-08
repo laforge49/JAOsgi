@@ -2,7 +2,7 @@ package org.agilewiki.incdes;
 
 import org.agilewiki.pactor.Request;
 
-public interface PAMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends PAIncDes>
+public interface PAMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends IncDes>
         extends PAList<PAMapEntry<KEY_TYPE, VALUE_TYPE>> {
 
     Request<PAMapEntry<KEY_TYPE, VALUE_TYPE>> getFirstReq();

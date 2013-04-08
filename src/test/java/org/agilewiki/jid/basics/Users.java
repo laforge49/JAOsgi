@@ -1,6 +1,6 @@
 package org.agilewiki.jid.basics;
 
-import org.agilewiki.incdes.PAIncDes;
+import org.agilewiki.incdes.IncDes;
 import org.agilewiki.jid.collection.vlenc.map.MapEntry;
 import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
 import org.agilewiki.jid.factory.ActorFactory;
@@ -9,7 +9,6 @@ import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.scalar.vlens.StringJid;
 import org.agilewiki.jid.scalar.vlens.actor.UnionJid;
-import org.agilewiki.pactor.Actor;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
@@ -46,7 +45,7 @@ public class Users extends StringMapJid implements Main {
     @Override
     public void processRequest(Proc request, ResponseProcessor rp) throws Exception {
         initializeList();
-        Iterator<PAIncDes> it = list.iterator();
+        Iterator<IncDes> it = list.iterator();
         while (it.hasNext()) {
             MapEntry<String, StringJid> tj = (MapEntry) it.next();
             String name = tj.getKey();

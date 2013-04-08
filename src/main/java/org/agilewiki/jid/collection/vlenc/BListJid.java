@@ -23,8 +23,8 @@
  */
 package org.agilewiki.jid.collection.vlenc;
 
+import org.agilewiki.incdes.IncDes;
 import org.agilewiki.incdes.PACollection;
-import org.agilewiki.incdes.PAIncDes;
 import org.agilewiki.incdes.PAList;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.jid.collection.flenc.AppJid;
@@ -43,7 +43,7 @@ import org.agilewiki.pautil.Ancestor;
 /**
  * A balanced tree holding a list of JIDs, all of the same type.
  */
-public class BListJid<ENTRY_TYPE extends PAIncDes>
+public class BListJid<ENTRY_TYPE extends IncDes>
         extends AppJid
         implements PAList<ENTRY_TYPE>, PACollection<ENTRY_TYPE> {
     protected final int TUPLE_SIZE = 0;
@@ -240,7 +240,7 @@ public class BListJid<ENTRY_TYPE extends PAIncDes>
      * @throws Exception Any uncaught exception which occurred while processing the request.
      */
     @Override
-    public PAIncDes resolvePathname(String pathname)
+    public IncDes resolvePathname(String pathname)
             throws Exception {
         if (pathname.length() == 0) {
             return this;
@@ -259,7 +259,7 @@ public class BListJid<ENTRY_TYPE extends PAIncDes>
         }
         if (n < 0 || n >= size())
             throw new IllegalArgumentException("pathname " + pathname);
-        PAIncDes jid = iGet(n);
+        IncDes jid = iGet(n);
         if (s == pathname.length())
             return jid;
         return jid.resolvePathname(pathname.substring(s + 1));

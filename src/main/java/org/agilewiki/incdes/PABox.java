@@ -1,17 +1,35 @@
 package org.agilewiki.incdes;
 
+import org.agilewiki.jid.Jid;
 import org.agilewiki.pactor.Request;
 
-public interface PABox extends PAIncDes {
-    Request<PAIncDes> getPAIDReq();
+public interface PABox extends IncDes {
+    Request<IncDes> getIncDesReq();
+
+    IncDes getValue()
+            throws Exception;
 
     Request<Void> clearReq();
 
-    Request<Void> setPAIDReq(final String _v);
+    void clear() throws Exception;
 
-    Request<Void> setPAIDReq(final String _v, final byte[] _bytes);
+    Request<Void> setIncDesReq(final String _v);
 
-    Request<Boolean> makePAIDReq(final String _v);
+    void setValue(final String jidType)
+            throws Exception;
 
-    Request<Boolean> makePAIDReq(final String _v, final byte[] _bytes);
+    Request<Void> setIncDesReq(final String _v, final byte[] _bytes);
+
+    void setValue(final String jidType, final byte[] bytes)
+            throws Exception;
+
+    Request<Boolean> makeIncDesReq(final String _v);
+
+    Boolean makeValue(final String jidType)
+            throws Exception;
+
+    Request<Boolean> makeIncDesReq(final String _v, final byte[] _bytes);
+
+    Boolean makeValue(final String jidType, final byte[] bytes)
+            throws Exception;
 }

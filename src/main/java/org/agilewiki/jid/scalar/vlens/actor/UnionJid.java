@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jid.scalar.vlens.actor;
 
-import org.agilewiki.incdes.PAIncDes;
+import org.agilewiki.incdes.IncDes;
 import org.agilewiki.incdes.PAUnion;
 import org.agilewiki.incdes.AppendableBytes;
 import org.agilewiki.jid.Jid;
@@ -75,14 +75,14 @@ public class UnionJid extends ScalarJid<String, Jid> implements PAUnion {
     protected Jid value;
 
     private Request<Void> clearReq;
-    private Request<PAIncDes> getPAIDReq;
+    private Request<IncDes> getPAIDReq;
 
     public Request<Void> clearReq() {
         return clearReq;
     }
 
     @Override
-    public Request<PAIncDes> getPAIDReq() {
+    public Request<IncDes> getPAIDReq() {
         return getPAIDReq;
     }
 
@@ -329,7 +329,7 @@ public class UnionJid extends ScalarJid<String, Jid> implements PAUnion {
      * @throws Exception Any uncaught exception which occurred while processing the request.
      */
     @Override
-    public PAIncDes resolvePathname(String pathname)
+    public IncDes resolvePathname(String pathname)
             throws Exception {
         if (pathname.length() == 0) {
             return this;
@@ -355,7 +355,7 @@ public class UnionJid extends ScalarJid<String, Jid> implements PAUnion {
             }
         };
 
-        getPAIDReq = new RequestBase<PAIncDes>(getMailbox()) {
+        getPAIDReq = new RequestBase<IncDes>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(getValue());

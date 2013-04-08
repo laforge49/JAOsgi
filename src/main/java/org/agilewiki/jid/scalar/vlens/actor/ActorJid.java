@@ -24,8 +24,8 @@
 package org.agilewiki.jid.scalar.vlens.actor;
 
 import org.agilewiki.incdes.AppendableBytes;
+import org.agilewiki.incdes.IncDes;
 import org.agilewiki.incdes.PABox;
-import org.agilewiki.incdes.PAIncDes;
 import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.jid.*;
 import org.agilewiki.jid.factory.ActorFactory;
@@ -60,7 +60,7 @@ public class ActorJid
     }
 
     private Request<Void> clearReq;
-    private Request<PAIncDes> getPAIDReq;
+    private Request<IncDes> getPAIDReq;
 
     @Override
     public Request<Void> clearReq() {
@@ -68,7 +68,7 @@ public class ActorJid
     }
 
     @Override
-    public Request<PAIncDes> getPAIDReq() {
+    public Request<IncDes> getIncDesReq() {
         return getPAIDReq;
     }
 
@@ -109,7 +109,7 @@ public class ActorJid
     }
 
     @Override
-    public Request<Boolean> makePAIDReq(final String jidType) {
+    public Request<Boolean> makeIncDesReq(final String jidType) {
         return new RequestBase<Boolean>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
@@ -135,7 +135,7 @@ public class ActorJid
     }
 
     @Override
-    public Request<Void> setPAIDReq(final String actorType) {
+    public Request<Void> setIncDesReq(final String actorType) {
         return new RequestBase<Void>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
@@ -152,6 +152,7 @@ public class ActorJid
      * @param bytes   The serialized data.
      * @throws Exception Any uncaught exception raised.
      */
+    @Override
     public void setValue(final String jidType, final byte[] bytes)
             throws Exception {
         if (len > -1)
@@ -160,7 +161,7 @@ public class ActorJid
     }
 
     @Override
-    public Request<Void> setPAIDReq(final String jidType, final byte[] bytes) {
+    public Request<Void> setIncDesReq(final String jidType, final byte[] bytes) {
         return new RequestBase<Void>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
@@ -178,6 +179,7 @@ public class ActorJid
      * @return True if a new value is created.
      * @throws Exception Any uncaught exception raised.
      */
+    @Override
     public Boolean makeValue(final String jidType, final byte[] bytes)
             throws Exception {
         if (len > -1)
@@ -187,7 +189,7 @@ public class ActorJid
     }
 
     @Override
-    public Request<Boolean> makePAIDReq(final String jidType, final byte[] bytes) {
+    public Request<Boolean> makeIncDesReq(final String jidType, final byte[] bytes) {
         return new RequestBase<Boolean>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
@@ -275,7 +277,7 @@ public class ActorJid
      * @throws Exception Any uncaught exception which occurred while processing the request.
      */
     @Override
-    public PAIncDes resolvePathname(String pathname)
+    public IncDes resolvePathname(String pathname)
             throws Exception {
         if (pathname.length() == 0) {
             return this;
@@ -284,7 +286,7 @@ public class ActorJid
             return getValue();
         }
         if (pathname.startsWith("0/")) {
-            PAIncDes v = getValue();
+            IncDes v = getValue();
             if (v == null)
                 return null;
             return v.resolvePathname(pathname.substring(2));
@@ -301,7 +303,7 @@ public class ActorJid
             }
         };
 
-        getPAIDReq = new RequestBase<PAIncDes>(getMailbox()) {
+        getPAIDReq = new RequestBase<IncDes>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(getValue());

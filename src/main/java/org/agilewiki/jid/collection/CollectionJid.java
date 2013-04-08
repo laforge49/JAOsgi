@@ -24,8 +24,8 @@
 package org.agilewiki.jid.collection;
 
 import org.agilewiki.incdes.AppendableBytes;
+import org.agilewiki.incdes.IncDes;
 import org.agilewiki.incdes.PACollection;
-import org.agilewiki.incdes.PAIncDes;
 import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.jid.*;
 import org.agilewiki.jid.factory.ActorFactory;
@@ -38,7 +38,7 @@ import org.agilewiki.pautil.Ancestor;
 /**
  * A collection of JID actors.
  */
-abstract public class CollectionJid<ENTRY_TYPE extends PAIncDes>
+abstract public class CollectionJid<ENTRY_TYPE extends IncDes>
         extends Jid
         implements PACollection<ENTRY_TYPE> {
 
@@ -124,7 +124,7 @@ abstract public class CollectionJid<ENTRY_TYPE extends PAIncDes>
      * @throws Exception Any uncaught exception which occurred while processing the request.
      */
     @Override
-    public PAIncDes resolvePathname(String pathname)
+    public IncDes resolvePathname(String pathname)
             throws Exception {
         if (pathname.length() == 0) {
             return this;
@@ -143,7 +143,7 @@ abstract public class CollectionJid<ENTRY_TYPE extends PAIncDes>
         }
         if (n < 0 || n >= size())
             throw new IllegalArgumentException("pathname " + pathname);
-        PAIncDes jid = iGet(n);
+        IncDes jid = iGet(n);
         if (s == pathname.length())
             return jid;
         return jid.resolvePathname(pathname.substring(s + 1));

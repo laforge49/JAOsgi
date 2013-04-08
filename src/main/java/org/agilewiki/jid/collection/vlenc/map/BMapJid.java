@@ -23,8 +23,8 @@
  */
 package org.agilewiki.jid.collection.vlenc.map;
 
+import org.agilewiki.incdes.IncDes;
 import org.agilewiki.incdes.PACollection;
-import org.agilewiki.incdes.PAIncDes;
 import org.agilewiki.incdes.PAMap;
 import org.agilewiki.incdes.PAMapEntry;
 import org.agilewiki.jid.Jid;
@@ -44,7 +44,7 @@ import org.agilewiki.pautil.Ancestor;
 /**
  * A balanced tree that holds a map.
  */
-abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends PAIncDes>
+abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends IncDes>
         extends AppJid
         implements PAMap<KEY_TYPE, VALUE_TYPE>, PACollection<PAMapEntry<KEY_TYPE, VALUE_TYPE>> {
     protected final int TUPLE_SIZE = 0;
@@ -713,7 +713,7 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
      * @throws Exception Any uncaught exception which occurred while processing the request.
      */
     @Override
-    final public PAIncDes resolvePathname(String pathname)
+    final public IncDes resolvePathname(String pathname)
             throws Exception {
         if (pathname.length() == 0) {
             return this;
@@ -724,7 +724,7 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
         if (s == 0)
             throw new IllegalArgumentException("pathname " + pathname);
         String ns = pathname.substring(0, s);
-        PAIncDes jid = kGet(stringToKey(ns));
+        IncDes jid = kGet(stringToKey(ns));
         if (jid == null)
             return null;
         if (s == pathname.length())
