@@ -24,7 +24,7 @@
 package org.agilewiki.jid.scalar.flens;
 
 import org.agilewiki.jid.ComparableKey;
-import org.agilewiki.jid.ReadableBytes;
+import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.jid.scalar.ScalarJid;
 
 /**

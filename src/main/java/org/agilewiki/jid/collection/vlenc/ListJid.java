@@ -26,8 +26,9 @@ package org.agilewiki.jid.collection.vlenc;
 import org.agilewiki.incdes.PACollection;
 import org.agilewiki.incdes.PAIncDes;
 import org.agilewiki.incdes.PAList;
-import org.agilewiki.jid.AppendableBytes;
-import org.agilewiki.jid.ReadableBytes;
+import org.agilewiki.incdes.AppendableBytes;
+import org.agilewiki.incdes.ReadableBytes;
+import org.agilewiki.jid.Jid;
 import org.agilewiki.jid.Util;
 import org.agilewiki.jid.collection.CollectionJid;
 import org.agilewiki.jid.factory.ActorFactory;
@@ -203,7 +204,7 @@ public class ListJid<ENTRY_TYPE extends PAIncDes>
         if (i < 0 || i >= list.size())
             throw new IllegalArgumentException();
         PAIncDes elementJid = createSubordinate(entryFactory, this, bytes);
-        PAIncDes oldElementJid = iGet(i);
+        Jid oldElementJid = (Jid) iGet(i);
         oldElementJid.setContainerJid(null);
         list.set(i, (ENTRY_TYPE) elementJid);
         change(elementJid.getSerializedLength() -
@@ -263,7 +264,7 @@ public class ListJid<ENTRY_TYPE extends PAIncDes>
         int i = 0;
         int s = size();
         while (i < s) {
-            PAIncDes jid = iGet(i);
+            Jid jid = (Jid) iGet(i);
             jid.setContainerJid(null);
             c -= jid.getSerializedLength();
             i += 1;
@@ -291,7 +292,7 @@ public class ListJid<ENTRY_TYPE extends PAIncDes>
             i += s;
         if (i < 0 || i >= s)
             throw new IllegalArgumentException();
-        PAIncDes jid = iGet(i);
+        Jid jid = (Jid) iGet(i);
         jid.setContainerJid(null);
         int c = -jid.getSerializedLength();
         list.remove(i);

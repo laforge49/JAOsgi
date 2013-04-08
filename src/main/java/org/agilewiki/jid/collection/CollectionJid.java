@@ -23,8 +23,10 @@
  */
 package org.agilewiki.jid.collection;
 
+import org.agilewiki.incdes.AppendableBytes;
 import org.agilewiki.incdes.PACollection;
 import org.agilewiki.incdes.PAIncDes;
+import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.jid.*;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.pactor.Mailbox;

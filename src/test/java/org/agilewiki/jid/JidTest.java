@@ -1,6 +1,9 @@
 package org.agilewiki.jid;
 
 import junit.framework.TestCase;
+import org.agilewiki.incdes.AppendableBytes;
+import org.agilewiki.incdes.PAIncDes;
+import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.jactor.old.JAFuture;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
@@ -12,9 +15,8 @@ public class JidTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
-            JAFuture future = new JAFuture();
-            Jid a = (Jid) factoryLocator.newJid(JidFactories.JID_TYPE);
-            int l = GetSerializedLength.req.send(future, a);
+            PAIncDes a = factoryLocator.newJid(JidFactories.JID_TYPE);
+            int l = a.getSerializedLength();
             System.err.println(l);
             assertEquals(l, 0);
         } catch (Exception e) {
@@ -29,11 +31,10 @@ public class JidTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
-            JAFuture future = new JAFuture();
-            Jid a = (Jid) factoryLocator.newJid(JidFactories.JID_TYPE);
-            int l = GetSerializedLength.req.send(future, a);
+            PAIncDes a = factoryLocator.newJid(JidFactories.JID_TYPE);
+            int l = a.getSerializedLength();
             AppendableBytes appendableBytes = new AppendableBytes(l);
-            (new Save(appendableBytes)).send(future, a);
+            a.save(appendableBytes);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -46,9 +47,8 @@ public class JidTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
-            JAFuture future = new JAFuture();
             Jid a = (Jid) factoryLocator.newJid(JidFactories.JID_TYPE);
-            byte[] bytes = GetSerializedBytes.req.send(future, a);
+            byte[] bytes = a.getSerializedBytes();
             int l = bytes.length;
             System.err.println(l);
             assertEquals(l, 0);
@@ -64,10 +64,9 @@ public class JidTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
-            JAFuture future = new JAFuture();
             Jid a = (Jid) factoryLocator.newJid(JidFactories.JID_TYPE);
             a.load(new ReadableBytes(new byte[0], 0));
-            int l = GetSerializedLength.req.send(future, a);
+            int l = a.getSerializedLength();
             System.err.println(l);
             assertEquals(l, 0);
         } catch (Exception e) {
@@ -82,10 +81,9 @@ public class JidTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
-            JAFuture future = new JAFuture();
-            Jid jid1 = (Jid) factoryLocator.newJid(JidFactories.JID_TYPE);
+            PAIncDes jid1 = factoryLocator.newJid(JidFactories.JID_TYPE);
             jid1.load(new ReadableBytes(new byte[0], 0));
-            Jid jid2 = (Jid) (new CopyJID(factoryLocator.getMailbox())).send(future, jid1);
+            PAIncDes jid2 = (Jid) (new CopyJID(factoryLocator.getMailbox())).send(future, jid1);
             int l = GetSerializedLength.req.send(future, jid2);
             System.err.println(l);
             assertEquals(l, 0);

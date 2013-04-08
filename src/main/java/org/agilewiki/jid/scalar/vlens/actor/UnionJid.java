@@ -25,9 +25,9 @@ package org.agilewiki.jid.scalar.vlens.actor;
 
 import org.agilewiki.incdes.PAIncDes;
 import org.agilewiki.incdes.PAUnion;
-import org.agilewiki.jid.AppendableBytes;
+import org.agilewiki.incdes.AppendableBytes;
 import org.agilewiki.jid.Jid;
-import org.agilewiki.jid.ReadableBytes;
+import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.jid.Util;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;

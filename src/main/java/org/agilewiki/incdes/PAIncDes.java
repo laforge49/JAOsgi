@@ -1,27 +1,13 @@
 package org.agilewiki.incdes;
 
-import org.agilewiki.jid.AppendableBytes;
-import org.agilewiki.jid.ReadableBytes;
 import org.agilewiki.jid.factory.ActorFactory;
+import org.agilewiki.pactor.Mailbox;
+import org.agilewiki.pactor.Request;
 import org.agilewiki.pautil.Ancestor;
 
 public interface PAIncDes extends Ancestor {
 
-    /**
-     * Process a change in the persistent data.
-     *
-     * @param lengthChange The change in the size of the serialized data.
-     * @throws Exception Any uncaught exception which occurred while processing the change.
-     */
-    void change(int lengthChange)
-            throws Exception;
-
-    /**
-     * Assign the container.
-     *
-     * @param containerJid The container, or null.
-     */
-    void setContainerJid(PAIncDes containerJid) throws Exception;
+    Request<Integer> getSerializedLengthReq();
 
     /**
      * Returns the number of bytes needed to serialize the persistent data.
@@ -30,6 +16,13 @@ public interface PAIncDes extends Ancestor {
      */
     int getSerializedLength()
             throws Exception;
+
+    Request<byte[]> getSerializedBytesReq();
+
+    byte[] getSerializedBytes()
+            throws Exception;
+
+    Request<Void> saveReq(final AppendableBytes appendableBytes);
 
     /**
      * Saves the persistent data in a byte array.
@@ -46,6 +39,8 @@ public interface PAIncDes extends Ancestor {
      */
     void load(ReadableBytes readableBytes)
             throws Exception;
+
+    Request<PAIncDes> resolvePathnameReq(final String pathname);
 
     /**
      * Resolves a JID pathname, returning a JID actor or null.
@@ -70,4 +65,11 @@ public interface PAIncDes extends Ancestor {
      * @return The jid type, or null.
      */
     String getJidType();
+
+    Request<PAIncDes> copyJIDReq(final Mailbox m);
+
+    PAIncDes copyJID(final Mailbox m)
+            throws Exception;
+
+    Request<Boolean> isJidEqualReq(final PAIncDes jidA);
 }

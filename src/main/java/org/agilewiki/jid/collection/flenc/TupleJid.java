@@ -23,7 +23,9 @@
  */
 package org.agilewiki.jid.collection.flenc;
 
+import org.agilewiki.incdes.AppendableBytes;
 import org.agilewiki.incdes.PAIncDes;
+import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.jid.*;
 import org.agilewiki.jid.collection.CollectionJid;
 import org.agilewiki.jid.factory.ActorFactory;
@@ -94,7 +96,7 @@ public class TupleJid
             throws Exception {
         initializeTuple();
         Jid elementJid = createSubordinate(tupleFactories[i], bytes);
-        PAIncDes oldElementJid = iGet(i);
+        Jid oldElementJid = iGet(i);
         oldElementJid.setContainerJid(null);
         tuple[i] = elementJid;
         change(elementJid.getSerializedLength() - oldElementJid.getSerializedLength());

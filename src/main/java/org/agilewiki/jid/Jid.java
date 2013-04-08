@@ -23,7 +23,9 @@
  */
 package org.agilewiki.jid;
 
+import org.agilewiki.incdes.AppendableBytes;
 import org.agilewiki.incdes.PAIncDes;
+import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.pactor.Mailbox;
@@ -47,7 +49,7 @@ public class Jid extends AncestorBase implements PAIncDes {
     /**
      * The JID actor which holds this actor.
      */
-    private PAIncDes containerJid;
+    private Jid containerJid;
 
     /**
      * Holds the serialized data.
@@ -62,10 +64,12 @@ public class Jid extends AncestorBase implements PAIncDes {
     private Request<byte[]> getSerializedBytesReq;
     private Request<Integer> getSerializedLengthReq;
 
+    @Override
     public Request<byte[]> getSerializedBytesReq() {
         return getSerializedBytesReq;
     }
 
+    @Override
     public Request<Integer> getSerializedLengthReq() {
         return getSerializedLengthReq;
     }
@@ -182,7 +186,6 @@ public class Jid extends AncestorBase implements PAIncDes {
      * @param lengthChange The change in the size of the serialized data.
      * @throws Exception Any uncaught exception which occurred while processing the change.
      */
-    @Override
     public void change(int lengthChange) throws Exception {
         changed(lengthChange);
     }
@@ -192,8 +195,7 @@ public class Jid extends AncestorBase implements PAIncDes {
      *
      * @param containerJid The container, or null.
      */
-    @Override
-    public void setContainerJid(PAIncDes containerJid) throws Exception {
+    public void setContainerJid(Jid containerJid) throws Exception {
         this.containerJid = containerJid;
     }
 
@@ -252,6 +254,7 @@ public class Jid extends AncestorBase implements PAIncDes {
         }
     }
 
+    @Override
     final public Request<Void> saveReq(final AppendableBytes appendableBytes) {
         return new RequestBase<Void>(getMailbox()) {
             @Override
@@ -301,8 +304,9 @@ public class Jid extends AncestorBase implements PAIncDes {
         return this;
     }
 
-    public Request<Jid> resolvePathnameReq(final String pathname) {
-        return new RequestBase<Jid>(getMailbox()) {
+    @Override
+    public Request<PAIncDes> resolvePathnameReq(final String pathname) {
+        return new RequestBase<PAIncDes>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(resolvePathname(pathname));
@@ -316,6 +320,7 @@ public class Jid extends AncestorBase implements PAIncDes {
      * @param m The mailbox.
      * @return a copy of the actor.
      */
+    @Override
     public Jid copyJID(final Mailbox m)
             throws Exception {
         Mailbox mb = m;
@@ -326,8 +331,8 @@ public class Jid extends AncestorBase implements PAIncDes {
         return jid;
     }
 
-    public final Request<Jid> copyJIDReq(final Mailbox m) {
-        return new RequestBase<Jid>(getMailbox()) {
+    public final Request<PAIncDes> copyJIDReq(final Mailbox m) {
+        return new RequestBase<PAIncDes>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(copyJID(m));
@@ -335,7 +340,7 @@ public class Jid extends AncestorBase implements PAIncDes {
         };
     }
 
-    public final Request<Boolean> isJidEqualReq(final Jid jidA) {
+    public final Request<Boolean> isJidEqualReq(final PAIncDes jidA) {
         return new RequestBase<Boolean>(getMailbox()) {
             @Override
             public void processRequest(final ResponseProcessor rp) throws Exception {
