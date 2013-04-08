@@ -24,6 +24,7 @@
 package org.agilewiki.jid.collection.vlenc.map;
 
 import org.agilewiki.incdes.PAIncDes;
+import org.agilewiki.incdes.PAMapEntry;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.jid._Jid;
 import org.agilewiki.jid.collection.Collection;
@@ -35,6 +36,11 @@ import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.scalar.flens.IntegerJid;
 import org.agilewiki.jid.scalar.vlens.actor.UnionJid;
+import org.agilewiki.pactor.Mailbox;
+import org.agilewiki.pactor.Request;
+import org.agilewiki.pactor.RequestBase;
+import org.agilewiki.pactor.ResponseProcessor;
+import org.agilewiki.pautil.Ancestor;
 
 /**
  * A balanced tree that holds a map.
@@ -48,6 +54,18 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
     protected boolean isRoot;
     public ActorFactory valueFactory;
     protected FactoryLocator factoryLocator;
+
+    private Request<Integer> sizeReq;
+    private Request<Void> emptyReq;
+
+    @Override
+    public Request<Integer> sizeReq() {
+        return sizeReq;
+    }
+
+    public Request<Void> emptyReq() {
+        return emptyReq;
+    }
 
     /**
      * Converts a string to a key.
@@ -135,6 +153,16 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
         return nodeSize() >= nodeCapacity;
     }
 
+    @Override
+    public Request<PAMapEntry<KEY_TYPE, VALUE_TYPE>> iGetReq(final int _i) {
+        return new RequestBase<PAMapEntry<KEY_TYPE, VALUE_TYPE>>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor<PAMapEntry<KEY_TYPE, VALUE_TYPE>> _rp) throws Exception {
+                _rp.processResponse(iGet(_i));
+            }
+        };
+    }
+
     /**
      * Returns the selected element.
      *
@@ -165,6 +193,17 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
         return null;
     }
 
+    @Override
+    public Request<Void> iSetReq(final int _i, final byte[] _bytes) {
+        return new RequestBase<Void>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor _rp) throws Exception {
+                iSet(_i, _bytes);
+                _rp.processResponse(null);
+            }
+        };
+    }
+
     /**
      * Creates a JID actor and loads its serialized data.
      *
@@ -179,9 +218,31 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
     }
 
     @Override
+    public Request<Void> iAddReq(final int _i) {
+        return new RequestBase<Void>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor<Void> _rp) throws Exception {
+                iAdd(_i);
+                _rp.processResponse(null);
+            }
+        };
+    }
+
+    @Override
     public void iAdd(int i)
             throws Exception {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Request<Void> iAddReq(final int _i, final byte[] _bytes) {
+        return new RequestBase<Void>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor<Void> _rp) throws Exception {
+                iAdd(_i, _bytes);
+                _rp.processResponse(null);
+            }
+        };
     }
 
     @Override
@@ -339,6 +400,17 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
         node.empty();
         IntegerJid sj = getSizeJid();
         sj.setValue(0);
+    }
+
+    @Override
+    public Request<Void> iRemoveReq(final int _i) {
+        return new RequestBase<Void>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor<Void> _rp) throws Exception {
+                iRemove(_i);
+                _rp.processResponse(null);
+            }
+        };
     }
 
     @Override
@@ -615,5 +687,22 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
         if (entry == null)
             throw new IllegalArgumentException("not present: " + key);
         entry.setValueBytes(bytes);
+    }
+
+    public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
+        super.initialize(mailbox, parent, factory);
+        sizeReq = new RequestBase<Integer>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor<Integer> _rp) throws Exception {
+                _rp.processResponse(size());
+            }
+        };
+        emptyReq = new RequestBase<Void>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor<Void> _rp) throws Exception {
+                empty();
+                _rp.processResponse(null);
+            }
+        };
     }
 }
