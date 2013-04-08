@@ -24,8 +24,10 @@
 package org.agilewiki.jid.collection.vlenc.map;
 
 import org.agilewiki.incdes.PAIncDes;
+import org.agilewiki.incdes.PAMap;
 import org.agilewiki.incdes.PAMapEntry;
 import org.agilewiki.jid._Jid;
+import org.agilewiki.jid.collection.vlenc.JAList;
 import org.agilewiki.jid.collection.vlenc.ListJid;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.JAFactoryLocator;
@@ -40,7 +42,7 @@ import org.agilewiki.pautil.Ancestor;
  */
 abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends PAIncDes>
         extends ListJid<PAMapEntry<KEY_TYPE, VALUE_TYPE>>
-        implements JAMap<KEY_TYPE, VALUE_TYPE> {
+        implements PAMap<KEY_TYPE, VALUE_TYPE>, JAList<PAMapEntry<KEY_TYPE, VALUE_TYPE>> {
 
     public ActorFactory valueFactory;
 
