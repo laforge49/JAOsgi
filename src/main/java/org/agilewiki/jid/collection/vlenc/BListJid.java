@@ -23,11 +23,11 @@
  */
 package org.agilewiki.jid.collection.vlenc;
 
+import org.agilewiki.incdes.PACollection;
 import org.agilewiki.incdes.PAIncDes;
 import org.agilewiki.incdes.PAList;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.jid._Jid;
-import org.agilewiki.jid.collection.Collection;
 import org.agilewiki.jid.collection.flenc.AppJid;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
@@ -46,7 +46,7 @@ import org.agilewiki.pautil.Ancestor;
  */
 public class BListJid<ENTRY_TYPE extends PAIncDes>
         extends AppJid
-        implements PAList<ENTRY_TYPE>, Collection<ENTRY_TYPE> {
+        implements PAList<ENTRY_TYPE>, PACollection<ENTRY_TYPE> {
     protected final int TUPLE_SIZE = 0;
     protected final int TUPLE_UNION = 1;
     protected int nodeCapacity = 28;

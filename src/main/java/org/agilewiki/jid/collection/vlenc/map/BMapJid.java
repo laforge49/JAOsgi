@@ -23,12 +23,12 @@
  */
 package org.agilewiki.jid.collection.vlenc.map;
 
+import org.agilewiki.incdes.PACollection;
 import org.agilewiki.incdes.PAIncDes;
 import org.agilewiki.incdes.PAMap;
 import org.agilewiki.incdes.PAMapEntry;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.jid._Jid;
-import org.agilewiki.jid.collection.Collection;
 import org.agilewiki.jid.collection.flenc.AppJid;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
@@ -47,7 +47,7 @@ import org.agilewiki.pautil.Ancestor;
  */
 abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends PAIncDes>
         extends AppJid
-        implements PAMap<KEY_TYPE, VALUE_TYPE>, Collection<PAMapEntry<KEY_TYPE, VALUE_TYPE>> {
+        implements PAMap<KEY_TYPE, VALUE_TYPE>, PACollection<PAMapEntry<KEY_TYPE, VALUE_TYPE>> {
     protected final int TUPLE_SIZE = 0;
     protected final int TUPLE_UNION = 1;
     protected int nodeCapacity = 28;

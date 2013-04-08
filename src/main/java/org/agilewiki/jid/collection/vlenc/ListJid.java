@@ -23,13 +23,13 @@
  */
 package org.agilewiki.jid.collection.vlenc;
 
+import org.agilewiki.incdes.PACollection;
 import org.agilewiki.incdes.PAIncDes;
 import org.agilewiki.incdes.PAList;
 import org.agilewiki.jid.AppendableBytes;
 import org.agilewiki.jid.ReadableBytes;
 import org.agilewiki.jid.Util;
 import org.agilewiki.jid._Jid;
-import org.agilewiki.jid.collection.Collection;
 import org.agilewiki.jid.collection.CollectionJid;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.pactor.Mailbox;
@@ -45,7 +45,7 @@ import java.util.ArrayList;
  */
 public class ListJid<ENTRY_TYPE extends PAIncDes>
         extends CollectionJid<ENTRY_TYPE>
-        implements PAList<ENTRY_TYPE>, Collection<ENTRY_TYPE> {
+        implements PAList<ENTRY_TYPE>, PACollection<ENTRY_TYPE> {
     public int initialCapacity = 10;
 
     /**

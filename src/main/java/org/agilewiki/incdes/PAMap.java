@@ -7,12 +7,12 @@ public interface PAMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends
 
     Request<PAMapEntry<KEY_TYPE, VALUE_TYPE>> getFirstReq();
 
-    public PAMapEntry<KEY_TYPE, VALUE_TYPE> getFirst()
+    PAMapEntry<KEY_TYPE, VALUE_TYPE> getFirst()
             throws Exception;
 
     Request<PAMapEntry<KEY_TYPE, VALUE_TYPE>> getLastReq();
 
-    public PAMapEntry<KEY_TYPE, VALUE_TYPE> getLast()
+    PAMapEntry<KEY_TYPE, VALUE_TYPE> getLast()
             throws Exception;
 
     Request<VALUE_TYPE> kGetReq(final KEY_TYPE _key);
@@ -23,7 +23,7 @@ public interface PAMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends
      * @param key The key.
      * @return The actor assigned to the key, or null.
      */
-    public VALUE_TYPE kGet(KEY_TYPE key)
+    VALUE_TYPE kGet(KEY_TYPE key)
             throws Exception;
 
     Request<PAMapEntry<KEY_TYPE, VALUE_TYPE>> getHigherReq(final KEY_TYPE _key);
@@ -34,7 +34,7 @@ public interface PAMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends
      * @param key The key.
      * @return The matching jid, or null.
      */
-    public PAMapEntry<KEY_TYPE, VALUE_TYPE> getHigher(KEY_TYPE key)
+    PAMapEntry<KEY_TYPE, VALUE_TYPE> getHigher(KEY_TYPE key)
             throws Exception;
 
     Request<PAMapEntry<KEY_TYPE, VALUE_TYPE>> getCeilingReq(final KEY_TYPE _key);
@@ -45,12 +45,12 @@ public interface PAMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends
      * @param key The key.
      * @return The matching jid, or null.
      */
-    public PAMapEntry<KEY_TYPE, VALUE_TYPE> getCeiling(KEY_TYPE key)
+    PAMapEntry<KEY_TYPE, VALUE_TYPE> getCeiling(KEY_TYPE key)
             throws Exception;
 
     Request<Void> kSetReq(final KEY_TYPE _key, final byte[] _bytes);
 
-    public void kSet(KEY_TYPE key, byte[] bytes)
+    void kSet(KEY_TYPE key, byte[] bytes)
             throws Exception;
 
     Request<Boolean> kMakeReq(final KEY_TYPE _key);
@@ -61,7 +61,7 @@ public interface PAMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends
      * @param key Used to match the first element of the tuples.
      * @return True if a new tuple was created.
      */
-    public Boolean kMake(KEY_TYPE key)
+    Boolean kMake(KEY_TYPE key)
             throws Exception;
 
     Request<Boolean> kMakeReq(final KEY_TYPE _key, final byte[] _bytes);
@@ -73,7 +73,7 @@ public interface PAMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends
      * @param bytes The serialized form of a JID of the appropriate type.
      * @return True if a new tuple was created; otherwise the old value is unaltered.
      */
-    public Boolean kMake(KEY_TYPE key, byte[] bytes)
+    Boolean kMake(KEY_TYPE key, byte[] bytes)
             throws Exception;
 
     Request<Boolean> kRemoveReq(final KEY_TYPE _key);
@@ -84,6 +84,6 @@ public interface PAMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends
      * @param key The key.
      * @return True when the item was present and removed.
      */
-    public boolean kRemove(KEY_TYPE key)
+    boolean kRemove(KEY_TYPE key)
             throws Exception;
 }
