@@ -112,7 +112,7 @@ public interface Block {
      * @param parent  The parent.
      * @return The RootJid, or null.
      */
-    public RootJid getRootJid(PAIncDes actor, Mailbox mailbox, Ancestor parent)
+    public RootJid getRootJid(Ancestor actor, Mailbox mailbox, Ancestor parent)
             throws Exception;
 
     /**

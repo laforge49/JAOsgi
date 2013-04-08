@@ -5,7 +5,6 @@ import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
 import org.agilewiki.jid.scalar.vlens.actor.RootJid;
-import org.agilewiki.jid.scalar.vlens.actor.RootJidFactory;
 
 public class LBlockTest extends TestCase {
     public void test()
@@ -13,7 +12,7 @@ public class LBlockTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
 
-        RootJid rj = RootJidFactory.create(factoryLocator, null, null);
+        RootJid rj = (RootJid) factoryLocator.newJid(JidFactories.ROOT_JID_TYPE);
         LBlock lb1 = new LBlock();
         lb1.setRootJid(rj);
         byte[] bs = lb1.serialize();

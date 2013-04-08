@@ -183,7 +183,7 @@ public class LBlock implements Block {
      * @return The deserialized RootJid, or null.
      */
     @Override
-    public RootJid getRootJid(PAIncDes actor, Mailbox mailbox, Ancestor parent)
+    public RootJid getRootJid(Ancestor actor, Mailbox mailbox, Ancestor parent)
             throws Exception {
         if (rootJid != null)
             return rootJid;
