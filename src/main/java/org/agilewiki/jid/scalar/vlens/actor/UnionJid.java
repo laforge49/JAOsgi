@@ -82,7 +82,7 @@ public class UnionJid extends ScalarJid<String, Jid> implements PAUnion {
     }
 
     @Override
-    public Request<IncDes> getPAIDReq() {
+    public Request<IncDes> getIncDesReq() {
         return getPAIDReq;
     }
 
@@ -148,6 +148,7 @@ public class UnionJid extends ScalarJid<String, Jid> implements PAUnion {
      *
      * @throws Exception Any uncaught exception raised.
      */
+    @Override
     public void clear() throws Exception {
         setValue(-1);
     }
@@ -159,7 +160,7 @@ public class UnionJid extends ScalarJid<String, Jid> implements PAUnion {
     }
 
     @Override
-    public Request<Void> setPAIDReq(final String actorType) {
+    public Request<Void> setIncDesReq(final String actorType) {
         return new RequestBase<Void>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
@@ -198,13 +199,14 @@ public class UnionJid extends ScalarJid<String, Jid> implements PAUnion {
      * @param bytes   The serialized data.
      * @throws Exception Any uncaught exception raised.
      */
+    @Override
     public void setValue(final String jidType, final byte[] bytes)
             throws Exception {
         setUnionBytes(getFactoryIndex(jidType), bytes);
     }
 
     @Override
-    public Request<Void> setPAIDReq(final String jidType, final byte[] bytes) {
+    public Request<Void> setIncDesReq(final String jidType, final byte[] bytes) {
         return new RequestBase<Void>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
@@ -241,13 +243,14 @@ public class UnionJid extends ScalarJid<String, Jid> implements PAUnion {
      * @return True if a new value is created.
      * @throws Exception Any uncaught exception raised.
      */
+    @Override
     public Boolean makeValue(final String jidType)
             throws Exception {
         return makeUnionValue(getFactoryIndex(jidType));
     }
 
     @Override
-    public Request<Boolean> makePAIDReq(final String jidType) {
+    public Request<Boolean> makeIncDesReq(final String jidType) {
         return new RequestBase<Boolean>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
@@ -279,13 +282,14 @@ public class UnionJid extends ScalarJid<String, Jid> implements PAUnion {
      * @return True if a new value is created.
      * @throws Exception Any uncaught exception raised.
      */
+    @Override
     public Boolean makeValue(final String jidType, final byte[] bytes)
             throws Exception {
         return makeUnionBytes(getFactoryIndex(jidType), bytes);
     }
 
     @Override
-    public Request<Boolean> makePAIDReq(final String jidType, final byte[] bytes) {
+    public Request<Boolean> makeIncDesReq(final String jidType, final byte[] bytes) {
         return new RequestBase<Boolean>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
