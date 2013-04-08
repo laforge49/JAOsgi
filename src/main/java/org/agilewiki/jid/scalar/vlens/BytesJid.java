@@ -113,7 +113,7 @@ public class BytesJid
      * @throws Exception Any uncaught exception raised.
      */
     @Override
-    protected Boolean makeValue(final byte[] v) throws Exception {
+    public Boolean makeValue(final byte[] v) throws Exception {
         if (len > -1)
             return false;
         int c = v.length;
