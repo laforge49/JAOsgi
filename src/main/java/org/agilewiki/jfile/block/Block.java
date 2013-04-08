@@ -23,9 +23,10 @@
  */
 package org.agilewiki.jfile.block;
 
-import org.agilewiki.jactor.Mailbox;
-import org.agilewiki.jactor.old.Actor;
+import org.agilewiki.incdes.PAIncDes;
 import org.agilewiki.jid.scalar.vlens.actor.RootJid;
+import org.agilewiki.pactor.Mailbox;
+import org.agilewiki.pautil.Ancestor;
 
 /**
  * A wrapper for data to be read from or written to disk.
@@ -111,7 +112,7 @@ public interface Block {
      * @param parent  The parent.
      * @return The RootJid, or null.
      */
-    public RootJid getRootJid(Actor actor, Mailbox mailbox, Actor parent)
+    public RootJid getRootJid(PAIncDes actor, Mailbox mailbox, Ancestor parent)
             throws Exception;
 
     /**
