@@ -1,6 +1,6 @@
 package org.agilewiki.incdes;
 
-import org.agilewiki.jid.ComparableKey;
+import org.agilewiki.incdes.impl.ComparableKey;
 
 public interface MapEntry<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE>
         extends IncDes, ComparableKey<KEY_TYPE> {

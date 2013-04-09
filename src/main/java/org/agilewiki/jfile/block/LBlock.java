@@ -25,7 +25,7 @@ package org.agilewiki.jfile.block;
 
 import org.agilewiki.incdes.AppendableBytes;
 import org.agilewiki.incdes.ReadableBytes;
-import org.agilewiki.jid.Util;
+import org.agilewiki.incdes.impl.Util;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.scalar.vlens.actor.RootJid;

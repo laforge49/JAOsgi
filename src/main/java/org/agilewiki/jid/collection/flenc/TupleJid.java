@@ -27,8 +27,9 @@ import org.agilewiki.incdes.AppendableBytes;
 import org.agilewiki.incdes.IncDes;
 import org.agilewiki.incdes.Tuple;
 import org.agilewiki.incdes.ReadableBytes;
+import org.agilewiki.incdes.impl.ComparableKey;
 import org.agilewiki.incdes.impl.IncDesImpl;
-import org.agilewiki.jid.*;
+import org.agilewiki.incdes.impl.Util;
 import org.agilewiki.jid.collection.CollectionJid;
 import org.agilewiki.jid.factory.ActorFactory;
 

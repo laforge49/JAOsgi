@@ -24,7 +24,7 @@
 package org.agilewiki.incdes;
 
 import org.agilewiki.incdes.impl.IncDesImpl;
-import org.agilewiki.jid.*;
+import org.agilewiki.incdes.impl.Util;
 import org.agilewiki.jid.factory.ActorFactory;
 
 /**

@@ -26,7 +26,7 @@ package org.agilewiki.jid.collection.vlenc;
 import org.agilewiki.incdes.*;
 import org.agilewiki.incdes.IncDes;
 import org.agilewiki.incdes.impl.IncDesImpl;
-import org.agilewiki.jid.Util;
+import org.agilewiki.incdes.impl.Util;
 import org.agilewiki.jid.collection.CollectionJid;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.pactor.Mailbox;

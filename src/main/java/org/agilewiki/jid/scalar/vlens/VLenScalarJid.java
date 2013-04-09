@@ -25,7 +25,7 @@ package org.agilewiki.jid.scalar.vlens;
 
 import org.agilewiki.incdes.AppendableBytes;
 import org.agilewiki.incdes.ReadableBytes;
-import org.agilewiki.jid.Util;
+import org.agilewiki.incdes.impl.Util;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.scalar.ScalarJid;
 import org.agilewiki.pactor.Mailbox;

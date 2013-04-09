@@ -26,7 +26,7 @@ package org.agilewiki.jid.scalar.flens;
 import org.agilewiki.incdes.PADouble;
 import org.agilewiki.incdes.AppendableBytes;
 import org.agilewiki.incdes.ReadableBytes;
-import org.agilewiki.jid.Util;
+import org.agilewiki.incdes.impl.Util;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;

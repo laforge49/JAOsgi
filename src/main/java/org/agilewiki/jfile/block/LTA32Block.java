@@ -24,7 +24,7 @@
 package org.agilewiki.jfile.block;
 
 import org.agilewiki.incdes.AppendableBytes;
-import org.agilewiki.jid.Util;
+import org.agilewiki.incdes.impl.Util;
 
 import java.util.zip.Adler32;
 

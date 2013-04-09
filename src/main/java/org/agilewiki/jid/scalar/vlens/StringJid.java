@@ -25,7 +25,7 @@ package org.agilewiki.jid.scalar.vlens;
 
 import org.agilewiki.incdes.PAString;
 import org.agilewiki.incdes.AppendableBytes;
-import org.agilewiki.jid.ComparableKey;
+import org.agilewiki.incdes.impl.ComparableKey;
 import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;

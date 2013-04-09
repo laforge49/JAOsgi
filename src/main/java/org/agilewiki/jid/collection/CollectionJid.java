@@ -28,7 +28,7 @@ import org.agilewiki.incdes.Collection;
 import org.agilewiki.incdes.IncDes;
 import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.incdes.impl.IncDesImpl;
-import org.agilewiki.jid.*;
+import org.agilewiki.incdes.impl.Util;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
