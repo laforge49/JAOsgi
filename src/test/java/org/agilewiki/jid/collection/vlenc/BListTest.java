@@ -4,7 +4,7 @@ import junit.framework.TestCase;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
-import org.agilewiki.jid.scalar.flens.IntegerJid;
+import org.agilewiki.incdes.impl.scalar.flens.PAIntegerImpl;
 import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
 
 public class BListTest extends TestCase {
@@ -44,13 +44,13 @@ public class BListTest extends TestCase {
             int i = 0;
             while (i < 28) {
                 intList1.iAdd(i);
-                IntegerJid ij0 = (IntegerJid) intList1.iGet(i);
+                PAIntegerImpl ij0 = (PAIntegerImpl) intList1.iGet(i);
                 ij0.setValue(i);
                 i += 1;
             }
             i = 0;
             while (i < 28) {
-                IntegerJid ij = (IntegerJid) intList1.iGet(i);
+                PAIntegerImpl ij = (PAIntegerImpl) intList1.iGet(i);
                 assertEquals(i, (int) ij.getValue());
                 i += 1;
             }
@@ -69,13 +69,13 @@ public class BListTest extends TestCase {
             int i = 0;
             while (i < 41) {
                 intList1.iAdd(-1);
-                IntegerJid ij0 = (IntegerJid) intList1.iGet(-1);
+                PAIntegerImpl ij0 = (PAIntegerImpl) intList1.iGet(-1);
                 ij0.setValue(i);
                 i += 1;
             }
             i = 0;
             while (i < 41) {
-                IntegerJid ij = (IntegerJid) intList1.iGet(i);
+                PAIntegerImpl ij = (PAIntegerImpl) intList1.iGet(i);
                 assertEquals(i, (int) ij.getValue());
                 i += 1;
             }
@@ -94,13 +94,13 @@ public class BListTest extends TestCase {
             int i = 0;
             while (i < 391) {
                 intList1.iAdd(-1);
-                IntegerJid ij0 = (IntegerJid) intList1.iGet(-1);
+                PAIntegerImpl ij0 = (PAIntegerImpl) intList1.iGet(-1);
                 ij0.setValue(i);
                 i += 1;
             }
             i = 0;
             while (i < 391) {
-                IntegerJid ij = (IntegerJid) intList1.iGet(i);
+                PAIntegerImpl ij = (PAIntegerImpl) intList1.iGet(i);
                 assertEquals(i, (int) ij.getValue());
                 i += 1;
             }
@@ -119,13 +119,13 @@ public class BListTest extends TestCase {
             int i = 0;
             while (i < 10000) {
                 intList1.iAdd(-1);
-                IntegerJid ij0 = (IntegerJid) intList1.iGet(-1);
+                PAIntegerImpl ij0 = (PAIntegerImpl) intList1.iGet(-1);
                 ij0.setValue(i);
                 i += 1;
             }
             i = 0;
             while (i < 10000) {
-                IntegerJid ij = (IntegerJid) intList1.iGet(i);
+                PAIntegerImpl ij = (PAIntegerImpl) intList1.iGet(i);
                 assertEquals(i, (int) ij.getValue());
                 i += 1;
             }
@@ -144,7 +144,7 @@ public class BListTest extends TestCase {
             int i = 0;
             while (i < 10000) {
                 intList1.iAdd(-1);
-                IntegerJid ij0 = (IntegerJid) intList1.iGet(-1);
+                PAIntegerImpl ij0 = (PAIntegerImpl) intList1.iGet(-1);
                 ij0.setValue(i);
                 i += 1;
             }

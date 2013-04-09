@@ -21,9 +21,9 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.scalar.flens;
+package org.agilewiki.incdes.impl.scalar.flens;
 
-import org.agilewiki.incdes.PAInteger;
+import org.agilewiki.incdes.PADouble;
 import org.agilewiki.incdes.AppendableBytes;
 import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.incdes.impl.Util;
@@ -37,27 +37,27 @@ import org.agilewiki.pactor.ResponseProcessor;
 import org.agilewiki.pautil.Ancestor;
 
 /**
- * A JID actor that holds an integer.
+ * A JID actor that holds a double.
  */
-public class IntegerJid
-        extends FLenScalar<Integer> implements PAInteger {
+public class PADoubleImpl
+        extends FLenScalar<Double> implements PADouble {
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerJidFactory(new ActorFactory(JidFactories.INTEGER_JID_TYPE) {
+        factoryLocator.registerJidFactory(new ActorFactory(JidFactories.DOUBLE_JID_TYPE) {
             @Override
-            final protected IntegerJid instantiateActor()
+            final protected PADoubleImpl instantiateActor()
                     throws Exception {
-                return new IntegerJid();
+                return new PADoubleImpl();
             }
         });
     }
 
-    private Request<Integer> getIntegerReq;
+    private Request<Double> getDoubleReq;
 
     @Override
-    public Request<Integer> getIntegerReq() {
-        return getIntegerReq;
+    public Request<Double> getDoubleReq() {
+        return getDoubleReq;
     }
 
     /**
@@ -66,8 +66,8 @@ public class IntegerJid
      * @return The default value
      */
     @Override
-    protected Integer newValue() {
-        return new Integer(0);
+    protected Double newValue() {
+        return new Double(0.D);
     }
 
     /**
@@ -76,12 +76,23 @@ public class IntegerJid
      * @return The value held by this component.
      */
     @Override
-    public Integer getValue() {
+    public Double getValue() {
         if (value != null)
             return value;
         ReadableBytes readableBytes = readable();
-        value = readableBytes.readInt();
+        value = readableBytes.readDouble();
         return value;
+    }
+
+    @Override
+    public Request<Void> setDoubleReq(final Double v) {
+        return new RequestBase<Void>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor rp) throws Exception {
+                setValue(v);
+                rp.processResponse(null);
+            }
+        };
     }
 
     /**
@@ -91,7 +102,7 @@ public class IntegerJid
      */
     @Override
     public int getSerializedLength() {
-        return Util.INT_LENGTH;
+        return Util.DOUBLE_LENGTH;
     }
 
     /**
@@ -101,24 +112,13 @@ public class IntegerJid
      */
     @Override
     protected void serialize(AppendableBytes appendableBytes) {
-        appendableBytes.writeInt(value);
-    }
-
-    @Override
-    public Request<Void> setIntegerReq(final Integer v) {
-        return new RequestBase<Void>(getMailbox()) {
-            @Override
-            public void processRequest(ResponseProcessor<Void> rp) throws Exception {
-                setValue(v);
-                rp.processResponse(null);
-            }
-        };
+        appendableBytes.writeDouble(value);
     }
 
     @Override
     public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
         super.initialize(mailbox, parent, factory);
-        getIntegerReq = new RequestBase<Integer>(getMailbox()) {
+        getDoubleReq = new RequestBase<Double>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(getValue());

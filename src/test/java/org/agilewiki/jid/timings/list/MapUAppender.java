@@ -5,7 +5,7 @@ import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.jid.collection.vlenc.map.IntegerMapJid;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
-import org.agilewiki.jid.scalar.flens.IntegerJid;
+import org.agilewiki.incdes.impl.scalar.flens.PAIntegerImpl;
 
 public class MapUAppender extends JLPCActor {
     public int count;
@@ -27,7 +27,7 @@ public class MapUAppender extends JLPCActor {
             IntegerMapJid blj = (IntegerMapJid) JAFactoryLocator.
                     newJid(this, JidFactories.INTEGER_INTEGER_MAP_JID_TYPE, getMailbox(), getParent());
             blj.load(rb);
-            IntegerJid sj = (IntegerJid) blj.kGet(j);
+            PAIntegerImpl sj = (PAIntegerImpl) blj.kGet(j);
             sj.setValue(42);
             bytes = blj.getSerializedBytes();
             j += 1;

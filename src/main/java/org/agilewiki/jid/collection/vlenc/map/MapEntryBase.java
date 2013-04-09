@@ -27,7 +27,7 @@ import org.agilewiki.incdes.AppBase;
 import org.agilewiki.incdes.MapEntry;
 import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jid.scalar.Scalar;
+import org.agilewiki.incdes.impl.scalar.Scalar;
 
 /**
  * A map is, in part, a list of map entries.

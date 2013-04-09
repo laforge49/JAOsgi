@@ -5,7 +5,7 @@ import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
-import org.agilewiki.jid.scalar.flens.IntegerJid;
+import org.agilewiki.incdes.impl.scalar.flens.PAIntegerImpl;
 
 public class BListTimingsTest extends TestCase {
     public void test() throws Exception {
@@ -41,7 +41,7 @@ public class BListTimingsTest extends TestCase {
             int i = 0;
             while (i < s) {
                 intList1.iAdd(-1);
-                IntegerJid ij0 = (IntegerJid) intList1.iGet(-1);
+                PAIntegerImpl ij0 = (PAIntegerImpl) intList1.iGet(-1);
                 ij0.setValue(i);
                 i += 1;
             }

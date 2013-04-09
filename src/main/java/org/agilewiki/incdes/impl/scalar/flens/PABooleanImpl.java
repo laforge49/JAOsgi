@@ -21,7 +21,7 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.scalar.flens;
+package org.agilewiki.incdes.impl.scalar.flens;
 
 import org.agilewiki.incdes.PABoolean;
 import org.agilewiki.incdes.AppendableBytes;
@@ -39,16 +39,16 @@ import org.agilewiki.pautil.Ancestor;
 /**
  * A JID actor that holds a boolean.
  */
-public class BooleanJid
+public class PABooleanImpl
         extends FLenScalar<Boolean> implements PABoolean {
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
         factoryLocator.registerJidFactory(new ActorFactory(JidFactories.BOOLEAN_JID_TYPE) {
             @Override
-            final protected BooleanJid instantiateActor()
+            final protected PABooleanImpl instantiateActor()
                     throws Exception {
-                return new BooleanJid();
+                return new PABooleanImpl();
             }
         });
     }

@@ -9,7 +9,7 @@ import org.agilewiki.jid.ResolvePathname;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
-import org.agilewiki.jid.scalar.flens.FloatJid;
+import org.agilewiki.incdes.impl.scalar.flens.PAFloatImpl;
 import org.agilewiki.incdes.impl.scalar.vlens.BoxImpl;
 import org.agilewiki.jid.scalar.vlens.actor.SetActor;
 
@@ -19,8 +19,8 @@ public class FloatTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            FloatJid float1 = (FloatJid) factoryLocator.newJid(JidFactories.FLOAT_JID_TYPE);
-            FloatJid float2 = (FloatJid) (new CopyJID()).send(future, float1);
+            PAFloatImpl float1 = (PAFloatImpl) factoryLocator.newJid(JidFactories.FLOAT_JID_TYPE);
+            PAFloatImpl float2 = (PAFloatImpl) (new CopyJID()).send(future, float1);
             (new SetFloat(1.0f)).send(future, float2);
             Actor float3 = (new CopyJID()).send(future, float2);
 
@@ -41,11 +41,11 @@ public class FloatTest extends TestCase {
             BoxImpl jidJid1 = BoxImpl.create(factoryLocator, null, null);
             SetActor sjvf = new SetActor(JidFactories.FLOAT_JID_TYPE);
             sjvf.send(future, jidJid1);
-            FloatJid rpa = (FloatJid) (new ResolvePathname("0")).send(future, jidJid1);
+            PAFloatImpl rpa = (PAFloatImpl) (new ResolvePathname("0")).send(future, jidJid1);
             v = GetFloat.req.send(future, rpa);
             assertEquals(0.f, v);
             (new SetFloat(-1.0f)).send(future, rpa);
-            rpa = (FloatJid) (new ResolvePathname("0")).send(future, jidJid1);
+            rpa = (PAFloatImpl) (new ResolvePathname("0")).send(future, jidJid1);
             v = GetFloat.req.send(future, rpa);
             assertEquals(-1.f, v);
 

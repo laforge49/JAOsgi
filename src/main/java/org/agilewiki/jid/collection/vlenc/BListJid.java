@@ -32,7 +32,7 @@ import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
-import org.agilewiki.jid.scalar.flens.IntegerJid;
+import org.agilewiki.incdes.impl.scalar.flens.PAIntegerImpl;
 import org.agilewiki.incdes.impl.scalar.vlens.UnionImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
@@ -97,9 +97,9 @@ public class BListJid<ENTRY_TYPE extends IncDes>
         getUnionJid().setValue(actorFactory);
     }
 
-    protected IntegerJid getSizeJid()
+    protected PAIntegerImpl getSizeJid()
             throws Exception {
-        return (IntegerJid) _iGet(TUPLE_SIZE);
+        return (PAIntegerImpl) _iGet(TUPLE_SIZE);
     }
 
     /**
@@ -115,7 +115,7 @@ public class BListJid<ENTRY_TYPE extends IncDes>
 
     protected void incSize(int inc)
             throws Exception {
-        IntegerJid sj = getSizeJid();
+        PAIntegerImpl sj = getSizeJid();
         sj.setValue(sj.getValue() + inc);
     }
 
@@ -417,7 +417,7 @@ public class BListJid<ENTRY_TYPE extends IncDes>
             throws Exception {
         ListJid<ENTRY_TYPE> node = getNode();
         node.empty();
-        IntegerJid sj = getSizeJid();
+        PAIntegerImpl sj = getSizeJid();
         sj.setValue(0);
     }
 
@@ -477,7 +477,7 @@ public class BListJid<ENTRY_TYPE extends IncDes>
                 if (node.size() == 1 && isRoot && !isLeaf()) {
                     bnode = (BListJid) node.iGet(0);
                     setNodeFactory(bnode.getNode().getFactory());
-                    IntegerJid sj = getSizeJid();
+                    PAIntegerImpl sj = getSizeJid();
                     sj.setValue(0);
                     bnode.append(this);
                 }

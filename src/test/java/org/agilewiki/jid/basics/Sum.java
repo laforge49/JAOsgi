@@ -5,7 +5,7 @@ import org.agilewiki.jid.collection.vlenc.ListJid;
 import org.agilewiki.jid.collection.vlenc.ListJidFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
-import org.agilewiki.jid.scalar.flens.IntegerJid;
+import org.agilewiki.incdes.impl.scalar.flens.PAIntegerImpl;
 import org.agilewiki.pactor.ResponseProcessor;
 
 import java.util.Iterator;
@@ -35,7 +35,7 @@ public class Sum extends ListJid implements Main {
         int sum = 0;
         Iterator<IncDes> it = list.iterator();
         while (it.hasNext()) {
-            IntegerJid ij = (IntegerJid) it.next();
+            PAIntegerImpl ij = (PAIntegerImpl) it.next();
             sum += ij.getValue();
         }
         System.out.println("Total: " + sum);

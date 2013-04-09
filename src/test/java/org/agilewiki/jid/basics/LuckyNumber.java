@@ -2,9 +2,9 @@ package org.agilewiki.jid.basics;
 
 import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jid.factory.FactoryLocator;
-import org.agilewiki.jid.scalar.flens.IntegerJid;
+import org.agilewiki.incdes.impl.scalar.flens.PAIntegerImpl;
 
-public class LuckyNumber extends IntegerJid implements Main {
+public class LuckyNumber extends PAIntegerImpl implements Main {
 
     public static void register(FactoryLocator factoryLocator) throws Exception {
         factoryLocator.defineJidType("lucky number", LuckyNumber.class);

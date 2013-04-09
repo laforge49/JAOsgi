@@ -21,9 +21,9 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.scalar.flens;
+package org.agilewiki.incdes.impl.scalar.flens;
 
-import org.agilewiki.incdes.PADouble;
+import org.agilewiki.incdes.PALong;
 import org.agilewiki.incdes.AppendableBytes;
 import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.incdes.impl.Util;
@@ -37,27 +37,27 @@ import org.agilewiki.pactor.ResponseProcessor;
 import org.agilewiki.pautil.Ancestor;
 
 /**
- * A JID actor that holds a double.
+ * A JID actor that holds a long.
  */
-public class DoubleJid
-        extends FLenScalar<Double> implements PADouble {
+public class PALongImpl
+        extends FLenScalar<Long> implements PALong {
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerJidFactory(new ActorFactory(JidFactories.DOUBLE_JID_TYPE) {
+        factoryLocator.registerJidFactory(new ActorFactory(JidFactories.LONG_JID_TYPE) {
             @Override
-            final protected DoubleJid instantiateActor()
+            final protected PALongImpl instantiateActor()
                     throws Exception {
-                return new DoubleJid();
+                return new PALongImpl();
             }
         });
     }
 
-    private Request<Double> getDoubleReq;
+    private Request<Long> getLongReq;
 
     @Override
-    public Request<Double> getDoubleReq() {
-        return getDoubleReq;
+    public Request<Long> getLongReq() {
+        return getLongReq;
     }
 
     /**
@@ -66,8 +66,8 @@ public class DoubleJid
      * @return The default value
      */
     @Override
-    protected Double newValue() {
-        return new Double(0.D);
+    protected Long newValue() {
+        return new Long(0L);
     }
 
     /**
@@ -76,20 +76,20 @@ public class DoubleJid
      * @return The value held by this component.
      */
     @Override
-    public Double getValue() {
+    public Long getValue() {
         if (value != null)
             return value;
         ReadableBytes readableBytes = readable();
-        value = readableBytes.readDouble();
+        value = readableBytes.readLong();
         return value;
     }
 
     @Override
-    public Request<Void> setDoubleReq(final Double v) {
+    public Request<Void> setLongReq(final Long _v) {
         return new RequestBase<Void>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
-                setValue(v);
+                setValue(_v);
                 rp.processResponse(null);
             }
         };
@@ -102,7 +102,7 @@ public class DoubleJid
      */
     @Override
     public int getSerializedLength() {
-        return Util.DOUBLE_LENGTH;
+        return Util.LONG_LENGTH;
     }
 
     /**
@@ -112,13 +112,13 @@ public class DoubleJid
      */
     @Override
     protected void serialize(AppendableBytes appendableBytes) {
-        appendableBytes.writeDouble(value);
+        appendableBytes.writeLong(value);
     }
 
     @Override
     public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
         super.initialize(mailbox, parent, factory);
-        getDoubleReq = new RequestBase<Double>(getMailbox()) {
+        getLongReq = new RequestBase<Long>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(getValue());

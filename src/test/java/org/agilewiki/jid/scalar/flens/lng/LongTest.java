@@ -8,7 +8,7 @@ import org.agilewiki.jid.ResolvePathname;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
-import org.agilewiki.jid.scalar.flens.LongJid;
+import org.agilewiki.incdes.impl.scalar.flens.PALongImpl;
 import org.agilewiki.incdes.impl.scalar.vlens.BoxImpl;
 import org.agilewiki.jid.scalar.vlens.actor.SetActor;
 
@@ -18,10 +18,10 @@ public class LongTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            LongJid long1 = (LongJid) factoryLocator.newJid(JidFactories.LONG_JID_TYPE);
-            LongJid long2 = (LongJid) (new CopyJID()).send(future, long1);
+            PALongImpl long1 = (PALongImpl) factoryLocator.newJid(JidFactories.LONG_JID_TYPE);
+            PALongImpl long2 = (PALongImpl) (new CopyJID()).send(future, long1);
             (new SetLong(1L)).send(future, long2);
-            LongJid float3 = (LongJid) (new CopyJID()).send(future, long2);
+            PALongImpl float3 = (PALongImpl) (new CopyJID()).send(future, long2);
 
             int sl = GetSerializedLength.req.send(future, long1);
             assertEquals(8, sl);
@@ -40,11 +40,11 @@ public class LongTest extends TestCase {
             BoxImpl jidJid1 = BoxImpl.create(factoryLocator, null, null);
             SetActor sjvl = new SetActor(JidFactories.LONG_JID_TYPE);
             sjvl.send(future, jidJid1);
-            LongJid rpa = (LongJid) (new ResolvePathname("0")).send(future, jidJid1);
+            PALongImpl rpa = (PALongImpl) (new ResolvePathname("0")).send(future, jidJid1);
             v = GetLong.req.send(future, rpa);
             assertEquals(0L, v);
             (new SetLong(-1000000000000L)).send(future, rpa);
-            rpa = (LongJid) (new ResolvePathname("0")).send(future, jidJid1);
+            rpa = (PALongImpl) (new ResolvePathname("0")).send(future, jidJid1);
             v = GetLong.req.send(future, rpa);
             assertEquals(-1000000000000L, v);
 

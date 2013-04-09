@@ -4,7 +4,7 @@ import junit.framework.TestCase;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
-import org.agilewiki.jid.scalar.flens.IntegerJid;
+import org.agilewiki.incdes.impl.scalar.flens.PAIntegerImpl;
 
 public class BMapTimingsTest extends TestCase {
     public void test1() throws Exception {
@@ -35,12 +35,12 @@ public class BMapTimingsTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
-            BMapJid<Integer, IntegerJid> m1 = (BMapJid) factoryLocator.
+            BMapJid<Integer, PAIntegerImpl> m1 = (BMapJid) factoryLocator.
                     newJid(JidFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
             int i = 0;
             while (i < s) {
                 m1.kMake(i);
-                IntegerJid ij0 = m1.kGet(i);
+                PAIntegerImpl ij0 = m1.kGet(i);
                 ij0.setValue(i);
                 i += 1;
             }
@@ -50,7 +50,7 @@ public class BMapTimingsTest extends TestCase {
             i = s / 2;
             while (j < r) {
                 BMapJid m2 = (BMapJid) m1.copyJID(factoryLocator.getMailbox());
-                IntegerJid ij0 = m1.kGet(i);
+                PAIntegerImpl ij0 = m1.kGet(i);
                 ij0.setValue(-i);
                 m2.getSerializedBytes();
                 j += 1;

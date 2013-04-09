@@ -10,7 +10,7 @@ import org.agilewiki.jid.collection.vlenc.IAdd;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
-import org.agilewiki.jid.scalar.flens.IntegerJid;
+import org.agilewiki.incdes.impl.scalar.flens.PAIntegerImpl;
 import org.agilewiki.jid.scalar.flens.integer.SetInteger;
 import org.agilewiki.incdes.impl.scalar.vlens.RootImpl;
 import org.agilewiki.jid.scalar.vlens.actor.SetActor;
@@ -29,13 +29,13 @@ public class SumTest extends TestCase {
         IAdd iAdd = new IAdd(-1);
         IGet iGet = new IGet(-1);
         iAdd.send(future, sum);
-        IntegerJid ij0 = (IntegerJid) iGet.send(future, sum);
+        PAIntegerImpl ij0 = (PAIntegerImpl) iGet.send(future, sum);
         (new SetInteger(1)).send(future, ij0);
         iAdd.send(future, sum);
-        IntegerJid ij1 = (IntegerJid) iGet.send(future, sum);
+        PAIntegerImpl ij1 = (PAIntegerImpl) iGet.send(future, sum);
         (new SetInteger(2)).send(future, ij1);
         iAdd.send(future, sum);
-        IntegerJid ij2 = (IntegerJid) iGet.send(future, sum);
+        PAIntegerImpl ij2 = (PAIntegerImpl) iGet.send(future, sum);
         (new SetInteger(3)).send(future, ij2);
         byte[] rootBytes = GetSerializedBytes.req.send(future, root);
 

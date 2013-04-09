@@ -24,12 +24,12 @@
 package org.agilewiki.jid.factory;
 
 import org.agilewiki.incdes.impl.IncDesFactory;
+import org.agilewiki.incdes.impl.scalar.flens.*;
 import org.agilewiki.jid.collection.vlenc.BListJidFactory;
 import org.agilewiki.jid.collection.vlenc.ListJidFactory;
 import org.agilewiki.jid.collection.vlenc.map.*;
 import org.agilewiki.jid.jaosgi.JABCNoOsgiImpl;
 import org.agilewiki.jid.jaosgi.JABundleContext;
-import org.agilewiki.jid.scalar.flens.*;
 import org.agilewiki.incdes.impl.scalar.vlens.BytesImpl;
 import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
 import org.agilewiki.incdes.impl.scalar.vlens.BoxImpl;
@@ -62,27 +62,27 @@ final public class JidFactories extends LocateLocalActorFactories {
     public final static String JID_TYPE = "JID";
 
     /**
-     * The name of the BooleanJid actor.
+     * The name of the PABooleanImpl actor.
      */
     public final static String BOOLEAN_JID_TYPE = "BOOLEAN_JID";
 
     /**
-     * The name of the IntegerJid actor.
+     * The name of the PAIntegerImpl actor.
      */
     public final static String INTEGER_JID_TYPE = "INT_JID";
 
     /**
-     * The name of the LongJid actor.
+     * The name of the PALongImpl actor.
      */
     public final static String LONG_JID_TYPE = "LONG_JID";
 
     /**
-     * The name of the FloatJid actor.
+     * The name of the PAFloatImpl actor.
      */
     public final static String FLOAT_JID_TYPE = "FLOAT_JID";
 
     /**
-     * The name of the DoubleJid actor.
+     * The name of the PADoubleImpl actor.
      */
     public final static String DOUBLE_JID_TYPE = "DOUBLE_JID";
 
@@ -431,11 +431,11 @@ final public class JidFactories extends LocateLocalActorFactories {
 
         IncDesFactory.registerFactory(factoryLocator);
 
-        BooleanJid.registerFactory(factoryLocator);
-        IntegerJid.registerFactory(factoryLocator);
-        LongJid.registerFactory(factoryLocator);
-        FloatJid.registerFactory(factoryLocator);
-        DoubleJid.registerFactory(factoryLocator);
+        PABooleanImpl.registerFactory(factoryLocator);
+        PAIntegerImpl.registerFactory(factoryLocator);
+        PALongImpl.registerFactory(factoryLocator);
+        PAFloatImpl.registerFactory(factoryLocator);
+        PADoubleImpl.registerFactory(factoryLocator);
 
         BoxImpl.registerFactory(factoryLocator);
         RootImpl.registerFactory(factoryLocator);

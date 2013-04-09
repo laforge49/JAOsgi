@@ -21,11 +21,11 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.scalar.flens;
+package org.agilewiki.incdes.impl.scalar.flens;
 
 import org.agilewiki.incdes.impl.ComparableKey;
 import org.agilewiki.incdes.ReadableBytes;
-import org.agilewiki.jid.scalar.Scalar;
+import org.agilewiki.incdes.impl.scalar.Scalar;
 
 /**
  * A JID actor that holds a fixed-length value.

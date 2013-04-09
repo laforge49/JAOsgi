@@ -32,7 +32,7 @@ import org.agilewiki.incdes.impl.Util;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JAFactoryLocator;
-import org.agilewiki.jid.scalar.Scalar;
+import org.agilewiki.incdes.impl.scalar.Scalar;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;

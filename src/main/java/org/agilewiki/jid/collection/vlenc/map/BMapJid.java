@@ -30,7 +30,7 @@ import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
-import org.agilewiki.jid.scalar.flens.IntegerJid;
+import org.agilewiki.incdes.impl.scalar.flens.PAIntegerImpl;
 import org.agilewiki.incdes.impl.scalar.vlens.UnionImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
@@ -108,9 +108,9 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
         getUnionJid().setValue(actorFactory);
     }
 
-    protected IntegerJid getSizeJid()
+    protected PAIntegerImpl getSizeJid()
             throws Exception {
-        return (IntegerJid) _iGet(TUPLE_SIZE);
+        return (PAIntegerImpl) _iGet(TUPLE_SIZE);
     }
 
     /**
@@ -126,7 +126,7 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
 
     protected void incSize(int inc)
             throws Exception {
-        IntegerJid sj = getSizeJid();
+        PAIntegerImpl sj = getSizeJid();
         sj.setValue(sj.getValue() + inc);
     }
 
@@ -424,7 +424,7 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
             throws Exception {
         MapJid<KEY_TYPE, IncDesImpl> node = getNode();
         node.empty();
-        IntegerJid sj = getSizeJid();
+        PAIntegerImpl sj = getSizeJid();
         sj.setValue(0);
     }
 
@@ -492,7 +492,7 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
                 if (node.size() == 1 && isRoot && !isLeaf()) {
                     bnode = (BMapJid) ((MapEntryBase<KEY_TYPE, VALUE_TYPE>) node.iGet(0)).getValue();
                     setNodeFactory(bnode.getNode().getFactory());
-                    IntegerJid sj = getSizeJid();
+                    PAIntegerImpl sj = getSizeJid();
                     sj.setValue(0);
                     bnode.appendTo(this);
                 }
@@ -569,7 +569,7 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
         if (node.size() == 1 && isRoot && !isLeaf()) {
             bnode = (BMapJid) ((MapEntryBase) node.iGet(0)).getValue();
             setNodeFactory(bnode.getNode().getFactory());
-            IntegerJid sj = getSizeJid();
+            PAIntegerImpl sj = getSizeJid();
             sj.setValue(0);
             bnode.appendTo((BMapJid<KEY_TYPE, IncDesImpl>) this);
         }

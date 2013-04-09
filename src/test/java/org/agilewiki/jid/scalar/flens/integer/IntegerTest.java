@@ -8,7 +8,7 @@ import org.agilewiki.jid.ResolvePathname;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
-import org.agilewiki.jid.scalar.flens.IntegerJid;
+import org.agilewiki.incdes.impl.scalar.flens.PAIntegerImpl;
 import org.agilewiki.incdes.impl.scalar.vlens.BoxImpl;
 import org.agilewiki.jid.scalar.vlens.actor.SetActor;
 
@@ -18,10 +18,10 @@ public class IntegerTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            IntegerJid int1 = (IntegerJid) factoryLocator.newJid(JidFactories.INTEGER_JID_TYPE);
-            IntegerJid int2 = (IntegerJid) (new CopyJID()).send(future, int1);
+            PAIntegerImpl int1 = (PAIntegerImpl) factoryLocator.newJid(JidFactories.INTEGER_JID_TYPE);
+            PAIntegerImpl int2 = (PAIntegerImpl) (new CopyJID()).send(future, int1);
             (new SetInteger(1)).send(future, int2);
-            IntegerJid int3 = (IntegerJid) (new CopyJID()).send(future, int2);
+            PAIntegerImpl int3 = (PAIntegerImpl) (new CopyJID()).send(future, int2);
 
             int sl = GetSerializedLength.req.send(future, int1);
             assertEquals(4, sl);
@@ -40,11 +40,11 @@ public class IntegerTest extends TestCase {
             BoxImpl jidJid1 = BoxImpl.create(factoryLocator, null, null);
             SetActor sjvi = new SetActor(JidFactories.INTEGER_JID_TYPE);
             sjvi.send(future, jidJid1);
-            IntegerJid rpa = (IntegerJid) (new ResolvePathname("0")).send(future, jidJid1);
+            PAIntegerImpl rpa = (PAIntegerImpl) (new ResolvePathname("0")).send(future, jidJid1);
             v = GetInteger.req.send(future, rpa);
             assertEquals(0, v);
             (new SetInteger(-1)).send(future, rpa);
-            rpa = (IntegerJid) (new ResolvePathname("0")).send(future, jidJid1);
+            rpa = (PAIntegerImpl) (new ResolvePathname("0")).send(future, jidJid1);
             v = GetInteger.req.send(future, rpa);
             assertEquals(-1, v);
 

@@ -8,7 +8,7 @@ import org.agilewiki.jid.ResolvePathname;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
-import org.agilewiki.jid.scalar.flens.BooleanJid;
+import org.agilewiki.incdes.impl.scalar.flens.PABooleanImpl;
 import org.agilewiki.incdes.impl.scalar.vlens.BoxImpl;
 import org.agilewiki.jid.scalar.vlens.actor.SetActor;
 
@@ -18,10 +18,10 @@ public class BooleanTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            BooleanJid boolean1 = (BooleanJid) factoryLocator.newJid(JidFactories.BOOLEAN_JID_TYPE);
-            BooleanJid boolean2 = (BooleanJid) (new CopyJID()).send(future, boolean1);
+            PABooleanImpl boolean1 = (PABooleanImpl) factoryLocator.newJid(JidFactories.BOOLEAN_JID_TYPE);
+            PABooleanImpl boolean2 = (PABooleanImpl) (new CopyJID()).send(future, boolean1);
             (new SetBoolean(true)).send(future, boolean2);
-            BooleanJid boolean3 = (BooleanJid) (new CopyJID()).send(future, boolean2);
+            PABooleanImpl boolean3 = (PABooleanImpl) (new CopyJID()).send(future, boolean2);
 
             int sl = GetSerializedLength.req.send(future, boolean1);
             assertEquals(1, sl);
@@ -37,10 +37,10 @@ public class BooleanTest extends TestCase {
             BoxImpl jidJid1 = BoxImpl.create(factoryLocator, null, null);
             SetActor sjvb = new SetActor(JidFactories.BOOLEAN_JID_TYPE);
             sjvb.send(future, jidJid1);
-            BooleanJid rpa = (BooleanJid) (new ResolvePathname("0")).send(future, jidJid1);
+            PABooleanImpl rpa = (PABooleanImpl) (new ResolvePathname("0")).send(future, jidJid1);
             assertFalse(GetBoolean.req.send(future, rpa));
             (new SetBoolean(true)).send(future, rpa);
-            rpa = (BooleanJid) (new ResolvePathname("0")).send(future, jidJid1);
+            rpa = (PABooleanImpl) (new ResolvePathname("0")).send(future, jidJid1);
             assertTrue(GetBoolean.req.send(future, rpa));
 
         } catch (Exception e) {

@@ -8,7 +8,7 @@ import org.agilewiki.jid.ResolvePathname;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
-import org.agilewiki.jid.scalar.flens.DoubleJid;
+import org.agilewiki.incdes.impl.scalar.flens.PADoubleImpl;
 import org.agilewiki.incdes.impl.scalar.vlens.BoxImpl;
 import org.agilewiki.jid.scalar.vlens.actor.SetActor;
 
@@ -18,10 +18,10 @@ public class DoubleTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            DoubleJid double1 = (DoubleJid) factoryLocator.newJid(JidFactories.DOUBLE_JID_TYPE);
-            DoubleJid double2 = (DoubleJid) (new CopyJID()).send(future, double1);
+            PADoubleImpl double1 = (PADoubleImpl) factoryLocator.newJid(JidFactories.DOUBLE_JID_TYPE);
+            PADoubleImpl double2 = (PADoubleImpl) (new CopyJID()).send(future, double1);
             (new SetDouble(1.D)).send(future, double2);
-            DoubleJid double3 = (DoubleJid) (new CopyJID()).send(future, double2);
+            PADoubleImpl double3 = (PADoubleImpl) (new CopyJID()).send(future, double2);
 
             int sl = GetSerializedLength.req.send(future, double1);
             assertEquals(8, sl);
@@ -40,11 +40,11 @@ public class DoubleTest extends TestCase {
             BoxImpl jidJid1 = BoxImpl.create(factoryLocator, null, null);
             SetActor sjvl = new SetActor(JidFactories.DOUBLE_JID_TYPE);
             sjvl.send(future, jidJid1);
-            DoubleJid rpa = (DoubleJid) (new ResolvePathname("0")).send(future, jidJid1);
+            PADoubleImpl rpa = (PADoubleImpl) (new ResolvePathname("0")).send(future, jidJid1);
             v = GetDouble.req.send(future, rpa);
             assertEquals(0.D, v);
             (new SetDouble(-1.D)).send(future, rpa);
-            rpa = (DoubleJid) (new ResolvePathname("0")).send(future, jidJid1);
+            rpa = (PADoubleImpl) (new ResolvePathname("0")).send(future, jidJid1);
             v = GetDouble.req.send(future, rpa);
             assertEquals(-1.D, v);
 

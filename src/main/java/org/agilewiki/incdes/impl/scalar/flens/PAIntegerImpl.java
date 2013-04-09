@@ -21,9 +21,9 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.scalar.flens;
+package org.agilewiki.incdes.impl.scalar.flens;
 
-import org.agilewiki.incdes.PALong;
+import org.agilewiki.incdes.PAInteger;
 import org.agilewiki.incdes.AppendableBytes;
 import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.incdes.impl.Util;
@@ -37,27 +37,27 @@ import org.agilewiki.pactor.ResponseProcessor;
 import org.agilewiki.pautil.Ancestor;
 
 /**
- * A JID actor that holds a long.
+ * A JID actor that holds an integer.
  */
-public class LongJid
-        extends FLenScalar<Long> implements PALong {
+public class PAIntegerImpl
+        extends FLenScalar<Integer> implements PAInteger {
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerJidFactory(new ActorFactory(JidFactories.LONG_JID_TYPE) {
+        factoryLocator.registerJidFactory(new ActorFactory(JidFactories.INTEGER_JID_TYPE) {
             @Override
-            final protected LongJid instantiateActor()
+            final protected PAIntegerImpl instantiateActor()
                     throws Exception {
-                return new LongJid();
+                return new PAIntegerImpl();
             }
         });
     }
 
-    private Request<Long> getLongReq;
+    private Request<Integer> getIntegerReq;
 
     @Override
-    public Request<Long> getLongReq() {
-        return getLongReq;
+    public Request<Integer> getIntegerReq() {
+        return getIntegerReq;
     }
 
     /**
@@ -66,8 +66,8 @@ public class LongJid
      * @return The default value
      */
     @Override
-    protected Long newValue() {
-        return new Long(0L);
+    protected Integer newValue() {
+        return new Integer(0);
     }
 
     /**
@@ -76,23 +76,12 @@ public class LongJid
      * @return The value held by this component.
      */
     @Override
-    public Long getValue() {
+    public Integer getValue() {
         if (value != null)
             return value;
         ReadableBytes readableBytes = readable();
-        value = readableBytes.readLong();
+        value = readableBytes.readInt();
         return value;
-    }
-
-    @Override
-    public Request<Void> setLongReq(final Long _v) {
-        return new RequestBase<Void>(getMailbox()) {
-            @Override
-            public void processRequest(ResponseProcessor rp) throws Exception {
-                setValue(_v);
-                rp.processResponse(null);
-            }
-        };
     }
 
     /**
@@ -102,7 +91,7 @@ public class LongJid
      */
     @Override
     public int getSerializedLength() {
-        return Util.LONG_LENGTH;
+        return Util.INT_LENGTH;
     }
 
     /**
@@ -112,13 +101,24 @@ public class LongJid
      */
     @Override
     protected void serialize(AppendableBytes appendableBytes) {
-        appendableBytes.writeLong(value);
+        appendableBytes.writeInt(value);
+    }
+
+    @Override
+    public Request<Void> setIntegerReq(final Integer v) {
+        return new RequestBase<Void>(getMailbox()) {
+            @Override
+            public void processRequest(ResponseProcessor<Void> rp) throws Exception {
+                setValue(v);
+                rp.processResponse(null);
+            }
+        };
     }
 
     @Override
     public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
         super.initialize(mailbox, parent, factory);
-        getLongReq = new RequestBase<Long>(getMailbox()) {
+        getIntegerReq = new RequestBase<Integer>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(getValue());

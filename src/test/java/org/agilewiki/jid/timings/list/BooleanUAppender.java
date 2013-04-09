@@ -5,7 +5,7 @@ import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.jid.collection.vlenc.ListJid;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
-import org.agilewiki.jid.scalar.flens.BooleanJid;
+import org.agilewiki.incdes.impl.scalar.flens.PABooleanImpl;
 
 public class BooleanUAppender extends JLPCActor {
     public int count;
@@ -28,7 +28,7 @@ public class BooleanUAppender extends JLPCActor {
             ListJid blj = (ListJid) JAFactoryLocator.
                     newJid(this, JidFactories.BOOLEAN_LIST_JID_TYPE, getMailbox(), getParent());
             blj.load(rb);
-            BooleanJid bj = (BooleanJid) blj.iGet(j);
+            PABooleanImpl bj = (PABooleanImpl) blj.iGet(j);
             bj.setValue(true);
             bytes = blj.getSerializedBytes();
             j += 1;
