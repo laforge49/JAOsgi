@@ -48,8 +48,8 @@ public class IntegerSMapFactory extends ActorFactory {
                                        String valueType,
                                        int initialCapacity)
             throws Exception {
-        UnionImpl.registerFactory(factoryLocator,
-                "E." + actorType, PAFactories.INTEGER_JID_TYPE, valueType);
+        factoryLocator.registerJidFactory(new MapEntryFactory(
+                "E." + actorType, PAFactories.INTEGER_JID_TYPE, valueType));
         factoryLocator.registerJidFactory(new IntegerSMapFactory(
                 actorType, valueType, initialCapacity));
     }

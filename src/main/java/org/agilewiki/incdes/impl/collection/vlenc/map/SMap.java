@@ -79,7 +79,8 @@ abstract public class SMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
     @Override
     final protected ActorFactory getEntryFactory()
             throws Exception {
-        return FactoryLocatorImpl.getActorFactory(this, "E." + getJidType());
+        ActorFactory af = FactoryLocatorImpl.getActorFactory(this, "E." + getJidType());
+        return af;
     }
 
     /**

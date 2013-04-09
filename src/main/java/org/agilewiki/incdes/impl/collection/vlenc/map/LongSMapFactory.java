@@ -48,8 +48,8 @@ public class LongSMapFactory extends ActorFactory {
                                        String valueType,
                                        int initialCapacity)
             throws Exception {
-        UnionImpl.registerFactory(factoryLocator,
-                "E." + actorType, PAFactories.LONG_JID_TYPE, valueType);
+        factoryLocator.registerJidFactory(new MapEntryFactory(
+                "E." + actorType, PAFactories.LONG_JID_TYPE, valueType));
         factoryLocator.registerJidFactory(new LongSMapFactory(
                 actorType, valueType, initialCapacity));
     }
