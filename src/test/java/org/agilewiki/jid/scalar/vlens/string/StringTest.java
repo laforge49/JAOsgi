@@ -1,22 +1,22 @@
 package org.agilewiki.jid.scalar.vlens.string;
 
 import junit.framework.TestCase;
+import org.agilewiki.incdes.PAFactories;
+import org.agilewiki.incdes.PABundleContext;
+import org.agilewiki.incdes.impl.scalar.vlens.BoxImpl;
+import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
 import org.agilewiki.jactor.old.JAFuture;
 import org.agilewiki.jid.CopyJID;
 import org.agilewiki.jid.GetSerializedLength;
 import org.agilewiki.jid.ResolvePathname;
-import org.agilewiki.jid.factory.JAFactoryLocator;
-import org.agilewiki.jid.factory.JidFactories;
-import org.agilewiki.jid.jaosgi.JABundleContext;
+import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 import org.agilewiki.jid.scalar.Clear;
-import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
-import org.agilewiki.incdes.impl.scalar.vlens.BoxImpl;
 import org.agilewiki.jid.scalar.vlens.actor.SetActor;
 
 public class StringTest extends TestCase {
     public void test() throws Exception {
-        JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
+        FactoryLocatorImpl factoryLocator = PAFactories.createFactoryLocator(1);
+        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
             PAStringImpl string1 = PAStringImpl.create(factoryLocator, null, null);
@@ -36,7 +36,7 @@ public class StringTest extends TestCase {
             assertEquals("abc", GetString.req.send(future, string3));
 
             BoxImpl jidJid1 = BoxImpl.create(factoryLocator, null, null);
-            SetActor sjvbs = new SetActor(JidFactories.STRING_JID_TYPE);
+            SetActor sjvbs = new SetActor(PAFactories.STRING_JID_TYPE);
             sjvbs.send(future, jidJid1);
             PAStringImpl rpa = (PAStringImpl) (new ResolvePathname("0")).send(future, jidJid1);
             assertNull(GetString.req.send(future, rpa));

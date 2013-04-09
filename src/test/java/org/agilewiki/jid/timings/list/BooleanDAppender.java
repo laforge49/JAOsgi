@@ -1,10 +1,10 @@
 package org.agilewiki.jid.timings.list;
 
-import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.incdes.PAFactories;
 import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.incdes.impl.collection.vlenc.SList;
-import org.agilewiki.jid.factory.JAFactoryLocator;
-import org.agilewiki.jid.factory.JidFactories;
+import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 
 public class BooleanDAppender extends JLPCActor {
     public int count;
@@ -23,8 +23,8 @@ public class BooleanDAppender extends JLPCActor {
         int j = 0;
         while (j < repeat) {
             ReadableBytes rb = new ReadableBytes(bytes, 0);
-            SList blj = (SList) JAFactoryLocator.
-                    newJid(this, JidFactories.STRING_LIST_JID_TYPE, getMailbox(), getParent());
+            SList blj = (SList) FactoryLocatorImpl.
+                    newJid(this, PAFactories.STRING_LIST_JID_TYPE, getMailbox(), getParent());
             blj.load(rb);
             j += 1;
         }

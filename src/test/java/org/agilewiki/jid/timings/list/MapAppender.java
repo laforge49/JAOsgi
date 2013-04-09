@@ -1,7 +1,7 @@
 package org.agilewiki.jid.timings.list;
 
-import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.incdes.impl.collection.vlenc.map.IntegerSMap;
+import org.agilewiki.jactor.lpc.JLPCActor;
 
 public class MapAppender extends JLPCActor {
     public int count;

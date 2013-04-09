@@ -1,14 +1,14 @@
 package org.agilewiki.jid.basics;
 
+import org.agilewiki.incdes.PAFactories;
+import org.agilewiki.incdes.FactoryLocator;
 import org.agilewiki.incdes.IncDes;
 import org.agilewiki.incdes.impl.collection.vlenc.map.MapEntryImpl;
 import org.agilewiki.incdes.impl.collection.vlenc.map.StringSMap;
-import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jid.factory.FactoryLocator;
-import org.agilewiki.jid.factory.JAFactoryLocator;
-import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
 import org.agilewiki.incdes.impl.scalar.vlens.UnionImpl;
+import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
@@ -19,7 +19,7 @@ public class Users extends StringSMap implements Main {
     public static void register(FactoryLocator factoryLocator) throws Exception {
         factoryLocator.registerJidFactory(new UsersFactory("users"));
         UnionImpl.registerFactory(factoryLocator,
-                "E.users", JidFactories.STRING_JID_TYPE, JidFactories.STRING_JID_TYPE);
+                "E.users", PAFactories.STRING_JID_TYPE, PAFactories.STRING_JID_TYPE);
     }
 
     private static class UsersFactory extends ActorFactory {
@@ -36,8 +36,8 @@ public class Users extends StringSMap implements Main {
         @Override
         public Users newActor(Mailbox mailbox, Ancestor parent) throws Exception {
             Users users = (Users) super.newActor(mailbox, parent);
-            FactoryLocator fl = JAFactoryLocator.get(parent);
-            users.valueFactory = fl.getJidFactory(JidFactories.STRING_JID_TYPE);
+            FactoryLocator fl = FactoryLocatorImpl.get(parent);
+            users.valueFactory = fl.getJidFactory(PAFactories.STRING_JID_TYPE);
             return users;
         }
     }

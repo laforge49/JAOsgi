@@ -23,13 +23,13 @@
  */
 package org.agilewiki.incdes.impl.collection.vlenc.map;
 
+import org.agilewiki.incdes.Collection;
 import org.agilewiki.incdes.IncDes;
 import org.agilewiki.incdes.MapEntry;
-import org.agilewiki.incdes.Collection;
 import org.agilewiki.incdes.PAMap;
 import org.agilewiki.incdes.impl.collection.vlenc.SList;
-import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jid.factory.JAFactoryLocator;
+import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;
@@ -79,7 +79,7 @@ abstract public class SMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
     @Override
     final protected ActorFactory getEntryFactory()
             throws Exception {
-        return JAFactoryLocator.getActorFactory(this, "E." + getJidType());
+        return FactoryLocatorImpl.getActorFactory(this, "E." + getJidType());
     }
 
     /**

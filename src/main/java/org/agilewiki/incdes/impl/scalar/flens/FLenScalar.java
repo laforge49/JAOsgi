@@ -23,8 +23,8 @@
  */
 package org.agilewiki.incdes.impl.scalar.flens;
 
-import org.agilewiki.incdes.impl.ComparableKey;
 import org.agilewiki.incdes.ReadableBytes;
+import org.agilewiki.incdes.impl.ComparableKey;
 import org.agilewiki.incdes.impl.scalar.Scalar;
 
 /**

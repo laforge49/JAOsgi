@@ -21,19 +21,20 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.factory;
+package org.agilewiki.incdes;
 
 import org.agilewiki.incdes.impl.IncDesFactory;
-import org.agilewiki.incdes.impl.collection.vlenc.map.*;
-import org.agilewiki.incdes.impl.scalar.flens.*;
 import org.agilewiki.incdes.impl.collection.vlenc.BListFactory;
 import org.agilewiki.incdes.impl.collection.vlenc.SListFactory;
-import org.agilewiki.jid.jaosgi.JABCNoOsgiImpl;
-import org.agilewiki.jid.jaosgi.JABundleContext;
+import org.agilewiki.incdes.impl.collection.vlenc.map.*;
+import org.agilewiki.incdes.impl.scalar.flens.*;
+import org.agilewiki.incdes.impl.scalar.vlens.BoxImpl;
 import org.agilewiki.incdes.impl.scalar.vlens.BytesImpl;
 import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
-import org.agilewiki.incdes.impl.scalar.vlens.BoxImpl;
 import org.agilewiki.incdes.impl.scalar.vlens.RootImpl;
+import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
+import org.agilewiki.incdes.impl.factory.LocateLocalActorFactories;
+import org.agilewiki.incdes.impl.paosgi.PABundleContextImpl;
 import org.agilewiki.pactor.MailboxFactory;
 
 /**
@@ -41,17 +42,17 @@ import org.agilewiki.pactor.MailboxFactory;
  * Defines IncDesImpl actor types and registers the JID factories.
  * </p>
  */
-final public class JidFactories extends LocateLocalActorFactories {
-    public static JAFactoryLocator createNoOsgiFactoryLocator(int threadCount) throws Exception {
-        JABundleContext jaBundleContext = JABCNoOsgiImpl.createNoOsgiJABundleContext(threadCount);
-        JidFactories jidFactories = new JidFactories();
+final public class PAFactories extends LocateLocalActorFactories {
+    public static FactoryLocator createFactoryLocator(int threadCount) throws Exception {
+        PABundleContext jaBundleContext = PABundleContextImpl.createNoOsgiJABundleContext(threadCount);
+        PAFactories jidFactories = new PAFactories();
         jidFactories.initialize(jaBundleContext.getMailbox().getMailboxFactory().createMailbox(true), jaBundleContext);
         return jidFactories.configure();
     }
 
-    public static JAFactoryLocator createNoOsgiFactoryLocator(MailboxFactory mailboxFactory) throws Exception {
-        JABundleContext jaBundleContext = JABCNoOsgiImpl.createNoOsgiJABundleContext(mailboxFactory);
-        JidFactories jidFactories = new JidFactories();
+    public static FactoryLocator createFactoryLocator(MailboxFactory mailboxFactory) throws Exception {
+        PABundleContext jaBundleContext = PABundleContextImpl.createNoOsgiJABundleContext(mailboxFactory);
+        PAFactories jidFactories = new PAFactories();
         jidFactories.initialize(mailboxFactory.createMailbox(true), jaBundleContext);
         return jidFactories.configure();
     }
@@ -426,8 +427,8 @@ final public class JidFactories extends LocateLocalActorFactories {
      */
     public final static String LONG_BOOLEAN_MAP_JID_TYPE = "LONG_BOOLEAN_MAP_JID";
 
-    public JAFactoryLocator configure() throws Exception {
-        JAFactoryLocator factoryLocator = configure("org.agilewiki.jid");
+    public FactoryLocatorImpl configure() throws Exception {
+        FactoryLocatorImpl factoryLocator = configure("org.agilewiki.jid");
 
         IncDesFactory.registerFactory(factoryLocator);
 

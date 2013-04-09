@@ -23,14 +23,10 @@
  */
 package org.agilewiki.incdes.impl.scalar.vlens;
 
-import org.agilewiki.incdes.PAString;
-import org.agilewiki.incdes.AppendableBytes;
+import org.agilewiki.incdes.*;
 import org.agilewiki.incdes.impl.ComparableKey;
-import org.agilewiki.incdes.ReadableBytes;
-import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jid.factory.FactoryLocator;
-import org.agilewiki.jid.factory.JAFactoryLocator;
-import org.agilewiki.jid.factory.JidFactories;
+import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;
@@ -44,12 +40,12 @@ public class PAStringImpl
         extends VLenScalar<String, String>
         implements ComparableKey<String>, PAString {
     public static PAStringImpl create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (PAStringImpl) JAFactoryLocator.newJid(actor, JidFactories.STRING_JID_TYPE, mailbox, parent);
+        return (PAStringImpl) FactoryLocatorImpl.newJid(actor, PAFactories.STRING_JID_TYPE, mailbox, parent);
     }
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerJidFactory(new ActorFactory(JidFactories.STRING_JID_TYPE) {
+        factoryLocator.registerJidFactory(new ActorFactory(PAFactories.STRING_JID_TYPE) {
             @Override
             final protected PAStringImpl instantiateActor()
                     throws Exception {

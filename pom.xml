@@ -82,7 +82,7 @@
                     <instructions>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Bundle-Version>${project.version}</Bundle-Version>
-                        <Bundle-Activator>org.agilewiki.jid.jaosgi.Activator</Bundle-Activator>
+                        <Bundle-Activator>org.agilewiki.incdes.impl.paosgi.Activator</Bundle-Activator>
                         <Export-Package>
                             org.agilewiki.jid*;version=${project.version}
                         </Export-Package>

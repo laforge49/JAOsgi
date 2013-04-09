@@ -23,13 +23,9 @@
  */
 package org.agilewiki.incdes.impl.scalar.vlens;
 
-import org.agilewiki.incdes.Bytes;
-import org.agilewiki.incdes.AppendableBytes;
-import org.agilewiki.incdes.ReadableBytes;
-import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jid.factory.FactoryLocator;
-import org.agilewiki.jid.factory.JAFactoryLocator;
-import org.agilewiki.jid.factory.JidFactories;
+import org.agilewiki.incdes.*;
+import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;
@@ -47,12 +43,12 @@ import java.io.ObjectOutputStream;
 public class BytesImpl
         extends VLenScalar<byte[], byte[]> implements Bytes {
     public static BytesImpl create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (BytesImpl) JAFactoryLocator.newJid(actor, JidFactories.BYTES_JID_TYPE, mailbox, parent);
+        return (BytesImpl) FactoryLocatorImpl.newJid(actor, PAFactories.BYTES_JID_TYPE, mailbox, parent);
     }
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerJidFactory(new ActorFactory(JidFactories.BYTES_JID_TYPE) {
+        factoryLocator.registerJidFactory(new ActorFactory(PAFactories.BYTES_JID_TYPE) {
             @Override
             final protected BytesImpl instantiateActor()
                     throws Exception {

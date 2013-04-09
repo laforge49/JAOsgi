@@ -1,8 +1,8 @@
 package org.agilewiki.jid.basics;
 
-import org.agilewiki.jactor.ResponseProcessor;
-import org.agilewiki.jid.factory.FactoryLocator;
+import org.agilewiki.incdes.FactoryLocator;
 import org.agilewiki.incdes.impl.scalar.flens.PAIntegerImpl;
+import org.agilewiki.jactor.ResponseProcessor;
 
 public class LuckyNumber extends PAIntegerImpl implements Main {
 

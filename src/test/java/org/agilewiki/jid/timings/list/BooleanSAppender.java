@@ -1,7 +1,7 @@
 package org.agilewiki.jid.timings.list;
 
-import org.agilewiki.jactor.lpc.JLPCActor;
 import org.agilewiki.incdes.impl.collection.vlenc.SList;
+import org.agilewiki.jactor.lpc.JLPCActor;
 
 public class BooleanSAppender extends JLPCActor {
     public int count;

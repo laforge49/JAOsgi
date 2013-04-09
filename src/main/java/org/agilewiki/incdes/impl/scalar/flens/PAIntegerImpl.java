@@ -23,13 +23,9 @@
  */
 package org.agilewiki.incdes.impl.scalar.flens;
 
-import org.agilewiki.incdes.PAInteger;
-import org.agilewiki.incdes.AppendableBytes;
-import org.agilewiki.incdes.ReadableBytes;
+import org.agilewiki.incdes.*;
 import org.agilewiki.incdes.impl.Util;
-import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jid.factory.FactoryLocator;
-import org.agilewiki.jid.factory.JidFactories;
+import org.agilewiki.incdes.impl.factory.ActorFactory;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;
@@ -44,7 +40,7 @@ public class PAIntegerImpl
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerJidFactory(new ActorFactory(JidFactories.INTEGER_JID_TYPE) {
+        factoryLocator.registerJidFactory(new ActorFactory(PAFactories.INTEGER_JID_TYPE) {
             @Override
             final protected PAIntegerImpl instantiateActor()
                     throws Exception {

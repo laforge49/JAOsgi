@@ -1,24 +1,24 @@
 package org.agilewiki.jid.scalar.flens.integer;
 
 import junit.framework.TestCase;
+import org.agilewiki.incdes.PAFactories;
+import org.agilewiki.incdes.PABundleContext;
+import org.agilewiki.incdes.impl.scalar.flens.PAIntegerImpl;
+import org.agilewiki.incdes.impl.scalar.vlens.BoxImpl;
 import org.agilewiki.jactor.old.JAFuture;
 import org.agilewiki.jid.CopyJID;
 import org.agilewiki.jid.GetSerializedLength;
 import org.agilewiki.jid.ResolvePathname;
-import org.agilewiki.jid.factory.JAFactoryLocator;
-import org.agilewiki.jid.factory.JidFactories;
-import org.agilewiki.jid.jaosgi.JABundleContext;
-import org.agilewiki.incdes.impl.scalar.flens.PAIntegerImpl;
-import org.agilewiki.incdes.impl.scalar.vlens.BoxImpl;
+import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 import org.agilewiki.jid.scalar.vlens.actor.SetActor;
 
 public class IntegerTest extends TestCase {
     public void test() throws Exception {
-        JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
+        FactoryLocatorImpl factoryLocator = PAFactories.createFactoryLocator(1);
+        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            PAIntegerImpl int1 = (PAIntegerImpl) factoryLocator.newJid(JidFactories.INTEGER_JID_TYPE);
+            PAIntegerImpl int1 = (PAIntegerImpl) factoryLocator.newJid(PAFactories.INTEGER_JID_TYPE);
             PAIntegerImpl int2 = (PAIntegerImpl) (new CopyJID()).send(future, int1);
             (new SetInteger(1)).send(future, int2);
             PAIntegerImpl int3 = (PAIntegerImpl) (new CopyJID()).send(future, int2);
@@ -38,7 +38,7 @@ public class IntegerTest extends TestCase {
             assertEquals(1, v);
 
             BoxImpl jidJid1 = BoxImpl.create(factoryLocator, null, null);
-            SetActor sjvi = new SetActor(JidFactories.INTEGER_JID_TYPE);
+            SetActor sjvi = new SetActor(PAFactories.INTEGER_JID_TYPE);
             sjvi.send(future, jidJid1);
             PAIntegerImpl rpa = (PAIntegerImpl) (new ResolvePathname("0")).send(future, jidJid1);
             v = GetInteger.req.send(future, rpa);

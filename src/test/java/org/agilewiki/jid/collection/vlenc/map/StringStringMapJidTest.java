@@ -1,21 +1,21 @@
 package org.agilewiki.jid.collection.vlenc.map;
 
 import junit.framework.TestCase;
+import org.agilewiki.incdes.PAFactories;
+import org.agilewiki.incdes.PABundleContext;
 import org.agilewiki.incdes.impl.collection.vlenc.map.MapEntryImpl;
+import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.JAFuture;
-import org.agilewiki.jid.factory.JAFactoryLocator;
-import org.agilewiki.jid.factory.JidFactories;
-import org.agilewiki.jid.jaosgi.JABundleContext;
-import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
+import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 
 public class StringStringMapJidTest extends TestCase {
     public void test() throws Exception {
-        JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
+        FactoryLocatorImpl factoryLocator = PAFactories.createFactoryLocator(1);
+        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            Actor m = factoryLocator.newJid(JidFactories.STRING_STRING_MAP_JID_TYPE);
+            Actor m = factoryLocator.newJid(PAFactories.STRING_STRING_MAP_JID_TYPE);
             assertNull(new KGet<String, PAStringImpl>("a").send(future, m));
             assertTrue(new KMake<String, PAStringImpl>("b").send(future, m));
             assertNull(new KGet<String, PAStringImpl>("a").send(future, m));

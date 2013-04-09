@@ -1,8 +1,7 @@
 package org.agilewiki.incdes;
 
-import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jid.factory.FactoryLocator;
-import org.agilewiki.jid.factory.JAFactoryLocator;
+import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
@@ -39,7 +38,7 @@ abstract public class AppFactory extends ActorFactory {
     public AppBase newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
         AppBase tj = (AppBase) super.newActor(mailbox, parent);
-        FactoryLocator fl = JAFactoryLocator.get(parent);
+        FactoryLocator fl = FactoryLocatorImpl.get(parent);
         ActorFactory[] afs = new ActorFactory[jidTypes.length];
         int i = 0;
         while (i < jidTypes.length) {

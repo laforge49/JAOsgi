@@ -33,4 +33,4 @@
  * Incremental serialization/deserialization techniques are used to achieve high-performance.
  * </p>
  */
-package org.agilewiki.jid;
+package org.agilewiki.incdes;

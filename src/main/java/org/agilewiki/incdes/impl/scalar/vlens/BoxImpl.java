@@ -23,16 +23,11 @@
  */
 package org.agilewiki.incdes.impl.scalar.vlens;
 
-import org.agilewiki.incdes.AppendableBytes;
-import org.agilewiki.incdes.Box;
-import org.agilewiki.incdes.IncDes;
-import org.agilewiki.incdes.ReadableBytes;
+import org.agilewiki.incdes.*;
 import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.incdes.impl.Util;
-import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jid.factory.FactoryLocator;
-import org.agilewiki.jid.factory.JAFactoryLocator;
-import org.agilewiki.jid.factory.JidFactories;
+import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;
@@ -45,12 +40,12 @@ import org.agilewiki.pautil.Ancestor;
 public class BoxImpl
         extends VLenScalar<String, IncDesImpl> implements Box {
     public static BoxImpl create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (BoxImpl) JAFactoryLocator.newJid(actor, JidFactories.ACTOR_JID_TYPE, mailbox, parent);
+        return (BoxImpl) FactoryLocatorImpl.newJid(actor, PAFactories.ACTOR_JID_TYPE, mailbox, parent);
     }
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerJidFactory(new ActorFactory(JidFactories.ACTOR_JID_TYPE) {
+        factoryLocator.registerJidFactory(new ActorFactory(PAFactories.ACTOR_JID_TYPE) {
             @Override
             final protected BoxImpl instantiateActor()
                     throws Exception {

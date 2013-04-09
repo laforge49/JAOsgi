@@ -23,17 +23,12 @@
  */
 package org.agilewiki.incdes.impl.collection.vlenc;
 
-import org.agilewiki.incdes.IncDes;
-import org.agilewiki.incdes.Collection;
-import org.agilewiki.incdes.PAList;
+import org.agilewiki.incdes.*;
 import org.agilewiki.incdes.impl.IncDesImpl;
-import org.agilewiki.incdes.AppBase;
-import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jid.factory.FactoryLocator;
-import org.agilewiki.jid.factory.JAFactoryLocator;
-import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.incdes.impl.scalar.flens.PAIntegerImpl;
 import org.agilewiki.incdes.impl.scalar.vlens.UnionImpl;
+import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;
@@ -82,9 +77,9 @@ public class BList<ENTRY_TYPE extends IncDes>
         String baseType = getJidType();
         if (baseType.startsWith("IN."))
             baseType = baseType.substring(3);
-        factoryLocator = JAFactoryLocator.get(this);
+        factoryLocator = FactoryLocatorImpl.get(this);
         tupleFactories = new ActorFactory[2];
-        tupleFactories[TUPLE_SIZE] = factoryLocator.getJidFactory(JidFactories.INTEGER_JID_TYPE);
+        tupleFactories[TUPLE_SIZE] = factoryLocator.getJidFactory(PAFactories.INTEGER_JID_TYPE);
         tupleFactories[TUPLE_UNION] = factoryLocator.getJidFactory("U." + baseType);
     }
 

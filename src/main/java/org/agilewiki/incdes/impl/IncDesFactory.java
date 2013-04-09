@@ -23,9 +23,9 @@
  */
 package org.agilewiki.incdes.impl;
 
-import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jid.factory.FactoryLocator;
-import org.agilewiki.jid.factory.JidFactories;
+import org.agilewiki.incdes.PAFactories;
+import org.agilewiki.incdes.FactoryLocator;
+import org.agilewiki.incdes.impl.factory.ActorFactory;
 
 /**
  * Creates a IncDesImpl.
@@ -41,7 +41,7 @@ public class IncDesFactory extends ActorFactory {
      * Create a JLPCActorFactory.
      */
     protected IncDesFactory() {
-        super(JidFactories.JID_TYPE);
+        super(PAFactories.JID_TYPE);
     }
 
     /**

@@ -21,7 +21,7 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.jaosgi;
+package org.agilewiki.incdes;
 
 import org.agilewiki.pautil.Ancestor;
 import org.agilewiki.pautil.AncestorBase;
@@ -33,13 +33,13 @@ import java.util.Collection;
 import java.util.Dictionary;
 import java.util.List;
 
-abstract public class JABundleContext extends AncestorBase {
-    public static JABundleContext get(final Ancestor actor)
+abstract public class PABundleContext extends AncestorBase {
+    public static PABundleContext get(final Ancestor actor)
             throws Exception {
-        JABundleContext bundleContext = (JABundleContext) AncestorBase.
-                getMatch(actor, JABundleContext.class);
+        PABundleContext bundleContext = (PABundleContext) AncestorBase.
+                getMatch(actor, PABundleContext.class);
         if (bundleContext == null)
-            throw new IllegalStateException("JABundleContext is not an ancestor of " + actor);
+            throw new IllegalStateException("PABundleContext is not an ancestor of " + actor);
         return bundleContext;
     }
 

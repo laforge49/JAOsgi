@@ -23,10 +23,10 @@
  */
 package org.agilewiki.incdes.impl.collection.vlenc.map;
 
+import org.agilewiki.incdes.PAFactories;
 import org.agilewiki.incdes.impl.IncDesImpl;
-import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jid.factory.JAFactoryLocator;
-import org.agilewiki.jid.factory.JidFactories;
+import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 
 /**
  * Holds a map with String keys.
@@ -38,7 +38,7 @@ public class StringSMap<VALUE_TYPE extends IncDesImpl> extends SMap<String, VALU
      * @return The IncDesFactory for the key.
      */
     final protected ActorFactory getKeyFactory() throws Exception {
-        return JAFactoryLocator.getActorFactory(this, JidFactories.STRING_JID_TYPE);
+        return FactoryLocatorImpl.getActorFactory(this, PAFactories.STRING_JID_TYPE);
     }
 
     /**

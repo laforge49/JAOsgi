@@ -1,10 +1,10 @@
 package org.agilewiki.jid.basics;
 
+import org.agilewiki.incdes.FactoryLocator;
+import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
 import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jid.factory.FactoryLocator;
-import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
+import org.agilewiki.incdes.impl.factory.ActorFactory;
 
 public class Greeter extends PAStringImpl implements Main {
 

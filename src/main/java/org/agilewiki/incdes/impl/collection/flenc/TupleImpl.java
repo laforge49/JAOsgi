@@ -25,13 +25,13 @@ package org.agilewiki.incdes.impl.collection.flenc;
 
 import org.agilewiki.incdes.AppendableBytes;
 import org.agilewiki.incdes.IncDes;
-import org.agilewiki.incdes.Tuple;
 import org.agilewiki.incdes.ReadableBytes;
+import org.agilewiki.incdes.Tuple;
 import org.agilewiki.incdes.impl.ComparableKey;
 import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.incdes.impl.Util;
 import org.agilewiki.incdes.impl.collection.CollectionImpl;
-import org.agilewiki.jid.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.ActorFactory;
 
 /**
  * Holds a fixed-size array of JID actors of various types.

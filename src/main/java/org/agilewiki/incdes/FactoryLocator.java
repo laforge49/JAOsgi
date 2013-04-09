@@ -21,19 +21,19 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.factory;
+package org.agilewiki.incdes;
 
 import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.incdes.impl.collection.vlenc.map.StringSMap;
 import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
-import org.agilewiki.pactor.Actor;
+import org.agilewiki.incdes.impl.factory.ActorFactory;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
 /**
  * Defines actor types and instantiating
  */
-public interface FactoryLocator extends Actor {
+public interface FactoryLocator extends Ancestor {
     /**
      * Bind an actor type to a Class.
      *

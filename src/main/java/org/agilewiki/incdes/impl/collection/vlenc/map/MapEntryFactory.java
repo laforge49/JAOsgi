@@ -23,9 +23,9 @@
  */
 package org.agilewiki.incdes.impl.collection.vlenc.map;
 
-import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jid.factory.FactoryLocator;
-import org.agilewiki.jid.factory.JAFactoryLocator;
+import org.agilewiki.incdes.FactoryLocator;
+import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
@@ -77,7 +77,7 @@ public class MapEntryFactory extends ActorFactory {
     public MapEntryImpl newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
         MapEntryImpl me = (MapEntryImpl) super.newActor(mailbox, parent);
-        FactoryLocator fl = JAFactoryLocator.get(parent);
+        FactoryLocator fl = FactoryLocatorImpl.get(parent);
         ActorFactory keyFactory = fl.getJidFactory(keyType);
         ActorFactory valueFactory = fl.getJidFactory(valueType);
         me.setFactories(keyFactory, valueFactory);

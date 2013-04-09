@@ -24,11 +24,11 @@
 package org.agilewiki.jfile.block;
 
 import org.agilewiki.incdes.AppendableBytes;
+import org.agilewiki.incdes.PAFactories;
 import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.incdes.impl.Util;
-import org.agilewiki.jid.factory.JAFactoryLocator;
-import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.incdes.impl.scalar.vlens.RootImpl;
+import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
@@ -189,7 +189,7 @@ public class LBlock implements Block {
         rb = null;
         if (rootJidBytes == null)
             return null;
-        rootJid = (RootImpl) JAFactoryLocator.newJid(actor, JidFactories.ROOT_JID_TYPE, actor.getMailbox(), parent);
+        rootJid = (RootImpl) FactoryLocatorImpl.newJid(actor, PAFactories.ROOT_JID_TYPE, actor.getMailbox(), parent);
         rootJid.load(new ReadableBytes(rootJidBytes, 0));
         return rootJid;
     }

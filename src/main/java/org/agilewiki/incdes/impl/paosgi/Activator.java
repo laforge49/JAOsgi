@@ -21,9 +21,9 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.jaosgi;
+package org.agilewiki.incdes.impl.paosgi;
 
-import org.agilewiki.jid.factory.JidFactories;
+import org.agilewiki.incdes.PAFactories;
 import org.agilewiki.pactor.MailboxFactory;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
@@ -37,10 +37,10 @@ import java.util.Iterator;
 public final class Activator implements BundleActivator {
     private final Logger logger = LoggerFactory.getLogger(Activator.class);
     private static final String CONFIG_PID = "JAOsgi";
-    private JABCOsgiImpl jaBundleContext;
+    private PAOsgiBundleContextImpl jaBundleContext;
 
     public void start(BundleContext bundleContext) throws Exception {
-        JAServiceTracker jaServiceTracker = new JAServiceTracker(bundleContext);
+        PAServiceTracker jaServiceTracker = new PAServiceTracker(bundleContext);
         jaServiceTracker.open(true);
 
         ServiceReference mailboxFactoryServiceReference = bundleContext.
@@ -58,12 +58,12 @@ public final class Activator implements BundleActivator {
             throw new IllegalStateException(msg);
         }
 
-        jaBundleContext = new JABCOsgiImpl();
+        jaBundleContext = new PAOsgiBundleContextImpl();
         jaBundleContext.setBundleContext(bundleContext);
         jaBundleContext.setJAServiceTracker(jaServiceTracker);
         jaBundleContext.initialize(mailboxFactory.createMailbox(true));
 
-        JidFactories jidFactories = new JidFactories();
+        PAFactories jidFactories = new PAFactories();
         jidFactories.initialize(mailboxFactory.createMailbox(true), jaBundleContext);
         jidFactories.configure();
     }

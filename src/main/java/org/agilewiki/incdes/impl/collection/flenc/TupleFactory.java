@@ -23,9 +23,9 @@
  */
 package org.agilewiki.incdes.impl.collection.flenc;
 
-import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jid.factory.FactoryLocator;
-import org.agilewiki.jid.factory.JAFactoryLocator;
+import org.agilewiki.incdes.FactoryLocator;
+import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
@@ -73,7 +73,7 @@ public class TupleFactory extends ActorFactory {
     public TupleImpl newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
         TupleImpl tj = (TupleImpl) super.newActor(mailbox, parent);
-        FactoryLocator fl = JAFactoryLocator.get(parent);
+        FactoryLocator fl = FactoryLocatorImpl.get(parent);
         ActorFactory[] afs = new ActorFactory[jidTypes.length];
         int i = 0;
         while (i < jidTypes.length) {

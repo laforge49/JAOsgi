@@ -21,8 +21,10 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.factory;
+package org.agilewiki.incdes.impl.factory;
 
+import org.agilewiki.incdes.PAFactories;
+import org.agilewiki.incdes.FactoryLocator;
 import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.incdes.impl.collection.vlenc.map.MapEntryImpl;
 import org.agilewiki.incdes.impl.collection.vlenc.map.StringSMap;
@@ -42,13 +44,13 @@ import java.util.concurrent.ConcurrentSkipListSet;
 /**
  * An actor for defining jid types and creating instances.
  */
-public class JAFactoryLocator extends AncestorBase implements FactoryLocator {
+public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator {
     public static String versionString(Version version) {
         return "" + version.getMajor() + "." + version.getMajor();
     }
 
-    public static JAFactoryLocator get(Ancestor ancestor) {
-        return (JAFactoryLocator) AncestorBase.getMatch(ancestor, JAFactoryLocator.class);
+    public static FactoryLocatorImpl get(Ancestor ancestor) {
+        return (FactoryLocatorImpl) AncestorBase.getMatch(ancestor, FactoryLocatorImpl.class);
     }
 
     /**
@@ -194,7 +196,7 @@ public class JAFactoryLocator extends AncestorBase implements FactoryLocator {
     public StringSMap<PAStringImpl> getManifestCopy(Mailbox mailbox) throws Exception {
         if (isLocked())
             return manifest;
-        manifest = (StringSMap<PAStringImpl>) newJid(JidFactories.STRING_STRING_MAP_JID_TYPE);
+        manifest = (StringSMap<PAStringImpl>) newJid(PAFactories.STRING_STRING_MAP_JID_TYPE);
         manifest.kMake(getLocatorKey());
         PAStringImpl sj = manifest.kGet(getLocatorKey());
         sj.setValue(getLocation());

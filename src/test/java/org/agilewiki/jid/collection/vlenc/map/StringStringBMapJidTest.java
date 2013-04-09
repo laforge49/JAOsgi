@@ -1,20 +1,20 @@
 package org.agilewiki.jid.collection.vlenc.map;
 
 import junit.framework.TestCase;
+import org.agilewiki.incdes.PAFactories;
+import org.agilewiki.incdes.PABundleContext;
 import org.agilewiki.incdes.impl.collection.vlenc.map.BMap;
 import org.agilewiki.incdes.impl.collection.vlenc.map.MapEntryImpl;
-import org.agilewiki.jid.factory.JAFactoryLocator;
-import org.agilewiki.jid.factory.JidFactories;
-import org.agilewiki.jid.jaosgi.JABundleContext;
 import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
+import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 
 public class StringStringBMapJidTest extends TestCase {
     public void test() throws Exception {
-        JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
+        FactoryLocatorImpl factoryLocator = PAFactories.createFactoryLocator(1);
+        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
         try {
             BMap<String, PAStringImpl> m = (BMap) factoryLocator.
-                    newJid(JidFactories.STRING_STRING_BMAP_JID_TYPE);
+                    newJid(PAFactories.STRING_STRING_BMAP_JID_TYPE);
             assertEquals(0, m.size());
             assertTrue(m.kMake("1"));
             assertFalse(m.kMake("1"));

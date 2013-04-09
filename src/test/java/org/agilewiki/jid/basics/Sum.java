@@ -1,10 +1,10 @@
 package org.agilewiki.jid.basics;
 
+import org.agilewiki.incdes.PAFactories;
+import org.agilewiki.incdes.FactoryLocator;
 import org.agilewiki.incdes.IncDes;
-import org.agilewiki.incdes.impl.collection.vlenc.SListFactory;
 import org.agilewiki.incdes.impl.collection.vlenc.SList;
-import org.agilewiki.jid.factory.FactoryLocator;
-import org.agilewiki.jid.factory.JidFactories;
+import org.agilewiki.incdes.impl.collection.vlenc.SListFactory;
 import org.agilewiki.incdes.impl.scalar.flens.PAIntegerImpl;
 import org.agilewiki.pactor.ResponseProcessor;
 
@@ -18,7 +18,7 @@ public class Sum extends SList implements Main {
 
     private static class SumFactory extends SListFactory {
         public SumFactory(String actorType) {
-            super(actorType, JidFactories.INTEGER_JID_TYPE, 10);
+            super(actorType, PAFactories.INTEGER_JID_TYPE, 10);
         }
 
         @Override

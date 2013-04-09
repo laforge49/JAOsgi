@@ -23,15 +23,11 @@
  */
 package org.agilewiki.incdes.impl.scalar.vlens;
 
-import org.agilewiki.incdes.Root;
-import org.agilewiki.incdes.AppendableBytes;
+import org.agilewiki.incdes.*;
 import org.agilewiki.incdes.impl.IncDesImpl;
-import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.incdes.impl.collection.vlenc.map.StringSMap;
-import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jid.factory.FactoryLocator;
-import org.agilewiki.jid.factory.JAFactoryLocator;
-import org.agilewiki.jid.factory.JidFactories;
+import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
@@ -43,12 +39,12 @@ import org.agilewiki.pautil.Ancestor;
  */
 public class RootImpl extends BoxImpl implements Root {
     public static RootImpl create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (RootImpl) JAFactoryLocator.newJid(actor, JidFactories.ROOT_JID_TYPE, mailbox, parent);
+        return (RootImpl) FactoryLocatorImpl.newJid(actor, PAFactories.ROOT_JID_TYPE, mailbox, parent);
     }
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerJidFactory(new ActorFactory(JidFactories.ROOT_JID_TYPE) {
+        factoryLocator.registerJidFactory(new ActorFactory(PAFactories.ROOT_JID_TYPE) {
             @Override
             final protected RootImpl instantiateActor()
                     throws Exception {
@@ -161,7 +157,7 @@ public class RootImpl extends BoxImpl implements Root {
     @Override
     public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
         super.initialize(mailbox, parent, factory);
-        manifest = JAFactoryLocator.getManifestCopy(this, getMailbox());
+        manifest = FactoryLocatorImpl.getManifestCopy(this, getMailbox());
     }
 
     public IncDesImpl copyJID(Mailbox m)
@@ -179,14 +175,14 @@ public class RootImpl extends BoxImpl implements Root {
     }
 
     public boolean validateManifest() throws Exception {
-        return JAFactoryLocator.validateManifest(this, manifest);
+        return FactoryLocatorImpl.validateManifest(this, manifest);
     }
 
     public void loadBundles() throws Exception {
-        JAFactoryLocator.loadBundles(this, manifest);
+        FactoryLocatorImpl.loadBundles(this, manifest);
     }
 
     public void unknownManifestEntries() throws Exception {
-        JAFactoryLocator.unknownManifestEntries(this, manifest);
+        FactoryLocatorImpl.unknownManifestEntries(this, manifest);
     }
 }

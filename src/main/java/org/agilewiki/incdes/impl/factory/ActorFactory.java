@@ -21,7 +21,7 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.factory;
+package org.agilewiki.incdes.impl.factory;
 
 import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.pactor.Mailbox;
@@ -37,14 +37,14 @@ abstract public class ActorFactory implements Factory {
      * The jid type.
      */
     public final String jidType;
-    private JAFactoryLocator factoryLocator;
+    private FactoryLocatorImpl factoryLocator;
 
     @Override
     public String getType() {
         return jidType;
     }
 
-    public void configure(JAFactoryLocator factoryLocator) {
+    public void configure(FactoryLocatorImpl factoryLocator) {
         this.factoryLocator = factoryLocator;
     }
 

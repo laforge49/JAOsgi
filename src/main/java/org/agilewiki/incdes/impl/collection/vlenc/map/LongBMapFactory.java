@@ -23,10 +23,10 @@
  */
 package org.agilewiki.incdes.impl.collection.vlenc.map;
 
-import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jid.factory.FactoryLocator;
-import org.agilewiki.jid.factory.JAFactoryLocator;
+import org.agilewiki.incdes.FactoryLocator;
 import org.agilewiki.incdes.impl.scalar.vlens.UnionImpl;
+import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
@@ -92,7 +92,7 @@ public class LongBMapFactory extends ActorFactory {
     public LongBMap newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
         LongBMap imj = (LongBMap) super.newActor(mailbox, parent);
-        FactoryLocator fl = JAFactoryLocator.get(parent);
+        FactoryLocator fl = FactoryLocatorImpl.get(parent);
         imj.valueFactory = fl.getJidFactory(valueType);
         imj.nodeCapacity = NODE_CAPACITY;
         imj.isRoot = isRoot;

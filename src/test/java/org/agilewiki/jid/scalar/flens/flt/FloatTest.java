@@ -1,25 +1,25 @@
 package org.agilewiki.jid.scalar.flens.flt;
 
 import junit.framework.TestCase;
+import org.agilewiki.incdes.PAFactories;
+import org.agilewiki.incdes.PABundleContext;
+import org.agilewiki.incdes.impl.scalar.flens.PAFloatImpl;
+import org.agilewiki.incdes.impl.scalar.vlens.BoxImpl;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.JAFuture;
 import org.agilewiki.jid.CopyJID;
 import org.agilewiki.jid.GetSerializedLength;
 import org.agilewiki.jid.ResolvePathname;
-import org.agilewiki.jid.factory.JAFactoryLocator;
-import org.agilewiki.jid.factory.JidFactories;
-import org.agilewiki.jid.jaosgi.JABundleContext;
-import org.agilewiki.incdes.impl.scalar.flens.PAFloatImpl;
-import org.agilewiki.incdes.impl.scalar.vlens.BoxImpl;
+import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 import org.agilewiki.jid.scalar.vlens.actor.SetActor;
 
 public class FloatTest extends TestCase {
     public void test() throws Exception {
-        JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
+        FactoryLocatorImpl factoryLocator = PAFactories.createFactoryLocator(1);
+        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            PAFloatImpl float1 = (PAFloatImpl) factoryLocator.newJid(JidFactories.FLOAT_JID_TYPE);
+            PAFloatImpl float1 = (PAFloatImpl) factoryLocator.newJid(PAFactories.FLOAT_JID_TYPE);
             PAFloatImpl float2 = (PAFloatImpl) (new CopyJID()).send(future, float1);
             (new SetFloat(1.0f)).send(future, float2);
             Actor float3 = (new CopyJID()).send(future, float2);
@@ -39,7 +39,7 @@ public class FloatTest extends TestCase {
             assertEquals(1.f, v);
 
             BoxImpl jidJid1 = BoxImpl.create(factoryLocator, null, null);
-            SetActor sjvf = new SetActor(JidFactories.FLOAT_JID_TYPE);
+            SetActor sjvf = new SetActor(PAFactories.FLOAT_JID_TYPE);
             sjvf.send(future, jidJid1);
             PAFloatImpl rpa = (PAFloatImpl) (new ResolvePathname("0")).send(future, jidJid1);
             v = GetFloat.req.send(future, rpa);

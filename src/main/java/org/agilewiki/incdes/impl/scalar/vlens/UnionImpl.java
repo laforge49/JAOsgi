@@ -23,16 +23,12 @@
  */
 package org.agilewiki.incdes.impl.scalar.vlens;
 
-import org.agilewiki.incdes.IncDes;
-import org.agilewiki.incdes.Union;
-import org.agilewiki.incdes.AppendableBytes;
+import org.agilewiki.incdes.*;
 import org.agilewiki.incdes.impl.IncDesImpl;
-import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.incdes.impl.Util;
-import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jid.factory.FactoryLocator;
-import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.incdes.impl.scalar.Scalar;
+import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;
@@ -57,7 +53,7 @@ public class UnionImpl extends Scalar<String, IncDesImpl> implements Union {
             public UnionImpl newActor(Mailbox mailbox, Ancestor parent)
                     throws Exception {
                 UnionImpl uj = (UnionImpl) super.newActor(mailbox, parent);
-                FactoryLocator fl = JAFactoryLocator.get(parent);
+                FactoryLocator fl = FactoryLocatorImpl.get(parent);
                 ActorFactory[] afs = new ActorFactory[_actorTypes.length];
                 int i = 0;
                 while (i < _actorTypes.length) {
@@ -95,7 +91,7 @@ public class UnionImpl extends Scalar<String, IncDesImpl> implements Union {
 
     protected int getFactoryIndex(String actorType)
             throws Exception {
-        FactoryLocator factoryLocator = JAFactoryLocator.get(this);
+        FactoryLocator factoryLocator = FactoryLocatorImpl.get(this);
         ActorFactory actorFactory = factoryLocator.getJidFactory(actorType);
         return getFactoryIndex(actorFactory);
     }

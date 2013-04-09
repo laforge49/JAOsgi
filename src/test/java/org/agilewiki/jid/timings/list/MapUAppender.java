@@ -1,11 +1,11 @@
 package org.agilewiki.jid.timings.list;
 
-import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.incdes.PAFactories;
 import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.incdes.impl.collection.vlenc.map.IntegerSMap;
-import org.agilewiki.jid.factory.JAFactoryLocator;
-import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.incdes.impl.scalar.flens.PAIntegerImpl;
+import org.agilewiki.jactor.lpc.JLPCActor;
+import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 
 public class MapUAppender extends JLPCActor {
     public int count;
@@ -24,8 +24,8 @@ public class MapUAppender extends JLPCActor {
         int j = 0;
         while (j < repeat) {
             ReadableBytes rb = new ReadableBytes(bytes, 0);
-            IntegerSMap blj = (IntegerSMap) JAFactoryLocator.
-                    newJid(this, JidFactories.INTEGER_INTEGER_MAP_JID_TYPE, getMailbox(), getParent());
+            IntegerSMap blj = (IntegerSMap) FactoryLocatorImpl.
+                    newJid(this, PAFactories.INTEGER_INTEGER_MAP_JID_TYPE, getMailbox(), getParent());
             blj.load(rb);
             PAIntegerImpl sj = (PAIntegerImpl) blj.kGet(j);
             sj.setValue(42);

@@ -1,6 +1,6 @@
 package org.agilewiki.incdes;
 
-import org.agilewiki.jid.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.ActorFactory;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pautil.Ancestor;

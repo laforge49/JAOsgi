@@ -1,23 +1,23 @@
 package org.agilewiki.jid.scalar.vlens.bytes;
 
 import junit.framework.TestCase;
+import org.agilewiki.incdes.PAFactories;
+import org.agilewiki.incdes.PABundleContext;
+import org.agilewiki.incdes.impl.scalar.vlens.BoxImpl;
+import org.agilewiki.incdes.impl.scalar.vlens.BytesImpl;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.JAFuture;
 import org.agilewiki.jid.CopyJID;
 import org.agilewiki.jid.GetSerializedLength;
 import org.agilewiki.jid.ResolvePathname;
-import org.agilewiki.jid.factory.JAFactoryLocator;
-import org.agilewiki.jid.factory.JidFactories;
-import org.agilewiki.jid.jaosgi.JABundleContext;
+import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 import org.agilewiki.jid.scalar.Clear;
-import org.agilewiki.incdes.impl.scalar.vlens.BytesImpl;
-import org.agilewiki.incdes.impl.scalar.vlens.BoxImpl;
 import org.agilewiki.jid.scalar.vlens.actor.SetActor;
 
 public class BytesTest extends TestCase {
     public void test() throws Exception {
-        JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
+        FactoryLocatorImpl factoryLocator = PAFactories.createFactoryLocator(1);
+        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
             Actor bytes1 = BytesImpl.create(factoryLocator, null, null);
@@ -37,7 +37,7 @@ public class BytesTest extends TestCase {
             assertEquals(3, GetBytes.req.send(future, bytes3).length);
 
             BoxImpl jidJid1 = BoxImpl.create(factoryLocator, null, null);
-            SetActor sjvbs = new SetActor(JidFactories.BYTES_JID_TYPE);
+            SetActor sjvbs = new SetActor(PAFactories.BYTES_JID_TYPE);
             sjvbs.send(future, jidJid1);
             BytesImpl rpa = (BytesImpl) (new ResolvePathname("0")).send(future, jidJid1);
             assertNull(GetBytes.req.send(future, rpa));

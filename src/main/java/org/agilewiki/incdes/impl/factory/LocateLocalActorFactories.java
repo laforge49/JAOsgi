@@ -21,10 +21,10 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.factory;
+package org.agilewiki.incdes.impl.factory;
 
+import org.agilewiki.incdes.PABundleContext;
 import org.agilewiki.incdes.impl.collection.vlenc.map.StringSMap;
-import org.agilewiki.jid.jaosgi.JABundleContext;
 import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
 import org.agilewiki.pautil.AncestorBase;
 import org.osgi.framework.Bundle;
@@ -32,12 +32,12 @@ import org.osgi.framework.Bundle;
 import java.util.Hashtable;
 
 public abstract class LocateLocalActorFactories extends AncestorBase {
-    private JAFactoryLocator factoryLocator;
+    private FactoryLocatorImpl factoryLocator;
 
-    protected JAFactoryLocator configure(String name) throws Exception {
-        JABundleContext jaBundleContext = JABundleContext.get(this);
+    protected FactoryLocatorImpl configure(String name) throws Exception {
+        PABundleContext jaBundleContext = PABundleContext.get(this);
 
-        factoryLocator = new JAFactoryLocator();
+        factoryLocator = new FactoryLocatorImpl();
         factoryLocator.initialize(getMailbox().getMailboxFactory().createMailbox(true), jaBundleContext);
 
         Bundle bundle = jaBundleContext.getBundle();

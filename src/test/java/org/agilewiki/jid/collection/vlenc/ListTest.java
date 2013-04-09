@@ -1,26 +1,26 @@
 package org.agilewiki.jid.collection.vlenc;
 
 import junit.framework.TestCase;
+import org.agilewiki.incdes.PAFactories;
+import org.agilewiki.incdes.PABundleContext;
+import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.JAFuture;
 import org.agilewiki.jid.CopyJID;
 import org.agilewiki.jid.GetSerializedBytes;
 import org.agilewiki.jid.GetSerializedLength;
 import org.agilewiki.jid.collection.ISetBytes;
-import org.agilewiki.jid.factory.JAFactoryLocator;
-import org.agilewiki.jid.factory.JidFactories;
-import org.agilewiki.jid.jaosgi.JABundleContext;
-import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
+import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 import org.agilewiki.jid.scalar.vlens.string.SetString;
 
 public class ListTest extends TestCase {
     public void test() throws Exception {
 
-        JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
+        FactoryLocatorImpl factoryLocator = PAFactories.createFactoryLocator(1);
+        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            Actor l0 = factoryLocator.newJid(JidFactories.STRING_LIST_JID_TYPE);
+            Actor l0 = factoryLocator.newJid(PAFactories.STRING_LIST_JID_TYPE);
             int l0sl = GetSerializedLength.req.send(future, l0);
             assertEquals(8, l0sl);
             Actor l1 = (new CopyJID()).send(future, l0);

@@ -1,11 +1,11 @@
 package org.agilewiki.jid.collection.vlenc.map;
 
 import junit.framework.TestCase;
+import org.agilewiki.incdes.PAFactories;
+import org.agilewiki.incdes.PABundleContext;
 import org.agilewiki.incdes.impl.collection.vlenc.map.BMap;
-import org.agilewiki.jid.factory.JAFactoryLocator;
-import org.agilewiki.jid.factory.JidFactories;
-import org.agilewiki.jid.jaosgi.JABundleContext;
 import org.agilewiki.incdes.impl.scalar.flens.PAIntegerImpl;
+import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 
 public class BMapTimingsTest extends TestCase {
     public void test1() throws Exception {
@@ -33,11 +33,11 @@ public class BMapTimingsTest extends TestCase {
         //total run time (milliseconds) =  7277
         //time per update (microseconds) = 7277
 
-        JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
-        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
+        FactoryLocatorImpl factoryLocator = PAFactories.createFactoryLocator(1);
+        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
         try {
             BMap<Integer, PAIntegerImpl> m1 = (BMap) factoryLocator.
-                    newJid(JidFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
+                    newJid(PAFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
             int i = 0;
             while (i < s) {
                 m1.kMake(i);
