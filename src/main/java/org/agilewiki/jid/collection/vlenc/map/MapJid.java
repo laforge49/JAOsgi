@@ -57,9 +57,9 @@ abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE e
     }
 
     /**
-     * Returns the JidFactory for the key.
+     * Returns the IncDesFactory for the key.
      *
-     * @return The JidFactory for the key.
+     * @return The IncDesFactory for the key.
      */
     abstract protected ActorFactory getKeyFactory() throws Exception;
 
@@ -83,7 +83,7 @@ abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE e
     }
 
     /**
-     * Returns the JidFactory for the values in the map.
+     * Returns the IncDesFactory for the values in the map.
      *
      * @return The jid factory of the values in the list.
      */

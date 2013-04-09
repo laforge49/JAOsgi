@@ -23,12 +23,9 @@
  */
 package org.agilewiki.jid.collection.vlenc.map;
 
-import org.agilewiki.incdes.Collection;
-import org.agilewiki.incdes.IncDes;
-import org.agilewiki.incdes.MapEntry;
-import org.agilewiki.incdes.PAMap;
-import org.agilewiki.jid.Jid;
-import org.agilewiki.jid.collection.flenc.AppJid;
+import org.agilewiki.incdes.*;
+import org.agilewiki.incdes.impl.IncDesImpl;
+import org.agilewiki.incdes.AppBase;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JAFactoryLocator;
@@ -45,7 +42,7 @@ import org.agilewiki.pautil.Ancestor;
  * A balanced tree that holds a map.
  */
 abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends IncDes>
-        extends AppJid
+        extends AppBase
         implements PAMap<KEY_TYPE, VALUE_TYPE>, Collection<MapEntry<KEY_TYPE, VALUE_TYPE>> {
     protected final int TUPLE_SIZE = 0;
     protected final int TUPLE_UNION = 1;
@@ -138,7 +135,7 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
         return (UnionJid) _iGet(TUPLE_UNION);
     }
 
-    protected MapJid<KEY_TYPE, Jid> getNode()
+    protected MapJid<KEY_TYPE, IncDesImpl> getNode()
             throws Exception {
         return (MapJid) getUnionJid().getValue();
     }
@@ -181,7 +178,7 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
     @Override
     public MapEntryBase<KEY_TYPE, VALUE_TYPE> iGet(int ndx)
             throws Exception {
-        MapJid<KEY_TYPE, Jid> node = getNode();
+        MapJid<KEY_TYPE, IncDesImpl> node = getNode();
         if (isLeaf()) {
             return (MapEntryBase<KEY_TYPE, VALUE_TYPE>) node.iGet(ndx);
         }
@@ -304,7 +301,7 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
     @Override
     final public Boolean kMake(KEY_TYPE key)
             throws Exception {
-        MapJid<KEY_TYPE, Jid> node = getNode();
+        MapJid<KEY_TYPE, IncDesImpl> node = getNode();
         if (isLeaf()) {
             int i = node.search(key);
             if (i > -1)
@@ -331,7 +328,7 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
         incSize(1);
         if (bnode.isFat()) {
             node.iAdd(i - 1);
-            MapEntryBase<KEY_TYPE, BMapJid<KEY_TYPE, Jid>> leftEntry = (MapEntryBase) node.iGet(i - 1);
+            MapEntryBase<KEY_TYPE, BMapJid<KEY_TYPE, IncDesImpl>> leftEntry = (MapEntryBase) node.iGet(i - 1);
             bnode.inodeSplit(leftEntry);
             if (node.size() < nodeCapacity)
                 return true;
@@ -344,43 +341,43 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
 
     protected void rootSplit()
             throws Exception {
-        MapJid<KEY_TYPE, Jid> oldRootNode = getNode();
+        MapJid<KEY_TYPE, IncDesImpl> oldRootNode = getNode();
         ActorFactory oldFactory = oldRootNode.getFactory();
         getUnionJid().setValue(1);
-        MapJid<KEY_TYPE, Jid> newRootNode = getNode();
+        MapJid<KEY_TYPE, IncDesImpl> newRootNode = getNode();
         newRootNode.iAdd(0);
         newRootNode.iAdd(1);
-        MapEntryBase<KEY_TYPE, BMapJid<KEY_TYPE, Jid>> leftEntry = (MapEntryBase) newRootNode.iGet(0);
-        MapEntryBase<KEY_TYPE, BMapJid<KEY_TYPE, Jid>> rightEntry = (MapEntryBase) newRootNode.iGet(1);
-        BMapJid<KEY_TYPE, Jid> leftBNode = leftEntry.getValue();
-        BMapJid<KEY_TYPE, Jid> rightBNode = rightEntry.getValue();
+        MapEntryBase<KEY_TYPE, BMapJid<KEY_TYPE, IncDesImpl>> leftEntry = (MapEntryBase) newRootNode.iGet(0);
+        MapEntryBase<KEY_TYPE, BMapJid<KEY_TYPE, IncDesImpl>> rightEntry = (MapEntryBase) newRootNode.iGet(1);
+        BMapJid<KEY_TYPE, IncDesImpl> leftBNode = leftEntry.getValue();
+        BMapJid<KEY_TYPE, IncDesImpl> rightBNode = rightEntry.getValue();
         leftBNode.setNodeFactory(oldFactory);
         rightBNode.setNodeFactory(oldFactory);
         int h = nodeCapacity / 2;
         int i = 0;
         if (oldFactory.jidType.startsWith("LM.")) {
             while (i < h) {
-                Jid e = (Jid) oldRootNode.iGet(i);
+                IncDesImpl e = (IncDesImpl) oldRootNode.iGet(i);
                 byte[] bytes = e.getSerializedBytes();
                 leftBNode.iAdd(-1, bytes);
                 i += 1;
             }
             while (i < nodeCapacity) {
-                Jid e = (Jid) oldRootNode.iGet(i);
+                IncDesImpl e = (IncDesImpl) oldRootNode.iGet(i);
                 byte[] bytes = e.getSerializedBytes();
                 rightBNode.iAdd(-1, bytes);
                 i += 1;
             }
         } else {
             while (i < h) {
-                BMapJid<KEY_TYPE, Jid> e = (BMapJid) ((MapEntryBase<KEY_TYPE, VALUE_TYPE>) oldRootNode.iGet(i)).getValue();
+                BMapJid<KEY_TYPE, IncDesImpl> e = (BMapJid) ((MapEntryBase<KEY_TYPE, VALUE_TYPE>) oldRootNode.iGet(i)).getValue();
                 int eSize = e.size();
                 byte[] bytes = e.getSerializedBytes();
                 leftBNode.append(bytes, eSize);
                 i += 1;
             }
             while (i < nodeCapacity) {
-                BMapJid<KEY_TYPE, Jid> e = (BMapJid) ((MapEntryBase<KEY_TYPE, VALUE_TYPE>) oldRootNode.iGet(i)).getValue();
+                BMapJid<KEY_TYPE, IncDesImpl> e = (BMapJid) ((MapEntryBase<KEY_TYPE, VALUE_TYPE>) oldRootNode.iGet(i)).getValue();
                 int eSize = e.size();
                 byte[] bytes = e.getSerializedBytes();
                 rightBNode.append(bytes, eSize);
@@ -391,16 +388,16 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
         rightEntry.setKey(rightBNode.getLastKey());
     }
 
-    protected void inodeSplit(MapEntryBase<KEY_TYPE, BMapJid<KEY_TYPE, Jid>> leftEntry)
+    protected void inodeSplit(MapEntryBase<KEY_TYPE, BMapJid<KEY_TYPE, IncDesImpl>> leftEntry)
             throws Exception {
-        BMapJid<KEY_TYPE, Jid> leftBNode = leftEntry.getValue();
+        BMapJid<KEY_TYPE, IncDesImpl> leftBNode = leftEntry.getValue();
         leftBNode.setNodeFactory(getNode().getFactory());
-        MapJid<KEY_TYPE, Jid> node = getNode();
+        MapJid<KEY_TYPE, IncDesImpl> node = getNode();
         int h = nodeCapacity / 2;
         int i = 0;
         if (isLeaf()) {
             while (i < h) {
-                Jid e = (Jid) node.iGet(0);
+                IncDesImpl e = (IncDesImpl) node.iGet(0);
                 node.iRemove(0);
                 byte[] bytes = e.getSerializedBytes();
                 leftBNode.iAdd(-1, bytes);
@@ -425,7 +422,7 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
     @Override
     public void empty()
             throws Exception {
-        MapJid<KEY_TYPE, Jid> node = getNode();
+        MapJid<KEY_TYPE, IncDesImpl> node = getNode();
         node.empty();
         IntegerJid sj = getSizeJid();
         sj.setValue(0);
@@ -450,7 +447,7 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
             ndx += s;
         if (ndx < 0 || ndx >= s)
             throw new IllegalArgumentException();
-        MapJid<KEY_TYPE, Jid> node = getNode();
+        MapJid<KEY_TYPE, IncDesImpl> node = getNode();
         if (isLeaf()) {
             node.iRemove(ndx);
             incSize(-1);
@@ -458,7 +455,7 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
         }
         int i = 0;
         while (i < node.size()) {
-            MapEntryBase<KEY_TYPE, BMapJid<KEY_TYPE, Jid>> entry = (MapEntryBase) node.iGet(ndx);
+            MapEntryBase<KEY_TYPE, BMapJid<KEY_TYPE, IncDesImpl>> entry = (MapEntryBase) node.iGet(ndx);
             BMapJid<KEY_TYPE, VALUE_TYPE> bnode = (BMapJid) entry.getValue();
             int bns = bnode.size();
             if (ndx < bns) {
@@ -527,19 +524,19 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
     final public boolean kRemove(KEY_TYPE key)
             throws Exception {
         if (isLeaf()) {
-            MapJid<KEY_TYPE, Jid> node = getNode();
+            MapJid<KEY_TYPE, IncDesImpl> node = getNode();
             if (node.kRemove(key)) {
                 incSize(-1);
                 return true;
             }
             return false;
         }
-        MapJid<KEY_TYPE, BMapJid<KEY_TYPE, Jid>> node = (MapJid) getNode();
+        MapJid<KEY_TYPE, BMapJid<KEY_TYPE, IncDesImpl>> node = (MapJid) getNode();
         int i = node.match(key);
         if (i == size())
             return false;
-        MapEntryBase<KEY_TYPE, BMapJid<KEY_TYPE, Jid>> entry = (MapEntryBase) node.iGet(i);
-        BMapJid<KEY_TYPE, Jid> bnode = entry.getValue();
+        MapEntryBase<KEY_TYPE, BMapJid<KEY_TYPE, IncDesImpl>> entry = (MapEntryBase) node.iGet(i);
+        BMapJid<KEY_TYPE, IncDesImpl> bnode = entry.getValue();
         if (!bnode.kRemove(key))
             return false;
         incSize(-1);
@@ -554,7 +551,7 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
                 MapEntryBase leftEntry = (MapEntryBase) node.iGet(i - 1);
                 BMapJid<KEY_TYPE, VALUE_TYPE> leftBNode = (BMapJid) leftEntry.getValue();
                 if (leftBNode.nodeSize() + bnodeSize < nodeCapacity) {
-                    bnode.appendTo((BMapJid<KEY_TYPE, Jid>) leftBNode);
+                    bnode.appendTo((BMapJid<KEY_TYPE, IncDesImpl>) leftBNode);
                     node.iRemove(i);
                     leftEntry.setKey(leftBNode.getLastKey());
                 }
@@ -574,18 +571,18 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
             setNodeFactory(bnode.getNode().getFactory());
             IntegerJid sj = getSizeJid();
             sj.setValue(0);
-            bnode.appendTo((BMapJid<KEY_TYPE, Jid>) this);
+            bnode.appendTo((BMapJid<KEY_TYPE, IncDesImpl>) this);
         }
         return true;
     }
 
     void appendTo(BMapJid<KEY_TYPE, VALUE_TYPE> leftNode)
             throws Exception {
-        MapJid<KEY_TYPE, Jid> node = getNode();
+        MapJid<KEY_TYPE, IncDesImpl> node = getNode();
         int i = 0;
         if (isLeaf()) {
             while (i < node.size()) {
-                Jid e = (Jid) node.iGet(i);
+                IncDesImpl e = (IncDesImpl) node.iGet(i);
                 leftNode.append(e.getSerializedBytes(), 1);
                 i += 1;
             }
@@ -600,14 +597,14 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
 
     void append(byte[] bytes, int eSize)
             throws Exception {
-        MapJid<KEY_TYPE, Jid> node = getNode();
+        MapJid<KEY_TYPE, IncDesImpl> node = getNode();
         node.iAdd(-1, bytes);
         incSize(eSize);
     }
 
     final public MapEntryBase<KEY_TYPE, VALUE_TYPE> kGetEntry(KEY_TYPE key)
             throws Exception {
-        MapJid<KEY_TYPE, Jid> node = getNode();
+        MapJid<KEY_TYPE, IncDesImpl> node = getNode();
         if (isLeaf()) {
             int i = node.search(key);
             if (i < 0)
@@ -665,7 +662,7 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
     @Override
     final public MapEntryBase<KEY_TYPE, VALUE_TYPE> getCeiling(KEY_TYPE key)
             throws Exception {
-        MapJid<KEY_TYPE, Jid> node = getNode();
+        MapJid<KEY_TYPE, IncDesImpl> node = getNode();
         if (isLeaf()) {
             return (MapEntryBase<KEY_TYPE, VALUE_TYPE>) node.getCeiling(key);
         }
@@ -695,7 +692,7 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
     @Override
     final public MapEntryBase<KEY_TYPE, VALUE_TYPE> getHigher(KEY_TYPE key)
             throws Exception {
-        MapJid<KEY_TYPE, Jid> node = getNode();
+        MapJid<KEY_TYPE, IncDesImpl> node = getNode();
         MapEntryBase entry = node.getHigher(key);
         if (isLeaf())
             return (MapEntryBase<KEY_TYPE, VALUE_TYPE>) entry;
@@ -739,13 +736,13 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
 
     public MapEntryBase<KEY_TYPE, VALUE_TYPE> getLast()
             throws Exception {
-        MapJid<KEY_TYPE, Jid> node = getNode();
+        MapJid<KEY_TYPE, IncDesImpl> node = getNode();
         return (MapEntryBase<KEY_TYPE, VALUE_TYPE>) node.getLast();
     }
 
     public KEY_TYPE getLastKey()
             throws Exception {
-        MapJid<KEY_TYPE, Jid> node = getNode();
+        MapJid<KEY_TYPE, IncDesImpl> node = getNode();
         return node.getLastKey();
     }
 

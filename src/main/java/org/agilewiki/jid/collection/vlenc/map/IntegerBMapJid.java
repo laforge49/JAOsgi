@@ -23,12 +23,12 @@
  */
 package org.agilewiki.jid.collection.vlenc.map;
 
-import org.agilewiki.jid.Jid;
+import org.agilewiki.incdes.impl.IncDesImpl;
 
 /**
  * A balanced tree that holds a map with Integer keys.
  */
-public class IntegerBMapJid<VALUE_TYPE extends Jid> extends BMapJid<Integer, VALUE_TYPE> {
+public class IntegerBMapJid<VALUE_TYPE extends IncDesImpl> extends BMapJid<Integer, VALUE_TYPE> {
     /**
      * Converts a string to a key.
      *

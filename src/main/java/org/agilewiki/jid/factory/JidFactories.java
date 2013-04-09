@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jid.factory;
 
-import org.agilewiki.jid.JidFactory;
+import org.agilewiki.incdes.impl.IncDesFactory;
 import org.agilewiki.jid.collection.vlenc.BListJidFactory;
 import org.agilewiki.jid.collection.vlenc.ListJidFactory;
 import org.agilewiki.jid.collection.vlenc.map.*;
@@ -38,7 +38,7 @@ import org.agilewiki.pactor.MailboxFactory;
 
 /**
  * <p>
- * Defines Jid actor types and registers the JID factories.
+ * Defines IncDesImpl actor types and registers the JID factories.
  * </p>
  */
 final public class JidFactories extends LocateLocalActorFactories {
@@ -429,7 +429,7 @@ final public class JidFactories extends LocateLocalActorFactories {
     public JAFactoryLocator configure() throws Exception {
         JAFactoryLocator factoryLocator = configure("org.agilewiki.jid");
 
-        JidFactory.registerFactory(factoryLocator);
+        IncDesFactory.registerFactory(factoryLocator);
 
         BooleanJid.registerFactory(factoryLocator);
         IntegerJid.registerFactory(factoryLocator);

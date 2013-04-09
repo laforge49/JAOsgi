@@ -26,8 +26,8 @@ package org.agilewiki.jid.collection.vlenc;
 import org.agilewiki.incdes.IncDes;
 import org.agilewiki.incdes.Collection;
 import org.agilewiki.incdes.PAList;
-import org.agilewiki.jid.Jid;
-import org.agilewiki.jid.collection.flenc.AppJid;
+import org.agilewiki.incdes.impl.IncDesImpl;
+import org.agilewiki.incdes.AppBase;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JAFactoryLocator;
@@ -44,7 +44,7 @@ import org.agilewiki.pautil.Ancestor;
  * A balanced tree holding a list of JIDs, all of the same type.
  */
 public class BListJid<ENTRY_TYPE extends IncDes>
-        extends AppJid
+        extends AppBase
         implements PAList<ENTRY_TYPE>, Collection<ENTRY_TYPE> {
     protected final int TUPLE_SIZE = 0;
     protected final int TUPLE_UNION = 1;
@@ -66,9 +66,9 @@ public class BListJid<ENTRY_TYPE extends IncDes>
     }
 
     /**
-     * Returns the JidFactory for all the elements in the list.
+     * Returns the IncDesFactory for all the elements in the list.
      *
-     * @return The JidFactory for of all the elements in the list.
+     * @return The IncDesFactory for of all the elements in the list.
      */
     protected ActorFactory getEntryFactory()
             throws Exception {
@@ -356,13 +356,13 @@ public class BListJid<ENTRY_TYPE extends IncDes>
         int i = 0;
         if (oldFactory.jidType.startsWith("LL.")) {
             while (i < h) {
-                Jid e = (Jid) oldRootNode.iGet(i);
+                IncDesImpl e = (IncDesImpl) oldRootNode.iGet(i);
                 byte[] bytes = e.getSerializedBytes();
                 leftBNode.iAdd(-1, bytes);
                 i += 1;
             }
             while (i < nodeCapacity) {
-                Jid e = (Jid) oldRootNode.iGet(i);
+                IncDesImpl e = (IncDesImpl) oldRootNode.iGet(i);
                 byte[] bytes = e.getSerializedBytes();
                 rightBNode.iAdd(-1, bytes);
                 i += 1;
@@ -392,7 +392,7 @@ public class BListJid<ENTRY_TYPE extends IncDes>
         int i = 0;
         if (isLeaf()) {
             while (i < h) {
-                Jid e = (Jid) node.iGet(0);
+                IncDesImpl e = (IncDesImpl) node.iGet(0);
                 node.iRemove(0);
                 byte[] bytes = e.getSerializedBytes();
                 leftBNode.iAdd(-1, bytes);
@@ -495,7 +495,7 @@ public class BListJid<ENTRY_TYPE extends IncDes>
         int i = 0;
         if (isLeaf()) {
             while (i < node.size()) {
-                Jid e = (Jid) node.iGet(i);
+                IncDesImpl e = (IncDesImpl) node.iGet(i);
                 leftNode.append(e.getSerializedBytes(), 1);
                 i += 1;
             }

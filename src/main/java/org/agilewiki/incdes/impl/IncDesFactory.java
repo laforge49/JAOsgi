@@ -21,26 +21,26 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid;
+package org.agilewiki.incdes.impl;
 
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 
 /**
- * Creates a Jid.
+ * Creates a IncDesImpl.
  */
-public class JidFactory extends ActorFactory {
+public class IncDesFactory extends ActorFactory {
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerJidFactory(new JidFactory());
+        factoryLocator.registerJidFactory(new IncDesFactory());
     }
 
     /**
      * Create a JLPCActorFactory.
      */
-    protected JidFactory() {
+    protected IncDesFactory() {
         super(JidFactories.JID_TYPE);
     }
 
@@ -50,7 +50,7 @@ public class JidFactory extends ActorFactory {
      * @return The new actor.
      */
     @Override
-    protected Jid instantiateActor() throws Exception {
-        return new Jid();
+    protected IncDesImpl instantiateActor() throws Exception {
+        return new IncDesImpl();
     }
 }

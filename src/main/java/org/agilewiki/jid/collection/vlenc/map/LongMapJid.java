@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jid.collection.vlenc.map;
 
-import org.agilewiki.jid.Jid;
+import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
@@ -31,11 +31,11 @@ import org.agilewiki.jid.factory.JidFactories;
 /**
  * Holds a map with Long keys.
  */
-public class LongMapJid<VALUE_TYPE extends Jid> extends MapJid<Long, VALUE_TYPE> {
+public class LongMapJid<VALUE_TYPE extends IncDesImpl> extends MapJid<Long, VALUE_TYPE> {
     /**
-     * Returns the JidFactory for the key.
+     * Returns the IncDesFactory for the key.
      *
-     * @return The JidFactory for the key.
+     * @return The IncDesFactory for the key.
      */
     final protected ActorFactory getKeyFactory() throws Exception {
         return JAFactoryLocator.getActorFactory(this, JidFactories.LONG_JID_TYPE);

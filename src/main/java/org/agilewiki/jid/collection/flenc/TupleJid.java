@@ -27,6 +27,7 @@ import org.agilewiki.incdes.AppendableBytes;
 import org.agilewiki.incdes.IncDes;
 import org.agilewiki.incdes.Tuple;
 import org.agilewiki.incdes.ReadableBytes;
+import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.jid.*;
 import org.agilewiki.jid.collection.CollectionJid;
 import org.agilewiki.jid.factory.ActorFactory;
@@ -45,7 +46,7 @@ public class TupleJid
     /**
      * A tuple of actors.
      */
-    protected Jid[] tuple;
+    protected IncDesImpl[] tuple;
 
     /**
      * Perform lazy initialization.
@@ -62,11 +63,11 @@ public class TupleJid
             readableBytes = readable();
             skipLen(readableBytes);
         }
-        tuple = new Jid[size()];
+        tuple = new IncDesImpl[size()];
         int i = 0;
         len = 0;
         while (i < size()) {
-            Jid elementJid = createSubordinate(tupleFactories[i], readableBytes);
+            IncDesImpl elementJid = createSubordinate(tupleFactories[i], readableBytes);
             len += elementJid.getSerializedLength();
             tuple[i] = elementJid;
             i += 1;
@@ -96,8 +97,8 @@ public class TupleJid
     public void iSet(int i, byte[] bytes)
             throws Exception {
         initializeTuple();
-        Jid elementJid = createSubordinate(tupleFactories[i], bytes);
-        Jid oldElementJid = iGet(i);
+        IncDesImpl elementJid = createSubordinate(tupleFactories[i], bytes);
+        IncDesImpl oldElementJid = iGet(i);
         oldElementJid.setContainerJid(null);
         tuple[i] = elementJid;
         change(elementJid.getSerializedLength() - oldElementJid.getSerializedLength());
@@ -133,7 +134,7 @@ public class TupleJid
      * @return The ith JID component, or null if the index is out of range.
      */
     @Override
-    public Jid iGet(int i) throws Exception {
+    public IncDesImpl iGet(int i) throws Exception {
         initializeTuple();
         if (i < 0)
             i += size();

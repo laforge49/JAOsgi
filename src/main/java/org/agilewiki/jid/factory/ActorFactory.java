@@ -23,8 +23,7 @@
  */
 package org.agilewiki.jid.factory;
 
-import org.agilewiki.incdes.Factory;
-import org.agilewiki.jid.Jid;
+import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
@@ -77,7 +76,7 @@ abstract public class ActorFactory implements Factory {
      *
      * @return The new actor.
      */
-    abstract protected Jid instantiateActor()
+    abstract protected IncDesImpl instantiateActor()
             throws Exception;
 
     /**
@@ -87,9 +86,9 @@ abstract public class ActorFactory implements Factory {
      * @param parent  The parent of the new actor.
      * @return The new actor.
      */
-    public Jid newActor(Mailbox mailbox, Ancestor parent)
+    public IncDesImpl newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
-        Jid a = instantiateActor();
+        IncDesImpl a = instantiateActor();
         a.initialize(mailbox, parent, this);
         return a;
     }

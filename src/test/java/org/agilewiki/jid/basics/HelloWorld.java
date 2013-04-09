@@ -1,10 +1,10 @@
 package org.agilewiki.jid.basics;
 
 import org.agilewiki.jactor.ResponseProcessor;
-import org.agilewiki.jid.Jid;
+import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.jid.factory.FactoryLocator;
 
-public class HelloWorld extends Jid implements Main {
+public class HelloWorld extends IncDesImpl implements Main {
     public static void register(FactoryLocator factoryLocator) throws Exception {
         factoryLocator.defineJidType("hi", HelloWorld.class);
     }

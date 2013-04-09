@@ -23,12 +23,12 @@
  */
 package org.agilewiki.jid.scalar;
 
-import org.agilewiki.jid.Jid;
+import org.agilewiki.incdes.impl.IncDesImpl;
 
 /**
- * A Jid actor that hold a single value.
+ * A IncDesImpl actor that hold a single value.
  */
 abstract public class ScalarJid<SET_TYPE, RESPONSE_TYPE>
-        extends Jid
+        extends IncDesImpl
         implements Scalar<SET_TYPE, RESPONSE_TYPE> {
 }

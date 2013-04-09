@@ -27,6 +27,7 @@ import org.agilewiki.incdes.AppendableBytes;
 import org.agilewiki.incdes.Box;
 import org.agilewiki.incdes.IncDes;
 import org.agilewiki.incdes.ReadableBytes;
+import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.jid.*;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
@@ -43,7 +44,7 @@ import org.agilewiki.pautil.Ancestor;
  * A JID actor that holds a JID actor.
  */
 public class ActorJid
-        extends VLenScalarJid<String, Jid> implements Box {
+        extends VLenScalarJid<String, IncDesImpl> implements Box {
     public static ActorJid create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
         return (ActorJid) JAFactoryLocator.newJid(actor, JidFactories.ACTOR_JID_TYPE, mailbox, parent);
     }
@@ -237,12 +238,12 @@ public class ActorJid
      * @throws Exception Any uncaught exception raised during deserialization.
      */
     @Override
-    public Jid getValue()
+    public IncDesImpl getValue()
             throws Exception {
         if (len == -1)
             return null;
         if (value != null)
-            return (Jid) value;
+            return (IncDesImpl) value;
         if (len == -1) {
             return null;
         }
@@ -250,7 +251,7 @@ public class ActorJid
         skipLen(readableBytes);
         String factoryKey = readableBytes.readString();
         value = createSubordinate(factoryKey, readableBytes);
-        return (Jid) value;
+        return (IncDesImpl) value;
     }
 
     /**

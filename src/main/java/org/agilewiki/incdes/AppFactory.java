@@ -1,4 +1,4 @@
-package org.agilewiki.jid.collection.flenc;
+package org.agilewiki.incdes;
 
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
@@ -7,13 +7,13 @@ import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
 /**
- * Creates AppJid objects.
+ * Creates AppBase objects.
  */
-abstract public class AppJidFactory extends ActorFactory {
+abstract public class AppFactory extends ActorFactory {
     private ActorFactory[] tupleFactories;
     private String[] jidTypes;
 
-    public AppJidFactory(String subActorType) {
+    public AppFactory(String subActorType) {
         super(subActorType);
         this.tupleFactories = new ActorFactory[0];
     }
@@ -24,7 +24,7 @@ abstract public class AppJidFactory extends ActorFactory {
      * @param subJidType The jid type.
      * @param jidTypes   The element types.
      */
-    public AppJidFactory(String subJidType, String... jidTypes) {
+    public AppFactory(String subJidType, String... jidTypes) {
         super(subJidType);
         this.jidTypes = jidTypes;
     }
@@ -36,9 +36,9 @@ abstract public class AppJidFactory extends ActorFactory {
      * @param parent  The parent of the new actor.
      * @return The new actor.
      */
-    public AppJid newActor(Mailbox mailbox, Ancestor parent)
+    public AppBase newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
-        AppJid tj = (AppJid) super.newActor(mailbox, parent);
+        AppBase tj = (AppBase) super.newActor(mailbox, parent);
         FactoryLocator fl = JAFactoryLocator.get(parent);
         ActorFactory[] afs = new ActorFactory[jidTypes.length];
         int i = 0;

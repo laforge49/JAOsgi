@@ -21,18 +21,16 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.collection.flenc;
+package org.agilewiki.incdes;
 
-import org.agilewiki.incdes.AppendableBytes;
-import org.agilewiki.incdes.IncDes;
-import org.agilewiki.incdes.ReadableBytes;
+import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.jid.*;
 import org.agilewiki.jid.factory.ActorFactory;
 
 /**
- * A base class for applications, AppJid provides a durable tuple without an external interface.
+ * A base class for applications, AppBase provides a durable tuple without an external interface.
  */
-public class AppJid extends Jid {
+public class AppBase extends IncDesImpl {
     /**
      * The size of the serialized data (exclusive of its length header).
      */
@@ -70,8 +68,8 @@ public class AppJid extends Jid {
     protected void _iSetBytes(int i, byte[] bytes)
             throws Exception {
         _initialize();
-        Jid elementJid = createSubordinate(tupleFactories[i], bytes);
-        Jid oldElementJid = (Jid) _iGet(i);
+        IncDesImpl elementJid = createSubordinate(tupleFactories[i], bytes);
+        IncDesImpl oldElementJid = (IncDesImpl) _iGet(i);
         oldElementJid.setContainerJid(null);
         tuple[i] = elementJid;
         change(elementJid.getSerializedLength() - oldElementJid.getSerializedLength());
@@ -153,7 +151,7 @@ public class AppJid extends Jid {
         int i = 0;
         _len = 0;
         while (i < _size()) {
-            Jid elementJid = createSubordinate(tupleFactories[i], readableBytes);
+            IncDesImpl elementJid = createSubordinate(tupleFactories[i], readableBytes);
             _len += elementJid.getSerializedLength();
             tuple[i] = elementJid;
             i += 1;

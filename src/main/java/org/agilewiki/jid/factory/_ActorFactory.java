@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jid.factory;
 
-import org.agilewiki.jid.Jid;
+import org.agilewiki.incdes.impl.IncDesImpl;
 
 import java.lang.reflect.Constructor;
 
@@ -34,7 +34,7 @@ final public class _ActorFactory extends ActorFactory {
     /**
      * The constructor used to create the actor.
      */
-    private Constructor<Jid> constructor;
+    private Constructor<IncDesImpl> constructor;
 
     /**
      * Create an ActorFactory.
@@ -42,7 +42,7 @@ final public class _ActorFactory extends ActorFactory {
      * @param jidType     The jid type.
      * @param constructor The constructor used to create the actor.
      */
-    public _ActorFactory(String jidType, Constructor<Jid> constructor) {
+    public _ActorFactory(String jidType, Constructor<IncDesImpl> constructor) {
         super(jidType);
         this.constructor = constructor;
     }
@@ -52,7 +52,7 @@ final public class _ActorFactory extends ActorFactory {
      *
      * @return The new actor.
      */
-    protected Jid instantiateActor()
+    protected IncDesImpl instantiateActor()
             throws Exception {
         return constructor.newInstance();
     }

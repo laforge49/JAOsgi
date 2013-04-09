@@ -24,7 +24,7 @@
 package org.agilewiki.jid;
 
 /**
- * Compares the key or value of a Jid.
+ * Compares the key or value of a IncDesImpl.
  */
 public interface ComparableKey<KEY_TYPE> {
     /**

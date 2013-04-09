@@ -25,7 +25,7 @@ package org.agilewiki.jid.collection.vlenc;
 
 import org.agilewiki.incdes.*;
 import org.agilewiki.incdes.IncDes;
-import org.agilewiki.jid.Jid;
+import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.jid.Util;
 import org.agilewiki.jid.collection.CollectionJid;
 import org.agilewiki.jid.factory.ActorFactory;
@@ -46,7 +46,7 @@ public class ListJid<ENTRY_TYPE extends IncDes>
     public int initialCapacity = 10;
 
     /**
-     * Jid factory of the elements.
+     * IncDesImpl factory of the elements.
      */
     protected ActorFactory entryFactory;
 
@@ -117,9 +117,9 @@ public class ListJid<ENTRY_TYPE extends IncDes>
     }
 
     /**
-     * Returns the JidFactory for all the elements in the list.
+     * Returns the IncDesFactory for all the elements in the list.
      *
-     * @return The JidFactory for of all the elements in the list.
+     * @return The IncDesFactory for of all the elements in the list.
      */
     protected ActorFactory getEntryFactory()
             throws Exception {
@@ -201,7 +201,7 @@ public class ListJid<ENTRY_TYPE extends IncDes>
         if (i < 0 || i >= list.size())
             throw new IllegalArgumentException();
         IncDes elementJid = createSubordinate(entryFactory, this, bytes);
-        Jid oldElementJid = (Jid) iGet(i);
+        IncDesImpl oldElementJid = (IncDesImpl) iGet(i);
         oldElementJid.setContainerJid(null);
         list.set(i, (ENTRY_TYPE) elementJid);
         change(elementJid.getSerializedLength() -
@@ -261,7 +261,7 @@ public class ListJid<ENTRY_TYPE extends IncDes>
         int i = 0;
         int s = size();
         while (i < s) {
-            Jid jid = (Jid) iGet(i);
+            IncDesImpl jid = (IncDesImpl) iGet(i);
             jid.setContainerJid(null);
             c -= jid.getSerializedLength();
             i += 1;
@@ -289,7 +289,7 @@ public class ListJid<ENTRY_TYPE extends IncDes>
             i += s;
         if (i < 0 || i >= s)
             throw new IllegalArgumentException();
-        Jid jid = (Jid) iGet(i);
+        IncDesImpl jid = (IncDesImpl) iGet(i);
         jid.setContainerJid(null);
         int c = -jid.getSerializedLength();
         list.remove(i);

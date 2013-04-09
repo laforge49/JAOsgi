@@ -23,9 +23,9 @@
  */
 package org.agilewiki.jid.collection.vlenc.map;
 
+import org.agilewiki.incdes.AppBase;
 import org.agilewiki.incdes.MapEntry;
-import org.agilewiki.jid.Jid;
-import org.agilewiki.jid.collection.flenc.AppJid;
+import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.scalar.ScalarJid;
 
@@ -33,7 +33,7 @@ import org.agilewiki.jid.scalar.ScalarJid;
  * A map is, in part, a list of map entries.
  */
 public class MapEntryBase<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE>
-        extends AppJid
+        extends AppBase
         implements MapEntry<KEY_TYPE, VALUE_TYPE> {
 
     private final static int TUPLE_KEY = 0;
@@ -63,9 +63,9 @@ public class MapEntryBase<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE>
     }
 
     public void setValueBytes(byte[] bytes) throws Exception {
-        Jid old = (Jid) getValue();
+        IncDesImpl old = (IncDesImpl) getValue();
         old.setContainerJid(null);
-        Jid elementJid = createSubordinate(tupleFactories[TUPLE_VALUE], this, bytes);
+        IncDesImpl elementJid = createSubordinate(tupleFactories[TUPLE_VALUE], this, bytes);
         tuple[TUPLE_VALUE] = elementJid;
         change(elementJid.getSerializedLength() - old.getSerializedLength());
     }

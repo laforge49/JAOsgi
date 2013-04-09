@@ -21,7 +21,7 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid;
+package org.agilewiki.incdes.impl;
 
 import org.agilewiki.incdes.AppendableBytes;
 import org.agilewiki.incdes.IncDes;
@@ -40,7 +40,7 @@ import java.util.Arrays;
 /**
  * Base class for Incremental Deserialization Actors.
  */
-public class Jid extends AncestorBase implements IncDes {
+public class IncDesImpl extends AncestorBase implements IncDes {
     /**
      * The factory, or null.
      */
@@ -49,7 +49,7 @@ public class Jid extends AncestorBase implements IncDes {
     /**
      * The JID actor which holds this actor.
      */
-    private Jid containerJid;
+    private IncDesImpl containerJid;
 
     /**
      * Holds the serialized data.
@@ -74,82 +74,82 @@ public class Jid extends AncestorBase implements IncDes {
         return getSerializedLengthReq;
     }
 
-    final public Jid createSubordinate(ActorFactory factory)
+    final public IncDesImpl createSubordinate(ActorFactory factory)
             throws Exception {
         return createSubordinate(factory, getParent());
     }
 
-    final public Jid createSubordinate(String actorType)
+    final public IncDesImpl createSubordinate(String actorType)
             throws Exception {
         return createSubordinate(actorType, getParent());
     }
 
-    final public Jid createSubordinate(ActorFactory factory, Ancestor parent)
+    final public IncDesImpl createSubordinate(ActorFactory factory, Ancestor parent)
             throws Exception {
-        Jid jid = factory.newActor(getMailbox(), parent);
+        IncDesImpl jid = factory.newActor(getMailbox(), parent);
         jid.setContainerJid(this);
         return jid;
     }
 
-    final public Jid createSubordinate(String actorType, Ancestor parent)
+    final public IncDesImpl createSubordinate(String actorType, Ancestor parent)
             throws Exception {
-        Jid jid = JAFactoryLocator.newJid(this, actorType, getMailbox(), parent);
+        IncDesImpl jid = JAFactoryLocator.newJid(this, actorType, getMailbox(), parent);
         jid.setContainerJid(this);
         return jid;
     }
 
-    final public Jid createSubordinate(ActorFactory factory, byte[] bytes)
+    final public IncDesImpl createSubordinate(ActorFactory factory, byte[] bytes)
             throws Exception {
         return createSubordinate(factory, getParent(), bytes);
     }
 
-    final public Jid createSubordinate(String actorType, byte[] bytes)
+    final public IncDesImpl createSubordinate(String actorType, byte[] bytes)
             throws Exception {
         return createSubordinate(actorType, getParent(), bytes);
     }
 
-    final public Jid createSubordinate(ActorFactory factory, Ancestor parent, byte[] bytes)
+    final public IncDesImpl createSubordinate(ActorFactory factory, Ancestor parent, byte[] bytes)
             throws Exception {
         if (bytes == null)
             return createSubordinate(factory, parent);
-        Jid jid = (Jid) factory.newActor(getMailbox(), parent);
+        IncDesImpl jid = (IncDesImpl) factory.newActor(getMailbox(), parent);
         jid.load(new ReadableBytes(bytes, 0));
         jid.setContainerJid(this);
         return jid;
     }
 
-    final public Jid createSubordinate(String actorType, Ancestor parent, byte[] bytes)
+    final public IncDesImpl createSubordinate(String actorType, Ancestor parent, byte[] bytes)
             throws Exception {
         if (bytes == null)
             return createSubordinate(actorType, parent);
-        Jid jid = (Jid) JAFactoryLocator.newJid(this, actorType, getMailbox(), parent);
+        IncDesImpl jid = (IncDesImpl) JAFactoryLocator.newJid(this, actorType, getMailbox(), parent);
         jid.load(new ReadableBytes(bytes, 0));
         jid.setContainerJid(this);
         return jid;
     }
 
-    final public Jid createSubordinate(ActorFactory factory, ReadableBytes readableBytes)
+    final public IncDesImpl createSubordinate(ActorFactory factory, ReadableBytes readableBytes)
             throws Exception {
         return createSubordinate(factory, getParent(), readableBytes);
     }
 
-    final public Jid createSubordinate(String actorType, ReadableBytes readableBytes)
+    final public IncDesImpl createSubordinate(String actorType, ReadableBytes readableBytes)
             throws Exception {
         return createSubordinate(actorType, getParent(), readableBytes);
     }
 
-    final public Jid createSubordinate(ActorFactory factory, Ancestor parent, ReadableBytes readableBytes)
+    final public IncDesImpl createSubordinate(ActorFactory factory, Ancestor parent, ReadableBytes readableBytes)
             throws Exception {
-        Jid jid = (Jid) factory.newActor(getMailbox(), parent);
+        IncDesImpl jid = (IncDesImpl) factory.newActor(getMailbox(), parent);
         if (readableBytes != null)
             jid.load(readableBytes);
         jid.setContainerJid(this);
         return jid;
     }
 
-    final public Jid createSubordinate(String actorType, Ancestor parent, ReadableBytes readableBytes)
+    final public IncDesImpl createSubordinate(String actorType, Ancestor parent, ReadableBytes readableBytes)
             throws Exception {
-        Jid jid = (Jid) JAFactoryLocator.newJid(this, actorType, getMailbox(), parent);
+        IncDesImpl jid = (IncDesImpl) JAFactoryLocator.newJid(this, actorType, getMailbox(), parent);
         if (readableBytes != null)
             jid.load(readableBytes);
         jid.setContainerJid(this);
@@ -195,7 +195,7 @@ public class Jid extends AncestorBase implements IncDes {
      *
      * @param containerJid The container, or null.
      */
-    public void setContainerJid(Jid containerJid) throws Exception {
+    public void setContainerJid(IncDesImpl containerJid) throws Exception {
         this.containerJid = containerJid;
     }
 
@@ -321,12 +321,12 @@ public class Jid extends AncestorBase implements IncDes {
      * @return a copy of the actor.
      */
     @Override
-    public Jid copyJID(final Mailbox m)
+    public IncDesImpl copyJID(final Mailbox m)
             throws Exception {
         Mailbox mb = m;
         if (mb == null)
             mb = getMailbox();
-        Jid jid = getFactory().newActor(mb, getParent());
+        IncDesImpl jid = getFactory().newActor(mb, getParent());
         jid.load(new ReadableBytes(getSerializedBytes(), 0));
         return jid;
     }

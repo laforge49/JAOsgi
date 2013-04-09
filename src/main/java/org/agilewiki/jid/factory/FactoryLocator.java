@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jid.factory;
 
-import org.agilewiki.jid.Jid;
+import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
 import org.agilewiki.jid.scalar.vlens.StringJid;
 import org.agilewiki.pactor.Actor;
@@ -69,7 +69,7 @@ public interface FactoryLocator extends Actor {
      * @param jidType The jid type.
      * @return The new jid.
      */
-    public Jid newJid(String jidType)
+    public IncDesImpl newJid(String jidType)
             throws Exception;
 
     /**
@@ -79,7 +79,7 @@ public interface FactoryLocator extends Actor {
      * @param mailbox A mailbox which may be shared with other actors, or null.
      * @return The new actor.
      */
-    public Jid newJid(String jidType, Mailbox mailbox)
+    public IncDesImpl newJid(String jidType, Mailbox mailbox)
             throws Exception;
 
     /**
@@ -90,7 +90,7 @@ public interface FactoryLocator extends Actor {
      * @param parent  The parent actor to which unrecognized requests are forwarded, or null.
      * @return The new actor.
      */
-    public Jid newJid(String jidType, Mailbox mailbox, Ancestor parent)
+    public IncDesImpl newJid(String jidType, Mailbox mailbox, Ancestor parent)
             throws Exception;
 
     public StringMapJid<StringJid> getManifestCopy(Mailbox mailbox) throws Exception;

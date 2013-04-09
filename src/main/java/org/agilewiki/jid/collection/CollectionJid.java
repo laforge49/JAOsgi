@@ -27,6 +27,7 @@ import org.agilewiki.incdes.AppendableBytes;
 import org.agilewiki.incdes.Collection;
 import org.agilewiki.incdes.IncDes;
 import org.agilewiki.incdes.ReadableBytes;
+import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.jid.*;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.pactor.Mailbox;
@@ -39,7 +40,7 @@ import org.agilewiki.pautil.Ancestor;
  * A collection of JID actors.
  */
 abstract public class CollectionJid<ENTRY_TYPE extends IncDes>
-        extends Jid
+        extends IncDesImpl
         implements Collection<ENTRY_TYPE> {
 
     /**

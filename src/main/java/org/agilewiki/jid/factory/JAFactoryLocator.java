@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jid.factory;
 
-import org.agilewiki.jid.Jid;
+import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.jid.collection.vlenc.map.MapEntryBase;
 import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
 import org.agilewiki.jid.scalar.vlens.StringJid;
@@ -73,7 +73,7 @@ public class JAFactoryLocator extends AncestorBase implements FactoryLocator {
      * @param jidType The jid type.
      * @return The new jid.
      */
-    public static Jid newJid(Ancestor actor, String jidType)
+    public static IncDesImpl newJid(Ancestor actor, String jidType)
             throws Exception {
         return newJid(actor, jidType, null, null);
     }
@@ -100,7 +100,7 @@ public class JAFactoryLocator extends AncestorBase implements FactoryLocator {
      * @param parent  The parent actor to which unrecognized requests are forwarded, or null.
      * @return The new jid.
      */
-    public static Jid newJid(Ancestor actor, String jidType, Mailbox mailbox, Ancestor parent)
+    public static IncDesImpl newJid(Ancestor actor, String jidType, Mailbox mailbox, Ancestor parent)
             throws Exception {
         FactoryLocator factoryLocator = get(actor);
         if (factoryLocator == null)
@@ -249,7 +249,7 @@ public class JAFactoryLocator extends AncestorBase implements FactoryLocator {
      * @param jidType The jid type.
      * @return The new jid.
      */
-    public Jid newJid(String jidType)
+    public IncDesImpl newJid(String jidType)
             throws Exception {
         return newJid(jidType, null, null);
     }
@@ -261,7 +261,7 @@ public class JAFactoryLocator extends AncestorBase implements FactoryLocator {
      * @param mailbox A mailbox which may be shared with other actors, or null.
      * @return The new jid.
      */
-    public Jid newJid(String jidType, Mailbox mailbox)
+    public IncDesImpl newJid(String jidType, Mailbox mailbox)
             throws Exception {
         return newJid(jidType, mailbox, null);
     }
@@ -274,7 +274,7 @@ public class JAFactoryLocator extends AncestorBase implements FactoryLocator {
      * @param parent  The parent actor to which unrecognized requests are forwarded, or null.
      * @return The new jid.
      */
-    public Jid newJid(String jidType, Mailbox mailbox, Ancestor parent)
+    public IncDesImpl newJid(String jidType, Mailbox mailbox, Ancestor parent)
             throws Exception {
         if (mailbox == null || parent == null) {
             if (mailbox == null) mailbox = getMailbox();
@@ -332,7 +332,7 @@ public class JAFactoryLocator extends AncestorBase implements FactoryLocator {
             throws Exception {
         String factoryKey = jidType + "|" + bundleName + "|" + version;
         if (types.containsKey(factoryKey))
-            throw new IllegalArgumentException("Jid type is already defined: " + jidType);
+            throw new IllegalArgumentException("IncDesImpl type is already defined: " + jidType);
         if (Actor.class.isAssignableFrom(clazz)) {
             Constructor componentConstructor = clazz.getConstructor();
             ActorFactory actorFactory = new _ActorFactory(jidType, componentConstructor);
@@ -358,6 +358,6 @@ public class JAFactoryLocator extends AncestorBase implements FactoryLocator {
         if (old == null) {
             types.put(factoryKey, actorFactory);
         } else if (!old.equals(actorFactory))
-            throw new IllegalArgumentException("Jid type is already defined: " + actorType);
+            throw new IllegalArgumentException("IncDesImpl type is already defined: " + actorType);
     }
 }

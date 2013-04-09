@@ -26,7 +26,7 @@ package org.agilewiki.jid.scalar.vlens.actor;
 import org.agilewiki.incdes.IncDes;
 import org.agilewiki.incdes.Union;
 import org.agilewiki.incdes.AppendableBytes;
-import org.agilewiki.jid.Jid;
+import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.jid.Util;
 import org.agilewiki.jid.factory.ActorFactory;
@@ -39,7 +39,7 @@ import org.agilewiki.pactor.RequestBase;
 import org.agilewiki.pactor.ResponseProcessor;
 import org.agilewiki.pautil.Ancestor;
 
-public class UnionJid extends ScalarJid<String, Jid> implements Union {
+public class UnionJid extends ScalarJid<String, IncDesImpl> implements Union {
 
     public static void registerFactory(final FactoryLocator _factoryLocator,
                                        final String _subActorType,
@@ -72,7 +72,7 @@ public class UnionJid extends ScalarJid<String, Jid> implements Union {
 
     protected ActorFactory[] unionFactories;
     protected int factoryIndex = -1;
-    protected Jid value;
+    protected IncDesImpl value;
 
     private Request<Void> clearReq;
     private Request<IncDes> getPAIDReq;
@@ -126,7 +126,7 @@ public class UnionJid extends ScalarJid<String, Jid> implements Union {
         if (factoryIndex == -1)
             return;
         ActorFactory factory = getUnionFactories()[factoryIndex];
-        value = (Jid) factory.newActor(getMailbox(), getParent());
+        value = (IncDesImpl) factory.newActor(getMailbox(), getParent());
         value.load(readableBytes);
         value.setContainerJid(this);
     }
@@ -186,7 +186,7 @@ public class UnionJid extends ScalarJid<String, Jid> implements Union {
         } else {
             ActorFactory factory = getUnionFactories()[ndx];
             factoryIndex = ndx;
-            value = (Jid) factory.newActor(getMailbox(), getParent());
+            value = (IncDesImpl) factory.newActor(getMailbox(), getParent());
             value.setContainerJid(this);
         }
         change(getSerializedLength() - oldLength);
@@ -230,7 +230,7 @@ public class UnionJid extends ScalarJid<String, Jid> implements Union {
             value.setContainerJid(null);
         ActorFactory factory = getUnionFactories()[ndx];
         factoryIndex = ndx;
-        value = (Jid) factory.newActor(getMailbox(), getParent());
+        value = (IncDesImpl) factory.newActor(getMailbox(), getParent());
         value.setContainerJid(this);
         value.load(new ReadableBytes(bytes, 0));
         change(getSerializedLength() - oldLength);
@@ -307,7 +307,7 @@ public class UnionJid extends ScalarJid<String, Jid> implements Union {
     }
 
     @Override
-    public Jid getValue() throws Exception {
+    public IncDesImpl getValue() throws Exception {
         return value;
     }
 
@@ -342,7 +342,7 @@ public class UnionJid extends ScalarJid<String, Jid> implements Union {
             return getValue();
         }
         if (pathname.startsWith("0/")) {
-            Jid v = getValue();
+            IncDesImpl v = getValue();
             if (v == null)
                 return null;
             return v.resolvePathname(pathname.substring(2));

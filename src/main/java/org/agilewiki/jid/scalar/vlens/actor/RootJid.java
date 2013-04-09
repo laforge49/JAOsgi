@@ -25,7 +25,7 @@ package org.agilewiki.jid.scalar.vlens.actor;
 
 import org.agilewiki.incdes.Root;
 import org.agilewiki.incdes.AppendableBytes;
-import org.agilewiki.jid.Jid;
+import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
 import org.agilewiki.jid.factory.ActorFactory;
@@ -37,7 +37,7 @@ import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
 /**
- * The root Jid actor of a tree of Jid actors.
+ * The root IncDesImpl actor of a tree of IncDesImpl actors.
  * <p/>
  * The serialized form of RootJid does NOT contain its length.
  * The load method simply grabs all the remaining data.
@@ -107,7 +107,7 @@ public class RootJid extends ActorJid implements Root {
      * @param containerJid The container, or null.
      */
     @Override
-    public void setContainerJid(Jid containerJid) {
+    public void setContainerJid(IncDesImpl containerJid) {
         throw new UnsupportedOperationException();
     }
 
@@ -165,12 +165,12 @@ public class RootJid extends ActorJid implements Root {
         manifest = JAFactoryLocator.getManifestCopy(this, getMailbox());
     }
 
-    public Jid copyJID(Mailbox m)
+    public IncDesImpl copyJID(Mailbox m)
             throws Exception {
         Mailbox mb = m;
         if (mb == null)
             mb = getMailbox();
-        Jid jid = getFactory().newActor(mb, getParent());
+        IncDesImpl jid = getFactory().newActor(mb, getParent());
         jid.load(new ReadableBytes(getSerializedBytes(), 0));
         return jid;
     }

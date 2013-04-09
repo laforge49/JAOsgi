@@ -4,6 +4,7 @@ import junit.framework.TestCase;
 import org.agilewiki.incdes.AppendableBytes;
 import org.agilewiki.incdes.IncDes;
 import org.agilewiki.incdes.ReadableBytes;
+import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
@@ -46,7 +47,7 @@ public class JidTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
-            Jid a = (Jid) factoryLocator.newJid(JidFactories.JID_TYPE);
+            IncDesImpl a = (IncDesImpl) factoryLocator.newJid(JidFactories.JID_TYPE);
             byte[] bytes = a.getSerializedBytesReq().call();
             int l = bytes.length;
             System.err.println(l);
@@ -63,7 +64,7 @@ public class JidTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
-            Jid a = (Jid) factoryLocator.newJid(JidFactories.JID_TYPE);
+            IncDesImpl a = (IncDesImpl) factoryLocator.newJid(JidFactories.JID_TYPE);
             a.load(new ReadableBytes(new byte[0], 0));
             int l = a.getSerializedLengthReq().call();
             System.err.println(l);
