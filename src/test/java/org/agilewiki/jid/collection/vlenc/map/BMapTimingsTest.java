@@ -1,6 +1,7 @@
 package org.agilewiki.jid.collection.vlenc.map;
 
 import junit.framework.TestCase;
+import org.agilewiki.incdes.impl.collection.vlenc.map.BMap;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
@@ -35,7 +36,7 @@ public class BMapTimingsTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
-            BMapJid<Integer, PAIntegerImpl> m1 = (BMapJid) factoryLocator.
+            BMap<Integer, PAIntegerImpl> m1 = (BMap) factoryLocator.
                     newJid(JidFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
             int i = 0;
             while (i < s) {
@@ -49,7 +50,7 @@ public class BMapTimingsTest extends TestCase {
             int j = 0;
             i = s / 2;
             while (j < r) {
-                BMapJid m2 = (BMapJid) m1.copyJID(factoryLocator.getMailbox());
+                BMap m2 = (BMap) m1.copyJID(factoryLocator.getMailbox());
                 PAIntegerImpl ij0 = m1.kGet(i);
                 ij0.setValue(-i);
                 m2.getSerializedBytes();

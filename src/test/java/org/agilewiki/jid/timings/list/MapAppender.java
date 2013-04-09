@@ -1,12 +1,12 @@
 package org.agilewiki.jid.timings.list;
 
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jid.collection.vlenc.map.IntegerMapJid;
+import org.agilewiki.incdes.impl.collection.vlenc.map.IntegerSMap;
 
 public class MapAppender extends JLPCActor {
     public int count;
     public int repeat;
-    public IntegerMapJid map;
+    public IntegerSMap map;
 
     protected long time() throws Exception {
         long t0 = System.currentTimeMillis();

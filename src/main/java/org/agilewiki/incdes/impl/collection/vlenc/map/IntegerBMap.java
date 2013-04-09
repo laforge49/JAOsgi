@@ -21,14 +21,14 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.collection.vlenc.map;
+package org.agilewiki.incdes.impl.collection.vlenc.map;
 
 import org.agilewiki.incdes.impl.IncDesImpl;
 
 /**
  * A balanced tree that holds a map with Integer keys.
  */
-public class IntegerBMapJid<VALUE_TYPE extends IncDesImpl> extends BMapJid<Integer, VALUE_TYPE> {
+public class IntegerBMap<VALUE_TYPE extends IncDesImpl> extends BMap<Integer, VALUE_TYPE> {
     /**
      * Converts a string to a key.
      *

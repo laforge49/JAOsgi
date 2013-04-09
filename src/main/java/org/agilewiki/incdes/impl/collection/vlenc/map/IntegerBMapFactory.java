@@ -21,40 +21,55 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.collection.vlenc.map;
+package org.agilewiki.incdes.impl.collection.vlenc.map;
 
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JAFactoryLocator;
+import org.agilewiki.incdes.impl.scalar.vlens.UnionImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
 /**
- * Creates map entries.
+ * Creates IntegerBMap's.
  */
-public class MapEntryFactory extends ActorFactory {
+public class IntegerBMapFactory extends ActorFactory {
+    private final static int NODE_CAPACITY = 28;
 
     public static void registerFactory(FactoryLocator factoryLocator,
                                        String actorType,
-                                       String keyType,
                                        String valueType)
             throws Exception {
-        factoryLocator.registerJidFactory(new MapEntryFactory(
-                actorType, keyType, valueType));
+        UnionImpl.registerFactory(factoryLocator,
+                "U." + actorType, "LM." + actorType, "IM." + actorType);
+
+        factoryLocator.registerJidFactory(new IntegerBMapFactory(
+                actorType, valueType, true, true));
+        factoryLocator.registerJidFactory(new IntegerBMapFactory(
+                "IN." + actorType, valueType, false, false));
+
+        IntegerSMapFactory.registerFactory(
+                factoryLocator, "LM." + actorType, valueType, NODE_CAPACITY);
+        IntegerSMapFactory.registerFactory(
+                factoryLocator, "IM." + actorType, "IN." + actorType, NODE_CAPACITY);
     }
 
-    private String keyType;
     private String valueType;
+    private boolean isRoot = true;
+    private boolean auto = true;
 
     /**
      * Create an ActorFactory.
      *
-     * @param jidType The jid type.
+     * @param jidType   The jid type.
+     * @param valueType The value type.
      */
-    protected MapEntryFactory(String jidType, String keyType, String valueType) {
+    protected IntegerBMapFactory(String jidType, String valueType,
+                                 boolean isRoot, boolean auto) {
         super(jidType);
-        this.keyType = keyType;
         this.valueType = valueType;
+        this.isRoot = isRoot;
+        this.auto = auto;
     }
 
     /**
@@ -63,8 +78,8 @@ public class MapEntryFactory extends ActorFactory {
      * @return The new actor.
      */
     @Override
-    protected MapEntryBase instantiateActor() throws Exception {
-        return new MapEntryBase();
+    protected IntegerBMap instantiateActor() throws Exception {
+        return new IntegerBMap();
     }
 
     /**
@@ -74,13 +89,16 @@ public class MapEntryFactory extends ActorFactory {
      * @param parent  The parent of the new actor.
      * @return The new actor.
      */
-    public MapEntryBase newActor(Mailbox mailbox, Ancestor parent)
+    public IntegerBMap newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
-        MapEntryBase me = (MapEntryBase) super.newActor(mailbox, parent);
+        IntegerBMap imj = (IntegerBMap) super.newActor(mailbox, parent);
         FactoryLocator fl = JAFactoryLocator.get(parent);
-        ActorFactory keyFactory = fl.getJidFactory(keyType);
-        ActorFactory valueFactory = fl.getJidFactory(valueType);
-        me.setFactories(keyFactory, valueFactory);
-        return me;
+        imj.valueFactory = fl.getJidFactory(valueType);
+        imj.nodeCapacity = NODE_CAPACITY;
+        imj.isRoot = isRoot;
+        imj.init();
+        if (auto)
+            imj.setNodeLeaf();
+        return imj;
     }
 }

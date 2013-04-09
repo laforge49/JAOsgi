@@ -21,7 +21,7 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.collection.vlenc.map;
+package org.agilewiki.incdes.impl.collection.vlenc.map;
 
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
@@ -31,9 +31,9 @@ import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
 /**
- * Creates LongBMapJid's.
+ * Creates LongBMap's.
  */
-public class LongBMapJidFactory extends ActorFactory {
+public class LongBMapFactory extends ActorFactory {
     private final static int NODE_CAPACITY = 28;
 
     public static void registerFactory(FactoryLocator factoryLocator,
@@ -43,14 +43,14 @@ public class LongBMapJidFactory extends ActorFactory {
         UnionImpl.registerFactory(factoryLocator,
                 "U." + actorType, "LM." + actorType, "IM." + actorType);
 
-        factoryLocator.registerJidFactory(new LongBMapJidFactory(
+        factoryLocator.registerJidFactory(new LongBMapFactory(
                 actorType, valueType, true, true));
-        factoryLocator.registerJidFactory(new LongBMapJidFactory(
+        factoryLocator.registerJidFactory(new LongBMapFactory(
                 "IN." + actorType, valueType, false, false));
 
-        LongMapJidFactory.registerFactory(
+        LongSMapFactory.registerFactory(
                 factoryLocator, "LM." + actorType, valueType, NODE_CAPACITY);
-        LongMapJidFactory.registerFactory(
+        LongSMapFactory.registerFactory(
                 factoryLocator, "IM." + actorType, "IN." + actorType, NODE_CAPACITY);
     }
 
@@ -64,8 +64,8 @@ public class LongBMapJidFactory extends ActorFactory {
      * @param jidType   The jid type.
      * @param valueType The value type.
      */
-    protected LongBMapJidFactory(String jidType, String valueType,
-                                 boolean isRoot, boolean auto) {
+    protected LongBMapFactory(String jidType, String valueType,
+                              boolean isRoot, boolean auto) {
         super(jidType);
         this.valueType = valueType;
         this.isRoot = isRoot;
@@ -78,8 +78,8 @@ public class LongBMapJidFactory extends ActorFactory {
      * @return The new actor.
      */
     @Override
-    protected LongBMapJid instantiateActor() throws Exception {
-        return new LongBMapJid();
+    protected LongBMap instantiateActor() throws Exception {
+        return new LongBMap();
     }
 
     /**
@@ -89,9 +89,9 @@ public class LongBMapJidFactory extends ActorFactory {
      * @param parent  The parent of the new actor.
      * @return The new actor.
      */
-    public LongBMapJid newActor(Mailbox mailbox, Ancestor parent)
+    public LongBMap newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
-        LongBMapJid imj = (LongBMapJid) super.newActor(mailbox, parent);
+        LongBMap imj = (LongBMap) super.newActor(mailbox, parent);
         FactoryLocator fl = JAFactoryLocator.get(parent);
         imj.valueFactory = fl.getJidFactory(valueType);
         imj.nodeCapacity = NODE_CAPACITY;

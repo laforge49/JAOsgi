@@ -1,6 +1,8 @@
 package org.agilewiki.jid.collection.vlenc.map;
 
 import junit.framework.TestCase;
+import org.agilewiki.incdes.impl.collection.vlenc.map.BMap;
+import org.agilewiki.incdes.impl.collection.vlenc.map.MapEntryImpl;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
@@ -11,13 +13,13 @@ public class StringStringBMapJidTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
-            BMapJid<String, PAStringImpl> m = (BMapJid) factoryLocator.
+            BMap<String, PAStringImpl> m = (BMap) factoryLocator.
                     newJid(JidFactories.STRING_STRING_BMAP_JID_TYPE);
             assertEquals(0, m.size());
             assertTrue(m.kMake("1"));
             assertFalse(m.kMake("1"));
             assertEquals(1, m.size());
-            MapEntryBase<String, PAStringImpl> me = m.iGet(0);
+            MapEntryImpl<String, PAStringImpl> me = m.iGet(0);
             assertEquals("1", me.getKey());
             PAStringImpl v = m.kGet("1");
             assertEquals(v, me.getValue());

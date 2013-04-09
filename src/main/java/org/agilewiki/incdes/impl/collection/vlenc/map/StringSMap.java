@@ -21,14 +21,26 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.collection.vlenc.map;
+package org.agilewiki.incdes.impl.collection.vlenc.map;
 
 import org.agilewiki.incdes.impl.IncDesImpl;
+import org.agilewiki.jid.factory.ActorFactory;
+import org.agilewiki.jid.factory.JAFactoryLocator;
+import org.agilewiki.jid.factory.JidFactories;
 
 /**
- * A balanced tree that holds a map with String keys.
+ * Holds a map with String keys.
  */
-public class StringBMapJid<VALUE_TYPE extends IncDesImpl> extends BMapJid<String, VALUE_TYPE> {
+public class StringSMap<VALUE_TYPE extends IncDesImpl> extends SMap<String, VALUE_TYPE> {
+    /**
+     * Returns the IncDesFactory for the key.
+     *
+     * @return The IncDesFactory for the key.
+     */
+    final protected ActorFactory getKeyFactory() throws Exception {
+        return JAFactoryLocator.getActorFactory(this, JidFactories.STRING_JID_TYPE);
+    }
+
     /**
      * Converts a string to a key.
      *

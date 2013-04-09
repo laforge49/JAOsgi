@@ -21,18 +21,30 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.collection.vlenc.map;
+package org.agilewiki.incdes.impl.collection.vlenc.map;
 
 import org.agilewiki.incdes.impl.IncDesImpl;
+import org.agilewiki.jid.factory.ActorFactory;
+import org.agilewiki.jid.factory.JAFactoryLocator;
+import org.agilewiki.jid.factory.JidFactories;
 
 /**
- * A balanced tree that holds a map with Long keys.
+ * Holds a map with Long keys.
  */
-public class LongBMapJid<VALUE_TYPE extends IncDesImpl> extends BMapJid<Long, VALUE_TYPE> {
+public class LongSMap<VALUE_TYPE extends IncDesImpl> extends SMap<Long, VALUE_TYPE> {
+    /**
+     * Returns the IncDesFactory for the key.
+     *
+     * @return The IncDesFactory for the key.
+     */
+    final protected ActorFactory getKeyFactory() throws Exception {
+        return JAFactoryLocator.getActorFactory(this, JidFactories.LONG_JID_TYPE);
+    }
+
     /**
      * Converts a string to a key.
      *
-     * @param skey The string to be converted.
+     * @param skey The Long to be converted.
      * @return The key.
      */
     final protected Long stringToKey(String skey) {

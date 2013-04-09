@@ -24,8 +24,8 @@
 package org.agilewiki.jid.factory;
 
 import org.agilewiki.incdes.impl.IncDesImpl;
-import org.agilewiki.jid.collection.vlenc.map.MapEntryBase;
-import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
+import org.agilewiki.incdes.impl.collection.vlenc.map.MapEntryImpl;
+import org.agilewiki.incdes.impl.collection.vlenc.map.StringSMap;
 import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
 import org.agilewiki.pactor.Actor;
 import org.agilewiki.pactor.Mailbox;
@@ -108,7 +108,7 @@ public class JAFactoryLocator extends AncestorBase implements FactoryLocator {
         return factoryLocator.newJid(jidType, mailbox, parent);
     }
 
-    public static StringMapJid<PAStringImpl> getManifestCopy(Ancestor actor, Mailbox mailbox)
+    public static StringSMap<PAStringImpl> getManifestCopy(Ancestor actor, Mailbox mailbox)
             throws Exception {
         FactoryLocator factoryLocator = get(actor);
         if (factoryLocator == null)
@@ -116,7 +116,7 @@ public class JAFactoryLocator extends AncestorBase implements FactoryLocator {
         return factoryLocator.getManifestCopy(mailbox);
     }
 
-    public static void unknownManifestEntries(Ancestor actor, StringMapJid<PAStringImpl> m)
+    public static void unknownManifestEntries(Ancestor actor, StringSMap<PAStringImpl> m)
             throws Exception {
         FactoryLocator factoryLocator = get(actor);
         if (factoryLocator == null)
@@ -124,7 +124,7 @@ public class JAFactoryLocator extends AncestorBase implements FactoryLocator {
         factoryLocator.unknownManifestEntries(m);
     }
 
-    public static boolean validateManifest(Ancestor actor, StringMapJid<PAStringImpl> m)
+    public static boolean validateManifest(Ancestor actor, StringSMap<PAStringImpl> m)
             throws Exception {
         FactoryLocator factoryLocator = get(actor);
         if (factoryLocator == null)
@@ -132,7 +132,7 @@ public class JAFactoryLocator extends AncestorBase implements FactoryLocator {
         return factoryLocator.validateManifest(m);
     }
 
-    public static void loadBundles(Ancestor actor, StringMapJid<PAStringImpl> m)
+    public static void loadBundles(Ancestor actor, StringSMap<PAStringImpl> m)
             throws Exception {
         FactoryLocator factoryLocator = get(actor);
         if (factoryLocator == null)
@@ -145,7 +145,7 @@ public class JAFactoryLocator extends AncestorBase implements FactoryLocator {
     private String version = "";
     private String location = "";
     private String locatorKey;
-    private StringMapJid<PAStringImpl> manifest;
+    private StringSMap<PAStringImpl> manifest;
 
     /**
      * A table which maps type names to actor factories.
@@ -191,10 +191,10 @@ public class JAFactoryLocator extends AncestorBase implements FactoryLocator {
     }
 
     @Override
-    public StringMapJid<PAStringImpl> getManifestCopy(Mailbox mailbox) throws Exception {
+    public StringSMap<PAStringImpl> getManifestCopy(Mailbox mailbox) throws Exception {
         if (isLocked())
             return manifest;
-        manifest = (StringMapJid<PAStringImpl>) newJid(JidFactories.STRING_STRING_MAP_JID_TYPE);
+        manifest = (StringSMap<PAStringImpl>) newJid(JidFactories.STRING_STRING_MAP_JID_TYPE);
         manifest.kMake(getLocatorKey());
         PAStringImpl sj = manifest.kGet(getLocatorKey());
         sj.setValue(getLocation());
@@ -203,14 +203,14 @@ public class JAFactoryLocator extends AncestorBase implements FactoryLocator {
             LocateLocalActorFactories llaf = it.next();
             llaf.updateManifest(manifest);
         }
-        return (StringMapJid<PAStringImpl>) manifest.copyJID(mailbox);
+        return (StringSMap<PAStringImpl>) manifest.copyJID(mailbox);
     }
 
-    public void updateManifest(StringMapJid<PAStringImpl> m) throws Exception {
+    public void updateManifest(StringSMap<PAStringImpl> m) throws Exception {
         int s = manifest.size();
         int i = 0;
         while (i < s) {
-            MapEntryBase<String, PAStringImpl> me = (MapEntryBase) manifest.iGet(i);
+            MapEntryImpl<String, PAStringImpl> me = (MapEntryImpl) manifest.iGet(i);
             String locatorKey = me.getKey();
             String location = me.getValue().getValue();
             m.kMake(locatorKey);
@@ -221,7 +221,7 @@ public class JAFactoryLocator extends AncestorBase implements FactoryLocator {
     }
 
     @Override
-    public void unknownManifestEntries(StringMapJid<PAStringImpl> m) throws Exception {
+    public void unknownManifestEntries(StringSMap<PAStringImpl> m) throws Exception {
         m.kRemove(getLocatorKey());
         Iterator<LocateLocalActorFactories> it = factoryImports.iterator();
         while (it.hasNext()) {
@@ -231,14 +231,14 @@ public class JAFactoryLocator extends AncestorBase implements FactoryLocator {
     }
 
     @Override
-    public boolean validateManifest(StringMapJid<PAStringImpl> m) throws Exception {
-        StringMapJid<PAStringImpl> mc = (StringMapJid<PAStringImpl>) m.copyJID(getMailbox());
+    public boolean validateManifest(StringSMap<PAStringImpl> m) throws Exception {
+        StringSMap<PAStringImpl> mc = (StringSMap<PAStringImpl>) m.copyJID(getMailbox());
         unknownManifestEntries(mc);
         return mc.size() == 0;
     }
 
     @Override
-    public void loadBundles(StringMapJid<PAStringImpl> m) throws Exception {
+    public void loadBundles(StringSMap<PAStringImpl> m) throws Exception {
         if (!validateManifest(m))
             throw new UnsupportedOperationException("Did not load " + m.size() + " bundles");
     }

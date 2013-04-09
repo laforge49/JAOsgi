@@ -21,7 +21,7 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.collection.vlenc.map;
+package org.agilewiki.incdes.impl.collection.vlenc.map;
 
 import org.agilewiki.incdes.IncDes;
 import org.agilewiki.incdes.MapEntry;
@@ -39,7 +39,7 @@ import org.agilewiki.pautil.Ancestor;
 /**
  * Holds a map.
  */
-abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends IncDes>
+abstract public class SMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends IncDes>
         extends SList<MapEntry<KEY_TYPE, VALUE_TYPE>>
         implements PAMap<KEY_TYPE, VALUE_TYPE>, Collection<MapEntry<KEY_TYPE, VALUE_TYPE>> {
 
@@ -107,7 +107,7 @@ abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE e
         int high = size() - 1;
         while (low <= high) {
             int mid = (low + high) >>> 1;
-            MapEntryBase<KEY_TYPE, VALUE_TYPE> midVal = (MapEntryBase<KEY_TYPE, VALUE_TYPE>) iGet(mid);
+            MapEntryImpl<KEY_TYPE, VALUE_TYPE> midVal = (MapEntryImpl<KEY_TYPE, VALUE_TYPE>) iGet(mid);
             int c = midVal.compareKeyTo(key);
             if (c < 0)
                 low = mid + 1;
@@ -191,7 +191,7 @@ abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE e
             return false;
         i = -i - 1;
         iAdd(i);
-        MapEntryBase<KEY_TYPE, VALUE_TYPE> me = (MapEntryBase<KEY_TYPE, VALUE_TYPE>) iGet(i);
+        MapEntryImpl<KEY_TYPE, VALUE_TYPE> me = (MapEntryImpl<KEY_TYPE, VALUE_TYPE>) iGet(i);
         me.setKey(key);
         return true;
     }
@@ -221,12 +221,12 @@ abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE e
         return true;
     }
 
-    final public MapEntryBase<KEY_TYPE, VALUE_TYPE> kGetEntry(KEY_TYPE key)
+    final public MapEntryImpl<KEY_TYPE, VALUE_TYPE> kGetEntry(KEY_TYPE key)
             throws Exception {
         int i = search(key);
         if (i < 0)
             return null;
-        return (MapEntryBase<KEY_TYPE, VALUE_TYPE>) iGet(i);
+        return (MapEntryImpl<KEY_TYPE, VALUE_TYPE>) iGet(i);
     }
 
     @Override
@@ -248,7 +248,7 @@ abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE e
     @Override
     final public VALUE_TYPE kGet(KEY_TYPE key)
             throws Exception {
-        MapEntryBase<KEY_TYPE, VALUE_TYPE> entry = kGetEntry(key);
+        MapEntryImpl<KEY_TYPE, VALUE_TYPE> entry = kGetEntry(key);
         if (entry == null)
             return null;
         return entry.getValue();
@@ -271,12 +271,12 @@ abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE e
      * @return The matching jid, or null.
      */
     @Override
-    final public MapEntryBase<KEY_TYPE, VALUE_TYPE> getHigher(KEY_TYPE key)
+    final public MapEntryImpl<KEY_TYPE, VALUE_TYPE> getHigher(KEY_TYPE key)
             throws Exception {
         int i = higher(key);
         if (i < 0)
             return null;
-        return (MapEntryBase<KEY_TYPE, VALUE_TYPE>) iGet(i);
+        return (MapEntryImpl<KEY_TYPE, VALUE_TYPE>) iGet(i);
     }
 
     @Override
@@ -296,12 +296,12 @@ abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE e
      * @return The matching jid, or null.
      */
     @Override
-    final public MapEntryBase<KEY_TYPE, VALUE_TYPE> getCeiling(KEY_TYPE key)
+    final public MapEntryImpl<KEY_TYPE, VALUE_TYPE> getCeiling(KEY_TYPE key)
             throws Exception {
         int i = ceiling(key);
         if (i < 0)
             return null;
-        return (MapEntryBase<KEY_TYPE, VALUE_TYPE>) iGet(i);
+        return (MapEntryImpl<KEY_TYPE, VALUE_TYPE>) iGet(i);
     }
 
     @Override
@@ -357,14 +357,14 @@ abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE e
         return jid.resolvePathname(pathname.substring(s + 1));
     }
 
-    public MapEntryBase<KEY_TYPE, VALUE_TYPE> getFirst()
+    public MapEntryImpl<KEY_TYPE, VALUE_TYPE> getFirst()
             throws Exception {
-        return (MapEntryBase<KEY_TYPE, VALUE_TYPE>) iGet(0);
+        return (MapEntryImpl<KEY_TYPE, VALUE_TYPE>) iGet(0);
     }
 
-    public MapEntryBase<KEY_TYPE, VALUE_TYPE> getLast()
+    public MapEntryImpl<KEY_TYPE, VALUE_TYPE> getLast()
             throws Exception {
-        return (MapEntryBase<KEY_TYPE, VALUE_TYPE>) iGet(-1);
+        return (MapEntryImpl<KEY_TYPE, VALUE_TYPE>) iGet(-1);
     }
 
     public KEY_TYPE getLastKey()
@@ -386,7 +386,7 @@ abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE e
     @Override
     public void kSet(KEY_TYPE key, byte[] bytes)
             throws Exception {
-        MapEntryBase<KEY_TYPE, VALUE_TYPE> entry = kGetEntry(key);
+        MapEntryImpl<KEY_TYPE, VALUE_TYPE> entry = kGetEntry(key);
         if (entry == null)
             throw new IllegalArgumentException("not present: " + key);
         entry.setValueBytes(bytes);

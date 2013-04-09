@@ -21,55 +21,53 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.collection.vlenc.map;
+package org.agilewiki.incdes.impl.collection.vlenc.map;
 
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JAFactoryLocator;
+import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.incdes.impl.scalar.vlens.UnionImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
 /**
- * Creates IntegerBMapJid's.
+ * Creates LongSMap's.
  */
-public class IntegerBMapJidFactory extends ActorFactory {
-    private final static int NODE_CAPACITY = 28;
+public class LongSMapFactory extends ActorFactory {
 
     public static void registerFactory(FactoryLocator factoryLocator,
                                        String actorType,
                                        String valueType)
             throws Exception {
+        registerFactory(factoryLocator, actorType, valueType, 10);
+    }
+
+    public static void registerFactory(FactoryLocator factoryLocator,
+                                       String actorType,
+                                       String valueType,
+                                       int initialCapacity)
+            throws Exception {
         UnionImpl.registerFactory(factoryLocator,
-                "U." + actorType, "LM." + actorType, "IM." + actorType);
-
-        factoryLocator.registerJidFactory(new IntegerBMapJidFactory(
-                actorType, valueType, true, true));
-        factoryLocator.registerJidFactory(new IntegerBMapJidFactory(
-                "IN." + actorType, valueType, false, false));
-
-        IntegerMapJidFactory.registerFactory(
-                factoryLocator, "LM." + actorType, valueType, NODE_CAPACITY);
-        IntegerMapJidFactory.registerFactory(
-                factoryLocator, "IM." + actorType, "IN." + actorType, NODE_CAPACITY);
+                "E." + actorType, JidFactories.LONG_JID_TYPE, valueType);
+        factoryLocator.registerJidFactory(new LongSMapFactory(
+                actorType, valueType, initialCapacity));
     }
 
     private String valueType;
-    private boolean isRoot = true;
-    private boolean auto = true;
+    private int initialCapacity = 10;
 
     /**
      * Create an ActorFactory.
      *
-     * @param jidType   The jid type.
-     * @param valueType The value type.
+     * @param jidType         The jid type.
+     * @param valueType       The value type.
+     * @param initialCapacity The initial capacity.
      */
-    protected IntegerBMapJidFactory(String jidType, String valueType,
-                                    boolean isRoot, boolean auto) {
+    protected LongSMapFactory(String jidType, String valueType, int initialCapacity) {
         super(jidType);
         this.valueType = valueType;
-        this.isRoot = isRoot;
-        this.auto = auto;
+        this.initialCapacity = initialCapacity;
     }
 
     /**
@@ -78,8 +76,9 @@ public class IntegerBMapJidFactory extends ActorFactory {
      * @return The new actor.
      */
     @Override
-    protected IntegerBMapJid instantiateActor() throws Exception {
-        return new IntegerBMapJid();
+    protected LongSMap instantiateActor()
+            throws Exception {
+        return new LongSMap();
     }
 
     /**
@@ -89,16 +88,12 @@ public class IntegerBMapJidFactory extends ActorFactory {
      * @param parent  The parent of the new actor.
      * @return The new actor.
      */
-    public IntegerBMapJid newActor(Mailbox mailbox, Ancestor parent)
+    public LongSMap newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
-        IntegerBMapJid imj = (IntegerBMapJid) super.newActor(mailbox, parent);
+        LongSMap imj = (LongSMap) super.newActor(mailbox, parent);
         FactoryLocator fl = JAFactoryLocator.get(parent);
         imj.valueFactory = fl.getJidFactory(valueType);
-        imj.nodeCapacity = NODE_CAPACITY;
-        imj.isRoot = isRoot;
-        imj.init();
-        if (auto)
-            imj.setNodeLeaf();
+        imj.initialCapacity = initialCapacity;
         return imj;
     }
 }

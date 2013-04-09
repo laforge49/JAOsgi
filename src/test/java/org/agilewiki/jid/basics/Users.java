@@ -1,8 +1,8 @@
 package org.agilewiki.jid.basics;
 
 import org.agilewiki.incdes.IncDes;
-import org.agilewiki.jid.collection.vlenc.map.MapEntryBase;
-import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
+import org.agilewiki.incdes.impl.collection.vlenc.map.MapEntryImpl;
+import org.agilewiki.incdes.impl.collection.vlenc.map.StringSMap;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JAFactoryLocator;
@@ -14,7 +14,7 @@ import org.agilewiki.pautil.Ancestor;
 
 import java.util.Iterator;
 
-public class Users extends StringMapJid implements Main {
+public class Users extends StringSMap implements Main {
 
     public static void register(FactoryLocator factoryLocator) throws Exception {
         factoryLocator.registerJidFactory(new UsersFactory("users"));
@@ -47,7 +47,7 @@ public class Users extends StringMapJid implements Main {
         initializeList();
         Iterator<IncDes> it = list.iterator();
         while (it.hasNext()) {
-            MapEntryBase<String, PAStringImpl> tj = (MapEntryBase) it.next();
+            MapEntryImpl<String, PAStringImpl> tj = (MapEntryImpl) it.next();
             String name = tj.getKey();
             PAStringImpl email = (PAStringImpl) tj.getValue();
             System.out.println("name: " + name + ", email: " + email.getValue());

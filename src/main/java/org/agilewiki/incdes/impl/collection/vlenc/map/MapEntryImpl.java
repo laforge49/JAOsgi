@@ -21,7 +21,7 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.collection.vlenc.map;
+package org.agilewiki.incdes.impl.collection.vlenc.map;
 
 import org.agilewiki.incdes.AppBase;
 import org.agilewiki.incdes.MapEntry;
@@ -32,7 +32,7 @@ import org.agilewiki.incdes.impl.scalar.Scalar;
 /**
  * A map is, in part, a list of map entries.
  */
-public class MapEntryBase<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE>
+public class MapEntryImpl<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE>
         extends AppBase
         implements MapEntry<KEY_TYPE, VALUE_TYPE> {
 

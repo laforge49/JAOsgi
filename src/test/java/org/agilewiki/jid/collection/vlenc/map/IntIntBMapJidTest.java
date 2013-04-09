@@ -1,6 +1,7 @@
 package org.agilewiki.jid.collection.vlenc.map;
 
 import junit.framework.TestCase;
+import org.agilewiki.incdes.impl.collection.vlenc.map.BMap;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
@@ -11,7 +12,7 @@ public class IntIntBMapJidTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
-            BMapJid<Integer, PAIntegerImpl> m = (BMapJid) factoryLocator.
+            BMap<Integer, PAIntegerImpl> m = (BMap) factoryLocator.
                     newJid(JidFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
             m.kMake(0);
             m.kMake(1);
@@ -22,7 +23,7 @@ public class IntIntBMapJidTest extends TestCase {
             sj0.setValue(0);
             sj1.setValue(1);
             sj2.setValue(2);
-            BMapJid<Integer, PAIntegerImpl> n = (BMapJid) m.copyJID(factoryLocator.getMailbox());
+            BMap<Integer, PAIntegerImpl> n = (BMap) m.copyJID(factoryLocator.getMailbox());
             PAIntegerImpl s0 = n.kGet(0);
             PAIntegerImpl s1 = n.kGet(1);
             PAIntegerImpl s2 = n.kGet(2);
@@ -38,7 +39,7 @@ public class IntIntBMapJidTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
-            BMapJid<Integer, PAIntegerImpl> m = (BMapJid) factoryLocator.
+            BMap<Integer, PAIntegerImpl> m = (BMap) factoryLocator.
                     newJid(JidFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
             int i = 0;
             while (i < 28) {
@@ -63,7 +64,7 @@ public class IntIntBMapJidTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
-            BMapJid<Integer, PAIntegerImpl> m = (BMapJid) factoryLocator.
+            BMap<Integer, PAIntegerImpl> m = (BMap) factoryLocator.
                     newJid(JidFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
             int i = 0;
             while (i < 41) {
@@ -88,7 +89,7 @@ public class IntIntBMapJidTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
-            BMapJid<Integer, PAIntegerImpl> m = (BMapJid) factoryLocator.
+            BMap<Integer, PAIntegerImpl> m = (BMap) factoryLocator.
                     newJid(JidFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
             int i = 0;
             while (i < 391) {
@@ -113,7 +114,7 @@ public class IntIntBMapJidTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
-            BMapJid<Integer, PAIntegerImpl> m = (BMapJid) factoryLocator.
+            BMap<Integer, PAIntegerImpl> m = (BMap) factoryLocator.
                     newJid(JidFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
             int i = 0;
             while (i < 10000) {
@@ -138,7 +139,7 @@ public class IntIntBMapJidTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
-            BMapJid<Integer, PAIntegerImpl> m = (BMapJid) factoryLocator.
+            BMap<Integer, PAIntegerImpl> m = (BMap) factoryLocator.
                     newJid(JidFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
             int i = 0;
             while (i < 10000) {
@@ -163,7 +164,7 @@ public class IntIntBMapJidTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
-            BMapJid<Integer, PAIntegerImpl> m = (BMapJid) factoryLocator.
+            BMap<Integer, PAIntegerImpl> m = (BMap) factoryLocator.
                     newJid(JidFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
             int i = 0;
             while (i < 10000) {
@@ -188,7 +189,7 @@ public class IntIntBMapJidTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
-            BMapJid<Integer, PAIntegerImpl> m = (BMapJid) factoryLocator.
+            BMap<Integer, PAIntegerImpl> m = (BMap) factoryLocator.
                     newJid(JidFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
             int i = 0;
             while (i < 10000) {
@@ -213,7 +214,7 @@ public class IntIntBMapJidTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
-            BMapJid<Integer, PAIntegerImpl> m = (BMapJid) factoryLocator.
+            BMap<Integer, PAIntegerImpl> m = (BMap) factoryLocator.
                     newJid(JidFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
             int i = 0;
             while (i < 10000) {

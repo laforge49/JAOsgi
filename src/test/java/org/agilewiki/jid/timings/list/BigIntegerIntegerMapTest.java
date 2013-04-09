@@ -2,7 +2,7 @@ package org.agilewiki.jid.timings.list;
 
 import junit.framework.TestCase;
 import org.agilewiki.jactor.old.JAFuture;
-import org.agilewiki.jid.collection.vlenc.map.IntegerMapJid;
+import org.agilewiki.incdes.impl.collection.vlenc.map.IntegerSMap;
 import org.agilewiki.jid.collection.vlenc.map.KMake;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
@@ -20,7 +20,7 @@ public class BigIntegerIntegerMapTest extends TestCase {
         SetActor setMap = new SetActor(
                 JidFactories.INTEGER_INTEGER_MAP_JID_TYPE);
         setMap.send(future, root);
-        IntegerMapJid map = (IntegerMapJid) GetActor.req.send(future, root);
+        IntegerSMap map = (IntegerSMap) GetActor.req.send(future, root);
 
         int i = 0;
         while (i < 10) {
@@ -39,7 +39,7 @@ public class BigIntegerIntegerMapTest extends TestCase {
         SetActor setMap = new SetActor(
                 JidFactories.INTEGER_INTEGER_MAP_JID_TYPE);
         setMap.send(future, root);
-        IntegerMapJid map = (IntegerMapJid) GetActor.req.send(future, root);
+        IntegerSMap map = (IntegerSMap) GetActor.req.send(future, root);
 
         MapAppender ba = new MapAppender();
         ba.initialize(factoryLocator.getMailbox(), factoryLocator);
@@ -73,7 +73,7 @@ public class BigIntegerIntegerMapTest extends TestCase {
         SetActor setMap = new SetActor(
                 JidFactories.INTEGER_INTEGER_MAP_JID_TYPE);
         setMap.send(future, root);
-        IntegerMapJid map = (IntegerMapJid) GetActor.req.send(future, root);
+        IntegerSMap map = (IntegerSMap) GetActor.req.send(future, root);
 
         MapAppender ba = new MapAppender();
         ba.initialize(factoryLocator.getMailbox(), factoryLocator);
@@ -109,7 +109,7 @@ public class BigIntegerIntegerMapTest extends TestCase {
         SetActor setMap = new SetActor(
                 JidFactories.INTEGER_INTEGER_MAP_JID_TYPE);
         setMap.send(future, root);
-        IntegerMapJid map = (IntegerMapJid) GetActor.req.send(future, root);
+        IntegerSMap map = (IntegerSMap) GetActor.req.send(future, root);
 
         MapSAppender ba = new MapSAppender();
         ba.initialize(factoryLocator.getMailbox(), factoryLocator);
@@ -145,7 +145,7 @@ public class BigIntegerIntegerMapTest extends TestCase {
         SetActor setMap = new SetActor(
                 JidFactories.INTEGER_INTEGER_MAP_JID_TYPE);
         setMap.send(future, root);
-        IntegerMapJid map = (IntegerMapJid) GetActor.req.send(future, root);
+        IntegerSMap map = (IntegerSMap) GetActor.req.send(future, root);
 
         MapDAppender ba = new MapDAppender();
         ba.initialize(factoryLocator.getMailbox(), factoryLocator);
@@ -181,7 +181,7 @@ public class BigIntegerIntegerMapTest extends TestCase {
         SetActor setMap = new SetActor(
                 JidFactories.INTEGER_INTEGER_MAP_JID_TYPE);
         setMap.send(future, root);
-        IntegerMapJid map = (IntegerMapJid) GetActor.req.send(future, root);
+        IntegerSMap map = (IntegerSMap) GetActor.req.send(future, root);
 
         MapUAppender ba = new MapUAppender();
         ba.initialize(factoryLocator.getMailbox(), factoryLocator);

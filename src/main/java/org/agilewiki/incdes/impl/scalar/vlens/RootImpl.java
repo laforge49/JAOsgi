@@ -27,7 +27,7 @@ import org.agilewiki.incdes.Root;
 import org.agilewiki.incdes.AppendableBytes;
 import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.incdes.ReadableBytes;
-import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
+import org.agilewiki.incdes.impl.collection.vlenc.map.StringSMap;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JAFactoryLocator;
@@ -57,7 +57,7 @@ public class RootImpl extends BoxImpl implements Root {
         });
     }
 
-    private StringMapJid<PAStringImpl> manifest;
+    private StringSMap<PAStringImpl> manifest;
 
     /**
      * Save the serialized data into a byte array.
@@ -174,8 +174,8 @@ public class RootImpl extends BoxImpl implements Root {
         return jid;
     }
 
-    public StringMapJid<PAStringImpl> getManifestJidCopy(Mailbox mailbox) throws Exception {
-        return (StringMapJid<PAStringImpl>) manifest.copyJID(mailbox);
+    public StringSMap<PAStringImpl> getManifestJidCopy(Mailbox mailbox) throws Exception {
+        return (StringSMap<PAStringImpl>) manifest.copyJID(mailbox);
     }
 
     public boolean validateManifest() throws Exception {

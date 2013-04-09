@@ -21,7 +21,7 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.collection.vlenc.map;
+package org.agilewiki.incdes.impl.collection.vlenc.map;
 
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
@@ -32,9 +32,9 @@ import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
 /**
- * Creates LongMapJid's.
+ * Creates StringSMap's.
  */
-public class LongMapJidFactory extends ActorFactory {
+public class StringSMapFactory extends ActorFactory {
 
     public static void registerFactory(FactoryLocator factoryLocator,
                                        String actorType,
@@ -49,8 +49,8 @@ public class LongMapJidFactory extends ActorFactory {
                                        int initialCapacity)
             throws Exception {
         UnionImpl.registerFactory(factoryLocator,
-                "E." + actorType, JidFactories.LONG_JID_TYPE, valueType);
-        factoryLocator.registerJidFactory(new LongMapJidFactory(
+                "E." + actorType, JidFactories.STRING_JID_TYPE, valueType);
+        factoryLocator.registerJidFactory(new StringSMapFactory(
                 actorType, valueType, initialCapacity));
     }
 
@@ -64,7 +64,7 @@ public class LongMapJidFactory extends ActorFactory {
      * @param valueType       The value type.
      * @param initialCapacity The initial capacity.
      */
-    protected LongMapJidFactory(String jidType, String valueType, int initialCapacity) {
+    protected StringSMapFactory(String jidType, String valueType, int initialCapacity) {
         super(jidType);
         this.valueType = valueType;
         this.initialCapacity = initialCapacity;
@@ -76,9 +76,9 @@ public class LongMapJidFactory extends ActorFactory {
      * @return The new actor.
      */
     @Override
-    protected LongMapJid instantiateActor()
+    protected StringSMap instantiateActor()
             throws Exception {
-        return new LongMapJid();
+        return new StringSMap();
     }
 
     /**
@@ -88,9 +88,9 @@ public class LongMapJidFactory extends ActorFactory {
      * @param parent  The parent of the new actor.
      * @return The new actor.
      */
-    public LongMapJid newActor(Mailbox mailbox, Ancestor parent)
+    public StringSMap newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
-        LongMapJid imj = (LongMapJid) super.newActor(mailbox, parent);
+        StringSMap imj = (StringSMap) super.newActor(mailbox, parent);
         FactoryLocator fl = JAFactoryLocator.get(parent);
         imj.valueFactory = fl.getJidFactory(valueType);
         imj.initialCapacity = initialCapacity;
