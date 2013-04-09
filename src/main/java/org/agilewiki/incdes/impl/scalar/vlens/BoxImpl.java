@@ -37,9 +37,6 @@ import org.agilewiki.pautil.Ancestor;
  */
 public class BoxImpl
         extends VLenScalar<String, IncDesImpl> implements Box {
-    public static BoxImpl create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (BoxImpl) Util.newJid(actor, IncDesFactories.ACTOR_JID_TYPE, mailbox, parent);
-    }
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {

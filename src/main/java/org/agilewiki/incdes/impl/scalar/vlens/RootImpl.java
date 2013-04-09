@@ -37,9 +37,6 @@ import org.agilewiki.pautil.Ancestor;
  * The load method simply grabs all the remaining data.
  */
 public class RootImpl extends BoxImpl implements Root {
-    public static RootImpl create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (RootImpl) Util.newJid(actor, IncDesFactories.ROOT_JID_TYPE, mailbox, parent);
-    }
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {

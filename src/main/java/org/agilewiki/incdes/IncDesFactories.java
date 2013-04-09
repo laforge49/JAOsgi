@@ -35,7 +35,9 @@ import org.agilewiki.incdes.impl.scalar.vlens.BoxImpl;
 import org.agilewiki.incdes.impl.scalar.vlens.BytesImpl;
 import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
 import org.agilewiki.incdes.impl.scalar.vlens.RootImpl;
+import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.MailboxFactory;
+import org.agilewiki.pautil.Ancestor;
 
 /**
  * <p>
@@ -62,50 +64,90 @@ final public class IncDesFactories extends LocateLocalActorFactories {
      */
     public final static String JID_TYPE = "JID";
 
+    public static IncDes createIncDes(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
+        return (IncDes) Util.newJid(actor, JID_TYPE, mailbox, parent);
+    }
+
     /**
      * The name of the PABooleanImpl actor.
      */
     public final static String BOOLEAN_JID_TYPE = "BOOLEAN_JID";
+
+    public static PABoolean createPABoolean(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
+        return (PABoolean) Util.newJid(actor, BOOLEAN_JID_TYPE, mailbox, parent);
+    }
 
     /**
      * The name of the PAIntegerImpl actor.
      */
     public final static String INTEGER_JID_TYPE = "INT_JID";
 
+    public static PAInteger createPAInteger(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
+        return (PAInteger) Util.newJid(actor, INTEGER_JID_TYPE, mailbox, parent);
+    }
+
     /**
      * The name of the PALongImpl actor.
      */
     public final static String LONG_JID_TYPE = "LONG_JID";
+
+    public static PALong createPALong(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
+        return (PALong) Util.newJid(actor, LONG_JID_TYPE, mailbox, parent);
+    }
 
     /**
      * The name of the PAFloatImpl actor.
      */
     public final static String FLOAT_JID_TYPE = "FLOAT_JID";
 
+    public static PAFloat createPAFloat(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
+        return (PAFloat) Util.newJid(actor, FLOAT_JID_TYPE, mailbox, parent);
+    }
+
     /**
      * The name of the PADoubleImpl actor.
      */
     public final static String DOUBLE_JID_TYPE = "DOUBLE_JID";
+
+    public static PADouble createPADouble(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
+        return (PADouble) Util.newJid(actor, DOUBLE_JID_TYPE, mailbox, parent);
+    }
 
     /**
      * The name of the JidJid actor.
      */
     public final static String ACTOR_JID_TYPE = "ACTOR_JID";
 
+    public static Box createBox(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
+        return (Box) Util.newJid(actor, ACTOR_JID_TYPE, mailbox, parent);
+    }
+
     /**
      * The name of the JidJid actor.
      */
     public final static String ROOT_JID_TYPE = "ROOT_JID";
+
+    public static Root createRoot(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
+        return (Root) Util.newJid(actor, ROOT_JID_TYPE, mailbox, parent);
+    }
 
     /**
      * The name of the String actor.
      */
     public final static String STRING_JID_TYPE = "STRING_JID";
 
+    public static PAString createPAString(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
+        return (PAString) Util.newJid(actor, STRING_JID_TYPE, mailbox, parent);
+    }
+
     /**
      * The name of the BytesImpl actor.
      */
     public final static String BYTES_JID_TYPE = "BYTES_JID";
+
+    public static Bytes createBytes(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
+        return (Bytes) Util.newJid(actor, BYTES_JID_TYPE, mailbox, parent);
+    }
 
     /**
      * The name of the StringBListJid actor.

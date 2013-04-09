@@ -8,7 +8,7 @@ public class JidTest extends TestCase {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator(1);
         Context jaBundleContext = Context.get(factoryLocator);
         try {
-            IncDes a = factoryLocator.newJid(IncDesFactories.JID_TYPE);
+            IncDes a = IncDesFactories.createIncDes(factoryLocator, null, null);
             int l = a.getSerializedLengthReq().call();
             System.err.println(l);
             assertEquals(l, 0);
@@ -24,7 +24,7 @@ public class JidTest extends TestCase {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator(1);
         Context jaBundleContext = Context.get(factoryLocator);
         try {
-            IncDes a = factoryLocator.newJid(IncDesFactories.JID_TYPE);
+            IncDes a = IncDesFactories.createIncDes(factoryLocator, null, null);
             int l = a.getSerializedLengthReq().call();
             AppendableBytes appendableBytes = new AppendableBytes(l);
             a.save(appendableBytes);
@@ -40,7 +40,7 @@ public class JidTest extends TestCase {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator(1);
         Context jaBundleContext = Context.get(factoryLocator);
         try {
-            IncDes a = factoryLocator.newJid(IncDesFactories.JID_TYPE);
+            IncDes a = IncDesFactories.createIncDes(factoryLocator, null, null);
             byte[] bytes = a.getSerializedBytesReq().call();
             int l = bytes.length;
             System.err.println(l);
@@ -57,7 +57,7 @@ public class JidTest extends TestCase {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator(1);
         Context jaBundleContext = Context.get(factoryLocator);
         try {
-            IncDes a = factoryLocator.newJid(IncDesFactories.JID_TYPE);
+            IncDes a = IncDesFactories.createIncDes(factoryLocator, null, null);
             a.load(new ReadableBytes(new byte[0], 0));
             int l = a.getSerializedLengthReq().call();
             System.err.println(l);
@@ -74,7 +74,7 @@ public class JidTest extends TestCase {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator(1);
         Context jaBundleContext = Context.get(factoryLocator);
         try {
-            IncDes jid1 = factoryLocator.newJid(IncDesFactories.JID_TYPE);
+            IncDes jid1 = IncDesFactories.createIncDes(factoryLocator, null, null);
             jid1.load(new ReadableBytes(new byte[0], 0));
             IncDes jid2 = jid1.copyJIDReq(factoryLocator.getMailbox()).call();
             int l = jid2.getSerializedLengthReq().call();
@@ -94,7 +94,7 @@ public class JidTest extends TestCase {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator(1);
         Context jaBundleContext = Context.get(factoryLocator);
         try {
-            IncDes a = factoryLocator.newJid(IncDesFactories.JID_TYPE);
+            IncDes a = IncDesFactories.createIncDes(factoryLocator, null, null);
             IncDes b = a.resolvePathnameReq("").call();
             assertEquals(a, b);
         } catch (Exception e) {
