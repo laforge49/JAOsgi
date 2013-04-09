@@ -43,12 +43,12 @@ import java.io.ObjectOutputStream;
 public class BytesImpl
         extends VLenScalar<byte[], byte[]> implements Bytes {
     public static BytesImpl create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (BytesImpl) FactoryLocatorImpl.newJid(actor, PAFactories.BYTES_JID_TYPE, mailbox, parent);
+        return (BytesImpl) Util.newJid(actor, IncDesFactories.BYTES_JID_TYPE, mailbox, parent);
     }
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerJidFactory(new ActorFactory(PAFactories.BYTES_JID_TYPE) {
+        factoryLocator.registerJidFactory(new ActorFactory(IncDesFactories.BYTES_JID_TYPE) {
             @Override
             final protected BytesImpl instantiateActor()
                     throws Exception {

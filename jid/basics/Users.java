@@ -1,6 +1,6 @@
 package org.agilewiki.jid.basics;
 
-import org.agilewiki.incdes.PAFactories;
+import org.agilewiki.incdes.IncDesFactories;
 import org.agilewiki.incdes.FactoryLocator;
 import org.agilewiki.incdes.IncDes;
 import org.agilewiki.incdes.impl.collection.vlenc.map.MapEntryImpl;
@@ -19,7 +19,7 @@ public class Users extends StringSMap implements Main {
     public static void register(FactoryLocator factoryLocator) throws Exception {
         factoryLocator.registerJidFactory(new UsersFactory("users"));
         UnionImpl.registerFactory(factoryLocator,
-                "E.users", PAFactories.STRING_JID_TYPE, PAFactories.STRING_JID_TYPE);
+                "E.users", IncDesFactories.STRING_JID_TYPE, IncDesFactories.STRING_JID_TYPE);
     }
 
     private static class UsersFactory extends ActorFactory {
@@ -36,8 +36,8 @@ public class Users extends StringSMap implements Main {
         @Override
         public Users newActor(Mailbox mailbox, Ancestor parent) throws Exception {
             Users users = (Users) super.newActor(mailbox, parent);
-            FactoryLocator fl = FactoryLocatorImpl.get(parent);
-            users.valueFactory = fl.getJidFactory(PAFactories.STRING_JID_TYPE);
+            FactoryLocator fl = FactoryLocatorImpl.getFactoryLocator(parent);
+            users.valueFactory = fl.getJidFactory(IncDesFactories.STRING_JID_TYPE);
             return users;
         }
     }

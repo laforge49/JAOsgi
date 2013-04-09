@@ -24,6 +24,7 @@
 package org.agilewiki.incdes.impl.collection.vlenc;
 
 import org.agilewiki.incdes.FactoryLocator;
+import org.agilewiki.incdes.Util;
 import org.agilewiki.incdes.impl.scalar.vlens.UnionImpl;
 import org.agilewiki.incdes.impl.factory.ActorFactory;
 import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
@@ -86,7 +87,7 @@ public class BListFactory extends ActorFactory {
     public BList newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
         BList lj = (BList) super.newActor(mailbox, parent);
-        FactoryLocator f = FactoryLocatorImpl.get(parent);
+        FactoryLocator f = Util.getFactoryLocator(parent);
         lj.entryFactory = f.getJidFactory(entryType);
         lj.nodeCapacity = NODE_CAPACITY;
         lj.isRoot = isRoot;

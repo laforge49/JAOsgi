@@ -1,8 +1,8 @@
 package org.agilewiki.jid.collection.vlenc;
 
 import junit.framework.TestCase;
-import org.agilewiki.incdes.PAFactories;
-import org.agilewiki.incdes.PABundleContext;
+import org.agilewiki.incdes.IncDesFactories;
+import org.agilewiki.incdes.Context;
 import org.agilewiki.incdes.impl.collection.vlenc.BList;
 import org.agilewiki.incdes.impl.scalar.flens.PAIntegerImpl;
 import org.agilewiki.jactor.Mailbox;
@@ -34,10 +34,10 @@ public class BListTimingsTest extends TestCase {
         //total run time (milliseconds) = 29379
         //time per update (microseconds) = 2937
 
-        FactoryLocatorImpl factoryLocator = PAFactories.createFactoryLocator(1);
-        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
+        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        Context jaBundleContext = Context.get(factoryLocator);
         try {
-            BList intList1 = (BList) factoryLocator.newJid(PAFactories.INTEGER_BLIST_JID_TYPE);
+            BList intList1 = (BList) factoryLocator.newJid(IncDesFactories.INTEGER_BLIST_JID_TYPE);
             Mailbox mailbox = factoryLocator.getMailbox();
             int i = 0;
             while (i < s) {

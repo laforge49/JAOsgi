@@ -40,7 +40,7 @@ public class PAIntegerImpl
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerJidFactory(new ActorFactory(PAFactories.INTEGER_JID_TYPE) {
+        factoryLocator.registerJidFactory(new ActorFactory(IncDesFactories.INTEGER_JID_TYPE) {
             @Override
             final protected PAIntegerImpl instantiateActor()
                     throws Exception {

@@ -1,8 +1,8 @@
 package org.agilewiki.jid.collection.vlenc.map;
 
 import junit.framework.TestCase;
-import org.agilewiki.incdes.PAFactories;
-import org.agilewiki.incdes.PABundleContext;
+import org.agilewiki.incdes.Context;
+import org.agilewiki.incdes.IncDesFactories;
 import org.agilewiki.incdes.impl.collection.vlenc.map.BMap;
 import org.agilewiki.incdes.impl.scalar.flens.PAIntegerImpl;
 import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
@@ -33,11 +33,11 @@ public class BMapTimingsTest extends TestCase {
         //total run time (milliseconds) =  7277
         //time per update (microseconds) = 7277
 
-        FactoryLocatorImpl factoryLocator = PAFactories.createFactoryLocator(1);
-        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
+        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        Context jaBundleContext = Context.get(factoryLocator);
         try {
             BMap<Integer, PAIntegerImpl> m1 = (BMap) factoryLocator.
-                    newJid(PAFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
+                    newJid(IncDesFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
             int i = 0;
             while (i < s) {
                 m1.kMake(i);

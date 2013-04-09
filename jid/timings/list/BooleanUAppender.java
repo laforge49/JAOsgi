@@ -1,6 +1,6 @@
 package org.agilewiki.jid.timings.list;
 
-import org.agilewiki.incdes.PAFactories;
+import org.agilewiki.incdes.IncDesFactories;
 import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.incdes.impl.collection.vlenc.SList;
 import org.agilewiki.incdes.impl.scalar.flens.PABooleanImpl;
@@ -26,7 +26,7 @@ public class BooleanUAppender extends JLPCActor {
         while (j < repeat) {
             ReadableBytes rb = new ReadableBytes(bytes, 0);
             SList blj = (SList) FactoryLocatorImpl.
-                    newJid(this, PAFactories.BOOLEAN_LIST_JID_TYPE, getMailbox(), getParent());
+                    newJid(this, IncDesFactories.BOOLEAN_LIST_JID_TYPE, getMailbox(), getParent());
             blj.load(rb);
             PABooleanImpl bj = (PABooleanImpl) blj.iGet(j);
             bj.setValue(true);

@@ -1,8 +1,8 @@
 package org.agilewiki.jid.collection.vlenc;
 
 import junit.framework.TestCase;
-import org.agilewiki.incdes.PAFactories;
-import org.agilewiki.incdes.PABundleContext;
+import org.agilewiki.incdes.IncDesFactories;
+import org.agilewiki.incdes.Context;
 import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.JAFuture;
@@ -16,11 +16,11 @@ import org.agilewiki.jid.scalar.vlens.string.SetString;
 public class ListTest extends TestCase {
     public void test() throws Exception {
 
-        FactoryLocatorImpl factoryLocator = PAFactories.createFactoryLocator(1);
-        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
+        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        Context jaBundleContext = Context.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            Actor l0 = factoryLocator.newJid(PAFactories.STRING_LIST_JID_TYPE);
+            Actor l0 = factoryLocator.newJid(IncDesFactories.STRING_LIST_JID_TYPE);
             int l0sl = GetSerializedLength.req.send(future, l0);
             assertEquals(8, l0sl);
             Actor l1 = (new CopyJID()).send(future, l0);

@@ -38,7 +38,7 @@ abstract public class AppFactory extends ActorFactory {
     public AppBase newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
         AppBase tj = (AppBase) super.newActor(mailbox, parent);
-        FactoryLocator fl = FactoryLocatorImpl.get(parent);
+        FactoryLocator fl = Util.getFactoryLocator(parent);
         ActorFactory[] afs = new ActorFactory[jidTypes.length];
         int i = 0;
         while (i < jidTypes.length) {

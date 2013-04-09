@@ -1,8 +1,8 @@
 package org.agilewiki.jid.scalar.flens.lng;
 
 import junit.framework.TestCase;
-import org.agilewiki.incdes.PAFactories;
-import org.agilewiki.incdes.PABundleContext;
+import org.agilewiki.incdes.Context;
+import org.agilewiki.incdes.IncDesFactories;
 import org.agilewiki.incdes.impl.scalar.flens.PALongImpl;
 import org.agilewiki.incdes.impl.scalar.vlens.BoxImpl;
 import org.agilewiki.jactor.old.JAFuture;
@@ -14,11 +14,11 @@ import org.agilewiki.jid.scalar.vlens.actor.SetActor;
 
 public class LongTest extends TestCase {
     public void test() throws Exception {
-        FactoryLocatorImpl factoryLocator = PAFactories.createFactoryLocator(1);
-        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
+        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        Context jaBundleContext = Context.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            PALongImpl long1 = (PALongImpl) factoryLocator.newJid(PAFactories.LONG_JID_TYPE);
+            PALongImpl long1 = (PALongImpl) factoryLocator.newJid(IncDesFactories.LONG_JID_TYPE);
             PALongImpl long2 = (PALongImpl) (new CopyJID()).send(future, long1);
             (new SetLong(1L)).send(future, long2);
             PALongImpl float3 = (PALongImpl) (new CopyJID()).send(future, long2);
@@ -38,7 +38,7 @@ public class LongTest extends TestCase {
             assertEquals(1L, v);
 
             BoxImpl jidJid1 = BoxImpl.create(factoryLocator, null, null);
-            SetActor sjvl = new SetActor(PAFactories.LONG_JID_TYPE);
+            SetActor sjvl = new SetActor(IncDesFactories.LONG_JID_TYPE);
             sjvl.send(future, jidJid1);
             PALongImpl rpa = (PALongImpl) (new ResolvePathname("0")).send(future, jidJid1);
             v = GetLong.req.send(future, rpa);

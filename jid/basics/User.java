@@ -1,6 +1,6 @@
 package org.agilewiki.jid.basics;
 
-import org.agilewiki.incdes.PAFactories;
+import org.agilewiki.incdes.IncDesFactories;
 import org.agilewiki.incdes.FactoryLocator;
 import org.agilewiki.incdes.impl.collection.flenc.TupleFactory;
 import org.agilewiki.incdes.impl.collection.flenc.TupleImpl;
@@ -16,7 +16,7 @@ public class User extends TupleImpl implements Main {
 
     private static class UserFactory extends TupleFactory {
         public UserFactory(String actorType) {
-            super(actorType, PAFactories.STRING_JID_TYPE, PAFactories.INTEGER_JID_TYPE, PAFactories.STRING_JID_TYPE);
+            super(actorType, IncDesFactories.STRING_JID_TYPE, IncDesFactories.INTEGER_JID_TYPE, IncDesFactories.STRING_JID_TYPE);
         }
 
         @Override

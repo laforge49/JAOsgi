@@ -23,7 +23,8 @@
  */
 package org.agilewiki.incdes.impl.collection.vlenc.map;
 
-import org.agilewiki.incdes.PAFactories;
+import org.agilewiki.incdes.IncDesFactories;
+import org.agilewiki.incdes.Util;
 import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.incdes.impl.factory.ActorFactory;
 import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
@@ -38,7 +39,7 @@ public class IntegerSMap<VALUE_TYPE extends IncDesImpl> extends SMap<Integer, VA
      * @return The IncDesFactory for the key.
      */
     final protected ActorFactory getKeyFactory() throws Exception {
-        return FactoryLocatorImpl.getActorFactory(this, PAFactories.INTEGER_JID_TYPE);
+        return Util.getActorFactory(this, IncDesFactories.INTEGER_JID_TYPE);
     }
 
     /**

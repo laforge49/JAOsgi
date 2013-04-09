@@ -23,9 +23,9 @@
  */
 package org.agilewiki.incdes.impl.collection.vlenc.map;
 
-import org.agilewiki.incdes.PAFactories;
+import org.agilewiki.incdes.IncDesFactories;
 import org.agilewiki.incdes.FactoryLocator;
-import org.agilewiki.incdes.impl.scalar.vlens.UnionImpl;
+import org.agilewiki.incdes.Util;
 import org.agilewiki.incdes.impl.factory.ActorFactory;
 import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 import org.agilewiki.pactor.Mailbox;
@@ -49,7 +49,7 @@ public class StringSMapFactory extends ActorFactory {
                                        int initialCapacity)
             throws Exception {
         factoryLocator.registerJidFactory(new MapEntryFactory(
-                "E." + actorType, PAFactories.STRING_JID_TYPE, valueType));
+                "E." + actorType, IncDesFactories.STRING_JID_TYPE, valueType));
         factoryLocator.registerJidFactory(new StringSMapFactory(
                 actorType, valueType, initialCapacity));
     }
@@ -91,7 +91,7 @@ public class StringSMapFactory extends ActorFactory {
     public StringSMap newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
         StringSMap imj = (StringSMap) super.newActor(mailbox, parent);
-        FactoryLocator fl = FactoryLocatorImpl.get(parent);
+        FactoryLocator fl = Util.getFactoryLocator(parent);
         imj.valueFactory = fl.getJidFactory(valueType);
         imj.initialCapacity = initialCapacity;
         return imj;

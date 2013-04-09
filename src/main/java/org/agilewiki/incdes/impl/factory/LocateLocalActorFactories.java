@@ -23,7 +23,7 @@
  */
 package org.agilewiki.incdes.impl.factory;
 
-import org.agilewiki.incdes.PABundleContext;
+import org.agilewiki.incdes.Context;
 import org.agilewiki.incdes.impl.collection.vlenc.map.StringSMap;
 import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
 import org.agilewiki.pautil.AncestorBase;
@@ -35,7 +35,7 @@ public abstract class LocateLocalActorFactories extends AncestorBase {
     private FactoryLocatorImpl factoryLocator;
 
     protected FactoryLocatorImpl configure(String name) throws Exception {
-        PABundleContext jaBundleContext = PABundleContext.get(this);
+        Context jaBundleContext = Context.get(this);
 
         factoryLocator = new FactoryLocatorImpl();
         factoryLocator.initialize(getMailbox().getMailboxFactory().createMailbox(true), jaBundleContext);

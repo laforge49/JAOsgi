@@ -1,18 +1,18 @@
 package org.agilewiki.jfile.block;
 
 import junit.framework.TestCase;
+import org.agilewiki.incdes.Context;
 import org.agilewiki.incdes.FactoryLocator;
-import org.agilewiki.incdes.PAFactories;
-import org.agilewiki.incdes.PABundleContext;
+import org.agilewiki.incdes.IncDesFactories;
 import org.agilewiki.incdes.Root;
 
 public class LBlockTest extends TestCase {
     public void test()
             throws Exception {
-        FactoryLocator factoryLocator = PAFactories.createFactoryLocator(1);
-        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
+        FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator(1);
+        Context jaBundleContext = Context.get(factoryLocator);
 
-        Root rj = (Root) factoryLocator.newJid(PAFactories.ROOT_JID_TYPE);
+        Root rj = (Root) factoryLocator.newJid(IncDesFactories.ROOT_JID_TYPE);
         LBlock lb1 = new LBlock();
         lb1.setRootJid(rj);
         byte[] bs = lb1.serialize();

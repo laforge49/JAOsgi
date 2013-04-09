@@ -23,7 +23,7 @@
  */
 package org.agilewiki.incdes.impl.paosgi;
 
-import org.agilewiki.incdes.PABundleContext;
+import org.agilewiki.incdes.Context;
 import org.agilewiki.pactor.MailboxFactory;
 import org.agilewiki.pamailbox.DefaultMailboxFactoryImpl;
 import org.osgi.framework.*;
@@ -35,14 +35,14 @@ import java.util.Collection;
 import java.util.Dictionary;
 import java.util.List;
 
-public class PABundleContextImpl extends PABundleContext {
-    public static PABundleContext createNoOsgiJABundleContext(int threadCount) throws Exception {
+public class PABundleContextImpl extends Context {
+    public static Context createNoOsgiJABundleContext(int threadCount) throws Exception {
         //todo threadCount?
         MailboxFactory mailboxFactory = new DefaultMailboxFactoryImpl();
         return createNoOsgiJABundleContext(mailboxFactory);
     }
 
-    public static PABundleContext createNoOsgiJABundleContext(MailboxFactory mailboxFactory) throws Exception {
+    public static Context createNoOsgiJABundleContext(MailboxFactory mailboxFactory) throws Exception {
         PABundleContextImpl jaBundleContext = new PABundleContextImpl();
         jaBundleContext.initialize(mailboxFactory.createMailbox());
         return jaBundleContext;

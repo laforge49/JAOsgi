@@ -1,8 +1,8 @@
 package org.agilewiki.jid.scalar.vlens.actor;
 
 import junit.framework.TestCase;
-import org.agilewiki.incdes.PAFactories;
-import org.agilewiki.incdes.PABundleContext;
+import org.agilewiki.incdes.IncDesFactories;
+import org.agilewiki.incdes.Context;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.JAFuture;
 import org.agilewiki.jid.CopyJID;
@@ -17,11 +17,11 @@ import org.agilewiki.jid.scalar.vlens.string.SetString;
 
 public class RootJidTest extends TestCase {
     public void test() throws Exception {
-        FactoryLocatorImpl factoryLocator = PAFactories.createFactoryLocator(1);
-        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
+        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        Context jaBundleContext = Context.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            RootJidFactory rootJidFactory = (RootJidFactory) factoryLocator.getJidFactory(PAFactories.ROOT_JID_TYPE);
+            RootJidFactory rootJidFactory = (RootJidFactory) factoryLocator.getJidFactory(IncDesFactories.ROOT_JID_TYPE);
             Actor rootJid1 = rootJidFactory.newActor(factoryLocator.getMailbox(), factoryLocator);
             int sl = GetSerializedLength.req.send(future, rootJid1);
             assertEquals(56, sl);
@@ -45,7 +45,7 @@ public class RootJidTest extends TestCase {
             rpa = (new ResolvePathname("0")).send(future, rootJid11);
             assertNull(rpa);
 
-            ActorFactory stringJidAFactory = factoryLocator.getJidFactory(PAFactories.STRING_JID_TYPE);
+            ActorFactory stringJidAFactory = factoryLocator.getJidFactory(IncDesFactories.STRING_JID_TYPE);
             Actor string1 = stringJidAFactory.newActor(factoryLocator.getMailbox(), factoryLocator);
             (new SetString("abc")).send(future, string1);
             byte[] sb = GetSerializedBytes.req.send(future, string1);
@@ -56,9 +56,9 @@ public class RootJidTest extends TestCase {
             Actor rootJid2 = rootJidFactory.newActor(factoryLocator.getMailbox(), factoryLocator);
             sl = GetSerializedLength.req.send(future, rootJid2);
             assertEquals(56, sl);
-            SetActor sjvj = new SetActor(PAFactories.JID_TYPE);
+            SetActor sjvj = new SetActor(IncDesFactories.JID_TYPE);
             sjvj.send(future, rootJid2);
-            MakeActor mjvj = new MakeActor(PAFactories.JID_TYPE);
+            MakeActor mjvj = new MakeActor(IncDesFactories.JID_TYPE);
             boolean made = mjvj.send(future, rootJid2);
             assertEquals(false, made);
             Actor jidJid2a = GetActor.req.send(future, rootJid2);

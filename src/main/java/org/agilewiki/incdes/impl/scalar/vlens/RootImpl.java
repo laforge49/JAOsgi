@@ -39,12 +39,12 @@ import org.agilewiki.pautil.Ancestor;
  */
 public class RootImpl extends BoxImpl implements Root {
     public static RootImpl create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (RootImpl) FactoryLocatorImpl.newJid(actor, PAFactories.ROOT_JID_TYPE, mailbox, parent);
+        return (RootImpl) Util.newJid(actor, IncDesFactories.ROOT_JID_TYPE, mailbox, parent);
     }
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerJidFactory(new ActorFactory(PAFactories.ROOT_JID_TYPE) {
+        factoryLocator.registerJidFactory(new ActorFactory(IncDesFactories.ROOT_JID_TYPE) {
             @Override
             final protected RootImpl instantiateActor()
                     throws Exception {
@@ -157,7 +157,7 @@ public class RootImpl extends BoxImpl implements Root {
     @Override
     public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
         super.initialize(mailbox, parent, factory);
-        manifest = FactoryLocatorImpl.getManifestCopy(this, getMailbox());
+        manifest = Util.getManifestCopy(this, getMailbox());
     }
 
     public IncDesImpl copyJID(Mailbox m)
@@ -175,14 +175,14 @@ public class RootImpl extends BoxImpl implements Root {
     }
 
     public boolean validateManifest() throws Exception {
-        return FactoryLocatorImpl.validateManifest(this, manifest);
+        return Util.validateManifest(this, manifest);
     }
 
     public void loadBundles() throws Exception {
-        FactoryLocatorImpl.loadBundles(this, manifest);
+        Util.loadBundles(this, manifest);
     }
 
     public void unknownManifestEntries() throws Exception {
-        FactoryLocatorImpl.unknownManifestEntries(this, manifest);
+        Util.unknownManifestEntries(this, manifest);
     }
 }

@@ -1,6 +1,6 @@
 package org.agilewiki.jid.basics;
 
-import org.agilewiki.incdes.PAFactories;
+import org.agilewiki.incdes.IncDesFactories;
 import org.agilewiki.incdes.FactoryLocator;
 import org.agilewiki.incdes.IncDes;
 import org.agilewiki.incdes.impl.collection.vlenc.SList;
@@ -18,7 +18,7 @@ public class Sum extends SList implements Main {
 
     private static class SumFactory extends SListFactory {
         public SumFactory(String actorType) {
-            super(actorType, PAFactories.INTEGER_JID_TYPE, 10);
+            super(actorType, IncDesFactories.INTEGER_JID_TYPE, 10);
         }
 
         @Override

@@ -24,8 +24,8 @@
 package org.agilewiki.jid.collection.flenc;
 
 import junit.framework.TestCase;
-import org.agilewiki.incdes.PAFactories;
-import org.agilewiki.incdes.PABundleContext;
+import org.agilewiki.incdes.Context;
+import org.agilewiki.incdes.IncDesFactories;
 import org.agilewiki.incdes.impl.collection.flenc.TupleFactory;
 import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
 import org.agilewiki.jactor.old.Actor;
@@ -41,12 +41,12 @@ import org.agilewiki.jid.scalar.vlens.string.SetString;
 
 public class TupleTest extends TestCase {
     public void test() throws Exception {
-        FactoryLocatorImpl factoryLocator = PAFactories.createFactoryLocator(1);
-        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
+        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        Context jaBundleContext = Context.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
             TupleFactory tjf = new TupleFactory(
-                    "sst", PAFactories.STRING_JID_TYPE, PAFactories.STRING_JID_TYPE);
+                    "sst", IncDesFactories.STRING_JID_TYPE, IncDesFactories.STRING_JID_TYPE);
             factoryLocator.registerJidFactory(tjf);
             Actor t0 = tjf.newActor(factoryLocator.getMailbox(), factoryLocator);
             IGet iget0 = new IGet(0);

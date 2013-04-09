@@ -23,10 +23,7 @@
  */
 package org.agilewiki.incdes.impl.collection.vlenc.map;
 
-import org.agilewiki.incdes.Collection;
-import org.agilewiki.incdes.IncDes;
-import org.agilewiki.incdes.MapEntry;
-import org.agilewiki.incdes.PAMap;
+import org.agilewiki.incdes.*;
 import org.agilewiki.incdes.impl.collection.vlenc.SList;
 import org.agilewiki.incdes.impl.factory.ActorFactory;
 import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
@@ -79,7 +76,7 @@ abstract public class SMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
     @Override
     final protected ActorFactory getEntryFactory()
             throws Exception {
-        ActorFactory af = FactoryLocatorImpl.getActorFactory(this, "E." + getJidType());
+        ActorFactory af = Util.getActorFactory(this, "E." + getJidType());
         return af;
     }
 

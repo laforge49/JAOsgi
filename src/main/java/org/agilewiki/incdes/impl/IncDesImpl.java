@@ -26,6 +26,7 @@ package org.agilewiki.incdes.impl;
 import org.agilewiki.incdes.AppendableBytes;
 import org.agilewiki.incdes.IncDes;
 import org.agilewiki.incdes.ReadableBytes;
+import org.agilewiki.incdes.Util;
 import org.agilewiki.incdes.impl.factory.ActorFactory;
 import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 import org.agilewiki.pactor.Mailbox;
@@ -93,7 +94,7 @@ public class IncDesImpl extends AncestorBase implements IncDes {
 
     final public IncDesImpl createSubordinate(String actorType, Ancestor parent)
             throws Exception {
-        IncDesImpl jid = FactoryLocatorImpl.newJid(this, actorType, getMailbox(), parent);
+        IncDesImpl jid = Util.newJid(this, actorType, getMailbox(), parent);
         jid.setContainerJid(this);
         return jid;
     }
@@ -122,7 +123,7 @@ public class IncDesImpl extends AncestorBase implements IncDes {
             throws Exception {
         if (bytes == null)
             return createSubordinate(actorType, parent);
-        IncDesImpl jid = (IncDesImpl) FactoryLocatorImpl.newJid(this, actorType, getMailbox(), parent);
+        IncDesImpl jid = (IncDesImpl) Util.newJid(this, actorType, getMailbox(), parent);
         jid.load(new ReadableBytes(bytes, 0));
         jid.setContainerJid(this);
         return jid;
@@ -149,7 +150,7 @@ public class IncDesImpl extends AncestorBase implements IncDes {
 
     final public IncDesImpl createSubordinate(String actorType, Ancestor parent, ReadableBytes readableBytes)
             throws Exception {
-        IncDesImpl jid = (IncDesImpl) FactoryLocatorImpl.newJid(this, actorType, getMailbox(), parent);
+        IncDesImpl jid = (IncDesImpl) Util.newJid(this, actorType, getMailbox(), parent);
         if (readableBytes != null)
             jid.load(readableBytes);
         jid.setContainerJid(this);

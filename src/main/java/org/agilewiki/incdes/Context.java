@@ -33,13 +33,13 @@ import java.util.Collection;
 import java.util.Dictionary;
 import java.util.List;
 
-abstract public class PABundleContext extends AncestorBase {
-    public static PABundleContext get(final Ancestor actor)
+abstract public class Context extends AncestorBase {
+    public static Context get(final Ancestor actor)
             throws Exception {
-        PABundleContext bundleContext = (PABundleContext) AncestorBase.
-                getMatch(actor, PABundleContext.class);
+        Context bundleContext = (Context) AncestorBase.
+                getMatch(actor, Context.class);
         if (bundleContext == null)
-            throw new IllegalStateException("PABundleContext is not an ancestor of " + actor);
+            throw new IllegalStateException("Context is not an ancestor of " + actor);
         return bundleContext;
     }
 

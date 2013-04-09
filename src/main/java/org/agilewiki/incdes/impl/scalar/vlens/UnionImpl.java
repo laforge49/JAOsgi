@@ -53,7 +53,7 @@ public class UnionImpl extends Scalar<String, IncDesImpl> implements Union {
             public UnionImpl newActor(Mailbox mailbox, Ancestor parent)
                     throws Exception {
                 UnionImpl uj = (UnionImpl) super.newActor(mailbox, parent);
-                FactoryLocator fl = FactoryLocatorImpl.get(parent);
+                FactoryLocator fl = Util.getFactoryLocator(parent);
                 ActorFactory[] afs = new ActorFactory[_actorTypes.length];
                 int i = 0;
                 while (i < _actorTypes.length) {
@@ -91,7 +91,7 @@ public class UnionImpl extends Scalar<String, IncDesImpl> implements Union {
 
     protected int getFactoryIndex(String actorType)
             throws Exception {
-        FactoryLocator factoryLocator = FactoryLocatorImpl.get(this);
+        FactoryLocator factoryLocator = Util.getFactoryLocator(this);
         ActorFactory actorFactory = factoryLocator.getJidFactory(actorType);
         return getFactoryIndex(actorFactory);
     }

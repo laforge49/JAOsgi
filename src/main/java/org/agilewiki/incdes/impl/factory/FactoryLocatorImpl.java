@@ -23,8 +23,9 @@
  */
 package org.agilewiki.incdes.impl.factory;
 
-import org.agilewiki.incdes.PAFactories;
+import org.agilewiki.incdes.IncDesFactories;
 import org.agilewiki.incdes.FactoryLocator;
+import org.agilewiki.incdes.Util;
 import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.incdes.impl.collection.vlenc.map.MapEntryImpl;
 import org.agilewiki.incdes.impl.collection.vlenc.map.StringSMap;
@@ -45,102 +46,6 @@ import java.util.concurrent.ConcurrentSkipListSet;
  * An actor for defining jid types and creating instances.
  */
 public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator {
-    public static String versionString(Version version) {
-        return "" + version.getMajor() + "." + version.getMajor();
-    }
-
-    public static FactoryLocatorImpl get(Ancestor ancestor) {
-        return (FactoryLocatorImpl) AncestorBase.getMatch(ancestor, FactoryLocatorImpl.class);
-    }
-
-    /**
-     * Returns the requested actor factory.
-     *
-     * @param actor   The actor which is the factory or which has a factory as an ancestor.
-     * @param jidType The jid type.
-     * @return The registered actor factory.
-     */
-    public static ActorFactory getActorFactory(Ancestor actor, String jidType)
-            throws Exception {
-        FactoryLocator factoryLocator = get(actor);
-        if (factoryLocator == null)
-            throw new IllegalArgumentException("Unknown jid type: " + jidType);
-        return factoryLocator.getJidFactory(jidType);
-    }
-
-    /**
-     * Creates a new actor.
-     *
-     * @param actor   The actor which is the factory or which has a factory as an ancestor.
-     * @param jidType The jid type.
-     * @return The new jid.
-     */
-    public static IncDesImpl newJid(Ancestor actor, String jidType)
-            throws Exception {
-        return newJid(actor, jidType, null, null);
-    }
-
-    /**
-     * Creates a new actor.
-     *
-     * @param actor     The actor which is the factory or which has a factory as an ancestor.
-     * @param actorType The jid type.
-     * @param mailbox   A mailbox which may be shared with other actors, or null.
-     * @return The new jid.
-     */
-    public static Actor newJid(Ancestor actor, String actorType, Mailbox mailbox)
-            throws Exception {
-        return newJid(actor, actorType, mailbox, null);
-    }
-
-    /**
-     * Creates a new actor.
-     *
-     * @param actor   The actor which is the factory or which has a factory as an ancestor.
-     * @param jidType The jid type.
-     * @param mailbox A mailbox which may be shared with other actors, or null.
-     * @param parent  The parent actor to which unrecognized requests are forwarded, or null.
-     * @return The new jid.
-     */
-    public static IncDesImpl newJid(Ancestor actor, String jidType, Mailbox mailbox, Ancestor parent)
-            throws Exception {
-        FactoryLocator factoryLocator = get(actor);
-        if (factoryLocator == null)
-            return null;
-        return factoryLocator.newJid(jidType, mailbox, parent);
-    }
-
-    public static StringSMap<PAStringImpl> getManifestCopy(Ancestor actor, Mailbox mailbox)
-            throws Exception {
-        FactoryLocator factoryLocator = get(actor);
-        if (factoryLocator == null)
-            throw new IllegalStateException("FactoryLocator is not an ancestor");
-        return factoryLocator.getManifestCopy(mailbox);
-    }
-
-    public static void unknownManifestEntries(Ancestor actor, StringSMap<PAStringImpl> m)
-            throws Exception {
-        FactoryLocator factoryLocator = get(actor);
-        if (factoryLocator == null)
-            throw new IllegalStateException("FactoryLocator is not an ancestor");
-        factoryLocator.unknownManifestEntries(m);
-    }
-
-    public static boolean validateManifest(Ancestor actor, StringSMap<PAStringImpl> m)
-            throws Exception {
-        FactoryLocator factoryLocator = get(actor);
-        if (factoryLocator == null)
-            throw new IllegalStateException("FactoryLocator is not an ancestor");
-        return factoryLocator.validateManifest(m);
-    }
-
-    public static void loadBundles(Ancestor actor, StringSMap<PAStringImpl> m)
-            throws Exception {
-        FactoryLocator factoryLocator = get(actor);
-        if (factoryLocator == null)
-            throw new IllegalStateException("FactoryLocator is not an ancestor");
-        factoryLocator.loadBundles(m);
-    }
 
     private ConcurrentSkipListSet<LocateLocalActorFactories> factoryImports = new ConcurrentSkipListSet();
     private String bundleName = "";
@@ -160,7 +65,7 @@ public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator {
 
     public void configure(Bundle bundle) {
         bundleName = bundle.getSymbolicName();
-        version = versionString(bundle.getVersion());
+        version = Util.versionString(bundle.getVersion());
         location = bundle.getLocation();
     }
 
@@ -196,7 +101,7 @@ public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator {
     public StringSMap<PAStringImpl> getManifestCopy(Mailbox mailbox) throws Exception {
         if (isLocked())
             return manifest;
-        manifest = (StringSMap<PAStringImpl>) newJid(PAFactories.STRING_STRING_MAP_JID_TYPE);
+        manifest = (StringSMap<PAStringImpl>) newJid(IncDesFactories.STRING_STRING_MAP_JID_TYPE);
         manifest.kMake(getLocatorKey());
         PAStringImpl sj = manifest.kGet(getLocatorKey());
         sj.setValue(getLocation());

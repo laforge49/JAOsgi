@@ -1,6 +1,6 @@
 package org.agilewiki.jid.basics;
 
-import org.agilewiki.incdes.PAFactories;
+import org.agilewiki.incdes.IncDesFactories;
 import org.agilewiki.incdes.FactoryLocator;
 import org.agilewiki.incdes.impl.collection.vlenc.map.StringSMap;
 import org.agilewiki.incdes.impl.scalar.vlens.BoxImpl;
@@ -15,7 +15,7 @@ public class Blob extends StringSMap implements Main {
     public static void register(FactoryLocator factoryLocator) throws Exception {
         factoryLocator.registerJidFactory(new BlobFactory("blob"));
         UnionImpl.registerFactory(factoryLocator,
-                "E.blob", PAFactories.STRING_JID_TYPE, PAFactories.ACTOR_JID_TYPE);
+                "E.blob", IncDesFactories.STRING_JID_TYPE, IncDesFactories.ACTOR_JID_TYPE);
     }
 
     private static class BlobFactory extends ActorFactory {
@@ -32,8 +32,8 @@ public class Blob extends StringSMap implements Main {
         @Override
         public Blob newActor(Mailbox mailbox, Ancestor parent) throws Exception {
             Blob blob = (Blob) super.newActor(mailbox, parent);
-            FactoryLocator fl = FactoryLocatorImpl.get(parent);
-            blob.valueFactory = fl.getJidFactory(PAFactories.ACTOR_JID_TYPE);
+            FactoryLocator fl = FactoryLocatorImpl.getFactoryLocator(parent);
+            blob.valueFactory = fl.getJidFactory(IncDesFactories.ACTOR_JID_TYPE);
             return blob;
         }
     }

@@ -1,8 +1,8 @@
 package org.agilewiki.jid.factory.timing.test2;
 
 import junit.framework.TestCase;
-import org.agilewiki.incdes.PAFactories;
-import org.agilewiki.incdes.PABundleContext;
+import org.agilewiki.incdes.IncDesFactories;
+import org.agilewiki.incdes.Context;
 import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 import org.agilewiki.jid.factory.timing.A;
 import org.agilewiki.pactor.Mailbox;
@@ -16,8 +16,8 @@ public class Creation2Test extends TestCase {
         //long c = 1000000000;
         //iterations per second = 2,801,120,448
 
-        FactoryLocatorImpl factoryLocator = PAFactories.createFactoryLocator(1);
-        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
+        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        Context jaBundleContext = Context.get(factoryLocator);
         try {
             Mailbox m = mailboxFactory.createMailbox();
             loop(c, m);

@@ -23,7 +23,7 @@
  */
 package org.agilewiki.incdes.impl.paosgi;
 
-import org.agilewiki.incdes.PAFactories;
+import org.agilewiki.incdes.IncDesFactories;
 import org.agilewiki.pactor.MailboxFactory;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
@@ -46,7 +46,7 @@ public final class Activator implements BundleActivator {
         ServiceReference mailboxFactoryServiceReference = bundleContext.
                 getServiceReference(MailboxFactory.class);
         if (mailboxFactoryServiceReference == null) {
-            String msg = "Unable to get MailboxFactory ServiceReference";
+            String msg = "Unable to getFactoryLocator MailboxFactory ServiceReference";
             logger.error(msg);
             throw new IllegalStateException(msg);
         }
@@ -63,7 +63,7 @@ public final class Activator implements BundleActivator {
         jaBundleContext.setJAServiceTracker(jaServiceTracker);
         jaBundleContext.initialize(mailboxFactory.createMailbox(true));
 
-        PAFactories jidFactories = new PAFactories();
+        IncDesFactories jidFactories = new IncDesFactories();
         jidFactories.initialize(mailboxFactory.createMailbox(true), jaBundleContext);
         jidFactories.configure();
     }

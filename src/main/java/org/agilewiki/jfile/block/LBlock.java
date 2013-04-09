@@ -185,7 +185,7 @@ public class LBlock implements Block {
         rb = null;
         if (rootJidBytes == null)
             return null;
-        rootJid = (Root) FactoryLocatorImpl.newJid(actor, PAFactories.ROOT_JID_TYPE, actor.getMailbox(), parent);
+        rootJid = (Root) Util.newJid(actor, IncDesFactories.ROOT_JID_TYPE, actor.getMailbox(), parent);
         rootJid.load(new ReadableBytes(rootJidBytes, 0));
         return rootJid;
     }

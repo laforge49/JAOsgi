@@ -40,12 +40,12 @@ import org.agilewiki.pautil.Ancestor;
 public class BoxImpl
         extends VLenScalar<String, IncDesImpl> implements Box {
     public static BoxImpl create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (BoxImpl) FactoryLocatorImpl.newJid(actor, PAFactories.ACTOR_JID_TYPE, mailbox, parent);
+        return (BoxImpl) Util.newJid(actor, IncDesFactories.ACTOR_JID_TYPE, mailbox, parent);
     }
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerJidFactory(new ActorFactory(PAFactories.ACTOR_JID_TYPE) {
+        factoryLocator.registerJidFactory(new ActorFactory(IncDesFactories.ACTOR_JID_TYPE) {
             @Override
             final protected BoxImpl instantiateActor()
                     throws Exception {

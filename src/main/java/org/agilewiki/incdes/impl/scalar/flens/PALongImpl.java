@@ -40,7 +40,7 @@ public class PALongImpl
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerJidFactory(new ActorFactory(PAFactories.LONG_JID_TYPE) {
+        factoryLocator.registerJidFactory(new ActorFactory(IncDesFactories.LONG_JID_TYPE) {
             @Override
             final protected PALongImpl instantiateActor()
                     throws Exception {

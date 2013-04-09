@@ -1,8 +1,8 @@
 package org.agilewiki.jid.timings.list;
 
 import junit.framework.TestCase;
-import org.agilewiki.incdes.PAFactories;
-import org.agilewiki.incdes.PABundleContext;
+import org.agilewiki.incdes.IncDesFactories;
+import org.agilewiki.incdes.Context;
 import org.agilewiki.incdes.impl.collection.vlenc.map.IntegerSMap;
 import org.agilewiki.incdes.impl.scalar.vlens.RootImpl;
 import org.agilewiki.jactor.old.JAFuture;
@@ -13,12 +13,12 @@ import org.agilewiki.jid.scalar.vlens.actor.SetActor;
 
 public class BigIntegerIntegerMapTest extends TestCase {
     public void test1() throws Exception {
-        FactoryLocatorImpl factoryLocator = PAFactories.createFactoryLocator(1);
-        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
+        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        Context jaBundleContext = Context.get(factoryLocator);
         JAFuture future = new JAFuture();
-        RootImpl root = (RootImpl) factoryLocator.newJid(PAFactories.ROOT_JID_TYPE);
+        RootImpl root = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT_JID_TYPE);
         SetActor setMap = new SetActor(
-                PAFactories.INTEGER_INTEGER_MAP_JID_TYPE);
+                IncDesFactories.INTEGER_INTEGER_MAP_JID_TYPE);
         setMap.send(future, root);
         IntegerSMap map = (IntegerSMap) GetActor.req.send(future, root);
 
@@ -32,12 +32,12 @@ public class BigIntegerIntegerMapTest extends TestCase {
     }
 
     public void test2() throws Exception {
-        FactoryLocatorImpl factoryLocator = PAFactories.createFactoryLocator(1);
-        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
+        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        Context jaBundleContext = Context.get(factoryLocator);
         JAFuture future = new JAFuture();
-        RootImpl root = (RootImpl) factoryLocator.newJid(PAFactories.ROOT_JID_TYPE);
+        RootImpl root = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT_JID_TYPE);
         SetActor setMap = new SetActor(
-                PAFactories.INTEGER_INTEGER_MAP_JID_TYPE);
+                IncDesFactories.INTEGER_INTEGER_MAP_JID_TYPE);
         setMap.send(future, root);
         IntegerSMap map = (IntegerSMap) GetActor.req.send(future, root);
 
@@ -66,12 +66,12 @@ public class BigIntegerIntegerMapTest extends TestCase {
     }
 
     public void test3() throws Exception {
-        FactoryLocatorImpl factoryLocator = PAFactories.createFactoryLocator(1);
-        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
+        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        Context jaBundleContext = Context.get(factoryLocator);
         JAFuture future = new JAFuture();
-        RootImpl root = (RootImpl) factoryLocator.newJid(PAFactories.ROOT_JID_TYPE);
+        RootImpl root = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT_JID_TYPE);
         SetActor setMap = new SetActor(
-                PAFactories.INTEGER_INTEGER_MAP_JID_TYPE);
+                IncDesFactories.INTEGER_INTEGER_MAP_JID_TYPE);
         setMap.send(future, root);
         IntegerSMap map = (IntegerSMap) GetActor.req.send(future, root);
 
@@ -102,12 +102,12 @@ public class BigIntegerIntegerMapTest extends TestCase {
     }
 
     public void test4() throws Exception {
-        FactoryLocatorImpl factoryLocator = PAFactories.createFactoryLocator(1);
-        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
+        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        Context jaBundleContext = Context.get(factoryLocator);
         JAFuture future = new JAFuture();
-        RootImpl root = (RootImpl) factoryLocator.newJid(PAFactories.ROOT_JID_TYPE);
+        RootImpl root = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT_JID_TYPE);
         SetActor setMap = new SetActor(
-                PAFactories.INTEGER_INTEGER_MAP_JID_TYPE);
+                IncDesFactories.INTEGER_INTEGER_MAP_JID_TYPE);
         setMap.send(future, root);
         IntegerSMap map = (IntegerSMap) GetActor.req.send(future, root);
 
@@ -138,12 +138,12 @@ public class BigIntegerIntegerMapTest extends TestCase {
     }
 
     public void test5() throws Exception {
-        FactoryLocatorImpl factoryLocator = PAFactories.createFactoryLocator(1);
-        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
+        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        Context jaBundleContext = Context.get(factoryLocator);
         JAFuture future = new JAFuture();
-        RootImpl root = (RootImpl) factoryLocator.newJid(PAFactories.ROOT_JID_TYPE);
+        RootImpl root = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT_JID_TYPE);
         SetActor setMap = new SetActor(
-                PAFactories.INTEGER_INTEGER_MAP_JID_TYPE);
+                IncDesFactories.INTEGER_INTEGER_MAP_JID_TYPE);
         setMap.send(future, root);
         IntegerSMap map = (IntegerSMap) GetActor.req.send(future, root);
 
@@ -174,12 +174,12 @@ public class BigIntegerIntegerMapTest extends TestCase {
     }
 
     public void test6() throws Exception {
-        FactoryLocatorImpl factoryLocator = PAFactories.createFactoryLocator(1);
-        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
+        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        Context jaBundleContext = Context.get(factoryLocator);
         JAFuture future = new JAFuture();
-        RootImpl root = (RootImpl) factoryLocator.newJid(PAFactories.ROOT_JID_TYPE);
+        RootImpl root = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT_JID_TYPE);
         SetActor setMap = new SetActor(
-                PAFactories.INTEGER_INTEGER_MAP_JID_TYPE);
+                IncDesFactories.INTEGER_INTEGER_MAP_JID_TYPE);
         setMap.send(future, root);
         IntegerSMap map = (IntegerSMap) GetActor.req.send(future, root);
 

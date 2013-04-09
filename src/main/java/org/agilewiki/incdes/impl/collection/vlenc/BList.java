@@ -77,9 +77,9 @@ public class BList<ENTRY_TYPE extends IncDes>
         String baseType = getJidType();
         if (baseType.startsWith("IN."))
             baseType = baseType.substring(3);
-        factoryLocator = FactoryLocatorImpl.get(this);
+        factoryLocator = Util.getFactoryLocator(this);
         tupleFactories = new ActorFactory[2];
-        tupleFactories[TUPLE_SIZE] = factoryLocator.getJidFactory(PAFactories.INTEGER_JID_TYPE);
+        tupleFactories[TUPLE_SIZE] = factoryLocator.getJidFactory(IncDesFactories.INTEGER_JID_TYPE);
         tupleFactories[TUPLE_UNION] = factoryLocator.getJidFactory("U." + baseType);
     }
 

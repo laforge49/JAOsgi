@@ -40,12 +40,12 @@ public class PAStringImpl
         extends VLenScalar<String, String>
         implements ComparableKey<String>, PAString {
     public static PAStringImpl create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (PAStringImpl) FactoryLocatorImpl.newJid(actor, PAFactories.STRING_JID_TYPE, mailbox, parent);
+        return (PAStringImpl) Util.newJid(actor, IncDesFactories.STRING_JID_TYPE, mailbox, parent);
     }
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerJidFactory(new ActorFactory(PAFactories.STRING_JID_TYPE) {
+        factoryLocator.registerJidFactory(new ActorFactory(IncDesFactories.STRING_JID_TYPE) {
             @Override
             final protected PAStringImpl instantiateActor()
                     throws Exception {

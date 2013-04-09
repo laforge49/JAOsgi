@@ -40,7 +40,7 @@ public class PABooleanImpl
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerJidFactory(new ActorFactory(PAFactories.BOOLEAN_JID_TYPE) {
+        factoryLocator.registerJidFactory(new ActorFactory(IncDesFactories.BOOLEAN_JID_TYPE) {
             @Override
             final protected PABooleanImpl instantiateActor()
                     throws Exception {

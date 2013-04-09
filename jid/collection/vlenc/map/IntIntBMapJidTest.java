@@ -1,19 +1,19 @@
 package org.agilewiki.jid.collection.vlenc.map;
 
 import junit.framework.TestCase;
-import org.agilewiki.incdes.PAFactories;
-import org.agilewiki.incdes.PABundleContext;
+import org.agilewiki.incdes.IncDesFactories;
+import org.agilewiki.incdes.Context;
 import org.agilewiki.incdes.impl.collection.vlenc.map.BMap;
 import org.agilewiki.incdes.impl.scalar.flens.PAIntegerImpl;
 import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 
 public class IntIntBMapJidTest extends TestCase {
     public void test1() throws Exception {
-        FactoryLocatorImpl factoryLocator = PAFactories.createFactoryLocator(1);
-        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
+        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        Context jaBundleContext = Context.get(factoryLocator);
         try {
             BMap<Integer, PAIntegerImpl> m = (BMap) factoryLocator.
-                    newJid(PAFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
+                    newJid(IncDesFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
             m.kMake(0);
             m.kMake(1);
             m.kMake(2);
@@ -36,11 +36,11 @@ public class IntIntBMapJidTest extends TestCase {
     }
 
     public void test2() throws Exception {
-        FactoryLocatorImpl factoryLocator = PAFactories.createFactoryLocator(1);
-        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
+        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        Context jaBundleContext = Context.get(factoryLocator);
         try {
             BMap<Integer, PAIntegerImpl> m = (BMap) factoryLocator.
-                    newJid(PAFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
+                    newJid(IncDesFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
             int i = 0;
             while (i < 28) {
                 m.kMake(i);
@@ -61,11 +61,11 @@ public class IntIntBMapJidTest extends TestCase {
     }
 
     public void test3() throws Exception {
-        FactoryLocatorImpl factoryLocator = PAFactories.createFactoryLocator(1);
-        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
+        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        Context jaBundleContext = Context.get(factoryLocator);
         try {
             BMap<Integer, PAIntegerImpl> m = (BMap) factoryLocator.
-                    newJid(PAFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
+                    newJid(IncDesFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
             int i = 0;
             while (i < 41) {
                 m.kMake(i);
@@ -86,11 +86,11 @@ public class IntIntBMapJidTest extends TestCase {
     }
 
     public void test4() throws Exception {
-        FactoryLocatorImpl factoryLocator = PAFactories.createFactoryLocator(1);
-        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
+        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        Context jaBundleContext = Context.get(factoryLocator);
         try {
             BMap<Integer, PAIntegerImpl> m = (BMap) factoryLocator.
-                    newJid(PAFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
+                    newJid(IncDesFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
             int i = 0;
             while (i < 391) {
                 m.kMake(i);
@@ -111,11 +111,11 @@ public class IntIntBMapJidTest extends TestCase {
     }
 
     public void test5() throws Exception {
-        FactoryLocatorImpl factoryLocator = PAFactories.createFactoryLocator(1);
-        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
+        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        Context jaBundleContext = Context.get(factoryLocator);
         try {
             BMap<Integer, PAIntegerImpl> m = (BMap) factoryLocator.
-                    newJid(PAFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
+                    newJid(IncDesFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
             int i = 0;
             while (i < 10000) {
                 m.kMake(i);
@@ -136,11 +136,11 @@ public class IntIntBMapJidTest extends TestCase {
     }
 
     public void test6() throws Exception {
-        FactoryLocatorImpl factoryLocator = PAFactories.createFactoryLocator(1);
-        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
+        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        Context jaBundleContext = Context.get(factoryLocator);
         try {
             BMap<Integer, PAIntegerImpl> m = (BMap) factoryLocator.
-                    newJid(PAFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
+                    newJid(IncDesFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
             int i = 0;
             while (i < 10000) {
                 m.kMake(i);
@@ -161,11 +161,11 @@ public class IntIntBMapJidTest extends TestCase {
     }
 
     public void test7() throws Exception {
-        FactoryLocatorImpl factoryLocator = PAFactories.createFactoryLocator(1);
-        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
+        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        Context jaBundleContext = Context.get(factoryLocator);
         try {
             BMap<Integer, PAIntegerImpl> m = (BMap) factoryLocator.
-                    newJid(PAFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
+                    newJid(IncDesFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
             int i = 0;
             while (i < 10000) {
                 m.kMake(i);
@@ -186,11 +186,11 @@ public class IntIntBMapJidTest extends TestCase {
     }
 
     public void test8() throws Exception {
-        FactoryLocatorImpl factoryLocator = PAFactories.createFactoryLocator(1);
-        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
+        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        Context jaBundleContext = Context.get(factoryLocator);
         try {
             BMap<Integer, PAIntegerImpl> m = (BMap) factoryLocator.
-                    newJid(PAFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
+                    newJid(IncDesFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
             int i = 0;
             while (i < 10000) {
                 m.kMake(i);
@@ -211,11 +211,11 @@ public class IntIntBMapJidTest extends TestCase {
     }
 
     public void test9() throws Exception {
-        FactoryLocatorImpl factoryLocator = PAFactories.createFactoryLocator(1);
-        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
+        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        Context jaBundleContext = Context.get(factoryLocator);
         try {
             BMap<Integer, PAIntegerImpl> m = (BMap) factoryLocator.
-                    newJid(PAFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
+                    newJid(IncDesFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
             int i = 0;
             while (i < 10000) {
                 m.kMake(i);

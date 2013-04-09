@@ -24,6 +24,7 @@
 package org.agilewiki.incdes.impl.collection.vlenc.map;
 
 import org.agilewiki.incdes.FactoryLocator;
+import org.agilewiki.incdes.Util;
 import org.agilewiki.incdes.impl.scalar.vlens.UnionImpl;
 import org.agilewiki.incdes.impl.factory.ActorFactory;
 import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
@@ -92,7 +93,7 @@ public class IntegerBMapFactory extends ActorFactory {
     public IntegerBMap newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
         IntegerBMap imj = (IntegerBMap) super.newActor(mailbox, parent);
-        FactoryLocator fl = FactoryLocatorImpl.get(parent);
+        FactoryLocator fl = Util.getFactoryLocator(parent);
         imj.valueFactory = fl.getJidFactory(valueType);
         imj.nodeCapacity = NODE_CAPACITY;
         imj.isRoot = isRoot;

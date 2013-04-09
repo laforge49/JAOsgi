@@ -23,7 +23,7 @@
  */
 package org.agilewiki.incdes.impl.paosgi;
 
-import org.agilewiki.incdes.PABundleContext;
+import org.agilewiki.incdes.Context;
 import org.osgi.framework.*;
 
 import java.io.File;
@@ -33,7 +33,7 @@ import java.util.Collection;
 import java.util.Dictionary;
 import java.util.List;
 
-public class PAOsgiBundleContextImpl extends PABundleContext {
+public class PAOsgiBundleContextImpl extends Context {
     private BundleContext bundleContext;
     private PAServiceTracker jaServiceTracker;
     private List<ServiceRegistration> serviceRegistrations = new ArrayList<ServiceRegistration>();

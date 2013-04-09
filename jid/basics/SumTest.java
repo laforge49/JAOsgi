@@ -1,8 +1,8 @@
 package org.agilewiki.jid.basics;
 
 import junit.framework.TestCase;
-import org.agilewiki.incdes.PAFactories;
-import org.agilewiki.incdes.PABundleContext;
+import org.agilewiki.incdes.Context;
+import org.agilewiki.incdes.IncDesFactories;
 import org.agilewiki.incdes.impl.scalar.flens.PAIntegerImpl;
 import org.agilewiki.incdes.impl.scalar.vlens.RootImpl;
 import org.agilewiki.jactor.old.Actor;
@@ -18,12 +18,12 @@ import org.agilewiki.jid.scalar.vlens.actor.SetActor;
 public class SumTest extends TestCase {
     public void test()
             throws Exception {
-        FactoryLocatorImpl factoryLocator = PAFactories.createFactoryLocator(1);
-        PABundleContext jaBundleContext = PABundleContext.get(factoryLocator);
+        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        Context jaBundleContext = Context.get(factoryLocator);
         Sum.register(factoryLocator);
         JAFuture future = new JAFuture();
 
-        RootImpl root = (RootImpl) factoryLocator.newJid(PAFactories.ROOT_JID_TYPE);
+        RootImpl root = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT_JID_TYPE);
         (new SetActor("sum")).send(future, root);
         Sum sum = (Sum) (new ResolvePathname("0")).send(future, root);
         IAdd iAdd = new IAdd(-1);
@@ -39,7 +39,7 @@ public class SumTest extends TestCase {
         (new SetInteger(3)).send(future, ij2);
         byte[] rootBytes = GetSerializedBytes.req.send(future, root);
 
-        RootImpl root2 = (RootImpl) factoryLocator.newJid(PAFactories.ROOT_JID_TYPE);
+        RootImpl root2 = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT_JID_TYPE);
         root2.load(rootBytes);
         Actor a = (new ResolvePathname("0")).send(future, root2);
         Proc.req.send(future, a);

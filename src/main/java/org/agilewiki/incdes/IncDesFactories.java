@@ -42,17 +42,17 @@ import org.agilewiki.pactor.MailboxFactory;
  * Defines IncDesImpl actor types and registers the JID factories.
  * </p>
  */
-final public class PAFactories extends LocateLocalActorFactories {
+final public class IncDesFactories extends LocateLocalActorFactories {
     public static FactoryLocator createFactoryLocator(int threadCount) throws Exception {
-        PABundleContext jaBundleContext = PABundleContextImpl.createNoOsgiJABundleContext(threadCount);
-        PAFactories jidFactories = new PAFactories();
+        Context jaBundleContext = PABundleContextImpl.createNoOsgiJABundleContext(threadCount);
+        IncDesFactories jidFactories = new IncDesFactories();
         jidFactories.initialize(jaBundleContext.getMailbox().getMailboxFactory().createMailbox(true), jaBundleContext);
         return jidFactories.configure();
     }
 
     public static FactoryLocator createFactoryLocator(MailboxFactory mailboxFactory) throws Exception {
-        PABundleContext jaBundleContext = PABundleContextImpl.createNoOsgiJABundleContext(mailboxFactory);
-        PAFactories jidFactories = new PAFactories();
+        Context jaBundleContext = PABundleContextImpl.createNoOsgiJABundleContext(mailboxFactory);
+        IncDesFactories jidFactories = new IncDesFactories();
         jidFactories.initialize(mailboxFactory.createMailbox(true), jaBundleContext);
         return jidFactories.configure();
     }
