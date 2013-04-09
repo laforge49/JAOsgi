@@ -23,11 +23,7 @@
  */
 package org.agilewiki.jfile.block;
 
-import org.agilewiki.incdes.AppendableBytes;
-import org.agilewiki.incdes.PAFactories;
-import org.agilewiki.incdes.ReadableBytes;
-import org.agilewiki.incdes.impl.Util;
-import org.agilewiki.incdes.impl.scalar.vlens.RootImpl;
+import org.agilewiki.incdes.*;
 import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
@@ -43,7 +39,7 @@ public class LBlock implements Block {
     int l;
     protected byte[] blockBytes;
     protected byte[] rootJidBytes;
-    private RootImpl rootJid;
+    private Root rootJid;
 
     /**
      * Reset the block and assign the RootImpl.
@@ -51,7 +47,7 @@ public class LBlock implements Block {
      * @param rootJid The RootImpl to be assigned.
      */
     @Override
-    public void setRootJid(RootImpl rootJid) {
+    public void setRootJid(Root rootJid) {
         blockBytes = null;
         rootJidBytes = null;
         this.rootJid = rootJid;
@@ -166,7 +162,7 @@ public class LBlock implements Block {
      * @return The RootImpl.
      * @throws Exception An exception is thrown when there is no RootImpl.
      */
-    public RootImpl getRootJid()
+    public Root getRootJid()
             throws Exception {
         if (rootJid == null) {
             throw new IllegalStateException("there is no RootImpl");
@@ -182,14 +178,14 @@ public class LBlock implements Block {
      * @return The deserialized RootImpl, or null.
      */
     @Override
-    public RootImpl getRootJid(Ancestor actor, Mailbox mailbox, Ancestor parent)
+    public Root getRootJid(Ancestor actor, Mailbox mailbox, Ancestor parent)
             throws Exception {
         if (rootJid != null)
             return rootJid;
         rb = null;
         if (rootJidBytes == null)
             return null;
-        rootJid = (RootImpl) FactoryLocatorImpl.newJid(actor, PAFactories.ROOT_JID_TYPE, actor.getMailbox(), parent);
+        rootJid = (Root) FactoryLocatorImpl.newJid(actor, PAFactories.ROOT_JID_TYPE, actor.getMailbox(), parent);
         rootJid.load(new ReadableBytes(rootJidBytes, 0));
         return rootJid;
     }

@@ -24,8 +24,8 @@
 package org.agilewiki.jfile.block;
 
 import org.agilewiki.incdes.AppendableBytes;
-import org.agilewiki.incdes.impl.Util;
-import org.agilewiki.incdes.impl.scalar.vlens.RootImpl;
+import org.agilewiki.incdes.Root;
+import org.agilewiki.incdes.Util;
 
 /**
  * A block with a length and a timestamp in the header.
@@ -39,7 +39,7 @@ public class LTBlock extends LBlock {
      * @param rootJid The RootImpl to be assigned.
      */
     @Override
-    public void setRootJid(RootImpl rootJid) {
+    public void setRootJid(Root rootJid) {
         super.setRootJid(rootJid);
         timestamp = 0L;
     }

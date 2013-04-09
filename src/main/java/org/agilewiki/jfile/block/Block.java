@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jfile.block;
 
-import org.agilewiki.incdes.impl.scalar.vlens.RootImpl;
+import org.agilewiki.incdes.Root;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
@@ -38,7 +38,7 @@ public interface Block {
      *
      * @param rootJid The RootImpl to be assigned.
      */
-    public void setRootJid(RootImpl rootJid);
+    public void setRootJid(Root rootJid);
 
     /**
      * Serializes the header and the assigned RootImpl.
@@ -101,7 +101,7 @@ public interface Block {
      * @return The RootImpl.
      * @throws Exception An exception is thrown when there is no RootImpl.
      */
-    public RootImpl getRootJid()
+    public Root getRootJid()
             throws Exception;
 
     /**
@@ -111,7 +111,7 @@ public interface Block {
      * @param parent  The parent.
      * @return The RootImpl, or null.
      */
-    public RootImpl getRootJid(Ancestor actor, Mailbox mailbox, Ancestor parent)
+    public Root getRootJid(Ancestor actor, Mailbox mailbox, Ancestor parent)
             throws Exception;
 
     /**
