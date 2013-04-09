@@ -21,7 +21,7 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.scalar.vlens.actor;
+package org.agilewiki.incdes.impl.scalar.vlens;
 
 import org.agilewiki.incdes.Root;
 import org.agilewiki.incdes.AppendableBytes;
@@ -32,33 +32,32 @@ import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
-import org.agilewiki.jid.scalar.vlens.StringJid;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
 /**
  * The root IncDesImpl actor of a tree of IncDesImpl actors.
  * <p/>
- * The serialized form of RootJid does NOT contain its length.
+ * The serialized form of RootImpl does NOT contain its length.
  * The load method simply grabs all the remaining data.
  */
-public class RootJid extends ActorJid implements Root {
-    public static RootJid create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (RootJid) JAFactoryLocator.newJid(actor, JidFactories.ROOT_JID_TYPE, mailbox, parent);
+public class RootImpl extends BoxImpl implements Root {
+    public static RootImpl create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
+        return (RootImpl) JAFactoryLocator.newJid(actor, JidFactories.ROOT_JID_TYPE, mailbox, parent);
     }
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
         factoryLocator.registerJidFactory(new ActorFactory(JidFactories.ROOT_JID_TYPE) {
             @Override
-            final protected RootJid instantiateActor()
+            final protected RootImpl instantiateActor()
                     throws Exception {
-                return new RootJid();
+                return new RootImpl();
             }
         });
     }
 
-    private StringMapJid<StringJid> manifest;
+    private StringMapJid<PAStringImpl> manifest;
 
     /**
      * Save the serialized data into a byte array.
@@ -74,7 +73,7 @@ public class RootJid extends ActorJid implements Root {
     }
 
     /**
-     * Load the serialized data into the RootJid.
+     * Load the serialized data into the RootImpl.
      *
      * @param bytes  A mutable array holding the serialized data.
      * @param offset Position of the serialized data.
@@ -89,7 +88,7 @@ public class RootJid extends ActorJid implements Root {
     }
 
     /**
-     * Assigns the serialized data to the RootJid.
+     * Assigns the serialized data to the RootImpl.
      *
      * @param bytes Holds the immutable serialized data.
      *              (And nothing else.)
@@ -102,7 +101,7 @@ public class RootJid extends ActorJid implements Root {
 
     /**
      * Throws an UnsupportedOperationException,
-     * as a RootJid does NOT have a container.
+     * as a RootImpl does NOT have a container.
      *
      * @param containerJid The container, or null.
      */
@@ -175,8 +174,8 @@ public class RootJid extends ActorJid implements Root {
         return jid;
     }
 
-    public StringMapJid<StringJid> getManifestJidCopy(Mailbox mailbox) throws Exception {
-        return (StringMapJid<StringJid>) manifest.copyJID(mailbox);
+    public StringMapJid<PAStringImpl> getManifestJidCopy(Mailbox mailbox) throws Exception {
+        return (StringMapJid<PAStringImpl>) manifest.copyJID(mailbox);
     }
 
     public boolean validateManifest() throws Exception {

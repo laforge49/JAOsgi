@@ -27,7 +27,7 @@ import org.agilewiki.incdes.AppBase;
 import org.agilewiki.incdes.MapEntry;
 import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jid.scalar.ScalarJid;
+import org.agilewiki.jid.scalar.Scalar;
 
 /**
  * A map is, in part, a list of map entries.
@@ -48,12 +48,12 @@ public class MapEntryBase<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE>
     @Override
     public KEY_TYPE getKey()
             throws Exception {
-        return (KEY_TYPE) ((ScalarJid) _iGet(TUPLE_KEY)).getValue();
+        return (KEY_TYPE) ((Scalar) _iGet(TUPLE_KEY)).getValue();
     }
 
     protected void setKey(KEY_TYPE key)
             throws Exception {
-        ((ScalarJid) _iGet(TUPLE_KEY)).setValue(key);
+        ((Scalar) _iGet(TUPLE_KEY)).setValue(key);
     }
 
     @Override

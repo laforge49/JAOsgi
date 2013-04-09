@@ -10,7 +10,7 @@ import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
 import org.agilewiki.jid.scalar.flens.FloatJid;
-import org.agilewiki.jid.scalar.vlens.actor.ActorJid;
+import org.agilewiki.incdes.impl.scalar.vlens.BoxImpl;
 import org.agilewiki.jid.scalar.vlens.actor.SetActor;
 
 public class FloatTest extends TestCase {
@@ -38,7 +38,7 @@ public class FloatTest extends TestCase {
             v = GetFloat.req.send(future, float3);
             assertEquals(1.f, v);
 
-            ActorJid jidJid1 = ActorJid.create(factoryLocator, null, null);
+            BoxImpl jidJid1 = BoxImpl.create(factoryLocator, null, null);
             SetActor sjvf = new SetActor(JidFactories.FLOAT_JID_TYPE);
             sjvf.send(future, jidJid1);
             FloatJid rpa = (FloatJid) (new ResolvePathname("0")).send(future, jidJid1);

@@ -9,7 +9,7 @@ import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
 import org.agilewiki.jid.scalar.flens.LongJid;
-import org.agilewiki.jid.scalar.vlens.actor.ActorJid;
+import org.agilewiki.incdes.impl.scalar.vlens.BoxImpl;
 import org.agilewiki.jid.scalar.vlens.actor.SetActor;
 
 public class LongTest extends TestCase {
@@ -37,7 +37,7 @@ public class LongTest extends TestCase {
             v = GetLong.req.send(future, float3);
             assertEquals(1L, v);
 
-            ActorJid jidJid1 = ActorJid.create(factoryLocator, null, null);
+            BoxImpl jidJid1 = BoxImpl.create(factoryLocator, null, null);
             SetActor sjvl = new SetActor(JidFactories.LONG_JID_TYPE);
             sjvl.send(future, jidJid1);
             LongJid rpa = (LongJid) (new ResolvePathname("0")).send(future, jidJid1);

@@ -25,14 +25,14 @@ package org.agilewiki.jid.scalar.flens;
 
 import org.agilewiki.incdes.impl.ComparableKey;
 import org.agilewiki.incdes.ReadableBytes;
-import org.agilewiki.jid.scalar.ScalarJid;
+import org.agilewiki.jid.scalar.Scalar;
 
 /**
  * A JID actor that holds a fixed-length value.
  * The value is always present.
  */
-abstract public class FLenScalarJid<RESPONSE_TYPE extends Comparable>
-        extends ScalarJid<RESPONSE_TYPE, RESPONSE_TYPE>
+abstract public class FLenScalar<RESPONSE_TYPE extends Comparable>
+        extends Scalar<RESPONSE_TYPE, RESPONSE_TYPE>
         implements ComparableKey<RESPONSE_TYPE> {
 
     /**

@@ -6,7 +6,7 @@ import org.agilewiki.jid.collection.flenc.TupleJidFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.scalar.flens.IntegerJid;
-import org.agilewiki.jid.scalar.vlens.StringJid;
+import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
 
 public class User extends TupleJid implements Main {
 
@@ -28,11 +28,11 @@ public class User extends TupleJid implements Main {
 
     @Override
     public void processRequest(Proc request, ResponseProcessor rp) throws Exception {
-        StringJid name = (StringJid) iGet(0);
+        PAStringImpl name = (PAStringImpl) iGet(0);
         System.out.println("name: " + name.getValue());
         IntegerJid age = (IntegerJid) iGet(1);
         System.out.println("age: " + age.getValue());
-        StringJid location = (StringJid) iGet(2);
+        PAStringImpl location = (PAStringImpl) iGet(2);
         System.out.println("location: " + location.getValue());
         rp.processResponse(null);
     }

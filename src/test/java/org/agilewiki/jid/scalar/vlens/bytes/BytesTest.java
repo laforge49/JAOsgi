@@ -10,8 +10,8 @@ import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
 import org.agilewiki.jid.scalar.Clear;
-import org.agilewiki.jid.scalar.vlens.BytesJid;
-import org.agilewiki.jid.scalar.vlens.actor.ActorJid;
+import org.agilewiki.incdes.impl.scalar.vlens.BytesImpl;
+import org.agilewiki.incdes.impl.scalar.vlens.BoxImpl;
 import org.agilewiki.jid.scalar.vlens.actor.SetActor;
 
 public class BytesTest extends TestCase {
@@ -20,7 +20,7 @@ public class BytesTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            Actor bytes1 = BytesJid.create(factoryLocator, null, null);
+            Actor bytes1 = BytesImpl.create(factoryLocator, null, null);
             Actor bytes2 = (new CopyJID()).send(future, bytes1);
             (new SetBytes(new byte[3])).send(future, bytes2);
             Actor bytes3 = (new CopyJID()).send(future, bytes2);
@@ -36,14 +36,14 @@ public class BytesTest extends TestCase {
             assertEquals(3, GetBytes.req.send(future, bytes2).length);
             assertEquals(3, GetBytes.req.send(future, bytes3).length);
 
-            ActorJid jidJid1 = ActorJid.create(factoryLocator, null, null);
+            BoxImpl jidJid1 = BoxImpl.create(factoryLocator, null, null);
             SetActor sjvbs = new SetActor(JidFactories.BYTES_JID_TYPE);
             sjvbs.send(future, jidJid1);
-            BytesJid rpa = (BytesJid) (new ResolvePathname("0")).send(future, jidJid1);
+            BytesImpl rpa = (BytesImpl) (new ResolvePathname("0")).send(future, jidJid1);
             assertNull(GetBytes.req.send(future, rpa));
             assertTrue((new MakeBytes(new byte[0])).send(future, rpa));
             assertFalse((new MakeBytes(new byte[99])).send(future, rpa));
-            rpa = (BytesJid) (new ResolvePathname("0")).send(future, jidJid1);
+            rpa = (BytesImpl) (new ResolvePathname("0")).send(future, jidJid1);
             assertEquals(0, GetBytes.req.send(future, rpa).length);
             Clear.req.sendEvent(rpa);
             assertNull(GetBytes.req.send(future, rpa));

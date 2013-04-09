@@ -8,7 +8,7 @@ import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
 import org.agilewiki.jid.scalar.vlens.actor.GetActor;
-import org.agilewiki.jid.scalar.vlens.actor.RootJid;
+import org.agilewiki.incdes.impl.scalar.vlens.RootImpl;
 import org.agilewiki.jid.scalar.vlens.actor.SetActor;
 
 public class BigBooleanListTest extends TestCase {
@@ -16,7 +16,7 @@ public class BigBooleanListTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         JAFuture future = new JAFuture();
-        RootJid root = (RootJid) factoryLocator.newJid(JidFactories.ROOT_JID_TYPE);
+        RootImpl root = (RootImpl) factoryLocator.newJid(JidFactories.ROOT_JID_TYPE);
 
         SetActor setList = new SetActor(JidFactories.BOOLEAN_LIST_JID_TYPE);
         setList.send(future, root);
@@ -36,7 +36,7 @@ public class BigBooleanListTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         JAFuture future = new JAFuture();
-        RootJid root = (RootJid) factoryLocator.newJid(JidFactories.ROOT_JID_TYPE);
+        RootImpl root = (RootImpl) factoryLocator.newJid(JidFactories.ROOT_JID_TYPE);
 
         SetActor setList = new SetActor(JidFactories.BOOLEAN_LIST_JID_TYPE);
         setList.send(future, root);
@@ -70,7 +70,7 @@ public class BigBooleanListTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         JAFuture future = new JAFuture();
-        RootJid root = (RootJid) factoryLocator.newJid(JidFactories.ROOT_JID_TYPE);
+        RootImpl root = (RootImpl) factoryLocator.newJid(JidFactories.ROOT_JID_TYPE);
 
         SetActor setList = new SetActor(JidFactories.BOOLEAN_LIST_JID_TYPE);
         setList.send(future, root);
@@ -106,7 +106,7 @@ public class BigBooleanListTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         JAFuture future = new JAFuture();
-        RootJid root = (RootJid) factoryLocator.newJid(JidFactories.ROOT_JID_TYPE);
+        RootImpl root = (RootImpl) factoryLocator.newJid(JidFactories.ROOT_JID_TYPE);
 
         SetActor setList = new SetActor(JidFactories.BOOLEAN_LIST_JID_TYPE);
         setList.send(future, root);
@@ -142,7 +142,7 @@ public class BigBooleanListTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         JAFuture future = new JAFuture();
-        RootJid root = (RootJid) factoryLocator.newJid(JidFactories.ROOT_JID_TYPE);
+        RootImpl root = (RootImpl) factoryLocator.newJid(JidFactories.ROOT_JID_TYPE);
 
         SetActor setList = new SetActor(JidFactories.BOOLEAN_LIST_JID_TYPE);
         setList.send(future, root);

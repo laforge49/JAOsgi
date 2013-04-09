@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jfile.block;
 
-import org.agilewiki.jid.scalar.vlens.actor.RootJid;
+import org.agilewiki.incdes.impl.scalar.vlens.RootImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
@@ -34,16 +34,16 @@ import org.agilewiki.pautil.Ancestor;
  */
 public interface Block {
     /**
-     * Reset the block and assign the RootJid.
+     * Reset the block and assign the RootImpl.
      *
-     * @param rootJid The RootJid to be assigned.
+     * @param rootJid The RootImpl to be assigned.
      */
-    public void setRootJid(RootJid rootJid);
+    public void setRootJid(RootImpl rootJid);
 
     /**
-     * Serializes the header and the assigned RootJid.
+     * Serializes the header and the assigned RootImpl.
      *
-     * @return The bytes of the header and serialized RootJid.
+     * @return The bytes of the header and serialized RootImpl.
      */
     public byte[] serialize()
             throws Exception;
@@ -96,22 +96,22 @@ public interface Block {
     public boolean setRootJidBytes(byte[] bytes);
 
     /**
-     * Get an existing RootJid.
+     * Get an existing RootImpl.
      *
-     * @return The RootJid.
-     * @throws Exception An exception is thrown when there is no RootJid.
+     * @return The RootImpl.
+     * @throws Exception An exception is thrown when there is no RootImpl.
      */
-    public RootJid getRootJid()
+    public RootImpl getRootJid()
             throws Exception;
 
     /**
-     * Return the RootJid, deserializing it as needed..
+     * Return the RootImpl, deserializing it as needed..
      *
      * @param mailbox The mailbox.
      * @param parent  The parent.
-     * @return The RootJid, or null.
+     * @return The RootImpl, or null.
      */
-    public RootJid getRootJid(Ancestor actor, Mailbox mailbox, Ancestor parent)
+    public RootImpl getRootJid(Ancestor actor, Mailbox mailbox, Ancestor parent)
             throws Exception;
 
     /**

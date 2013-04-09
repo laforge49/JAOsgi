@@ -28,7 +28,7 @@ import org.agilewiki.incdes.impl.IncDesImpl;
 /**
  * A IncDesImpl actor that hold a single value.
  */
-abstract public class ScalarJid<SET_TYPE, RESPONSE_TYPE>
+abstract public class Scalar<SET_TYPE, RESPONSE_TYPE>
         extends IncDesImpl {
 
     /**

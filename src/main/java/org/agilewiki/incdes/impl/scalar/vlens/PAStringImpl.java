@@ -21,7 +21,7 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.scalar.vlens;
+package org.agilewiki.incdes.impl.scalar.vlens;
 
 import org.agilewiki.incdes.PAString;
 import org.agilewiki.incdes.AppendableBytes;
@@ -40,20 +40,20 @@ import org.agilewiki.pautil.Ancestor;
 /**
  * A JID actor that holds a String.
  */
-public class StringJid
-        extends VLenScalarJid<String, String>
+public class PAStringImpl
+        extends VLenScalar<String, String>
         implements ComparableKey<String>, PAString {
-    public static StringJid create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (StringJid) JAFactoryLocator.newJid(actor, JidFactories.STRING_JID_TYPE, mailbox, parent);
+    public static PAStringImpl create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
+        return (PAStringImpl) JAFactoryLocator.newJid(actor, JidFactories.STRING_JID_TYPE, mailbox, parent);
     }
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
         factoryLocator.registerJidFactory(new ActorFactory(JidFactories.STRING_JID_TYPE) {
             @Override
-            final protected StringJid instantiateActor()
+            final protected PAStringImpl instantiateActor()
                     throws Exception {
-                return new StringJid();
+                return new PAStringImpl();
             }
         });
     }

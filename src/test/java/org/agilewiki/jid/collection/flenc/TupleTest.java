@@ -34,7 +34,7 @@ import org.agilewiki.jid.collection.ISetBytes;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
-import org.agilewiki.jid.scalar.vlens.StringJid;
+import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
 import org.agilewiki.jid.scalar.vlens.string.GetString;
 import org.agilewiki.jid.scalar.vlens.string.SetString;
 
@@ -64,7 +64,7 @@ public class TupleTest extends TestCase {
             Actor f1 = (new ResolvePathname("1")).send(future, t1);
             assertEquals("Oranges", GetString.req.send(future, f1));
 
-            StringJid string1 = StringJid.create(factoryLocator, null, null);
+            PAStringImpl string1 = PAStringImpl.create(factoryLocator, null, null);
             (new SetString("Peaches")).send(future, string1);
             byte[] sb = GetSerializedBytes.req.send(future, string1);
             (new ISetBytes(1, sb)).send(future, t1);

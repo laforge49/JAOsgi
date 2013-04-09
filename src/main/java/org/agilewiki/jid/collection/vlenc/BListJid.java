@@ -33,7 +33,7 @@ import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.scalar.flens.IntegerJid;
-import org.agilewiki.jid.scalar.vlens.actor.UnionJid;
+import org.agilewiki.incdes.impl.scalar.vlens.UnionImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;
@@ -119,9 +119,9 @@ public class BListJid<ENTRY_TYPE extends IncDes>
         sj.setValue(sj.getValue() + inc);
     }
 
-    protected UnionJid getUnionJid()
+    protected UnionImpl getUnionJid()
             throws Exception {
-        return (UnionJid) _iGet(TUPLE_UNION);
+        return (UnionImpl) _iGet(TUPLE_UNION);
     }
 
     protected ListJid<ENTRY_TYPE> getNode()

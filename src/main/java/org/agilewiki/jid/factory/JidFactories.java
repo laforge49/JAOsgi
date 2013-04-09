@@ -30,10 +30,10 @@ import org.agilewiki.jid.collection.vlenc.map.*;
 import org.agilewiki.jid.jaosgi.JABCNoOsgiImpl;
 import org.agilewiki.jid.jaosgi.JABundleContext;
 import org.agilewiki.jid.scalar.flens.*;
-import org.agilewiki.jid.scalar.vlens.BytesJid;
-import org.agilewiki.jid.scalar.vlens.StringJid;
-import org.agilewiki.jid.scalar.vlens.actor.ActorJid;
-import org.agilewiki.jid.scalar.vlens.actor.RootJid;
+import org.agilewiki.incdes.impl.scalar.vlens.BytesImpl;
+import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
+import org.agilewiki.incdes.impl.scalar.vlens.BoxImpl;
+import org.agilewiki.incdes.impl.scalar.vlens.RootImpl;
 import org.agilewiki.pactor.MailboxFactory;
 
 /**
@@ -102,7 +102,7 @@ final public class JidFactories extends LocateLocalActorFactories {
     public final static String STRING_JID_TYPE = "STRING_JID";
 
     /**
-     * The name of the BytesJid actor.
+     * The name of the BytesImpl actor.
      */
     public final static String BYTES_JID_TYPE = "BYTES_JID";
 
@@ -437,10 +437,10 @@ final public class JidFactories extends LocateLocalActorFactories {
         FloatJid.registerFactory(factoryLocator);
         DoubleJid.registerFactory(factoryLocator);
 
-        ActorJid.registerFactory(factoryLocator);
-        RootJid.registerFactory(factoryLocator);
-        StringJid.registerFactory(factoryLocator);
-        BytesJid.registerFactory(factoryLocator);
+        BoxImpl.registerFactory(factoryLocator);
+        RootImpl.registerFactory(factoryLocator);
+        PAStringImpl.registerFactory(factoryLocator);
+        BytesImpl.registerFactory(factoryLocator);
 
         BListJidFactory.registerFactory(factoryLocator, STRING_BLIST_JID_TYPE, STRING_JID_TYPE);
         BListJidFactory.registerFactory(factoryLocator, BYTES_BLIST_JID_TYPE, BYTES_JID_TYPE);

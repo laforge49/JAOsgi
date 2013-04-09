@@ -10,7 +10,7 @@ import org.agilewiki.jid.collection.ISetBytes;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
-import org.agilewiki.jid.scalar.vlens.StringJid;
+import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
 import org.agilewiki.jid.scalar.vlens.string.SetString;
 
 public class ListTest extends TestCase {
@@ -32,7 +32,7 @@ public class ListTest extends TestCase {
             Actor l2 = (new CopyJID()).send(future, l1);
             int l2sl = GetSerializedLength.req.send(future, l2);
             assertEquals(12, l2sl);
-            StringJid s0 = StringJid.create(factoryLocator, null, null);
+            PAStringImpl s0 = PAStringImpl.create(factoryLocator, null, null);
             (new SetString("Hi")).send(future, s0);
             int s0sl = GetSerializedLength.req.send(future, s0);
             assertEquals(8, s0sl);

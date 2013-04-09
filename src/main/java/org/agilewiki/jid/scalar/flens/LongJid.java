@@ -40,7 +40,7 @@ import org.agilewiki.pautil.Ancestor;
  * A JID actor that holds a long.
  */
 public class LongJid
-        extends FLenScalarJid<Long> implements PALong {
+        extends FLenScalar<Long> implements PALong {
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {

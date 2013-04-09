@@ -5,8 +5,8 @@ import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
-import org.agilewiki.jid.scalar.vlens.actor.ActorJid;
-import org.agilewiki.jid.scalar.vlens.actor.UnionJid;
+import org.agilewiki.incdes.impl.scalar.vlens.BoxImpl;
+import org.agilewiki.incdes.impl.scalar.vlens.UnionImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
@@ -14,7 +14,7 @@ public class Blob extends StringMapJid implements Main {
 
     public static void register(FactoryLocator factoryLocator) throws Exception {
         factoryLocator.registerJidFactory(new BlobFactory("blob"));
-        UnionJid.registerFactory(factoryLocator,
+        UnionImpl.registerFactory(factoryLocator,
                 "E.blob", JidFactories.STRING_JID_TYPE, JidFactories.ACTOR_JID_TYPE);
     }
 
@@ -41,7 +41,7 @@ public class Blob extends StringMapJid implements Main {
     @Override
     public void processRequest(Proc request, ResponseProcessor rp) throws Exception {
         initializeList();
-        ActorJid aj = (ActorJid) kGet("fun");
+        BoxImpl aj = (BoxImpl) kGet("fun");
         Actor a = aj.getValue();
         Proc.req.send(this, a, rp);
     }

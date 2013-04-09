@@ -9,7 +9,7 @@ import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
 import org.agilewiki.jid.scalar.flens.DoubleJid;
-import org.agilewiki.jid.scalar.vlens.actor.ActorJid;
+import org.agilewiki.incdes.impl.scalar.vlens.BoxImpl;
 import org.agilewiki.jid.scalar.vlens.actor.SetActor;
 
 public class DoubleTest extends TestCase {
@@ -37,7 +37,7 @@ public class DoubleTest extends TestCase {
             v = GetDouble.req.send(future, double3);
             assertEquals(1.D, v);
 
-            ActorJid jidJid1 = ActorJid.create(factoryLocator, null, null);
+            BoxImpl jidJid1 = BoxImpl.create(factoryLocator, null, null);
             SetActor sjvl = new SetActor(JidFactories.DOUBLE_JID_TYPE);
             sjvl.send(future, jidJid1);
             DoubleJid rpa = (DoubleJid) (new ResolvePathname("0")).send(future, jidJid1);

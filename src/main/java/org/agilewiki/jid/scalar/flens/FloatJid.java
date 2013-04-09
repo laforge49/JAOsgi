@@ -40,7 +40,7 @@ import org.agilewiki.pautil.Ancestor;
  * A JID actor that holds a float.
  */
 public class FloatJid
-        extends FLenScalarJid<Float> implements PAFloat {
+        extends FLenScalar<Float> implements PAFloat {
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {

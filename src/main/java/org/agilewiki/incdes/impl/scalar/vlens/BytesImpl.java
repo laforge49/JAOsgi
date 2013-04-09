@@ -21,7 +21,7 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.scalar.vlens;
+package org.agilewiki.incdes.impl.scalar.vlens;
 
 import org.agilewiki.incdes.Bytes;
 import org.agilewiki.incdes.AppendableBytes;
@@ -44,19 +44,19 @@ import java.io.ObjectOutputStream;
 /**
  * A JID component that holds a byte array.
  */
-public class BytesJid
-        extends VLenScalarJid<byte[], byte[]> implements Bytes {
-    public static BytesJid create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (BytesJid) JAFactoryLocator.newJid(actor, JidFactories.BYTES_JID_TYPE, mailbox, parent);
+public class BytesImpl
+        extends VLenScalar<byte[], byte[]> implements Bytes {
+    public static BytesImpl create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
+        return (BytesImpl) JAFactoryLocator.newJid(actor, JidFactories.BYTES_JID_TYPE, mailbox, parent);
     }
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
         factoryLocator.registerJidFactory(new ActorFactory(JidFactories.BYTES_JID_TYPE) {
             @Override
-            final protected BytesJid instantiateActor()
+            final protected BytesImpl instantiateActor()
                     throws Exception {
-                return new BytesJid();
+                return new BytesImpl();
             }
         });
     }

@@ -21,7 +21,7 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.scalar.vlens.actor;
+package org.agilewiki.incdes.impl.scalar.vlens;
 
 import org.agilewiki.incdes.IncDes;
 import org.agilewiki.incdes.Union;
@@ -32,14 +32,14 @@ import org.agilewiki.incdes.impl.Util;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JAFactoryLocator;
-import org.agilewiki.jid.scalar.ScalarJid;
+import org.agilewiki.jid.scalar.Scalar;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;
 import org.agilewiki.pactor.ResponseProcessor;
 import org.agilewiki.pautil.Ancestor;
 
-public class UnionJid extends ScalarJid<String, IncDesImpl> implements Union {
+public class UnionImpl extends Scalar<String, IncDesImpl> implements Union {
 
     public static void registerFactory(final FactoryLocator _factoryLocator,
                                        final String _subActorType,
@@ -48,15 +48,15 @@ public class UnionJid extends ScalarJid<String, IncDesImpl> implements Union {
         _factoryLocator.registerJidFactory(new ActorFactory(_subActorType) {
 
             @Override
-            protected UnionJid instantiateActor()
+            protected UnionImpl instantiateActor()
                     throws Exception {
-                return new UnionJid();
+                return new UnionImpl();
             }
 
             @Override
-            public UnionJid newActor(Mailbox mailbox, Ancestor parent)
+            public UnionImpl newActor(Mailbox mailbox, Ancestor parent)
                     throws Exception {
-                UnionJid uj = (UnionJid) super.newActor(mailbox, parent);
+                UnionImpl uj = (UnionImpl) super.newActor(mailbox, parent);
                 FactoryLocator fl = JAFactoryLocator.get(parent);
                 ActorFactory[] afs = new ActorFactory[_actorTypes.length];
                 int i = 0;

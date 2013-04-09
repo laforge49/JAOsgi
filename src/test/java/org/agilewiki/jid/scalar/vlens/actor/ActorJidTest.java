@@ -12,6 +12,7 @@ import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
 import org.agilewiki.jid.scalar.Clear;
+import org.agilewiki.incdes.impl.scalar.vlens.BoxImpl;
 import org.agilewiki.jid.scalar.vlens.string.GetString;
 import org.agilewiki.jid.scalar.vlens.string.SetString;
 
@@ -53,7 +54,7 @@ public class ActorJidTest extends TestCase {
             Actor sj = GetActor.req.send(future, jidJid1);
             assertEquals("abc", GetString.req.send(future, sj));
 
-            ActorJid jidJid2 = ActorJid.create(factoryLocator, null, null);
+            BoxImpl jidJid2 = BoxImpl.create(factoryLocator, null, null);
             sl = GetSerializedLength.req.send(future, jidJid2);
             assertEquals(4, sl);
 
@@ -91,7 +92,7 @@ public class ActorJidTest extends TestCase {
             sl = GetSerializedLength.req.send(future, rpa);
             assertEquals(0, sl);
 
-            ActorJid jidJid3 = ActorJid.create(factoryLocator, null, null);
+            BoxImpl jidJid3 = BoxImpl.create(factoryLocator, null, null);
             sl = GetSerializedLength.req.send(future, jidJid3);
             assertEquals(4, sl);
             MakeActor mjvjj = new MakeActor(JidFactories.ACTOR_JID_TYPE);

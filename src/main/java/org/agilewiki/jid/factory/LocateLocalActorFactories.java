@@ -25,7 +25,7 @@ package org.agilewiki.jid.factory;
 
 import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
 import org.agilewiki.jid.jaosgi.JABundleContext;
-import org.agilewiki.jid.scalar.vlens.StringJid;
+import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
 import org.agilewiki.pautil.AncestorBase;
 import org.osgi.framework.Bundle;
 
@@ -60,11 +60,11 @@ public abstract class LocateLocalActorFactories extends AncestorBase {
         return factoryLocator._getActorFactory(actorType);
     }
 
-    public void updateManifest(StringMapJid<StringJid> manifest) throws Exception {
+    public void updateManifest(StringMapJid<PAStringImpl> manifest) throws Exception {
         factoryLocator.updateManifest(manifest);
     }
 
-    public void unknownManifestEntries(StringMapJid<StringJid> manifest) throws Exception {
+    public void unknownManifestEntries(StringMapJid<PAStringImpl> manifest) throws Exception {
         factoryLocator.unknownManifestEntries(manifest);
     }
 }

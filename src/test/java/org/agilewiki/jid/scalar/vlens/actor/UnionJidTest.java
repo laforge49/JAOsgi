@@ -4,7 +4,8 @@ import junit.framework.TestCase;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
-import org.agilewiki.jid.scalar.vlens.StringJid;
+import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
+import org.agilewiki.incdes.impl.scalar.vlens.UnionImpl;
 
 public class UnionJidTest extends TestCase {
     public void test() throws Exception {
@@ -14,15 +15,15 @@ public class UnionJidTest extends TestCase {
             UnionJidFactory siuf =
                     new UnionJidFactory("siUnion", JidFactories.STRING_JID_TYPE, "siUnion");
             factoryLocator.registerJidFactory(siuf);
-            UnionJid siu1 = (UnionJid) factoryLocator.newJid("siUnion");
+            UnionImpl siu1 = (UnionImpl) factoryLocator.newJid("siUnion");
             assertNull(siu1.getValue());
-            UnionJid siu2 = (UnionJid) siu1.copyJID(factoryLocator.getMailbox());
+            UnionImpl siu2 = (UnionImpl) siu1.copyJID(factoryLocator.getMailbox());
             assertNull(siu2.getValue());
             siu2.setValue(JidFactories.STRING_JID_TYPE);
-            StringJid sj2 = (StringJid) siu2.getValue();
+            PAStringImpl sj2 = (PAStringImpl) siu2.getValue();
             assertNotNull(sj2);
-            UnionJid siu3 = (UnionJid) siu2.copyJID(factoryLocator.getMailbox());
-            StringJid sj3 = (StringJid) siu3.getValue();
+            UnionImpl siu3 = (UnionImpl) siu2.copyJID(factoryLocator.getMailbox());
+            PAStringImpl sj3 = (PAStringImpl) siu3.getValue();
             assertNotNull(sj3);
         } catch (Exception e) {
             e.printStackTrace();

@@ -28,7 +28,7 @@ import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.incdes.impl.Util;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
-import org.agilewiki.jid.scalar.vlens.actor.RootJid;
+import org.agilewiki.incdes.impl.scalar.vlens.RootImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
@@ -43,24 +43,24 @@ public class LBlock implements Block {
     int l;
     protected byte[] blockBytes;
     protected byte[] rootJidBytes;
-    private RootJid rootJid;
+    private RootImpl rootJid;
 
     /**
-     * Reset the block and assign the RootJid.
+     * Reset the block and assign the RootImpl.
      *
-     * @param rootJid The RootJid to be assigned.
+     * @param rootJid The RootImpl to be assigned.
      */
     @Override
-    public void setRootJid(RootJid rootJid) {
+    public void setRootJid(RootImpl rootJid) {
         blockBytes = null;
         rootJidBytes = null;
         this.rootJid = rootJid;
     }
 
     /**
-     * Serializes the header and the assigned RootJid.
+     * Serializes the header and the assigned RootImpl.
      *
-     * @return The bytes of the header and serialized RootJid.
+     * @return The bytes of the header and serialized RootImpl.
      */
     @Override
     public byte[] serialize()
@@ -161,35 +161,35 @@ public class LBlock implements Block {
     }
 
     /**
-     * Get an existing RootJid.
+     * Get an existing RootImpl.
      *
-     * @return The RootJid.
-     * @throws Exception An exception is thrown when there is no RootJid.
+     * @return The RootImpl.
+     * @throws Exception An exception is thrown when there is no RootImpl.
      */
-    public RootJid getRootJid()
+    public RootImpl getRootJid()
             throws Exception {
         if (rootJid == null) {
-            throw new IllegalStateException("there is no RootJid");
+            throw new IllegalStateException("there is no RootImpl");
         }
         return rootJid;
     }
 
     /**
-     * Return the RootJid, deserializing it as needed..
+     * Return the RootImpl, deserializing it as needed..
      *
      * @param mailbox The mailbox.
      * @param parent  The parent.
-     * @return The deserialized RootJid, or null.
+     * @return The deserialized RootImpl, or null.
      */
     @Override
-    public RootJid getRootJid(Ancestor actor, Mailbox mailbox, Ancestor parent)
+    public RootImpl getRootJid(Ancestor actor, Mailbox mailbox, Ancestor parent)
             throws Exception {
         if (rootJid != null)
             return rootJid;
         rb = null;
         if (rootJidBytes == null)
             return null;
-        rootJid = (RootJid) JAFactoryLocator.newJid(actor, JidFactories.ROOT_JID_TYPE, actor.getMailbox(), parent);
+        rootJid = (RootImpl) JAFactoryLocator.newJid(actor, JidFactories.ROOT_JID_TYPE, actor.getMailbox(), parent);
         rootJid.load(new ReadableBytes(rootJidBytes, 0));
         return rootJid;
     }

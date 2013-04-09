@@ -21,7 +21,7 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.scalar.vlens.actor;
+package org.agilewiki.incdes.impl.scalar.vlens;
 
 import org.agilewiki.incdes.AppendableBytes;
 import org.agilewiki.incdes.Box;
@@ -33,7 +33,6 @@ import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
-import org.agilewiki.jid.scalar.vlens.VLenScalarJid;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;
@@ -43,19 +42,19 @@ import org.agilewiki.pautil.Ancestor;
 /**
  * A JID actor that holds a JID actor.
  */
-public class ActorJid
-        extends VLenScalarJid<String, IncDesImpl> implements Box {
-    public static ActorJid create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (ActorJid) JAFactoryLocator.newJid(actor, JidFactories.ACTOR_JID_TYPE, mailbox, parent);
+public class BoxImpl
+        extends VLenScalar<String, IncDesImpl> implements Box {
+    public static BoxImpl create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
+        return (BoxImpl) JAFactoryLocator.newJid(actor, JidFactories.ACTOR_JID_TYPE, mailbox, parent);
     }
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
         factoryLocator.registerJidFactory(new ActorFactory(JidFactories.ACTOR_JID_TYPE) {
             @Override
-            final protected ActorJid instantiateActor()
+            final protected BoxImpl instantiateActor()
                     throws Exception {
-                return new ActorJid();
+                return new BoxImpl();
             }
         });
     }

@@ -21,13 +21,13 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.scalar.vlens;
+package org.agilewiki.incdes.impl.scalar.vlens;
 
 import org.agilewiki.incdes.AppendableBytes;
 import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.incdes.impl.Util;
 import org.agilewiki.jid.factory.ActorFactory;
-import org.agilewiki.jid.scalar.ScalarJid;
+import org.agilewiki.jid.scalar.Scalar;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;
@@ -37,8 +37,8 @@ import org.agilewiki.pautil.Ancestor;
 /**
  * A JID component that holds a variable-length value, or null.
  */
-abstract public class VLenScalarJid<SET_TYPE, RESPONSE_TYPE>
-        extends ScalarJid<SET_TYPE, RESPONSE_TYPE> {
+abstract public class VLenScalar<SET_TYPE, RESPONSE_TYPE>
+        extends Scalar<SET_TYPE, RESPONSE_TYPE> {
 
     /**
      * Holds the value, or null.

@@ -25,7 +25,7 @@ package org.agilewiki.jid.factory;
 
 import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
-import org.agilewiki.jid.scalar.vlens.StringJid;
+import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
 import org.agilewiki.pactor.Actor;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
@@ -93,11 +93,11 @@ public interface FactoryLocator extends Actor {
     public IncDesImpl newJid(String jidType, Mailbox mailbox, Ancestor parent)
             throws Exception;
 
-    public StringMapJid<StringJid> getManifestCopy(Mailbox mailbox) throws Exception;
+    public StringMapJid<PAStringImpl> getManifestCopy(Mailbox mailbox) throws Exception;
 
-    public boolean validateManifest(StringMapJid<StringJid> m) throws Exception;
+    public boolean validateManifest(StringMapJid<PAStringImpl> m) throws Exception;
 
-    public void loadBundles(StringMapJid<StringJid> m) throws Exception;
+    public void loadBundles(StringMapJid<PAStringImpl> m) throws Exception;
 
-    public void unknownManifestEntries(StringMapJid<StringJid> m) throws Exception;
+    public void unknownManifestEntries(StringMapJid<PAStringImpl> m) throws Exception;
 }

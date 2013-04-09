@@ -40,7 +40,7 @@ import org.agilewiki.pautil.Ancestor;
  * A JID actor that holds a boolean.
  */
 public class BooleanJid
-        extends FLenScalarJid<Boolean> implements PABoolean {
+        extends FLenScalar<Boolean> implements PABoolean {
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {

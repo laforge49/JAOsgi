@@ -5,7 +5,7 @@ import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
 import org.agilewiki.jid.scalar.flens.IntegerJid;
-import org.agilewiki.jid.scalar.vlens.StringJid;
+import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
 
 public class BListTest extends TestCase {
     public void test1() throws Exception {
@@ -16,16 +16,16 @@ public class BListTest extends TestCase {
             stringList1.iAdd(0);
             stringList1.iAdd(1);
             stringList1.iAdd(2);
-            StringJid sj0 = (StringJid) stringList1.iGet(0);
-            StringJid sj1 = (StringJid) stringList1.iGet(1);
-            StringJid sj2 = (StringJid) stringList1.iGet(2);
+            PAStringImpl sj0 = (PAStringImpl) stringList1.iGet(0);
+            PAStringImpl sj1 = (PAStringImpl) stringList1.iGet(1);
+            PAStringImpl sj2 = (PAStringImpl) stringList1.iGet(2);
             sj0.setValue("a");
             sj1.setValue("b");
             sj2.setValue("c");
             BListJid stringList2 = (BListJid) stringList1.copyJID(factoryLocator.getMailbox());
-            StringJid s0 = (StringJid) stringList2.iGet(0);
-            StringJid s1 = (StringJid) stringList2.iGet(1);
-            StringJid s2 = (StringJid) stringList2.iGet(2);
+            PAStringImpl s0 = (PAStringImpl) stringList2.iGet(0);
+            PAStringImpl s1 = (PAStringImpl) stringList2.iGet(1);
+            PAStringImpl s2 = (PAStringImpl) stringList2.iGet(2);
             assertEquals("a", s0.getValue());
             assertEquals("b", s1.getValue());
             assertEquals("c", s2.getValue());

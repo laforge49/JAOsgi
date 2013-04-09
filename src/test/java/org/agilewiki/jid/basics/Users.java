@@ -7,8 +7,8 @@ import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
-import org.agilewiki.jid.scalar.vlens.StringJid;
-import org.agilewiki.jid.scalar.vlens.actor.UnionJid;
+import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
+import org.agilewiki.incdes.impl.scalar.vlens.UnionImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
@@ -18,7 +18,7 @@ public class Users extends StringMapJid implements Main {
 
     public static void register(FactoryLocator factoryLocator) throws Exception {
         factoryLocator.registerJidFactory(new UsersFactory("users"));
-        UnionJid.registerFactory(factoryLocator,
+        UnionImpl.registerFactory(factoryLocator,
                 "E.users", JidFactories.STRING_JID_TYPE, JidFactories.STRING_JID_TYPE);
     }
 
@@ -47,9 +47,9 @@ public class Users extends StringMapJid implements Main {
         initializeList();
         Iterator<IncDes> it = list.iterator();
         while (it.hasNext()) {
-            MapEntryBase<String, StringJid> tj = (MapEntryBase) it.next();
+            MapEntryBase<String, PAStringImpl> tj = (MapEntryBase) it.next();
             String name = tj.getKey();
-            StringJid email = (StringJid) tj.getValue();
+            PAStringImpl email = (PAStringImpl) tj.getValue();
             System.out.println("name: " + name + ", email: " + email.getValue());
         }
         rp.processResponse(null);

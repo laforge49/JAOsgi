@@ -26,7 +26,7 @@ package org.agilewiki.jid.collection.vlenc.map;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JAFactoryLocator;
-import org.agilewiki.jid.scalar.vlens.actor.UnionJid;
+import org.agilewiki.incdes.impl.scalar.vlens.UnionImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
@@ -40,7 +40,7 @@ public class StringBMapJidFactory extends ActorFactory {
                                        String actorType,
                                        String valueType)
             throws Exception {
-        UnionJid.registerFactory(factoryLocator,
+        UnionImpl.registerFactory(factoryLocator,
                 "U." + actorType, "LM." + actorType, "IM." + actorType);
 
         factoryLocator.registerJidFactory(new StringBMapJidFactory(

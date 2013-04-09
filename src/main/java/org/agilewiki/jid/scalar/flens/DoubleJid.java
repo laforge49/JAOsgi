@@ -40,7 +40,7 @@ import org.agilewiki.pautil.Ancestor;
  * A JID actor that holds a double.
  */
 public class DoubleJid
-        extends FLenScalarJid<Double> implements PADouble {
+        extends FLenScalar<Double> implements PADouble {
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {

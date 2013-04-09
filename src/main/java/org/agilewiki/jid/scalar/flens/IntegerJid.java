@@ -40,7 +40,7 @@ import org.agilewiki.pautil.Ancestor;
  * A JID actor that holds an integer.
  */
 public class IntegerJid
-        extends FLenScalarJid<Integer> implements PAInteger {
+        extends FLenScalar<Integer> implements PAInteger {
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
