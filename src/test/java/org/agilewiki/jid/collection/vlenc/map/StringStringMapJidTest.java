@@ -22,10 +22,10 @@ public class StringStringMapJidTest extends TestCase {
             assertNotNull(value);
             assertTrue(value instanceof StringJid);
             value = new GetHigher<String, StringJid>("a").send(future, m);
-            assertTrue(value instanceof MapEntry);
+            assertTrue(value instanceof MapEntryBase);
             assertNull(new GetHigher<String, StringJid>("b").send(future, m));
             value = new GetCeiling<String, StringJid>("b").send(future, m);
-            assertTrue(value instanceof MapEntry);
+            assertTrue(value instanceof MapEntryBase);
             assertNull(new GetCeiling<String, StringJid>("c").send(future, m));
             assertNull(new KGet<String, StringJid>("c").send(future, m));
             assertTrue(new KRemove<String, StringJid>("b").send(future, m));

@@ -107,7 +107,7 @@ abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE e
         int high = size() - 1;
         while (low <= high) {
             int mid = (low + high) >>> 1;
-            MapEntry<KEY_TYPE, VALUE_TYPE> midVal = (MapEntry<KEY_TYPE, VALUE_TYPE>) iGet(mid);
+            MapEntryBase<KEY_TYPE, VALUE_TYPE> midVal = (MapEntryBase<KEY_TYPE, VALUE_TYPE>) iGet(mid);
             int c = midVal.compareKeyTo(key);
             if (c < 0)
                 low = mid + 1;
@@ -191,7 +191,7 @@ abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE e
             return false;
         i = -i - 1;
         iAdd(i);
-        MapEntry<KEY_TYPE, VALUE_TYPE> me = (MapEntry<KEY_TYPE, VALUE_TYPE>) iGet(i);
+        MapEntryBase<KEY_TYPE, VALUE_TYPE> me = (MapEntryBase<KEY_TYPE, VALUE_TYPE>) iGet(i);
         me.setKey(key);
         return true;
     }
@@ -221,12 +221,12 @@ abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE e
         return true;
     }
 
-    final public MapEntry<KEY_TYPE, VALUE_TYPE> kGetEntry(KEY_TYPE key)
+    final public MapEntryBase<KEY_TYPE, VALUE_TYPE> kGetEntry(KEY_TYPE key)
             throws Exception {
         int i = search(key);
         if (i < 0)
             return null;
-        return (MapEntry<KEY_TYPE, VALUE_TYPE>) iGet(i);
+        return (MapEntryBase<KEY_TYPE, VALUE_TYPE>) iGet(i);
     }
 
     @Override
@@ -248,7 +248,7 @@ abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE e
     @Override
     final public VALUE_TYPE kGet(KEY_TYPE key)
             throws Exception {
-        MapEntry<KEY_TYPE, VALUE_TYPE> entry = kGetEntry(key);
+        MapEntryBase<KEY_TYPE, VALUE_TYPE> entry = kGetEntry(key);
         if (entry == null)
             return null;
         return entry.getValue();
@@ -271,12 +271,12 @@ abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE e
      * @return The matching jid, or null.
      */
     @Override
-    final public MapEntry<KEY_TYPE, VALUE_TYPE> getHigher(KEY_TYPE key)
+    final public MapEntryBase<KEY_TYPE, VALUE_TYPE> getHigher(KEY_TYPE key)
             throws Exception {
         int i = higher(key);
         if (i < 0)
             return null;
-        return (MapEntry<KEY_TYPE, VALUE_TYPE>) iGet(i);
+        return (MapEntryBase<KEY_TYPE, VALUE_TYPE>) iGet(i);
     }
 
     @Override
@@ -296,12 +296,12 @@ abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE e
      * @return The matching jid, or null.
      */
     @Override
-    final public MapEntry<KEY_TYPE, VALUE_TYPE> getCeiling(KEY_TYPE key)
+    final public MapEntryBase<KEY_TYPE, VALUE_TYPE> getCeiling(KEY_TYPE key)
             throws Exception {
         int i = ceiling(key);
         if (i < 0)
             return null;
-        return (MapEntry<KEY_TYPE, VALUE_TYPE>) iGet(i);
+        return (MapEntryBase<KEY_TYPE, VALUE_TYPE>) iGet(i);
     }
 
     @Override
@@ -357,14 +357,14 @@ abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE e
         return jid.resolvePathname(pathname.substring(s + 1));
     }
 
-    public MapEntry<KEY_TYPE, VALUE_TYPE> getFirst()
+    public MapEntryBase<KEY_TYPE, VALUE_TYPE> getFirst()
             throws Exception {
-        return (MapEntry<KEY_TYPE, VALUE_TYPE>) iGet(0);
+        return (MapEntryBase<KEY_TYPE, VALUE_TYPE>) iGet(0);
     }
 
-    public MapEntry<KEY_TYPE, VALUE_TYPE> getLast()
+    public MapEntryBase<KEY_TYPE, VALUE_TYPE> getLast()
             throws Exception {
-        return (MapEntry<KEY_TYPE, VALUE_TYPE>) iGet(-1);
+        return (MapEntryBase<KEY_TYPE, VALUE_TYPE>) iGet(-1);
     }
 
     public KEY_TYPE getLastKey()
@@ -386,7 +386,7 @@ abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE e
     @Override
     public void kSet(KEY_TYPE key, byte[] bytes)
             throws Exception {
-        MapEntry<KEY_TYPE, VALUE_TYPE> entry = kGetEntry(key);
+        MapEntryBase<KEY_TYPE, VALUE_TYPE> entry = kGetEntry(key);
         if (entry == null)
             throw new IllegalArgumentException("not present: " + key);
         entry.setValueBytes(bytes);

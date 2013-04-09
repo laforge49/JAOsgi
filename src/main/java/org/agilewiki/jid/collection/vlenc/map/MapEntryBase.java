@@ -32,7 +32,7 @@ import org.agilewiki.jid.scalar.ScalarJid;
 /**
  * A map is, in part, a list of map entries.
  */
-public class MapEntry<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE>
+public class MapEntryBase<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE>
         extends AppJid
         implements PAMapEntry<KEY_TYPE, VALUE_TYPE> {
 

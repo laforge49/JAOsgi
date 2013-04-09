@@ -24,7 +24,7 @@
 package org.agilewiki.jid.factory;
 
 import org.agilewiki.jid.Jid;
-import org.agilewiki.jid.collection.vlenc.map.MapEntry;
+import org.agilewiki.jid.collection.vlenc.map.MapEntryBase;
 import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
 import org.agilewiki.jid.scalar.vlens.StringJid;
 import org.agilewiki.pactor.Actor;
@@ -210,7 +210,7 @@ public class JAFactoryLocator extends AncestorBase implements FactoryLocator {
         int s = manifest.size();
         int i = 0;
         while (i < s) {
-            MapEntry<String, StringJid> me = (MapEntry) manifest.iGet(i);
+            MapEntryBase<String, StringJid> me = (MapEntryBase) manifest.iGet(i);
             String locatorKey = me.getKey();
             String location = me.getValue().getValue();
             m.kMake(locatorKey);

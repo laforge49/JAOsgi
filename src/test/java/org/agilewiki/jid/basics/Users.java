@@ -1,7 +1,7 @@
 package org.agilewiki.jid.basics;
 
 import org.agilewiki.incdes.IncDes;
-import org.agilewiki.jid.collection.vlenc.map.MapEntry;
+import org.agilewiki.jid.collection.vlenc.map.MapEntryBase;
 import org.agilewiki.jid.collection.vlenc.map.StringMapJid;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
@@ -47,7 +47,7 @@ public class Users extends StringMapJid implements Main {
         initializeList();
         Iterator<IncDes> it = list.iterator();
         while (it.hasNext()) {
-            MapEntry<String, StringJid> tj = (MapEntry) it.next();
+            MapEntryBase<String, StringJid> tj = (MapEntryBase) it.next();
             String name = tj.getKey();
             StringJid email = (StringJid) tj.getValue();
             System.out.println("name: " + name + ", email: " + email.getValue());

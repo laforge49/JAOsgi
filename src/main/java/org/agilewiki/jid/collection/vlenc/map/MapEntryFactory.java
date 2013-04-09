@@ -63,8 +63,8 @@ public class MapEntryFactory extends ActorFactory {
      * @return The new actor.
      */
     @Override
-    protected MapEntry instantiateActor() throws Exception {
-        return new MapEntry();
+    protected MapEntryBase instantiateActor() throws Exception {
+        return new MapEntryBase();
     }
 
     /**
@@ -74,9 +74,9 @@ public class MapEntryFactory extends ActorFactory {
      * @param parent  The parent of the new actor.
      * @return The new actor.
      */
-    public MapEntry newActor(Mailbox mailbox, Ancestor parent)
+    public MapEntryBase newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
-        MapEntry me = (MapEntry) super.newActor(mailbox, parent);
+        MapEntryBase me = (MapEntryBase) super.newActor(mailbox, parent);
         FactoryLocator fl = JAFactoryLocator.get(parent);
         ActorFactory keyFactory = fl.getJidFactory(keyType);
         ActorFactory valueFactory = fl.getJidFactory(valueType);

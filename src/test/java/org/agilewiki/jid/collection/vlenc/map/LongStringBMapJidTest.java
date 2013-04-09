@@ -17,7 +17,7 @@ public class LongStringBMapJidTest extends TestCase {
             assertTrue(m.kMake(1L));
             assertFalse(m.kMake(1L));
             assertEquals(1, m.size());
-            MapEntry<Long, StringJid> me = m.iGet(0);
+            MapEntryBase<Long, StringJid> me = m.iGet(0);
             assertEquals((Long) 1L, me.getKey());
             StringJid v = m.kGet(1L);
             assertEquals(v, me.getValue());

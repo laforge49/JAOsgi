@@ -21,17 +21,6 @@ abstract public class AppJidFactory extends ActorFactory {
     /**
      * Create a JLPCActorFactory.
      *
-     * @param subJidType     The jid type.
-     * @param tupleFactories The element factories.
-     */
-    public AppJidFactory(String subJidType, ActorFactory... tupleFactories) {
-        super(subJidType);
-        this.tupleFactories = tupleFactories;
-    }
-
-    /**
-     * Create a JLPCActorFactory.
-     *
      * @param subJidType The jid type.
      * @param jidTypes   The element types.
      */
@@ -50,16 +39,14 @@ abstract public class AppJidFactory extends ActorFactory {
     public AppJid newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
         AppJid tj = (AppJid) super.newActor(mailbox, parent);
-        if (tupleFactories == null) {
-            FactoryLocator fl = JAFactoryLocator.get(parent);
-            ActorFactory[] afs = new ActorFactory[jidTypes.length];
-            int i = 0;
-            while (i < jidTypes.length) {
-                afs[i] = fl.getJidFactory(jidTypes[i]);
-                i += 1;
-            }
-            tupleFactories = afs;
+        FactoryLocator fl = JAFactoryLocator.get(parent);
+        ActorFactory[] afs = new ActorFactory[jidTypes.length];
+        int i = 0;
+        while (i < jidTypes.length) {
+            afs[i] = fl.getJidFactory(jidTypes[i]);
+            i += 1;
         }
+        tupleFactories = afs;
         tj.tupleFactories = tupleFactories;
         return tj;
     }

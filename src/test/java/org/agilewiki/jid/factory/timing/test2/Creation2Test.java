@@ -1,13 +1,15 @@
 package org.agilewiki.jid.factory.timing.test2;
 
 import junit.framework.TestCase;
-import org.agilewiki.jactor.Mailbox;
-import org.agilewiki.jactor.old.JAMailboxFactory;
-import org.agilewiki.jactor.old.MailboxFactory;
+import org.agilewiki.jid.factory.JAFactoryLocator;
+import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.factory.timing.A;
+import org.agilewiki.jid.jaosgi.JABundleContext;
+import org.agilewiki.pactor.Mailbox;
+import org.agilewiki.pactor.MailboxFactory;
 
 public class Creation2Test extends TestCase {
-    public void test() {
+    public void test() throws Exception {
 
         long c = 1;
 
@@ -15,7 +17,8 @@ public class Creation2Test extends TestCase {
         //long c = 1000000000;
         //iterations per second = 2,801,120,448
 
-        MailboxFactory mailboxFactory = JAMailboxFactory.newMailboxFactory(1);
+        JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
+        JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
             Mailbox m = mailboxFactory.createMailbox();
             loop(c, m);
@@ -29,7 +32,7 @@ public class Creation2Test extends TestCase {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            mailboxFactory.close();
+            jaBundleContext.stop(0);
         }
     }
 
