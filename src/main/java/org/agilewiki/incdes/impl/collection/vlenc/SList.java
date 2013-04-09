@@ -21,7 +21,7 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.collection.vlenc;
+package org.agilewiki.incdes.impl.collection.vlenc;
 
 import org.agilewiki.incdes.*;
 import org.agilewiki.incdes.IncDes;
@@ -40,7 +40,7 @@ import java.util.ArrayList;
 /**
  * Holds an ArrayList of JID actors, all of the same type.
  */
-public class ListJid<ENTRY_TYPE extends IncDes>
+public class SList<ENTRY_TYPE extends IncDes>
         extends CollectionImpl<ENTRY_TYPE>
         implements PAList<ENTRY_TYPE>, Collection<ENTRY_TYPE> {
     public int initialCapacity = 10;

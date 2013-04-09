@@ -1,6 +1,7 @@
 package org.agilewiki.jid.collection.vlenc;
 
 import junit.framework.TestCase;
+import org.agilewiki.incdes.impl.collection.vlenc.BList;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.jid.jaosgi.JABundleContext;
@@ -12,7 +13,7 @@ public class BListTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
-            BListJid stringList1 = (BListJid) factoryLocator.newJid(JidFactories.STRING_BLIST_JID_TYPE);
+            BList stringList1 = (BList) factoryLocator.newJid(JidFactories.STRING_BLIST_JID_TYPE);
             stringList1.iAdd(0);
             stringList1.iAdd(1);
             stringList1.iAdd(2);
@@ -22,7 +23,7 @@ public class BListTest extends TestCase {
             sj0.setValue("a");
             sj1.setValue("b");
             sj2.setValue("c");
-            BListJid stringList2 = (BListJid) stringList1.copyJID(factoryLocator.getMailbox());
+            BList stringList2 = (BList) stringList1.copyJID(factoryLocator.getMailbox());
             PAStringImpl s0 = (PAStringImpl) stringList2.iGet(0);
             PAStringImpl s1 = (PAStringImpl) stringList2.iGet(1);
             PAStringImpl s2 = (PAStringImpl) stringList2.iGet(2);
@@ -40,7 +41,7 @@ public class BListTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
-            BListJid intList1 = (BListJid) factoryLocator.newJid(JidFactories.INTEGER_BLIST_JID_TYPE);
+            BList intList1 = (BList) factoryLocator.newJid(JidFactories.INTEGER_BLIST_JID_TYPE);
             int i = 0;
             while (i < 28) {
                 intList1.iAdd(i);
@@ -65,7 +66,7 @@ public class BListTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
-            BListJid intList1 = (BListJid) factoryLocator.newJid(JidFactories.INTEGER_BLIST_JID_TYPE);
+            BList intList1 = (BList) factoryLocator.newJid(JidFactories.INTEGER_BLIST_JID_TYPE);
             int i = 0;
             while (i < 41) {
                 intList1.iAdd(-1);
@@ -90,7 +91,7 @@ public class BListTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
-            BListJid intList1 = (BListJid) factoryLocator.newJid(JidFactories.INTEGER_BLIST_JID_TYPE);
+            BList intList1 = (BList) factoryLocator.newJid(JidFactories.INTEGER_BLIST_JID_TYPE);
             int i = 0;
             while (i < 391) {
                 intList1.iAdd(-1);
@@ -115,7 +116,7 @@ public class BListTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
-            BListJid intList1 = (BListJid) factoryLocator.newJid(JidFactories.INTEGER_BLIST_JID_TYPE);
+            BList intList1 = (BList) factoryLocator.newJid(JidFactories.INTEGER_BLIST_JID_TYPE);
             int i = 0;
             while (i < 10000) {
                 intList1.iAdd(-1);
@@ -140,7 +141,7 @@ public class BListTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
-            BListJid intList1 = (BListJid) factoryLocator.newJid(JidFactories.INTEGER_BLIST_JID_TYPE);
+            BList intList1 = (BList) factoryLocator.newJid(JidFactories.INTEGER_BLIST_JID_TYPE);
             int i = 0;
             while (i < 10000) {
                 intList1.iAdd(-1);

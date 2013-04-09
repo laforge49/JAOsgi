@@ -21,49 +21,49 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.collection.vlenc;
+package org.agilewiki.incdes.impl.collection.vlenc;
 
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JAFactoryLocator;
+import org.agilewiki.incdes.impl.scalar.vlens.UnionImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
 /**
  * Creates ListJids.
  */
-public class ListJidFactory extends ActorFactory {
+public class BListFactory extends ActorFactory {
+    private final static int NODE_CAPACITY = 28;
 
     public static void registerFactory(FactoryLocator factoryLocator,
                                        String actorType,
-                                       String valueType)
+                                       String entryType)
             throws Exception {
-        registerFactory(factoryLocator, actorType, valueType, 10);
-    }
+        UnionImpl.registerFactory(factoryLocator,
+                "U." + actorType, "LL." + actorType, "IL." + actorType);
 
-    public static void registerFactory(FactoryLocator factoryLocator,
-                                       String actorType,
-                                       String valueType,
-                                       int initialCapacity)
-            throws Exception {
-        factoryLocator.registerJidFactory(new ListJidFactory(
-                actorType, valueType, initialCapacity));
+        factoryLocator.registerJidFactory(new BListFactory(
+                actorType, entryType, true, true));
+        factoryLocator.registerJidFactory(new BListFactory(
+                "IN." + actorType, entryType, false, false));
+
+        SListFactory.registerFactory(factoryLocator,
+                "LL." + actorType, entryType, NODE_CAPACITY);
+        SListFactory.registerFactory(factoryLocator,
+                "IL." + actorType, "IN." + actorType, NODE_CAPACITY);
     }
 
     private String entryType;
-    private int initialCapacity;
+    private boolean isRoot = true;
+    private boolean auto = true;
 
-    /**
-     * Create an ActorFactory.
-     *
-     * @param jidType         The jid type.
-     * @param entryType       The entry type.
-     * @param initialCapacity The initial capacity.
-     */
-    protected ListJidFactory(String jidType, String entryType, int initialCapacity) {
-        super(jidType);
+    private BListFactory(String actorType, String entryType,
+                         boolean isRoot, boolean auto) {
+        super(actorType);
         this.entryType = entryType;
-        this.initialCapacity = initialCapacity;
+        this.isRoot = isRoot;
+        this.auto = auto;
     }
 
     /**
@@ -72,8 +72,8 @@ public class ListJidFactory extends ActorFactory {
      * @return The new actor.
      */
     @Override
-    protected ListJid instantiateActor() throws Exception {
-        return new ListJid();
+    protected BList instantiateActor() throws Exception {
+        return new BList();
     }
 
     /**
@@ -83,12 +83,16 @@ public class ListJidFactory extends ActorFactory {
      * @param parent  The parent of the new actor.
      * @return The new actor.
      */
-    public ListJid newActor(Mailbox mailbox, Ancestor parent)
+    public BList newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
-        ListJid lj = (ListJid) super.newActor(mailbox, parent);
-        FactoryLocator fl = JAFactoryLocator.get(parent);
-        lj.entryFactory = fl.getJidFactory(entryType);
-        lj.initialCapacity = initialCapacity;
+        BList lj = (BList) super.newActor(mailbox, parent);
+        FactoryLocator f = JAFactoryLocator.get(parent);
+        lj.entryFactory = f.getJidFactory(entryType);
+        lj.nodeCapacity = NODE_CAPACITY;
+        lj.isRoot = isRoot;
+        lj.init();
+        if (auto)
+            lj.setNodeLeaf();
         return lj;
     }
 }

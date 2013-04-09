@@ -1,12 +1,12 @@
 package org.agilewiki.jid.timings.list;
 
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.jid.collection.vlenc.ListJid;
+import org.agilewiki.incdes.impl.collection.vlenc.SList;
 
 public class BooleanAppender extends JLPCActor {
     public int count;
     public int repeat;
-    public ListJid list;
+    public SList list;
 
     protected long time() throws Exception {
         long t0 = System.currentTimeMillis();

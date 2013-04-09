@@ -25,8 +25,8 @@ package org.agilewiki.jid.factory;
 
 import org.agilewiki.incdes.impl.IncDesFactory;
 import org.agilewiki.incdes.impl.scalar.flens.*;
-import org.agilewiki.jid.collection.vlenc.BListJidFactory;
-import org.agilewiki.jid.collection.vlenc.ListJidFactory;
+import org.agilewiki.incdes.impl.collection.vlenc.BListFactory;
+import org.agilewiki.incdes.impl.collection.vlenc.SListFactory;
 import org.agilewiki.jid.collection.vlenc.map.*;
 import org.agilewiki.jid.jaosgi.JABCNoOsgiImpl;
 import org.agilewiki.jid.jaosgi.JABundleContext;
@@ -442,23 +442,23 @@ final public class JidFactories extends LocateLocalActorFactories {
         PAStringImpl.registerFactory(factoryLocator);
         BytesImpl.registerFactory(factoryLocator);
 
-        BListJidFactory.registerFactory(factoryLocator, STRING_BLIST_JID_TYPE, STRING_JID_TYPE);
-        BListJidFactory.registerFactory(factoryLocator, BYTES_BLIST_JID_TYPE, BYTES_JID_TYPE);
-        BListJidFactory.registerFactory(factoryLocator, ACTOR_BLIST_JID_TYPE, ACTOR_JID_TYPE);
-        BListJidFactory.registerFactory(factoryLocator, LONG_BLIST_JID_TYPE, LONG_JID_TYPE);
-        BListJidFactory.registerFactory(factoryLocator, INTEGER_BLIST_JID_TYPE, INTEGER_JID_TYPE);
-        BListJidFactory.registerFactory(factoryLocator, FLOAT_BLIST_JID_TYPE, FLOAT_JID_TYPE);
-        BListJidFactory.registerFactory(factoryLocator, DOUBLE_BLIST_JID_TYPE, DOUBLE_JID_TYPE);
-        BListJidFactory.registerFactory(factoryLocator, BOOLEAN_BLIST_JID_TYPE, BOOLEAN_JID_TYPE);
+        BListFactory.registerFactory(factoryLocator, STRING_BLIST_JID_TYPE, STRING_JID_TYPE);
+        BListFactory.registerFactory(factoryLocator, BYTES_BLIST_JID_TYPE, BYTES_JID_TYPE);
+        BListFactory.registerFactory(factoryLocator, ACTOR_BLIST_JID_TYPE, ACTOR_JID_TYPE);
+        BListFactory.registerFactory(factoryLocator, LONG_BLIST_JID_TYPE, LONG_JID_TYPE);
+        BListFactory.registerFactory(factoryLocator, INTEGER_BLIST_JID_TYPE, INTEGER_JID_TYPE);
+        BListFactory.registerFactory(factoryLocator, FLOAT_BLIST_JID_TYPE, FLOAT_JID_TYPE);
+        BListFactory.registerFactory(factoryLocator, DOUBLE_BLIST_JID_TYPE, DOUBLE_JID_TYPE);
+        BListFactory.registerFactory(factoryLocator, BOOLEAN_BLIST_JID_TYPE, BOOLEAN_JID_TYPE);
 
-        ListJidFactory.registerFactory(factoryLocator, STRING_LIST_JID_TYPE, STRING_JID_TYPE);
-        ListJidFactory.registerFactory(factoryLocator, BYTES_LIST_JID_TYPE, BYTES_JID_TYPE);
-        ListJidFactory.registerFactory(factoryLocator, ACTOR_LIST_JID_TYPE, ACTOR_JID_TYPE);
-        ListJidFactory.registerFactory(factoryLocator, LONG_LIST_JID_TYPE, LONG_JID_TYPE);
-        ListJidFactory.registerFactory(factoryLocator, INTEGER_LIST_JID_TYPE, INTEGER_JID_TYPE);
-        ListJidFactory.registerFactory(factoryLocator, FLOAT_LIST_JID_TYPE, FLOAT_JID_TYPE);
-        ListJidFactory.registerFactory(factoryLocator, DOUBLE_LIST_JID_TYPE, DOUBLE_JID_TYPE);
-        ListJidFactory.registerFactory(factoryLocator, BOOLEAN_LIST_JID_TYPE, BOOLEAN_JID_TYPE);
+        SListFactory.registerFactory(factoryLocator, STRING_LIST_JID_TYPE, STRING_JID_TYPE);
+        SListFactory.registerFactory(factoryLocator, BYTES_LIST_JID_TYPE, BYTES_JID_TYPE);
+        SListFactory.registerFactory(factoryLocator, ACTOR_LIST_JID_TYPE, ACTOR_JID_TYPE);
+        SListFactory.registerFactory(factoryLocator, LONG_LIST_JID_TYPE, LONG_JID_TYPE);
+        SListFactory.registerFactory(factoryLocator, INTEGER_LIST_JID_TYPE, INTEGER_JID_TYPE);
+        SListFactory.registerFactory(factoryLocator, FLOAT_LIST_JID_TYPE, FLOAT_JID_TYPE);
+        SListFactory.registerFactory(factoryLocator, DOUBLE_LIST_JID_TYPE, DOUBLE_JID_TYPE);
+        SListFactory.registerFactory(factoryLocator, BOOLEAN_LIST_JID_TYPE, BOOLEAN_JID_TYPE);
 
         StringMapJidFactory.registerFactory(factoryLocator, STRING_STRING_MAP_JID_TYPE, STRING_JID_TYPE);
         StringMapJidFactory.registerFactory(factoryLocator, STRING_BYTES_MAP_JID_TYPE, BYTES_JID_TYPE);

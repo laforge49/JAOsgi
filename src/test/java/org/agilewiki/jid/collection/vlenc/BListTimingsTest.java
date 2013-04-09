@@ -1,6 +1,7 @@
 package org.agilewiki.jid.collection.vlenc;
 
 import junit.framework.TestCase;
+import org.agilewiki.incdes.impl.collection.vlenc.BList;
 import org.agilewiki.jactor.Mailbox;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
@@ -36,7 +37,7 @@ public class BListTimingsTest extends TestCase {
         JAFactoryLocator factoryLocator = JidFactories.createNoOsgiFactoryLocator(1);
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
-            BListJid intList1 = (BListJid) factoryLocator.newJid(JidFactories.INTEGER_BLIST_JID_TYPE);
+            BList intList1 = (BList) factoryLocator.newJid(JidFactories.INTEGER_BLIST_JID_TYPE);
             Mailbox mailbox = factoryLocator.getMailbox();
             int i = 0;
             while (i < s) {
@@ -49,7 +50,7 @@ public class BListTimingsTest extends TestCase {
             long t0 = System.currentTimeMillis();
             int j = 0;
             while (j < r) {
-                BListJid intList2 = (BListJid) intList1.copyJID(mailbox);
+                BList intList2 = (BList) intList1.copyJID(mailbox);
                 intList1.iAdd(s / 2);
                 intList2.getSerializedBytes();
                 j += 1;

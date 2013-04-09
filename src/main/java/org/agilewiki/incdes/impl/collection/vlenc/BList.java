@@ -21,7 +21,7 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.collection.vlenc;
+package org.agilewiki.incdes.impl.collection.vlenc;
 
 import org.agilewiki.incdes.IncDes;
 import org.agilewiki.incdes.Collection;
@@ -43,7 +43,7 @@ import org.agilewiki.pautil.Ancestor;
 /**
  * A balanced tree holding a list of JIDs, all of the same type.
  */
-public class BListJid<ENTRY_TYPE extends IncDes>
+public class BList<ENTRY_TYPE extends IncDes>
         extends AppBase
         implements PAList<ENTRY_TYPE>, Collection<ENTRY_TYPE> {
     protected final int TUPLE_SIZE = 0;
@@ -124,9 +124,9 @@ public class BListJid<ENTRY_TYPE extends IncDes>
         return (UnionImpl) _iGet(TUPLE_UNION);
     }
 
-    protected ListJid<ENTRY_TYPE> getNode()
+    protected SList<ENTRY_TYPE> getNode()
             throws Exception {
-        return (ListJid) getUnionJid().getValue();
+        return (SList) getUnionJid().getValue();
     }
 
     public String getNodeFactoryKey()
@@ -167,7 +167,7 @@ public class BListJid<ENTRY_TYPE extends IncDes>
     @Override
     public ENTRY_TYPE iGet(int ndx)
             throws Exception {
-        ListJid<ENTRY_TYPE> node = getNode();
+        SList<ENTRY_TYPE> node = getNode();
         if (isLeaf()) {
             return (ENTRY_TYPE) node.iGet(ndx);
         }
@@ -177,7 +177,7 @@ public class BListJid<ENTRY_TYPE extends IncDes>
             return null;
         int i = 0;
         while (i < node.size()) {
-            BListJid<ENTRY_TYPE> bnode = (BListJid) node.iGet(i);
+            BList<ENTRY_TYPE> bnode = (BList) node.iGet(i);
             int bns = bnode.size();
             if (ndx < bns) {
                 return bnode.iGet(ndx);
@@ -209,7 +209,7 @@ public class BListJid<ENTRY_TYPE extends IncDes>
     @Override
     public void iSet(int ndx, byte[] bytes)
             throws Exception {
-        ListJid<ENTRY_TYPE> node = getNode();
+        SList<ENTRY_TYPE> node = getNode();
         if (isLeaf()) {
             node.iSet(ndx, bytes);
             return;
@@ -220,7 +220,7 @@ public class BListJid<ENTRY_TYPE extends IncDes>
             throw new IllegalArgumentException();
         int i = 0;
         while (i < node.size()) {
-            BListJid<ENTRY_TYPE> bnode = (BListJid) node.iGet(i);
+            BList<ENTRY_TYPE> bnode = (BList) node.iGet(i);
             int bns = bnode.size();
             if (ndx < bns) {
                 bnode.iSet(ndx, bytes);
@@ -301,7 +301,7 @@ public class BListJid<ENTRY_TYPE extends IncDes>
         if (ndx < 0 || ndx > size())
             throw new IllegalArgumentException();
         incSize(1);
-        ListJid<ENTRY_TYPE> node = getNode();
+        SList<ENTRY_TYPE> node = getNode();
         if (isLeaf()) {
             if (bytes == null)
                 node.iAdd(ndx);
@@ -317,14 +317,14 @@ public class BListJid<ENTRY_TYPE extends IncDes>
         }
         int i = 0;
         while (true) {
-            BListJid<ENTRY_TYPE> bnode = (BListJid) node.iGet(i);
+            BList<ENTRY_TYPE> bnode = (BList) node.iGet(i);
             int bns = bnode.size();
             i += 1;
             if (ndx < bns || i == node.size()) {
                 bnode.iAdd(ndx, bytes);
                 if (bnode.isFat()) {
                     node.iAdd(i - 1);
-                    BListJid<ENTRY_TYPE> left = (BListJid) node.iGet(i - 1);
+                    BList<ENTRY_TYPE> left = (BList) node.iGet(i - 1);
                     left.setNodeFactory(bnode.getNode().getFactory());
                     bnode.inodeSplit(left);
                     if (node.size() < nodeCapacity)
@@ -342,14 +342,14 @@ public class BListJid<ENTRY_TYPE extends IncDes>
 
     protected void rootSplit()
             throws Exception {
-        ListJid<ENTRY_TYPE> oldRootNode = getNode();
+        SList<ENTRY_TYPE> oldRootNode = getNode();
         ActorFactory oldFactory = oldRootNode.getFactory();
         getUnionJid().setValue(1);
-        ListJid<ENTRY_TYPE> newRootNode = getNode();
+        SList<ENTRY_TYPE> newRootNode = getNode();
         newRootNode.iAdd(0);
         newRootNode.iAdd(1);
-        BListJid<ENTRY_TYPE> leftBNode = (BListJid) newRootNode.iGet(0);
-        BListJid<ENTRY_TYPE> rightBNode = (BListJid) newRootNode.iGet(1);
+        BList<ENTRY_TYPE> leftBNode = (BList) newRootNode.iGet(0);
+        BList<ENTRY_TYPE> rightBNode = (BList) newRootNode.iGet(1);
         leftBNode.setNodeFactory(oldFactory);
         rightBNode.setNodeFactory(oldFactory);
         int h = nodeCapacity / 2;
@@ -369,14 +369,14 @@ public class BListJid<ENTRY_TYPE extends IncDes>
             }
         } else {
             while (i < h) {
-                BListJid<ENTRY_TYPE> e = (BListJid) oldRootNode.iGet(i);
+                BList<ENTRY_TYPE> e = (BList) oldRootNode.iGet(i);
                 int eSize = e.size();
                 byte[] bytes = e.getSerializedBytes();
                 leftBNode.append(bytes, eSize);
                 i += 1;
             }
             while (i < nodeCapacity) {
-                BListJid<ENTRY_TYPE> e = (BListJid) oldRootNode.iGet(i);
+                BList<ENTRY_TYPE> e = (BList) oldRootNode.iGet(i);
                 int eSize = e.size();
                 byte[] bytes = e.getSerializedBytes();
                 rightBNode.append(bytes, eSize);
@@ -385,9 +385,9 @@ public class BListJid<ENTRY_TYPE extends IncDes>
         }
     }
 
-    protected void inodeSplit(BListJid<ENTRY_TYPE> leftBNode)
+    protected void inodeSplit(BList<ENTRY_TYPE> leftBNode)
             throws Exception {
-        ListJid<ENTRY_TYPE> node = getNode();
+        SList<ENTRY_TYPE> node = getNode();
         int h = nodeCapacity / 2;
         int i = 0;
         if (isLeaf()) {
@@ -401,7 +401,7 @@ public class BListJid<ENTRY_TYPE extends IncDes>
             incSize(-h);
         } else {
             while (i < h) {
-                BListJid<ENTRY_TYPE> e = (BListJid) node.iGet(0);
+                BList<ENTRY_TYPE> e = (BList) node.iGet(0);
                 node.iRemove(0);
                 int eSize = e.size();
                 incSize(-eSize);
@@ -415,7 +415,7 @@ public class BListJid<ENTRY_TYPE extends IncDes>
     @Override
     public void empty()
             throws Exception {
-        ListJid<ENTRY_TYPE> node = getNode();
+        SList<ENTRY_TYPE> node = getNode();
         node.empty();
         PAIntegerImpl sj = getSizeJid();
         sj.setValue(0);
@@ -440,7 +440,7 @@ public class BListJid<ENTRY_TYPE extends IncDes>
             ndx += s;
         if (ndx < 0 || ndx >= s)
             throw new IllegalArgumentException();
-        ListJid<ENTRY_TYPE> node = getNode();
+        SList<ENTRY_TYPE> node = getNode();
         if (isLeaf()) {
             node.iRemove(ndx);
             incSize(-1);
@@ -448,7 +448,7 @@ public class BListJid<ENTRY_TYPE extends IncDes>
         }
         int i = 0;
         while (i < node.size()) {
-            BListJid<ENTRY_TYPE> bnode = (BListJid) node.iGet(i);
+            BList<ENTRY_TYPE> bnode = (BList) node.iGet(i);
             int bns = bnode.size();
             if (ndx < bns) {
                 bnode.iRemove(ndx);
@@ -460,14 +460,14 @@ public class BListJid<ENTRY_TYPE extends IncDes>
                     node.iRemove(ndx);
                 } else {
                     if (i > 0) {
-                        BListJid<ENTRY_TYPE> leftBNode = (BListJid) node.iGet(i - 1);
+                        BList<ENTRY_TYPE> leftBNode = (BList) node.iGet(i - 1);
                         if (leftBNode.nodeSize() + bnodeSize < nodeCapacity) {
                             bnode.append(leftBNode);
                             node.iRemove(i);
                         }
                     }
                     if (i + 1 < node.size()) {
-                        BListJid<ENTRY_TYPE> rightBNode = (BListJid) node.iGet(i + 1);
+                        BList<ENTRY_TYPE> rightBNode = (BList) node.iGet(i + 1);
                         if (bnodeSize + rightBNode.nodeSize() < nodeCapacity) {
                             rightBNode.append(bnode);
                             node.iRemove(i + 1);
@@ -475,7 +475,7 @@ public class BListJid<ENTRY_TYPE extends IncDes>
                     }
                 }
                 if (node.size() == 1 && isRoot && !isLeaf()) {
-                    bnode = (BListJid) node.iGet(0);
+                    bnode = (BList) node.iGet(0);
                     setNodeFactory(bnode.getNode().getFactory());
                     PAIntegerImpl sj = getSizeJid();
                     sj.setValue(0);
@@ -489,9 +489,9 @@ public class BListJid<ENTRY_TYPE extends IncDes>
         throw new IllegalArgumentException();
     }
 
-    void append(BListJid<ENTRY_TYPE> leftNode)
+    void append(BList<ENTRY_TYPE> leftNode)
             throws Exception {
-        ListJid<ENTRY_TYPE> node = getNode();
+        SList<ENTRY_TYPE> node = getNode();
         int i = 0;
         if (isLeaf()) {
             while (i < node.size()) {
@@ -501,7 +501,7 @@ public class BListJid<ENTRY_TYPE extends IncDes>
             }
         } else {
             while (i < node.size()) {
-                BListJid<ENTRY_TYPE> e = (BListJid) node.iGet(i);
+                BList<ENTRY_TYPE> e = (BList) node.iGet(i);
                 leftNode.append(e.getSerializedBytes(), e.size());
                 i += 1;
             }
@@ -510,7 +510,7 @@ public class BListJid<ENTRY_TYPE extends IncDes>
 
     void append(byte[] bytes, int eSize)
             throws Exception {
-        ListJid<ENTRY_TYPE> node = getNode();
+        SList<ENTRY_TYPE> node = getNode();
         node.iAdd(-1, bytes);
         incSize(eSize);
     }

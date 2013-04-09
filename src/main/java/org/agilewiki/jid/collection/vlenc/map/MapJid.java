@@ -27,7 +27,7 @@ import org.agilewiki.incdes.IncDes;
 import org.agilewiki.incdes.MapEntry;
 import org.agilewiki.incdes.Collection;
 import org.agilewiki.incdes.PAMap;
-import org.agilewiki.jid.collection.vlenc.ListJid;
+import org.agilewiki.incdes.impl.collection.vlenc.SList;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.JAFactoryLocator;
 import org.agilewiki.pactor.Mailbox;
@@ -40,7 +40,7 @@ import org.agilewiki.pautil.Ancestor;
  * Holds a map.
  */
 abstract public class MapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends IncDes>
-        extends ListJid<MapEntry<KEY_TYPE, VALUE_TYPE>>
+        extends SList<MapEntry<KEY_TYPE, VALUE_TYPE>>
         implements PAMap<KEY_TYPE, VALUE_TYPE>, Collection<MapEntry<KEY_TYPE, VALUE_TYPE>> {
 
     public ActorFactory valueFactory;
