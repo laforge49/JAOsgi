@@ -41,7 +41,7 @@ import java.util.ArrayList;
  */
 public class SList<ENTRY_TYPE extends IncDes>
         extends CollectionImpl<ENTRY_TYPE>
-        implements PAList<ENTRY_TYPE>, Collection<ENTRY_TYPE> {
+        implements PAList<ENTRY_TYPE> {
     public int initialCapacity = 10;
 
     /**
