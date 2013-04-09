@@ -27,7 +27,6 @@ import org.agilewiki.incdes.*;
 import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.incdes.impl.collection.vlenc.map.StringSMap;
 import org.agilewiki.incdes.impl.factory.ActorFactory;
-import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 

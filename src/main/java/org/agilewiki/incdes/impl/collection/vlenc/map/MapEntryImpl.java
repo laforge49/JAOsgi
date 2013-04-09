@@ -26,8 +26,8 @@ package org.agilewiki.incdes.impl.collection.vlenc.map;
 import org.agilewiki.incdes.AppBase;
 import org.agilewiki.incdes.MapEntry;
 import org.agilewiki.incdes.impl.IncDesImpl;
-import org.agilewiki.incdes.impl.scalar.Scalar;
 import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.scalar.Scalar;
 
 /**
  * A map is, in part, a list of map entries.

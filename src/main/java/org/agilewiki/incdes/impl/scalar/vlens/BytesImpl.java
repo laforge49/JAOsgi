@@ -25,7 +25,6 @@ package org.agilewiki.incdes.impl.scalar.vlens;
 
 import org.agilewiki.incdes.*;
 import org.agilewiki.incdes.impl.factory.ActorFactory;
-import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;

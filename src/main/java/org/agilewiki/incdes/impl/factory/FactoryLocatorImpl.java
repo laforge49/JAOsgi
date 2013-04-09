@@ -23,8 +23,8 @@
  */
 package org.agilewiki.incdes.impl.factory;
 
-import org.agilewiki.incdes.IncDesFactories;
 import org.agilewiki.incdes.FactoryLocator;
+import org.agilewiki.incdes.IncDesFactories;
 import org.agilewiki.incdes.Util;
 import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.incdes.impl.collection.vlenc.map.MapEntryImpl;
@@ -35,7 +35,6 @@ import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 import org.agilewiki.pautil.AncestorBase;
 import org.osgi.framework.Bundle;
-import org.osgi.framework.Version;
 
 import java.lang.reflect.Constructor;
 import java.util.Iterator;

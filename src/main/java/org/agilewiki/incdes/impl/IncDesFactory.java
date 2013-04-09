@@ -23,8 +23,8 @@
  */
 package org.agilewiki.incdes.impl;
 
-import org.agilewiki.incdes.IncDesFactories;
 import org.agilewiki.incdes.FactoryLocator;
+import org.agilewiki.incdes.IncDesFactories;
 import org.agilewiki.incdes.impl.factory.ActorFactory;
 
 /**
