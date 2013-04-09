@@ -24,9 +24,9 @@
 package org.agilewiki.jid.collection.vlenc.map;
 
 import org.agilewiki.incdes.IncDes;
+import org.agilewiki.incdes.MapEntry;
 import org.agilewiki.incdes.PACollection;
 import org.agilewiki.incdes.PAMap;
-import org.agilewiki.incdes.PAMapEntry;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.jid.collection.flenc.AppJid;
 import org.agilewiki.jid.factory.ActorFactory;
@@ -46,7 +46,7 @@ import org.agilewiki.pautil.Ancestor;
  */
 abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends IncDes>
         extends AppJid
-        implements PAMap<KEY_TYPE, VALUE_TYPE>, PACollection<PAMapEntry<KEY_TYPE, VALUE_TYPE>> {
+        implements PAMap<KEY_TYPE, VALUE_TYPE>, PACollection<MapEntry<KEY_TYPE, VALUE_TYPE>> {
     protected final int TUPLE_SIZE = 0;
     protected final int TUPLE_UNION = 1;
     protected int nodeCapacity = 28;
@@ -56,8 +56,8 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
 
     private Request<Integer> sizeReq;
     private Request<Void> emptyReq;
-    private Request<PAMapEntry<KEY_TYPE, VALUE_TYPE>> getFirstReq;
-    private Request<PAMapEntry<KEY_TYPE, VALUE_TYPE>> getLastReq;
+    private Request<MapEntry<KEY_TYPE, VALUE_TYPE>> getFirstReq;
+    private Request<MapEntry<KEY_TYPE, VALUE_TYPE>> getLastReq;
 
     @Override
     public Request<Integer> sizeReq() {
@@ -68,11 +68,11 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
         return emptyReq;
     }
 
-    public Request<PAMapEntry<KEY_TYPE, VALUE_TYPE>> getFirstReq() {
+    public Request<MapEntry<KEY_TYPE, VALUE_TYPE>> getFirstReq() {
         return getFirstReq;
     }
 
-    public Request<PAMapEntry<KEY_TYPE, VALUE_TYPE>> getLastReq() {
+    public Request<MapEntry<KEY_TYPE, VALUE_TYPE>> getLastReq() {
         return getLastReq;
     }
 
@@ -163,10 +163,10 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
     }
 
     @Override
-    public Request<PAMapEntry<KEY_TYPE, VALUE_TYPE>> iGetReq(final int _i) {
-        return new RequestBase<PAMapEntry<KEY_TYPE, VALUE_TYPE>>(getMailbox()) {
+    public Request<MapEntry<KEY_TYPE, VALUE_TYPE>> iGetReq(final int _i) {
+        return new RequestBase<MapEntry<KEY_TYPE, VALUE_TYPE>>(getMailbox()) {
             @Override
-            public void processRequest(ResponseProcessor<PAMapEntry<KEY_TYPE, VALUE_TYPE>> _rp) throws Exception {
+            public void processRequest(ResponseProcessor<MapEntry<KEY_TYPE, VALUE_TYPE>> _rp) throws Exception {
                 _rp.processResponse(iGet(_i));
             }
         };
@@ -647,10 +647,10 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
     }
 
     @Override
-    public Request<PAMapEntry<KEY_TYPE, VALUE_TYPE>> getCeilingReq(final KEY_TYPE _key) {
-        return new RequestBase<PAMapEntry<KEY_TYPE, VALUE_TYPE>>(getMailbox()) {
+    public Request<MapEntry<KEY_TYPE, VALUE_TYPE>> getCeilingReq(final KEY_TYPE _key) {
+        return new RequestBase<MapEntry<KEY_TYPE, VALUE_TYPE>>(getMailbox()) {
             @Override
-            public void processRequest(ResponseProcessor<PAMapEntry<KEY_TYPE, VALUE_TYPE>> _rp) throws Exception {
+            public void processRequest(ResponseProcessor<MapEntry<KEY_TYPE, VALUE_TYPE>> _rp) throws Exception {
                 _rp.processResponse(getCeiling(_key));
             }
         };
@@ -677,10 +677,10 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
     }
 
     @Override
-    public Request<PAMapEntry<KEY_TYPE, VALUE_TYPE>> getHigherReq(final KEY_TYPE _key) {
-        return new RequestBase<PAMapEntry<KEY_TYPE, VALUE_TYPE>>(getMailbox()) {
+    public Request<MapEntry<KEY_TYPE, VALUE_TYPE>> getHigherReq(final KEY_TYPE _key) {
+        return new RequestBase<MapEntry<KEY_TYPE, VALUE_TYPE>>(getMailbox()) {
             @Override
-            public void processRequest(ResponseProcessor<PAMapEntry<KEY_TYPE, VALUE_TYPE>> _rp) throws Exception {
+            public void processRequest(ResponseProcessor<MapEntry<KEY_TYPE, VALUE_TYPE>> _rp) throws Exception {
                 _rp.processResponse(getHigher(_key));
             }
         };
@@ -784,15 +784,15 @@ abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE 
                 _rp.processResponse(null);
             }
         };
-        getFirstReq = new RequestBase<PAMapEntry<KEY_TYPE, VALUE_TYPE>>(getMailbox()) {
+        getFirstReq = new RequestBase<MapEntry<KEY_TYPE, VALUE_TYPE>>(getMailbox()) {
             @Override
-            public void processRequest(ResponseProcessor<PAMapEntry<KEY_TYPE, VALUE_TYPE>> _rp) throws Exception {
+            public void processRequest(ResponseProcessor<MapEntry<KEY_TYPE, VALUE_TYPE>> _rp) throws Exception {
                 _rp.processResponse(getFirst());
             }
         };
-        getLastReq = new RequestBase<PAMapEntry<KEY_TYPE, VALUE_TYPE>>(getMailbox()) {
+        getLastReq = new RequestBase<MapEntry<KEY_TYPE, VALUE_TYPE>>(getMailbox()) {
             @Override
-            public void processRequest(ResponseProcessor<PAMapEntry<KEY_TYPE, VALUE_TYPE>> _rp) throws Exception {
+            public void processRequest(ResponseProcessor<MapEntry<KEY_TYPE, VALUE_TYPE>> _rp) throws Exception {
                 _rp.processResponse(getLast());
             }
         };
