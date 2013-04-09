@@ -21,7 +21,7 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.collection.flenc;
+package org.agilewiki.incdes.impl.collection.flenc;
 
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.jid.factory.FactoryLocator;
@@ -30,13 +30,13 @@ import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
 /**
- * Creates a TupleJid.
+ * Creates a TupleImpl.
  */
-public class TupleJidFactory extends ActorFactory {
+public class TupleFactory extends ActorFactory {
 
     public static void registerFactory(FactoryLocator factoryLocator,
                                        String subActorType, String... actorTypes) throws Exception {
-        factoryLocator.registerJidFactory(new TupleJidFactory(subActorType, actorTypes));
+        factoryLocator.registerJidFactory(new TupleFactory(subActorType, actorTypes));
     }
 
     private String[] jidTypes;
@@ -47,7 +47,7 @@ public class TupleJidFactory extends ActorFactory {
      * @param subJidType The jid type.
      * @param jidTypes   The element types.
      */
-    protected TupleJidFactory(String subJidType, String... jidTypes) {
+    protected TupleFactory(String subJidType, String... jidTypes) {
         super(subJidType);
         this.jidTypes = jidTypes;
     }
@@ -58,9 +58,9 @@ public class TupleJidFactory extends ActorFactory {
      * @return The new actor.
      */
     @Override
-    protected TupleJid instantiateActor()
+    protected TupleImpl instantiateActor()
             throws Exception {
-        return new TupleJid();
+        return new TupleImpl();
     }
 
     /**
@@ -70,9 +70,9 @@ public class TupleJidFactory extends ActorFactory {
      * @param parent  The parent of the new actor.
      * @return The new actor.
      */
-    public TupleJid newActor(Mailbox mailbox, Ancestor parent)
+    public TupleImpl newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
-        TupleJid tj = (TupleJid) super.newActor(mailbox, parent);
+        TupleImpl tj = (TupleImpl) super.newActor(mailbox, parent);
         FactoryLocator fl = JAFactoryLocator.get(parent);
         ActorFactory[] afs = new ActorFactory[jidTypes.length];
         int i = 0;

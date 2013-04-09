@@ -21,7 +21,7 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.collection.flenc;
+package org.agilewiki.incdes.impl.collection.flenc;
 
 import org.agilewiki.incdes.AppendableBytes;
 import org.agilewiki.incdes.IncDes;
@@ -30,14 +30,14 @@ import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.incdes.impl.ComparableKey;
 import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.incdes.impl.Util;
-import org.agilewiki.jid.collection.CollectionJid;
+import org.agilewiki.incdes.impl.collection.CollectionImpl;
 import org.agilewiki.jid.factory.ActorFactory;
 
 /**
  * Holds a fixed-size array of JID actors of various types.
  */
-public class TupleJid
-        extends CollectionJid<IncDes>
+public class TupleImpl
+        extends CollectionImpl<IncDes>
         implements ComparableKey<Object>, Tuple {
     /**
      * An array of jid factories, one for each element in the tuple.

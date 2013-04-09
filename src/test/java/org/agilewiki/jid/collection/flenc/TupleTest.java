@@ -24,6 +24,7 @@
 package org.agilewiki.jid.collection.flenc;
 
 import junit.framework.TestCase;
+import org.agilewiki.incdes.impl.collection.flenc.TupleFactory;
 import org.agilewiki.jactor.old.Actor;
 import org.agilewiki.jactor.old.JAFuture;
 import org.agilewiki.jid.CopyJID;
@@ -44,7 +45,7 @@ public class TupleTest extends TestCase {
         JABundleContext jaBundleContext = JABundleContext.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            TupleJidFactory tjf = new TupleJidFactory(
+            TupleFactory tjf = new TupleFactory(
                     "sst", JidFactories.STRING_JID_TYPE, JidFactories.STRING_JID_TYPE);
             factoryLocator.registerJidFactory(tjf);
             Actor t0 = tjf.newActor(factoryLocator.getMailbox(), factoryLocator);

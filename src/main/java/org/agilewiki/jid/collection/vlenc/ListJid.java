@@ -27,7 +27,7 @@ import org.agilewiki.incdes.*;
 import org.agilewiki.incdes.IncDes;
 import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.incdes.impl.Util;
-import org.agilewiki.jid.collection.CollectionJid;
+import org.agilewiki.incdes.impl.collection.CollectionImpl;
 import org.agilewiki.jid.factory.ActorFactory;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
@@ -41,7 +41,7 @@ import java.util.ArrayList;
  * Holds an ArrayList of JID actors, all of the same type.
  */
 public class ListJid<ENTRY_TYPE extends IncDes>
-        extends CollectionJid<ENTRY_TYPE>
+        extends CollectionImpl<ENTRY_TYPE>
         implements PAList<ENTRY_TYPE>, Collection<ENTRY_TYPE> {
     public int initialCapacity = 10;
 

@@ -21,7 +21,7 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.jid.collection;
+package org.agilewiki.incdes.impl.collection;
 
 import org.agilewiki.incdes.AppendableBytes;
 import org.agilewiki.incdes.Collection;
@@ -39,7 +39,7 @@ import org.agilewiki.pautil.Ancestor;
 /**
  * A collection of JID actors.
  */
-abstract public class CollectionJid<ENTRY_TYPE extends IncDes>
+abstract public class CollectionImpl<ENTRY_TYPE extends IncDes>
         extends IncDesImpl
         implements Collection<ENTRY_TYPE> {
 

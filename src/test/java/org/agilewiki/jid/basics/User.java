@@ -1,20 +1,20 @@
 package org.agilewiki.jid.basics;
 
 import org.agilewiki.jactor.ResponseProcessor;
-import org.agilewiki.jid.collection.flenc.TupleJid;
-import org.agilewiki.jid.collection.flenc.TupleJidFactory;
+import org.agilewiki.incdes.impl.collection.flenc.TupleFactory;
+import org.agilewiki.incdes.impl.collection.flenc.TupleImpl;
 import org.agilewiki.jid.factory.FactoryLocator;
 import org.agilewiki.jid.factory.JidFactories;
 import org.agilewiki.incdes.impl.scalar.flens.PAIntegerImpl;
 import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
 
-public class User extends TupleJid implements Main {
+public class User extends TupleImpl implements Main {
 
     public static void register(FactoryLocator factoryLocator) throws Exception {
         factoryLocator.registerJidFactory(new UserFactory("user"));
     }
 
-    private static class UserFactory extends TupleJidFactory {
+    private static class UserFactory extends TupleFactory {
         public UserFactory(String actorType) {
             super(actorType, JidFactories.STRING_JID_TYPE, JidFactories.INTEGER_JID_TYPE, JidFactories.STRING_JID_TYPE);
         }
