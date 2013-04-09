@@ -42,7 +42,7 @@ import java.util.ArrayList;
  */
 public class ListJid<ENTRY_TYPE extends IncDes>
         extends CollectionJid<ENTRY_TYPE>
-        implements PAList<ENTRY_TYPE>, PACollection<ENTRY_TYPE> {
+        implements PAList<ENTRY_TYPE>, Collection<ENTRY_TYPE> {
     public int initialCapacity = 10;
 
     /**

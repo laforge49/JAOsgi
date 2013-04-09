@@ -23,9 +23,9 @@
  */
 package org.agilewiki.jid.collection.vlenc.map;
 
+import org.agilewiki.incdes.Collection;
 import org.agilewiki.incdes.IncDes;
 import org.agilewiki.incdes.MapEntry;
-import org.agilewiki.incdes.PACollection;
 import org.agilewiki.incdes.PAMap;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.jid.collection.flenc.AppJid;
@@ -46,7 +46,7 @@ import org.agilewiki.pautil.Ancestor;
  */
 abstract public class BMapJid<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends IncDes>
         extends AppJid
-        implements PAMap<KEY_TYPE, VALUE_TYPE>, PACollection<MapEntry<KEY_TYPE, VALUE_TYPE>> {
+        implements PAMap<KEY_TYPE, VALUE_TYPE>, Collection<MapEntry<KEY_TYPE, VALUE_TYPE>> {
     protected final int TUPLE_SIZE = 0;
     protected final int TUPLE_UNION = 1;
     protected int nodeCapacity = 28;

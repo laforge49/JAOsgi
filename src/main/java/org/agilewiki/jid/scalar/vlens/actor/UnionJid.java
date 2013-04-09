@@ -24,7 +24,7 @@
 package org.agilewiki.jid.scalar.vlens.actor;
 
 import org.agilewiki.incdes.IncDes;
-import org.agilewiki.incdes.PAUnion;
+import org.agilewiki.incdes.Union;
 import org.agilewiki.incdes.AppendableBytes;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.incdes.ReadableBytes;
@@ -39,7 +39,7 @@ import org.agilewiki.pactor.RequestBase;
 import org.agilewiki.pactor.ResponseProcessor;
 import org.agilewiki.pautil.Ancestor;
 
-public class UnionJid extends ScalarJid<String, Jid> implements PAUnion {
+public class UnionJid extends ScalarJid<String, Jid> implements Union {
 
     public static void registerFactory(final FactoryLocator _factoryLocator,
                                        final String _subActorType,

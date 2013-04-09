@@ -2,7 +2,7 @@ package org.agilewiki.incdes;
 
 import org.agilewiki.pactor.Request;
 
-public interface PABytes extends IncDes {
+public interface Bytes extends IncDes {
     Request<byte[]> getBytesReq();
 
     byte[] getValue();

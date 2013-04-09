@@ -24,8 +24,8 @@
 package org.agilewiki.jid.scalar.vlens.actor;
 
 import org.agilewiki.incdes.AppendableBytes;
+import org.agilewiki.incdes.Box;
 import org.agilewiki.incdes.IncDes;
-import org.agilewiki.incdes.PABox;
 import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.jid.*;
 import org.agilewiki.jid.factory.ActorFactory;
@@ -43,7 +43,7 @@ import org.agilewiki.pautil.Ancestor;
  * A JID actor that holds a JID actor.
  */
 public class ActorJid
-        extends VLenScalarJid<String, Jid> implements PABox {
+        extends VLenScalarJid<String, Jid> implements Box {
     public static ActorJid create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
         return (ActorJid) JAFactoryLocator.newJid(actor, JidFactories.ACTOR_JID_TYPE, mailbox, parent);
     }

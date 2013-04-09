@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jid.scalar.vlens.actor;
 
-import org.agilewiki.incdes.PARoot;
+import org.agilewiki.incdes.Root;
 import org.agilewiki.incdes.AppendableBytes;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.incdes.ReadableBytes;
@@ -42,7 +42,7 @@ import org.agilewiki.pautil.Ancestor;
  * The serialized form of RootJid does NOT contain its length.
  * The load method simply grabs all the remaining data.
  */
-public class RootJid extends ActorJid implements PARoot {
+public class RootJid extends ActorJid implements Root {
     public static RootJid create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
         return (RootJid) JAFactoryLocator.newJid(actor, JidFactories.ROOT_JID_TYPE, mailbox, parent);
     }

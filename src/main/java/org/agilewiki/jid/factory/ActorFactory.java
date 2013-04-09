@@ -23,7 +23,7 @@
  */
 package org.agilewiki.jid.factory;
 
-import org.agilewiki.incdes.PAFactory;
+import org.agilewiki.incdes.Factory;
 import org.agilewiki.jid.Jid;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
@@ -31,7 +31,7 @@ import org.agilewiki.pautil.Ancestor;
 /**
  * Creates a JLPCActor.
  */
-abstract public class ActorFactory implements PAFactory {
+abstract public class ActorFactory implements Factory {
     private String factoryKey;
 
     /**

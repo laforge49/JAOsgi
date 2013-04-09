@@ -24,8 +24,8 @@
 package org.agilewiki.jid.collection;
 
 import org.agilewiki.incdes.AppendableBytes;
+import org.agilewiki.incdes.Collection;
 import org.agilewiki.incdes.IncDes;
-import org.agilewiki.incdes.PACollection;
 import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.jid.*;
 import org.agilewiki.jid.factory.ActorFactory;
@@ -40,7 +40,7 @@ import org.agilewiki.pautil.Ancestor;
  */
 abstract public class CollectionJid<ENTRY_TYPE extends IncDes>
         extends Jid
-        implements PACollection<ENTRY_TYPE> {
+        implements Collection<ENTRY_TYPE> {
 
     /**
      * The size of the serialized data (exclusive of its length header).

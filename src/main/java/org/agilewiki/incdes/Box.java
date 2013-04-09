@@ -1,8 +1,9 @@
 package org.agilewiki.incdes;
 
+import org.agilewiki.jid.Jid;
 import org.agilewiki.pactor.Request;
 
-public interface PAUnion extends IncDes {
+public interface Box extends IncDes {
     Request<IncDes> getIncDesReq();
 
     IncDes getValue()

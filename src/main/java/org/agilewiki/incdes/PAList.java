@@ -2,7 +2,7 @@ package org.agilewiki.incdes;
 
 import org.agilewiki.pactor.Request;
 
-public interface PAList<ENTRY_TYPE extends IncDes> extends PACollection<ENTRY_TYPE> {
+public interface PAList<ENTRY_TYPE extends IncDes> extends Collection<ENTRY_TYPE> {
 
     Request<Void> emptyReq();
 
