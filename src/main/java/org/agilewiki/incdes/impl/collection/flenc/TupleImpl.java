@@ -27,7 +27,6 @@ import org.agilewiki.incdes.*;
 import org.agilewiki.incdes.impl.ComparableKey;
 import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.incdes.impl.collection.CollectionImpl;
-import org.agilewiki.incdes.impl.factory.ActorFactory;
 
 /**
  * Holds a fixed-size array of JID actors of various types.

@@ -27,7 +27,6 @@ import org.agilewiki.incdes.Factory;
 import org.agilewiki.incdes.IncDesFactories;
 import org.agilewiki.incdes.Util;
 import org.agilewiki.incdes.impl.IncDesImpl;
-import org.agilewiki.incdes.impl.factory.ActorFactory;
 
 /**
  * Holds a map with Integer keys.
