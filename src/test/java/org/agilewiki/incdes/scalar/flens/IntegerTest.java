@@ -39,8 +39,6 @@ public class IntegerTest extends TestCase {
             v = rpa.getIntegerReq().call();
             assertEquals(-1, v);
 
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
             jaBundleContext.stop(0);
         }

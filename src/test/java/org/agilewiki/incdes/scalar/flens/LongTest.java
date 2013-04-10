@@ -39,8 +39,6 @@ public class LongTest extends TestCase {
             v = rpa.getLongReq().call();
             assertEquals(-1000000000000L, v);
 
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
             jaBundleContext.stop(0);
         }

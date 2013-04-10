@@ -12,8 +12,6 @@ public class JidTest extends TestCase {
             int l = a.getSerializedLengthReq().call();
             System.err.println(l);
             assertEquals(l, 0);
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
             jaBundleContext.stop(0);
         }
@@ -28,8 +26,6 @@ public class JidTest extends TestCase {
             int l = a.getSerializedLengthReq().call();
             AppendableBytes appendableBytes = new AppendableBytes(l);
             a.save(appendableBytes);
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
             jaBundleContext.stop(0);
         }
@@ -45,8 +41,6 @@ public class JidTest extends TestCase {
             int l = bytes.length;
             System.err.println(l);
             assertEquals(l, 0);
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
             jaBundleContext.stop(0);
         }
@@ -62,8 +56,6 @@ public class JidTest extends TestCase {
             int l = a.getSerializedLengthReq().call();
             System.err.println(l);
             assertEquals(l, 0);
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
             jaBundleContext.stop(0);
         }
@@ -82,8 +74,6 @@ public class JidTest extends TestCase {
             assertEquals(l, 0);
             boolean eq = jid1.isJidEqualReq(jid2).call();
             assertTrue(eq);
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
             jaBundleContext.stop(0);
         }
@@ -97,8 +87,6 @@ public class JidTest extends TestCase {
             IncDes a = IncDesFactories.createIncDes(factoryLocator, null, null);
             IncDes b = a.resolvePathnameReq("").call();
             assertEquals(a, b);
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
             jaBundleContext.stop(0);
         }
