@@ -8,11 +8,10 @@ public class LongTest extends TestCase {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
         Context jaBundleContext = Context.get(factoryLocator);
         try {
-            Mailbox mailbox = jaBundleContext.getMailbox();
-            PALong long1 = IncDesFactories.createPALong(factoryLocator, mailbox, null);
-            PALong long2 = (PALong) long1.copyJIDReq(mailbox).call();
+            PALong long1 = IncDesFactories.createPALong(factoryLocator, null, null);
+            PALong long2 = (PALong) long1.copyJIDReq(null).call();
             long2.setLongReq(1L).call();
-            PALong long3 = (PALong) long2.copyJIDReq(mailbox).call();
+            PALong long3 = (PALong) long2.copyJIDReq(null).call();
 
             int sl = long1.getSerializedLength();
             assertEquals(8, sl);
@@ -28,7 +27,7 @@ public class LongTest extends TestCase {
             v = long3.getLongReq().call();
             assertEquals(1L, v);
 
-            Box box = IncDesFactories.createBox(factoryLocator, mailbox, factoryLocator);
+            Box box = IncDesFactories.createBox(factoryLocator, null, null);
             box.setIncDesReq(IncDesFactories.LONG_JID_TYPE).call();
             PALong rpa = (PALong) box.resolvePathnameReq("0").call();
             v = rpa.getLongReq().call();

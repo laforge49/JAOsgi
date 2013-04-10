@@ -8,11 +8,10 @@ public class IntegerTest extends TestCase {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
         Context jaBundleContext = Context.get(factoryLocator);
         try {
-            Mailbox mailbox = jaBundleContext.getMailbox();
-            PAInteger int1 = IncDesFactories.createPAInteger(factoryLocator, mailbox, null);
-            PAInteger int2 = (PAInteger) int1.copyJIDReq(mailbox).call();
+            PAInteger int1 = IncDesFactories.createPAInteger(factoryLocator, null, null);
+            PAInteger int2 = (PAInteger) int1.copyJIDReq(null).call();
             int2.setIntegerReq(1).call();
-            PAInteger int3 = (PAInteger) int2.copyJIDReq(mailbox).call();
+            PAInteger int3 = (PAInteger) int2.copyJIDReq(null).call();
 
             int sl = int1.getSerializedLength();
             assertEquals(4, sl);
@@ -28,7 +27,7 @@ public class IntegerTest extends TestCase {
             v = int3.getIntegerReq().call();
             assertEquals(1, v);
 
-            Box box1 = IncDesFactories.createBox(factoryLocator, mailbox, factoryLocator);
+            Box box1 = IncDesFactories.createBox(factoryLocator, null, null);
             box1.setIncDesReq(IncDesFactories.INTEGER_JID_TYPE).call();
             PAInteger rpa = (PAInteger) box1.resolvePathnameReq("0").call();
             v = rpa.getIntegerReq().call();

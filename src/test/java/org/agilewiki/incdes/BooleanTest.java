@@ -8,11 +8,10 @@ public class BooleanTest extends TestCase {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
         Context jaBundleContext = Context.get(factoryLocator);
         try {
-            Mailbox mailbox = jaBundleContext.getMailbox();
-            PABoolean boolean1 = IncDesFactories.createPABoolean(factoryLocator, mailbox, null);
-            PABoolean boolean2 = (PABoolean) boolean1.copyJIDReq(mailbox).call();
+            PABoolean boolean1 = IncDesFactories.createPABoolean(factoryLocator, null, null);
+            PABoolean boolean2 = (PABoolean) boolean1.copyJIDReq(null).call();
             boolean2.setBooleanReq(true).call();
-            PABoolean boolean3 = (PABoolean) boolean2.copyJIDReq(mailbox).call();
+            PABoolean boolean3 = (PABoolean) boolean2.copyJIDReq(null).call();
 
             int sl = boolean1.getSerializedLength();
             assertEquals(1, sl);
@@ -25,7 +24,7 @@ public class BooleanTest extends TestCase {
             assertTrue(boolean2.getBooleanReq().call());
             assertTrue(boolean3.getBooleanReq().call());
 
-            Box box = IncDesFactories.createBox(factoryLocator, mailbox, factoryLocator);
+            Box box = IncDesFactories.createBox(factoryLocator, null, null);
             box.setIncDesReq(IncDesFactories.BOOLEAN_JID_TYPE).call();
             PABoolean rpa = (PABoolean) box.resolvePathnameReq("0").call();
             assertFalse(rpa.getBooleanReq().call());
