@@ -6,7 +6,7 @@ import org.agilewiki.pautil.Ancestor;
 
 public class A extends AppBase {
     public static A create(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (A) Util.newJid(actor, IncDesFactories.BYTES_JID_TYPE, mailbox, parent);
+        return (A) Util.newJid(actor, "A", mailbox, parent);
     }
 
     public static void registerFactory(FactoryLocator factoryLocator)

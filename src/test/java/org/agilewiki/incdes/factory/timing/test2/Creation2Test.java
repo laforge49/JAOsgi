@@ -9,19 +9,20 @@ import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.MailboxFactory;
 
 public class Creation2Test extends TestCase {
-    Context jaBundleContext;
+    FactoryLocator factoryLocator;
 
     public void test() throws Exception {
 
-        long c = 1;
+        long c = 10000000;
 
         //System.out.println("####################################################");
-        //long c = 1,000,000,000;
-        //iterations per second = 753,012,048
+        //long c = 10,000,000;
+        //iterations per second = 10,672,358
 
-        FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        jaBundleContext = Context.get(factoryLocator);
+        factoryLocator = IncDesFactories.createFactoryLocator();
+        Context jaBundleContext = Context.get(factoryLocator);
         try {
+            A.registerFactory(factoryLocator);
             MailboxFactory mailboxFactory = jaBundleContext.getMailboxFactory();
             Mailbox m = mailboxFactory.createMailbox();
             loop(c, m);
@@ -30,10 +31,9 @@ public class Creation2Test extends TestCase {
             loop(c, m);
             long t1 = System.currentTimeMillis();
             long d = t1 - t0;
+            System.out.println(d);
             if (d > 0)
                 System.out.println(1000 * c / d);
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
             jaBundleContext.stop(0);
         }
@@ -43,7 +43,7 @@ public class Creation2Test extends TestCase {
             throws Exception {
         int i = 0;
         while (i < c) {
-            A.create(jaBundleContext, m, null);
+            assertNotNull(A.create(factoryLocator, m, null));
             i += 1;
         }
     }

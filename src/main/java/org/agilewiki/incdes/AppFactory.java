@@ -13,7 +13,7 @@ abstract public class AppFactory extends ActorFactory {
 
     public AppFactory(String subActorType) {
         super(subActorType);
-        this.tupleFactories = new ActorFactory[0];
+        this.jidTypes = new String[0];
     }
 
     /**
