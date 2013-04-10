@@ -1,7 +1,6 @@
 package org.agilewiki.incdes;
 
 import junit.framework.TestCase;
-import org.agilewiki.jactor.old.Actor;
 
 public class BoxTest extends TestCase {
     public void test() throws Exception {
@@ -9,35 +8,36 @@ public class BoxTest extends TestCase {
         Context jaBundleContext = Context.get(factoryLocator);
         try {
             Factory boxAFactory = factoryLocator.getFactory(IncDesFactories.BOX);
-            Box jidJid1 = (Box) boxAFactory.newActor(factoryLocator.getMailbox(), factoryLocator);
-            int sl = GetSerializedLength.req.send(future, jidJid1);
+            Box box1 = (Box) boxAFactory.newActor(factoryLocator.getMailbox(), factoryLocator);
+            int sl = box1.getSerializedLength();
             assertEquals(4, sl);
-            Clear.req.send(future, jidJid1);
-            sl = GetSerializedLength.req.send(future, jidJid1);
+            box1.clearReq().call();
+            sl = box1.getSerializedLength();
             assertEquals(4, sl);
-            Actor jidJid1a = GetActor.req.send(future, jidJid1);
-            assertNull(jidJid1a);
-            Actor rpa = (new ResolvePathname("")).send(future, jidJid1);
+            IncDes incDes1a = box1.getIncDesReq().call();
+            assertNull(incDes1a);
+            IncDes rpa = box1.resolvePathnameReq("").call();
             assertNotNull(rpa);
-            assertEquals(rpa, jidJid1);
-            rpa = (new ResolvePathname("0")).send(future, jidJid1);
+            assertEquals(rpa, box1);
+            rpa = box1.resolvePathnameReq("0").call();
             assertNull(rpa);
-            Actor jidJid11 = (new CopyJID()).send(future, jidJid1);
-            assertNotNull(jidJid11);
-            sl = GetSerializedLength.req.send(future, jidJid11);
+            IncDes incDes11 = box1.copyReq(null).call();
+            assertNotNull(incDes11);
+            sl = incDes11.getSerializedLength();
             assertEquals(4, sl);
-            rpa = (new ResolvePathname("")).send(future, jidJid11);
+            rpa = incDes11.resolvePathnameReq("").call();
             assertNotNull(rpa);
-            assertEquals(rpa, jidJid11);
-            rpa = (new ResolvePathname("0")).send(future, jidJid11);
+            assertEquals(rpa, incDes11);
+            rpa = (IncDes) incDes11.resolvePathnameReq("0").call();
             assertNull(rpa);
 
+            /*
             Factory stringJidAFactory = factoryLocator.getFactory(IncDesFactories.PASTRING);
-            Actor string1 = stringJidAFactory.newActor(factoryLocator.getMailbox(), factoryLocator);
+            IncDes string1 = stringJidAFactory.newActor(factoryLocator.getMailbox(), factoryLocator);
             (new SetString("abc")).send(future, string1);
             byte[] sb = GetSerializedBytes.req.send(future, string1);
-            (new SetActorBytes(stringJidAFactory, sb)).send(future, jidJid1);
-            Actor sj = GetActor.req.send(future, jidJid1);
+            (new SetActorBytes(stringJidAFactory, sb)).send(future, box1);
+            IncDes sj = GetActor.req.send(future, box1);
             assertEquals("abc", GetString.req.send(future, sj));
 
             Box jidJid2 = Box.create(factoryLocator, null, null);
@@ -49,7 +49,7 @@ public class BoxTest extends TestCase {
             MakeActor mjvj = new MakeActor(IncDesFactories.INCDES);
             boolean made = mjvj.send(future, jidJid2);
             assertEquals(false, made);
-            Actor jidJid2a = GetActor.req.send(future, jidJid2);
+            IncDes jidJid2a = GetActor.req.send(future, jidJid2);
             assertNotNull(jidJid2a);
             sl = GetSerializedLength.req.send(future, jidJid2a);
             assertEquals(0, sl);
@@ -61,7 +61,7 @@ public class BoxTest extends TestCase {
             rpa = (new ResolvePathname("0")).send(future, jidJid2);
             assertNotNull(rpa);
             assertEquals(rpa, jidJid2a);
-            Actor jidJid22 = (new CopyJID()).send(future, jidJid2);
+            IncDes jidJid22 = (new CopyJID()).send(future, jidJid2);
             Clear.req.send(future, jidJid2);
             sl = GetSerializedLength.req.send(future, jidJid2);
             assertEquals(4, sl);
@@ -86,7 +86,7 @@ public class BoxTest extends TestCase {
             assertEquals(true, made);
             made = mjvjj.send(future, jidJid3);
             assertEquals(false, made);
-            Actor jidJid3a = GetActor.req.send(future, jidJid3);
+            IncDes jidJid3a = GetActor.req.send(future, jidJid3);
             assertNotNull(jidJid3a);
             sl = GetSerializedLength.req.send(future, jidJid3a);
             assertEquals(4, sl);
@@ -96,7 +96,7 @@ public class BoxTest extends TestCase {
             assertEquals(true, made);
             made = mjvj.send(future, jidJid3a);
             assertEquals(false, made);
-            Actor jidJid3b = GetActor.req.send(future, jidJid3a);
+            IncDes jidJid3b = GetActor.req.send(future, jidJid3a);
             assertNotNull(jidJid3b);
             sl = GetSerializedLength.req.send(future, jidJid3b);
             assertEquals(0, sl);
@@ -113,7 +113,7 @@ public class BoxTest extends TestCase {
             rpa = (new ResolvePathname("0/0")).send(future, jidJid3);
             assertNotNull(rpa);
             assertEquals(rpa, jidJid3b);
-            Actor jidJid33 = (new CopyJID()).send(future, jidJid3);
+            IncDes jidJid33 = (new CopyJID()).send(future, jidJid3);
             Clear.req.send(future, jidJid3a);
             sl = GetSerializedLength.req.send(future, jidJid3a);
             assertEquals(4, sl);
@@ -121,7 +121,7 @@ public class BoxTest extends TestCase {
             assertEquals(68, sl);
             jidJid3b = GetActor.req.send(future, jidJid3a);
             assertNull(jidJid2a);
-            Actor jidJid3aa = GetActor.req.send(future, jidJid3);
+            IncDes jidJid3aa = GetActor.req.send(future, jidJid3);
             assertEquals(jidJid3a, jidJid3aa);
             assertNotNull(jidJid33);
             sl = GetSerializedLength.req.send(future, jidJid33);
@@ -137,9 +137,8 @@ public class BoxTest extends TestCase {
             assertNotNull(rpa);
             sl = GetSerializedLength.req.send(future, rpa);
             assertEquals(0, sl);
+            */
 
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
             jaBundleContext.stop(0);
         }
