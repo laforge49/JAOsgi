@@ -1,4 +1,4 @@
-package org.agilewiki.incdes.scalar;
+package org.agilewiki.incdes;
 
 import junit.framework.TestCase;
 import org.agilewiki.incdes.Context;
