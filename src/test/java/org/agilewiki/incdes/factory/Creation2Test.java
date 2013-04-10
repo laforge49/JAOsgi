@@ -1,10 +1,9 @@
-package org.agilewiki.incdes.factory.timing;
+package org.agilewiki.incdes.factory;
 
 import junit.framework.TestCase;
 import org.agilewiki.incdes.Context;
 import org.agilewiki.incdes.FactoryLocator;
 import org.agilewiki.incdes.IncDesFactories;
-import org.agilewiki.incdes.factory.timing.A;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.MailboxFactory;
 

@@ -1,4 +1,4 @@
-package org.agilewiki.incdes.factory.timing;
+package org.agilewiki.incdes.factory;
 
 import junit.framework.TestCase;
 
