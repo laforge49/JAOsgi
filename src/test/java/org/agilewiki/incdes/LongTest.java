@@ -1,7 +1,6 @@
 package org.agilewiki.incdes;
 
 import junit.framework.TestCase;
-import org.agilewiki.pactor.Mailbox;
 
 public class LongTest extends TestCase {
     public void test() throws Exception {
@@ -28,7 +27,7 @@ public class LongTest extends TestCase {
             assertEquals(1L, v);
 
             Box box = IncDesFactories.createBox(factoryLocator, null, null);
-            box.setIncDesReq(IncDesFactories.LONG_JID_TYPE).call();
+            box.setIncDesReq(IncDesFactories.PALONG).call();
             PALong rpa = (PALong) box.resolvePathnameReq("0").call();
             v = rpa.getLongReq().call();
             assertEquals(0L, v);

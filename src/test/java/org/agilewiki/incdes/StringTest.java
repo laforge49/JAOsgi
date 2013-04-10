@@ -24,7 +24,7 @@ public class StringTest extends TestCase {
             assertEquals("abc", paString3.getStringReq().call());
 
             Box box = IncDesFactories.createBox(factoryLocator, null, null);
-            box.setIncDesReq(IncDesFactories.STRING_JID_TYPE).call();
+            box.setIncDesReq(IncDesFactories.PASTRING).call();
             PAString rpa = (PAString) box.resolvePathnameReq("0").call();
             assertNull(rpa.getStringReq().call());
             assertTrue(rpa.makeStringReq("").call());

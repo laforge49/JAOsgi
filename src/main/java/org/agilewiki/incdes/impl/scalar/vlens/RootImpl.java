@@ -40,7 +40,7 @@ public class RootImpl extends BoxImpl implements Root {
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerJidFactory(new ActorFactory(IncDesFactories.ROOT_JID_TYPE) {
+        factoryLocator.registerJidFactory(new ActorFactory(IncDesFactories.ROOT) {
             @Override
             final protected RootImpl instantiateActor()
                     throws Exception {

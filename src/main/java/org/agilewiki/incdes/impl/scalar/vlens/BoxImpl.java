@@ -40,7 +40,7 @@ public class BoxImpl
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerJidFactory(new ActorFactory(IncDesFactories.ACTOR_JID_TYPE) {
+        factoryLocator.registerJidFactory(new ActorFactory(IncDesFactories.BOX) {
             @Override
             final protected BoxImpl instantiateActor()
                     throws Exception {

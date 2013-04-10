@@ -48,7 +48,7 @@ public class LongSMapFactory extends ActorFactory {
                                        int initialCapacity)
             throws Exception {
         factoryLocator.registerJidFactory(new MapEntryFactory(
-                "E." + actorType, IncDesFactories.LONG_JID_TYPE, valueType));
+                "E." + actorType, IncDesFactories.PALONG, valueType));
         factoryLocator.registerJidFactory(new LongSMapFactory(
                 actorType, valueType, initialCapacity));
     }

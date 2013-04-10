@@ -39,7 +39,7 @@ public class PADoubleImpl
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerJidFactory(new ActorFactory(IncDesFactories.DOUBLE_JID_TYPE) {
+        factoryLocator.registerJidFactory(new ActorFactory(IncDesFactories.PADOUBLE) {
             @Override
             final protected PADoubleImpl instantiateActor()
                     throws Exception {

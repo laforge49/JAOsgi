@@ -62,91 +62,91 @@ final public class IncDesFactories extends LocateLocalActorFactories {
     /**
      * The name of the JID actor.
      */
-    public final static String JID_TYPE = "JID";
+    public final static String INCDES = "incdes";
 
     public static IncDes createIncDes(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (IncDes) Util.newJid(actor, JID_TYPE, mailbox, parent);
+        return (IncDes) Util.newJid(actor, INCDES, mailbox, parent);
     }
 
     /**
      * The name of the PABooleanImpl actor.
      */
-    public final static String BOOLEAN_JID_TYPE = "BOOLEAN_JID";
+    public final static String PABOOLEAN = "bool";
 
     public static PABoolean createPABoolean(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (PABoolean) Util.newJid(actor, BOOLEAN_JID_TYPE, mailbox, parent);
+        return (PABoolean) Util.newJid(actor, PABOOLEAN, mailbox, parent);
     }
 
     /**
      * The name of the PAIntegerImpl actor.
      */
-    public final static String INTEGER_JID_TYPE = "INT_JID";
+    public final static String PAINTEGER = "int";
 
     public static PAInteger createPAInteger(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (PAInteger) Util.newJid(actor, INTEGER_JID_TYPE, mailbox, parent);
+        return (PAInteger) Util.newJid(actor, PAINTEGER, mailbox, parent);
     }
 
     /**
      * The name of the PALongImpl actor.
      */
-    public final static String LONG_JID_TYPE = "LONG_JID";
+    public final static String PALONG = "long";
 
     public static PALong createPALong(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (PALong) Util.newJid(actor, LONG_JID_TYPE, mailbox, parent);
+        return (PALong) Util.newJid(actor, PALONG, mailbox, parent);
     }
 
     /**
      * The name of the PAFloatImpl actor.
      */
-    public final static String FLOAT_JID_TYPE = "FLOAT_JID";
+    public final static String PAFLOAT = "float";
 
     public static PAFloat createPAFloat(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (PAFloat) Util.newJid(actor, FLOAT_JID_TYPE, mailbox, parent);
+        return (PAFloat) Util.newJid(actor, PAFLOAT, mailbox, parent);
     }
 
     /**
      * The name of the PADoubleImpl actor.
      */
-    public final static String DOUBLE_JID_TYPE = "DOUBLE_JID";
+    public final static String PADOUBLE = "double";
 
     public static PADouble createPADouble(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (PADouble) Util.newJid(actor, DOUBLE_JID_TYPE, mailbox, parent);
+        return (PADouble) Util.newJid(actor, PADOUBLE, mailbox, parent);
     }
 
     /**
      * The name of the JidJid actor.
      */
-    public final static String ACTOR_JID_TYPE = "ACTOR_JID";
+    public final static String BOX = "box";
 
     public static Box createBox(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (Box) Util.newJid(actor, ACTOR_JID_TYPE, mailbox, parent);
+        return (Box) Util.newJid(actor, BOX, mailbox, parent);
     }
 
     /**
      * The name of the JidJid actor.
      */
-    public final static String ROOT_JID_TYPE = "ROOT_JID";
+    public final static String ROOT = "root";
 
     public static Root createRoot(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (Root) Util.newJid(actor, ROOT_JID_TYPE, mailbox, parent);
+        return (Root) Util.newJid(actor, ROOT, mailbox, parent);
     }
 
     /**
      * The name of the String actor.
      */
-    public final static String STRING_JID_TYPE = "STRING_JID";
+    public final static String PASTRING = "string";
 
     public static PAString createPAString(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (PAString) Util.newJid(actor, STRING_JID_TYPE, mailbox, parent);
+        return (PAString) Util.newJid(actor, PASTRING, mailbox, parent);
     }
 
     /**
      * The name of the BytesImpl actor.
      */
-    public final static String BYTES_JID_TYPE = "BYTES_JID";
+    public final static String BYTES = "bytes";
 
     public static Bytes createBytes(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (Bytes) Util.newJid(actor, BYTES_JID_TYPE, mailbox, parent);
+        return (Bytes) Util.newJid(actor, BYTES, mailbox, parent);
     }
 
     /**
@@ -485,77 +485,77 @@ final public class IncDesFactories extends LocateLocalActorFactories {
         PAStringImpl.registerFactory(factoryLocator);
         BytesImpl.registerFactory(factoryLocator);
 
-        BListFactory.registerFactory(factoryLocator, STRING_BLIST_JID_TYPE, STRING_JID_TYPE);
-        BListFactory.registerFactory(factoryLocator, BYTES_BLIST_JID_TYPE, BYTES_JID_TYPE);
-        BListFactory.registerFactory(factoryLocator, ACTOR_BLIST_JID_TYPE, ACTOR_JID_TYPE);
-        BListFactory.registerFactory(factoryLocator, LONG_BLIST_JID_TYPE, LONG_JID_TYPE);
-        BListFactory.registerFactory(factoryLocator, INTEGER_BLIST_JID_TYPE, INTEGER_JID_TYPE);
-        BListFactory.registerFactory(factoryLocator, FLOAT_BLIST_JID_TYPE, FLOAT_JID_TYPE);
-        BListFactory.registerFactory(factoryLocator, DOUBLE_BLIST_JID_TYPE, DOUBLE_JID_TYPE);
-        BListFactory.registerFactory(factoryLocator, BOOLEAN_BLIST_JID_TYPE, BOOLEAN_JID_TYPE);
+        BListFactory.registerFactory(factoryLocator, STRING_BLIST_JID_TYPE, PASTRING);
+        BListFactory.registerFactory(factoryLocator, BYTES_BLIST_JID_TYPE, BYTES);
+        BListFactory.registerFactory(factoryLocator, ACTOR_BLIST_JID_TYPE, BOX);
+        BListFactory.registerFactory(factoryLocator, LONG_BLIST_JID_TYPE, PALONG);
+        BListFactory.registerFactory(factoryLocator, INTEGER_BLIST_JID_TYPE, PAINTEGER);
+        BListFactory.registerFactory(factoryLocator, FLOAT_BLIST_JID_TYPE, PAFLOAT);
+        BListFactory.registerFactory(factoryLocator, DOUBLE_BLIST_JID_TYPE, PADOUBLE);
+        BListFactory.registerFactory(factoryLocator, BOOLEAN_BLIST_JID_TYPE, PABOOLEAN);
 
-        SListFactory.registerFactory(factoryLocator, STRING_LIST_JID_TYPE, STRING_JID_TYPE);
-        SListFactory.registerFactory(factoryLocator, BYTES_LIST_JID_TYPE, BYTES_JID_TYPE);
-        SListFactory.registerFactory(factoryLocator, ACTOR_LIST_JID_TYPE, ACTOR_JID_TYPE);
-        SListFactory.registerFactory(factoryLocator, LONG_LIST_JID_TYPE, LONG_JID_TYPE);
-        SListFactory.registerFactory(factoryLocator, INTEGER_LIST_JID_TYPE, INTEGER_JID_TYPE);
-        SListFactory.registerFactory(factoryLocator, FLOAT_LIST_JID_TYPE, FLOAT_JID_TYPE);
-        SListFactory.registerFactory(factoryLocator, DOUBLE_LIST_JID_TYPE, DOUBLE_JID_TYPE);
-        SListFactory.registerFactory(factoryLocator, BOOLEAN_LIST_JID_TYPE, BOOLEAN_JID_TYPE);
+        SListFactory.registerFactory(factoryLocator, STRING_LIST_JID_TYPE, PASTRING);
+        SListFactory.registerFactory(factoryLocator, BYTES_LIST_JID_TYPE, BYTES);
+        SListFactory.registerFactory(factoryLocator, ACTOR_LIST_JID_TYPE, BOX);
+        SListFactory.registerFactory(factoryLocator, LONG_LIST_JID_TYPE, PALONG);
+        SListFactory.registerFactory(factoryLocator, INTEGER_LIST_JID_TYPE, PAINTEGER);
+        SListFactory.registerFactory(factoryLocator, FLOAT_LIST_JID_TYPE, PAFLOAT);
+        SListFactory.registerFactory(factoryLocator, DOUBLE_LIST_JID_TYPE, PADOUBLE);
+        SListFactory.registerFactory(factoryLocator, BOOLEAN_LIST_JID_TYPE, PABOOLEAN);
 
-        StringSMapFactory.registerFactory(factoryLocator, STRING_STRING_MAP_JID_TYPE, STRING_JID_TYPE);
-        StringSMapFactory.registerFactory(factoryLocator, STRING_BYTES_MAP_JID_TYPE, BYTES_JID_TYPE);
-        StringSMapFactory.registerFactory(factoryLocator, STRING_ACTOR_MAP_JID_TYPE, ACTOR_JID_TYPE);
-        StringSMapFactory.registerFactory(factoryLocator, STRING_LONG_MAP_JID_TYPE, LONG_JID_TYPE);
-        StringSMapFactory.registerFactory(factoryLocator, STRING_INTEGER_MAP_JID_TYPE, INTEGER_JID_TYPE);
-        StringSMapFactory.registerFactory(factoryLocator, STRING_FLOAT_MAP_JID_TYPE, FLOAT_JID_TYPE);
-        StringSMapFactory.registerFactory(factoryLocator, STRING_DOUBLE_MAP_JID_TYPE, DOUBLE_JID_TYPE);
-        StringSMapFactory.registerFactory(factoryLocator, STRING_BOOLEAN_MAP_JID_TYPE, BOOLEAN_JID_TYPE);
+        StringSMapFactory.registerFactory(factoryLocator, STRING_STRING_MAP_JID_TYPE, PASTRING);
+        StringSMapFactory.registerFactory(factoryLocator, STRING_BYTES_MAP_JID_TYPE, BYTES);
+        StringSMapFactory.registerFactory(factoryLocator, STRING_ACTOR_MAP_JID_TYPE, BOX);
+        StringSMapFactory.registerFactory(factoryLocator, STRING_LONG_MAP_JID_TYPE, PALONG);
+        StringSMapFactory.registerFactory(factoryLocator, STRING_INTEGER_MAP_JID_TYPE, PAINTEGER);
+        StringSMapFactory.registerFactory(factoryLocator, STRING_FLOAT_MAP_JID_TYPE, PAFLOAT);
+        StringSMapFactory.registerFactory(factoryLocator, STRING_DOUBLE_MAP_JID_TYPE, PADOUBLE);
+        StringSMapFactory.registerFactory(factoryLocator, STRING_BOOLEAN_MAP_JID_TYPE, PABOOLEAN);
 
-        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_STRING_MAP_JID_TYPE, STRING_JID_TYPE);
-        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_BYTES_MAP_JID_TYPE, BYTES_JID_TYPE);
-        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_ACTOR_MAP_JID_TYPE, ACTOR_JID_TYPE);
-        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_LONG_MAP_JID_TYPE, LONG_JID_TYPE);
-        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_INTEGER_MAP_JID_TYPE, INTEGER_JID_TYPE);
-        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_FLOAT_MAP_JID_TYPE, FLOAT_JID_TYPE);
-        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_DOUBLE_MAP_JID_TYPE, DOUBLE_JID_TYPE);
-        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_BOOLEAN_MAP_JID_TYPE, BOOLEAN_JID_TYPE);
+        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_STRING_MAP_JID_TYPE, PASTRING);
+        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_BYTES_MAP_JID_TYPE, BYTES);
+        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_ACTOR_MAP_JID_TYPE, BOX);
+        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_LONG_MAP_JID_TYPE, PALONG);
+        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_INTEGER_MAP_JID_TYPE, PAINTEGER);
+        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_FLOAT_MAP_JID_TYPE, PAFLOAT);
+        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_DOUBLE_MAP_JID_TYPE, PADOUBLE);
+        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_BOOLEAN_MAP_JID_TYPE, PABOOLEAN);
 
-        LongSMapFactory.registerFactory(factoryLocator, LONG_STRING_MAP_JID_TYPE, STRING_JID_TYPE);
-        LongSMapFactory.registerFactory(factoryLocator, LONG_BYTES_MAP_JID_TYPE, BYTES_JID_TYPE);
-        LongSMapFactory.registerFactory(factoryLocator, LONG_ACTOR_MAP_JID_TYPE, ACTOR_JID_TYPE);
-        LongSMapFactory.registerFactory(factoryLocator, LONG_LONG_MAP_JID_TYPE, LONG_JID_TYPE);
-        LongSMapFactory.registerFactory(factoryLocator, LONG_INTEGER_MAP_JID_TYPE, INTEGER_JID_TYPE);
-        LongSMapFactory.registerFactory(factoryLocator, LONG_FLOAT_MAP_JID_TYPE, FLOAT_JID_TYPE);
-        LongSMapFactory.registerFactory(factoryLocator, LONG_DOUBLE_MAP_JID_TYPE, DOUBLE_JID_TYPE);
-        LongSMapFactory.registerFactory(factoryLocator, LONG_BOOLEAN_MAP_JID_TYPE, BOOLEAN_JID_TYPE);
+        LongSMapFactory.registerFactory(factoryLocator, LONG_STRING_MAP_JID_TYPE, PASTRING);
+        LongSMapFactory.registerFactory(factoryLocator, LONG_BYTES_MAP_JID_TYPE, BYTES);
+        LongSMapFactory.registerFactory(factoryLocator, LONG_ACTOR_MAP_JID_TYPE, BOX);
+        LongSMapFactory.registerFactory(factoryLocator, LONG_LONG_MAP_JID_TYPE, PALONG);
+        LongSMapFactory.registerFactory(factoryLocator, LONG_INTEGER_MAP_JID_TYPE, PAINTEGER);
+        LongSMapFactory.registerFactory(factoryLocator, LONG_FLOAT_MAP_JID_TYPE, PAFLOAT);
+        LongSMapFactory.registerFactory(factoryLocator, LONG_DOUBLE_MAP_JID_TYPE, PADOUBLE);
+        LongSMapFactory.registerFactory(factoryLocator, LONG_BOOLEAN_MAP_JID_TYPE, PABOOLEAN);
 
-        StringBMapFactory.registerFactory(factoryLocator, STRING_STRING_BMAP_JID_TYPE, STRING_JID_TYPE);
-        StringBMapFactory.registerFactory(factoryLocator, STRING_BYTES_BMAP_JID_TYPE, BYTES_JID_TYPE);
-        StringBMapFactory.registerFactory(factoryLocator, STRING_ACTOR_BMAP_JID_TYPE, ACTOR_JID_TYPE);
-        StringBMapFactory.registerFactory(factoryLocator, STRING_LONG_BMAP_JID_TYPE, LONG_JID_TYPE);
-        StringBMapFactory.registerFactory(factoryLocator, STRING_INTEGER_BMAP_JID_TYPE, INTEGER_JID_TYPE);
-        StringBMapFactory.registerFactory(factoryLocator, STRING_FLOAT_BMAP_JID_TYPE, FLOAT_JID_TYPE);
-        StringBMapFactory.registerFactory(factoryLocator, STRING_DOUBLE_BMAP_JID_TYPE, DOUBLE_JID_TYPE);
-        StringBMapFactory.registerFactory(factoryLocator, STRING_BOOLEAN_BMAP_JID_TYPE, BOOLEAN_JID_TYPE);
+        StringBMapFactory.registerFactory(factoryLocator, STRING_STRING_BMAP_JID_TYPE, PASTRING);
+        StringBMapFactory.registerFactory(factoryLocator, STRING_BYTES_BMAP_JID_TYPE, BYTES);
+        StringBMapFactory.registerFactory(factoryLocator, STRING_ACTOR_BMAP_JID_TYPE, BOX);
+        StringBMapFactory.registerFactory(factoryLocator, STRING_LONG_BMAP_JID_TYPE, PALONG);
+        StringBMapFactory.registerFactory(factoryLocator, STRING_INTEGER_BMAP_JID_TYPE, PAINTEGER);
+        StringBMapFactory.registerFactory(factoryLocator, STRING_FLOAT_BMAP_JID_TYPE, PAFLOAT);
+        StringBMapFactory.registerFactory(factoryLocator, STRING_DOUBLE_BMAP_JID_TYPE, PADOUBLE);
+        StringBMapFactory.registerFactory(factoryLocator, STRING_BOOLEAN_BMAP_JID_TYPE, PABOOLEAN);
 
-        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_STRING_BMAP_JID_TYPE, STRING_JID_TYPE);
-        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_BYTES_BMAP_JID_TYPE, BYTES_JID_TYPE);
-        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_ACTOR_BMAP_JID_TYPE, ACTOR_JID_TYPE);
-        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_LONG_BMAP_JID_TYPE, LONG_JID_TYPE);
-        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_INTEGER_BMAP_JID_TYPE, INTEGER_JID_TYPE);
-        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_FLOAT_BMAP_JID_TYPE, FLOAT_JID_TYPE);
-        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_DOUBLE_BMAP_JID_TYPE, DOUBLE_JID_TYPE);
-        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_BOOLEAN_BMAP_JID_TYPE, BOOLEAN_JID_TYPE);
+        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_STRING_BMAP_JID_TYPE, PASTRING);
+        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_BYTES_BMAP_JID_TYPE, BYTES);
+        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_ACTOR_BMAP_JID_TYPE, BOX);
+        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_LONG_BMAP_JID_TYPE, PALONG);
+        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_INTEGER_BMAP_JID_TYPE, PAINTEGER);
+        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_FLOAT_BMAP_JID_TYPE, PAFLOAT);
+        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_DOUBLE_BMAP_JID_TYPE, PADOUBLE);
+        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_BOOLEAN_BMAP_JID_TYPE, PABOOLEAN);
 
-        LongBMapFactory.registerFactory(factoryLocator, LONG_STRING_BMAP_JID_TYPE, STRING_JID_TYPE);
-        LongBMapFactory.registerFactory(factoryLocator, LONG_BYTES_BMAP_JID_TYPE, BYTES_JID_TYPE);
-        LongBMapFactory.registerFactory(factoryLocator, LONG_ACTOR_BMAP_JID_TYPE, ACTOR_JID_TYPE);
-        LongBMapFactory.registerFactory(factoryLocator, LONG_LONG_BMAP_JID_TYPE, LONG_JID_TYPE);
-        LongBMapFactory.registerFactory(factoryLocator, LONG_INTEGER_BMAP_JID_TYPE, INTEGER_JID_TYPE);
-        LongBMapFactory.registerFactory(factoryLocator, LONG_FLOAT_BMAP_JID_TYPE, FLOAT_JID_TYPE);
-        LongBMapFactory.registerFactory(factoryLocator, LONG_DOUBLE_BMAP_JID_TYPE, DOUBLE_JID_TYPE);
-        LongBMapFactory.registerFactory(factoryLocator, LONG_BOOLEAN_BMAP_JID_TYPE, BOOLEAN_JID_TYPE);
+        LongBMapFactory.registerFactory(factoryLocator, LONG_STRING_BMAP_JID_TYPE, PASTRING);
+        LongBMapFactory.registerFactory(factoryLocator, LONG_BYTES_BMAP_JID_TYPE, BYTES);
+        LongBMapFactory.registerFactory(factoryLocator, LONG_ACTOR_BMAP_JID_TYPE, BOX);
+        LongBMapFactory.registerFactory(factoryLocator, LONG_LONG_BMAP_JID_TYPE, PALONG);
+        LongBMapFactory.registerFactory(factoryLocator, LONG_INTEGER_BMAP_JID_TYPE, PAINTEGER);
+        LongBMapFactory.registerFactory(factoryLocator, LONG_FLOAT_BMAP_JID_TYPE, PAFLOAT);
+        LongBMapFactory.registerFactory(factoryLocator, LONG_DOUBLE_BMAP_JID_TYPE, PADOUBLE);
+        LongBMapFactory.registerFactory(factoryLocator, LONG_BOOLEAN_BMAP_JID_TYPE, PABOOLEAN);
         return factoryLocator;
     }
 }

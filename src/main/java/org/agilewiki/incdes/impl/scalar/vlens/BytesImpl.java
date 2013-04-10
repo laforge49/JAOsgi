@@ -44,7 +44,7 @@ public class BytesImpl
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerJidFactory(new ActorFactory(IncDesFactories.BYTES_JID_TYPE) {
+        factoryLocator.registerJidFactory(new ActorFactory(IncDesFactories.BYTES) {
             @Override
             final protected BytesImpl instantiateActor()
                     throws Exception {

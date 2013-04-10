@@ -16,7 +16,7 @@ public class User extends TupleImpl implements Main {
 
     private static class UserFactory extends TupleFactory {
         public UserFactory(String actorType) {
-            super(actorType, IncDesFactories.STRING_JID_TYPE, IncDesFactories.INTEGER_JID_TYPE, IncDesFactories.STRING_JID_TYPE);
+            super(actorType, IncDesFactories.PASTRING, IncDesFactories.PAINTEGER, IncDesFactories.PASTRING);
         }
 
         @Override

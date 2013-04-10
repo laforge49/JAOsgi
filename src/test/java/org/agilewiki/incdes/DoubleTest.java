@@ -27,7 +27,7 @@ public class DoubleTest extends TestCase {
             assertEquals(1.D, v);
 
             Box box = IncDesFactories.createBox(factoryLocator, null, null);
-            box.setIncDesReq(IncDesFactories.DOUBLE_JID_TYPE).call();
+            box.setIncDesReq(IncDesFactories.PADOUBLE).call();
             PADouble rpa = (PADouble) box.resolvePathnameReq("0").call();
             v = rpa.getDoubleReq().call();
             assertEquals(0.D, v);

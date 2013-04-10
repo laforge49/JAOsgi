@@ -24,7 +24,7 @@ public class BytesTest extends TestCase {
             assertEquals(3, bytes3.getBytesReq().call().length);
 
             Box box = IncDesFactories.createBox(factoryLocator, null, null);
-            box.setIncDesReq(IncDesFactories.BYTES_JID_TYPE).call();
+            box.setIncDesReq(IncDesFactories.BYTES).call();
             Bytes rpa = (Bytes) box.resolvePathnameReq("0").call();
             assertNull(rpa.getBytesReq().call());
             assertTrue(rpa.makeBytesReq(new byte[0]).call());

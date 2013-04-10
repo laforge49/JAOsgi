@@ -38,7 +38,7 @@ public class StringSMap<VALUE_TYPE extends IncDesImpl> extends SMap<String, VALU
      * @return The IncDesFactory for the key.
      */
     final protected ActorFactory getKeyFactory() throws Exception {
-        return Util.getActorFactory(this, IncDesFactories.STRING_JID_TYPE);
+        return Util.getActorFactory(this, IncDesFactories.PASTRING);
     }
 
     /**

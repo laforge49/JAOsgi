@@ -46,7 +46,7 @@ public class TupleTest extends TestCase {
         try {
             JAFuture future = new JAFuture();
             TupleFactory tjf = new TupleFactory(
-                    "sst", IncDesFactories.STRING_JID_TYPE, IncDesFactories.STRING_JID_TYPE);
+                    "sst", IncDesFactories.PASTRING, IncDesFactories.PASTRING);
             factoryLocator.registerJidFactory(tjf);
             Actor t0 = tjf.newActor(factoryLocator.getMailbox(), factoryLocator);
             IGet iget0 = new IGet(0);

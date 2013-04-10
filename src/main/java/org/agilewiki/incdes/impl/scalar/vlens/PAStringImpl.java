@@ -41,7 +41,7 @@ public class PAStringImpl
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerJidFactory(new ActorFactory(IncDesFactories.STRING_JID_TYPE) {
+        factoryLocator.registerJidFactory(new ActorFactory(IncDesFactories.PASTRING) {
             @Override
             final protected PAStringImpl instantiateActor()
                     throws Exception {

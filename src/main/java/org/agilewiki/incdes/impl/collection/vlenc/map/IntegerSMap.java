@@ -38,7 +38,7 @@ public class IntegerSMap<VALUE_TYPE extends IncDesImpl> extends SMap<Integer, VA
      * @return The IncDesFactory for the key.
      */
     final protected ActorFactory getKeyFactory() throws Exception {
-        return Util.getActorFactory(this, IncDesFactories.INTEGER_JID_TYPE);
+        return Util.getActorFactory(this, IncDesFactories.PAINTEGER);
     }
 
     /**

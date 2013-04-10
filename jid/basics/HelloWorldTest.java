@@ -18,11 +18,11 @@ public class HelloWorldTest extends TestCase {
         Context jaBundleContext = Context.get(factoryLocator);
         HelloWorld.register(factoryLocator);
         JAFuture future = new JAFuture();
-        RootImpl root = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT_JID_TYPE);
+        RootImpl root = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT);
         (new SetActor("hi")).send(future, root);
         byte[] rootBytes = GetSerializedBytes.req.send(future, root);
 
-        RootImpl root2 = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT_JID_TYPE);
+        RootImpl root2 = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT);
         root2.load(rootBytes);
         Actor a = (new ResolvePathname("0")).send(future, root2);
         Proc.req.send(future, a);

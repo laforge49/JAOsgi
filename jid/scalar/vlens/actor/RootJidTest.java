@@ -21,7 +21,7 @@ public class RootJidTest extends TestCase {
         Context jaBundleContext = Context.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            RootJidFactory rootJidFactory = (RootJidFactory) factoryLocator.getJidFactory(IncDesFactories.ROOT_JID_TYPE);
+            RootJidFactory rootJidFactory = (RootJidFactory) factoryLocator.getJidFactory(IncDesFactories.ROOT);
             Actor rootJid1 = rootJidFactory.newActor(factoryLocator.getMailbox(), factoryLocator);
             int sl = GetSerializedLength.req.send(future, rootJid1);
             assertEquals(56, sl);
@@ -45,7 +45,7 @@ public class RootJidTest extends TestCase {
             rpa = (new ResolvePathname("0")).send(future, rootJid11);
             assertNull(rpa);
 
-            ActorFactory stringJidAFactory = factoryLocator.getJidFactory(IncDesFactories.STRING_JID_TYPE);
+            ActorFactory stringJidAFactory = factoryLocator.getJidFactory(IncDesFactories.PASTRING);
             Actor string1 = stringJidAFactory.newActor(factoryLocator.getMailbox(), factoryLocator);
             (new SetString("abc")).send(future, string1);
             byte[] sb = GetSerializedBytes.req.send(future, string1);
@@ -56,9 +56,9 @@ public class RootJidTest extends TestCase {
             Actor rootJid2 = rootJidFactory.newActor(factoryLocator.getMailbox(), factoryLocator);
             sl = GetSerializedLength.req.send(future, rootJid2);
             assertEquals(56, sl);
-            SetActor sjvj = new SetActor(IncDesFactories.JID_TYPE);
+            SetActor sjvj = new SetActor(IncDesFactories.INCDES);
             sjvj.send(future, rootJid2);
-            MakeActor mjvj = new MakeActor(IncDesFactories.JID_TYPE);
+            MakeActor mjvj = new MakeActor(IncDesFactories.INCDES);
             boolean made = mjvj.send(future, rootJid2);
             assertEquals(false, made);
             Actor jidJid2a = GetActor.req.send(future, rootJid2);

@@ -39,7 +39,7 @@ public class PAFloatImpl
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerJidFactory(new ActorFactory(IncDesFactories.FLOAT_JID_TYPE) {
+        factoryLocator.registerJidFactory(new ActorFactory(IncDesFactories.PAFLOAT) {
             @Override
             final protected PAFloatImpl instantiateActor()
                     throws Exception {

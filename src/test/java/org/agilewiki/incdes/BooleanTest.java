@@ -1,7 +1,6 @@
 package org.agilewiki.incdes;
 
 import junit.framework.TestCase;
-import org.agilewiki.pactor.Mailbox;
 
 public class BooleanTest extends TestCase {
     public void test() throws Exception {
@@ -25,7 +24,7 @@ public class BooleanTest extends TestCase {
             assertTrue(boolean3.getBooleanReq().call());
 
             Box box = IncDesFactories.createBox(factoryLocator, null, null);
-            box.setIncDesReq(IncDesFactories.BOOLEAN_JID_TYPE).call();
+            box.setIncDesReq(IncDesFactories.PABOOLEAN).call();
             PABoolean rpa = (PABoolean) box.resolvePathnameReq("0").call();
             assertFalse(rpa.getBooleanReq().call());
             rpa.setBooleanReq(true).call();

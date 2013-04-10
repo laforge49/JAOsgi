@@ -1,7 +1,6 @@
 package org.agilewiki.incdes;
 
 import junit.framework.TestCase;
-import org.agilewiki.pactor.Mailbox;
 
 public class FloatTest extends TestCase {
     public void test() throws Exception {
@@ -28,7 +27,7 @@ public class FloatTest extends TestCase {
             assertEquals(1.f, v);
 
             Box box = IncDesFactories.createBox(factoryLocator, null, null);
-            box.setIncDesReq(IncDesFactories.FLOAT_JID_TYPE).call();
+            box.setIncDesReq(IncDesFactories.PAFLOAT).call();
             PAFloat rpa = (PAFloat) box.resolvePathnameReq("0").call();
             v = rpa.getFloatReq().call();
             assertEquals(0.f, v);

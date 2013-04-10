@@ -18,7 +18,7 @@ public class Sum extends SList implements Main {
 
     private static class SumFactory extends SListFactory {
         public SumFactory(String actorType) {
-            super(actorType, IncDesFactories.INTEGER_JID_TYPE, 10);
+            super(actorType, IncDesFactories.PAINTEGER, 10);
         }
 
         @Override

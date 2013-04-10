@@ -13,13 +13,13 @@ public class UnionJidTest extends TestCase {
         Context jaBundleContext = Context.get(factoryLocator);
         try {
             UnionJidFactory siuf =
-                    new UnionJidFactory("siUnion", IncDesFactories.STRING_JID_TYPE, "siUnion");
+                    new UnionJidFactory("siUnion", IncDesFactories.PASTRING, "siUnion");
             factoryLocator.registerJidFactory(siuf);
             UnionImpl siu1 = (UnionImpl) factoryLocator.newJid("siUnion");
             assertNull(siu1.getValue());
             UnionImpl siu2 = (UnionImpl) siu1.copyJID(factoryLocator.getMailbox());
             assertNull(siu2.getValue());
-            siu2.setValue(IncDesFactories.STRING_JID_TYPE);
+            siu2.setValue(IncDesFactories.PASTRING);
             PAStringImpl sj2 = (PAStringImpl) siu2.getValue();
             assertNotNull(sj2);
             UnionImpl siu3 = (UnionImpl) siu2.copyJID(factoryLocator.getMailbox());

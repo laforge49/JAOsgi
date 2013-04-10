@@ -38,7 +38,7 @@ public class LongSMap<VALUE_TYPE extends IncDesImpl> extends SMap<Long, VALUE_TY
      * @return The IncDesFactory for the key.
      */
     final protected ActorFactory getKeyFactory() throws Exception {
-        return Util.getActorFactory(this, IncDesFactories.LONG_JID_TYPE);
+        return Util.getActorFactory(this, IncDesFactories.PALONG);
     }
 
     /**

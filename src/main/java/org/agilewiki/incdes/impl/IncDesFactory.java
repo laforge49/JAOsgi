@@ -41,7 +41,7 @@ public class IncDesFactory extends ActorFactory {
      * Create a JLPCActorFactory.
      */
     protected IncDesFactory() {
-        super(IncDesFactories.JID_TYPE);
+        super(IncDesFactories.INCDES);
     }
 
     /**

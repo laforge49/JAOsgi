@@ -20,13 +20,13 @@ public class LuckyNumberTest extends TestCase {
         LuckyNumber.register(factoryLocator);
         JAFuture future = new JAFuture();
 
-        RootImpl root = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT_JID_TYPE);
+        RootImpl root = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT);
         (new SetActor("lucky number")).send(future, root);
         Actor a = (new ResolvePathname("0")).send(future, root);
         (new SetInteger(7)).send(future, a);
         byte[] rootBytes = GetSerializedBytes.req.send(future, root);
 
-        RootImpl root2 = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT_JID_TYPE);
+        RootImpl root2 = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT);
         root2.load(rootBytes);
         Actor a2 = (new ResolvePathname("0")).send(future, root2);
         Proc.req.send(future, a2);

@@ -12,7 +12,7 @@ public class LBlockTest extends TestCase {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
         Context jaBundleContext = Context.get(factoryLocator);
         try {
-            Root rj = (Root) factoryLocator.newJid(IncDesFactories.ROOT_JID_TYPE);
+            Root rj = (Root) factoryLocator.newJid(IncDesFactories.ROOT);
             LBlock lb1 = new LBlock();
             lb1.setRootJid(rj);
             byte[] bs = lb1.serialize();

@@ -23,7 +23,7 @@ public class SumTest extends TestCase {
         Sum.register(factoryLocator);
         JAFuture future = new JAFuture();
 
-        RootImpl root = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT_JID_TYPE);
+        RootImpl root = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT);
         (new SetActor("sum")).send(future, root);
         Sum sum = (Sum) (new ResolvePathname("0")).send(future, root);
         IAdd iAdd = new IAdd(-1);
@@ -39,7 +39,7 @@ public class SumTest extends TestCase {
         (new SetInteger(3)).send(future, ij2);
         byte[] rootBytes = GetSerializedBytes.req.send(future, root);
 
-        RootImpl root2 = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT_JID_TYPE);
+        RootImpl root2 = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT);
         root2.load(rootBytes);
         Actor a = (new ResolvePathname("0")).send(future, root2);
         Proc.req.send(future, a);

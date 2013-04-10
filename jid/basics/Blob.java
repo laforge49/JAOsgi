@@ -15,7 +15,7 @@ public class Blob extends StringSMap implements Main {
     public static void register(FactoryLocator factoryLocator) throws Exception {
         factoryLocator.registerJidFactory(new BlobFactory("blob"));
         UnionImpl.registerFactory(factoryLocator,
-                "E.blob", IncDesFactories.STRING_JID_TYPE, IncDesFactories.ACTOR_JID_TYPE);
+                "E.blob", IncDesFactories.PASTRING, IncDesFactories.BOX);
     }
 
     private static class BlobFactory extends ActorFactory {
@@ -33,7 +33,7 @@ public class Blob extends StringSMap implements Main {
         public Blob newActor(Mailbox mailbox, Ancestor parent) throws Exception {
             Blob blob = (Blob) super.newActor(mailbox, parent);
             FactoryLocator fl = FactoryLocatorImpl.getFactoryLocator(parent);
-            blob.valueFactory = fl.getJidFactory(IncDesFactories.ACTOR_JID_TYPE);
+            blob.valueFactory = fl.getJidFactory(IncDesFactories.BOX);
             return blob;
         }
     }

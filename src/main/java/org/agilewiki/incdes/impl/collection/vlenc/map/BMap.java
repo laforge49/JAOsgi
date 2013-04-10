@@ -91,7 +91,7 @@ abstract public class BMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
             baseType = baseType.substring(3);
         factoryLocator = Util.getFactoryLocator(this);
         tupleFactories = new ActorFactory[2];
-        tupleFactories[TUPLE_SIZE] = factoryLocator.getJidFactory(IncDesFactories.INTEGER_JID_TYPE);
+        tupleFactories[TUPLE_SIZE] = factoryLocator.getJidFactory(IncDesFactories.PAINTEGER);
         tupleFactories[TUPLE_UNION] = factoryLocator.getJidFactory("U." + baseType);
     }
 

@@ -1,7 +1,6 @@
 package org.agilewiki.incdes;
 
 import junit.framework.TestCase;
-import org.agilewiki.pactor.Mailbox;
 
 public class IntegerTest extends TestCase {
     public void test() throws Exception {
@@ -28,7 +27,7 @@ public class IntegerTest extends TestCase {
             assertEquals(1, v);
 
             Box box1 = IncDesFactories.createBox(factoryLocator, null, null);
-            box1.setIncDesReq(IncDesFactories.INTEGER_JID_TYPE).call();
+            box1.setIncDesReq(IncDesFactories.PAINTEGER).call();
             PAInteger rpa = (PAInteger) box1.resolvePathnameReq("0").call();
             v = rpa.getIntegerReq().call();
             assertEquals(0, v);

@@ -19,13 +19,13 @@ public class GreeterTest extends TestCase {
         Context jaBundleContext = Context.get(factoryLocator);
         Greeter.register(factoryLocator, "hi greeter", "Hi");
         JAFuture future = new JAFuture();
-        RootImpl root = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT_JID_TYPE);
+        RootImpl root = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT);
         (new SetActor("hi greeter")).send(future, root);
         Actor a = (new ResolvePathname("0")).send(future, root);
         (new SetString("Frank")).send(future, a);
         byte[] rootBytes = GetSerializedBytes.req.send(future, root);
 
-        RootImpl root2 = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT_JID_TYPE);
+        RootImpl root2 = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT);
         root2.load(rootBytes);
         Actor a2 = (new ResolvePathname("0")).send(future, root2);
         Proc.req.send(future, a2);

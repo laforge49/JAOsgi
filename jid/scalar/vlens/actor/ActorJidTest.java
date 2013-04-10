@@ -22,7 +22,7 @@ public class ActorJidTest extends TestCase {
         Context jaBundleContext = Context.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            ActorFactory actorJidAFactory = factoryLocator.getJidFactory(IncDesFactories.ACTOR_JID_TYPE);
+            ActorFactory actorJidAFactory = factoryLocator.getJidFactory(IncDesFactories.BOX);
             Actor jidJid1 = actorJidAFactory.newActor(factoryLocator.getMailbox(), factoryLocator);
             int sl = GetSerializedLength.req.send(future, jidJid1);
             assertEquals(4, sl);
@@ -46,7 +46,7 @@ public class ActorJidTest extends TestCase {
             rpa = (new ResolvePathname("0")).send(future, jidJid11);
             assertNull(rpa);
 
-            ActorFactory stringJidAFactory = factoryLocator.getJidFactory(IncDesFactories.STRING_JID_TYPE);
+            ActorFactory stringJidAFactory = factoryLocator.getJidFactory(IncDesFactories.PASTRING);
             Actor string1 = stringJidAFactory.newActor(factoryLocator.getMailbox(), factoryLocator);
             (new SetString("abc")).send(future, string1);
             byte[] sb = GetSerializedBytes.req.send(future, string1);
@@ -58,9 +58,9 @@ public class ActorJidTest extends TestCase {
             sl = GetSerializedLength.req.send(future, jidJid2);
             assertEquals(4, sl);
 
-            SetActor sjvj = new SetActor(IncDesFactories.JID_TYPE);
+            SetActor sjvj = new SetActor(IncDesFactories.INCDES);
             sjvj.send(future, jidJid2);
-            MakeActor mjvj = new MakeActor(IncDesFactories.JID_TYPE);
+            MakeActor mjvj = new MakeActor(IncDesFactories.INCDES);
             boolean made = mjvj.send(future, jidJid2);
             assertEquals(false, made);
             Actor jidJid2a = GetActor.req.send(future, jidJid2);
@@ -95,7 +95,7 @@ public class ActorJidTest extends TestCase {
             BoxImpl jidJid3 = BoxImpl.create(factoryLocator, null, null);
             sl = GetSerializedLength.req.send(future, jidJid3);
             assertEquals(4, sl);
-            MakeActor mjvjj = new MakeActor(IncDesFactories.ACTOR_JID_TYPE);
+            MakeActor mjvjj = new MakeActor(IncDesFactories.BOX);
             made = mjvjj.send(future, jidJid3);
             assertEquals(true, made);
             made = mjvjj.send(future, jidJid3);

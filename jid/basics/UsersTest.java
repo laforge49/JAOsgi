@@ -22,7 +22,7 @@ public class UsersTest extends TestCase {
         Users.register(factoryLocator);
         JAFuture future = new JAFuture();
 
-        RootImpl root = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT_JID_TYPE);
+        RootImpl root = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT);
         (new SetActor("users")).send(future, root);
         Users users = (Users) (new ResolvePathname("0")).send(future, root);
         new KMake<String, User>("John").send(future, users);
@@ -36,7 +36,7 @@ public class UsersTest extends TestCase {
         fEmail.setValue("fredk@gmail.com");
         byte[] rootBytes = GetSerializedBytes.req.send(future, root);
 
-        RootImpl root2 = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT_JID_TYPE);
+        RootImpl root2 = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT);
         root2.load(rootBytes);
         Actor a = (new ResolvePathname("0")).send(future, root2);
         Proc.req.send(future, a);

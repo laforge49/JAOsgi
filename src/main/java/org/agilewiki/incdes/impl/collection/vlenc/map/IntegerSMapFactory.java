@@ -48,7 +48,7 @@ public class IntegerSMapFactory extends ActorFactory {
                                        int initialCapacity)
             throws Exception {
         factoryLocator.registerJidFactory(new MapEntryFactory(
-                "E." + actorType, IncDesFactories.INTEGER_JID_TYPE, valueType));
+                "E." + actorType, IncDesFactories.PAINTEGER, valueType));
         factoryLocator.registerJidFactory(new IntegerSMapFactory(
                 actorType, valueType, initialCapacity));
     }
