@@ -45,17 +45,17 @@ import org.agilewiki.pautil.Ancestor;
  * </p>
  */
 final public class IncDesFactories extends LocateLocalActorFactories {
-    public static FactoryLocator createFactoryLocator(int threadCount) throws Exception {
-        Context jaBundleContext = PABundleContextImpl.createNoOsgiJABundleContext(threadCount);
+    public static FactoryLocator createFactoryLocator() throws Exception {
+        Context jaBundleContext = PABundleContextImpl.createNoOsgiJABundleContext();
         IncDesFactories jidFactories = new IncDesFactories();
-        jidFactories.initialize(jaBundleContext.getMailbox().getMailboxFactory().createMailbox(true), jaBundleContext);
+        jidFactories.initialize(null, jaBundleContext);
         return jidFactories.configure();
     }
 
     public static FactoryLocator createFactoryLocator(MailboxFactory mailboxFactory) throws Exception {
         Context jaBundleContext = PABundleContextImpl.createNoOsgiJABundleContext(mailboxFactory);
         IncDesFactories jidFactories = new IncDesFactories();
-        jidFactories.initialize(mailboxFactory.createMailbox(true), jaBundleContext);
+        jidFactories.initialize(null, jaBundleContext);
         return jidFactories.configure();
     }
 

@@ -5,7 +5,7 @@ import junit.framework.TestCase;
 public class JidTest extends TestCase {
     public void test1() throws Exception {
         System.err.println("\nTest 1");
-        FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator(1);
+        FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
         Context jaBundleContext = Context.get(factoryLocator);
         try {
             IncDes a = IncDesFactories.createIncDes(factoryLocator, null, null);
@@ -21,7 +21,7 @@ public class JidTest extends TestCase {
 
     public void test3() throws Exception {
         System.err.println("\nTest 3");
-        FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator(1);
+        FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
         Context jaBundleContext = Context.get(factoryLocator);
         try {
             IncDes a = IncDesFactories.createIncDes(factoryLocator, null, null);
@@ -37,7 +37,7 @@ public class JidTest extends TestCase {
 
     public void test4() throws Exception {
         System.err.println("\nTest 4");
-        FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator(1);
+        FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
         Context jaBundleContext = Context.get(factoryLocator);
         try {
             IncDes a = IncDesFactories.createIncDes(factoryLocator, null, null);
@@ -54,7 +54,7 @@ public class JidTest extends TestCase {
 
     public void test5() throws Exception {
         System.err.println("\nTest 5");
-        FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator(1);
+        FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
         Context jaBundleContext = Context.get(factoryLocator);
         try {
             IncDes a = IncDesFactories.createIncDes(factoryLocator, null, null);
@@ -71,7 +71,7 @@ public class JidTest extends TestCase {
 
     public void test6() throws Exception {
         System.err.println("\nTest 6");
-        FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator(1);
+        FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
         Context jaBundleContext = Context.get(factoryLocator);
         try {
             IncDes jid1 = IncDesFactories.createIncDes(factoryLocator, null, null);
@@ -91,7 +91,7 @@ public class JidTest extends TestCase {
 
     public void test7() throws Exception {
         System.err.println("\nTest 7");
-        FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator(1);
+        FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
         Context jaBundleContext = Context.get(factoryLocator);
         try {
             IncDes a = IncDesFactories.createIncDes(factoryLocator, null, null);

@@ -9,7 +9,7 @@ import org.agilewiki.incdes.Root;
 public class LBlockTest extends TestCase {
     public void test()
             throws Exception {
-        FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator(1);
+        FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
         Context jaBundleContext = Context.get(factoryLocator);
 
         Root rj = (Root) factoryLocator.newJid(IncDesFactories.ROOT_JID_TYPE);

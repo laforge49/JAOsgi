@@ -38,7 +38,7 @@ public abstract class LocateLocalActorFactories extends AncestorBase {
         Context jaBundleContext = Context.get(this);
 
         factoryLocator = new FactoryLocatorImpl();
-        factoryLocator.initialize(getMailbox().getMailboxFactory().createMailbox(true), jaBundleContext);
+        factoryLocator.initialize(jaBundleContext.getMailboxFactory().createMailbox(true), jaBundleContext);
 
         Bundle bundle = jaBundleContext.getBundle();
         if (bundle == null) {

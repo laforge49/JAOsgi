@@ -23,6 +23,7 @@
  */
 package org.agilewiki.incdes;
 
+import org.agilewiki.pactor.MailboxFactory;
 import org.agilewiki.pautil.Ancestor;
 import org.agilewiki.pautil.AncestorBase;
 import org.osgi.framework.*;
@@ -41,6 +42,10 @@ abstract public class Context extends AncestorBase {
         if (bundleContext == null)
             throw new IllegalStateException("Context is not an ancestor of " + actor);
         return bundleContext;
+    }
+
+    public MailboxFactory getMailboxFactory() {
+        return getMailbox().getMailboxFactory();
     }
 
     abstract public List<ServiceRegistration> getServiceRegistrations();

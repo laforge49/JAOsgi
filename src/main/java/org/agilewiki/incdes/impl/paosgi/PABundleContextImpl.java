@@ -36,8 +36,7 @@ import java.util.Dictionary;
 import java.util.List;
 
 public class PABundleContextImpl extends Context {
-    public static Context createNoOsgiJABundleContext(int threadCount) throws Exception {
-        //todo threadCount?
+    public static Context createNoOsgiJABundleContext() throws Exception {
         MailboxFactory mailboxFactory = new DefaultMailboxFactoryImpl();
         return createNoOsgiJABundleContext(mailboxFactory);
     }
