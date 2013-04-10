@@ -239,13 +239,6 @@ public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator {
         String factoryKey = jidType + "|" + bundleName + "|" + version;
         if (types.containsKey(factoryKey))
             throw new IllegalArgumentException("IncDesImpl type is already defined: " + jidType);
-        if (Actor.class.isAssignableFrom(clazz)) {
-            Constructor componentConstructor = clazz.getConstructor();
-            ActorFactory actorFactory = new _ActorFactory(jidType, componentConstructor);
-            types.put(factoryKey, actorFactory);
-            actorFactory.configure(this);
-            return;
-        }
         throw new IllegalArgumentException(clazz.getName());
     }
 
