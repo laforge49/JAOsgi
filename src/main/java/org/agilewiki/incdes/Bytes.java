@@ -7,6 +7,10 @@ public interface Bytes extends IncDes {
 
     byte[] getValue();
 
+    Request<Void> clearReq();
+
+    void clear() throws Exception;
+
     Request<Void> setBytesReq(final byte[] _v);
 
     void setValue(final byte[] _v) throws Exception;
