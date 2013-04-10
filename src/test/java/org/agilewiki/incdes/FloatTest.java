@@ -32,7 +32,7 @@ public class FloatTest extends TestCase {
             v = rpa.getFloatReq().call();
             assertEquals(0.f, v);
             rpa.setFloatReq(-1.0f).call();
-            rpa = (PAFloat)  box.resolvePathnameReq("0").call();
+            rpa = (PAFloat) box.resolvePathnameReq("0").call();
             v = rpa.getFloatReq().call();
             assertEquals(-1.f, v);
 

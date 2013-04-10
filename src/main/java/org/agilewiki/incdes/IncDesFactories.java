@@ -31,10 +31,7 @@ import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 import org.agilewiki.incdes.impl.factory.LocateLocalActorFactories;
 import org.agilewiki.incdes.impl.paosgi.PABundleContextImpl;
 import org.agilewiki.incdes.impl.scalar.flens.*;
-import org.agilewiki.incdes.impl.scalar.vlens.BoxImpl;
-import org.agilewiki.incdes.impl.scalar.vlens.BytesImpl;
-import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
-import org.agilewiki.incdes.impl.scalar.vlens.RootImpl;
+import org.agilewiki.incdes.impl.scalar.vlens.*;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.MailboxFactory;
 import org.agilewiki.pautil.Ancestor;
@@ -57,6 +54,13 @@ final public class IncDesFactories extends LocateLocalActorFactories {
         IncDesFactories jidFactories = new IncDesFactories();
         jidFactories.initialize(null, jaBundleContext);
         return jidFactories.configure();
+    }
+
+    public static void registerUnionFactory(final FactoryLocator _factoryLocator,
+                                            final String _subActorType,
+                                            final String... _actorTypes)
+            throws Exception {
+        UnionImpl.registerFactory(_factoryLocator, _subActorType, _actorTypes);
     }
 
     /**
