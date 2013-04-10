@@ -7,6 +7,10 @@ public interface PAString extends IncDes {
 
     String getValue();
 
+    Request<Void> clearReq();
+
+    void clear() throws Exception;
+
     Request<Void> setStringReq(final String _v);
 
     void setValue(final String _v) throws Exception;

@@ -12,7 +12,7 @@ public class Creation2Test extends TestCase {
 
     public void test() throws Exception {
 
-        long c = 10000000;
+        long c = 1;
 
         //System.out.println("####################################################");
         //long c = 10,000,000;
