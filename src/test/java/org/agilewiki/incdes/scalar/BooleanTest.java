@@ -1,4 +1,4 @@
-package org.agilewiki.incdes.scalar.flens;
+package org.agilewiki.incdes.scalar;
 
 import junit.framework.TestCase;
 import org.agilewiki.incdes.*;
@@ -31,7 +31,7 @@ public class BooleanTest extends TestCase {
             PABoolean rpa = (PABoolean) box.resolvePathnameReq("0").call();
             assertFalse(rpa.getBooleanReq().call());
             rpa.setBooleanReq(true).call();
-            rpa = (PABoolean) (PABoolean) box.resolvePathnameReq("0").call();
+            rpa = (PABoolean) box.resolvePathnameReq("0").call();
             assertTrue(rpa.getBooleanReq().call());
 
         } finally {
