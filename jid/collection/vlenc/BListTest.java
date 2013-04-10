@@ -23,7 +23,7 @@ public class BListTest extends TestCase {
             sj0.setValue("a");
             sj1.setValue("b");
             sj2.setValue("c");
-            BList stringList2 = (BList) stringList1.copyJID(factoryLocator.getMailbox());
+            BList stringList2 = (BList) stringList1.copy(factoryLocator.getMailbox());
             PAStringImpl s0 = (PAStringImpl) stringList2.iGet(0);
             PAStringImpl s1 = (PAStringImpl) stringList2.iGet(1);
             PAStringImpl s2 = (PAStringImpl) stringList2.iGet(2);

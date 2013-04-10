@@ -93,7 +93,7 @@ public class IntegerBMapFactory extends ActorFactory {
             throws Exception {
         IntegerBMap imj = (IntegerBMap) super.newActor(mailbox, parent);
         FactoryLocator fl = Util.getFactoryLocator(parent);
-        imj.valueFactory = fl.getJidFactory(valueType);
+        imj.valueFactory = fl.getFactory(valueType);
         imj.nodeCapacity = NODE_CAPACITY;
         imj.isRoot = isRoot;
         imj.init();

@@ -57,7 +57,7 @@ public interface FactoryLocator extends Ancestor {
      * @param jidType The jid type.
      * @return The registered actor factory.
      */
-    public ActorFactory getJidFactory(String jidType)
+    public Factory getFactory(String jidType)
             throws Exception;
 
     public ActorFactory _getActorFactory(String actorType)

@@ -8,7 +8,7 @@ import org.agilewiki.pautil.Ancestor;
  * Creates AppBase objects.
  */
 abstract public class AppFactory extends ActorFactory {
-    private ActorFactory[] tupleFactories;
+    private Factory[] tupleFactories;
     private String[] jidTypes;
 
     public AppFactory(String subActorType) {
@@ -38,10 +38,10 @@ abstract public class AppFactory extends ActorFactory {
             throws Exception {
         AppBase tj = (AppBase) super.newActor(mailbox, parent);
         FactoryLocator fl = Util.getFactoryLocator(parent);
-        ActorFactory[] afs = new ActorFactory[jidTypes.length];
+        Factory[] afs = new ActorFactory[jidTypes.length];
         int i = 0;
         while (i < jidTypes.length) {
-            afs[i] = fl.getJidFactory(jidTypes[i]);
+            afs[i] = fl.getFactory(jidTypes[i]);
             i += 1;
         }
         tupleFactories = afs;

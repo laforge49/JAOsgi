@@ -39,7 +39,7 @@ abstract public class SMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
         extends SList<MapEntry<KEY_TYPE, VALUE_TYPE>>
         implements PAMap<KEY_TYPE, VALUE_TYPE>, Collection<MapEntry<KEY_TYPE, VALUE_TYPE>> {
 
-    public ActorFactory valueFactory;
+    public Factory valueFactory;
 
     private Request<MapEntry<KEY_TYPE, VALUE_TYPE>> getFirstReq;
     private Request<MapEntry<KEY_TYPE, VALUE_TYPE>> getLastReq;
@@ -57,7 +57,7 @@ abstract public class SMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
      *
      * @return The IncDesFactory for the key.
      */
-    abstract protected ActorFactory getKeyFactory() throws Exception;
+    abstract protected Factory getKeyFactory() throws Exception;
 
     /**
      * Converts a string to a key.
@@ -73,9 +73,9 @@ abstract public class SMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
      * @return The jid type of all the elements in the list.
      */
     @Override
-    final protected ActorFactory getEntryFactory()
+    final protected Factory getEntryFactory()
             throws Exception {
-        ActorFactory af = Util.getActorFactory(this, "E." + getJidType());
+        Factory af = Util.getActorFactory(this, "E." + getType());
         return af;
     }
 
@@ -84,7 +84,7 @@ abstract public class SMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
      *
      * @return The jid factory of the values in the list.
      */
-    protected ActorFactory getValueFactory()
+    protected Factory getValueFactory()
             throws Exception {
         if (valueFactory != null)
             return valueFactory;

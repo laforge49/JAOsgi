@@ -23,10 +23,7 @@
  */
 package org.agilewiki.incdes.impl;
 
-import org.agilewiki.incdes.AppendableBytes;
-import org.agilewiki.incdes.IncDes;
-import org.agilewiki.incdes.ReadableBytes;
-import org.agilewiki.incdes.Util;
+import org.agilewiki.incdes.*;
 import org.agilewiki.incdes.impl.factory.ActorFactory;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
@@ -74,7 +71,7 @@ public class IncDesImpl extends AncestorBase implements IncDes {
         return getSerializedLengthReq;
     }
 
-    final public IncDesImpl createSubordinate(ActorFactory factory)
+    final public IncDesImpl createSubordinate(Factory factory)
             throws Exception {
         return createSubordinate(factory, getParent());
     }
@@ -84,9 +81,9 @@ public class IncDesImpl extends AncestorBase implements IncDes {
         return createSubordinate(actorType, getParent());
     }
 
-    final public IncDesImpl createSubordinate(ActorFactory factory, Ancestor parent)
+    final public IncDesImpl createSubordinate(Factory factory, Ancestor parent)
             throws Exception {
-        IncDesImpl jid = factory.newActor(getMailbox(), parent);
+        IncDesImpl jid = (IncDesImpl) factory.newActor(getMailbox(), parent);
         jid.setContainerJid(this);
         return jid;
     }
@@ -98,7 +95,7 @@ public class IncDesImpl extends AncestorBase implements IncDes {
         return jid;
     }
 
-    final public IncDesImpl createSubordinate(ActorFactory factory, byte[] bytes)
+    final public IncDesImpl createSubordinate(Factory factory, byte[] bytes)
             throws Exception {
         return createSubordinate(factory, getParent(), bytes);
     }
@@ -108,7 +105,7 @@ public class IncDesImpl extends AncestorBase implements IncDes {
         return createSubordinate(actorType, getParent(), bytes);
     }
 
-    final public IncDesImpl createSubordinate(ActorFactory factory, Ancestor parent, byte[] bytes)
+    final public IncDesImpl createSubordinate(Factory factory, Ancestor parent, byte[] bytes)
             throws Exception {
         if (bytes == null)
             return createSubordinate(factory, parent);
@@ -128,7 +125,7 @@ public class IncDesImpl extends AncestorBase implements IncDes {
         return jid;
     }
 
-    final public IncDesImpl createSubordinate(ActorFactory factory, ReadableBytes readableBytes)
+    final public IncDesImpl createSubordinate(Factory factory, ReadableBytes readableBytes)
             throws Exception {
         return createSubordinate(factory, getParent(), readableBytes);
     }
@@ -138,7 +135,7 @@ public class IncDesImpl extends AncestorBase implements IncDes {
         return createSubordinate(actorType, getParent(), readableBytes);
     }
 
-    final public IncDesImpl createSubordinate(ActorFactory factory, Ancestor parent, ReadableBytes readableBytes)
+    final public IncDesImpl createSubordinate(Factory factory, Ancestor parent, ReadableBytes readableBytes)
             throws Exception {
         IncDesImpl jid = (IncDesImpl) factory.newActor(getMailbox(), parent);
         if (readableBytes != null)
@@ -321,7 +318,7 @@ public class IncDesImpl extends AncestorBase implements IncDes {
      * @return a copy of the actor.
      */
     @Override
-    public IncDesImpl copyJID(final Mailbox m)
+    public IncDesImpl copy(final Mailbox m)
             throws Exception {
         Mailbox mb = m;
         if (mb == null)
@@ -331,16 +328,16 @@ public class IncDesImpl extends AncestorBase implements IncDes {
         return jid;
     }
 
-    public final Request<IncDes> copyJIDReq(final Mailbox m) {
+    public final Request<IncDes> copyReq(final Mailbox m) {
         return new RequestBase<IncDes>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
-                rp.processResponse(copyJID(m));
+                rp.processResponse(copy(m));
             }
         };
     }
 
-    public final Request<Boolean> isJidEqualReq(final IncDes jidA) {
+    public final Request<Boolean> isEqualReq(final IncDes jidA) {
         return new RequestBase<Boolean>(getMailbox()) {
             @Override
             public void processRequest(final ResponseProcessor rp) throws Exception {
@@ -380,7 +377,7 @@ public class IncDesImpl extends AncestorBase implements IncDes {
      * @return The jid type, or null.
      */
     @Override
-    final public String getJidType() {
+    final public String getType() {
         if (factory == null)
             return null;
         return factory.jidType;

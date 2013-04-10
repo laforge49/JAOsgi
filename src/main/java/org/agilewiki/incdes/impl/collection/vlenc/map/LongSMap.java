@@ -23,6 +23,7 @@
  */
 package org.agilewiki.incdes.impl.collection.vlenc.map;
 
+import org.agilewiki.incdes.Factory;
 import org.agilewiki.incdes.IncDesFactories;
 import org.agilewiki.incdes.Util;
 import org.agilewiki.incdes.impl.IncDesImpl;
@@ -37,7 +38,7 @@ public class LongSMap<VALUE_TYPE extends IncDesImpl> extends SMap<Long, VALUE_TY
      *
      * @return The IncDesFactory for the key.
      */
-    final protected ActorFactory getKeyFactory() throws Exception {
+    final protected Factory getKeyFactory() throws Exception {
         return Util.getActorFactory(this, IncDesFactories.PALONG);
     }
 

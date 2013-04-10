@@ -90,7 +90,7 @@ public class IntegerSMapFactory extends ActorFactory {
             throws Exception {
         IntegerSMap imj = (IntegerSMap) super.newActor(mailbox, parent);
         FactoryLocator fl = Util.getFactoryLocator(parent);
-        imj.valueFactory = fl.getJidFactory(valueType);
+        imj.valueFactory = fl.getFactory(valueType);
         imj.initialCapacity = initialCapacity;
         return imj;
     }

@@ -38,7 +38,7 @@ public class AppBase extends IncDesImpl {
     /**
      * An array of jid factories, one for each element in the tuple.
      */
-    protected ActorFactory[] tupleFactories;
+    protected Factory[] tupleFactories;
 
     /**
      * A tuple of actors.
@@ -50,7 +50,7 @@ public class AppBase extends IncDesImpl {
      *
      * @return An array of element factories.
      */
-    protected ActorFactory[] getTupleFactories()
+    protected Factory[] getTupleFactories()
             throws Exception {
         if (tupleFactories != null)
             return tupleFactories;

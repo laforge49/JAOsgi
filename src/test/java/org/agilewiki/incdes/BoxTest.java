@@ -1,29 +1,15 @@
-package org.agilewiki.jid.scalar.vlens.actor;
+package org.agilewiki.incdes;
 
 import junit.framework.TestCase;
-import org.agilewiki.incdes.IncDesFactories;
-import org.agilewiki.incdes.Context;
-import org.agilewiki.incdes.impl.scalar.vlens.BoxImpl;
 import org.agilewiki.jactor.old.Actor;
-import org.agilewiki.jactor.old.JAFuture;
-import org.agilewiki.jid.CopyJID;
-import org.agilewiki.jid.GetSerializedBytes;
-import org.agilewiki.jid.GetSerializedLength;
-import org.agilewiki.jid.ResolvePathname;
-import org.agilewiki.incdes.impl.factory.ActorFactory;
-import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
-import org.agilewiki.jid.scalar.Clear;
-import org.agilewiki.jid.scalar.vlens.string.GetString;
-import org.agilewiki.jid.scalar.vlens.string.SetString;
 
-public class ActorJidTest extends TestCase {
+public class BoxTest extends TestCase {
     public void test() throws Exception {
-        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
         Context jaBundleContext = Context.get(factoryLocator);
         try {
-            JAFuture future = new JAFuture();
-            ActorFactory actorJidAFactory = factoryLocator.getJidFactory(IncDesFactories.BOX);
-            Actor jidJid1 = actorJidAFactory.newActor(factoryLocator.getMailbox(), factoryLocator);
+            Factory boxAFactory = factoryLocator.getFactory(IncDesFactories.BOX);
+            Box jidJid1 = (Box) boxAFactory.newActor(factoryLocator.getMailbox(), factoryLocator);
             int sl = GetSerializedLength.req.send(future, jidJid1);
             assertEquals(4, sl);
             Clear.req.send(future, jidJid1);
@@ -46,7 +32,7 @@ public class ActorJidTest extends TestCase {
             rpa = (new ResolvePathname("0")).send(future, jidJid11);
             assertNull(rpa);
 
-            ActorFactory stringJidAFactory = factoryLocator.getJidFactory(IncDesFactories.PASTRING);
+            Factory stringJidAFactory = factoryLocator.getFactory(IncDesFactories.PASTRING);
             Actor string1 = stringJidAFactory.newActor(factoryLocator.getMailbox(), factoryLocator);
             (new SetString("abc")).send(future, string1);
             byte[] sb = GetSerializedBytes.req.send(future, string1);
@@ -54,7 +40,7 @@ public class ActorJidTest extends TestCase {
             Actor sj = GetActor.req.send(future, jidJid1);
             assertEquals("abc", GetString.req.send(future, sj));
 
-            BoxImpl jidJid2 = BoxImpl.create(factoryLocator, null, null);
+            Box jidJid2 = Box.create(factoryLocator, null, null);
             sl = GetSerializedLength.req.send(future, jidJid2);
             assertEquals(4, sl);
 
@@ -92,7 +78,7 @@ public class ActorJidTest extends TestCase {
             sl = GetSerializedLength.req.send(future, rpa);
             assertEquals(0, sl);
 
-            BoxImpl jidJid3 = BoxImpl.create(factoryLocator, null, null);
+            Box jidJid3 = Box.create(factoryLocator, null, null);
             sl = GetSerializedLength.req.send(future, jidJid3);
             assertEquals(4, sl);
             MakeActor mjvjj = new MakeActor(IncDesFactories.BOX);

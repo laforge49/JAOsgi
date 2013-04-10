@@ -107,7 +107,7 @@ public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator {
             LocateLocalActorFactories llaf = it.next();
             llaf.updateManifest(manifest);
         }
-        return (StringSMap<PAStringImpl>) manifest.copyJID(mailbox);
+        return (StringSMap<PAStringImpl>) manifest.copy(mailbox);
     }
 
     public void updateManifest(StringSMap<PAStringImpl> m) throws Exception {
@@ -136,7 +136,7 @@ public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator {
 
     @Override
     public boolean validateManifest(StringSMap<PAStringImpl> m) throws Exception {
-        StringSMap<PAStringImpl> mc = (StringSMap<PAStringImpl>) m.copyJID(getMailbox());
+        StringSMap<PAStringImpl> mc = (StringSMap<PAStringImpl>) m.copy(getMailbox());
         unknownManifestEntries(mc);
         return mc.size() == 0;
     }
@@ -184,7 +184,7 @@ public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator {
             if (mailbox == null) mailbox = getMailbox();
             if (parent == null) parent = this;
         }
-        ActorFactory af = getJidFactory(jidType);
+        ActorFactory af = getFactory(jidType);
         return af.newActor(mailbox, parent);
     }
 
@@ -195,7 +195,7 @@ public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator {
      * @return The registered actor factory.
      */
     @Override
-    public ActorFactory getJidFactory(String jidType)
+    public ActorFactory getFactory(String jidType)
             throws Exception {
         ActorFactory af = _getActorFactory(jidType);
         if (af == null) {

@@ -50,7 +50,7 @@ public class BListTimingsTest extends TestCase {
             long t0 = System.currentTimeMillis();
             int j = 0;
             while (j < r) {
-                BList intList2 = (BList) intList1.copyJID(mailbox);
+                BList intList2 = (BList) intList1.copy(mailbox);
                 intList1.iAdd(s / 2);
                 intList2.getSerializedBytes();
                 j += 1;

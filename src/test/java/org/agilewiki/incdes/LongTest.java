@@ -8,9 +8,9 @@ public class LongTest extends TestCase {
         Context jaBundleContext = Context.get(factoryLocator);
         try {
             PALong long1 = IncDesFactories.createPALong(factoryLocator, null, null);
-            PALong long2 = (PALong) long1.copyJIDReq(null).call();
+            PALong long2 = (PALong) long1.copyReq(null).call();
             long2.setLongReq(1L).call();
-            PALong long3 = (PALong) long2.copyJIDReq(null).call();
+            PALong long3 = (PALong) long2.copyReq(null).call();
 
             int sl = long1.getSerializedLength();
             assertEquals(8, sl);

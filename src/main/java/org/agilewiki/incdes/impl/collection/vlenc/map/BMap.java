@@ -44,7 +44,7 @@ abstract public class BMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
     protected final int TUPLE_UNION = 1;
     protected int nodeCapacity = 28;
     protected boolean isRoot;
-    public ActorFactory valueFactory;
+    public Factory valueFactory;
     protected FactoryLocator factoryLocator;
 
     private Request<Integer> sizeReq;
@@ -77,7 +77,7 @@ abstract public class BMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
      */
     abstract protected KEY_TYPE stringToKey(String skey);
 
-    protected ActorFactory getValueFactory()
+    protected Factory getValueFactory()
             throws Exception {
         if (valueFactory == null)
             throw new IllegalStateException("valueFactory uninitialized");
@@ -86,13 +86,13 @@ abstract public class BMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
 
     protected void init()
             throws Exception {
-        String baseType = getJidType();
+        String baseType = getType();
         if (baseType.startsWith("IN."))
             baseType = baseType.substring(3);
         factoryLocator = Util.getFactoryLocator(this);
         tupleFactories = new ActorFactory[2];
-        tupleFactories[TUPLE_SIZE] = factoryLocator.getJidFactory(IncDesFactories.PAINTEGER);
-        tupleFactories[TUPLE_UNION] = factoryLocator.getJidFactory("U." + baseType);
+        tupleFactories[TUPLE_SIZE] = factoryLocator.getFactory(IncDesFactories.PAINTEGER);
+        tupleFactories[TUPLE_UNION] = factoryLocator.getFactory("U." + baseType);
     }
 
     protected void setNodeLeaf() throws Exception {

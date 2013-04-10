@@ -8,9 +8,9 @@ public class FloatTest extends TestCase {
         Context jaBundleContext = Context.get(factoryLocator);
         try {
             PAFloat float1 = IncDesFactories.createPAFloat(factoryLocator, null, null);
-            PAFloat float2 = (PAFloat) float1.copyJIDReq(null).call();
+            PAFloat float2 = (PAFloat) float1.copyReq(null).call();
             float2.setFloatReq(1.0f).call();
-            PAFloat float3 = (PAFloat) float2.copyJIDReq(null).call();
+            PAFloat float3 = (PAFloat) float2.copyReq(null).call();
 
             int sl = float1.getSerializedLength();
             assertEquals(4, sl);

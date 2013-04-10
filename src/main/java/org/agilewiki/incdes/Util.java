@@ -55,12 +55,12 @@ public class Util {
      * @param jidType The jid type.
      * @return The registered actor factory.
      */
-    public static ActorFactory getActorFactory(Ancestor actor, String jidType)
+    public static Factory getActorFactory(Ancestor actor, String jidType)
             throws Exception {
         FactoryLocator factoryLocator = getFactoryLocator(actor);
         if (factoryLocator == null)
             throw new IllegalArgumentException("Unknown jid type: " + jidType);
-        return factoryLocator.getJidFactory(jidType);
+        return factoryLocator.getFactory(jidType);
     }
 
     /**

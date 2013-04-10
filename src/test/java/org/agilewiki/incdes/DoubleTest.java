@@ -8,9 +8,9 @@ public class DoubleTest extends TestCase {
         Context jaBundleContext = Context.get(factoryLocator);
         try {
             PADouble double1 = IncDesFactories.createPADouble(factoryLocator, null, null);
-            PADouble double2 = (PADouble) double1.copyJID(null);
+            PADouble double2 = (PADouble) double1.copy(null);
             double2.setDoubleReq(1.d).call();
-            PADouble double3 = (PADouble) double2.copyJID(null);
+            PADouble double3 = (PADouble) double2.copy(null);
 
             int sl = double1.getSerializedLength();
             assertEquals(8, sl);

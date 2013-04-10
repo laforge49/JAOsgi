@@ -44,7 +44,7 @@ public class BList<ENTRY_TYPE extends IncDes>
     protected final int TUPLE_UNION = 1;
     protected int nodeCapacity = 28;
     protected boolean isRoot;
-    protected ActorFactory entryFactory;
+    protected Factory entryFactory;
     protected FactoryLocator factoryLocator;
 
     private Request<Integer> sizeReq;
@@ -64,7 +64,7 @@ public class BList<ENTRY_TYPE extends IncDes>
      *
      * @return The IncDesFactory for of all the elements in the list.
      */
-    protected ActorFactory getEntryFactory()
+    protected Factory getEntryFactory()
             throws Exception {
         if (entryFactory == null)
             throw new IllegalStateException("entryFactory uninitialized");
@@ -73,13 +73,13 @@ public class BList<ENTRY_TYPE extends IncDes>
 
     protected void init()
             throws Exception {
-        String baseType = getJidType();
+        String baseType = getType();
         if (baseType.startsWith("IN."))
             baseType = baseType.substring(3);
         factoryLocator = Util.getFactoryLocator(this);
         tupleFactories = new ActorFactory[2];
-        tupleFactories[TUPLE_SIZE] = factoryLocator.getJidFactory(IncDesFactories.PAINTEGER);
-        tupleFactories[TUPLE_UNION] = factoryLocator.getJidFactory("U." + baseType);
+        tupleFactories[TUPLE_SIZE] = factoryLocator.getFactory(IncDesFactories.PAINTEGER);
+        tupleFactories[TUPLE_UNION] = factoryLocator.getFactory("U." + baseType);
     }
 
     protected void setNodeLeaf() throws Exception {

@@ -23,6 +23,7 @@
  */
 package org.agilewiki.incdes.impl.factory;
 
+import org.agilewiki.incdes.Factory;
 import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
@@ -86,6 +87,7 @@ abstract public class ActorFactory implements Factory {
      * @param parent  The parent of the new actor.
      * @return The new actor.
      */
+    @Override
     public IncDesImpl newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
         IncDesImpl a = instantiateActor();

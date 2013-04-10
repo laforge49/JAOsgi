@@ -46,7 +46,7 @@ public class SList<ENTRY_TYPE extends IncDes>
     /**
      * IncDesImpl factory of the elements.
      */
-    protected ActorFactory entryFactory;
+    protected Factory entryFactory;
 
     /**
      * A list of JID actors.
@@ -119,7 +119,7 @@ public class SList<ENTRY_TYPE extends IncDes>
      *
      * @return The IncDesFactory for of all the elements in the list.
      */
-    protected ActorFactory getEntryFactory()
+    protected Factory getEntryFactory()
             throws Exception {
         if (entryFactory == null)
             throw new IllegalStateException("entryFactory uninitialized");

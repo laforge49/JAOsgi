@@ -50,7 +50,7 @@ public class BMapTimingsTest extends TestCase {
             int j = 0;
             i = s / 2;
             while (j < r) {
-                BMap m2 = (BMap) m1.copyJID(factoryLocator.getMailbox());
+                BMap m2 = (BMap) m1.copy(factoryLocator.getMailbox());
                 PAIntegerImpl ij0 = m1.kGet(i);
                 ij0.setValue(-i);
                 m2.getSerializedBytes();

@@ -8,9 +8,9 @@ public class BytesTest extends TestCase {
         Context jaBundleContext = Context.get(factoryLocator);
         try {
             Bytes bytes1 = IncDesFactories.createBytes(factoryLocator, null, null);
-            Bytes bytes2 = (Bytes) bytes1.copyJIDReq(null).call();
+            Bytes bytes2 = (Bytes) bytes1.copyReq(null).call();
             bytes2.setBytesReq(new byte[3]).call();
-            Bytes bytes3 = (Bytes) bytes2.copyJIDReq(null).call();
+            Bytes bytes3 = (Bytes) bytes2.copyReq(null).call();
 
             int sl = bytes1.getSerializedLength();
             assertEquals(4, sl);

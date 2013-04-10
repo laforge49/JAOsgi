@@ -68,11 +68,11 @@ public class JidTest extends TestCase {
         try {
             IncDes jid1 = IncDesFactories.createIncDes(factoryLocator, null, null);
             jid1.load(new ReadableBytes(new byte[0], 0));
-            IncDes jid2 = jid1.copyJIDReq(factoryLocator.getMailbox()).call();
+            IncDes jid2 = jid1.copyReq(factoryLocator.getMailbox()).call();
             int l = jid2.getSerializedLengthReq().call();
             System.err.println(l);
             assertEquals(l, 0);
-            boolean eq = jid1.isJidEqualReq(jid2).call();
+            boolean eq = jid1.isEqualReq(jid2).call();
             assertTrue(eq);
         } finally {
             jaBundleContext.stop(0);

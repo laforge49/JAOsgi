@@ -8,9 +8,9 @@ public class IntegerTest extends TestCase {
         Context jaBundleContext = Context.get(factoryLocator);
         try {
             PAInteger int1 = IncDesFactories.createPAInteger(factoryLocator, null, null);
-            PAInteger int2 = (PAInteger) int1.copyJIDReq(null).call();
+            PAInteger int2 = (PAInteger) int1.copyReq(null).call();
             int2.setIntegerReq(1).call();
-            PAInteger int3 = (PAInteger) int2.copyJIDReq(null).call();
+            PAInteger int3 = (PAInteger) int2.copyReq(null).call();
 
             int sl = int1.getSerializedLength();
             assertEquals(4, sl);

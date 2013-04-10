@@ -37,7 +37,7 @@ public class Users extends StringSMap implements Main {
         public Users newActor(Mailbox mailbox, Ancestor parent) throws Exception {
             Users users = (Users) super.newActor(mailbox, parent);
             FactoryLocator fl = FactoryLocatorImpl.getFactoryLocator(parent);
-            users.valueFactory = fl.getJidFactory(IncDesFactories.PASTRING);
+            users.valueFactory = fl.getFactory(IncDesFactories.PASTRING);
             return users;
         }
     }

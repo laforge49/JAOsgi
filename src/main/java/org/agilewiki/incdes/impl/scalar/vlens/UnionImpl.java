@@ -52,10 +52,10 @@ public class UnionImpl extends Scalar<String, IncDesImpl> implements Union {
                     throws Exception {
                 UnionImpl uj = (UnionImpl) super.newActor(mailbox, parent);
                 FactoryLocator fl = Util.getFactoryLocator(parent);
-                ActorFactory[] afs = new ActorFactory[_actorTypes.length];
+                Factory[] afs = new ActorFactory[_actorTypes.length];
                 int i = 0;
                 while (i < _actorTypes.length) {
-                    afs[i] = fl.getJidFactory(_actorTypes[i]);
+                    afs[i] = fl.getFactory(_actorTypes[i]);
                     i += 1;
                 }
                 uj.unionFactories = afs;
@@ -64,7 +64,7 @@ public class UnionImpl extends Scalar<String, IncDesImpl> implements Union {
         });
     }
 
-    protected ActorFactory[] unionFactories;
+    protected Factory[] unionFactories;
     protected int factoryIndex = -1;
     protected IncDesImpl value;
 
@@ -80,7 +80,7 @@ public class UnionImpl extends Scalar<String, IncDesImpl> implements Union {
         return getPAIDReq;
     }
 
-    protected ActorFactory[] getUnionFactories()
+    protected Factory[] getUnionFactories()
             throws Exception {
         if (unionFactories != null)
             return unionFactories;
@@ -90,17 +90,17 @@ public class UnionImpl extends Scalar<String, IncDesImpl> implements Union {
     protected int getFactoryIndex(String actorType)
             throws Exception {
         FactoryLocator factoryLocator = Util.getFactoryLocator(this);
-        ActorFactory actorFactory = factoryLocator.getJidFactory(actorType);
+        Factory actorFactory = factoryLocator.getFactory(actorType);
         return getFactoryIndex(actorFactory);
     }
 
-    protected int getFactoryIndex(ActorFactory actorFactory)
+    protected int getFactoryIndex(Factory actorFactory)
             throws Exception {
-        String factoryKey = actorFactory.getFactoryKey();
-        ActorFactory[] uf = getUnionFactories();
+        String factoryKey = ((ActorFactory) actorFactory).getFactoryKey();
+        Factory[] uf = getUnionFactories();
         int i = 0;
         while (i < uf.length) {
-            if (uf[i].getFactoryKey().equals(factoryKey))
+            if (((ActorFactory) uf[i]).getFactoryKey().equals(factoryKey))
                 return i;
             i += 1;
         }
@@ -119,7 +119,7 @@ public class UnionImpl extends Scalar<String, IncDesImpl> implements Union {
         factoryIndex = readableBytes.readInt();
         if (factoryIndex == -1)
             return;
-        ActorFactory factory = getUnionFactories()[factoryIndex];
+        Factory factory = getUnionFactories()[factoryIndex];
         value = (IncDesImpl) factory.newActor(getMailbox(), getParent());
         value.load(readableBytes);
         value.setContainerJid(this);
@@ -178,7 +178,7 @@ public class UnionImpl extends Scalar<String, IncDesImpl> implements Union {
             factoryIndex = -1;
             value = null;
         } else {
-            ActorFactory factory = getUnionFactories()[ndx];
+            Factory factory = getUnionFactories()[ndx];
             factoryIndex = ndx;
             value = (IncDesImpl) factory.newActor(getMailbox(), getParent());
             value.setContainerJid(this);
@@ -222,7 +222,7 @@ public class UnionImpl extends Scalar<String, IncDesImpl> implements Union {
         int oldLength = getSerializedLength();
         if (value != null)
             value.setContainerJid(null);
-        ActorFactory factory = getUnionFactories()[ndx];
+        Factory factory = getUnionFactories()[ndx];
         factoryIndex = ndx;
         value = (IncDesImpl) factory.newActor(getMailbox(), getParent());
         value.setContainerJid(this);

@@ -156,7 +156,7 @@ public class RootImpl extends BoxImpl implements Root {
         manifest = Util.getManifestCopy(this, getMailbox());
     }
 
-    public IncDesImpl copyJID(Mailbox m)
+    public IncDesImpl copy(Mailbox m)
             throws Exception {
         Mailbox mb = m;
         if (mb == null)
@@ -167,7 +167,7 @@ public class RootImpl extends BoxImpl implements Root {
     }
 
     public StringSMap<PAStringImpl> getManifestJidCopy(Mailbox mailbox) throws Exception {
-        return (StringSMap<PAStringImpl>) manifest.copyJID(mailbox);
+        return (StringSMap<PAStringImpl>) manifest.copy(mailbox);
     }
 
     public boolean validateManifest() throws Exception {

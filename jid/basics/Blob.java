@@ -33,7 +33,7 @@ public class Blob extends StringSMap implements Main {
         public Blob newActor(Mailbox mailbox, Ancestor parent) throws Exception {
             Blob blob = (Blob) super.newActor(mailbox, parent);
             FactoryLocator fl = FactoryLocatorImpl.getFactoryLocator(parent);
-            blob.valueFactory = fl.getJidFactory(IncDesFactories.BOX);
+            blob.valueFactory = fl.getFactory(IncDesFactories.BOX);
             return blob;
         }
     }

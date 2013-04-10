@@ -1,6 +1,5 @@
 package org.agilewiki.incdes;
 
-import org.agilewiki.incdes.impl.factory.ActorFactory;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pautil.Ancestor;
@@ -57,19 +56,19 @@ public interface IncDes extends Ancestor {
      *
      * @return The factory, or null.
      */
-    ActorFactory getFactory();
+    Factory getFactory();
 
     /**
      * Returns the jid type.
      *
      * @return The jid type, or null.
      */
-    String getJidType();
+    String getType();
 
-    Request<IncDes> copyJIDReq(final Mailbox _m);
+    Request<IncDes> copyReq(final Mailbox _m);
 
-    IncDes copyJID(final Mailbox m)
+    IncDes copy(final Mailbox m)
             throws Exception;
 
-    Request<Boolean> isJidEqualReq(final IncDes _jidA);
+    Request<Boolean> isEqualReq(final IncDes _jidA);
 }

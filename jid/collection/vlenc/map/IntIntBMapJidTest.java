@@ -23,7 +23,7 @@ public class IntIntBMapJidTest extends TestCase {
             sj0.setValue(0);
             sj1.setValue(1);
             sj2.setValue(2);
-            BMap<Integer, PAIntegerImpl> n = (BMap) m.copyJID(factoryLocator.getMailbox());
+            BMap<Integer, PAIntegerImpl> n = (BMap) m.copy(factoryLocator.getMailbox());
             PAIntegerImpl s0 = n.kGet(0);
             PAIntegerImpl s1 = n.kGet(1);
             PAIntegerImpl s2 = n.kGet(2);

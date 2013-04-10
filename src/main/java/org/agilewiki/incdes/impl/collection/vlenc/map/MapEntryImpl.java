@@ -24,6 +24,7 @@
 package org.agilewiki.incdes.impl.collection.vlenc.map;
 
 import org.agilewiki.incdes.AppBase;
+import org.agilewiki.incdes.Factory;
 import org.agilewiki.incdes.MapEntry;
 import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.incdes.impl.factory.ActorFactory;
@@ -39,7 +40,7 @@ public class MapEntryImpl<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE>
     private final static int TUPLE_KEY = 0;
     private final static int TUPLE_VALUE = 1;
 
-    void setFactories(ActorFactory keyFactory, ActorFactory valueFactory) {
+    void setFactories(Factory keyFactory, Factory valueFactory) {
         tupleFactories = new ActorFactory[2];
         tupleFactories[TUPLE_KEY] = keyFactory;
         tupleFactories[TUPLE_VALUE] = valueFactory;

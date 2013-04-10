@@ -8,9 +8,9 @@ public class StringTest extends TestCase {
         Context jaBundleContext = Context.get(factoryLocator);
         try {
             PAString paString1 = IncDesFactories.createPAString(factoryLocator, null, null);
-            PAString paString2 = (PAString) paString1.copyJIDReq(null).call();
+            PAString paString2 = (PAString) paString1.copyReq(null).call();
             paString2.setStringReq("abc").call();
-            PAString paString3 = (PAString) paString2.copyJIDReq(null).call();
+            PAString paString3 = (PAString) paString2.copyReq(null).call();
 
             int sl = paString1.getSerializedLength();
             assertEquals(4, sl);

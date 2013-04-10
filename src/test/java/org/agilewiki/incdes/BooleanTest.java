@@ -8,9 +8,9 @@ public class BooleanTest extends TestCase {
         Context jaBundleContext = Context.get(factoryLocator);
         try {
             PABoolean boolean1 = IncDesFactories.createPABoolean(factoryLocator, null, null);
-            PABoolean boolean2 = (PABoolean) boolean1.copyJIDReq(null).call();
+            PABoolean boolean2 = (PABoolean) boolean1.copyReq(null).call();
             boolean2.setBooleanReq(true).call();
-            PABoolean boolean3 = (PABoolean) boolean2.copyJIDReq(null).call();
+            PABoolean boolean3 = (PABoolean) boolean2.copyReq(null).call();
 
             int sl = boolean1.getSerializedLength();
             assertEquals(1, sl);
