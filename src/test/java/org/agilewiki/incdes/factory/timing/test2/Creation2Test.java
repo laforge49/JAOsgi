@@ -1,24 +1,28 @@
-package org.agilewiki.jid.factory.timing.test2;
+package org.agilewiki.incdes.factory.timing.test2;
 
 import junit.framework.TestCase;
+import org.agilewiki.incdes.FactoryLocator;
 import org.agilewiki.incdes.IncDesFactories;
 import org.agilewiki.incdes.Context;
-import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
-import org.agilewiki.jid.factory.timing.A;
+import org.agilewiki.incdes.factory.timing.A;
 import org.agilewiki.pactor.Mailbox;
+import org.agilewiki.pactor.MailboxFactory;
 
 public class Creation2Test extends TestCase {
+    Context jaBundleContext;
+
     public void test() throws Exception {
 
         long c = 1;
 
         //System.out.println("####################################################");
-        //long c = 1000000000;
-        //iterations per second = 2,801,120,448
+        //long c = 1,000,000,000;
+        //iterations per second = 753,012,048
 
-        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
-        Context jaBundleContext = Context.get(factoryLocator);
+        FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
+        jaBundleContext = Context.get(factoryLocator);
         try {
+            MailboxFactory mailboxFactory = jaBundleContext.getMailboxFactory();
             Mailbox m = mailboxFactory.createMailbox();
             loop(c, m);
             loop(c, m);
@@ -39,7 +43,7 @@ public class Creation2Test extends TestCase {
             throws Exception {
         int i = 0;
         while (i < c) {
-            (new A()).initialize(m);
+            A.create(jaBundleContext, m, null);
             i += 1;
         }
     }
