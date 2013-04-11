@@ -26,7 +26,7 @@ public class BooleanUAppender extends JLPCActor {
         while (j < repeat) {
             ReadableBytes rb = new ReadableBytes(bytes, 0);
             SList blj = (SList) FactoryLocatorImpl.
-                    newJid(this, IncDesFactories.BOOLEAN_LIST_JID_TYPE, getMailbox(), getParent());
+                    newJid(this, IncDesFactories.PABOOLEAN_LIST, getMailbox(), getParent());
             blj.load(rb);
             PABooleanImpl bj = (PABooleanImpl) blj.iGet(j);
             bj.setValue(true);

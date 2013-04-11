@@ -20,7 +20,7 @@ public class ListTest extends TestCase {
         Context jaBundleContext = Context.get(factoryLocator);
         try {
             JAFuture future = new JAFuture();
-            Actor l0 = factoryLocator.newJid(IncDesFactories.STRING_LIST_JID_TYPE);
+            Actor l0 = factoryLocator.newJid(IncDesFactories.PASTRING_LIST);
             int l0sl = GetSerializedLength.req.send(future, l0);
             assertEquals(8, l0sl);
             Actor l1 = (new CopyJID()).send(future, l0);

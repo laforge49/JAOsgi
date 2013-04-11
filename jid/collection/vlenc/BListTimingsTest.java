@@ -37,7 +37,7 @@ public class BListTimingsTest extends TestCase {
         FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
         Context jaBundleContext = Context.get(factoryLocator);
         try {
-            BList intList1 = (BList) factoryLocator.newJid(IncDesFactories.INTEGER_BLIST_JID_TYPE);
+            BList intList1 = (BList) factoryLocator.newJid(IncDesFactories.PAINTEGER_BLIST);
             Mailbox mailbox = factoryLocator.getMailbox();
             int i = 0;
             while (i < s) {

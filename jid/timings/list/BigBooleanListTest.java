@@ -18,7 +18,7 @@ public class BigBooleanListTest extends TestCase {
         JAFuture future = new JAFuture();
         RootImpl root = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT);
 
-        SetActor setList = new SetActor(IncDesFactories.BOOLEAN_LIST_JID_TYPE);
+        SetActor setList = new SetActor(IncDesFactories.PABOOLEAN_LIST);
         setList.send(future, root);
         SList list = (SList) GetActor.req.send(future, root);
 
@@ -38,7 +38,7 @@ public class BigBooleanListTest extends TestCase {
         JAFuture future = new JAFuture();
         RootImpl root = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT);
 
-        SetActor setList = new SetActor(IncDesFactories.BOOLEAN_LIST_JID_TYPE);
+        SetActor setList = new SetActor(IncDesFactories.PABOOLEAN_LIST);
         setList.send(future, root);
         SList list = (SList) GetActor.req.send(future, root);
 
@@ -72,7 +72,7 @@ public class BigBooleanListTest extends TestCase {
         JAFuture future = new JAFuture();
         RootImpl root = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT);
 
-        SetActor setList = new SetActor(IncDesFactories.BOOLEAN_LIST_JID_TYPE);
+        SetActor setList = new SetActor(IncDesFactories.PABOOLEAN_LIST);
         setList.send(future, root);
         SList list = (SList) GetActor.req.send(future, root);
 
@@ -108,7 +108,7 @@ public class BigBooleanListTest extends TestCase {
         JAFuture future = new JAFuture();
         RootImpl root = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT);
 
-        SetActor setList = new SetActor(IncDesFactories.BOOLEAN_LIST_JID_TYPE);
+        SetActor setList = new SetActor(IncDesFactories.PABOOLEAN_LIST);
         setList.send(future, root);
         SList list = (SList) GetActor.req.send(future, root);
 
@@ -144,7 +144,7 @@ public class BigBooleanListTest extends TestCase {
         JAFuture future = new JAFuture();
         RootImpl root = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT);
 
-        SetActor setList = new SetActor(IncDesFactories.BOOLEAN_LIST_JID_TYPE);
+        SetActor setList = new SetActor(IncDesFactories.PABOOLEAN_LIST);
         setList.send(future, root);
         SList list = (SList) GetActor.req.send(future, root);
 

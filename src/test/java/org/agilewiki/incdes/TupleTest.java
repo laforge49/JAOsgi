@@ -1,7 +1,6 @@
 package org.agilewiki.incdes;
 
 import junit.framework.TestCase;
-import org.agilewiki.incdes.impl.collection.flenc.TupleFactory;
 
 public class TupleTest extends TestCase {
     public void test() throws Exception {

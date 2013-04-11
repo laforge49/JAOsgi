@@ -25,7 +25,6 @@ package org.agilewiki.incdes;
 
 import org.agilewiki.incdes.impl.IncDesFactory;
 import org.agilewiki.incdes.impl.collection.flenc.TupleFactory;
-import org.agilewiki.incdes.impl.collection.flenc.TupleImpl;
 import org.agilewiki.incdes.impl.collection.vlenc.BListFactory;
 import org.agilewiki.incdes.impl.collection.vlenc.SListFactory;
 import org.agilewiki.incdes.impl.collection.vlenc.map.*;
@@ -165,82 +164,82 @@ final public class IncDesFactories extends LocateLocalActorFactories {
     /**
      * The name of the StringBListJid actor.
      */
-    public final static String STRING_BLIST_JID_TYPE = "STRING_BLIST_JID";
+    public final static String PASTRING_BLIST = "stringBList";
 
     /**
      * The name of the BytesBListJid actor.
      */
-    public final static String BYTES_BLIST_JID_TYPE = "BYTES_BLIST_JID";
+    public final static String BYTES_BLIST = "bytesBList";
 
     /**
      * The name of the ActorBListJid actor.
      */
-    public final static String ACTOR_BLIST_JID_TYPE = "ACTOR_BLIST_JID";
+    public final static String BOX_BLIST = "boxBList";
 
     /**
      * The name of the LongBListJid actor.
      */
-    public final static String LONG_BLIST_JID_TYPE = "LONG_BLIST_JID";
+    public final static String PALONG_BLIST = "longBList";
 
     /**
      * The name of the IntegerBListJid actor.
      */
-    public final static String INTEGER_BLIST_JID_TYPE = "INTEGER_BLIST_JID";
+    public final static String PAINTEGER_BLIST = "intBList";
 
     /**
      * The name of the FloatBListJid actor.
      */
-    public final static String FLOAT_BLIST_JID_TYPE = "FLOAT_BLIST_JID";
+    public final static String PAFLOAT_BLIST = "floatBList";
 
     /**
      * The name of the DoubleBListJid actor.
      */
-    public final static String DOUBLE_BLIST_JID_TYPE = "DOUBLE_BLIST_JID";
+    public final static String PADOUBLE_BLIST = "doubleBList";
 
     /**
      * The name of the BooleanBListJid actor.
      */
-    public final static String BOOLEAN_BLIST_JID_TYPE = "BOOLEAN_BLIST_JID";
+    public final static String PABOOLEAN_BLIST = "boolBList";
 
     /**
      * The name of the StringListJid actor.
      */
-    public final static String STRING_LIST_JID_TYPE = "STRING_LIST_JID";
+    public final static String PASTRING_LIST = "stringList";
 
     /**
      * The name of the BytesListJid actor.
      */
-    public final static String BYTES_LIST_JID_TYPE = "BYTES_LIST_JID";
+    public final static String BYTES_LIST = "bytesList";
 
     /**
      * The name of the ActorListJid actor.
      */
-    public final static String ACTOR_LIST_JID_TYPE = "ACTOR_LIST_JID";
+    public final static String BOX_LIST = "boxList";
 
     /**
      * The name of the LongListJid actor.
      */
-    public final static String LONG_LIST_JID_TYPE = "LONG_LIST_JID";
+    public final static String PALONG_LIST = "longList";
 
     /**
      * The name of the IntegerListJid actor.
      */
-    public final static String INTEGER_LIST_JID_TYPE = "INTEGER_LIST_JID";
+    public final static String PAINTEGER_LIST = "intList";
 
     /**
      * The name of the FloatListJid actor.
      */
-    public final static String FLOAT_LIST_JID_TYPE = "FLOAT_LIST_JID";
+    public final static String PAFLOAT_LIST = "floatList";
 
     /**
      * The name of the DoubleListJid actor.
      */
-    public final static String DOUBLE_LIST_JID_TYPE = "DOUBLE_LIST_JID";
+    public final static String PADOUBLE_LIST = "doubleList";
 
     /**
      * The name of the BooleanListJid actor.
      */
-    public final static String BOOLEAN_LIST_JID_TYPE = "BOOLEAN_LIST_JID";
+    public final static String PABOOLEAN_LIST = "boolList";
 
     /**
      * The name of the StringStringBMapJid actor.
@@ -498,23 +497,23 @@ final public class IncDesFactories extends LocateLocalActorFactories {
         PAStringImpl.registerFactory(factoryLocator);
         BytesImpl.registerFactory(factoryLocator);
 
-        BListFactory.registerFactory(factoryLocator, STRING_BLIST_JID_TYPE, PASTRING);
-        BListFactory.registerFactory(factoryLocator, BYTES_BLIST_JID_TYPE, BYTES);
-        BListFactory.registerFactory(factoryLocator, ACTOR_BLIST_JID_TYPE, BOX);
-        BListFactory.registerFactory(factoryLocator, LONG_BLIST_JID_TYPE, PALONG);
-        BListFactory.registerFactory(factoryLocator, INTEGER_BLIST_JID_TYPE, PAINTEGER);
-        BListFactory.registerFactory(factoryLocator, FLOAT_BLIST_JID_TYPE, PAFLOAT);
-        BListFactory.registerFactory(factoryLocator, DOUBLE_BLIST_JID_TYPE, PADOUBLE);
-        BListFactory.registerFactory(factoryLocator, BOOLEAN_BLIST_JID_TYPE, PABOOLEAN);
+        BListFactory.registerFactory(factoryLocator, PASTRING_BLIST, PASTRING);
+        BListFactory.registerFactory(factoryLocator, BYTES_BLIST, BYTES);
+        BListFactory.registerFactory(factoryLocator, BOX_BLIST, BOX);
+        BListFactory.registerFactory(factoryLocator, PALONG_BLIST, PALONG);
+        BListFactory.registerFactory(factoryLocator, PAINTEGER_BLIST, PAINTEGER);
+        BListFactory.registerFactory(factoryLocator, PAFLOAT_BLIST, PAFLOAT);
+        BListFactory.registerFactory(factoryLocator, PADOUBLE_BLIST, PADOUBLE);
+        BListFactory.registerFactory(factoryLocator, PABOOLEAN_BLIST, PABOOLEAN);
 
-        SListFactory.registerFactory(factoryLocator, STRING_LIST_JID_TYPE, PASTRING);
-        SListFactory.registerFactory(factoryLocator, BYTES_LIST_JID_TYPE, BYTES);
-        SListFactory.registerFactory(factoryLocator, ACTOR_LIST_JID_TYPE, BOX);
-        SListFactory.registerFactory(factoryLocator, LONG_LIST_JID_TYPE, PALONG);
-        SListFactory.registerFactory(factoryLocator, INTEGER_LIST_JID_TYPE, PAINTEGER);
-        SListFactory.registerFactory(factoryLocator, FLOAT_LIST_JID_TYPE, PAFLOAT);
-        SListFactory.registerFactory(factoryLocator, DOUBLE_LIST_JID_TYPE, PADOUBLE);
-        SListFactory.registerFactory(factoryLocator, BOOLEAN_LIST_JID_TYPE, PABOOLEAN);
+        SListFactory.registerFactory(factoryLocator, PASTRING_LIST, PASTRING);
+        SListFactory.registerFactory(factoryLocator, BYTES_LIST, BYTES);
+        SListFactory.registerFactory(factoryLocator, BOX_LIST, BOX);
+        SListFactory.registerFactory(factoryLocator, PALONG_LIST, PALONG);
+        SListFactory.registerFactory(factoryLocator, PAINTEGER_LIST, PAINTEGER);
+        SListFactory.registerFactory(factoryLocator, PAFLOAT_LIST, PAFLOAT);
+        SListFactory.registerFactory(factoryLocator, PADOUBLE_LIST, PADOUBLE);
+        SListFactory.registerFactory(factoryLocator, PABOOLEAN_LIST, PABOOLEAN);
 
         StringSMapFactory.registerFactory(factoryLocator, STRING_STRING_MAP_JID_TYPE, PASTRING);
         StringSMapFactory.registerFactory(factoryLocator, STRING_BYTES_MAP_JID_TYPE, BYTES);
