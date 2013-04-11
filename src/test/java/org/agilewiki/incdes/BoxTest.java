@@ -31,15 +31,15 @@ public class BoxTest extends TestCase {
             rpa = (IncDes) incDes11.resolvePathnameReq("0").call();
             assertNull(rpa);
 
-            /*
-            Factory stringJidAFactory = factoryLocator.getFactory(IncDesFactories.PASTRING);
-            IncDes string1 = stringJidAFactory.newActor(factoryLocator.getMailbox(), factoryLocator);
-            (new SetString("abc")).send(future, string1);
-            byte[] sb = GetSerializedBytes.req.send(future, string1);
-            (new SetActorBytes(stringJidAFactory, sb)).send(future, box1);
-            IncDes sj = GetActor.req.send(future, box1);
-            assertEquals("abc", GetString.req.send(future, sj));
+            Factory stringAFactory = factoryLocator.getFactory(IncDesFactories.PASTRING);
+            PAString string1 = (PAString) stringAFactory.newActor(factoryLocator.getMailbox(), factoryLocator);
+            string1.setStringReq("abc").call();
+            byte[] sb = string1.getSerializedBytes();
+            box1.setIncDesReq(string1.getType(), sb).call();
+            PAString sj = (PAString) box1.getIncDesReq().call();
+            assertEquals("abc", sj.getStringReq().call());
 
+            /*
             Box jidJid2 = Box.create(factoryLocator, null, null);
             sl = GetSerializedLength.req.send(future, jidJid2);
             assertEquals(4, sl);
