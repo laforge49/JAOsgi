@@ -24,6 +24,8 @@
 package org.agilewiki.incdes;
 
 import org.agilewiki.incdes.impl.IncDesFactory;
+import org.agilewiki.incdes.impl.collection.flenc.TupleFactory;
+import org.agilewiki.incdes.impl.collection.flenc.TupleImpl;
 import org.agilewiki.incdes.impl.collection.vlenc.BListFactory;
 import org.agilewiki.incdes.impl.collection.vlenc.SListFactory;
 import org.agilewiki.incdes.impl.collection.vlenc.map.*;
@@ -61,6 +63,13 @@ final public class IncDesFactories extends LocateLocalActorFactories {
                                             final String... _actorTypes)
             throws Exception {
         UnionImpl.registerFactory(_factoryLocator, _subActorType, _actorTypes);
+    }
+
+    public static void registerTupleFactory(final FactoryLocator _factoryLocator,
+                                            final String _subActorType,
+                                            final String... _actorTypes)
+            throws Exception {
+        TupleFactory.registerFactory(_factoryLocator, _subActorType, _actorTypes);
     }
 
     /**
