@@ -2,7 +2,7 @@ package org.agilewiki.incdes;
 
 import junit.framework.TestCase;
 
-public class JidTest extends TestCase {
+public class IncDesTest extends TestCase {
     public void test1() throws Exception {
         System.err.println("\nTest 1");
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
