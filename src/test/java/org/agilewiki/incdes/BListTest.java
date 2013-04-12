@@ -1,32 +1,28 @@
-package org.agilewiki.jid.collection.vlenc;
+package org.agilewiki.incdes;
 
 import junit.framework.TestCase;
-import org.agilewiki.incdes.Context;
-import org.agilewiki.incdes.IncDesFactories;
-import org.agilewiki.incdes.impl.collection.vlenc.BList;
-import org.agilewiki.incdes.impl.scalar.flens.PAIntegerImpl;
-import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
-import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
+
+import java.util.List;
 
 public class BListTest extends TestCase {
     public void test1() throws Exception {
-        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
         Context jaBundleContext = Context.get(factoryLocator);
         try {
-            BList stringList1 = (BList) factoryLocator.newJid(IncDesFactories.PASTRING_BLIST);
+            PAList<PAString> stringList1 = (PAList) factoryLocator.newJid(IncDesFactories.PASTRING_BLIST);
             stringList1.iAdd(0);
             stringList1.iAdd(1);
             stringList1.iAdd(2);
-            PAStringImpl sj0 = (PAStringImpl) stringList1.iGet(0);
-            PAStringImpl sj1 = (PAStringImpl) stringList1.iGet(1);
-            PAStringImpl sj2 = (PAStringImpl) stringList1.iGet(2);
+            PAString sj0 = stringList1.iGet(0);
+            PAString sj1 = stringList1.iGet(1);
+            PAString sj2 = stringList1.iGet(2);
             sj0.setValue("a");
             sj1.setValue("b");
             sj2.setValue("c");
-            BList stringList2 = (BList) stringList1.copy(factoryLocator.getMailbox());
-            PAStringImpl s0 = (PAStringImpl) stringList2.iGet(0);
-            PAStringImpl s1 = (PAStringImpl) stringList2.iGet(1);
-            PAStringImpl s2 = (PAStringImpl) stringList2.iGet(2);
+            PAList<PAString> stringList2 = (PAList) stringList1.copy(factoryLocator.getMailbox());
+            PAString s0 = stringList2.iGet(0);
+            PAString s1 = stringList2.iGet(1);
+            PAString s2 = stringList2.iGet(2);
             assertEquals("a", s0.getValue());
             assertEquals("b", s1.getValue());
             assertEquals("c", s2.getValue());
@@ -38,20 +34,20 @@ public class BListTest extends TestCase {
     }
 
     public void test2() throws Exception {
-        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
         Context jaBundleContext = Context.get(factoryLocator);
         try {
-            BList intList1 = (BList) factoryLocator.newJid(IncDesFactories.PAINTEGER_BLIST);
+            PAList<PAInteger> intList1 = (PAList) factoryLocator.newJid(IncDesFactories.PAINTEGER_BLIST);
             int i = 0;
             while (i < 28) {
                 intList1.iAdd(i);
-                PAIntegerImpl ij0 = (PAIntegerImpl) intList1.iGet(i);
+                PAInteger ij0 = intList1.iGet(i);
                 ij0.setValue(i);
                 i += 1;
             }
             i = 0;
             while (i < 28) {
-                PAIntegerImpl ij = (PAIntegerImpl) intList1.iGet(i);
+                PAInteger ij = intList1.iGet(i);
                 assertEquals(i, (int) ij.getValue());
                 i += 1;
             }
@@ -63,20 +59,20 @@ public class BListTest extends TestCase {
     }
 
     public void test3() throws Exception {
-        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
         Context jaBundleContext = Context.get(factoryLocator);
         try {
-            BList intList1 = (BList) factoryLocator.newJid(IncDesFactories.PAINTEGER_BLIST);
+            PAList<PAInteger> intList1 = (PAList) factoryLocator.newJid(IncDesFactories.PAINTEGER_BLIST);
             int i = 0;
             while (i < 41) {
                 intList1.iAdd(-1);
-                PAIntegerImpl ij0 = (PAIntegerImpl) intList1.iGet(-1);
+                PAInteger ij0 = intList1.iGet(-1);
                 ij0.setValue(i);
                 i += 1;
             }
             i = 0;
             while (i < 41) {
-                PAIntegerImpl ij = (PAIntegerImpl) intList1.iGet(i);
+                PAInteger ij = intList1.iGet(i);
                 assertEquals(i, (int) ij.getValue());
                 i += 1;
             }
@@ -88,20 +84,20 @@ public class BListTest extends TestCase {
     }
 
     public void test4() throws Exception {
-        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
         Context jaBundleContext = Context.get(factoryLocator);
         try {
-            BList intList1 = (BList) factoryLocator.newJid(IncDesFactories.PAINTEGER_BLIST);
+            PAList<PAInteger> intList1 = (PAList) factoryLocator.newJid(IncDesFactories.PAINTEGER_BLIST);
             int i = 0;
             while (i < 391) {
                 intList1.iAdd(-1);
-                PAIntegerImpl ij0 = (PAIntegerImpl) intList1.iGet(-1);
+                PAInteger ij0 = intList1.iGet(-1);
                 ij0.setValue(i);
                 i += 1;
             }
             i = 0;
             while (i < 391) {
-                PAIntegerImpl ij = (PAIntegerImpl) intList1.iGet(i);
+                PAInteger ij = intList1.iGet(i);
                 assertEquals(i, (int) ij.getValue());
                 i += 1;
             }
@@ -113,20 +109,20 @@ public class BListTest extends TestCase {
     }
 
     public void test5() throws Exception {
-        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
         Context jaBundleContext = Context.get(factoryLocator);
         try {
-            BList intList1 = (BList) factoryLocator.newJid(IncDesFactories.PAINTEGER_BLIST);
+            PAList<PAInteger> intList1 = (PAList) factoryLocator.newJid(IncDesFactories.PAINTEGER_BLIST);
             int i = 0;
             while (i < 10000) {
                 intList1.iAdd(-1);
-                PAIntegerImpl ij0 = (PAIntegerImpl) intList1.iGet(-1);
+                PAInteger ij0 = intList1.iGet(-1);
                 ij0.setValue(i);
                 i += 1;
             }
             i = 0;
             while (i < 10000) {
-                PAIntegerImpl ij = (PAIntegerImpl) intList1.iGet(i);
+                PAInteger ij = intList1.iGet(i);
                 assertEquals(i, (int) ij.getValue());
                 i += 1;
             }
@@ -138,14 +134,14 @@ public class BListTest extends TestCase {
     }
 
     public void test6() throws Exception {
-        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
         Context jaBundleContext = Context.get(factoryLocator);
         try {
-            BList intList1 = (BList) factoryLocator.newJid(IncDesFactories.PAINTEGER_BLIST);
+            PAList<PAInteger> intList1 = (PAList) factoryLocator.newJid(IncDesFactories.PAINTEGER_BLIST);
             int i = 0;
             while (i < 10000) {
                 intList1.iAdd(-1);
-                PAIntegerImpl ij0 = (PAIntegerImpl) intList1.iGet(-1);
+                PAInteger ij0 = intList1.iGet(-1);
                 ij0.setValue(i);
                 i += 1;
             }
@@ -154,7 +150,6 @@ public class BListTest extends TestCase {
                 intList1.iRemove(-1);
                 i += 1;
             }
-            assertTrue(intList1.isLeaf());
             assertEquals(0, intList1.size());
         } catch (Exception e) {
             e.printStackTrace();
