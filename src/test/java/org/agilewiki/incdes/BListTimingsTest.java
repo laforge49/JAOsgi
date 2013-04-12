@@ -1,12 +1,7 @@
-package org.agilewiki.jid.collection.vlenc;
+package org.agilewiki.incdes;
 
 import junit.framework.TestCase;
-import org.agilewiki.incdes.IncDesFactories;
-import org.agilewiki.incdes.Context;
-import org.agilewiki.incdes.impl.collection.vlenc.BList;
-import org.agilewiki.incdes.impl.scalar.flens.PAIntegerImpl;
-import org.agilewiki.jactor.Mailbox;
-import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
+import org.agilewiki.pactor.Mailbox;
 
 public class BListTimingsTest extends TestCase {
     public void test() throws Exception {
@@ -16,33 +11,33 @@ public class BListTimingsTest extends TestCase {
 
         //list size = 1,000
         //repetitions = 1,000
-        //total run time (milliseconds) =  14
-        //time per update (microseconds) = 16
+        //total run time (milliseconds) =  20
+        //time per update (microseconds) = 20
 
         //list size = 10,000
         //repetitions = 10,000
-        //total run time (milliseconds) = 379
-        //time per update (microseconds) = 37
+        //total run time (milliseconds) = 433
+        //time per update (microseconds) = 43
 
         //list size = 100,000
         //repetitions = 10,000
-        //total run time (milliseconds) = 2595
-        //time per update (microseconds) = 259
+        //total run time (milliseconds) = 2382
+        //time per update (microseconds) = 238
 
         //list size = 1,000,000
         //repetitions = 10,000
-        //total run time (milliseconds) = 29379
-        //time per update (microseconds) = 2937
+        //total run time (milliseconds) = 26786
+        //time per update (microseconds) = 2678
 
-        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
         Context jaBundleContext = Context.get(factoryLocator);
         try {
-            BList intList1 = (BList) factoryLocator.newJid(IncDesFactories.PAINTEGER_BLIST);
+            PAList<PAInteger> intList1 = (PAList) factoryLocator.newJid(IncDesFactories.PAINTEGER_BLIST);
             Mailbox mailbox = factoryLocator.getMailbox();
             int i = 0;
             while (i < s) {
                 intList1.iAdd(-1);
-                PAIntegerImpl ij0 = (PAIntegerImpl) intList1.iGet(-1);
+                PAInteger ij0 = intList1.iGet(-1);
                 ij0.setValue(i);
                 i += 1;
             }
@@ -50,7 +45,7 @@ public class BListTimingsTest extends TestCase {
             long t0 = System.currentTimeMillis();
             int j = 0;
             while (j < r) {
-                BList intList2 = (BList) intList1.copy(mailbox);
+                PAList<PAInteger> intList2 = (PAList) intList1.copy(mailbox);
                 intList1.iAdd(s / 2);
                 intList2.getSerializedBytes();
                 j += 1;
