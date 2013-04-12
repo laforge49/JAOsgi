@@ -14,7 +14,7 @@ public class StringStringBMapJidTest extends TestCase {
         Context jaBundleContext = Context.get(factoryLocator);
         try {
             BMap<String, PAStringImpl> m = (BMap) factoryLocator.
-                    newJid(IncDesFactories.STRING_STRING_BMAP_JID_TYPE);
+                    newJid(IncDesFactories.STRING_PASTRING_BMAP);
             assertEquals(0, m.size());
             assertTrue(m.kMake("1"));
             assertFalse(m.kMake("1"));

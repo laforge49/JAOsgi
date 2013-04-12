@@ -1,21 +1,16 @@
-package org.agilewiki.jid.collection.vlenc.map;
+package org.agilewiki.incdes;
 
 import junit.framework.TestCase;
-import org.agilewiki.incdes.IncDesFactories;
-import org.agilewiki.incdes.Context;
-import org.agilewiki.incdes.impl.collection.vlenc.map.MapEntryImpl;
-import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
-import org.agilewiki.jactor.old.Actor;
-import org.agilewiki.jactor.old.JAFuture;
-import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
+//import org.agilewiki.jactor.old.Actor;
 
-public class StringStringMapJidTest extends TestCase {
+
+public class StringStringMapTest extends TestCase {
     public void test() throws Exception {
-        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
         Context jaBundleContext = Context.get(factoryLocator);
         try {
-            JAFuture future = new JAFuture();
-            Actor m = factoryLocator.newJid(IncDesFactories.STRING_STRING_MAP_JID_TYPE);
+            PAMap<String, PAString> m = (PAMap) factoryLocator.newJid(IncDesFactories.STRING_PASTRING_MAP);
+            /*
             assertNull(new KGet<String, PAStringImpl>("a").send(future, m));
             assertTrue(new KMake<String, PAStringImpl>("b").send(future, m));
             assertNull(new KGet<String, PAStringImpl>("a").send(future, m));
@@ -32,8 +27,7 @@ public class StringStringMapJidTest extends TestCase {
             assertTrue(new KRemove<String, PAStringImpl>("b").send(future, m));
             assertFalse(new KRemove<String, PAStringImpl>("b").send(future, m));
             assertNull(new KGet<String, PAStringImpl>("b").send(future, m));
-        } catch (Exception e) {
-            e.printStackTrace();
+            */
         } finally {
             jaBundleContext.stop(0);
         }

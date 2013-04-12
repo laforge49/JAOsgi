@@ -37,7 +37,7 @@ public class BMapTimingsTest extends TestCase {
         Context jaBundleContext = Context.get(factoryLocator);
         try {
             BMap<Integer, PAIntegerImpl> m1 = (BMap) factoryLocator.
-                    newJid(IncDesFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
+                    newJid(IncDesFactories.INTEGER_PAINTEGER_BMAP);
             int i = 0;
             while (i < s) {
                 m1.kMake(i);

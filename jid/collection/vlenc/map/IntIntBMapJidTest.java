@@ -13,7 +13,7 @@ public class IntIntBMapJidTest extends TestCase {
         Context jaBundleContext = Context.get(factoryLocator);
         try {
             BMap<Integer, PAIntegerImpl> m = (BMap) factoryLocator.
-                    newJid(IncDesFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
+                    newJid(IncDesFactories.INTEGER_PAINTEGER_BMAP);
             m.kMake(0);
             m.kMake(1);
             m.kMake(2);
@@ -40,7 +40,7 @@ public class IntIntBMapJidTest extends TestCase {
         Context jaBundleContext = Context.get(factoryLocator);
         try {
             BMap<Integer, PAIntegerImpl> m = (BMap) factoryLocator.
-                    newJid(IncDesFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
+                    newJid(IncDesFactories.INTEGER_PAINTEGER_BMAP);
             int i = 0;
             while (i < 28) {
                 m.kMake(i);
@@ -65,7 +65,7 @@ public class IntIntBMapJidTest extends TestCase {
         Context jaBundleContext = Context.get(factoryLocator);
         try {
             BMap<Integer, PAIntegerImpl> m = (BMap) factoryLocator.
-                    newJid(IncDesFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
+                    newJid(IncDesFactories.INTEGER_PAINTEGER_BMAP);
             int i = 0;
             while (i < 41) {
                 m.kMake(i);
@@ -90,7 +90,7 @@ public class IntIntBMapJidTest extends TestCase {
         Context jaBundleContext = Context.get(factoryLocator);
         try {
             BMap<Integer, PAIntegerImpl> m = (BMap) factoryLocator.
-                    newJid(IncDesFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
+                    newJid(IncDesFactories.INTEGER_PAINTEGER_BMAP);
             int i = 0;
             while (i < 391) {
                 m.kMake(i);
@@ -115,7 +115,7 @@ public class IntIntBMapJidTest extends TestCase {
         Context jaBundleContext = Context.get(factoryLocator);
         try {
             BMap<Integer, PAIntegerImpl> m = (BMap) factoryLocator.
-                    newJid(IncDesFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
+                    newJid(IncDesFactories.INTEGER_PAINTEGER_BMAP);
             int i = 0;
             while (i < 10000) {
                 m.kMake(i);
@@ -140,7 +140,7 @@ public class IntIntBMapJidTest extends TestCase {
         Context jaBundleContext = Context.get(factoryLocator);
         try {
             BMap<Integer, PAIntegerImpl> m = (BMap) factoryLocator.
-                    newJid(IncDesFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
+                    newJid(IncDesFactories.INTEGER_PAINTEGER_BMAP);
             int i = 0;
             while (i < 10000) {
                 m.kMake(i);
@@ -165,7 +165,7 @@ public class IntIntBMapJidTest extends TestCase {
         Context jaBundleContext = Context.get(factoryLocator);
         try {
             BMap<Integer, PAIntegerImpl> m = (BMap) factoryLocator.
-                    newJid(IncDesFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
+                    newJid(IncDesFactories.INTEGER_PAINTEGER_BMAP);
             int i = 0;
             while (i < 10000) {
                 m.kMake(i);
@@ -190,7 +190,7 @@ public class IntIntBMapJidTest extends TestCase {
         Context jaBundleContext = Context.get(factoryLocator);
         try {
             BMap<Integer, PAIntegerImpl> m = (BMap) factoryLocator.
-                    newJid(IncDesFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
+                    newJid(IncDesFactories.INTEGER_PAINTEGER_BMAP);
             int i = 0;
             while (i < 10000) {
                 m.kMake(i);
@@ -215,7 +215,7 @@ public class IntIntBMapJidTest extends TestCase {
         Context jaBundleContext = Context.get(factoryLocator);
         try {
             BMap<Integer, PAIntegerImpl> m = (BMap) factoryLocator.
-                    newJid(IncDesFactories.INTEGER_INTEGER_BMAP_JID_TYPE);
+                    newJid(IncDesFactories.INTEGER_PAINTEGER_BMAP);
             int i = 0;
             while (i < 10000) {
                 m.kMake(i);

@@ -18,7 +18,7 @@ public class BigIntegerIntegerMapTest extends TestCase {
         JAFuture future = new JAFuture();
         RootImpl root = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT);
         SetActor setMap = new SetActor(
-                IncDesFactories.INTEGER_INTEGER_MAP_JID_TYPE);
+                IncDesFactories.INTEGER_PAINTEGER_MAP);
         setMap.send(future, root);
         IntegerSMap map = (IntegerSMap) GetActor.req.send(future, root);
 
@@ -37,7 +37,7 @@ public class BigIntegerIntegerMapTest extends TestCase {
         JAFuture future = new JAFuture();
         RootImpl root = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT);
         SetActor setMap = new SetActor(
-                IncDesFactories.INTEGER_INTEGER_MAP_JID_TYPE);
+                IncDesFactories.INTEGER_PAINTEGER_MAP);
         setMap.send(future, root);
         IntegerSMap map = (IntegerSMap) GetActor.req.send(future, root);
 
@@ -71,7 +71,7 @@ public class BigIntegerIntegerMapTest extends TestCase {
         JAFuture future = new JAFuture();
         RootImpl root = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT);
         SetActor setMap = new SetActor(
-                IncDesFactories.INTEGER_INTEGER_MAP_JID_TYPE);
+                IncDesFactories.INTEGER_PAINTEGER_MAP);
         setMap.send(future, root);
         IntegerSMap map = (IntegerSMap) GetActor.req.send(future, root);
 
@@ -107,7 +107,7 @@ public class BigIntegerIntegerMapTest extends TestCase {
         JAFuture future = new JAFuture();
         RootImpl root = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT);
         SetActor setMap = new SetActor(
-                IncDesFactories.INTEGER_INTEGER_MAP_JID_TYPE);
+                IncDesFactories.INTEGER_PAINTEGER_MAP);
         setMap.send(future, root);
         IntegerSMap map = (IntegerSMap) GetActor.req.send(future, root);
 
@@ -143,7 +143,7 @@ public class BigIntegerIntegerMapTest extends TestCase {
         JAFuture future = new JAFuture();
         RootImpl root = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT);
         SetActor setMap = new SetActor(
-                IncDesFactories.INTEGER_INTEGER_MAP_JID_TYPE);
+                IncDesFactories.INTEGER_PAINTEGER_MAP);
         setMap.send(future, root);
         IntegerSMap map = (IntegerSMap) GetActor.req.send(future, root);
 
@@ -179,7 +179,7 @@ public class BigIntegerIntegerMapTest extends TestCase {
         JAFuture future = new JAFuture();
         RootImpl root = (RootImpl) factoryLocator.newJid(IncDesFactories.ROOT);
         SetActor setMap = new SetActor(
-                IncDesFactories.INTEGER_INTEGER_MAP_JID_TYPE);
+                IncDesFactories.INTEGER_PAINTEGER_MAP);
         setMap.send(future, root);
         IntegerSMap map = (IntegerSMap) GetActor.req.send(future, root);
 

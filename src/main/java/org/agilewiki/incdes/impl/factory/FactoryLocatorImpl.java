@@ -98,7 +98,7 @@ public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator {
     public StringSMap<PAStringImpl> getManifestCopy(Mailbox mailbox) throws Exception {
         if (isLocked())
             return manifest;
-        manifest = (StringSMap<PAStringImpl>) newJid(IncDesFactories.STRING_STRING_MAP_JID_TYPE);
+        manifest = (StringSMap<PAStringImpl>) newJid(IncDesFactories.STRING_PASTRING_MAP);
         manifest.kMake(getLocatorKey());
         PAStringImpl sj = manifest.kGet(getLocatorKey());
         sj.setValue(getLocation());

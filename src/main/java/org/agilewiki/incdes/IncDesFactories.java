@@ -244,242 +244,242 @@ final public class IncDesFactories extends LocateLocalActorFactories {
     /**
      * The name of the StringStringBMapJid actor.
      */
-    public final static String STRING_STRING_BMAP_JID_TYPE = "STRING_STRING_BMAP_JID";
+    public final static String STRING_PASTRING_BMAP = "stringStringBMap";
 
     /**
      * The name of the StringBytesBMapJid actor.
      */
-    public final static String STRING_BYTES_BMAP_JID_TYPE = "STRING_BYTES_BMAP_JID";
+    public final static String STRING_BYTES_BMAP = "stringBytesBMap";
 
     /**
      * The name of the StringActorBMapJid actor.
      */
-    public final static String STRING_ACTOR_BMAP_JID_TYPE = "STRING_ACTOR_BMAP_JID";
+    public final static String STRING_BOX_BMAP = "stringBoxBMap";
 
     /**
      * The name of the StringLongBMapJid actor.
      */
-    public final static String STRING_LONG_BMAP_JID_TYPE = "STRING_LONG_BMAP_JID";
+    public final static String STRING_PALONG_BMAP = "stringLongBMap";
 
     /**
      * The name of the StringIntegerBMapJid actor.
      */
-    public final static String STRING_INTEGER_BMAP_JID_TYPE = "STRING_INTEGER_BMAP_JID";
+    public final static String STRING_PAINTEGER_BMAP = "stringIntBMap";
 
     /**
      * The name of the StringFloatBMapJid actor.
      */
-    public final static String STRING_FLOAT_BMAP_JID_TYPE = "STRING_FLOAT_BMAP_JID";
+    public final static String STRING_PAFLOAT_BMAP = "stringFloatBMap";
 
     /**
      * The name of the StringDoubleBMapJid actor.
      */
-    public final static String STRING_DOUBLE_BMAP_JID_TYPE = "STRING_DOUBLE_BMAP_JID";
+    public final static String STRING_PADOUBLE_BMAP = "stringDoubleBMap";
 
     /**
      * The name of the StringBooleanBMapJid actor.
      */
-    public final static String STRING_BOOLEAN_BMAP_JID_TYPE = "STRING_BOOLEAN_BMAP_JID";
+    public final static String STRING_PABOOLEAN_BMAP = "stringBoolBMap";
 
     /**
      * The name of the IntegerStringBMapJid actor.
      */
-    public final static String INTEGER_STRING_BMAP_JID_TYPE = "INTEGER_STRING_BMAP_JID";
+    public final static String INTEGER_PASTRING_BMAP = "intStringBMap";
 
     /**
      * The name of the IntegerBytesBMapJid actor.
      */
-    public final static String INTEGER_BYTES_BMAP_JID_TYPE = "INTEGER_BYTES_BMAP_JID";
+    public final static String INTEGER_PABYTES_BMAP = "intBytesBMap";
 
     /**
      * The name of the IntegerActorBMapJid actor.
      */
-    public final static String INTEGER_ACTOR_BMAP_JID_TYPE = "INTEGER_ACTOR_BMAP_JID";
+    public final static String INTEGER_BOX_BMAP = "intBoxBMap";
 
     /**
      * The name of the IntegerLongBMapJid actor.
      */
-    public final static String INTEGER_LONG_BMAP_JID_TYPE = "INTEGER_LONG_BMAP_JID";
+    public final static String INTEGER_PALONG_BMAP = "intLongBMap";
 
     /**
      * The name of the IntegerIntegerBMapJid actor.
      */
-    public final static String INTEGER_INTEGER_BMAP_JID_TYPE = "INTEGER_INTEGER_BMAP_JID";
+    public final static String INTEGER_PAINTEGER_BMAP = "intIntBMap";
 
     /**
      * The name of the IntegerFloatBMapJid actor.
      */
-    public final static String INTEGER_FLOAT_BMAP_JID_TYPE = "INTEGER_FLOAT_BMAP_JID";
+    public final static String INTEGER_PAFLOAT_BMAP = "intFloatBMap";
 
     /**
      * The name of the IntegerDoubleBMapJid actor.
      */
-    public final static String INTEGER_DOUBLE_BMAP_JID_TYPE = "INTEGER_DOUBLE_BMAP_JID";
+    public final static String INTEGER_PADOUBLE_BMAP = "intDoubleBMap";
 
     /**
      * The name of the IntegerBooleanBMapJid actor.
      */
-    public final static String INTEGER_BOOLEAN_BMAP_JID_TYPE = "INTEGER_BOOLEAN_BMAP_JID";
+    public final static String INTEGER_PABOOLEAN_BMAP = "intBoolBMap";
 
     /**
      * The name of the LongStringBMapJid actor.
      */
-    public final static String LONG_STRING_BMAP_JID_TYPE = "LONG_STRING_BMAP_JID";
+    public final static String LONG_PASTRING_BMAP = "longStringBMap";
 
     /**
      * The name of the LongBytesBMapJid actor.
      */
-    public final static String LONG_BYTES_BMAP_JID_TYPE = "LONG_BYTES_BMAP_JID";
+    public final static String LONG_BYTES_BMAP = "longBytesBMap";
 
     /**
      * The name of the LongActorBMapJid actor.
      */
-    public final static String LONG_ACTOR_BMAP_JID_TYPE = "LONG_ACTOR_BMAP_JID";
+    public final static String LONG_BOX_BMAP = "longBoxBMap";
 
     /**
      * The name of the LongLongBMapJid actor.
      */
-    public final static String LONG_LONG_BMAP_JID_TYPE = "LONG_LONG_BMAP_JID";
+    public final static String LONG_PALONG_BMAP = "longLongBMap";
 
     /**
      * The name of the LongIntegerBMapJid actor.
      */
-    public final static String LONG_INTEGER_BMAP_JID_TYPE = "LONG_INTEGER_BMAP_JID";
+    public final static String LONG_PAINTEGER_BMAP = "longIntBMap";
 
     /**
      * The name of the LongFloatBMapJid actor.
      */
-    public final static String LONG_FLOAT_BMAP_JID_TYPE = "LONG_FLOAT_BMAP_JID";
+    public final static String LONG_PAFLOAT_BMAP = "longFloatBMap";
 
     /**
      * The name of the LongDoubleBMapJid actor.
      */
-    public final static String LONG_DOUBLE_BMAP_JID_TYPE = "LONG_DOUBLE_BMAP_JID";
+    public final static String LONG_PADOUBLE_BMAP = "longDoubleBMap";
 
     /**
      * The name of the LongBooleanBMapJid actor.
      */
-    public final static String LONG_BOOLEAN_BMAP_JID_TYPE = "LONG_BOOLEAN_BMAP_JID";
+    public final static String LONG_PABOOLEAN_BMAP = "longBoolBMap";
 
     /**
      * The name of the StringStringMapJid actor.
      */
-    public final static String STRING_STRING_MAP_JID_TYPE = "STRING_STRING_MAP_JID";
+    public final static String STRING_PASTRING_MAP = "stringStringMap";
 
     /**
      * The name of the StringBytesMapJid actor.
      */
-    public final static String STRING_BYTES_MAP_JID_TYPE = "STRING_BYTES_MAP_JID";
+    public final static String STRING_BYTES_MAP = "stringBytesMap";
 
     /**
      * The name of the StringActorMapJid actor.
      */
-    public final static String STRING_ACTOR_MAP_JID_TYPE = "STRING_ACTOR_MAP_JID";
+    public final static String STRING_BOX_MAP = "stringBoxMap";
 
     /**
      * The name of the StringLongMapJid actor.
      */
-    public final static String STRING_LONG_MAP_JID_TYPE = "STRING_LONG_MAP_JID";
+    public final static String STRING_PALONG_MAP = "stringLongMap";
 
     /**
      * The name of the StringIntegerMapJid actor.
      */
-    public final static String STRING_INTEGER_MAP_JID_TYPE = "STRING_INTEGER_MAP_JID";
+    public final static String STRING_PAINTEGER_MAP = "stringIntMap";
 
     /**
      * The name of the StringFloatMapJid actor.
      */
-    public final static String STRING_FLOAT_MAP_JID_TYPE = "STRING_FLOAT_MAP_JID";
+    public final static String STRING_PAFLOAT_MAP = "stringFloatMap";
 
     /**
      * The name of the StringDoubleMapJid actor.
      */
-    public final static String STRING_DOUBLE_MAP_JID_TYPE = "STRING_DOUBLE_MAP_JID";
+    public final static String STRING_PADOUBLE_MAP = "stringDoubleMap";
 
     /**
      * The name of the StringBooleanMapJid actor.
      */
-    public final static String STRING_BOOLEAN_MAP_JID_TYPE = "STRING_BOOLEAN_MAP_JID";
+    public final static String STRING_PABOOLEAN_MAP = "stringBoolMap";
 
     /**
      * The name of the IntegerStringMapJid actor.
      */
-    public final static String INTEGER_STRING_MAP_JID_TYPE = "INTEGER_STRING_MAP_JID";
+    public final static String INTEGER_PASTRING_MAP = "intStringMap";
 
     /**
      * The name of the IntegerBytesMapJid actor.
      */
-    public final static String INTEGER_BYTES_MAP_JID_TYPE = "INTEGER_BYTES_MAP_JID";
+    public final static String INTEGER_BYTES_MAP = "intBytesMap";
 
     /**
      * The name of the IntegerActorMapJid actor.
      */
-    public final static String INTEGER_ACTOR_MAP_JID_TYPE = "INTEGER_ACTOR_MAP_JID";
+    public final static String INTEGER_BOX_MAP = "intBoxMap";
 
     /**
      * The name of the IntegerLongMapJid actor.
      */
-    public final static String INTEGER_LONG_MAP_JID_TYPE = "INTEGER_LONG_MAP_JID";
+    public final static String INTEGER_PALONG_MAP = "intLongMap";
 
     /**
      * The name of the IntegerIntegerMapJid actor.
      */
-    public final static String INTEGER_INTEGER_MAP_JID_TYPE = "INTEGER_INTEGER_MAP_JID";
+    public final static String INTEGER_PAINTEGER_MAP = "intIntMap";
 
     /**
      * The name of the IntegerFloatMapJid actor.
      */
-    public final static String INTEGER_FLOAT_MAP_JID_TYPE = "INTEGER_FLOAT_MAP_JID";
+    public final static String INTEGER_PAFLOAT_MAP = "intFloatMap";
 
     /**
      * The name of the IntegerDoubleMapJid actor.
      */
-    public final static String INTEGER_DOUBLE_MAP_JID_TYPE = "INTEGER_DOUBLE_MAP_JID";
+    public final static String INTEGER_PADOUBLE_MAP = "intDoubleMap";
 
     /**
      * The name of the IntegerBooleanMapJid actor.
      */
-    public final static String INTEGER_BOOLEAN_MAP_JID_TYPE = "INTEGER_BOOLEAN_MAP_JID";
+    public final static String INTEGER_PABOOLEAN_MAP = "intBoolMap";
 
     /**
      * The name of the LongStringMapJid actor.
      */
-    public final static String LONG_STRING_MAP_JID_TYPE = "LONG_STRING_MAP_JID";
+    public final static String LONG_PASTRING_MAP = "longStringMap";
 
     /**
      * The name of the LongBytesMapJid actor.
      */
-    public final static String LONG_BYTES_MAP_JID_TYPE = "LONG_BYTES_MAP_JID";
+    public final static String LONG_BYTES_MAP = "longBytesMap";
 
     /**
      * The name of the LongActorMapJid actor.
      */
-    public final static String LONG_ACTOR_MAP_JID_TYPE = "LONG_ACTOR_MAP_JID";
+    public final static String LONG_BOX_MAP = "longBoxMap";
 
     /**
      * The name of the LongLongMapJid actor.
      */
-    public final static String LONG_LONG_MAP_JID_TYPE = "LONG_LONG_MAP_JID";
+    public final static String LONG_PALONG_MAP = "longLongMap";
 
     /**
      * The name of the LongIntegerMapJid actor.
      */
-    public final static String LONG_INTEGER_MAP_JID_TYPE = "LONG_INTEGER_MAP_JID";
+    public final static String LONG_PAINTEGER_MAP = "longIntMap";
 
     /**
      * The name of the LongFloatMapJid actor.
      */
-    public final static String LONG_FLOAT_MAP_JID_TYPE = "LONG_FLOAT_MAP_JID";
+    public final static String LONG_PAFLOAT_MAP = "longFloatMap";
 
     /**
      * The name of the LongDoubleMapJid actor.
      */
-    public final static String LONG_DOUBLE_MAP_JID_TYPE = "LONG_DOUBLE_MAP_JID";
+    public final static String LONG_PADOUBLE_MAP = "longDoubleMap";
 
     /**
      * The name of the LongBooleanMapJid actor.
      */
-    public final static String LONG_BOOLEAN_MAP_JID_TYPE = "LONG_BOOLEAN_MAP_JID";
+    public final static String LONG_PABOOLEAN_MAP = "longBoolMap";
 
     public FactoryLocatorImpl configure() throws Exception {
         FactoryLocatorImpl factoryLocator = configure("org.agilewiki.jid");
@@ -515,59 +515,59 @@ final public class IncDesFactories extends LocateLocalActorFactories {
         SListFactory.registerFactory(factoryLocator, PADOUBLE_LIST, PADOUBLE);
         SListFactory.registerFactory(factoryLocator, PABOOLEAN_LIST, PABOOLEAN);
 
-        StringSMapFactory.registerFactory(factoryLocator, STRING_STRING_MAP_JID_TYPE, PASTRING);
-        StringSMapFactory.registerFactory(factoryLocator, STRING_BYTES_MAP_JID_TYPE, BYTES);
-        StringSMapFactory.registerFactory(factoryLocator, STRING_ACTOR_MAP_JID_TYPE, BOX);
-        StringSMapFactory.registerFactory(factoryLocator, STRING_LONG_MAP_JID_TYPE, PALONG);
-        StringSMapFactory.registerFactory(factoryLocator, STRING_INTEGER_MAP_JID_TYPE, PAINTEGER);
-        StringSMapFactory.registerFactory(factoryLocator, STRING_FLOAT_MAP_JID_TYPE, PAFLOAT);
-        StringSMapFactory.registerFactory(factoryLocator, STRING_DOUBLE_MAP_JID_TYPE, PADOUBLE);
-        StringSMapFactory.registerFactory(factoryLocator, STRING_BOOLEAN_MAP_JID_TYPE, PABOOLEAN);
+        StringSMapFactory.registerFactory(factoryLocator, STRING_PASTRING_MAP, PASTRING);
+        StringSMapFactory.registerFactory(factoryLocator, STRING_BYTES_MAP, BYTES);
+        StringSMapFactory.registerFactory(factoryLocator, STRING_BOX_MAP, BOX);
+        StringSMapFactory.registerFactory(factoryLocator, STRING_PALONG_MAP, PALONG);
+        StringSMapFactory.registerFactory(factoryLocator, STRING_PAINTEGER_MAP, PAINTEGER);
+        StringSMapFactory.registerFactory(factoryLocator, STRING_PAFLOAT_MAP, PAFLOAT);
+        StringSMapFactory.registerFactory(factoryLocator, STRING_PADOUBLE_MAP, PADOUBLE);
+        StringSMapFactory.registerFactory(factoryLocator, STRING_PABOOLEAN_MAP, PABOOLEAN);
 
-        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_STRING_MAP_JID_TYPE, PASTRING);
-        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_BYTES_MAP_JID_TYPE, BYTES);
-        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_ACTOR_MAP_JID_TYPE, BOX);
-        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_LONG_MAP_JID_TYPE, PALONG);
-        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_INTEGER_MAP_JID_TYPE, PAINTEGER);
-        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_FLOAT_MAP_JID_TYPE, PAFLOAT);
-        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_DOUBLE_MAP_JID_TYPE, PADOUBLE);
-        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_BOOLEAN_MAP_JID_TYPE, PABOOLEAN);
+        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_PASTRING_MAP, PASTRING);
+        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_BYTES_MAP, BYTES);
+        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_BOX_MAP, BOX);
+        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_PALONG_MAP, PALONG);
+        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_PAINTEGER_MAP, PAINTEGER);
+        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_PAFLOAT_MAP, PAFLOAT);
+        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_PADOUBLE_MAP, PADOUBLE);
+        IntegerSMapFactory.registerFactory(factoryLocator, INTEGER_PABOOLEAN_MAP, PABOOLEAN);
 
-        LongSMapFactory.registerFactory(factoryLocator, LONG_STRING_MAP_JID_TYPE, PASTRING);
-        LongSMapFactory.registerFactory(factoryLocator, LONG_BYTES_MAP_JID_TYPE, BYTES);
-        LongSMapFactory.registerFactory(factoryLocator, LONG_ACTOR_MAP_JID_TYPE, BOX);
-        LongSMapFactory.registerFactory(factoryLocator, LONG_LONG_MAP_JID_TYPE, PALONG);
-        LongSMapFactory.registerFactory(factoryLocator, LONG_INTEGER_MAP_JID_TYPE, PAINTEGER);
-        LongSMapFactory.registerFactory(factoryLocator, LONG_FLOAT_MAP_JID_TYPE, PAFLOAT);
-        LongSMapFactory.registerFactory(factoryLocator, LONG_DOUBLE_MAP_JID_TYPE, PADOUBLE);
-        LongSMapFactory.registerFactory(factoryLocator, LONG_BOOLEAN_MAP_JID_TYPE, PABOOLEAN);
+        LongSMapFactory.registerFactory(factoryLocator, LONG_PASTRING_MAP, PASTRING);
+        LongSMapFactory.registerFactory(factoryLocator, LONG_BYTES_MAP, BYTES);
+        LongSMapFactory.registerFactory(factoryLocator, LONG_BOX_MAP, BOX);
+        LongSMapFactory.registerFactory(factoryLocator, LONG_PALONG_MAP, PALONG);
+        LongSMapFactory.registerFactory(factoryLocator, LONG_PAINTEGER_MAP, PAINTEGER);
+        LongSMapFactory.registerFactory(factoryLocator, LONG_PAFLOAT_MAP, PAFLOAT);
+        LongSMapFactory.registerFactory(factoryLocator, LONG_PADOUBLE_MAP, PADOUBLE);
+        LongSMapFactory.registerFactory(factoryLocator, LONG_PABOOLEAN_MAP, PABOOLEAN);
 
-        StringBMapFactory.registerFactory(factoryLocator, STRING_STRING_BMAP_JID_TYPE, PASTRING);
-        StringBMapFactory.registerFactory(factoryLocator, STRING_BYTES_BMAP_JID_TYPE, BYTES);
-        StringBMapFactory.registerFactory(factoryLocator, STRING_ACTOR_BMAP_JID_TYPE, BOX);
-        StringBMapFactory.registerFactory(factoryLocator, STRING_LONG_BMAP_JID_TYPE, PALONG);
-        StringBMapFactory.registerFactory(factoryLocator, STRING_INTEGER_BMAP_JID_TYPE, PAINTEGER);
-        StringBMapFactory.registerFactory(factoryLocator, STRING_FLOAT_BMAP_JID_TYPE, PAFLOAT);
-        StringBMapFactory.registerFactory(factoryLocator, STRING_DOUBLE_BMAP_JID_TYPE, PADOUBLE);
-        StringBMapFactory.registerFactory(factoryLocator, STRING_BOOLEAN_BMAP_JID_TYPE, PABOOLEAN);
+        StringBMapFactory.registerFactory(factoryLocator, STRING_PASTRING_BMAP, PASTRING);
+        StringBMapFactory.registerFactory(factoryLocator, STRING_BYTES_BMAP, BYTES);
+        StringBMapFactory.registerFactory(factoryLocator, STRING_BOX_BMAP, BOX);
+        StringBMapFactory.registerFactory(factoryLocator, STRING_PALONG_BMAP, PALONG);
+        StringBMapFactory.registerFactory(factoryLocator, STRING_PAINTEGER_BMAP, PAINTEGER);
+        StringBMapFactory.registerFactory(factoryLocator, STRING_PAFLOAT_BMAP, PAFLOAT);
+        StringBMapFactory.registerFactory(factoryLocator, STRING_PADOUBLE_BMAP, PADOUBLE);
+        StringBMapFactory.registerFactory(factoryLocator, STRING_PABOOLEAN_BMAP, PABOOLEAN);
 
-        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_STRING_BMAP_JID_TYPE, PASTRING);
-        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_BYTES_BMAP_JID_TYPE, BYTES);
-        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_ACTOR_BMAP_JID_TYPE, BOX);
-        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_LONG_BMAP_JID_TYPE, PALONG);
-        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_INTEGER_BMAP_JID_TYPE, PAINTEGER);
-        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_FLOAT_BMAP_JID_TYPE, PAFLOAT);
-        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_DOUBLE_BMAP_JID_TYPE, PADOUBLE);
-        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_BOOLEAN_BMAP_JID_TYPE, PABOOLEAN);
+        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_PASTRING_BMAP, PASTRING);
+        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_PABYTES_BMAP, BYTES);
+        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_BOX_BMAP, BOX);
+        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_PALONG_BMAP, PALONG);
+        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_PAINTEGER_BMAP, PAINTEGER);
+        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_PAFLOAT_BMAP, PAFLOAT);
+        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_PADOUBLE_BMAP, PADOUBLE);
+        IntegerBMapFactory.registerFactory(factoryLocator, INTEGER_PABOOLEAN_BMAP, PABOOLEAN);
 
-        LongBMapFactory.registerFactory(factoryLocator, LONG_STRING_BMAP_JID_TYPE, PASTRING);
-        LongBMapFactory.registerFactory(factoryLocator, LONG_BYTES_BMAP_JID_TYPE, BYTES);
-        LongBMapFactory.registerFactory(factoryLocator, LONG_ACTOR_BMAP_JID_TYPE, BOX);
-        LongBMapFactory.registerFactory(factoryLocator, LONG_LONG_BMAP_JID_TYPE, PALONG);
-        LongBMapFactory.registerFactory(factoryLocator, LONG_INTEGER_BMAP_JID_TYPE, PAINTEGER);
-        LongBMapFactory.registerFactory(factoryLocator, LONG_FLOAT_BMAP_JID_TYPE, PAFLOAT);
-        LongBMapFactory.registerFactory(factoryLocator, LONG_DOUBLE_BMAP_JID_TYPE, PADOUBLE);
-        LongBMapFactory.registerFactory(factoryLocator, LONG_BOOLEAN_BMAP_JID_TYPE, PABOOLEAN);
+        LongBMapFactory.registerFactory(factoryLocator, LONG_PASTRING_BMAP, PASTRING);
+        LongBMapFactory.registerFactory(factoryLocator, LONG_BYTES_BMAP, BYTES);
+        LongBMapFactory.registerFactory(factoryLocator, LONG_BOX_BMAP, BOX);
+        LongBMapFactory.registerFactory(factoryLocator, LONG_PALONG_BMAP, PALONG);
+        LongBMapFactory.registerFactory(factoryLocator, LONG_PAINTEGER_BMAP, PAINTEGER);
+        LongBMapFactory.registerFactory(factoryLocator, LONG_PAFLOAT_BMAP, PAFLOAT);
+        LongBMapFactory.registerFactory(factoryLocator, LONG_PADOUBLE_BMAP, PADOUBLE);
+        LongBMapFactory.registerFactory(factoryLocator, LONG_PABOOLEAN_BMAP, PABOOLEAN);
         return factoryLocator;
     }
 }

@@ -14,7 +14,7 @@ public class LongStringBMapJidTest extends TestCase {
         Context jaBundleContext = Context.get(factoryLocator);
         try {
             BMap<Long, PAStringImpl> m = (BMap) factoryLocator.
-                    newJid(IncDesFactories.LONG_STRING_BMAP_JID_TYPE);
+                    newJid(IncDesFactories.LONG_PASTRING_BMAP);
             assertEquals(0, m.size());
             assertTrue(m.kMake(1L));
             assertFalse(m.kMake(1L));

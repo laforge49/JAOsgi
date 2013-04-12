@@ -25,7 +25,7 @@ public class MapUAppender extends JLPCActor {
         while (j < repeat) {
             ReadableBytes rb = new ReadableBytes(bytes, 0);
             IntegerSMap blj = (IntegerSMap) FactoryLocatorImpl.
-                    newJid(this, IncDesFactories.INTEGER_INTEGER_MAP_JID_TYPE, getMailbox(), getParent());
+                    newJid(this, IncDesFactories.INTEGER_PAINTEGER_MAP, getMailbox(), getParent());
             blj.load(rb);
             PAIntegerImpl sj = (PAIntegerImpl) blj.kGet(j);
             sj.setValue(42);
