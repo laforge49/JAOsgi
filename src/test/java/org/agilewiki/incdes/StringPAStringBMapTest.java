@@ -1,27 +1,21 @@
-package org.agilewiki.jid.collection.vlenc.map;
+package org.agilewiki.incdes;
 
 import junit.framework.TestCase;
-import org.agilewiki.incdes.Context;
-import org.agilewiki.incdes.IncDesFactories;
-import org.agilewiki.incdes.impl.collection.vlenc.map.BMap;
-import org.agilewiki.incdes.impl.collection.vlenc.map.MapEntryImpl;
-import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
-import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 
-public class StringStringBMapJidTest extends TestCase {
+public class StringPAStringBMapTest extends TestCase {
     public void test() throws Exception {
-        FactoryLocatorImpl factoryLocator = IncDesFactories.createFactoryLocator(1);
+        FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
         Context jaBundleContext = Context.get(factoryLocator);
         try {
-            BMap<String, PAStringImpl> m = (BMap) factoryLocator.
+            PAMap<String, PAString> m = (PAMap) factoryLocator.
                     newJid(IncDesFactories.STRING_PASTRING_BMAP);
             assertEquals(0, m.size());
             assertTrue(m.kMake("1"));
             assertFalse(m.kMake("1"));
             assertEquals(1, m.size());
-            MapEntryImpl<String, PAStringImpl> me = m.iGet(0);
+            MapEntry<String, PAString> me = m.iGet(0);
             assertEquals("1", me.getKey());
-            PAStringImpl v = m.kGet("1");
+            PAString v = m.kGet("1");
             assertEquals(v, me.getValue());
             assertEquals(me, m.getCeiling("0"));
             assertEquals(me, m.getCeiling("1"));
