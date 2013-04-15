@@ -6,7 +6,6 @@ import org.agilewiki.incdes.impl.collection.vlenc.map.BMap;
 public class LongPAStringBMapTest extends TestCase {
     public void test() throws Exception {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        Context jaBundleContext = Context.get(factoryLocator);
         try {
             PAMap<Long, PAString> m = (PAMap) factoryLocator.
                     newJid(IncDesFactories.LONG_PASTRING_BMAP);
@@ -39,7 +38,7 @@ public class LongPAStringBMapTest extends TestCase {
             assertTrue(m.kRemove(1L));
             assertEquals(0, m.size());
         } finally {
-            jaBundleContext.stop(0);
+            factoryLocator.close();
         }
     }
 }

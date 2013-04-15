@@ -5,7 +5,6 @@ import junit.framework.TestCase;
 public class LongTest extends TestCase {
     public void test() throws Exception {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        Context jaBundleContext = Context.get(factoryLocator);
         try {
             PALong long1 = IncDesFactories.createPALong(factoryLocator, null, null);
             PALong long2 = (PALong) long1.copyReq(null).call();
@@ -37,7 +36,7 @@ public class LongTest extends TestCase {
             assertEquals(-1000000000000L, v);
 
         } finally {
-            jaBundleContext.stop(0);
+            factoryLocator.close();
         }
     }
 }

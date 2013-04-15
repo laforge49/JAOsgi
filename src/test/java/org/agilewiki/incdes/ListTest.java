@@ -13,7 +13,6 @@ public class ListTest extends TestCase {
 
     void t(String lt, int elsl, int nslsl, int sls, int l2sl2, int l2sl3) throws Exception {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        Context jaBundleContext = Context.get(factoryLocator);
         try {
             PAList<PAString> l0 = (PAList) factoryLocator.newJid(lt);
             int l0sl = l0.getSerializedLength();
@@ -46,7 +45,7 @@ public class ListTest extends TestCase {
             l2sl = l2.getSerializedLength();
             assertEquals(elsl, l2sl);
         } finally {
-            jaBundleContext.stop(0);
+            factoryLocator.close();
         }
     }
 }

@@ -5,7 +5,6 @@ import junit.framework.TestCase;
 public class BooleanTest extends TestCase {
     public void test() throws Exception {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        Context jaBundleContext = Context.get(factoryLocator);
         try {
             PABoolean boolean1 = IncDesFactories.createPABoolean(factoryLocator, null, null);
             PABoolean boolean2 = (PABoolean) boolean1.copyReq(null).call();
@@ -32,7 +31,7 @@ public class BooleanTest extends TestCase {
             assertTrue(rpa.getBooleanReq().call());
 
         } finally {
-            jaBundleContext.stop(0);
+            factoryLocator.close();
         }
     }
 }

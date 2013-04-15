@@ -29,7 +29,6 @@ public class BMapTimingsTest extends TestCase {
         //time per update (microseconds) = 10905
 
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        Context jaBundleContext = Context.get(factoryLocator);
         try {
             PAMap<Integer, PAInteger> m1 = (PAMap) factoryLocator.
                     newJid(IncDesFactories.INTEGER_PAINTEGER_BMAP);
@@ -59,7 +58,7 @@ public class BMapTimingsTest extends TestCase {
             long tpu = rt * 1000L / r;
             System.out.println("time per update (microseconds) = " + tpu);
         } finally {
-            jaBundleContext.stop(0);
+            factoryLocator.close();
         }
     }
 }

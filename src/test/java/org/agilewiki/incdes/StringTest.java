@@ -5,7 +5,6 @@ import junit.framework.TestCase;
 public class StringTest extends TestCase {
     public void test() throws Exception {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        Context jaBundleContext = Context.get(factoryLocator);
         try {
             PAString paString1 = IncDesFactories.createPAString(factoryLocator, null, null);
             PAString paString2 = (PAString) paString1.copyReq(null).call();
@@ -39,7 +38,7 @@ public class StringTest extends TestCase {
             assertNull(rpa.getStringReq().call());
 
         } finally {
-            jaBundleContext.stop(0);
+            factoryLocator.close();
         }
     }
 }

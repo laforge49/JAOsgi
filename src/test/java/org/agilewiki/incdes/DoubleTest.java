@@ -5,7 +5,6 @@ import junit.framework.TestCase;
 public class DoubleTest extends TestCase {
     public void test() throws Exception {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        Context jaBundleContext = Context.get(factoryLocator);
         try {
             PADouble double1 = IncDesFactories.createPADouble(factoryLocator, null, null);
             PADouble double2 = (PADouble) double1.copy(null);
@@ -37,7 +36,7 @@ public class DoubleTest extends TestCase {
             assertEquals(-1.D, v);
 
         } finally {
-            jaBundleContext.stop(0);
+            factoryLocator.close();
         }
     }
 }

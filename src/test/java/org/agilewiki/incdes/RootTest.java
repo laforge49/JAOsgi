@@ -5,7 +5,6 @@ import junit.framework.TestCase;
 public class RootTest extends TestCase {
     public void test() throws Exception {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        Context jaBundleContext = Context.get(factoryLocator);
         try {
             Factory rootFactory = factoryLocator.getFactory(IncDesFactories.ROOT);
             Root root1 = (Root) rootFactory.newActor(factoryLocator.getMailbox(), factoryLocator);
@@ -75,7 +74,7 @@ public class RootTest extends TestCase {
             assertEquals(0, sl);
 
         } finally {
-            jaBundleContext.stop(0);
+            factoryLocator.close();
         }
     }
 }

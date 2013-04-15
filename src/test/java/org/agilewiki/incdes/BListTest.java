@@ -7,7 +7,6 @@ import java.util.List;
 public class BListTest extends TestCase {
     public void test1() throws Exception {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        Context jaBundleContext = Context.get(factoryLocator);
         try {
             PAList<PAString> stringList1 = (PAList) factoryLocator.newJid(IncDesFactories.PASTRING_BLIST);
             stringList1.iAdd(0);
@@ -26,16 +25,13 @@ public class BListTest extends TestCase {
             assertEquals("a", s0.getValue());
             assertEquals("b", s1.getValue());
             assertEquals("c", s2.getValue());
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
-            jaBundleContext.stop(0);
+            factoryLocator.close();
         }
     }
 
     public void test2() throws Exception {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        Context jaBundleContext = Context.get(factoryLocator);
         try {
             PAList<PAInteger> intList1 = (PAList) factoryLocator.newJid(IncDesFactories.PAINTEGER_BLIST);
             int i = 0;
@@ -51,16 +47,13 @@ public class BListTest extends TestCase {
                 assertEquals(i, (int) ij.getValue());
                 i += 1;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
-            jaBundleContext.stop(0);
+            factoryLocator.close();
         }
     }
 
     public void test3() throws Exception {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        Context jaBundleContext = Context.get(factoryLocator);
         try {
             PAList<PAInteger> intList1 = (PAList) factoryLocator.newJid(IncDesFactories.PAINTEGER_BLIST);
             int i = 0;
@@ -76,16 +69,13 @@ public class BListTest extends TestCase {
                 assertEquals(i, (int) ij.getValue());
                 i += 1;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
-            jaBundleContext.stop(0);
+            factoryLocator.close();
         }
     }
 
     public void test4() throws Exception {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        Context jaBundleContext = Context.get(factoryLocator);
         try {
             PAList<PAInteger> intList1 = (PAList) factoryLocator.newJid(IncDesFactories.PAINTEGER_BLIST);
             int i = 0;
@@ -101,16 +91,13 @@ public class BListTest extends TestCase {
                 assertEquals(i, (int) ij.getValue());
                 i += 1;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
-            jaBundleContext.stop(0);
+            factoryLocator.close();
         }
     }
 
     public void test5() throws Exception {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        Context jaBundleContext = Context.get(factoryLocator);
         try {
             PAList<PAInteger> intList1 = (PAList) factoryLocator.newJid(IncDesFactories.PAINTEGER_BLIST);
             int i = 0;
@@ -126,16 +113,13 @@ public class BListTest extends TestCase {
                 assertEquals(i, (int) ij.getValue());
                 i += 1;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
-            jaBundleContext.stop(0);
+            factoryLocator.close();
         }
     }
 
     public void test6() throws Exception {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        Context jaBundleContext = Context.get(factoryLocator);
         try {
             PAList<PAInteger> intList1 = (PAList) factoryLocator.newJid(IncDesFactories.PAINTEGER_BLIST);
             int i = 0;
@@ -151,10 +135,8 @@ public class BListTest extends TestCase {
                 i += 1;
             }
             assertEquals(0, intList1.size());
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
-            jaBundleContext.stop(0);
+            factoryLocator.close();
         }
     }
 }

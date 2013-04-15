@@ -5,7 +5,6 @@ import junit.framework.TestCase;
 public class IntegerPAIntegerBMapTest extends TestCase {
     public void test1() throws Exception {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        Context jaBundleContext = Context.get(factoryLocator);
         try {
             PAMap<Integer, PAInteger> m = (PAMap) factoryLocator.
                     newJid(IncDesFactories.INTEGER_PAINTEGER_BMAP);
@@ -26,13 +25,12 @@ public class IntegerPAIntegerBMapTest extends TestCase {
             assertEquals(1, (int) s1.getValue());
             assertEquals(2, (int) s2.getValue());
         } finally {
-            jaBundleContext.stop(0);
+            factoryLocator.close();
         }
     }
 
     public void test2() throws Exception {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        Context jaBundleContext = Context.get(factoryLocator);
         try {
             PAMap<Integer, PAInteger> m = (PAMap) factoryLocator.
                     newJid(IncDesFactories.INTEGER_PAINTEGER_BMAP);
@@ -51,13 +49,12 @@ public class IntegerPAIntegerBMapTest extends TestCase {
                 i += 1;
             }
         } finally {
-            jaBundleContext.stop(0);
+            factoryLocator.close();
         }
     }
 
     public void test3() throws Exception {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        Context jaBundleContext = Context.get(factoryLocator);
         try {
             PAMap<Integer, PAInteger> m = (PAMap) factoryLocator.
                     newJid(IncDesFactories.INTEGER_PAINTEGER_BMAP);
@@ -76,13 +73,12 @@ public class IntegerPAIntegerBMapTest extends TestCase {
             }
             assertEquals(41, m.size());
         } finally {
-            jaBundleContext.stop(0);
+            factoryLocator.close();
         }
     }
 
     public void test4() throws Exception {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        Context jaBundleContext = Context.get(factoryLocator);
         try {
             PAMap<Integer, PAInteger> m = (PAMap) factoryLocator.
                     newJid(IncDesFactories.INTEGER_PAINTEGER_BMAP);
@@ -101,13 +97,12 @@ public class IntegerPAIntegerBMapTest extends TestCase {
                 i += 1;
             }
         } finally {
-            jaBundleContext.stop(0);
+            factoryLocator.close();
         }
     }
 
     public void test5() throws Exception {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        Context jaBundleContext = Context.get(factoryLocator);
         try {
             PAMap<Integer, PAInteger> m = (PAMap) factoryLocator.
                     newJid(IncDesFactories.INTEGER_PAINTEGER_BMAP);
@@ -126,13 +121,12 @@ public class IntegerPAIntegerBMapTest extends TestCase {
             }
             assertEquals(10000, m.size());
         } finally {
-            jaBundleContext.stop(0);
+            factoryLocator.close();
         }
     }
 
     public void test6() throws Exception {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        Context jaBundleContext = Context.get(factoryLocator);
         try {
             PAMap<Integer, PAInteger> m = (PAMap) factoryLocator.
                     newJid(IncDesFactories.INTEGER_PAINTEGER_BMAP);
@@ -150,13 +144,12 @@ public class IntegerPAIntegerBMapTest extends TestCase {
             }
             assertEquals(0, m.size());
         } finally {
-            jaBundleContext.stop(0);
+            factoryLocator.close();
         }
     }
 
     public void test7() throws Exception {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        Context jaBundleContext = Context.get(factoryLocator);
         try {
             PAMap<Integer, PAInteger> m = (PAMap) factoryLocator.
                     newJid(IncDesFactories.INTEGER_PAINTEGER_BMAP);
@@ -174,13 +167,12 @@ public class IntegerPAIntegerBMapTest extends TestCase {
             }
             assertEquals(0, m.size());
         } finally {
-            jaBundleContext.stop(0);
+            factoryLocator.close();
         }
     }
 
     public void test8() throws Exception {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        Context jaBundleContext = Context.get(factoryLocator);
         try {
             PAMap<Integer, PAInteger> m = (PAMap) factoryLocator.
                     newJid(IncDesFactories.INTEGER_PAINTEGER_BMAP);
@@ -198,13 +190,12 @@ public class IntegerPAIntegerBMapTest extends TestCase {
             }
             assertEquals(0, m.size());
         } finally {
-            jaBundleContext.stop(0);
+            factoryLocator.close();
         }
     }
 
     public void test9() throws Exception {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        Context jaBundleContext = Context.get(factoryLocator);
         try {
             PAMap<Integer, PAInteger> m = (PAMap) factoryLocator.
                     newJid(IncDesFactories.INTEGER_PAINTEGER_BMAP);
@@ -222,7 +213,7 @@ public class IntegerPAIntegerBMapTest extends TestCase {
             }
             assertEquals(0, m.size());
         } finally {
-            jaBundleContext.stop(0);
+            factoryLocator.close();
         }
     }
 }

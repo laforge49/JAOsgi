@@ -5,7 +5,6 @@ import junit.framework.TestCase;
 public class FloatTest extends TestCase {
     public void test() throws Exception {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        Context jaBundleContext = Context.get(factoryLocator);
         try {
             PAFloat float1 = IncDesFactories.createPAFloat(factoryLocator, null, null);
             PAFloat float2 = (PAFloat) float1.copyReq(null).call();
@@ -37,7 +36,7 @@ public class FloatTest extends TestCase {
             assertEquals(-1.f, v);
 
         } finally {
-            jaBundleContext.stop(0);
+            factoryLocator.close();
         }
     }
 }

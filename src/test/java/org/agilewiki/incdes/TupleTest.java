@@ -5,7 +5,6 @@ import junit.framework.TestCase;
 public class TupleTest extends TestCase {
     public void test() throws Exception {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        Context jaBundleContext = Context.get(factoryLocator);
         try {
             IncDesFactories.registerTupleFactory(factoryLocator,
                     "sst", IncDesFactories.PASTRING, IncDesFactories.PASTRING);
@@ -32,7 +31,7 @@ public class TupleTest extends TestCase {
             PAString f1b = (PAString) t1.resolvePathnameReq("1").call();
             assertEquals("Peaches",f1b.getStringReq().call());
         } finally {
-            jaBundleContext.stop(0);
+            factoryLocator.close();
         }
     }
 }

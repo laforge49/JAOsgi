@@ -30,7 +30,6 @@ public class BListTimingsTest extends TestCase {
         //time per update (microseconds) = 2678
 
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        Context jaBundleContext = Context.get(factoryLocator);
         try {
             PAList<PAInteger> intList1 = (PAList) factoryLocator.newJid(IncDesFactories.PAINTEGER_BLIST);
             Mailbox mailbox = factoryLocator.getMailbox();
@@ -57,10 +56,8 @@ public class BListTimingsTest extends TestCase {
             System.out.println("total run time (milliseconds) = " + rt);
             long tpu = rt * 1000L / r;
             System.out.println("time per update (microseconds) = " + tpu);
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
-            jaBundleContext.stop(0);
+            factoryLocator.close();
         }
     }
 }

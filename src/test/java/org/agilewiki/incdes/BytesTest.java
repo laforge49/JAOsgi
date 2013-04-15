@@ -5,7 +5,6 @@ import junit.framework.TestCase;
 public class BytesTest extends TestCase {
     public void test() throws Exception {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        Context jaBundleContext = Context.get(factoryLocator);
         try {
             Bytes bytes1 = IncDesFactories.createBytes(factoryLocator, null, null);
             Bytes bytes2 = (Bytes) bytes1.copyReq(null).call();
@@ -35,7 +34,7 @@ public class BytesTest extends TestCase {
             assertNull(rpa.getBytesReq().call());
 
         } finally {
-            jaBundleContext.stop(0);
+            factoryLocator.close();
         }
     }
 }

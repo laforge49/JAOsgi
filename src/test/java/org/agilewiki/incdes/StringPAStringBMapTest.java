@@ -5,7 +5,6 @@ import junit.framework.TestCase;
 public class StringPAStringBMapTest extends TestCase {
     public void test() throws Exception {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        Context jaBundleContext = Context.get(factoryLocator);
         try {
             PAMap<String, PAString> m = (PAMap) factoryLocator.
                     newJid(IncDesFactories.STRING_PASTRING_BMAP);
@@ -38,7 +37,7 @@ public class StringPAStringBMapTest extends TestCase {
             assertTrue(m.kRemove("1"));
             assertEquals(0, m.size());
         } finally {
-            jaBundleContext.stop(0);
+            factoryLocator.close();
         }
     }
 }

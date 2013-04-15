@@ -5,7 +5,6 @@ import junit.framework.TestCase;
 public class IntegerTest extends TestCase {
     public void test() throws Exception {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        Context jaBundleContext = Context.get(factoryLocator);
         try {
             PAInteger int1 = IncDesFactories.createPAInteger(factoryLocator, null, null);
             PAInteger int2 = (PAInteger) int1.copyReq(null).call();
@@ -37,7 +36,7 @@ public class IntegerTest extends TestCase {
             assertEquals(-1, v);
 
         } finally {
-            jaBundleContext.stop(0);
+            factoryLocator.close();
         }
     }
 }

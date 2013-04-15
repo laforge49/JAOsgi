@@ -23,6 +23,7 @@
  */
 package org.agilewiki.incdes.impl.factory;
 
+import org.agilewiki.incdes.Context;
 import org.agilewiki.incdes.FactoryLocator;
 import org.agilewiki.incdes.IncDesFactories;
 import org.agilewiki.incdes.Util;
@@ -284,5 +285,10 @@ public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator, 
     @Override
     public boolean sameMailbox(final Actor other) {
         return mailbox == other.getMailbox();
+    }
+
+    @Override
+    public void close() throws Exception {
+        Context.get(this).stop(0);
     }
 }

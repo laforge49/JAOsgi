@@ -41,7 +41,7 @@ public interface FactoryLocator extends Ancestor, Actor {
      * @param jidType The jid type.
      * @param clazz   The class of the actor.
      */
-    public void defineJidType(String jidType, Class clazz)
+    void defineJidType(String jidType, Class clazz)
             throws Exception;
 
     /**
@@ -49,7 +49,7 @@ public interface FactoryLocator extends Ancestor, Actor {
      *
      * @param factoryImpl An actor factory.
      */
-    public void registerJidFactory(FactoryImpl factoryImpl)
+    void registerJidFactory(FactoryImpl factoryImpl)
             throws Exception;
 
     /**
@@ -58,10 +58,10 @@ public interface FactoryLocator extends Ancestor, Actor {
      * @param jidType The jid type.
      * @return The registered actor factory.
      */
-    public Factory getFactory(String jidType)
+    Factory getFactory(String jidType)
             throws Exception;
 
-    public FactoryImpl _getActorFactory(String actorType)
+    FactoryImpl _getActorFactory(String actorType)
             throws Exception;
 
     /**
@@ -70,7 +70,7 @@ public interface FactoryLocator extends Ancestor, Actor {
      * @param jidType The jid type.
      * @return The new jid.
      */
-    public IncDesImpl newJid(String jidType)
+    IncDesImpl newJid(String jidType)
             throws Exception;
 
     /**
@@ -80,7 +80,7 @@ public interface FactoryLocator extends Ancestor, Actor {
      * @param mailbox A mailbox which may be shared with other actors, or null.
      * @return The new actor.
      */
-    public IncDesImpl newJid(String jidType, Mailbox mailbox)
+    IncDesImpl newJid(String jidType, Mailbox mailbox)
             throws Exception;
 
     /**
@@ -91,14 +91,16 @@ public interface FactoryLocator extends Ancestor, Actor {
      * @param parent  The parent actor to which unrecognized requests are forwarded, or null.
      * @return The new actor.
      */
-    public IncDesImpl newJid(String jidType, Mailbox mailbox, Ancestor parent)
+    IncDesImpl newJid(String jidType, Mailbox mailbox, Ancestor parent)
             throws Exception;
 
-    public StringSMap<PAStringImpl> getManifestCopy(Mailbox mailbox) throws Exception;
+    StringSMap<PAStringImpl> getManifestCopy(Mailbox mailbox) throws Exception;
 
-    public boolean validateManifest(StringSMap<PAStringImpl> m) throws Exception;
+    boolean validateManifest(StringSMap<PAStringImpl> m) throws Exception;
 
-    public void loadBundles(StringSMap<PAStringImpl> m) throws Exception;
+    void loadBundles(StringSMap<PAStringImpl> m) throws Exception;
 
-    public void unknownManifestEntries(StringSMap<PAStringImpl> m) throws Exception;
+    void unknownManifestEntries(StringSMap<PAStringImpl> m) throws Exception;
+
+    void close() throws Exception;
 }

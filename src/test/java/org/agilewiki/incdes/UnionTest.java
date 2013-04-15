@@ -5,7 +5,6 @@ import junit.framework.TestCase;
 public class UnionTest extends TestCase {
     public void test() throws Exception {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        Context jaBundleContext = Context.get(factoryLocator);
         try {
             IncDesFactories.registerUnionFactory(factoryLocator, "siUnion", IncDesFactories.PASTRING, "siUnion");
             Union siu1 = (Union) factoryLocator.newJid("siUnion");
@@ -19,7 +18,7 @@ public class UnionTest extends TestCase {
             PAString sj3 = (PAString) siu3.getValue();
             assertNotNull(sj3);
         } finally {
-            jaBundleContext.stop(0);
+            factoryLocator.close();
         }
     }
 }
