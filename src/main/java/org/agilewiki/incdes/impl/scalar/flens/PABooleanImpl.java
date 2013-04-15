@@ -24,7 +24,7 @@
 package org.agilewiki.incdes.impl.scalar.flens;
 
 import org.agilewiki.incdes.*;
-import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;
@@ -39,7 +39,7 @@ public class PABooleanImpl
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerJidFactory(new ActorFactory(IncDesFactories.PABOOLEAN) {
+        factoryLocator.registerJidFactory(new FactoryImpl(IncDesFactories.PABOOLEAN) {
             @Override
             final protected PABooleanImpl instantiateActor()
                     throws Exception {
@@ -111,7 +111,7 @@ public class PABooleanImpl
     }
 
     @Override
-    public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
+    public void initialize(final Mailbox mailbox, Ancestor parent, FactoryImpl factory) throws Exception {
         super.initialize(mailbox, parent, factory);
         getBooleanReq = new RequestBase<Boolean>(getMailbox()) {
             @Override

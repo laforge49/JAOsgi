@@ -25,7 +25,7 @@ package org.agilewiki.incdes.impl.collection.vlenc;
 
 import org.agilewiki.incdes.FactoryLocator;
 import org.agilewiki.incdes.Util;
-import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryImpl;
 import org.agilewiki.incdes.impl.scalar.vlens.UnionImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
@@ -33,7 +33,7 @@ import org.agilewiki.pautil.Ancestor;
 /**
  * Creates ListJids.
  */
-public class BListFactory extends ActorFactory {
+public class BListFactory extends FactoryImpl {
     private final static int NODE_CAPACITY = 28;
 
     public static void registerFactory(FactoryLocator factoryLocator,

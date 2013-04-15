@@ -64,7 +64,7 @@ public abstract class LocateLocalActorFactories extends AncestorBase implements 
         return factoryLocator;
     }
 
-    public ActorFactory _getActorFactory(String actorType)
+    public FactoryImpl _getActorFactory(String actorType)
             throws Exception {
         return factoryLocator._getActorFactory(actorType);
     }

@@ -25,7 +25,7 @@ package org.agilewiki.incdes.impl.collection;
 
 import org.agilewiki.incdes.*;
 import org.agilewiki.incdes.impl.IncDesImpl;
-import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;
@@ -146,7 +146,7 @@ abstract public class CollectionImpl<ENTRY_TYPE extends IncDes>
         return jid.resolvePathname(pathname.substring(s + 1));
     }
 
-    public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
+    public void initialize(final Mailbox mailbox, Ancestor parent, FactoryImpl factory) throws Exception {
         super.initialize(mailbox, parent, factory);
         sizeReq = new RequestBase<Integer>(getMailbox()) {
             @Override

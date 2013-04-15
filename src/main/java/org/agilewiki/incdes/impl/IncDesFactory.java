@@ -25,12 +25,12 @@ package org.agilewiki.incdes.impl;
 
 import org.agilewiki.incdes.FactoryLocator;
 import org.agilewiki.incdes.IncDesFactories;
-import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryImpl;
 
 /**
  * Creates a IncDesImpl.
  */
-public class IncDesFactory extends ActorFactory {
+public class IncDesFactory extends FactoryImpl {
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {

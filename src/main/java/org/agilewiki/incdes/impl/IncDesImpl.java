@@ -24,7 +24,7 @@
 package org.agilewiki.incdes.impl;
 
 import org.agilewiki.incdes.*;
-import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryImpl;
 import org.agilewiki.pactor.*;
 import org.agilewiki.pautil.Ancestor;
 import org.agilewiki.pautil.AncestorBase;
@@ -43,7 +43,7 @@ public class IncDesImpl extends AncestorBase implements IncDes {
     /**
      * The factory, or null.
      */
-    private ActorFactory factory;
+    private FactoryImpl factory;
 
     /**
      * The JID actor which holds this actor.
@@ -369,7 +369,7 @@ public class IncDesImpl extends AncestorBase implements IncDes {
      * @return The factory, or null.
      */
     @Override
-    final public ActorFactory getFactory() {
+    final public FactoryImpl getFactory() {
         return factory;
     }
 
@@ -400,7 +400,7 @@ public class IncDesImpl extends AncestorBase implements IncDes {
      * @param _parent  The parent actor.
      * @param _factory The factory.
      */
-    public void initialize(final Mailbox _mailbox, final Ancestor _parent, final ActorFactory _factory)
+    public void initialize(final Mailbox _mailbox, final Ancestor _parent, final FactoryImpl _factory)
             throws Exception {
         super.initialize(_parent);
         mailbox = _mailbox;

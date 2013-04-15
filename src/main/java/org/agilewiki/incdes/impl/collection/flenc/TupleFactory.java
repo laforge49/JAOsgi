@@ -26,14 +26,14 @@ package org.agilewiki.incdes.impl.collection.flenc;
 import org.agilewiki.incdes.Factory;
 import org.agilewiki.incdes.FactoryLocator;
 import org.agilewiki.incdes.Util;
-import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
 /**
  * Creates a TupleImpl.
  */
-public class TupleFactory extends ActorFactory {
+public class TupleFactory extends FactoryImpl {
 
     public static void registerFactory(FactoryLocator factoryLocator,
                                        String subActorType, String... actorTypes) throws Exception {
@@ -75,7 +75,7 @@ public class TupleFactory extends ActorFactory {
             throws Exception {
         TupleImpl tj = (TupleImpl) super.newActor(mailbox, parent);
         FactoryLocator fl = Util.getFactoryLocator(parent);
-        Factory[] afs = new ActorFactory[jidTypes.length];
+        Factory[] afs = new FactoryImpl[jidTypes.length];
         int i = 0;
         while (i < jidTypes.length) {
             afs[i] = fl.getFactory(jidTypes[i]);

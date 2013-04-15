@@ -25,7 +25,7 @@ package org.agilewiki.incdes.impl.collection.vlenc.map;
 
 import org.agilewiki.incdes.*;
 import org.agilewiki.incdes.impl.IncDesImpl;
-import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryImpl;
 import org.agilewiki.incdes.impl.scalar.flens.PAIntegerImpl;
 import org.agilewiki.incdes.impl.scalar.vlens.UnionImpl;
 import org.agilewiki.pactor.Mailbox;
@@ -90,7 +90,7 @@ abstract public class BMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
         if (baseType.startsWith("IN."))
             baseType = baseType.substring(3);
         factoryLocator = Util.getFactoryLocator(this);
-        tupleFactories = new ActorFactory[2];
+        tupleFactories = new FactoryImpl[2];
         tupleFactories[TUPLE_SIZE] = factoryLocator.getFactory(IncDesFactories.PAINTEGER);
         tupleFactories[TUPLE_UNION] = factoryLocator.getFactory("U." + baseType);
     }
@@ -99,9 +99,9 @@ abstract public class BMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
         getUnionJid().setValue(0);
     }
 
-    protected void setNodeFactory(ActorFactory actorFactory)
+    protected void setNodeFactory(FactoryImpl factoryImpl)
             throws Exception {
-        getUnionJid().setValue(actorFactory);
+        getUnionJid().setValue(factoryImpl);
     }
 
     protected PAIntegerImpl getSizeJid()
@@ -338,7 +338,7 @@ abstract public class BMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
     protected void rootSplit()
             throws Exception {
         SMap<KEY_TYPE, IncDesImpl> oldRootNode = getNode();
-        ActorFactory oldFactory = oldRootNode.getFactory();
+        FactoryImpl oldFactory = oldRootNode.getFactory();
         getUnionJid().setValue(1);
         SMap<KEY_TYPE, IncDesImpl> newRootNode = getNode();
         newRootNode.iAdd(0);
@@ -762,7 +762,7 @@ abstract public class BMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
         entry.setValueBytes(bytes);
     }
 
-    public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
+    public void initialize(final Mailbox mailbox, Ancestor parent, FactoryImpl factory) throws Exception {
         super.initialize(mailbox, parent, factory);
         sizeReq = new RequestBase<Integer>(getMailbox()) {
             @Override

@@ -27,7 +27,7 @@ import org.agilewiki.incdes.AppBase;
 import org.agilewiki.incdes.Factory;
 import org.agilewiki.incdes.MapEntry;
 import org.agilewiki.incdes.impl.IncDesImpl;
-import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryImpl;
 import org.agilewiki.incdes.impl.scalar.Scalar;
 
 /**
@@ -41,7 +41,7 @@ public class MapEntryImpl<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE>
     private final static int TUPLE_VALUE = 1;
 
     void setFactories(Factory keyFactory, Factory valueFactory) {
-        tupleFactories = new ActorFactory[2];
+        tupleFactories = new FactoryImpl[2];
         tupleFactories[TUPLE_KEY] = keyFactory;
         tupleFactories[TUPLE_VALUE] = valueFactory;
     }

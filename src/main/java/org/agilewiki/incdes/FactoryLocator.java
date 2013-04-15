@@ -25,7 +25,7 @@ package org.agilewiki.incdes;
 
 import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.incdes.impl.collection.vlenc.map.StringSMap;
-import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryImpl;
 import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
 import org.agilewiki.pactor.Actor;
 import org.agilewiki.pactor.Mailbox;
@@ -47,9 +47,9 @@ public interface FactoryLocator extends Ancestor, Actor {
     /**
      * Register an actor factory.
      *
-     * @param actorFactory An actor factory.
+     * @param factoryImpl An actor factory.
      */
-    public void registerJidFactory(ActorFactory actorFactory)
+    public void registerJidFactory(FactoryImpl factoryImpl)
             throws Exception;
 
     /**
@@ -61,7 +61,7 @@ public interface FactoryLocator extends Ancestor, Actor {
     public Factory getFactory(String jidType)
             throws Exception;
 
-    public ActorFactory _getActorFactory(String actorType)
+    public FactoryImpl _getActorFactory(String actorType)
             throws Exception;
 
     /**

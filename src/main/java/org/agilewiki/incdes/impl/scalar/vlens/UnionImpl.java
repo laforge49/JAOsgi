@@ -25,7 +25,7 @@ package org.agilewiki.incdes.impl.scalar.vlens;
 
 import org.agilewiki.incdes.*;
 import org.agilewiki.incdes.impl.IncDesImpl;
-import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryImpl;
 import org.agilewiki.incdes.impl.scalar.Scalar;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
@@ -39,7 +39,7 @@ public class UnionImpl extends Scalar<String, IncDesImpl> implements Union {
                                        final String _subActorType,
                                        final String... _actorTypes)
             throws Exception {
-        _factoryLocator.registerJidFactory(new ActorFactory(_subActorType) {
+        _factoryLocator.registerJidFactory(new FactoryImpl(_subActorType) {
 
             @Override
             protected UnionImpl instantiateActor()
@@ -52,7 +52,7 @@ public class UnionImpl extends Scalar<String, IncDesImpl> implements Union {
                     throws Exception {
                 UnionImpl uj = (UnionImpl) super.newActor(mailbox, parent);
                 FactoryLocator fl = Util.getFactoryLocator(parent);
-                Factory[] afs = new ActorFactory[_actorTypes.length];
+                Factory[] afs = new FactoryImpl[_actorTypes.length];
                 int i = 0;
                 while (i < _actorTypes.length) {
                     afs[i] = fl.getFactory(_actorTypes[i]);
@@ -96,11 +96,11 @@ public class UnionImpl extends Scalar<String, IncDesImpl> implements Union {
 
     protected int getFactoryIndex(Factory actorFactory)
             throws Exception {
-        String factoryKey = ((ActorFactory) actorFactory).getFactoryKey();
+        String factoryKey = ((FactoryImpl) actorFactory).getFactoryKey();
         Factory[] uf = getUnionFactories();
         int i = 0;
         while (i < uf.length) {
-            if (((ActorFactory) uf[i]).getFactoryKey().equals(factoryKey))
+            if (((FactoryImpl) uf[i]).getFactoryKey().equals(factoryKey))
                 return i;
             i += 1;
         }
@@ -164,9 +164,9 @@ public class UnionImpl extends Scalar<String, IncDesImpl> implements Union {
         };
     }
 
-    public void setValue(final ActorFactory actorFactory)
+    public void setValue(final FactoryImpl factoryImpl)
             throws Exception {
-        setValue(getFactoryIndex(actorFactory));
+        setValue(getFactoryIndex(factoryImpl));
     }
 
     public void setValue(Integer ndx)
@@ -344,7 +344,7 @@ public class UnionImpl extends Scalar<String, IncDesImpl> implements Union {
         throw new IllegalArgumentException("pathname " + pathname);
     }
 
-    public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
+    public void initialize(final Mailbox mailbox, Ancestor parent, FactoryImpl factory) throws Exception {
         super.initialize(mailbox, parent, factory);
         clearReq = new RequestBase<Void>(getMailbox()) {
             public void processRequest(ResponseProcessor rp) throws Exception {

@@ -25,7 +25,7 @@ package org.agilewiki.incdes.impl.scalar.vlens;
 
 import org.agilewiki.incdes.*;
 import org.agilewiki.incdes.impl.ComparableKey;
-import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;
@@ -41,7 +41,7 @@ public class PAStringImpl
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerJidFactory(new ActorFactory(IncDesFactories.PASTRING) {
+        factoryLocator.registerJidFactory(new FactoryImpl(IncDesFactories.PASTRING) {
             @Override
             final protected PAStringImpl instantiateActor()
                     throws Exception {
@@ -158,7 +158,7 @@ public class PAStringImpl
         return getValue().compareTo(o);
     }
 
-    public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory)
+    public void initialize(final Mailbox mailbox, Ancestor parent, FactoryImpl factory)
             throws Exception {
         super.initialize(mailbox, parent, factory);
         getStringReq = new RequestBase<String>(getMailbox()) {

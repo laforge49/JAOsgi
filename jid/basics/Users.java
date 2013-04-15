@@ -5,9 +5,9 @@ import org.agilewiki.incdes.FactoryLocator;
 import org.agilewiki.incdes.IncDes;
 import org.agilewiki.incdes.impl.collection.vlenc.map.MapEntryImpl;
 import org.agilewiki.incdes.impl.collection.vlenc.map.StringSMap;
+import org.agilewiki.incdes.impl.factory.FactoryImpl;
 import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
 import org.agilewiki.incdes.impl.scalar.vlens.UnionImpl;
-import org.agilewiki.incdes.impl.factory.ActorFactory;
 import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
@@ -22,7 +22,7 @@ public class Users extends StringSMap implements Main {
                 "E.users", IncDesFactories.PASTRING, IncDesFactories.PASTRING);
     }
 
-    private static class UsersFactory extends ActorFactory {
+    private static class UsersFactory extends FactoryImpl {
         public UsersFactory(String actorType) {
             super(actorType);
         }

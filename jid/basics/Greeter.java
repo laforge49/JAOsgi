@@ -4,7 +4,7 @@ import org.agilewiki.incdes.FactoryLocator;
 import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
 import org.agilewiki.jactor.ResponseProcessor;
 import org.agilewiki.jactor.lpc.JLPCActor;
-import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryImpl;
 
 public class Greeter extends PAStringImpl implements Main {
 
@@ -12,7 +12,7 @@ public class Greeter extends PAStringImpl implements Main {
         factoryLocator.registerJidFactory(new GreeterFactory(actorType, greeting));
     }
 
-    private static class GreeterFactory extends ActorFactory {
+    private static class GreeterFactory extends FactoryImpl {
         private String greeting;
 
         public GreeterFactory(String actorType, String greeting) {

@@ -1,13 +1,13 @@
 package org.agilewiki.incdes;
 
-import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
 /**
  * Creates AppBase objects.
  */
-abstract public class AppFactory extends ActorFactory {
+abstract public class AppFactory extends FactoryImpl {
     private Factory[] tupleFactories;
     private String[] jidTypes;
 
@@ -38,7 +38,7 @@ abstract public class AppFactory extends ActorFactory {
             throws Exception {
         AppBase tj = (AppBase) super.newActor(mailbox, parent);
         FactoryLocator fl = Util.getFactoryLocator(parent);
-        Factory[] afs = new ActorFactory[jidTypes.length];
+        Factory[] afs = new FactoryImpl[jidTypes.length];
         int i = 0;
         while (i < jidTypes.length) {
             afs[i] = fl.getFactory(jidTypes[i]);

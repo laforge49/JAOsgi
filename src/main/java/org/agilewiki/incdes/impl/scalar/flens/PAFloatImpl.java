@@ -24,7 +24,7 @@
 package org.agilewiki.incdes.impl.scalar.flens;
 
 import org.agilewiki.incdes.*;
-import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;
@@ -39,7 +39,7 @@ public class PAFloatImpl
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerJidFactory(new ActorFactory(IncDesFactories.PAFLOAT) {
+        factoryLocator.registerJidFactory(new FactoryImpl(IncDesFactories.PAFLOAT) {
             @Override
             final protected PAFloatImpl instantiateActor()
                     throws Exception {
@@ -111,7 +111,7 @@ public class PAFloatImpl
     }
 
     @Override
-    public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
+    public void initialize(final Mailbox mailbox, Ancestor parent, FactoryImpl factory) throws Exception {
         super.initialize(mailbox, parent, factory);
         getFloatReq = new RequestBase<Float>(getMailbox()) {
             @Override

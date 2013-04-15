@@ -24,7 +24,7 @@
 package org.agilewiki.incdes.impl.scalar.vlens;
 
 import org.agilewiki.incdes.*;
-import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;
@@ -44,7 +44,7 @@ public class BytesImpl
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerJidFactory(new ActorFactory(IncDesFactories.BYTES) {
+        factoryLocator.registerJidFactory(new FactoryImpl(IncDesFactories.BYTES) {
             @Override
             final protected BytesImpl instantiateActor()
                     throws Exception {
@@ -168,7 +168,7 @@ public class BytesImpl
     }
 
     @Override
-    public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
+    public void initialize(final Mailbox mailbox, Ancestor parent, FactoryImpl factory) throws Exception {
         super.initialize(mailbox, parent, factory);
         getBytesReq = new RequestBase<byte[]>(getMailbox()) {
             @Override

@@ -26,7 +26,7 @@ package org.agilewiki.incdes.impl.scalar.vlens;
 import org.agilewiki.incdes.*;
 import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.incdes.impl.collection.vlenc.map.StringSMap;
-import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
@@ -40,7 +40,7 @@ public class RootImpl extends BoxImpl implements Root {
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerJidFactory(new ActorFactory(IncDesFactories.ROOT) {
+        factoryLocator.registerJidFactory(new FactoryImpl(IncDesFactories.ROOT) {
             @Override
             final protected RootImpl instantiateActor()
                     throws Exception {
@@ -151,7 +151,7 @@ public class RootImpl extends BoxImpl implements Root {
     }
 
     @Override
-    public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
+    public void initialize(final Mailbox mailbox, Ancestor parent, FactoryImpl factory) throws Exception {
         super.initialize(mailbox, parent, factory);
         manifest = Util.getManifestCopy(this, getMailbox());
     }

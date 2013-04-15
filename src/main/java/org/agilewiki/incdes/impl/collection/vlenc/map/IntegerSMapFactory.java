@@ -26,14 +26,14 @@ package org.agilewiki.incdes.impl.collection.vlenc.map;
 import org.agilewiki.incdes.FactoryLocator;
 import org.agilewiki.incdes.IncDesFactories;
 import org.agilewiki.incdes.Util;
-import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
 /**
  * Creates IntegerSMap's.
  */
-public class IntegerSMapFactory extends ActorFactory {
+public class IntegerSMapFactory extends FactoryImpl {
 
     public static void registerFactory(FactoryLocator factoryLocator,
                                        String actorType,
@@ -57,7 +57,7 @@ public class IntegerSMapFactory extends ActorFactory {
     private int initialCapacity = 10;
 
     /**
-     * Create an ActorFactory.
+     * Create an FactoryImpl.
      *
      * @param jidType   The jid type.
      * @param valueType The value type.

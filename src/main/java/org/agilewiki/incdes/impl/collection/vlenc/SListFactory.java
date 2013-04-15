@@ -25,14 +25,14 @@ package org.agilewiki.incdes.impl.collection.vlenc;
 
 import org.agilewiki.incdes.FactoryLocator;
 import org.agilewiki.incdes.Util;
-import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
 /**
  * Creates ListJids.
  */
-public class SListFactory extends ActorFactory {
+public class SListFactory extends FactoryImpl {
 
     public static void registerFactory(FactoryLocator factoryLocator,
                                        String actorType,
@@ -54,7 +54,7 @@ public class SListFactory extends ActorFactory {
     private int initialCapacity;
 
     /**
-     * Create an ActorFactory.
+     * Create an FactoryImpl.
      *
      * @param jidType         The jid type.
      * @param entryType       The entry type.

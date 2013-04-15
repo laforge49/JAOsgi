@@ -25,7 +25,7 @@ package org.agilewiki.incdes.impl.collection.vlenc.map;
 
 import org.agilewiki.incdes.FactoryLocator;
 import org.agilewiki.incdes.Util;
-import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryImpl;
 import org.agilewiki.incdes.impl.scalar.vlens.UnionImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
@@ -33,7 +33,7 @@ import org.agilewiki.pautil.Ancestor;
 /**
  * Creates StringBMap's.
  */
-public class StringBMapFactory extends ActorFactory {
+public class StringBMapFactory extends FactoryImpl {
     private final static int NODE_CAPACITY = 28;
 
     public static void registerFactory(FactoryLocator factoryLocator,
@@ -59,7 +59,7 @@ public class StringBMapFactory extends ActorFactory {
     private boolean auto = true;
 
     /**
-     * Create an ActorFactory.
+     * Create an FactoryImpl.
      *
      * @param jidType   The jid type.
      * @param valueType The value type.

@@ -60,7 +60,7 @@ public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator, 
     /**
      * A table which maps type names to actor factories.
      */
-    private ConcurrentSkipListMap<String, ActorFactory> types = new ConcurrentSkipListMap<String, ActorFactory>();
+    private ConcurrentSkipListMap<String, FactoryImpl> types = new ConcurrentSkipListMap<String, FactoryImpl>();
 
     private boolean isLocked() {
         return manifest != null;
@@ -190,7 +190,7 @@ public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator, 
             if (mailbox == null) mailbox = getMailbox();
             if (parent == null) parent = this;
         }
-        ActorFactory af = getFactory(jidType);
+        FactoryImpl af = getFactory(jidType);
         return af.newActor(mailbox, parent);
     }
 
@@ -201,9 +201,9 @@ public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator, 
      * @return The registered actor factory.
      */
     @Override
-    public ActorFactory getFactory(String jidType)
+    public FactoryImpl getFactory(String jidType)
             throws Exception {
-        ActorFactory af = _getActorFactory(jidType);
+        FactoryImpl af = _getActorFactory(jidType);
         if (af == null) {
             throw new IllegalArgumentException("Unknown jid type: " + jidType);
         }
@@ -211,7 +211,7 @@ public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator, 
     }
 
     @Override
-    public ActorFactory _getActorFactory(String actorType)
+    public FactoryImpl _getActorFactory(String actorType)
             throws Exception {
         String factoryKey = null;
         if (actorType.contains("|")) {
@@ -219,7 +219,7 @@ public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator, 
         } else {
             factoryKey = actorType + "|" + bundleName + "|" + version;
         }
-        ActorFactory af = types.get(factoryKey);
+        FactoryImpl af = types.get(factoryKey);
         if (af == null) {
             Iterator<LocateLocalActorFactories> it = factoryImports.iterator();
             while (it.hasNext()) {
@@ -249,18 +249,18 @@ public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator, 
     /**
      * Register an actor factory.
      *
-     * @param actorFactory An actor factory.
+     * @param factoryImpl An actor factory.
      */
     @Override
-    public void registerJidFactory(ActorFactory actorFactory)
+    public void registerJidFactory(FactoryImpl factoryImpl)
             throws Exception {
-        String actorType = actorFactory.name;
+        String actorType = factoryImpl.name;
         String factoryKey = actorType + "|" + bundleName + "|" + version;
-        ActorFactory old = types.get(factoryKey);
-        actorFactory.configure(this);
+        FactoryImpl old = types.get(factoryKey);
+        factoryImpl.configure(this);
         if (old == null) {
-            types.put(factoryKey, actorFactory);
-        } else if (!old.equals(actorFactory))
+            types.put(factoryKey, factoryImpl);
+        } else if (!old.equals(factoryImpl))
             throw new IllegalArgumentException("IncDesImpl type is already defined: " + actorType);
     }
 

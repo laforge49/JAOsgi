@@ -25,7 +25,7 @@ package org.agilewiki.incdes.impl.scalar.vlens;
 
 import org.agilewiki.incdes.*;
 import org.agilewiki.incdes.impl.IncDesImpl;
-import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pactor.RequestBase;
@@ -40,7 +40,7 @@ public class BoxImpl
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
-        factoryLocator.registerJidFactory(new ActorFactory(IncDesFactories.BOX) {
+        factoryLocator.registerJidFactory(new FactoryImpl(IncDesFactories.BOX) {
             @Override
             final protected BoxImpl instantiateActor()
                     throws Exception {
@@ -211,7 +211,7 @@ public class BoxImpl
      * @param bytes      The serialized data.
      * @throws Exception Any uncaught exception raised.
      */
-    public void setBytes(ActorFactory jidFactory, byte[] bytes)
+    public void setBytes(FactoryImpl jidFactory, byte[] bytes)
             throws Exception {
         value = createSubordinate(jidFactory, bytes);
         int l = Util.stringLength(jidFactory.getFactoryKey()) + value.getSerializedLength();
@@ -284,7 +284,7 @@ public class BoxImpl
         throw new IllegalArgumentException("pathname " + pathname);
     }
 
-    public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
+    public void initialize(final Mailbox mailbox, Ancestor parent, FactoryImpl factory) throws Exception {
         super.initialize(mailbox, parent, factory);
         clearReq = new RequestBase<Void>(getMailbox()) {
             public void processRequest(ResponseProcessor rp) throws Exception {

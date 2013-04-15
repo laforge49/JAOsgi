@@ -26,7 +26,7 @@ package org.agilewiki.incdes.impl.scalar.vlens;
 import org.agilewiki.incdes.AppendableBytes;
 import org.agilewiki.incdes.ReadableBytes;
 import org.agilewiki.incdes.Util;
-import org.agilewiki.incdes.impl.factory.ActorFactory;
+import org.agilewiki.incdes.impl.factory.FactoryImpl;
 import org.agilewiki.incdes.impl.scalar.Scalar;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
@@ -153,7 +153,7 @@ abstract public class VLenScalar<SET_TYPE, RESPONSE_TYPE>
             readableBytes.skip(len);
     }
 
-    public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
+    public void initialize(final Mailbox mailbox, Ancestor parent, FactoryImpl factory) throws Exception {
         super.initialize(mailbox, parent, factory);
         clearReq = new RequestBase<Void>(getMailbox()) {
             public void processRequest(ResponseProcessor rp) throws Exception {

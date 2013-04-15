@@ -31,7 +31,7 @@ import org.agilewiki.pautil.Ancestor;
 /**
  * Creates a JLPCActor.
  */
-abstract public class ActorFactory implements Factory {
+abstract public class FactoryImpl implements Factory {
     private String factoryKey;
 
     /**
@@ -64,11 +64,11 @@ abstract public class ActorFactory implements Factory {
     }
 
     /**
-     * Create an ActorFactory.
+     * Create an FactoryImpl.
      *
      * @param _name The jid type.
      */
-    public ActorFactory(final String _name) {
+    public FactoryImpl(final String _name) {
         name = _name;
     }
 
@@ -99,9 +99,9 @@ abstract public class ActorFactory implements Factory {
     public boolean equals(Object o) {
         if (this == o)
             return true;
-        if (!(o instanceof ActorFactory))
+        if (!(o instanceof FactoryImpl))
             return false;
-        ActorFactory af = (ActorFactory) o;
+        FactoryImpl af = (FactoryImpl) o;
         return getFactoryKey().equals(af.getFactoryKey());
     }
 }
