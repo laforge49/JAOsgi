@@ -34,7 +34,7 @@ import org.osgi.framework.Bundle;
 
 import java.util.Hashtable;
 
-public abstract class LocateLocalActorFactories extends AncestorBase implements Actor {
+public abstract class LocateLocalActorFactories extends AncestorBase {
 
     /**
      * The actor's mailbox.
@@ -75,27 +75,5 @@ public abstract class LocateLocalActorFactories extends AncestorBase implements 
 
     public void unknownManifestEntries(StringSMap<PAStringImpl> manifest) throws Exception {
         factoryLocator.unknownManifestEntries(manifest);
-    }
-
-    public void initialize(final Mailbox _mailbox, final Ancestor _parent)
-            throws Exception {
-        super.initialize(_parent);
-        mailbox = _mailbox;
-    }
-
-    public void initialize(final Mailbox _mailbox)
-            throws Exception {
-        super.initialize();
-        mailbox = _mailbox;
-    }
-
-    @Override
-    public Mailbox getMailbox() {
-        return mailbox;
-    }
-
-    @Override
-    public boolean sameMailbox(final Actor other) {
-        return mailbox == other.getMailbox();
     }
 }

@@ -64,7 +64,7 @@ public final class Activator implements BundleActivator {
         jaBundleContext.initialize(mailboxFactory.createMailbox(true));
 
         IncDesFactories jidFactories = new IncDesFactories();
-        jidFactories.initialize(mailboxFactory.createMailbox(true), jaBundleContext);
+        jidFactories.initialize(jaBundleContext);
         jidFactories.configure();
     }
 

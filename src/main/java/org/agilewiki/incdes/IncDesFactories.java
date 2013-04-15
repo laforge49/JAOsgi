@@ -46,14 +46,14 @@ final public class IncDesFactories extends LocateLocalActorFactories {
     public static FactoryLocator createFactoryLocator() throws Exception {
         Context jaBundleContext = PABundleContextImpl.createNoOsgiJABundleContext();
         IncDesFactories jidFactories = new IncDesFactories();
-        jidFactories.initialize(null, jaBundleContext);
+        jidFactories.initialize(jaBundleContext);
         return jidFactories.configure();
     }
 
     public static FactoryLocator createFactoryLocator(MailboxFactory mailboxFactory) throws Exception {
         Context jaBundleContext = PABundleContextImpl.createNoOsgiJABundleContext(mailboxFactory);
         IncDesFactories jidFactories = new IncDesFactories();
-        jidFactories.initialize(null, jaBundleContext);
+        jidFactories.initialize(jaBundleContext);
         return jidFactories.configure();
     }
 
