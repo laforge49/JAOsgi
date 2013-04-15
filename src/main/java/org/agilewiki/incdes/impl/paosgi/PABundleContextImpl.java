@@ -25,7 +25,9 @@ package org.agilewiki.incdes.impl.paosgi;
 
 import org.agilewiki.incdes.Context;
 import org.agilewiki.pactor.MailboxFactory;
+import org.agilewiki.pactor.Properties;
 import org.agilewiki.pamailbox.DefaultMailboxFactoryImpl;
+import org.agilewiki.pautil.PAProperties;
 import org.osgi.framework.*;
 
 import java.io.File;
@@ -42,9 +44,11 @@ public class PABundleContextImpl extends Context {
     }
 
     public static Context createNoOsgiJABundleContext(MailboxFactory mailboxFactory) throws Exception {
-        PABundleContextImpl jaBundleContext = new PABundleContextImpl();
-        jaBundleContext.initialize(mailboxFactory.createMailbox());
-        return jaBundleContext;
+        Properties properties = new PAProperties(mailboxFactory);
+        PABundleContextImpl context = new PABundleContextImpl();
+        context.initialize(mailboxFactory.createMailbox());
+        properties.putProperty("context", context);
+        return context;
     }
 
     @Override
