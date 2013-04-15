@@ -1,13 +1,15 @@
 package org.agilewiki.incdes;
 
 import junit.framework.TestCase;
+import org.agilewiki.pactor.Mailbox;
 
 public class RootTest extends TestCase {
     public void test() throws Exception {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
         try {
             Factory rootFactory = factoryLocator.getFactory(IncDesFactories.ROOT);
-            Root root1 = (Root) rootFactory.newActor(factoryLocator.getMailbox(), factoryLocator);
+            Mailbox mailbox = factoryLocator.getMailboxFactory().createMailbox();
+            Root root1 = (Root) rootFactory.newActor(mailbox, factoryLocator);
             int sl = root1.getSerializedLength();
             assertEquals(56, sl);
             root1.clearReq().call();
@@ -31,14 +33,14 @@ public class RootTest extends TestCase {
             assertNull(rpa);
 
             Factory stringAFactory = factoryLocator.getFactory(IncDesFactories.PASTRING);
-            PAString paString1 = (PAString) stringAFactory.newActor(factoryLocator.getMailbox(), factoryLocator);
+            PAString paString1 = (PAString) stringAFactory.newActor(mailbox, factoryLocator);
             paString1.setStringReq("abc").call();
             byte[] sb = paString1.getSerializedBytesReq().call();
             root1.setIncDesReq(paString1.getType(), sb).call();
             PAString sj = (PAString) root1.getIncDesReq().call();
             assertEquals("abc", sj.getStringReq().call());
 
-            Root root2 = (Root) rootFactory.newActor(factoryLocator.getMailbox(), factoryLocator);
+            Root root2 = (Root) rootFactory.newActor(mailbox, factoryLocator);
             sl = root2.getSerializedLength();
             assertEquals(56, sl);
             root2.setIncDesReq(IncDesFactories.INCDES).call();

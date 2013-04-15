@@ -1,6 +1,7 @@
 package org.agilewiki.incdes;
 
 import junit.framework.TestCase;
+import org.agilewiki.pactor.Mailbox;
 
 import java.util.List;
 
@@ -18,7 +19,8 @@ public class BListTest extends TestCase {
             sj0.setValue("a");
             sj1.setValue("b");
             sj2.setValue("c");
-            PAList<PAString> stringList2 = (PAList) stringList1.copy(factoryLocator.getMailbox());
+            Mailbox mailbox = factoryLocator.getMailboxFactory().createMailbox();
+            PAList<PAString> stringList2 = (PAList) stringList1.copy(mailbox);
             PAString s0 = stringList2.iGet(0);
             PAString s1 = stringList2.iGet(1);
             PAString s2 = stringList2.iGet(2);

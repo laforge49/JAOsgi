@@ -1,13 +1,15 @@
 package org.agilewiki.incdes;
 
 import junit.framework.TestCase;
+import org.agilewiki.pactor.Mailbox;
 
 public class BoxTest extends TestCase {
     public void test() throws Exception {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
         try {
             Factory boxAFactory = factoryLocator.getFactory(IncDesFactories.BOX);
-            Box box1 = (Box) boxAFactory.newActor(factoryLocator.getMailbox(), factoryLocator);
+            Mailbox mailbox = factoryLocator.getMailboxFactory().createMailbox();
+            Box box1 = (Box) boxAFactory.newActor(mailbox, factoryLocator);
             int sl = box1.getSerializedLength();
             assertEquals(4, sl);
             box1.clearReq().call();
@@ -31,7 +33,7 @@ public class BoxTest extends TestCase {
             assertNull(rpa);
 
             Factory stringAFactory = factoryLocator.getFactory(IncDesFactories.PASTRING);
-            PAString string1 = (PAString) stringAFactory.newActor(factoryLocator.getMailbox(), factoryLocator);
+            PAString string1 = (PAString) stringAFactory.newActor(mailbox, factoryLocator);
             string1.setStringReq("abc").call();
             byte[] sb = string1.getSerializedBytes();
             box1.setIncDesReq(string1.getType(), sb).call();

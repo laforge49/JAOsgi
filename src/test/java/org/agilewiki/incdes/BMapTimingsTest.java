@@ -1,6 +1,7 @@
 package org.agilewiki.incdes;
 
 import junit.framework.TestCase;
+import org.agilewiki.pactor.Mailbox;
 
 public class BMapTimingsTest extends TestCase {
     public void test1() throws Exception {
@@ -40,11 +41,12 @@ public class BMapTimingsTest extends TestCase {
                 i += 1;
             }
             m1.getSerializedBytes();
-            long t0 = System.currentTimeMillis();
             int j = 0;
             i = s / 2;
+            Mailbox mailbox = factoryLocator.getMailboxFactory().createMailbox();
+            long t0 = System.currentTimeMillis();
             while (j < r) {
-                PAMap<Integer, PAInteger> m2 = (PAMap) m1.copy(factoryLocator.getMailbox());
+                PAMap<Integer, PAInteger> m2 = (PAMap) m1.copy(mailbox);
                 PAInteger ij0 = m1.kGet(i);
                 ij0.setValue(-i);
                 m2.getSerializedBytes();

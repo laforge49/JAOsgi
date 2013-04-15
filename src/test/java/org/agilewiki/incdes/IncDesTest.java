@@ -1,6 +1,7 @@
 package org.agilewiki.incdes;
 
 import junit.framework.TestCase;
+import org.agilewiki.pactor.Mailbox;
 
 public class IncDesTest extends TestCase {
     public void test1() throws Exception {
@@ -63,7 +64,8 @@ public class IncDesTest extends TestCase {
         try {
             IncDes jid1 = IncDesFactories.createIncDes(factoryLocator, null, null);
             jid1.load(new ReadableBytes(new byte[0], 0));
-            IncDes jid2 = jid1.copyReq(factoryLocator.getMailbox()).call();
+            Mailbox mailbox = factoryLocator.getMailboxFactory().createMailbox();
+            IncDes jid2 = jid1.copyReq(mailbox).call();
             int l = jid2.getSerializedLengthReq().call();
             System.err.println(l);
             assertEquals(l, 0);

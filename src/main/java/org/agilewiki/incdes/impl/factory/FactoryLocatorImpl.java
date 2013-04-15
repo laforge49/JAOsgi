@@ -33,6 +33,7 @@ import org.agilewiki.incdes.impl.collection.vlenc.map.StringSMap;
 import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
 import org.agilewiki.pactor.Actor;
 import org.agilewiki.pactor.Mailbox;
+import org.agilewiki.pactor.MailboxFactory;
 import org.agilewiki.pautil.Ancestor;
 import org.agilewiki.pautil.AncestorBase;
 import org.osgi.framework.Bundle;
@@ -44,12 +45,7 @@ import java.util.concurrent.ConcurrentSkipListSet;
 /**
  * An actor for defining jid types and creating instances.
  */
-public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator, Actor {
-
-    /**
-     * The actor's mailbox.
-     */
-    private Mailbox mailbox;
+public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator {
 
     private ConcurrentSkipListSet<LocateLocalActorFactories> factoryImports = new ConcurrentSkipListSet();
     private String bundleName = "";
@@ -57,11 +53,17 @@ public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator, 
     private String location = "";
     private String locatorKey;
     private StringSMap<PAStringImpl> manifest;
+    private Context context;
+    private MailboxFactory mailboxFactory;
 
     /**
      * A table which maps type names to actor factories.
      */
     private ConcurrentSkipListMap<String, FactoryImpl> types = new ConcurrentSkipListMap<String, FactoryImpl>();
+
+    public MailboxFactory getMailboxFactory() {
+        return mailboxFactory;
+    }
 
     private boolean isLocked() {
         return manifest != null;
@@ -143,7 +145,7 @@ public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator, 
 
     @Override
     public boolean validateManifest(StringSMap<PAStringImpl> m) throws Exception {
-        StringSMap<PAStringImpl> mc = (StringSMap<PAStringImpl>) m.copy(getMailbox());
+        StringSMap<PAStringImpl> mc = (StringSMap<PAStringImpl>) m.copy(mailboxFactory.createMailbox());
         unknownManifestEntries(mc);
         return mc.size() == 0;
     }
@@ -188,7 +190,7 @@ public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator, 
     public IncDesImpl newJid(String jidType, Mailbox mailbox, Ancestor parent)
             throws Exception {
         if (mailbox == null || parent == null) {
-            if (mailbox == null) mailbox = getMailbox();
+            if (mailbox == null) mailbox = mailboxFactory.createMailbox();
             if (parent == null) parent = this;
         }
         FactoryImpl af = getFactory(jidType);
@@ -265,30 +267,14 @@ public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator, 
             throw new IllegalArgumentException("IncDesImpl type is already defined: " + actorType);
     }
 
-    public void initialize(final Mailbox _mailbox, final Ancestor _parent)
-            throws Exception {
+    public void initialize(final Ancestor _parent) throws Exception {
         super.initialize(_parent);
-        mailbox = _mailbox;
-    }
-
-    public void initialize(final Mailbox _mailbox)
-            throws Exception {
-        super.initialize();
-        mailbox = _mailbox;
-    }
-
-    @Override
-    public Mailbox getMailbox() {
-        return mailbox;
-    }
-
-    @Override
-    public boolean sameMailbox(final Actor other) {
-        return mailbox == other.getMailbox();
+        context = Context.get(this);
+        mailboxFactory = context.getMailboxFactory();
     }
 
     @Override
     public void close() throws Exception {
-        Context.get(this).stop(0);
+        context.stop(0);
     }
 }

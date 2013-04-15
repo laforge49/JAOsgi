@@ -1,6 +1,7 @@
 package org.agilewiki.incdes;
 
 import junit.framework.TestCase;
+import org.agilewiki.pactor.Mailbox;
 
 public class TupleTest extends TestCase {
     public void test() throws Exception {
@@ -9,7 +10,8 @@ public class TupleTest extends TestCase {
             IncDesFactories.registerTupleFactory(factoryLocator,
                     "sst", IncDesFactories.PASTRING, IncDesFactories.PASTRING);
             Factory tjf = factoryLocator.getFactory("sst");
-            Tuple t0 = (Tuple) tjf.newActor(factoryLocator.getMailbox(), factoryLocator);
+            Mailbox mailbox = factoryLocator.getMailboxFactory().createMailbox();
+            Tuple t0 = (Tuple) tjf.newActor(mailbox, factoryLocator);
             PAString e0 = (PAString) t0.iGetReq(0).call();
             assertNull(e0.getStringReq().call());
             PAString e1 = (PAString) t0.iGetReq(1).call();

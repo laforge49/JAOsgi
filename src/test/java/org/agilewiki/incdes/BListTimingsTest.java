@@ -32,7 +32,7 @@ public class BListTimingsTest extends TestCase {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
         try {
             PAList<PAInteger> intList1 = (PAList) factoryLocator.newJid(IncDesFactories.PAINTEGER_BLIST);
-            Mailbox mailbox = factoryLocator.getMailbox();
+            Mailbox mailbox = factoryLocator.getMailboxFactory().createMailbox();
             int i = 0;
             while (i < s) {
                 intList1.iAdd(-1);

@@ -1,6 +1,7 @@
 package org.agilewiki.incdes;
 
 import junit.framework.TestCase;
+import org.agilewiki.pactor.Mailbox;
 
 public class IntegerPAIntegerBMapTest extends TestCase {
     public void test1() throws Exception {
@@ -17,7 +18,8 @@ public class IntegerPAIntegerBMapTest extends TestCase {
             sj0.setValue(0);
             sj1.setValue(1);
             sj2.setValue(2);
-            PAMap<Integer, PAInteger> n = (PAMap) m.copy(factoryLocator.getMailbox());
+            Mailbox mailbox = factoryLocator.getMailboxFactory().createMailbox();
+            PAMap<Integer, PAInteger> n = (PAMap) m.copy(mailbox);
             PAInteger s0 = n.kGet(0);
             PAInteger s1 = n.kGet(1);
             PAInteger s2 = n.kGet(2);
