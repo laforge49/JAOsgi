@@ -61,7 +61,7 @@ public final class Activator implements BundleActivator {
         jaBundleContext = new PAOsgiBundleContextImpl();
         jaBundleContext.setBundleContext(bundleContext);
         jaBundleContext.setJAServiceTracker(jaServiceTracker);
-        jaBundleContext.initialize(mailboxFactory.createMailbox(true));
+        jaBundleContext.setMailboxFactory(mailboxFactory);
 
         IncDesFactories jidFactories = new IncDesFactories();
         jidFactories.initialize(jaBundleContext);

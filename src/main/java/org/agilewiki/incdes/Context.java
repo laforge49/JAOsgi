@@ -36,7 +36,7 @@ import java.util.Collection;
 import java.util.Dictionary;
 import java.util.List;
 
-abstract public class Context extends AncestorBase implements Actor {
+abstract public class Context extends AncestorBase {
     public static Context get(final Ancestor actor)
             throws Exception {
         Context bundleContext = (Context) AncestorBase.
@@ -49,10 +49,16 @@ abstract public class Context extends AncestorBase implements Actor {
     /**
      * The actor's mailbox.
      */
-    private Mailbox mailbox;
+    protected MailboxFactory mailboxFactory;
 
     public MailboxFactory getMailboxFactory() {
-        return getMailbox().getMailboxFactory();
+        return mailboxFactory;
+    }
+
+    public void setMailboxFactory(final MailboxFactory _mailboxFactory) {
+        if (mailboxFactory != null)
+            throw new IllegalStateException("MailboxFactory already set");
+        mailboxFactory = _mailboxFactory;
     }
 
     abstract public List<ServiceRegistration> getServiceRegistrations();
@@ -112,26 +118,4 @@ abstract public class Context extends AncestorBase implements Actor {
     abstract public boolean ungetService(ServiceReference serviceReference);
 
     abstract public void stop(int options) throws Exception;
-
-    public void initialize(final Mailbox _mailbox, final Ancestor _parent)
-            throws Exception {
-        super.initialize(_parent);
-        mailbox = _mailbox;
-    }
-
-    public void initialize(final Mailbox _mailbox)
-            throws Exception {
-        super.initialize();
-        mailbox = _mailbox;
-    }
-
-    @Override
-    public Mailbox getMailbox() {
-        return mailbox;
-    }
-
-    @Override
-    public boolean sameMailbox(final Actor other) {
-        return mailbox == other.getMailbox();
-    }
 }

@@ -43,10 +43,10 @@ public class PABundleContextImpl extends Context {
         return createNoOsgiJABundleContext(mailboxFactory);
     }
 
-    public static Context createNoOsgiJABundleContext(MailboxFactory mailboxFactory) throws Exception {
-        Properties properties = new PAProperties(mailboxFactory);
+    public static Context createNoOsgiJABundleContext(final MailboxFactory _mailboxFactory) throws Exception {
+        Properties properties = new PAProperties(_mailboxFactory);
         PABundleContextImpl context = new PABundleContextImpl();
-        context.initialize(mailboxFactory.createMailbox());
+        context. mailboxFactory = _mailboxFactory;
         properties.putProperty("context", context);
         return context;
     }
@@ -181,6 +181,6 @@ public class PABundleContextImpl extends Context {
 
     @Override
     public void stop(int options) throws Exception {
-        getMailbox().getMailboxFactory().close();
+        mailboxFactory.close();
     }
 }
