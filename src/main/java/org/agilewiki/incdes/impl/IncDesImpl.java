@@ -25,10 +25,7 @@ package org.agilewiki.incdes.impl;
 
 import org.agilewiki.incdes.*;
 import org.agilewiki.incdes.impl.factory.ActorFactory;
-import org.agilewiki.pactor.Mailbox;
-import org.agilewiki.pactor.Request;
-import org.agilewiki.pactor.RequestBase;
-import org.agilewiki.pactor.ResponseProcessor;
+import org.agilewiki.pactor.*;
 import org.agilewiki.pautil.Ancestor;
 import org.agilewiki.pautil.AncestorBase;
 
@@ -38,6 +35,11 @@ import java.util.Arrays;
  * Base class for Incremental Deserialization Actors.
  */
 public class IncDesImpl extends AncestorBase implements IncDes {
+    /**
+     * The actor's mailbox.
+     */
+    private Mailbox mailbox;
+
     /**
      * The factory, or null.
      */
@@ -394,15 +396,15 @@ public class IncDesImpl extends AncestorBase implements IncDes {
     /**
      * Initialize a LiteActor
      *
-     * @param mailbox A mailbox which may be shared with other actors.
-     * @param parent  The parent actor.
-     * @param factory The factory.
+     * @param _mailbox A mailbox which may be shared with other actors.
+     * @param _parent  The parent actor.
+     * @param _factory The factory.
      */
-    public void initialize(final Mailbox mailbox, Ancestor parent, ActorFactory factory) throws Exception {
-        if (this.factory != null)
-            throw new IllegalStateException("already initialized");
-        super.initialize(mailbox, parent);
-        this.factory = factory;
+    public void initialize(final Mailbox _mailbox, final Ancestor _parent, final ActorFactory _factory)
+            throws Exception {
+        super.initialize(_parent);
+        mailbox = _mailbox;
+        factory = _factory;
 
         getSerializedLengthReq = new RequestBase<Integer>(getMailbox()) {
             @Override
@@ -419,14 +421,13 @@ public class IncDesImpl extends AncestorBase implements IncDes {
         };
     }
 
-    /**
-     * Initialize a LiteActor
-     *
-     * @param mailbox A mailbox which may be shared with other actors.
-     * @param parent  The parent actor.
-     */
     @Override
-    public void initialize(final Mailbox mailbox, Ancestor parent) throws Exception {
-        throw new UnsupportedOperationException();
+    public Mailbox getMailbox() {
+        return mailbox;
+    }
+
+    @Override
+    public boolean sameMailbox(final Actor other) {
+        return mailbox == other.getMailbox();
     }
 }

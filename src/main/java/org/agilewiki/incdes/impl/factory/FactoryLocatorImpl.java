@@ -30,6 +30,7 @@ import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.incdes.impl.collection.vlenc.map.MapEntryImpl;
 import org.agilewiki.incdes.impl.collection.vlenc.map.StringSMap;
 import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
+import org.agilewiki.pactor.Actor;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 import org.agilewiki.pautil.AncestorBase;
@@ -42,7 +43,12 @@ import java.util.concurrent.ConcurrentSkipListSet;
 /**
  * An actor for defining jid types and creating instances.
  */
-public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator {
+public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator, Actor {
+
+    /**
+     * The actor's mailbox.
+     */
+    private Mailbox mailbox;
 
     private ConcurrentSkipListSet<LocateLocalActorFactories> factoryImports = new ConcurrentSkipListSet();
     private String bundleName = "";
@@ -256,5 +262,27 @@ public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator {
             types.put(factoryKey, actorFactory);
         } else if (!old.equals(actorFactory))
             throw new IllegalArgumentException("IncDesImpl type is already defined: " + actorType);
+    }
+
+    public void initialize(final Mailbox _mailbox, final Ancestor _parent)
+            throws Exception {
+        super.initialize(_parent);
+        mailbox = _mailbox;
+    }
+
+    public void initialize(final Mailbox _mailbox)
+            throws Exception {
+        super.initialize();
+        mailbox = _mailbox;
+    }
+
+    @Override
+    public Mailbox getMailbox() {
+        return mailbox;
+    }
+
+    @Override
+    public boolean sameMailbox(final Actor other) {
+        return mailbox == other.getMailbox();
     }
 }

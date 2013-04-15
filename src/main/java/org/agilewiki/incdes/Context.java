@@ -23,6 +23,8 @@
  */
 package org.agilewiki.incdes;
 
+import org.agilewiki.pactor.Actor;
+import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.MailboxFactory;
 import org.agilewiki.pautil.Ancestor;
 import org.agilewiki.pautil.AncestorBase;
@@ -34,7 +36,7 @@ import java.util.Collection;
 import java.util.Dictionary;
 import java.util.List;
 
-abstract public class Context extends AncestorBase {
+abstract public class Context extends AncestorBase implements Actor {
     public static Context get(final Ancestor actor)
             throws Exception {
         Context bundleContext = (Context) AncestorBase.
@@ -43,6 +45,11 @@ abstract public class Context extends AncestorBase {
             throw new IllegalStateException("Context is not an ancestor of " + actor);
         return bundleContext;
     }
+
+    /**
+     * The actor's mailbox.
+     */
+    private Mailbox mailbox;
 
     public MailboxFactory getMailboxFactory() {
         return getMailbox().getMailboxFactory();
@@ -105,4 +112,26 @@ abstract public class Context extends AncestorBase {
     abstract public boolean ungetService(ServiceReference serviceReference);
 
     abstract public void stop(int options) throws Exception;
+
+    public void initialize(final Mailbox _mailbox, final Ancestor _parent)
+            throws Exception {
+        super.initialize(_parent);
+        mailbox = _mailbox;
+    }
+
+    public void initialize(final Mailbox _mailbox)
+            throws Exception {
+        super.initialize();
+        mailbox = _mailbox;
+    }
+
+    @Override
+    public Mailbox getMailbox() {
+        return mailbox;
+    }
+
+    @Override
+    public boolean sameMailbox(final Actor other) {
+        return mailbox == other.getMailbox();
+    }
 }

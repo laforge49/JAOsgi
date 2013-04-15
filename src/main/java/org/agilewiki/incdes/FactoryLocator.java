@@ -27,13 +27,14 @@ import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.incdes.impl.collection.vlenc.map.StringSMap;
 import org.agilewiki.incdes.impl.factory.ActorFactory;
 import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
+import org.agilewiki.pactor.Actor;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
 /**
  * Defines actor types and instantiating
  */
-public interface FactoryLocator extends Ancestor {
+public interface FactoryLocator extends Ancestor, Actor {
     /**
      * Bind an actor type to a Class.
      *

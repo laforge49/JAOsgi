@@ -26,12 +26,21 @@ package org.agilewiki.incdes.impl.factory;
 import org.agilewiki.incdes.Context;
 import org.agilewiki.incdes.impl.collection.vlenc.map.StringSMap;
 import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
+import org.agilewiki.pactor.Actor;
+import org.agilewiki.pactor.Mailbox;
+import org.agilewiki.pautil.Ancestor;
 import org.agilewiki.pautil.AncestorBase;
 import org.osgi.framework.Bundle;
 
 import java.util.Hashtable;
 
-public abstract class LocateLocalActorFactories extends AncestorBase {
+public abstract class LocateLocalActorFactories extends AncestorBase implements Actor {
+
+    /**
+     * The actor's mailbox.
+     */
+    private Mailbox mailbox;
+
     private FactoryLocatorImpl factoryLocator;
 
     protected FactoryLocatorImpl configure(String name) throws Exception {
@@ -66,5 +75,27 @@ public abstract class LocateLocalActorFactories extends AncestorBase {
 
     public void unknownManifestEntries(StringSMap<PAStringImpl> manifest) throws Exception {
         factoryLocator.unknownManifestEntries(manifest);
+    }
+
+    public void initialize(final Mailbox _mailbox, final Ancestor _parent)
+            throws Exception {
+        super.initialize(_parent);
+        mailbox = _mailbox;
+    }
+
+    public void initialize(final Mailbox _mailbox)
+            throws Exception {
+        super.initialize();
+        mailbox = _mailbox;
+    }
+
+    @Override
+    public Mailbox getMailbox() {
+        return mailbox;
+    }
+
+    @Override
+    public boolean sameMailbox(final Actor other) {
+        return mailbox == other.getMailbox();
     }
 }
