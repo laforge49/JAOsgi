@@ -351,7 +351,7 @@ abstract public class BMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
         rightBNode.setNodeFactory(oldFactory);
         int h = nodeCapacity / 2;
         int i = 0;
-        if (oldFactory.jidType.startsWith("LM.")) {
+        if (oldFactory.name.startsWith("LM.")) {
             while (i < h) {
                 IncDesImpl e = (IncDesImpl) oldRootNode.iGet(i);
                 byte[] bytes = e.getSerializedBytes();

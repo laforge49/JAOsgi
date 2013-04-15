@@ -382,7 +382,7 @@ public class IncDesImpl extends AncestorBase implements IncDes {
     final public String getType() {
         if (factory == null)
             return null;
-        return factory.jidType;
+        return factory.name;
     }
 
     final public String getLocatorKey() {

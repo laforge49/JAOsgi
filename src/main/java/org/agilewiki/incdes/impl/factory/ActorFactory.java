@@ -37,12 +37,12 @@ abstract public class ActorFactory implements Factory {
     /**
      * The jid type.
      */
-    public final String jidType;
+    public final String name;
     private FactoryLocatorImpl factoryLocator;
 
     @Override
-    public String getType() {
-        return jidType;
+    public String getName() {
+        return name;
     }
 
     public void configure(FactoryLocatorImpl factoryLocator) {
@@ -51,7 +51,7 @@ abstract public class ActorFactory implements Factory {
 
     public String getFactoryKey() {
         if (factoryKey == null)
-            factoryKey = jidType + "|" + getLocatorKey();
+            factoryKey = name + "|" + getLocatorKey();
         return factoryKey;
     }
 
@@ -66,10 +66,10 @@ abstract public class ActorFactory implements Factory {
     /**
      * Create an ActorFactory.
      *
-     * @param jidType The jid type.
+     * @param _name The jid type.
      */
-    public ActorFactory(String jidType) {
-        this.jidType = jidType;
+    public ActorFactory(final String _name) {
+        name = _name;
     }
 
     /**

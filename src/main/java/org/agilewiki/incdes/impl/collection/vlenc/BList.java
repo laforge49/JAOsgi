@@ -348,7 +348,7 @@ public class BList<ENTRY_TYPE extends IncDes>
         rightBNode.setNodeFactory(oldFactory);
         int h = nodeCapacity / 2;
         int i = 0;
-        if (oldFactory.jidType.startsWith("LL.")) {
+        if (oldFactory.name.startsWith("LL.")) {
             while (i < h) {
                 IncDesImpl e = (IncDesImpl) oldRootNode.iGet(i);
                 byte[] bytes = e.getSerializedBytes();

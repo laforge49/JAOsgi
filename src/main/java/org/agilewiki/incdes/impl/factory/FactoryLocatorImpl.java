@@ -254,7 +254,7 @@ public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator, 
     @Override
     public void registerJidFactory(ActorFactory actorFactory)
             throws Exception {
-        String actorType = actorFactory.jidType;
+        String actorType = actorFactory.name;
         String factoryKey = actorType + "|" + bundleName + "|" + version;
         ActorFactory old = types.get(factoryKey);
         actorFactory.configure(this);
