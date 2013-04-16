@@ -51,6 +51,18 @@ abstract public class Context extends AncestorBase {
      */
     protected MailboxFactory mailboxFactory;
 
+    private FactoryLocator factoryLocator;
+
+    public void setFactoryLocator(final FactoryLocator _factoryLocator) {
+        if (factoryLocator != null)
+            throw new IllegalStateException("FactoryLocator already set");
+        factoryLocator = _factoryLocator;
+    }
+
+    public FactoryLocator getFactoryLocator() {
+        return factoryLocator;
+    }
+
     public MailboxFactory getMailboxFactory() {
         return mailboxFactory;
     }

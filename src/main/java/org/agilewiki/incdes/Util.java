@@ -29,8 +29,11 @@ import org.agilewiki.incdes.impl.factory.FactoryLocatorImpl;
 import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
 import org.agilewiki.pactor.Actor;
 import org.agilewiki.pactor.Mailbox;
+import org.agilewiki.pactor.MailboxFactory;
+import org.agilewiki.pactor.Properties;
 import org.agilewiki.pautil.Ancestor;
 import org.agilewiki.pautil.AncestorBase;
+import org.agilewiki.pautil.PAProperties;
 import org.osgi.framework.Version;
 
 /**
@@ -45,6 +48,26 @@ public class Util {
 
     public static FactoryLocator getFactoryLocator(Ancestor ancestor) {
         return (FactoryLocator) AncestorBase.getMatch(ancestor, FactoryLocatorImpl.class);
+    }
+
+    public static Context getContext(final Properties _properties) {
+        return (Context) _properties.getProperty("context");
+    }
+
+    public static Context getContext(final MailboxFactory _mailboxFactory) {
+        return getContext(_mailboxFactory.getProperties());
+    }
+
+    public static Context getContext(final Mailbox _mailbox) {
+        return getContext(_mailbox.getMailboxFactory());
+    }
+
+    public static Context getContext(final Actor _actor) {
+        return getContext(_actor.getMailbox());
+    }
+
+    public static FactoryLocator getFactoryLocator(final Actor _actor) {
+        return getContext(_actor).getFactoryLocator();
     }
 
     /**
@@ -90,15 +113,15 @@ public class Util {
     /**
      * Creates a new actor.
      *
-     * @param actor   The actor which is the factory or which has a factory as an ancestor.
+     * @param ancestor   The ancestor which is the factory or which has a factory as an ancestor.
      * @param jidType The jid type.
      * @param mailbox A mailbox which may be shared with other actors, or null.
      * @param parent  The parent actor to which unrecognized requests are forwarded, or null.
      * @return The new jid.
      */
-    public static IncDesImpl newJid(Ancestor actor, String jidType, Mailbox mailbox, Ancestor parent)
+    public static IncDesImpl newJid(Ancestor ancestor, String jidType, Mailbox mailbox, Ancestor parent)
             throws Exception {
-        FactoryLocator factoryLocator = getFactoryLocator(actor);
+        FactoryLocator factoryLocator = getFactoryLocator(ancestor);
         if (factoryLocator == null)
             return null;
         return factoryLocator.newJid(jidType, mailbox, parent);

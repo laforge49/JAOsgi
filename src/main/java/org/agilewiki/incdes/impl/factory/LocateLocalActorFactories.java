@@ -44,12 +44,12 @@ public abstract class LocateLocalActorFactories extends AncestorBase {
     private FactoryLocatorImpl factoryLocator;
 
     protected FactoryLocatorImpl configure(String name) throws Exception {
-        Context jaBundleContext = Context.get(this);
+        Context context = Context.get(this);
 
         factoryLocator = new FactoryLocatorImpl();
-        factoryLocator.initialize(jaBundleContext);
+        factoryLocator.initialize(context);
 
-        Bundle bundle = jaBundleContext.getBundle();
+        Bundle bundle = context.getBundle();
         if (bundle == null) {
             factoryLocator.configure(name);
             return factoryLocator; //no OSGi
@@ -57,7 +57,7 @@ public abstract class LocateLocalActorFactories extends AncestorBase {
         factoryLocator.configure(bundle);
         Hashtable<String, Object> properties = new Hashtable<String, Object>();
         properties.put("LOCATOR_KEY", factoryLocator.getLocatorKey());
-        jaBundleContext.registerService(
+        context.registerService(
                 this.getClass(),
                 this,
                 properties);

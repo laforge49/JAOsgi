@@ -23,6 +23,7 @@
  */
 package org.agilewiki.jfile.block;
 
+import org.agilewiki.incdes.*;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
@@ -183,7 +184,7 @@ public class LBlock implements Block {
         rb = null;
         if (rootJidBytes == null)
             return null;
-        rootJid = IncDesFactories.createRoot(actor, actor.getMailbox(), parent);
+        rootJid = IncDesFactories.createRoot(actor, mailbox, parent);
         rootJid.load(new ReadableBytes(rootJidBytes, 0));
         return rootJid;
     }

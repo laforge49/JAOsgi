@@ -89,7 +89,7 @@ abstract public class BMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
         String baseType = getType();
         if (baseType.startsWith("IN."))
             baseType = baseType.substring(3);
-        factoryLocator = Util.getFactoryLocator(this);
+        factoryLocator = Util.getFactoryLocator((Ancestor) this);
         tupleFactories = new FactoryImpl[2];
         tupleFactories[TUPLE_SIZE] = factoryLocator.getFactory(IncDesFactories.PAINTEGER);
         tupleFactories[TUPLE_UNION] = factoryLocator.getFactory("U." + baseType);

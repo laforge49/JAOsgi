@@ -89,7 +89,7 @@ public class UnionImpl extends Scalar<String, IncDesImpl> implements Union {
 
     protected int getFactoryIndex(String actorType)
             throws Exception {
-        FactoryLocator factoryLocator = Util.getFactoryLocator(this);
+        FactoryLocator factoryLocator = Util.getFactoryLocator((Ancestor) this);
         Factory actorFactory = factoryLocator.getFactory(actorType);
         return getFactoryIndex(actorFactory);
     }

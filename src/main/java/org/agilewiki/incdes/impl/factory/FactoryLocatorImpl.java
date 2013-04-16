@@ -270,6 +270,7 @@ public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator {
     public void initialize(final Ancestor _parent) throws Exception {
         super.initialize(_parent);
         context = Context.get(this);
+        context.setFactoryLocator(this);
         mailboxFactory = context.getMailboxFactory();
     }
 
