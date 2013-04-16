@@ -5,7 +5,7 @@ import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.Request;
 import org.agilewiki.pautil.Ancestor;
 
-public interface IncDes extends Actor, Ancestor {
+public interface IncDes extends PASerializable {
 
     Request<Integer> getSerializedLengthReq();
 

@@ -64,6 +64,11 @@ public class IncDesImpl extends AncestorBase implements IncDes {
     private Request<Integer> getSerializedLengthReq;
 
     @Override
+    public IncDes getDurable() {
+        return this;
+    }
+
+    @Override
     public Request<byte[]> getSerializedBytesReq() {
         return getSerializedBytesReq;
     }
