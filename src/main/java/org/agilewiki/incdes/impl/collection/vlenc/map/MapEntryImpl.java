@@ -24,6 +24,7 @@
 package org.agilewiki.incdes.impl.collection.vlenc.map;
 
 import org.agilewiki.incdes.*;
+import org.agilewiki.incdes.impl.DurableImpl;
 import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.incdes.impl.factory.FactoryImpl;
 import org.agilewiki.incdes.impl.scalar.Scalar;
@@ -32,7 +33,7 @@ import org.agilewiki.incdes.impl.scalar.Scalar;
  * A map is, in part, a list of map entries.
  */
 public class MapEntryImpl<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE>
-        extends AppBase
+        extends DurableImpl
         implements MapEntry<KEY_TYPE, VALUE_TYPE> {
 
     private final static int TUPLE_KEY = 0;

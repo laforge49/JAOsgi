@@ -24,7 +24,7 @@
 package org.agilewiki.incdes.impl.collection.vlenc.map;
 
 import org.agilewiki.incdes.*;
-import org.agilewiki.incdes.impl.IncDesImpl;
+import org.agilewiki.incdes.impl.DurableImpl;
 import org.agilewiki.incdes.impl.factory.FactoryImpl;
 import org.agilewiki.incdes.impl.scalar.flens.PAIntegerImpl;
 import org.agilewiki.incdes.impl.scalar.vlens.UnionImpl;
@@ -38,7 +38,7 @@ import org.agilewiki.pautil.Ancestor;
  * A balanced tree that holds a map.
  */
 abstract public class BMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends PASerializable>
-        extends AppBase
+        extends DurableImpl
         implements PAMap<KEY_TYPE, VALUE_TYPE>, Collection<MapEntry<KEY_TYPE, VALUE_TYPE>> {
     protected final int TUPLE_SIZE = 0;
     protected final int TUPLE_UNION = 1;

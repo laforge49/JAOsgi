@@ -21,14 +21,15 @@
  * A copy of this license is also included and can be
  * found as well at http://www.opensource.org/licenses/cpl1.0.txt
  */
-package org.agilewiki.incdes;
+package org.agilewiki.incdes.impl;
 
+import org.agilewiki.incdes.*;
 import org.agilewiki.incdes.impl.IncDesImpl;
 
 /**
- * A base class for applications, AppBase provides a durable tuple without an external interface.
+ * A base class for applications, DurableImpl provides a durable tuple without an external interface.
  */
-public class AppBase extends IncDesImpl {
+public class DurableImpl extends IncDesImpl {
     /**
      * The size of the serialized data (exclusive of its length header).
      */
@@ -37,7 +38,7 @@ public class AppBase extends IncDesImpl {
     /**
      * An array of jid factories, one for each element in the tuple.
      */
-    protected Factory[] tupleFactories;
+    public Factory[] tupleFactories;
 
     /**
      * A tuple of actors.

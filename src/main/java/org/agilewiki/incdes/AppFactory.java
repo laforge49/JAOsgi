@@ -1,11 +1,12 @@
 package org.agilewiki.incdes;
 
+import org.agilewiki.incdes.impl.DurableImpl;
 import org.agilewiki.incdes.impl.factory.FactoryImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
 /**
- * Creates AppBase objects.
+ * Creates DurableImpl objects.
  */
 abstract public class AppFactory extends FactoryImpl {
     private Factory[] tupleFactories;
@@ -27,6 +28,10 @@ abstract public class AppFactory extends FactoryImpl {
         this.jidTypes = jidTypes;
     }
 
+    protected SerializableBase instantiateActor() {
+        return new SerializableBase();
+    }
+
     /**
      * Create and configure an actor.
      *
@@ -34,9 +39,12 @@ abstract public class AppFactory extends FactoryImpl {
      * @param parent  The parent of the new actor.
      * @return The new actor.
      */
-    public AppBase newActor(Mailbox mailbox, Ancestor parent)
+    public SerializableBase newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
-        AppBase tj = (AppBase) super.newActor(mailbox, parent);
+        SerializableBase a = instantiateActor();
+        DurableImpl tj = new DurableImpl();
+        a.setDurable(tj);
+        tj.initialize(mailbox, parent, this);
         FactoryLocator fl = Util.getFactoryLocator(parent);
         Factory[] afs = new FactoryImpl[jidTypes.length];
         int i = 0;
@@ -46,6 +54,6 @@ abstract public class AppFactory extends FactoryImpl {
         }
         tupleFactories = afs;
         tj.tupleFactories = tupleFactories;
-        return tj;
+        return a;
     }
 }
