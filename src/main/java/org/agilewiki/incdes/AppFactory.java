@@ -28,7 +28,8 @@ public class AppFactory extends FactoryImpl {
         this.jidTypes = jidTypes;
     }
 
-    protected AppBase instantiateActor() {
+    @Override
+    protected App instantiateActor() {
         return new AppBase();
     }
 
@@ -39,9 +40,10 @@ public class AppFactory extends FactoryImpl {
      * @param parent  The parent of the new actor.
      * @return The new actor.
      */
-    public AppBase newActor(Mailbox mailbox, Ancestor parent)
+    @Override
+    public App newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
-        AppBase a = instantiateActor();
+        App a = instantiateActor();
         DurableImpl tj = new DurableImpl();
         a.setDurable(tj);
         tj.initialize(mailbox, parent, this);
