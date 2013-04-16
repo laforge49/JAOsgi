@@ -6,29 +6,29 @@ import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
 public class AppBase implements PASerializable {
-    private DurableImpl durableImpl;
+    private Durable durable;
 
-    public void setDurable(final DurableImpl _durableImpl) {
-        durableImpl = _durableImpl;
+    public void setDurable(final Durable _durable) {
+        durable = _durable;
     }
 
     @Override
-    public DurableImpl getDurable() {
-        return durableImpl;
+    public Durable getDurable() {
+        return durable;
     }
 
     @Override
     public Mailbox getMailbox() {
-        return durableImpl.getMailbox();
+        return durable.getMailbox();
     }
 
     @Override
     public boolean sameMailbox(final Actor _other) {
-        return durableImpl.sameMailbox(_other);
+        return durable.sameMailbox(_other);
     }
 
     @Override
     public Ancestor getParent() {
-        return durableImpl.getParent();
+        return durable.getParent();
     }
 }

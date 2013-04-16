@@ -29,7 +29,7 @@ import org.agilewiki.incdes.impl.IncDesImpl;
 /**
  * A base class for applications, DurableImpl provides a durable tuple without an external interface.
  */
-public class DurableImpl extends IncDesImpl {
+public class DurableImpl extends IncDesImpl implements Durable {
     /**
      * The size of the serialized data (exclusive of its length header).
      */
@@ -57,14 +57,8 @@ public class DurableImpl extends IncDesImpl {
         throw new IllegalStateException("tupleFactories is null");
     }
 
-    /**
-     * Creates a JID actor and loads its serialized data.
-     *
-     * @param i     The index of the desired element.
-     * @param bytes Holds the serialized data.
-     * @throws Exception Any exceptions thrown while processing the request.
-     */
-    protected void _iSetBytes(int i, byte[] bytes)
+    @Override
+    public void _iSetBytes(int i, byte[] bytes)
             throws Exception {
         _initialize();
         PASerializable elementJid = createSubordinate(tupleFactories[i], bytes);
@@ -75,23 +69,14 @@ public class DurableImpl extends IncDesImpl {
                 oldElementJid.getDurable().getSerializedLength());
     }
 
-    /**
-     * Returns the size of the collection.
-     *
-     * @return The size of the collection.
-     */
-    protected int _size()
+    @Override
+    public int _size()
             throws Exception {
         return getTupleFactories().length;
     }
 
-    /**
-     * Returns the ith JID component.
-     *
-     * @param i The index of the element of interest.
-     * @return The ith JID component, or null if the index is out of range.
-     */
-    protected PASerializable _iGet(int i) throws Exception {
+    @Override
+    public PASerializable _iGet(int i) throws Exception {
         _initialize();
         if (i < 0)
             i += _size();
@@ -100,14 +85,8 @@ public class DurableImpl extends IncDesImpl {
         return tuple[i];
     }
 
-    /**
-     * Resolves a JID pathname, returning a JID actor or null.
-     *
-     * @param pathname A JID pathname.
-     * @return A JID actor or null.
-     * @throws Exception Any uncaught exception which occurred while processing the request.
-     */
-    protected PASerializable _resolvePathname(String pathname)
+    @Override
+    public PASerializable _resolvePathname(String pathname)
             throws Exception {
         if (pathname.length() == 0) {
             throw new IllegalArgumentException("empty string");
