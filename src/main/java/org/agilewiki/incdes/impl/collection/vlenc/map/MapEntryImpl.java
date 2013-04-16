@@ -23,7 +23,9 @@
  */
 package org.agilewiki.incdes.impl.collection.vlenc.map;
 
-import org.agilewiki.incdes.*;
+import org.agilewiki.incdes.Factory;
+import org.agilewiki.incdes.MapEntry;
+import org.agilewiki.incdes.PASerializable;
 import org.agilewiki.incdes.impl.DurableImpl;
 import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.incdes.impl.factory.FactoryImpl;

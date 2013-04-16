@@ -23,8 +23,6 @@
  */
 package org.agilewiki.incdes;
 
-import org.agilewiki.pactor.Actor;
-import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.MailboxFactory;
 import org.agilewiki.pautil.Ancestor;
 import org.agilewiki.pautil.AncestorBase;

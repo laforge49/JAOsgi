@@ -8,7 +8,7 @@ import org.agilewiki.pautil.Ancestor;
 /**
  * Creates DurableImpl objects.
  */
-abstract public class AppFactory extends FactoryImpl {
+public class AppFactory extends FactoryImpl {
     private Factory[] tupleFactories;
     private String[] jidTypes;
 

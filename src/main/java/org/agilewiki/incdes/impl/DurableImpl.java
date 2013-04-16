@@ -24,7 +24,6 @@
 package org.agilewiki.incdes.impl;
 
 import org.agilewiki.incdes.*;
-import org.agilewiki.incdes.impl.IncDesImpl;
 
 /**
  * A base class for applications, DurableImpl provides a durable tuple without an external interface.

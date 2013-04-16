@@ -3,8 +3,6 @@ package org.agilewiki.incdes;
 import junit.framework.TestCase;
 import org.agilewiki.pactor.Mailbox;
 
-import java.util.List;
-
 public class BListTest extends TestCase {
     public void test1() throws Exception {
         FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();

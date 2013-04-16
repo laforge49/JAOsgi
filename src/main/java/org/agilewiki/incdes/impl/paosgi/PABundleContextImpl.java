@@ -46,7 +46,7 @@ public class PABundleContextImpl extends Context {
     public static Context createNoOsgiJABundleContext(final MailboxFactory _mailboxFactory) throws Exception {
         Properties properties = new PAProperties(_mailboxFactory);
         PABundleContextImpl context = new PABundleContextImpl();
-        context. mailboxFactory = _mailboxFactory;
+        context.mailboxFactory = _mailboxFactory;
         properties.putProperty("context", context);
         return context;
     }

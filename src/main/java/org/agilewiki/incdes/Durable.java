@@ -17,14 +17,14 @@ public interface Durable extends IncDes {
      */
     PASerializable _iGet(final int _i) throws Exception;
 
-        /**
-         * Creates a JID actor and loads its serialized data.
-         *
-         * @param _i     The index of the desired element.
-         * @param _bytes Holds the serialized data.
-         * @throws Exception Any exceptions thrown while processing the request.
-         */
-    void _iSetBytes(final int _i, final  byte[] _bytes)
+    /**
+     * Creates a JID actor and loads its serialized data.
+     *
+     * @param _i     The index of the desired element.
+     * @param _bytes Holds the serialized data.
+     * @throws Exception Any exceptions thrown while processing the request.
+     */
+    void _iSetBytes(final int _i, final byte[] _bytes)
             throws Exception;
 
     /**

@@ -23,7 +23,7 @@ public class RootTest extends TestCase {
             assertNotNull(root11);
             sl = root11.getSerializedLength();
             assertEquals(56, sl);
-            rpa =(IncDes) root11.resolvePathnameReq("0").call();
+            rpa = (IncDes) root11.resolvePathnameReq("0").call();
             assertNull(rpa);
 
             Factory stringAFactory = factoryLocator.getFactory(IncDesFactories.PASTRING);

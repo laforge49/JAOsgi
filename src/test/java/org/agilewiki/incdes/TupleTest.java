@@ -29,9 +29,9 @@ public class TupleTest extends TestCase {
             PAString paString1 = IncDesFactories.createPAString(factoryLocator, null, null);
             paString1.setStringReq("Peaches").call();
             byte[] sb = paString1.getSerializedBytesReq().call();
-            t1.iSetReq(1,sb).call();
+            t1.iSetReq(1, sb).call();
             PAString f1b = (PAString) t1.resolvePathnameReq("1").call();
-            assertEquals("Peaches",f1b.getStringReq().call());
+            assertEquals("Peaches", f1b.getStringReq().call());
         } finally {
             factoryLocator.close();
         }

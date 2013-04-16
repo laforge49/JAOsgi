@@ -26,9 +26,7 @@ package org.agilewiki.incdes.impl.factory;
 import org.agilewiki.incdes.Context;
 import org.agilewiki.incdes.impl.collection.vlenc.map.StringSMap;
 import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
-import org.agilewiki.pactor.Actor;
 import org.agilewiki.pactor.Mailbox;
-import org.agilewiki.pautil.Ancestor;
 import org.agilewiki.pautil.AncestorBase;
 import org.osgi.framework.Bundle;
 

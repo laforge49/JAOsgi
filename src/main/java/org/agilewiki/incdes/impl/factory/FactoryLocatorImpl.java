@@ -24,11 +24,9 @@
 package org.agilewiki.incdes.impl.factory;
 
 import org.agilewiki.incdes.*;
-import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.incdes.impl.collection.vlenc.map.MapEntryImpl;
 import org.agilewiki.incdes.impl.collection.vlenc.map.StringSMap;
 import org.agilewiki.incdes.impl.scalar.vlens.PAStringImpl;
-import org.agilewiki.pactor.Actor;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pactor.MailboxFactory;
 import org.agilewiki.pautil.Ancestor;

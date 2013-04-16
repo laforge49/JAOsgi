@@ -1,6 +1,5 @@
 package org.agilewiki.incdes;
 
-import org.agilewiki.incdes.impl.DurableImpl;
 import org.agilewiki.pactor.Actor;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;

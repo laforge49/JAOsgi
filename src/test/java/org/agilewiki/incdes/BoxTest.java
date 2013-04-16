@@ -95,7 +95,7 @@ public class BoxTest extends TestCase {
             rpa = (IncDes) box3.resolvePathnameReq("0/0").call();
             assertNotNull(rpa);
             assertEquals(rpa, incDes3b);
-            Box box33 =(Box) box3.copyReq(null).call();
+            Box box33 = (Box) box3.copyReq(null).call();
             box3a.clearReq().call();
             sl = box3a.getSerializedLength();
             assertEquals(4, sl);
