@@ -1,4 +1,4 @@
 package org.agilewiki.incdes;
 
-public interface Tuple extends Collection<IncDes> {
+public interface Tuple extends Collection<PASerializable> {
 }

@@ -78,85 +78,85 @@ public class IncDesImpl extends AncestorBase implements IncDes {
         return getSerializedLengthReq;
     }
 
-    final public IncDesImpl createSubordinate(Factory factory)
+    final public PASerializable createSubordinate(Factory factory)
             throws Exception {
         return createSubordinate(factory, getParent());
     }
 
-    final public IncDesImpl createSubordinate(String actorType)
+    final public PASerializable createSubordinate(String actorType)
             throws Exception {
         return createSubordinate(actorType, getParent());
     }
 
-    final public IncDesImpl createSubordinate(Factory factory, Ancestor parent)
+    final public PASerializable createSubordinate(Factory factory, Ancestor parent)
             throws Exception {
-        IncDesImpl jid = (IncDesImpl) factory.newActor(getMailbox(), parent);
-        jid.setContainerJid(this);
+        PASerializable jid = factory.newActor(getMailbox(), parent);
+        ((IncDesImpl) jid.getDurable()).setContainerJid(this);
         return jid;
     }
 
-    final public IncDesImpl createSubordinate(String actorType, Ancestor parent)
+    final public PASerializable createSubordinate(String actorType, Ancestor parent)
             throws Exception {
-        IncDesImpl jid = Util.newJid(this, actorType, getMailbox(), parent);
-        jid.setContainerJid(this);
+        PASerializable jid = Util.newJid(this, actorType, getMailbox(), parent);
+        ((IncDesImpl) jid.getDurable()).setContainerJid(this);
         return jid;
     }
 
-    final public IncDesImpl createSubordinate(Factory factory, byte[] bytes)
+    final public PASerializable createSubordinate(Factory factory, byte[] bytes)
             throws Exception {
         return createSubordinate(factory, getParent(), bytes);
     }
 
-    final public IncDesImpl createSubordinate(String actorType, byte[] bytes)
+    final public PASerializable createSubordinate(String actorType, byte[] bytes)
             throws Exception {
         return createSubordinate(actorType, getParent(), bytes);
     }
 
-    final public IncDesImpl createSubordinate(Factory factory, Ancestor parent, byte[] bytes)
+    final public PASerializable createSubordinate(Factory factory, Ancestor parent, byte[] bytes)
             throws Exception {
         if (bytes == null)
             return createSubordinate(factory, parent);
-        IncDesImpl jid = (IncDesImpl) factory.newActor(getMailbox(), parent);
-        jid.load(new ReadableBytes(bytes, 0));
-        jid.setContainerJid(this);
+        PASerializable jid = factory.newActor(getMailbox(), parent);
+        ((IncDesImpl) jid.getDurable()).load(new ReadableBytes(bytes, 0));
+        ((IncDesImpl) jid.getDurable()).setContainerJid(this);
         return jid;
     }
 
-    final public IncDesImpl createSubordinate(String actorType, Ancestor parent, byte[] bytes)
+    final public PASerializable createSubordinate(String actorType, Ancestor parent, byte[] bytes)
             throws Exception {
         if (bytes == null)
             return createSubordinate(actorType, parent);
-        IncDesImpl jid = (IncDesImpl) Util.newJid(this, actorType, getMailbox(), parent);
-        jid.load(new ReadableBytes(bytes, 0));
-        jid.setContainerJid(this);
+        PASerializable jid = Util.newJid(this, actorType, getMailbox(), parent);
+        ((IncDesImpl) jid.getDurable()).load(new ReadableBytes(bytes, 0));
+        ((IncDesImpl) jid.getDurable()).setContainerJid(this);
         return jid;
     }
 
-    final public IncDesImpl createSubordinate(Factory factory, ReadableBytes readableBytes)
+    final public PASerializable createSubordinate(Factory factory, ReadableBytes readableBytes)
             throws Exception {
         return createSubordinate(factory, getParent(), readableBytes);
     }
 
-    final public IncDesImpl createSubordinate(String actorType, ReadableBytes readableBytes)
+    final public PASerializable createSubordinate(String actorType, ReadableBytes readableBytes)
             throws Exception {
         return createSubordinate(actorType, getParent(), readableBytes);
     }
 
-    final public IncDesImpl createSubordinate(Factory factory, Ancestor parent, ReadableBytes readableBytes)
+    final public PASerializable createSubordinate(Factory factory, Ancestor parent, ReadableBytes readableBytes)
             throws Exception {
-        IncDesImpl jid = (IncDesImpl) factory.newActor(getMailbox(), parent);
+        PASerializable jid = factory.newActor(getMailbox(), parent);
         if (readableBytes != null)
-            jid.load(readableBytes);
-        jid.setContainerJid(this);
+            ((IncDesImpl) jid.getDurable()).load(readableBytes);
+        ((IncDesImpl) jid.getDurable()).setContainerJid(this);
         return jid;
     }
 
-    final public IncDesImpl createSubordinate(String actorType, Ancestor parent, ReadableBytes readableBytes)
+    final public PASerializable createSubordinate(String actorType, Ancestor parent, ReadableBytes readableBytes)
             throws Exception {
-        IncDesImpl jid = (IncDesImpl) Util.newJid(this, actorType, getMailbox(), parent);
+        PASerializable jid = Util.newJid(this, actorType, getMailbox(), parent);
         if (readableBytes != null)
-            jid.load(readableBytes);
-        jid.setContainerJid(this);
+            ((IncDesImpl) jid.getDurable()).load(readableBytes);
+        ((IncDesImpl) jid.getDurable()).setContainerJid(this);
         return jid;
     }
 
@@ -302,15 +302,13 @@ public class IncDesImpl extends AncestorBase implements IncDes {
      * @throws Exception Any uncaught exception which occurred while processing the request.
      */
     @Override
-    public IncDes resolvePathname(final String pathname) throws Exception {
-        if (pathname != "")
-            throw new IllegalArgumentException("pathname " + pathname);
-        return this;
+    public PASerializable resolvePathname(final String pathname) throws Exception {
+        throw new UnsupportedOperationException();
     }
 
     @Override
-    public Request<IncDes> resolvePathnameReq(final String pathname) {
-        return new RequestBase<IncDes>(getMailbox()) {
+    public Request<PASerializable> resolvePathnameReq(final String pathname) {
+        return new RequestBase<PASerializable>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(resolvePathname(pathname));
@@ -325,18 +323,19 @@ public class IncDesImpl extends AncestorBase implements IncDes {
      * @return a copy of the actor.
      */
     @Override
-    public IncDesImpl copy(final Mailbox m)
+    public PASerializable copy(final Mailbox m)
             throws Exception {
         Mailbox mb = m;
         if (mb == null)
             mb = getMailbox();
-        IncDesImpl jid = getFactory().newActor(mb, getParent());
+        PASerializable serializable = getFactory().newActor(mb, getParent());
+        IncDesImpl jid = (IncDesImpl) serializable.getDurable();
         jid.load(new ReadableBytes(getSerializedBytes(), 0));
-        return jid;
+        return serializable;
     }
 
-    public final Request<IncDes> copyReq(final Mailbox m) {
-        return new RequestBase<IncDes>(getMailbox()) {
+    public final Request<PASerializable> copyReq(final Mailbox m) {
+        return new RequestBase<PASerializable>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(copy(m));
@@ -344,7 +343,7 @@ public class IncDesImpl extends AncestorBase implements IncDes {
         };
     }
 
-    public final Request<Boolean> isEqualReq(final IncDes jidA) {
+    public final Request<Boolean> isEqualReq(final PASerializable jidA) {
         return new RequestBase<Boolean>(getMailbox()) {
             @Override
             public void processRequest(final ResponseProcessor rp) throws Exception {

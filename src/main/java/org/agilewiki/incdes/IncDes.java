@@ -40,7 +40,7 @@ public interface IncDes extends PASerializable {
     void load(final ReadableBytes _readableBytes)
             throws Exception;
 
-    Request<IncDes> resolvePathnameReq(final String _pathname);
+    Request<PASerializable> resolvePathnameReq(final String _pathname);
 
     /**
      * Resolves a JID pathname, returning a JID actor or null.
@@ -49,7 +49,7 @@ public interface IncDes extends PASerializable {
      * @return A JID actor or null.
      * @throws Exception Any uncaught exception which occurred while processing the request.
      */
-    IncDes resolvePathname(final String _pathname)
+    PASerializable resolvePathname(final String _pathname)
             throws Exception;
 
     /**
@@ -66,10 +66,10 @@ public interface IncDes extends PASerializable {
      */
     String getType();
 
-    Request<IncDes> copyReq(final Mailbox _m);
+    Request<PASerializable> copyReq(final Mailbox _m);
 
-    IncDes copy(final Mailbox m)
+    PASerializable copy(final Mailbox m)
             throws Exception;
 
-    Request<Boolean> isEqualReq(final IncDes _jidA);
+    Request<Boolean> isEqualReq(final PASerializable _jidA);
 }

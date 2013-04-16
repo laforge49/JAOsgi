@@ -35,7 +35,7 @@ import org.agilewiki.pautil.Ancestor;
 /**
  * A collection of JID actors.
  */
-abstract public class CollectionImpl<ENTRY_TYPE extends IncDes>
+abstract public class CollectionImpl<ENTRY_TYPE extends PASerializable>
         extends IncDesImpl
         implements Collection<ENTRY_TYPE> {
 
@@ -121,10 +121,10 @@ abstract public class CollectionImpl<ENTRY_TYPE extends IncDes>
      * @throws Exception Any uncaught exception which occurred while processing the request.
      */
     @Override
-    public IncDes resolvePathname(String pathname)
+    public PASerializable resolvePathname(String pathname)
             throws Exception {
         if (pathname.length() == 0) {
-            return this;
+            throw new IllegalArgumentException("empty string");
         }
         int s = pathname.indexOf("/");
         if (s == -1)
@@ -140,10 +140,10 @@ abstract public class CollectionImpl<ENTRY_TYPE extends IncDes>
         }
         if (n < 0 || n >= size())
             throw new IllegalArgumentException("pathname " + pathname);
-        IncDes jid = iGet(n);
+        PASerializable jid = iGet(n);
         if (s == pathname.length())
             return jid;
-        return jid.resolvePathname(pathname.substring(s + 1));
+        return jid.getDurable().resolvePathname(pathname.substring(s + 1));
     }
 
     public void initialize(final Mailbox mailbox, Ancestor parent, FactoryImpl factory) throws Exception {

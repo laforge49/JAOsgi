@@ -37,7 +37,7 @@ import org.agilewiki.pautil.Ancestor;
 /**
  * A balanced tree holding a list of JIDs, all of the same type.
  */
-public class BList<ENTRY_TYPE extends IncDes>
+public class BList<ENTRY_TYPE extends PASerializable>
         extends AppBase
         implements PAList<ENTRY_TYPE>, Collection<ENTRY_TYPE> {
     protected final int TUPLE_SIZE = 0;
@@ -234,10 +234,10 @@ public class BList<ENTRY_TYPE extends IncDes>
      * @throws Exception Any uncaught exception which occurred while processing the request.
      */
     @Override
-    public IncDes resolvePathname(String pathname)
+    public PASerializable resolvePathname(String pathname)
             throws Exception {
         if (pathname.length() == 0) {
-            return this;
+            throw new IllegalArgumentException("empty string");
         }
         int s = pathname.indexOf("/");
         if (s == -1)
@@ -253,10 +253,10 @@ public class BList<ENTRY_TYPE extends IncDes>
         }
         if (n < 0 || n >= size())
             throw new IllegalArgumentException("pathname " + pathname);
-        IncDes jid = iGet(n);
+        PASerializable jid = iGet(n);
         if (s == pathname.length())
             return jid;
-        return jid.resolvePathname(pathname.substring(s + 1));
+        return jid.getDurable().resolvePathname(pathname.substring(s + 1));
     }
 
     @Override
@@ -350,14 +350,14 @@ public class BList<ENTRY_TYPE extends IncDes>
         int i = 0;
         if (oldFactory.name.startsWith("LL.")) {
             while (i < h) {
-                IncDesImpl e = (IncDesImpl) oldRootNode.iGet(i);
-                byte[] bytes = e.getSerializedBytes();
+                PASerializable e = oldRootNode.iGet(i);
+                byte[] bytes = e.getDurable().getSerializedBytes();
                 leftBNode.iAdd(-1, bytes);
                 i += 1;
             }
             while (i < nodeCapacity) {
-                IncDesImpl e = (IncDesImpl) oldRootNode.iGet(i);
-                byte[] bytes = e.getSerializedBytes();
+                PASerializable e = oldRootNode.iGet(i);
+                byte[] bytes = e.getDurable().getSerializedBytes();
                 rightBNode.iAdd(-1, bytes);
                 i += 1;
             }
@@ -386,9 +386,9 @@ public class BList<ENTRY_TYPE extends IncDes>
         int i = 0;
         if (isLeaf()) {
             while (i < h) {
-                IncDesImpl e = (IncDesImpl) node.iGet(0);
+                PASerializable e = node.iGet(0);
                 node.iRemove(0);
-                byte[] bytes = e.getSerializedBytes();
+                byte[] bytes = e.getDurable().getSerializedBytes();
                 leftBNode.iAdd(-1, bytes);
                 i += 1;
             }
@@ -489,8 +489,8 @@ public class BList<ENTRY_TYPE extends IncDes>
         int i = 0;
         if (isLeaf()) {
             while (i < node.size()) {
-                IncDesImpl e = (IncDesImpl) node.iGet(i);
-                leftNode.append(e.getSerializedBytes(), 1);
+                PASerializable e = node.iGet(i);
+                leftNode.append(e.getDurable().getSerializedBytes(), 1);
                 i += 1;
             }
         } else {

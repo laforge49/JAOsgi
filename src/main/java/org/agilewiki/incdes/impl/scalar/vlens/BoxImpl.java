@@ -36,7 +36,7 @@ import org.agilewiki.pautil.Ancestor;
  * A JID actor that holds a JID actor.
  */
 public class BoxImpl
-        extends VLenScalar<String, IncDesImpl> implements Box {
+        extends VLenScalar<String, PASerializable> implements Box {
 
     public static void registerFactory(FactoryLocator factoryLocator)
             throws Exception {
@@ -50,7 +50,7 @@ public class BoxImpl
     }
 
     private Request<Void> clearReq;
-    private Request<IncDes> getPAIDReq;
+    private Request<PASerializable> getPAIDReq;
 
     @Override
     public Request<Void> clearReq() {
@@ -58,7 +58,7 @@ public class BoxImpl
     }
 
     @Override
-    public Request<IncDes> getIncDesReq() {
+    public Request<PASerializable> getIncDesReq() {
         return getPAIDReq;
     }
 
@@ -73,7 +73,7 @@ public class BoxImpl
             return;
         int l = len;
         if (value != null) {
-            value.setContainerJid(null);
+            ((IncDesImpl) value.getDurable()).setContainerJid(null);
             value = null;
         }
         serializedBytes = null;
@@ -118,7 +118,8 @@ public class BoxImpl
     public void setValue(final String jidType)
             throws Exception {
         value = createSubordinate(jidType);
-        int l = Util.stringLength(value.getFactory().getFactoryKey()) + value.getSerializedLength();
+        int l = Util.stringLength(((FactoryImpl) value.getDurable().getFactory()).getFactoryKey()) +
+                value.getDurable().getSerializedLength();
         change(l);
         serializedBytes = null;
         serializedOffset = -1;
@@ -198,7 +199,8 @@ public class BoxImpl
     public void setBytes(String jidType, byte[] bytes)
             throws Exception {
         value = createSubordinate(jidType, bytes);
-        int l = Util.stringLength(value.getFactory().getFactoryKey()) + value.getSerializedLength();
+        int l = Util.stringLength(((FactoryImpl) value.getDurable().getFactory()).getFactoryKey()) +
+                value.getDurable().getSerializedLength();
         change(l);
         serializedBytes = null;
         serializedOffset = -1;
@@ -214,7 +216,8 @@ public class BoxImpl
     public void setBytes(FactoryImpl jidFactory, byte[] bytes)
             throws Exception {
         value = createSubordinate(jidFactory, bytes);
-        int l = Util.stringLength(jidFactory.getFactoryKey()) + value.getSerializedLength();
+        int l = Util.stringLength(jidFactory.getFactoryKey()) +
+                value.getDurable().getSerializedLength();
         change(l);
         serializedBytes = null;
         serializedOffset = -1;
@@ -227,12 +230,12 @@ public class BoxImpl
      * @throws Exception Any uncaught exception raised during deserialization.
      */
     @Override
-    public IncDesImpl getValue()
+    public PASerializable getValue()
             throws Exception {
         if (len == -1)
             return null;
         if (value != null)
-            return (IncDesImpl) value;
+            return value;
         if (len == -1) {
             return null;
         }
@@ -240,7 +243,7 @@ public class BoxImpl
         skipLen(readableBytes);
         String factoryKey = readableBytes.readString();
         value = createSubordinate(factoryKey, readableBytes);
-        return (IncDesImpl) value;
+        return value;
     }
 
     /**
@@ -254,9 +257,9 @@ public class BoxImpl
         saveLen(appendableBytes);
         if (len == -1)
             return;
-        String factoryKey = value.getFactory().getFactoryKey();
+        String factoryKey = ((FactoryImpl) value.getDurable().getFactory()).getFactoryKey();
         appendableBytes.writeString(factoryKey);
-        value.save(appendableBytes);
+        value.getDurable().save(appendableBytes);
     }
 
     /**
@@ -267,19 +270,19 @@ public class BoxImpl
      * @throws Exception Any uncaught exception which occurred while processing the request.
      */
     @Override
-    public IncDes resolvePathname(String pathname)
+    public PASerializable resolvePathname(String pathname)
             throws Exception {
         if (pathname.length() == 0) {
-            return this;
+            throw new IllegalArgumentException("empty string");
         }
         if (pathname.equals("0")) {
             return getValue();
         }
         if (pathname.startsWith("0/")) {
-            IncDes v = getValue();
+            PASerializable v = getValue();
             if (v == null)
                 return null;
-            return v.resolvePathname(pathname.substring(2));
+            return v.getDurable().resolvePathname(pathname.substring(2));
         }
         throw new IllegalArgumentException("pathname " + pathname);
     }
@@ -293,7 +296,7 @@ public class BoxImpl
             }
         };
 
-        getPAIDReq = new RequestBase<IncDes>(getMailbox()) {
+        getPAIDReq = new RequestBase<PASerializable>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(getValue());

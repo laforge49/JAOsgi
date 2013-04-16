@@ -23,10 +23,7 @@
  */
 package org.agilewiki.incdes.impl.factory;
 
-import org.agilewiki.incdes.Context;
-import org.agilewiki.incdes.FactoryLocator;
-import org.agilewiki.incdes.IncDesFactories;
-import org.agilewiki.incdes.Util;
+import org.agilewiki.incdes.*;
 import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.incdes.impl.collection.vlenc.map.MapEntryImpl;
 import org.agilewiki.incdes.impl.collection.vlenc.map.StringSMap;
@@ -162,7 +159,7 @@ public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator {
      * @param jidType The jid type.
      * @return The new jid.
      */
-    public IncDesImpl newJid(String jidType)
+    public PASerializable newJid(String jidType)
             throws Exception {
         return newJid(jidType, null, null);
     }
@@ -174,7 +171,7 @@ public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator {
      * @param mailbox A mailbox which may be shared with other actors, or null.
      * @return The new jid.
      */
-    public IncDesImpl newJid(String jidType, Mailbox mailbox)
+    public PASerializable newJid(String jidType, Mailbox mailbox)
             throws Exception {
         return newJid(jidType, mailbox, null);
     }
@@ -187,7 +184,7 @@ public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator {
      * @param parent  The parent actor to which unrecognized requests are forwarded, or null.
      * @return The new jid.
      */
-    public IncDesImpl newJid(String jidType, Mailbox mailbox, Ancestor parent)
+    public PASerializable newJid(String jidType, Mailbox mailbox, Ancestor parent)
             throws Exception {
         if (mailbox == null || parent == null) {
             if (mailbox == null) mailbox = mailboxFactory.createMailbox();

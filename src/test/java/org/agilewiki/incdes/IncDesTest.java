@@ -65,24 +65,12 @@ public class IncDesTest extends TestCase {
             IncDes jid1 = IncDesFactories.createIncDes(factoryLocator, null, null);
             jid1.load(new ReadableBytes(new byte[0], 0));
             Mailbox mailbox = factoryLocator.getMailboxFactory().createMailbox();
-            IncDes jid2 = jid1.copyReq(mailbox).call();
-            int l = jid2.getSerializedLengthReq().call();
+            IncDes jid2 = (IncDes) jid1.copyReq(mailbox).call();
+            int l = jid2.getDurable().getSerializedLengthReq().call();
             System.err.println(l);
             assertEquals(l, 0);
             boolean eq = jid1.isEqualReq(jid2).call();
             assertTrue(eq);
-        } finally {
-            factoryLocator.close();
-        }
-    }
-
-    public void test7() throws Exception {
-        System.err.println("\nTest 7");
-        FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
-        try {
-            IncDes a = IncDesFactories.createIncDes(factoryLocator, null, null);
-            IncDes b = a.resolvePathnameReq("").call();
-            assertEquals(a, b);
         } finally {
             factoryLocator.close();
         }

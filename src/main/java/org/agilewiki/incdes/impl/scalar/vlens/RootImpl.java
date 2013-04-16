@@ -156,13 +156,13 @@ public class RootImpl extends BoxImpl implements Root {
         manifest = Util.getManifestCopy(this, getMailbox());
     }
 
-    public IncDesImpl copy(Mailbox m)
+    public PASerializable copy(Mailbox m)
             throws Exception {
         Mailbox mb = m;
         if (mb == null)
             mb = getMailbox();
-        IncDesImpl jid = getFactory().newActor(mb, getParent());
-        jid.load(new ReadableBytes(getSerializedBytes(), 0));
+        PASerializable jid = getFactory().newActor(mb, getParent());
+        jid.getDurable().load(new ReadableBytes(getSerializedBytes(), 0));
         return jid;
     }
 

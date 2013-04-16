@@ -42,7 +42,7 @@ public class AppBase extends IncDesImpl {
     /**
      * A tuple of actors.
      */
-    protected IncDes[] tuple;
+    protected PASerializable[] tuple;
 
     /**
      * Returns the element factories.
@@ -66,11 +66,12 @@ public class AppBase extends IncDesImpl {
     protected void _iSetBytes(int i, byte[] bytes)
             throws Exception {
         _initialize();
-        IncDesImpl elementJid = createSubordinate(tupleFactories[i], bytes);
-        IncDesImpl oldElementJid = (IncDesImpl) _iGet(i);
-        oldElementJid.setContainerJid(null);
+        PASerializable elementJid = createSubordinate(tupleFactories[i], bytes);
+        PASerializable oldElementJid = _iGet(i);
+        ((IncDesImpl) oldElementJid.getDurable()).setContainerJid(null);
         tuple[i] = elementJid;
-        change(elementJid.getSerializedLength() - oldElementJid.getSerializedLength());
+        change(elementJid.getDurable().getSerializedLength() -
+                oldElementJid.getDurable().getSerializedLength());
     }
 
     /**
@@ -89,7 +90,7 @@ public class AppBase extends IncDesImpl {
      * @param i The index of the element of interest.
      * @return The ith JID component, or null if the index is out of range.
      */
-    protected IncDes _iGet(int i) throws Exception {
+    protected PASerializable _iGet(int i) throws Exception {
         _initialize();
         if (i < 0)
             i += _size();
@@ -105,10 +106,10 @@ public class AppBase extends IncDesImpl {
      * @return A JID actor or null.
      * @throws Exception Any uncaught exception which occurred while processing the request.
      */
-    protected IncDes _resolvePathname(String pathname)
+    protected PASerializable _resolvePathname(String pathname)
             throws Exception {
         if (pathname.length() == 0) {
-            return this;
+            throw new IllegalArgumentException("empty string");
         }
         int s = pathname.indexOf("/");
         if (s == -1)
@@ -124,10 +125,10 @@ public class AppBase extends IncDesImpl {
         }
         if (n < 0 || n >= _size())
             throw new IllegalArgumentException("pathname " + pathname);
-        IncDes jid = _iGet(n);
+        PASerializable jid = _iGet(n);
         if (s == pathname.length())
             return jid;
-        return jid.resolvePathname(pathname.substring(s + 1));
+        return jid.getDurable().resolvePathname(pathname.substring(s + 1));
     }
 
     /**
@@ -145,12 +146,12 @@ public class AppBase extends IncDesImpl {
             readableBytes = readable();
             _skipLen(readableBytes);
         }
-        tuple = new IncDes[_size()];
+        tuple = new PASerializable[_size()];
         int i = 0;
         _len = 0;
         while (i < _size()) {
-            IncDesImpl elementJid = createSubordinate(tupleFactories[i], readableBytes);
-            _len += elementJid.getSerializedLength();
+            PASerializable elementJid = createSubordinate(tupleFactories[i], readableBytes);
+            _len += elementJid.getDurable().getSerializedLength();
             tuple[i] = elementJid;
             i += 1;
         }
@@ -207,7 +208,7 @@ public class AppBase extends IncDesImpl {
         _saveLen(appendableBytes);
         int i = 0;
         while (i < _size()) {
-            _iGet(i).save(appendableBytes);
+            _iGet(i).getDurable().save(appendableBytes);
             i += 1;
         }
     }

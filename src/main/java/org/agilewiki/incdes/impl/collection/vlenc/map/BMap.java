@@ -37,7 +37,7 @@ import org.agilewiki.pautil.Ancestor;
 /**
  * A balanced tree that holds a map.
  */
-abstract public class BMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends IncDes>
+abstract public class BMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends PASerializable>
         extends AppBase
         implements PAMap<KEY_TYPE, VALUE_TYPE>, Collection<MapEntry<KEY_TYPE, VALUE_TYPE>> {
     protected final int TUPLE_SIZE = 0;
@@ -131,7 +131,7 @@ abstract public class BMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
         return (UnionImpl) _iGet(TUPLE_UNION);
     }
 
-    protected SMap<KEY_TYPE, IncDesImpl> getNode()
+    protected SMap<KEY_TYPE, PASerializable> getNode()
             throws Exception {
         return (SMap) getUnionJid().getValue();
     }
@@ -174,7 +174,7 @@ abstract public class BMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
     @Override
     public MapEntryImpl<KEY_TYPE, VALUE_TYPE> iGet(int ndx)
             throws Exception {
-        SMap<KEY_TYPE, IncDesImpl> node = getNode();
+        SMap<KEY_TYPE, PASerializable> node = getNode();
         if (isLeaf()) {
             return (MapEntryImpl<KEY_TYPE, VALUE_TYPE>) node.iGet(ndx);
         }
@@ -297,7 +297,7 @@ abstract public class BMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
     @Override
     final public Boolean kMake(KEY_TYPE key)
             throws Exception {
-        SMap<KEY_TYPE, IncDesImpl> node = getNode();
+        SMap<KEY_TYPE, PASerializable> node = getNode();
         if (isLeaf()) {
             int i = node.search(key);
             if (i > -1)
@@ -324,7 +324,7 @@ abstract public class BMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
         incSize(1);
         if (bnode.isFat()) {
             node.iAdd(i - 1);
-            MapEntryImpl<KEY_TYPE, BMap<KEY_TYPE, IncDesImpl>> leftEntry = (MapEntryImpl) node.iGet(i - 1);
+            MapEntryImpl<KEY_TYPE, BMap<KEY_TYPE, PASerializable>> leftEntry = (MapEntryImpl) node.iGet(i - 1);
             bnode.inodeSplit(leftEntry);
             if (node.size() < nodeCapacity)
                 return true;
@@ -337,43 +337,43 @@ abstract public class BMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
 
     protected void rootSplit()
             throws Exception {
-        SMap<KEY_TYPE, IncDesImpl> oldRootNode = getNode();
+        SMap<KEY_TYPE, PASerializable> oldRootNode = getNode();
         FactoryImpl oldFactory = oldRootNode.getFactory();
         getUnionJid().setValue(1);
-        SMap<KEY_TYPE, IncDesImpl> newRootNode = getNode();
+        SMap<KEY_TYPE, PASerializable> newRootNode = getNode();
         newRootNode.iAdd(0);
         newRootNode.iAdd(1);
-        MapEntryImpl<KEY_TYPE, BMap<KEY_TYPE, IncDesImpl>> leftEntry = (MapEntryImpl) newRootNode.iGet(0);
-        MapEntryImpl<KEY_TYPE, BMap<KEY_TYPE, IncDesImpl>> rightEntry = (MapEntryImpl) newRootNode.iGet(1);
-        BMap<KEY_TYPE, IncDesImpl> leftBNode = leftEntry.getValue();
-        BMap<KEY_TYPE, IncDesImpl> rightBNode = rightEntry.getValue();
+        MapEntryImpl<KEY_TYPE, BMap<KEY_TYPE, PASerializable>> leftEntry = (MapEntryImpl) newRootNode.iGet(0);
+        MapEntryImpl<KEY_TYPE, BMap<KEY_TYPE, PASerializable>> rightEntry = (MapEntryImpl) newRootNode.iGet(1);
+        BMap<KEY_TYPE, PASerializable> leftBNode = leftEntry.getValue();
+        BMap<KEY_TYPE, PASerializable> rightBNode = rightEntry.getValue();
         leftBNode.setNodeFactory(oldFactory);
         rightBNode.setNodeFactory(oldFactory);
         int h = nodeCapacity / 2;
         int i = 0;
         if (oldFactory.name.startsWith("LM.")) {
             while (i < h) {
-                IncDesImpl e = (IncDesImpl) oldRootNode.iGet(i);
-                byte[] bytes = e.getSerializedBytes();
+                PASerializable e = oldRootNode.iGet(i);
+                byte[] bytes = e.getDurable().getSerializedBytes();
                 leftBNode.iAdd(-1, bytes);
                 i += 1;
             }
             while (i < nodeCapacity) {
-                IncDesImpl e = (IncDesImpl) oldRootNode.iGet(i);
-                byte[] bytes = e.getSerializedBytes();
+                PASerializable e = oldRootNode.iGet(i);
+                byte[] bytes = e.getDurable().getSerializedBytes();
                 rightBNode.iAdd(-1, bytes);
                 i += 1;
             }
         } else {
             while (i < h) {
-                BMap<KEY_TYPE, IncDesImpl> e = (BMap) ((MapEntryImpl<KEY_TYPE, VALUE_TYPE>) oldRootNode.iGet(i)).getValue();
+                BMap<KEY_TYPE, PASerializable> e = (BMap) ((MapEntryImpl<KEY_TYPE, VALUE_TYPE>) oldRootNode.iGet(i)).getValue();
                 int eSize = e.size();
                 byte[] bytes = e.getSerializedBytes();
                 leftBNode.append(bytes, eSize);
                 i += 1;
             }
             while (i < nodeCapacity) {
-                BMap<KEY_TYPE, IncDesImpl> e = (BMap) ((MapEntryImpl<KEY_TYPE, VALUE_TYPE>) oldRootNode.iGet(i)).getValue();
+                BMap<KEY_TYPE, PASerializable> e = (BMap) ((MapEntryImpl<KEY_TYPE, VALUE_TYPE>) oldRootNode.iGet(i)).getValue();
                 int eSize = e.size();
                 byte[] bytes = e.getSerializedBytes();
                 rightBNode.append(bytes, eSize);
@@ -384,18 +384,18 @@ abstract public class BMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
         rightEntry.setKey(rightBNode.getLastKey());
     }
 
-    protected void inodeSplit(MapEntryImpl<KEY_TYPE, BMap<KEY_TYPE, IncDesImpl>> leftEntry)
+    protected void inodeSplit(MapEntryImpl<KEY_TYPE, BMap<KEY_TYPE, PASerializable>> leftEntry)
             throws Exception {
-        BMap<KEY_TYPE, IncDesImpl> leftBNode = leftEntry.getValue();
+        BMap<KEY_TYPE, PASerializable> leftBNode = leftEntry.getValue();
         leftBNode.setNodeFactory(getNode().getFactory());
-        SMap<KEY_TYPE, IncDesImpl> node = getNode();
+        SMap<KEY_TYPE, PASerializable> node = getNode();
         int h = nodeCapacity / 2;
         int i = 0;
         if (isLeaf()) {
             while (i < h) {
-                IncDesImpl e = (IncDesImpl) node.iGet(0);
+                PASerializable e = node.iGet(0);
                 node.iRemove(0);
-                byte[] bytes = e.getSerializedBytes();
+                byte[] bytes = e.getDurable().getSerializedBytes();
                 leftBNode.iAdd(-1, bytes);
                 i += 1;
             }
@@ -418,7 +418,7 @@ abstract public class BMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
     @Override
     public void empty()
             throws Exception {
-        SMap<KEY_TYPE, IncDesImpl> node = getNode();
+        SMap<KEY_TYPE, PASerializable> node = getNode();
         node.empty();
         PAIntegerImpl sj = getSizeJid();
         sj.setValue(0);
@@ -443,7 +443,7 @@ abstract public class BMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
             ndx += s;
         if (ndx < 0 || ndx >= s)
             throw new IllegalArgumentException();
-        SMap<KEY_TYPE, IncDesImpl> node = getNode();
+        SMap<KEY_TYPE, PASerializable> node = getNode();
         if (isLeaf()) {
             node.iRemove(ndx);
             incSize(-1);
@@ -451,7 +451,7 @@ abstract public class BMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
         }
         int i = 0;
         while (i < node.size()) {
-            MapEntryImpl<KEY_TYPE, BMap<KEY_TYPE, IncDesImpl>> entry = (MapEntryImpl) node.iGet(ndx);
+            MapEntryImpl<KEY_TYPE, BMap<KEY_TYPE, PASerializable>> entry = (MapEntryImpl) node.iGet(ndx);
             BMap<KEY_TYPE, VALUE_TYPE> bnode = (BMap) entry.getValue();
             int bns = bnode.size();
             if (ndx < bns) {
@@ -520,19 +520,19 @@ abstract public class BMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
     final public boolean kRemove(KEY_TYPE key)
             throws Exception {
         if (isLeaf()) {
-            SMap<KEY_TYPE, IncDesImpl> node = getNode();
+            SMap<KEY_TYPE, PASerializable> node = getNode();
             if (node.kRemove(key)) {
                 incSize(-1);
                 return true;
             }
             return false;
         }
-        SMap<KEY_TYPE, BMap<KEY_TYPE, IncDesImpl>> node = (SMap) getNode();
+        SMap<KEY_TYPE, BMap<KEY_TYPE, PASerializable>> node = (SMap) getNode();
         int i = node.match(key);
         if (i == size())
             return false;
-        MapEntryImpl<KEY_TYPE, BMap<KEY_TYPE, IncDesImpl>> entry = (MapEntryImpl) node.iGet(i);
-        BMap<KEY_TYPE, IncDesImpl> bnode = entry.getValue();
+        MapEntryImpl<KEY_TYPE, BMap<KEY_TYPE, PASerializable>> entry = (MapEntryImpl) node.iGet(i);
+        BMap<KEY_TYPE, PASerializable> bnode = entry.getValue();
         if (!bnode.kRemove(key))
             return false;
         incSize(-1);
@@ -547,7 +547,7 @@ abstract public class BMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
                 MapEntryImpl leftEntry = (MapEntryImpl) node.iGet(i - 1);
                 BMap<KEY_TYPE, VALUE_TYPE> leftBNode = (BMap) leftEntry.getValue();
                 if (leftBNode.nodeSize() + bnodeSize < nodeCapacity) {
-                    bnode.appendTo((BMap<KEY_TYPE, IncDesImpl>) leftBNode);
+                    bnode.appendTo((BMap<KEY_TYPE, PASerializable>) leftBNode);
                     node.iRemove(i);
                     leftEntry.setKey(leftBNode.getLastKey());
                 }
@@ -567,19 +567,19 @@ abstract public class BMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
             setNodeFactory(bnode.getNode().getFactory());
             PAIntegerImpl sj = getSizeJid();
             sj.setValue(0);
-            bnode.appendTo((BMap<KEY_TYPE, IncDesImpl>) this);
+            bnode.appendTo((BMap<KEY_TYPE, PASerializable>) this);
         }
         return true;
     }
 
     void appendTo(BMap<KEY_TYPE, VALUE_TYPE> leftNode)
             throws Exception {
-        SMap<KEY_TYPE, IncDesImpl> node = getNode();
+        SMap<KEY_TYPE, PASerializable> node = getNode();
         int i = 0;
         if (isLeaf()) {
             while (i < node.size()) {
-                IncDesImpl e = (IncDesImpl) node.iGet(i);
-                leftNode.append(e.getSerializedBytes(), 1);
+                PASerializable e = node.iGet(i);
+                leftNode.append(e.getDurable().getSerializedBytes(), 1);
                 i += 1;
             }
         } else {
@@ -593,14 +593,14 @@ abstract public class BMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
 
     void append(byte[] bytes, int eSize)
             throws Exception {
-        SMap<KEY_TYPE, IncDesImpl> node = getNode();
+        SMap<KEY_TYPE, PASerializable> node = getNode();
         node.iAdd(-1, bytes);
         incSize(eSize);
     }
 
     final public MapEntryImpl<KEY_TYPE, VALUE_TYPE> kGetEntry(KEY_TYPE key)
             throws Exception {
-        SMap<KEY_TYPE, IncDesImpl> node = getNode();
+        SMap<KEY_TYPE, PASerializable> node = getNode();
         if (isLeaf()) {
             int i = node.search(key);
             if (i < 0)
@@ -658,7 +658,7 @@ abstract public class BMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
     @Override
     final public MapEntryImpl<KEY_TYPE, VALUE_TYPE> getCeiling(KEY_TYPE key)
             throws Exception {
-        SMap<KEY_TYPE, IncDesImpl> node = getNode();
+        SMap<KEY_TYPE, PASerializable> node = getNode();
         if (isLeaf()) {
             return (MapEntryImpl<KEY_TYPE, VALUE_TYPE>) node.getCeiling(key);
         }
@@ -688,7 +688,7 @@ abstract public class BMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
     @Override
     final public MapEntryImpl<KEY_TYPE, VALUE_TYPE> getHigher(KEY_TYPE key)
             throws Exception {
-        SMap<KEY_TYPE, IncDesImpl> node = getNode();
+        SMap<KEY_TYPE, PASerializable> node = getNode();
         MapEntryImpl entry = node.getHigher(key);
         if (isLeaf())
             return (MapEntryImpl<KEY_TYPE, VALUE_TYPE>) entry;
@@ -706,10 +706,10 @@ abstract public class BMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
      * @throws Exception Any uncaught exception which occurred while processing the request.
      */
     @Override
-    final public IncDes resolvePathname(String pathname)
+    final public PASerializable resolvePathname(String pathname)
             throws Exception {
         if (pathname.length() == 0) {
-            return this;
+            throw new IllegalArgumentException("empty string");
         }
         int s = pathname.indexOf("/");
         if (s == -1)
@@ -717,12 +717,12 @@ abstract public class BMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
         if (s == 0)
             throw new IllegalArgumentException("pathname " + pathname);
         String ns = pathname.substring(0, s);
-        IncDes jid = kGet(stringToKey(ns));
+        PASerializable jid = kGet(stringToKey(ns));
         if (jid == null)
             return null;
         if (s == pathname.length())
             return jid;
-        return jid.resolvePathname(pathname.substring(s + 1));
+        return jid.getDurable().resolvePathname(pathname.substring(s + 1));
     }
 
     public MapEntryImpl<KEY_TYPE, VALUE_TYPE> getFirst()
@@ -732,13 +732,13 @@ abstract public class BMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
 
     public MapEntryImpl<KEY_TYPE, VALUE_TYPE> getLast()
             throws Exception {
-        SMap<KEY_TYPE, IncDesImpl> node = getNode();
+        SMap<KEY_TYPE, PASerializable> node = getNode();
         return (MapEntryImpl<KEY_TYPE, VALUE_TYPE>) node.getLast();
     }
 
     public KEY_TYPE getLastKey()
             throws Exception {
-        SMap<KEY_TYPE, IncDesImpl> node = getNode();
+        SMap<KEY_TYPE, PASerializable> node = getNode();
         return node.getLastKey();
     }
 

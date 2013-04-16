@@ -24,6 +24,7 @@
 package org.agilewiki.incdes.impl.factory;
 
 import org.agilewiki.incdes.Factory;
+import org.agilewiki.incdes.PASerializable;
 import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
@@ -77,7 +78,7 @@ abstract public class FactoryImpl implements Factory {
      *
      * @return The new actor.
      */
-    abstract protected IncDesImpl instantiateActor()
+    abstract protected PASerializable instantiateActor()
             throws Exception;
 
     /**
@@ -88,10 +89,10 @@ abstract public class FactoryImpl implements Factory {
      * @return The new actor.
      */
     @Override
-    public IncDesImpl newActor(Mailbox mailbox, Ancestor parent)
+    public PASerializable newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
-        IncDesImpl a = instantiateActor();
-        a.initialize(mailbox, parent, this);
+        PASerializable a = instantiateActor();
+        ((IncDesImpl) a.getDurable()).initialize(mailbox, parent, this);
         return a;
     }
 

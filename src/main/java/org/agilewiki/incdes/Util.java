@@ -92,7 +92,7 @@ public class Util {
      * @param jidType The jid type.
      * @return The new jid.
      */
-    public static IncDesImpl newJid(Ancestor actor, String jidType)
+    public static PASerializable newJid(Ancestor actor, String jidType)
             throws Exception {
         return newJid(actor, jidType, null, null);
     }
@@ -105,7 +105,7 @@ public class Util {
      * @param mailbox   A mailbox which may be shared with other actors, or null.
      * @return The new jid.
      */
-    public static Actor newJid(Ancestor actor, String actorType, Mailbox mailbox)
+    public static PASerializable newJid(Ancestor actor, String actorType, Mailbox mailbox)
             throws Exception {
         return newJid(actor, actorType, mailbox, null);
     }
@@ -119,7 +119,7 @@ public class Util {
      * @param parent  The parent actor to which unrecognized requests are forwarded, or null.
      * @return The new jid.
      */
-    public static IncDesImpl newJid(Ancestor ancestor, String jidType, Mailbox mailbox, Ancestor parent)
+    public static PASerializable newJid(Ancestor ancestor, String jidType, Mailbox mailbox, Ancestor parent)
             throws Exception {
         FactoryLocator factoryLocator = getFactoryLocator(ancestor);
         if (factoryLocator == null)

@@ -2,7 +2,7 @@ package org.agilewiki.incdes;
 
 import org.agilewiki.pactor.Request;
 
-public interface Collection<ENTRY_TYPE extends IncDes> extends IncDes {
+public interface Collection<ENTRY_TYPE extends PASerializable> extends IncDes {
 
     Request<Integer> sizeReq();
 

@@ -23,9 +23,7 @@
  */
 package org.agilewiki.incdes.impl.collection.vlenc.map;
 
-import org.agilewiki.incdes.AppBase;
-import org.agilewiki.incdes.Factory;
-import org.agilewiki.incdes.MapEntry;
+import org.agilewiki.incdes.*;
 import org.agilewiki.incdes.impl.IncDesImpl;
 import org.agilewiki.incdes.impl.factory.FactoryImpl;
 import org.agilewiki.incdes.impl.scalar.Scalar;
@@ -49,12 +47,12 @@ public class MapEntryImpl<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE>
     @Override
     public KEY_TYPE getKey()
             throws Exception {
-        return (KEY_TYPE) ((Scalar) _iGet(TUPLE_KEY)).getValue();
+        return (KEY_TYPE) ((Scalar) _iGet(TUPLE_KEY).getDurable()).getValue();
     }
 
     protected void setKey(KEY_TYPE key)
             throws Exception {
-        ((Scalar) _iGet(TUPLE_KEY)).setValue(key);
+        ((Scalar) _iGet(TUPLE_KEY).getDurable()).setValue(key);
     }
 
     @Override
@@ -64,11 +62,12 @@ public class MapEntryImpl<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE>
     }
 
     public void setValueBytes(byte[] bytes) throws Exception {
-        IncDesImpl old = (IncDesImpl) getValue();
-        old.setContainerJid(null);
-        IncDesImpl elementJid = createSubordinate(tupleFactories[TUPLE_VALUE], this, bytes);
+        PASerializable old = (PASerializable) getValue();
+        ((IncDesImpl) old.getDurable()).setContainerJid(null);
+        PASerializable elementJid = createSubordinate(tupleFactories[TUPLE_VALUE], this, bytes);
         tuple[TUPLE_VALUE] = elementJid;
-        change(elementJid.getSerializedLength() - old.getSerializedLength());
+        change(elementJid.getDurable().getSerializedLength() -
+                old.getDurable().getSerializedLength());
     }
 
     /**

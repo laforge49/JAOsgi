@@ -73,7 +73,7 @@ public interface FactoryLocator extends Ancestor {
      * @param jidType The jid type.
      * @return The new jid.
      */
-    IncDesImpl newJid(String jidType)
+    PASerializable newJid(String jidType)
             throws Exception;
 
     /**
@@ -83,7 +83,7 @@ public interface FactoryLocator extends Ancestor {
      * @param mailbox A mailbox which may be shared with other actors, or null.
      * @return The new actor.
      */
-    IncDesImpl newJid(String jidType, Mailbox mailbox)
+    PASerializable newJid(String jidType, Mailbox mailbox)
             throws Exception;
 
     /**
@@ -94,7 +94,7 @@ public interface FactoryLocator extends Ancestor {
      * @param parent  The parent actor to which unrecognized requests are forwarded, or null.
      * @return The new actor.
      */
-    IncDesImpl newJid(String jidType, Mailbox mailbox, Ancestor parent)
+    PASerializable newJid(String jidType, Mailbox mailbox, Ancestor parent)
             throws Exception;
 
     StringSMap<PAStringImpl> getManifestCopy(Mailbox mailbox) throws Exception;

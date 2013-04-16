@@ -32,7 +32,7 @@ import org.agilewiki.incdes.impl.collection.CollectionImpl;
  * Holds a fixed-size array of JID actors of various types.
  */
 public class TupleImpl
-        extends CollectionImpl<IncDes>
+        extends CollectionImpl<PASerializable>
         implements ComparableKey<Object>, Tuple {
     /**
      * An array of jid factories, one for each element in the tuple.
@@ -42,7 +42,7 @@ public class TupleImpl
     /**
      * A tuple of actors.
      */
-    protected IncDesImpl[] tuple;
+    protected PASerializable[] tuple;
 
     /**
      * Perform lazy initialization.
@@ -59,12 +59,12 @@ public class TupleImpl
             readableBytes = readable();
             skipLen(readableBytes);
         }
-        tuple = new IncDesImpl[size()];
+        tuple = new PASerializable[size()];
         int i = 0;
         len = 0;
         while (i < size()) {
-            IncDesImpl elementJid = createSubordinate(tupleFactories[i], readableBytes);
-            len += elementJid.getSerializedLength();
+            PASerializable elementJid = createSubordinate(tupleFactories[i], readableBytes);
+            len += elementJid.getDurable().getSerializedLength();
             tuple[i] = elementJid;
             i += 1;
         }
@@ -93,11 +93,12 @@ public class TupleImpl
     public void iSet(int i, byte[] bytes)
             throws Exception {
         initializeTuple();
-        IncDesImpl elementJid = createSubordinate(tupleFactories[i], bytes);
-        IncDesImpl oldElementJid = iGet(i);
-        oldElementJid.setContainerJid(null);
+        PASerializable elementJid = createSubordinate(tupleFactories[i], bytes);
+        PASerializable oldElementJid = iGet(i);
+        ((IncDesImpl) oldElementJid.getDurable()).setContainerJid(null);
         tuple[i] = elementJid;
-        change(elementJid.getSerializedLength() - oldElementJid.getSerializedLength());
+        change(elementJid.getDurable().getSerializedLength() -
+                oldElementJid.getDurable().getSerializedLength());
     }
 
     /**
@@ -130,7 +131,7 @@ public class TupleImpl
      * @return The ith JID component, or null if the index is out of range.
      */
     @Override
-    public IncDesImpl iGet(int i) throws Exception {
+    public PASerializable iGet(int i) throws Exception {
         initializeTuple();
         if (i < 0)
             i += size();
@@ -150,7 +151,7 @@ public class TupleImpl
         saveLen(appendableBytes);
         int i = 0;
         while (i < size()) {
-            iGet(i).save(appendableBytes);
+            iGet(i).getDurable().save(appendableBytes);
             i += 1;
         }
     }

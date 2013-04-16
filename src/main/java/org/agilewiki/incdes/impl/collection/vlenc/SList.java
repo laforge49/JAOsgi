@@ -38,7 +38,7 @@ import java.util.ArrayList;
 /**
  * Holds an ArrayList of JID actors, all of the same type.
  */
-public class SList<ENTRY_TYPE extends IncDes>
+public class SList<ENTRY_TYPE extends PASerializable>
         extends CollectionImpl<ENTRY_TYPE>
         implements PAList<ENTRY_TYPE> {
     public int initialCapacity = 10;
@@ -164,7 +164,7 @@ public class SList<ENTRY_TYPE extends IncDes>
         appendableBytes.writeInt(size());
         int i = 0;
         while (i < size()) {
-            iGet(i).save(appendableBytes);
+            iGet(i).getDurable().save(appendableBytes);
             i += 1;
         }
     }
@@ -177,7 +177,7 @@ public class SList<ENTRY_TYPE extends IncDes>
      * @throws Exception Any uncaught exception which occurred while processing the request.
      */
     @Override
-    public IncDes resolvePathname(String pathname)
+    public PASerializable resolvePathname(String pathname)
             throws Exception {
         initializeList();
         return super.resolvePathname(pathname);
@@ -198,12 +198,12 @@ public class SList<ENTRY_TYPE extends IncDes>
             i += list.size();
         if (i < 0 || i >= list.size())
             throw new IllegalArgumentException();
-        IncDes elementJid = createSubordinate(entryFactory, this, bytes);
-        IncDesImpl oldElementJid = (IncDesImpl) iGet(i);
-        oldElementJid.setContainerJid(null);
+        PASerializable elementJid = createSubordinate(entryFactory, this, bytes);
+        PASerializable oldElementJid = iGet(i);
+        ((IncDesImpl) oldElementJid.getDurable()).setContainerJid(null);
         list.set(i, (ENTRY_TYPE) elementJid);
-        change(elementJid.getSerializedLength() -
-                oldElementJid.getSerializedLength());
+        change(elementJid.getDurable().getSerializedLength() -
+                oldElementJid.getDurable().getSerializedLength());
     }
 
     @Override
@@ -223,8 +223,8 @@ public class SList<ENTRY_TYPE extends IncDes>
         initializeList();
         if (i < 0)
             i = size() + 1 + i;
-        IncDes jid = createSubordinate(entryFactory, this, bytes);
-        int c = jid.getSerializedLength();
+        PASerializable jid = createSubordinate(entryFactory, this, bytes);
+        int c = jid.getDurable().getSerializedLength();
         list.add(i, (ENTRY_TYPE) jid);
         change(c);
     }
@@ -246,8 +246,8 @@ public class SList<ENTRY_TYPE extends IncDes>
         initializeList();
         if (i < 0)
             i = size() + 1 + i;
-        IncDes jid = createSubordinate(entryFactory, this);
-        int c = jid.getSerializedLength();
+        PASerializable jid = createSubordinate(entryFactory, this);
+        int c = jid.getDurable().getSerializedLength();
         list.add(i, (ENTRY_TYPE) jid);
         change(c);
     }
@@ -259,9 +259,9 @@ public class SList<ENTRY_TYPE extends IncDes>
         int i = 0;
         int s = size();
         while (i < s) {
-            IncDesImpl jid = (IncDesImpl) iGet(i);
-            jid.setContainerJid(null);
-            c -= jid.getSerializedLength();
+            PASerializable jid = iGet(i);
+            ((IncDesImpl) jid.getDurable()).setContainerJid(null);
+            c -= jid.getDurable().getSerializedLength();
             i += 1;
         }
         list.clear();
@@ -287,9 +287,9 @@ public class SList<ENTRY_TYPE extends IncDes>
             i += s;
         if (i < 0 || i >= s)
             throw new IllegalArgumentException();
-        IncDesImpl jid = (IncDesImpl) iGet(i);
-        jid.setContainerJid(null);
-        int c = -jid.getSerializedLength();
+        PASerializable jid = (IncDesImpl) iGet(i);
+        ((IncDesImpl) jid.getDurable()).setContainerJid(null);
+        int c = -jid.getDurable().getSerializedLength();
         list.remove(i);
         change(c);
     }

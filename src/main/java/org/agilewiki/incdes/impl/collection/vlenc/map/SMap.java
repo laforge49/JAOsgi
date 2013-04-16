@@ -35,7 +35,7 @@ import org.agilewiki.pautil.Ancestor;
 /**
  * Holds a map.
  */
-abstract public class SMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends IncDes>
+abstract public class SMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE extends PASerializable>
         extends SList<MapEntry<KEY_TYPE, VALUE_TYPE>>
         implements PAMap<KEY_TYPE, VALUE_TYPE>, Collection<MapEntry<KEY_TYPE, VALUE_TYPE>> {
 
@@ -335,10 +335,10 @@ abstract public class SMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
      * @throws Exception Any uncaught exception which occurred while processing the request.
      */
     @Override
-    final public IncDes resolvePathname(String pathname)
+    final public PASerializable resolvePathname(String pathname)
             throws Exception {
         if (pathname.length() == 0) {
-            return this;
+            throw new IllegalArgumentException("empty string");
         }
         int s = pathname.indexOf("/");
         if (s == -1)
@@ -346,12 +346,12 @@ abstract public class SMap<KEY_TYPE extends Comparable<KEY_TYPE>, VALUE_TYPE ext
         if (s == 0)
             throw new IllegalArgumentException("pathname " + pathname);
         String ns = pathname.substring(0, s);
-        IncDes jid = kGet(stringToKey(ns));
+        PASerializable jid = kGet(stringToKey(ns));
         if (jid == null)
             return null;
         if (s == pathname.length())
             return jid;
-        return jid.resolvePathname(pathname.substring(s + 1));
+        return jid.getDurable().resolvePathname(pathname.substring(s + 1));
     }
 
     public MapEntryImpl<KEY_TYPE, VALUE_TYPE> getFirst()

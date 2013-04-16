@@ -33,7 +33,7 @@ import org.agilewiki.pactor.RequestBase;
 import org.agilewiki.pactor.ResponseProcessor;
 import org.agilewiki.pautil.Ancestor;
 
-public class UnionImpl extends Scalar<String, IncDesImpl> implements Union {
+public class UnionImpl extends Scalar<String, PASerializable> implements Union {
 
     public static void registerFactory(final FactoryLocator _factoryLocator,
                                        final String _subActorType,
@@ -66,17 +66,17 @@ public class UnionImpl extends Scalar<String, IncDesImpl> implements Union {
 
     protected Factory[] unionFactories;
     protected int factoryIndex = -1;
-    protected IncDesImpl value;
+    protected PASerializable value;
 
     private Request<Void> clearReq;
-    private Request<IncDes> getPAIDReq;
+    private Request<PASerializable> getPAIDReq;
 
     public Request<Void> clearReq() {
         return clearReq;
     }
 
     @Override
-    public Request<IncDes> getIncDesReq() {
+    public Request<PASerializable> getIncDesReq() {
         return getPAIDReq;
     }
 
@@ -120,9 +120,9 @@ public class UnionImpl extends Scalar<String, IncDesImpl> implements Union {
         if (factoryIndex == -1)
             return;
         Factory factory = getUnionFactories()[factoryIndex];
-        value = (IncDesImpl) factory.newActor(getMailbox(), getParent());
-        value.load(readableBytes);
-        value.setContainerJid(this);
+        value = factory.newActor(getMailbox(), getParent());
+        value.getDurable().load(readableBytes);
+        ((IncDesImpl) value.getDurable()).setContainerJid(this);
     }
 
     /**
@@ -134,7 +134,7 @@ public class UnionImpl extends Scalar<String, IncDesImpl> implements Union {
     public int getSerializedLength() throws Exception {
         if (factoryIndex == -1)
             return Util.INT_LENGTH;
-        return Util.INT_LENGTH + value.getSerializedLength();
+        return Util.INT_LENGTH + value.getDurable().getSerializedLength();
     }
 
     /**
@@ -173,15 +173,15 @@ public class UnionImpl extends Scalar<String, IncDesImpl> implements Union {
             throws Exception {
         int oldLength = getSerializedLength();
         if (value != null)
-            value.setContainerJid(null);
+            ((IncDesImpl) value.getDurable()).setContainerJid(null);
         if (ndx == -1) {
             factoryIndex = -1;
             value = null;
         } else {
             Factory factory = getUnionFactories()[ndx];
             factoryIndex = ndx;
-            value = (IncDesImpl) factory.newActor(getMailbox(), getParent());
-            value.setContainerJid(this);
+            value = factory.newActor(getMailbox(), getParent());
+            ((IncDesImpl) value.getDurable()).setContainerJid(this);
         }
         change(getSerializedLength() - oldLength);
     }
@@ -221,12 +221,12 @@ public class UnionImpl extends Scalar<String, IncDesImpl> implements Union {
             throws Exception {
         int oldLength = getSerializedLength();
         if (value != null)
-            value.setContainerJid(null);
+            ((IncDesImpl) value.getDurable()).setContainerJid(null);
         Factory factory = getUnionFactories()[ndx];
         factoryIndex = ndx;
-        value = (IncDesImpl) factory.newActor(getMailbox(), getParent());
-        value.setContainerJid(this);
-        value.load(new ReadableBytes(bytes, 0));
+        value = factory.newActor(getMailbox(), getParent());
+        ((IncDesImpl) value.getDurable()).setContainerJid(this);
+        value.getDurable().load(new ReadableBytes(bytes, 0));
         change(getSerializedLength() - oldLength);
     }
 
@@ -301,7 +301,7 @@ public class UnionImpl extends Scalar<String, IncDesImpl> implements Union {
     }
 
     @Override
-    public IncDesImpl getValue() throws Exception {
+    public PASerializable getValue() throws Exception {
         return value;
     }
 
@@ -316,7 +316,7 @@ public class UnionImpl extends Scalar<String, IncDesImpl> implements Union {
         appendableBytes.writeInt(factoryIndex);
         if (factoryIndex == -1)
             return;
-        value.save(appendableBytes);
+        value.getDurable().save(appendableBytes);
     }
 
     /**
@@ -327,19 +327,19 @@ public class UnionImpl extends Scalar<String, IncDesImpl> implements Union {
      * @throws Exception Any uncaught exception which occurred while processing the request.
      */
     @Override
-    public IncDes resolvePathname(String pathname)
+    public PASerializable resolvePathname(String pathname)
             throws Exception {
         if (pathname.length() == 0) {
-            return this;
+            throw new IllegalArgumentException("empty string");
         }
         if (pathname.equals("0")) {
             return getValue();
         }
         if (pathname.startsWith("0/")) {
-            IncDesImpl v = getValue();
+            PASerializable v = getValue();
             if (v == null)
                 return null;
-            return v.resolvePathname(pathname.substring(2));
+            return v.getDurable().resolvePathname(pathname.substring(2));
         }
         throw new IllegalArgumentException("pathname " + pathname);
     }
@@ -353,7 +353,7 @@ public class UnionImpl extends Scalar<String, IncDesImpl> implements Union {
             }
         };
 
-        getPAIDReq = new RequestBase<IncDes>(getMailbox()) {
+        getPAIDReq = new RequestBase<PASerializable>(getMailbox()) {
             @Override
             public void processRequest(ResponseProcessor rp) throws Exception {
                 rp.processResponse(getValue());

@@ -3,9 +3,9 @@ package org.agilewiki.incdes;
 import org.agilewiki.pactor.Request;
 
 public interface Union extends IncDes {
-    Request<IncDes> getIncDesReq();
+    Request<PASerializable> getIncDesReq();
 
-    IncDes getValue()
+    PASerializable getValue()
             throws Exception;
 
     Request<Void> clearReq();
