@@ -5,7 +5,7 @@ import org.agilewiki.pactor.Actor;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
 
-public class SerializableBase implements PASerializable {
+public class AppBase implements PASerializable {
     private DurableImpl durableImpl;
 
     public void setDurable(final DurableImpl _durableImpl) {

@@ -28,8 +28,8 @@ abstract public class AppFactory extends FactoryImpl {
         this.jidTypes = jidTypes;
     }
 
-    protected SerializableBase instantiateActor() {
-        return new SerializableBase();
+    protected AppBase instantiateActor() {
+        return new AppBase();
     }
 
     /**
@@ -39,9 +39,9 @@ abstract public class AppFactory extends FactoryImpl {
      * @param parent  The parent of the new actor.
      * @return The new actor.
      */
-    public SerializableBase newActor(Mailbox mailbox, Ancestor parent)
+    public AppBase newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
-        SerializableBase a = instantiateActor();
+        AppBase a = instantiateActor();
         DurableImpl tj = new DurableImpl();
         a.setDurable(tj);
         tj.initialize(mailbox, parent, this);
