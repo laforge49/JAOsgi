@@ -429,9 +429,4 @@ public class IncDesImpl extends AncestorBase implements IncDes {
     public Mailbox getMailbox() {
         return mailbox;
     }
-
-    @Override
-    public boolean sameMailbox(final Actor other) {
-        return mailbox == other.getMailbox();
-    }
 }

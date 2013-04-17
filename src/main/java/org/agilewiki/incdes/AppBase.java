@@ -25,11 +25,6 @@ public class AppBase implements App {
     }
 
     @Override
-    public boolean sameMailbox(final Actor _other) {
-        return durable.sameMailbox(_other);
-    }
-
-    @Override
     public Ancestor getParent() {
         return durable.getParent();
     }
