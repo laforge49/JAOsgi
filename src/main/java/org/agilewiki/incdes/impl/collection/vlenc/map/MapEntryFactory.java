@@ -78,7 +78,7 @@ public class MapEntryFactory extends FactoryImpl {
     public MapEntryImpl newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
         MapEntryImpl me = (MapEntryImpl) super.newActor(mailbox, parent);
-        FactoryLocator fl = Util.getFactoryLocator(parent);
+        FactoryLocator fl = Util.getFactoryLocator(mailbox);
         Factory keyFactory = fl.getFactory(keyType);
         Factory valueFactory = fl.getFactory(valueType);
         me.setFactories(keyFactory, valueFactory);

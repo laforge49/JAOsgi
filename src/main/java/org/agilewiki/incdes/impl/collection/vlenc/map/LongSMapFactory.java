@@ -90,7 +90,7 @@ public class LongSMapFactory extends FactoryImpl {
     public LongSMap newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
         LongSMap imj = (LongSMap) super.newActor(mailbox, parent);
-        FactoryLocator fl = Util.getFactoryLocator(parent);
+        FactoryLocator fl = Util.getFactoryLocator(mailbox);
         imj.valueFactory = fl.getFactory(valueType);
         imj.initialCapacity = initialCapacity;
         return imj;

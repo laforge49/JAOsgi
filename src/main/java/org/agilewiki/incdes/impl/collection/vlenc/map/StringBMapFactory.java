@@ -94,7 +94,7 @@ public class StringBMapFactory extends FactoryImpl {
     public StringBMap newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
         StringBMap imj = (StringBMap) super.newActor(mailbox, parent);
-        FactoryLocator fl = Util.getFactoryLocator(parent);
+        FactoryLocator fl = Util.getFactoryLocator(mailbox);
         imj.valueFactory = fl.getFactory(valueType);
         imj.nodeCapacity = NODE_CAPACITY;
         imj.isRoot = isRoot;

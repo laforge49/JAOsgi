@@ -76,8 +76,8 @@ final public class IncDesFactories extends LocateLocalActorFactories {
      */
     public final static String INCDES = "incdes";
 
-    public static IncDes createIncDes(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (IncDes) Util.newJid(actor, INCDES, mailbox, parent);
+    public static IncDes createIncDes(FactoryLocator factoryLocator, Mailbox mailbox, Ancestor parent) throws Exception {
+        return (IncDes) Util.newJid(factoryLocator, INCDES, mailbox, parent);
     }
 
     /**
@@ -85,8 +85,8 @@ final public class IncDesFactories extends LocateLocalActorFactories {
      */
     public final static String PABOOLEAN = "bool";
 
-    public static PABoolean createPABoolean(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (PABoolean) Util.newJid(actor, PABOOLEAN, mailbox, parent);
+    public static PABoolean createPABoolean(FactoryLocator factoryLocator, Mailbox mailbox, Ancestor parent) throws Exception {
+        return (PABoolean) Util.newJid(factoryLocator, PABOOLEAN, mailbox, parent);
     }
 
     /**
@@ -94,8 +94,8 @@ final public class IncDesFactories extends LocateLocalActorFactories {
      */
     public final static String PAINTEGER = "int";
 
-    public static PAInteger createPAInteger(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (PAInteger) Util.newJid(actor, PAINTEGER, mailbox, parent);
+    public static PAInteger createPAInteger(FactoryLocator factoryLocator, Mailbox mailbox, Ancestor parent) throws Exception {
+        return (PAInteger) Util.newJid(factoryLocator, PAINTEGER, mailbox, parent);
     }
 
     /**
@@ -103,8 +103,8 @@ final public class IncDesFactories extends LocateLocalActorFactories {
      */
     public final static String PALONG = "long";
 
-    public static PALong createPALong(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (PALong) Util.newJid(actor, PALONG, mailbox, parent);
+    public static PALong createPALong(FactoryLocator factoryLocator, Mailbox mailbox, Ancestor parent) throws Exception {
+        return (PALong) Util.newJid(factoryLocator, PALONG, mailbox, parent);
     }
 
     /**
@@ -112,8 +112,8 @@ final public class IncDesFactories extends LocateLocalActorFactories {
      */
     public final static String PAFLOAT = "float";
 
-    public static PAFloat createPAFloat(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (PAFloat) Util.newJid(actor, PAFLOAT, mailbox, parent);
+    public static PAFloat createPAFloat(FactoryLocator factoryLocator, Mailbox mailbox, Ancestor parent) throws Exception {
+        return (PAFloat) Util.newJid(factoryLocator, PAFLOAT, mailbox, parent);
     }
 
     /**
@@ -121,8 +121,8 @@ final public class IncDesFactories extends LocateLocalActorFactories {
      */
     public final static String PADOUBLE = "double";
 
-    public static PADouble createPADouble(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (PADouble) Util.newJid(actor, PADOUBLE, mailbox, parent);
+    public static PADouble createPADouble(FactoryLocator factoryLocator, Mailbox mailbox, Ancestor parent) throws Exception {
+        return (PADouble) Util.newJid(factoryLocator, PADOUBLE, mailbox, parent);
     }
 
     /**
@@ -130,8 +130,8 @@ final public class IncDesFactories extends LocateLocalActorFactories {
      */
     public final static String BOX = "box";
 
-    public static Box createBox(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (Box) Util.newJid(actor, BOX, mailbox, parent);
+    public static Box createBox(FactoryLocator factoryLocator, Mailbox mailbox, Ancestor parent) throws Exception {
+        return (Box) Util.newJid(factoryLocator, BOX, mailbox, parent);
     }
 
     /**
@@ -139,8 +139,8 @@ final public class IncDesFactories extends LocateLocalActorFactories {
      */
     public final static String ROOT = "root";
 
-    public static Root createRoot(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (Root) Util.newJid(actor, ROOT, mailbox, parent);
+    public static Root createRoot(FactoryLocator factoryLocator, Mailbox mailbox, Ancestor parent) throws Exception {
+        return (Root) Util.newJid(factoryLocator, ROOT, mailbox, parent);
     }
 
     /**
@@ -148,8 +148,8 @@ final public class IncDesFactories extends LocateLocalActorFactories {
      */
     public final static String PASTRING = "string";
 
-    public static PAString createPAString(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (PAString) Util.newJid(actor, PASTRING, mailbox, parent);
+    public static PAString createPAString(FactoryLocator factoryLocator, Mailbox mailbox, Ancestor parent) throws Exception {
+        return (PAString) Util.newJid(factoryLocator, PASTRING, mailbox, parent);
     }
 
     /**
@@ -157,8 +157,8 @@ final public class IncDesFactories extends LocateLocalActorFactories {
      */
     public final static String BYTES = "bytes";
 
-    public static Bytes createBytes(Ancestor actor, Mailbox mailbox, Ancestor parent) throws Exception {
-        return (Bytes) Util.newJid(actor, BYTES, mailbox, parent);
+    public static Bytes createBytes(FactoryLocator factoryLocator, Mailbox mailbox, Ancestor parent) throws Exception {
+        return (Bytes) Util.newJid(factoryLocator, BYTES, mailbox, parent);
     }
 
     /**

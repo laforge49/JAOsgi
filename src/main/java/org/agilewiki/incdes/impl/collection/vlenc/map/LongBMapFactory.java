@@ -92,7 +92,7 @@ public class LongBMapFactory extends FactoryImpl {
     public LongBMap newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
         LongBMap imj = (LongBMap) super.newActor(mailbox, parent);
-        FactoryLocator fl = Util.getFactoryLocator(parent);
+        FactoryLocator fl = Util.getFactoryLocator(mailbox);
         imj.valueFactory = fl.getFactory(valueType);
         imj.nodeCapacity = NODE_CAPACITY;
         imj.isRoot = isRoot;

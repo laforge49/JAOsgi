@@ -23,6 +23,7 @@
  */
 package org.agilewiki.jfile.block;
 
+import org.agilewiki.incdes.FactoryLocator;
 import org.agilewiki.incdes.Root;
 import org.agilewiki.pactor.Mailbox;
 import org.agilewiki.pautil.Ancestor;
@@ -111,7 +112,7 @@ public interface Block {
      * @param parent  The parent.
      * @return The RootImpl, or null.
      */
-    public Root getRootJid(Ancestor actor, Mailbox mailbox, Ancestor parent)
+    public Root getRootJid(FactoryLocator factoryLocator, Mailbox mailbox, Ancestor parent)
             throws Exception;
 
     /**

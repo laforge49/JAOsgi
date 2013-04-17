@@ -44,10 +44,6 @@ public class Util {
         return "" + version.getMajor() + "." + version.getMajor();
     }
 
-    public static FactoryLocator getFactoryLocator(Ancestor ancestor) {
-        return (FactoryLocator) AncestorBase.getMatch(ancestor, FactoryLocatorImpl.class);
-    }
-
     public static Context getContext(final Properties _properties) {
         return (Context) _properties.getProperty("context");
     }
@@ -68,64 +64,33 @@ public class Util {
         return getContext(_actor).getFactoryLocator();
     }
 
-    /**
-     * Returns the requested actor factory.
-     *
-     * @param actor   The actor which is the factory or which has a factory as an ancestor.
-     * @param jidType The jid type.
-     * @return The registered actor factory.
-     */
-    public static Factory getActorFactory(Ancestor actor, String jidType)
+    public static FactoryLocator getFactoryLocator(final Mailbox _mailbox) {
+        return getContext(_mailbox).getFactoryLocator();
+    }
+
+    public static Factory getActorFactory(final Actor _actor, final String _type)
             throws Exception {
-        FactoryLocator factoryLocator = getFactoryLocator(actor);
+        return getActorFactory(getFactoryLocator(_actor), _type);
+    }
+
+    public static Factory getActorFactory(FactoryLocator factoryLocator, String jidType)
+            throws Exception {
         if (factoryLocator == null)
             throw new IllegalArgumentException("Unknown jid type: " + jidType);
         return factoryLocator.getFactory(jidType);
     }
 
-    /**
-     * Creates a new actor.
-     *
-     * @param actor   The actor which is the factory or which has a factory as an ancestor.
-     * @param jidType The jid type.
-     * @return The new jid.
-     */
-    public static PASerializable newJid(Ancestor actor, String jidType)
+    public static PASerializable newJid(Actor actor, String jidType, Mailbox mailbox, Ancestor parent)
             throws Exception {
-        return newJid(actor, jidType, null, null);
+        return newJid(getFactoryLocator(actor), jidType, mailbox, parent);
     }
 
-    /**
-     * Creates a new actor.
-     *
-     * @param actor     The actor which is the factory or which has a factory as an ancestor.
-     * @param actorType The jid type.
-     * @param mailbox   A mailbox which may be shared with other actors, or null.
-     * @return The new jid.
-     */
-    public static PASerializable newJid(Ancestor actor, String actorType, Mailbox mailbox)
+    public static PASerializable newJid(FactoryLocator factoryLocator, String jidType, Mailbox mailbox, Ancestor parent)
             throws Exception {
-        return newJid(actor, actorType, mailbox, null);
-    }
-
-    /**
-     * Creates a new actor.
-     *
-     * @param ancestor The ancestor which is the factory or which has a factory as an ancestor.
-     * @param jidType  The jid type.
-     * @param mailbox  A mailbox which may be shared with other actors, or null.
-     * @param parent   The parent actor to which unrecognized requests are forwarded, or null.
-     * @return The new jid.
-     */
-    public static PASerializable newJid(Ancestor ancestor, String jidType, Mailbox mailbox, Ancestor parent)
-            throws Exception {
-        FactoryLocator factoryLocator = getFactoryLocator(ancestor);
-        if (factoryLocator == null)
-            return null;
         return factoryLocator.newJid(jidType, mailbox, parent);
     }
 
-    public static StringSMap<PAStringImpl> getManifestCopy(Ancestor actor, Mailbox mailbox)
+    public static StringSMap<PAStringImpl> getManifestCopy(Actor actor, Mailbox mailbox)
             throws Exception {
         FactoryLocator factoryLocator = getFactoryLocator(actor);
         if (factoryLocator == null)
@@ -133,7 +98,7 @@ public class Util {
         return factoryLocator.getManifestCopy(mailbox);
     }
 
-    public static void unknownManifestEntries(Ancestor actor, StringSMap<PAStringImpl> m)
+    public static void unknownManifestEntries(Actor actor, StringSMap<PAStringImpl> m)
             throws Exception {
         FactoryLocator factoryLocator = getFactoryLocator(actor);
         if (factoryLocator == null)
@@ -141,7 +106,7 @@ public class Util {
         factoryLocator.unknownManifestEntries(m);
     }
 
-    public static boolean validateManifest(Ancestor actor, StringSMap<PAStringImpl> m)
+    public static boolean validateManifest(Actor actor, StringSMap<PAStringImpl> m)
             throws Exception {
         FactoryLocator factoryLocator = getFactoryLocator(actor);
         if (factoryLocator == null)
@@ -149,7 +114,7 @@ public class Util {
         return factoryLocator.validateManifest(m);
     }
 
-    public static void loadBundles(Ancestor actor, StringSMap<PAStringImpl> m)
+    public static void loadBundles(Actor actor, StringSMap<PAStringImpl> m)
             throws Exception {
         FactoryLocator factoryLocator = getFactoryLocator(actor);
         if (factoryLocator == null)

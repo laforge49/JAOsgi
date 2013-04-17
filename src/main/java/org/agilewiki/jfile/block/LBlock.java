@@ -177,14 +177,14 @@ public class LBlock implements Block {
      * @return The deserialized RootImpl, or null.
      */
     @Override
-    public Root getRootJid(Ancestor actor, Mailbox mailbox, Ancestor parent)
+    public Root getRootJid(FactoryLocator factoryLocator, Mailbox mailbox, Ancestor parent)
             throws Exception {
         if (rootJid != null)
             return rootJid;
         rb = null;
         if (rootJidBytes == null)
             return null;
-        rootJid = IncDesFactories.createRoot(actor, mailbox, parent);
+        rootJid = IncDesFactories.createRoot(factoryLocator, mailbox, parent);
         rootJid.load(new ReadableBytes(rootJidBytes, 0));
         return rootJid;
     }

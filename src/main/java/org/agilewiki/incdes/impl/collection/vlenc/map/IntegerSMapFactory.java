@@ -89,7 +89,7 @@ public class IntegerSMapFactory extends FactoryImpl {
     public IntegerSMap newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
         IntegerSMap imj = (IntegerSMap) super.newActor(mailbox, parent);
-        FactoryLocator fl = Util.getFactoryLocator(parent);
+        FactoryLocator fl = Util.getFactoryLocator(mailbox);
         imj.valueFactory = fl.getFactory(valueType);
         imj.initialCapacity = initialCapacity;
         return imj;

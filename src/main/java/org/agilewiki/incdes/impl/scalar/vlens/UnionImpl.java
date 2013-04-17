@@ -51,7 +51,7 @@ public class UnionImpl extends Scalar<String, PASerializable> implements Union {
             public UnionImpl newActor(Mailbox mailbox, Ancestor parent)
                     throws Exception {
                 UnionImpl uj = (UnionImpl) super.newActor(mailbox, parent);
-                FactoryLocator fl = Util.getFactoryLocator(parent);
+                FactoryLocator fl = Util.getFactoryLocator(mailbox);
                 Factory[] afs = new FactoryImpl[_actorTypes.length];
                 int i = 0;
                 while (i < _actorTypes.length) {
@@ -89,7 +89,7 @@ public class UnionImpl extends Scalar<String, PASerializable> implements Union {
 
     protected int getFactoryIndex(String actorType)
             throws Exception {
-        FactoryLocator factoryLocator = Util.getFactoryLocator((Ancestor) this);
+        FactoryLocator factoryLocator = Util.getFactoryLocator(this);
         Factory actorFactory = factoryLocator.getFactory(actorType);
         return getFactoryIndex(actorFactory);
     }

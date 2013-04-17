@@ -90,7 +90,7 @@ public class StringSMapFactory extends FactoryImpl {
     public StringSMap newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
         StringSMap imj = (StringSMap) super.newActor(mailbox, parent);
-        FactoryLocator fl = Util.getFactoryLocator(parent);
+        FactoryLocator fl = Util.getFactoryLocator(mailbox);
         imj.valueFactory = fl.getFactory(valueType);
         imj.initialCapacity = initialCapacity;
         return imj;

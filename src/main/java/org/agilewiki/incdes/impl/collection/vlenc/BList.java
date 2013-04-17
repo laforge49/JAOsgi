@@ -76,7 +76,7 @@ public class BList<ENTRY_TYPE extends PASerializable>
         String baseType = getType();
         if (baseType.startsWith("IN."))
             baseType = baseType.substring(3);
-        factoryLocator = Util.getFactoryLocator((Ancestor) this);
+        factoryLocator = Util.getFactoryLocator(this);
         tupleFactories = new FactoryImpl[2];
         tupleFactories[TUPLE_SIZE] = factoryLocator.getFactory(IncDesFactories.PAINTEGER);
         tupleFactories[TUPLE_UNION] = factoryLocator.getFactory("U." + baseType);

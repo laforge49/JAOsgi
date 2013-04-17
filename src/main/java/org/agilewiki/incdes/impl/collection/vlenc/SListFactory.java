@@ -86,7 +86,7 @@ public class SListFactory extends FactoryImpl {
     public SList newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
         SList lj = (SList) super.newActor(mailbox, parent);
-        FactoryLocator fl = Util.getFactoryLocator(parent);
+        FactoryLocator fl = Util.getFactoryLocator(mailbox);
         lj.entryFactory = fl.getFactory(entryType);
         lj.initialCapacity = initialCapacity;
         return lj;

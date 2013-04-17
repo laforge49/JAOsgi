@@ -74,7 +74,7 @@ public class TupleFactory extends FactoryImpl {
     public TupleImpl newActor(Mailbox mailbox, Ancestor parent)
             throws Exception {
         TupleImpl tj = (TupleImpl) super.newActor(mailbox, parent);
-        FactoryLocator fl = Util.getFactoryLocator(parent);
+        FactoryLocator fl = Util.getFactoryLocator(mailbox);
         Factory[] afs = new FactoryImpl[jidTypes.length];
         int i = 0;
         while (i < jidTypes.length) {
