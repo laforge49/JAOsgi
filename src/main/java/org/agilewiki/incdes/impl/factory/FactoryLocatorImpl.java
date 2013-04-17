@@ -184,10 +184,7 @@ public class FactoryLocatorImpl extends AncestorBase implements FactoryLocator {
      */
     public PASerializable newJid(String jidType, Mailbox mailbox, Ancestor parent)
             throws Exception {
-        if (mailbox == null || parent == null) {
-            if (mailbox == null) mailbox = mailboxFactory.createMailbox();
-            if (parent == null) parent = this;
-        }
+        if (mailbox == null) mailbox = mailboxFactory.createMailbox();
         FactoryImpl af = getFactory(jidType);
         return af.newActor(mailbox, parent);
     }
