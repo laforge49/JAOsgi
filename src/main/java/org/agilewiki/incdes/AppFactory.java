@@ -8,7 +8,7 @@ import org.agilewiki.pautil.Ancestor;
 /**
  * Creates DurableImpl objects.
  */
-public class AppFactory extends FactoryImpl {
+public abstract class AppFactory extends FactoryImpl {
     private Factory[] tupleFactories;
     private String[] jidTypes;
 
@@ -29,9 +29,7 @@ public class AppFactory extends FactoryImpl {
     }
 
     @Override
-    protected App instantiateActor() {
-        return new AppBase();
-    }
+    abstract protected App instantiateActor();
 
     /**
      * Create and configure an actor.
