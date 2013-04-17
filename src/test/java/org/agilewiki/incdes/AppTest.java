@@ -11,7 +11,29 @@ public class AppTest extends TestCase {
             user1.PAName().setValue("Joe");
             user1.PAAge().setValue(42);
             user1.PALocation().setValue("Boston");
+
             User user2 = (User) user1.getDurable().copy(null);
+            assertEquals("Joe", user2.PAName().getValue());
+            assertEquals(42, (int) user2.PAAge().getValue());
+            assertEquals("Boston", user2.PALocation().getValue());
+        } finally {
+            factoryLocator.close();
+        }
+    }
+
+    public void test2() throws Exception {
+        FactoryLocator factoryLocator = IncDesFactories.createFactoryLocator();
+        try {
+            User.register(factoryLocator);
+            Box box1 = IncDesFactories.createBox(factoryLocator, null, null);
+            box1.setValue("user");
+            User user1 = (User) box1.getValue();
+            user1.PAName().setValue("Joe");
+            user1.PAAge().setValue(42);
+            user1.PALocation().setValue("Boston");
+
+            Box box2 = (Box) box1.copy(null);
+            User user2 = (User) box2.getValue();
             assertEquals("Joe", user2.PAName().getValue());
             assertEquals(42, (int) user2.PAAge().getValue());
             assertEquals("Boston", user2.PALocation().getValue());
